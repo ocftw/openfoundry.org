@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>活動</title>
+		<description>OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</description>
+		<link>https://www.openfoundry.org</link>
+		<lastBuildDate>Wed, 24 Sep 2025 04:09:29 +0000</lastBuildDate>
+		<generator></generator>
+		<language>zh-tw</language>
+	</channel>
+</rss>

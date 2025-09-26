@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - File storage</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:20 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Rackspace Cloud Files</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/File-storage/rackspace-cloud-files</link>
+	<description><![CDATA[<p>
+<p>Cloud files is a cloud storage service that provides "unlimited online storage and CDN" for media (examples given include backups, video files, user content) on a utility computing basis (at USD 0.15/GB/month)</p>
+<p>Reference: <a href="https://www.rackspacecloud.com/cloud_hosting_products/files" target="_blank">https://www.rackspacecloud.com/cloud_hosting_products/files</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:46:38 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/File-storage/rackspace-cloud-files</guid>
+</item>
+<item>
+	<title>Amazon S3</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/File-storage/amazon-s3</link>
+	<description><![CDATA[<p>
+<p>Amazon S3 (Simple Storage Service) is an online storage web service offered by Amazon Web Services. Amazon S3 provides unlimited storage through a simple web services interface.</p>
+<p>Reference: <a href="https://aws.amazon.com/s3/" target="_blank">https://aws.amazon.com/s3/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:45:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/File-storage/amazon-s3</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:34:01 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>rIDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/ride</link>
+	<description><![CDATA[<p>
+<p>rIDE (Redlands Integrated Developing Environment) is an IDE for linux developed by students, for students with one purpose in mind. We wanted to create a program that would take the hassle out of learning code. Effectively, a text editor with a go button.</p>
+<p>With that in mind two students, Mark Holmquist and Logan May, at the University of Redlands have set forth to create rIDE. rIDE looks like a basic text editor with a nice and simple user interface that supports six languages. It contains support for C++, Python, Prolog, Lisp, Whitespace, and LOLCODE.</p>
+<p>Platform:Linux                                      License:BSD License</p>
+<p>Reference:<a href="https://redlandside.sourceforge.net/" target="_blank">https://redlandside.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Oct 2010 08:02:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/ride</guid>
+</item>
+<item>
+	<title>Common Lisp Studio</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/common-lisp-studio</link>
+	<description><![CDATA[<p>
+<p>Common Lisp development system. Includes command-line and IDE Lisp interpreters. Possibility of creating EXE-files</p>
+<p>Platform:Windows                                     License:GPL</p>
+<p>Reference:<a href="https://www.ufasoft.com/lisp/" target="_blank">https://www.ufasoft.com/lisp/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Oct 2010 08:01:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/common-lisp-studio</guid>
+</item>
+<item>
+	<title>MCLIDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/mclide</link>
+	<description><![CDATA[<p>
+<p>MCLIDE is a free open source Macintosh IDE for Lisp implementations on any platform. It is a double-clickable, stand-alone GUI based lisp development environment that connects to a Lisp either locally or through the network.</p>
+<p>MCLIDEs user interface is based on the mature IDE of Macintosh Common Lisp. It provides rich interactive development and debugging tools in the form of dialogs interacting with the target Lisp (screen shots). The built-in programming editor has paren matching, automatic indentation and numerous shortcuts. It comes with plug-ins providing optional lisp syntax styling and symbol completion.</p>
+<p>Platform:Mac OS                                          License:unknown</p>
+<p>Reference:<a href="https://mclide.in-progress.com/" target="_blank">https://mclide.in-progress.com/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Oct 2010 08:01:13 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/mclide</guid>
+</item>
+<item>
+	<title>Jabberwocky</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/jabberwocky</link>
+	<description><![CDATA[<p>
+<p>Jabberwocky is a integrated development environment for the LISP programming language. The following components are available :</p>
+<p>A editor with syntax coloring and code completion.</p>
+<p>A interaction pane with the LISP process.</p>
+<p>A browser of the sources,functions,macros etc..</p>
+<p>A source level debugger (the successor of Lisp Debug).</p>
+<p>Platform:Cross platform                      License:GNU General Public License (GPL)</p>
+<p>Reference:<a href="https://jabberwocky.sourceforge.net/" target="_blank">https://jabberwocky.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Oct 2010 08:00:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/jabberwocky</guid>
+</item>
+<item>
+	<title>LispIDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/lispide</link>
+	<description><![CDATA[<p>
+<p>LispIDE is a basic graphical shell for several Lisp and Scheme implementations available for Windows. LispIDE seems to work with:Corman Common Lisp,Steel Bank Common Lisp,CLISP,Gnu Common Lisp,Gambit Scheme,Bigloo Scheme,SCM Scheme,Arc,newLISP,OpenLisp,Clozure Common Lisp,PicoLisp,Clojure,Armed Bear Common Lisp. Please let me know if any others work. LispIDE is freeware.</p>
+<p>Features</p>
+<p>· Syntax highlighting for Common Lisp and Scheme.</p>
+<p>· Support for CLISP, SBCL, Corman Lisp or any commandline Lisp or Scheme implementation.</p>
+<p>· Tabbed documents.</p>
+<p>· Easy sending of Lisp expressions to the REPL.</p>
+<p>· Command history using arrow keys.</p>
+<p>· Common Lisp HyperSpec and Common Lisp the Language, 2nd edition included.</p>
+<p>· Restart Lisp button.</p>
+<p>·LispIDE uses Scintilla for it's editor component.</p>
+<p>Platform:Windows                                 License:unknown</p>
+<p>Reference:<a href="https://www.daansystems.com/lispide/" target="_blank">https://www.daansystems.com/lispide/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Oct 2010 08:00:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lisp/Integrated-Development-Environment/lispide</guid>
+</item>
+</channel>
+</rss>

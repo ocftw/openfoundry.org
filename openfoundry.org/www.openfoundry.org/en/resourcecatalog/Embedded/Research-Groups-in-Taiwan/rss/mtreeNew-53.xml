@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 研究計劃</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:09:00 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Networks and Multimedia Institute, NMI</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/institute-for-information-industry-embedded-system-laboratory</link>
+	<description><![CDATA[<p>
+<p>Networks and Multimedia Institute (NMI) is the primary ICT technology research organization within III. Its current research areas include Ubiquitous Networks, Content Sharing, Digital Home, Context-aware Service Platforms, Sensor Networks, and Smart Mobile Devices. Exploiting core ICT technologies, digital content and domain know-how, NMI develops innovative technologies, integrated systems, and advanced applications.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://web.iii.org.tw/english/nmi.asp" target="_blank">https://web.iii.org.tw/english/nmi.asp</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 21 Sep 2007 22:55:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/institute-for-information-industry-embedded-system-laboratory</guid>
+</item>
+<item>
+	<title>National Taiwan University of Science and Technology Department of Electronics Embedded Systems ...</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-taiwan-university-of-science-and-technology-department-of-electronics-embedded-systems-laboratory-room</link>
+	<description><![CDATA[<p>
+<p>The Embedded Systems Laboratory (ESL), led by Professor Mon-Chau Shie of the Department of Electronic Engineering in the , is interested in all aspects on Embedded System design.</p>
+<p>Our research topics are focused on various design levels for embedded system. And we also integrate and optimize various embedded system platforms like ARM, MIPS, NIOS II and DSP. Areas of research are listed as follows:</p>
+<p><span style="white-space: pre;"> </span>★ Research and development of embedded system architecture</p>
+<p><span style="white-space: pre;"> </span>★ Design and application of FPGA</p>
+<p><span style="white-space: pre;"> </span>★ Development and application of multimedia system</p>
+<p><span style="white-space: pre;"> </span>★ Development and application of image processing</p>
+<p><span style="white-space: pre;"> </span>★ Integrating and application of hardware and software systems</p>
+<p><span style="white-space: pre;"> </span>★ Intelligent LCD TV and Digital Color Technology</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://esd.et.ntust.edu.tw/intro.php" target="_blank">https://esd.et.ntust.edu.tw/intro.php</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 21 Sep 2007 14:52:40 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-taiwan-university-of-science-and-technology-department-of-electronics-embedded-systems-laboratory-room</guid>
+</item>
+<item>
+	<title>National Sun Yat-sen University Department of Engineering, Embedded Systems Laboratory</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-sun-yat-sen-university-department-of-engineering-embedded-information-systems-laboratory</link>
+	<description><![CDATA[<p> </p>
+<p>The research directions of our lab started from the computer architecture (CPU) and design automation (related CAD techniques) several years ago. These fields covered both hardware and software efforts. After years of research efforts, we have achieved many significant results that are recognized by both academy and industry. With such achievements, we are now ready to explore wider areas that are related to CPU's: the embedded systems.</p>
+<p>We would like to address the design, integration, verification and use of hardware and software of the embedded systems. Our focuses may include (but are not limited to) high performance/low power/low cost processor design and optimization, SoC design for networking/ security/ multimedia, IP design, real-time operating systems, testing/debugging, system integration, and the related software/firmware techniques.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://cadal.cse.nsysu.edu.tw/" target="_blank">https://cadal.cse.nsysu.edu.tw/</a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Sat, 23 Jun 2007 02:34:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-sun-yat-sen-university-department-of-engineering-embedded-information-systems-laboratory</guid>
+</item>
+<item>
+	<title>National Taiwan University Department of Engineering, Intelligent Spatial Information ...</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-taiwan-university-department-of-engineering-intelligent-spatial-information-laboratory-embedded-computing</link>
+	<description><![CDATA[<p>
+<p>The lab is directed by Professor Chia-Lin Yang. The main research focus is embedded system hardware/software co-design. The research areas are as follows:</p>
+<p>* Multi-core architecture: Programming tool, Design and Analysis</p>
+<p>* GPU architecture design</p>
+<p>* MPSoC: Tool, Analysis and Design</p>
+<p>* Next-Generation NVM Storage System</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://eclab.csie.ntu.edu.tw/eclab07/introduction.htm" target="_blank">https://eclab.csie.ntu.edu.tw/eclab07/introduction.htm</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Sat, 23 Jun 2007 02:30:01 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-taiwan-university-department-of-engineering-intelligent-spatial-information-laboratory-embedded-computing</guid>
+</item>
+<item>
+	<title>National Chung Cheng University, Embedded System Laboratory</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-chung-cheng-university-embedded-system-laboratory</link>
+	<description><![CDATA[<p> </p>
+<p>The lab is directed by Professor Pao-Ann Hsiung and currently has three main research projects as follows:</p>
+<p><span style="white-space: pre;"> </span>* State Graph Manipulators (SGM) Project</p>
+<p><span style="white-space: pre;"> </span>* Verifiable Embedded Real-Time Application Framework (VERTAF) for Multi-Core (VMC) Project</p>
+<p><span style="white-space: pre;"> </span>* Reconfigurable Computing and Network-on-Chip (RC\NoC) Project</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://embedded.cs.ccu.edu.tw/~esl_web/Eg/introduce.php" target="_blank">https://embedded.cs.ccu.edu.tw/~esl_web/Eg/introduce.php</a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 15 Jun 2007 16:12:34 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-chung-cheng-university-embedded-system-laboratory</guid>
+</item>
+<item>
+	<title>Embedded Software Consortium</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/embedded-software-consortium</link>
+	<description><![CDATA[<p>
+<p>ESW, established in March 2003, aims to provide Taiwan with the talents and skills necessary for the development of system-on-a-chip designs. This is achieved by stimulating domestic R&amp;D of embedded system software and participating in international communities with interests in embedded system software.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://esw.cs.nthu.edu.tw/" target="_blank">https://esw.cs.nthu.edu.tw/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 15 Jun 2007 08:10:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/embedded-software-consortium</guid>
+</item>
+<item>
+	<title>National Chiao Tung University Embedded System Laboratory</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-chiao-tung-university-embedded-system-laboratory</link>
+	<description><![CDATA[<p>
+<p>The director of the lab is Professor Jwu-Sheng Hu. The lab has talents including circuit board design, FPGA coding and firmware, and networking. It has built a powerful SOC design platform, on which a variety of application-specific SoC designs has been developed.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://xlab.cn.nctu.edu.tw/" target="_blank">https://xlab.cn.nctu.edu.tw/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Sun, 10 Jun 2007 15:05:07 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/national-chiao-tung-university-embedded-system-laboratory</guid>
+</item>
+<item>
+	<title>System-on-Chip (SoC) Research Center of National Chung Cheng University</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/system-on-chip-soc-research-center-of-national-chung-cheng-university</link>
+	<description><![CDATA[<p>
+<p>The research center has many professors leading the research group and more than 80 graduate students in this group. A variety of research projects on SoC design is conducted in the research center. For more information, please refer to its website.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://www.soc.ccu.edu.tw/andreas02/introduction.php" target="_blank">https://www.soc.ccu.edu.tw/andreas02/introduction.php</a></p>
+</p>]]></description>
+	<author>wych</author>
+	<pubDate>Thu, 29 Mar 2007 03:21:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/system-on-chip-soc-research-center-of-national-chung-cheng-university</guid>
+</item>
+<item>
+	<title>Sensor Information Systems and Services for Active Retirees and Assisted Living</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/sensor-information-systems-and-services-for-active-retirees-and-assisted-living</link>
+	<description><![CDATA[<p>
+<p>The thrust of this project is on component-based technology for the design, production and quality assurance of consumer electronic and assistive appliances and services designed to enrich the quality of life of elderly individuals and to help them live actively and independently. Team members are from Academic Sinica, National Taiwan University, National Chiao Tung University, and National Tsing Hua University.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://sisarl.org/" target="_blank">https://sisarl.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 31 Jan 2007 07:02:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/sensor-information-systems-and-services-for-active-retirees-and-assisted-living</guid>
+</item>
+<item>
+	<title>Embedded Systems Laboratory Department of Computer Science National Tsing Hua University</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/embedded-systems-laboratory-department-of-computer-science-national-tsing-hua-university</link>
+	<description><![CDATA[<p>
+<p>The NTHU ESL conducts research on all aspects of embedded software and systems, including real-time systems, sensor networks, compilers and tool chains, distributed and clustered computing, and operating systems. Several national projects are currently led and executed by ESL to develop cutting-edge embedded software for advanced and innovative embedded devices.</p>
+<p>Platform: N/A;   License: N/A</p>
+<p>References: <a href="https://www.cs.nthu.edu.tw/lab/ES_website/mframe.htm" target="_blank">https://www.cs.nthu.edu.tw/lab/ES_website/mframe.htm</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 31 Jan 2007 07:01:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Research-Groups-in-Taiwan/embedded-systems-laboratory-department-of-computer-science-national-tsing-hua-university</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 網路監控軟體</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:11:32 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>raven-monitoring</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Network-monitoring-software/raven-monitoring</link>
+	<description><![CDATA[<p>Raven-monitoring, Program for service and equipment monitoring, is a web-based monitoring tool. It supports network scanning daemon web inferface. The application is a free, open source monitoring system that provides the adaptability of a modern monitoring system without being complex or hard to configure. License under Apache License 2.0.</p>]]></description>
+	<author>ymhuang0808</author>
+	<pubDate>Thu, 27 May 2010 00:54:08 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Network-monitoring-software/raven-monitoring</guid>
+</item>
+</channel>
+</rss>

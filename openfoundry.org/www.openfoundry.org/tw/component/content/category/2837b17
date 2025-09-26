@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<feed xmlns="http://www.w3.org/2005/Atom"  xml:lang="zh-tw">
+	<title type="text">OpenFoundry</title>
+	<subtitle type="text">OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</subtitle>
+	<link rel="alternate" type="text/html" href="https://www.openfoundry.org"/>
+	<id>https://www.openfoundry.org/component/content/category/283</id>
+	<updated>2025-09-24T05:45:43Z</updated>
+	<generator uri="http://joomla.org" version="1.5"></generator>
+<link rel="self" type="application/atom+xml" href="https://www.openfoundry.org/tw/component/content/category/283?format=feed&amp;type=atom" />
+	<entry>
+		<title>tesw</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8658-test"/>
+		<published>2012-04-02T02:40:34Z</published>
+		<updated>2012-04-02T02:40:34Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8658-test</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">sss</summary>
+		<content type="html">sss</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 01/10</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8240--0110"/>
+		<published>2011-01-10T15:08:24Z</published>
+		<updated>2011-01-10T15:08:24Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8240--0110</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1828&quot; target=&quot;_blank&quot;&gt;Wow! Fast-Easy-Secure PHP MVC Framework&lt;/a&gt; &lt;br /&gt;專案摘要：Wow! Fast-Easy-Secure PHP MVC Framework&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1822&quot; target=&quot;_blank&quot;&gt;WowPyUnzip&lt;/a&gt;&lt;br /&gt;專案摘要：WowPyUnzip&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1821&quot; target=&quot;_blank&quot;&gt;NTUST Online Video Editing Tool&lt;/a&gt;&lt;br /&gt;專案摘要：NTUST Online Video Editing Tool&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1820&quot; target=&quot;_blank&quot;&gt;Ushahidi 2 中文在地化&lt;/a&gt;&lt;br /&gt;專案摘要：Ushahidi 2 中文在地化&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1818&quot; target=&quot;_blank&quot;&gt;DDE Socket Agent&lt;/a&gt;&lt;br /&gt;專案摘要：DDE Socket Agent&lt;br /&gt;</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1828&quot; target=&quot;_blank&quot;&gt;Wow! Fast-Easy-Secure PHP MVC Framework&lt;/a&gt; &lt;br /&gt;專案摘要：Wow! Fast-Easy-Secure PHP MVC Framework&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1822&quot; target=&quot;_blank&quot;&gt;WowPyUnzip&lt;/a&gt;&lt;br /&gt;專案摘要：WowPyUnzip&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1821&quot; target=&quot;_blank&quot;&gt;NTUST Online Video Editing Tool&lt;/a&gt;&lt;br /&gt;專案摘要：NTUST Online Video Editing Tool&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1820&quot; target=&quot;_blank&quot;&gt;Ushahidi 2 中文在地化&lt;/a&gt;&lt;br /&gt;專案摘要：Ushahidi 2 中文在地化&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1818&quot; target=&quot;_blank&quot;&gt;DDE Socket Agent&lt;/a&gt;&lt;br /&gt;專案摘要：DDE Socket Agent&lt;br /&gt;</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 12/27</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8225--1227"/>
+		<published>2010-12-27T11:44:18Z</published>
+		<updated>2010-12-27T11:44:18Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8225--1227</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;br /&gt;1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1819&quot; target=&quot;_blank&quot;&gt;dclteam717&lt;/a&gt;&lt;br /&gt;專案摘要：our dcl final project&lt;br /&gt; &lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1818&quot; target=&quot;_blank&quot;&gt;nddeagent&lt;/a&gt;&lt;br /&gt;專案摘要：DDE Socket Agent(NDDEAgent)是一個 DDE 轉 TCP Socket的伺服軟體，是結合「StockServer」，將 DDE 的股價資訊即時的轉為 TCP Socket。&lt;br /&gt; &lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1817&quot; target=&quot;_blank&quot;&gt;mcucr01&lt;/a&gt;&lt;br /&gt;專案摘要：使用 codeigniter 為 framwork 開發 MCU 前程規畫網站。&lt;br /&gt; &lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1812&quot; target=&quot;_blank&quot;&gt;taieol&lt;/a&gt;&lt;br /&gt;專案摘要：TaiEOL
+&lt;div&gt;&lt;br /&gt;
+&lt;div&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1810&quot; target=&quot;_blank&quot;&gt;orchion&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;專案摘要：ORCHestratION&lt;br /&gt;
+&lt;div&gt;&lt;span style=&quot;font-family: Arial, sans-serif; font-size: large;&quot;&gt;&lt;span style=&quot;border-collapse: collapse; font-size: 17px; line-height: 69px; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-spacing: 2px;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</summary>
+		<content type="html">&lt;br /&gt;1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1819&quot; target=&quot;_blank&quot;&gt;dclteam717&lt;/a&gt;&lt;br /&gt;專案摘要：our dcl final project&lt;br /&gt; &lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1818&quot; target=&quot;_blank&quot;&gt;nddeagent&lt;/a&gt;&lt;br /&gt;專案摘要：DDE Socket Agent(NDDEAgent)是一個 DDE 轉 TCP Socket的伺服軟體，是結合「StockServer」，將 DDE 的股價資訊即時的轉為 TCP Socket。&lt;br /&gt; &lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1817&quot; target=&quot;_blank&quot;&gt;mcucr01&lt;/a&gt;&lt;br /&gt;專案摘要：使用 codeigniter 為 framwork 開發 MCU 前程規畫網站。&lt;br /&gt; &lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1812&quot; target=&quot;_blank&quot;&gt;taieol&lt;/a&gt;&lt;br /&gt;專案摘要：TaiEOL
+&lt;div&gt;&lt;br /&gt;
+&lt;div&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1810&quot; target=&quot;_blank&quot;&gt;orchion&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;專案摘要：ORCHestratION&lt;br /&gt;
+&lt;div&gt;&lt;span style=&quot;font-family: Arial, sans-serif; font-size: large;&quot;&gt;&lt;span style=&quot;border-collapse: collapse; font-size: 17px; line-height: 69px; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-spacing: 2px;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 12/13</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8210--1213"/>
+		<published>2010-12-13T15:04:26Z</published>
+		<updated>2010-12-13T15:04:26Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8210--1213</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1813&quot; target=&quot;_blank&quot;&gt;mind-insight&lt;/a&gt;&lt;br /&gt;專案摘要：A opensource conpeling system&lt;br /&gt;&lt;br /&gt;2.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1812&quot; target=&quot;_blank&quot;&gt;taieol&lt;/a&gt;&lt;br /&gt;專案摘要：TaiEOL&lt;br /&gt;&lt;br /&gt;3.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1810&quot; target=&quot;_blank&quot;&gt;orchion&lt;/a&gt;&lt;br /&gt;專案摘要：ORCHestratION&lt;br /&gt;&lt;br /&gt;4.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1808&quot; target=&quot;_blank&quot;&gt;eesu&lt;/a&gt;&lt;br /&gt;專案摘要：EESU 是資訊與通訊技術的發展與結合，隨時監測生理訊息並且提供老人健康與照護的應用&lt;br /&gt;&lt;br /&gt;5.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1806&quot; target=&quot;_blank&quot;&gt;nlos&lt;/a&gt;&lt;br /&gt;專案摘要：基於 Linux From Scratch 的小型 Linux 發行版</summary>
+		<content type="html">1.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1813&quot; target=&quot;_blank&quot;&gt;mind-insight&lt;/a&gt;&lt;br /&gt;專案摘要：A opensource conpeling system&lt;br /&gt;&lt;br /&gt;2.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1812&quot; target=&quot;_blank&quot;&gt;taieol&lt;/a&gt;&lt;br /&gt;專案摘要：TaiEOL&lt;br /&gt;&lt;br /&gt;3.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1810&quot; target=&quot;_blank&quot;&gt;orchion&lt;/a&gt;&lt;br /&gt;專案摘要：ORCHestratION&lt;br /&gt;&lt;br /&gt;4.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1808&quot; target=&quot;_blank&quot;&gt;eesu&lt;/a&gt;&lt;br /&gt;專案摘要：EESU 是資訊與通訊技術的發展與結合，隨時監測生理訊息並且提供老人健康與照護的應用&lt;br /&gt;&lt;br /&gt;5.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1806&quot; target=&quot;_blank&quot;&gt;nlos&lt;/a&gt;&lt;br /&gt;專案摘要：基於 Linux From Scratch 的小型 Linux 發行版</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 11/22</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8194--1122"/>
+		<published>2010-11-22T17:28:47Z</published>
+		<updated>2010-11-22T17:28:47Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8194--1122</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1803&quot; target=&quot;_blank&quot;&gt;magento&lt;/a&gt;&lt;br /&gt;專案摘要：magento 中文化&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1802&quot; target=&quot;_blank&quot;&gt;webadm&lt;/a&gt;&lt;br /&gt;專案摘要：Web Administration API for Linux server&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1801&quot; target=&quot;_blank&quot;&gt;rovio&lt;/a&gt;&lt;br /&gt;專案摘要：建立一個可以在Android環境下，透過網路控制Rovio，進行居家監控的開放軟體&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1799&quot; target=&quot;_blank&quot;&gt;plwipc&lt;/a&gt;&lt;br /&gt;專案摘要：多核心處理機已經廣泛使用在今天的產品設計上，而異質多核心系統缺乏共通的核心間(inter-core)通訊程式庫的狀況，以及鮮少有幫助分析效能的工具，而此專案即為解決此一問題&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1797&quot; target=&quot;_blank&quot;&gt;cloudsecurity3&lt;/a&gt;&lt;br /&gt;專案摘要：雲端惡意網頁偵測與事件分析核心技術</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1803&quot; target=&quot;_blank&quot;&gt;magento&lt;/a&gt;&lt;br /&gt;專案摘要：magento 中文化&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1802&quot; target=&quot;_blank&quot;&gt;webadm&lt;/a&gt;&lt;br /&gt;專案摘要：Web Administration API for Linux server&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1801&quot; target=&quot;_blank&quot;&gt;rovio&lt;/a&gt;&lt;br /&gt;專案摘要：建立一個可以在Android環境下，透過網路控制Rovio，進行居家監控的開放軟體&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1799&quot; target=&quot;_blank&quot;&gt;plwipc&lt;/a&gt;&lt;br /&gt;專案摘要：多核心處理機已經廣泛使用在今天的產品設計上，而異質多核心系統缺乏共通的核心間(inter-core)通訊程式庫的狀況，以及鮮少有幫助分析效能的工具，而此專案即為解決此一問題&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1797&quot; target=&quot;_blank&quot;&gt;cloudsecurity3&lt;/a&gt;&lt;br /&gt;專案摘要：雲端惡意網頁偵測與事件分析核心技術</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 11/08</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8185-new-project-1109"/>
+		<published>2010-11-08T00:00:00Z</published>
+		<updated>2010-11-08T00:00:00Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8185-new-project-1109</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;span&gt;1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1793&quot; target=&quot;_blank&quot;&gt;pjemb2010&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;專案摘要：&lt;span&gt;以嵌入式系統整合建築物節能裝置的功能設計(嵌入式系統軟體技術開發分項)&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1795&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;nsc99cloudobd&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;整合雲端聲控OBD-II與Google Maps之車載即時最佳路徑規劃與線上導航系統實作&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1797&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;cloudsecurity3&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要&lt;span&gt;：雲端惡意網頁偵測與事件分析核心技術&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1799&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;plwipc&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;多核心處理機已經廣泛使用在今天的產品設計上，而異質多核心系統缺乏共通的核心間(inter-core)通訊程式庫的狀況，以及鮮少有幫助分析效能的工具，而此專案即為解決此一問題&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1801&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;rovio&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;建立一個可以在Android環境下，透過網路控制Rovio，進行居家監控的開放軟體。&lt;/span&gt;</summary>
+		<content type="html">&lt;span&gt;1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1793&quot; target=&quot;_blank&quot;&gt;pjemb2010&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;專案摘要：&lt;span&gt;以嵌入式系統整合建築物節能裝置的功能設計(嵌入式系統軟體技術開發分項)&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1795&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;nsc99cloudobd&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;整合雲端聲控OBD-II與Google Maps之車載即時最佳路徑規劃與線上導航系統實作&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1797&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;cloudsecurity3&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要&lt;span&gt;：雲端惡意網頁偵測與事件分析核心技術&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1799&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;plwipc&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;多核心處理機已經廣泛使用在今天的產品設計上，而異質多核心系統缺乏共通的核心間(inter-core)通訊程式庫的狀況，以及鮮少有幫助分析效能的工具，而此專案即為解決此一問題&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1801&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;rovio&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;專案摘要：&lt;span&gt;建立一個可以在Android環境下，透過網路控制Rovio，進行居家監控的開放軟體。&lt;/span&gt;</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 10/26</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8168--1026"/>
+		<published>2010-10-25T10:43:27Z</published>
+		<updated>2010-10-25T10:43:27Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8168--1026</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1751&quot; target=&quot;_blank&quot;&gt;ecgtransfer &lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：基於 Android 於雲端平台嵌入式心電圖監控系統的研發，利用 BT-ECG 和 Android 行動裝置，將以行動的方法來監控 ECG，並即時傳送到雲端中進行分析。&lt;br /&gt; &lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1741&quot; target=&quot;_blank&quot;&gt;autostockserver&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：自動化證券下單伺服器，StockServe r能夠讓使用者透過 TCP Socket 下達 command，並根據 command 自動化的操作證券軟體，對股票進行下單、成交回報……等。&lt;br /&gt; &lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1739&quot; target=&quot;_blank&quot;&gt;unicloudc3&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：UniCloud-C3 是一個供本混合型雲端資料管理系統將提供高階且容易使用的介面，使用者可簡單地撰寫資料管理程式。&lt;br /&gt; &lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1734&quot; target=&quot;_blank&quot;&gt;snmpnmss&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：在配合無線通訊網路需求下，設計一個跨平台的「泛用型的異質通訊網路管理系統」，提供網管人員有效率的異質網路管理平台。 &lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1716&quot; target=&quot;_blank&quot;&gt;schoolnetmanage&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：透過 PXE 的環境，進行每部用戶端主機的管理系統建置。再透過每部主機的管理系統，來進行大量批次的還原工作。</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1751&quot; target=&quot;_blank&quot;&gt;ecgtransfer &lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：基於 Android 於雲端平台嵌入式心電圖監控系統的研發，利用 BT-ECG 和 Android 行動裝置，將以行動的方法來監控 ECG，並即時傳送到雲端中進行分析。&lt;br /&gt; &lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1741&quot; target=&quot;_blank&quot;&gt;autostockserver&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：自動化證券下單伺服器，StockServe r能夠讓使用者透過 TCP Socket 下達 command，並根據 command 自動化的操作證券軟體，對股票進行下單、成交回報……等。&lt;br /&gt; &lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1739&quot; target=&quot;_blank&quot;&gt;unicloudc3&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：UniCloud-C3 是一個供本混合型雲端資料管理系統將提供高階且容易使用的介面，使用者可簡單地撰寫資料管理程式。&lt;br /&gt; &lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1734&quot; target=&quot;_blank&quot;&gt;snmpnmss&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：在配合無線通訊網路需求下，設計一個跨平台的「泛用型的異質通訊網路管理系統」，提供網管人員有效率的異質網路管理平台。 &lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1716&quot; target=&quot;_blank&quot;&gt;schoolnetmanage&lt;/a&gt;&lt;br /&gt; &lt;br /&gt;專案摘要：透過 PXE 的環境，進行每部用戶端主機的管理系統建置。再透過每部主機的管理系統，來進行大量批次的還原工作。</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 10/11</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8161--1011"/>
+		<published>2010-10-11T12:57:49Z</published>
+		<updated>2010-10-11T12:57:49Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8161--1011</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1669&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;telemandroid&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;嵌入式車載網路管理平台&lt;/span&gt;&lt;span&gt;。建構車載網路管理平台，以達到車載內各 ECUs（Electronic Control Unit）裝置管理及診斷之目的，  並進一步透過網路硬體模組， 對外傳送診斷訊息給 Android/OSGi 車載平台，使得 android/OSGi 平台能夠呼叫相關 APIs，將訊息顯示給使用者／駕駛者。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1668&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;cdac&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;適用於 NFC 應用環境之聯合安全服務平台之跨領域存取控制，&lt;/span&gt;&lt;span&gt;主要提供在 NFC 應用環境的聯合安全服務平台之下，提供身分鑑別與存取控制之安全性。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1667&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;multicore3ss2&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;軟體開發-分項二：異質性多核心作業系統，&lt;/span&gt;&lt;span&gt;嵌入式開發 PACDuo 上所開發的系統相關原始碼。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1665&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;multicore3&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;嵌入式多核心平台開放系統與應用軟體開發，&lt;/span&gt;&lt;span&gt;本計畫的目的在於將三個子計畫所完成之功能模組封裝成函式庫的型式，並將其移植到 Android 的 application  framework，使 Android 上層之應用可以透過相對應的 framework 呼叫較底層之函式。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1663&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;nsc099mss&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;用於雲端服務之行動裝置與網際網路服務異常行為監控與防護機制之研究。&lt;/span&gt;</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1669&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;telemandroid&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;嵌入式車載網路管理平台&lt;/span&gt;&lt;span&gt;。建構車載網路管理平台，以達到車載內各 ECUs（Electronic Control Unit）裝置管理及診斷之目的，  並進一步透過網路硬體模組， 對外傳送診斷訊息給 Android/OSGi 車載平台，使得 android/OSGi 平台能夠呼叫相關 APIs，將訊息顯示給使用者／駕駛者。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1668&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;cdac&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;適用於 NFC 應用環境之聯合安全服務平台之跨領域存取控制，&lt;/span&gt;&lt;span&gt;主要提供在 NFC 應用環境的聯合安全服務平台之下，提供身分鑑別與存取控制之安全性。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1667&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;multicore3ss2&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;軟體開發-分項二：異質性多核心作業系統，&lt;/span&gt;&lt;span&gt;嵌入式開發 PACDuo 上所開發的系統相關原始碼。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1665&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;multicore3&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;嵌入式多核心平台開放系統與應用軟體開發，&lt;/span&gt;&lt;span&gt;本計畫的目的在於將三個子計畫所完成之功能模組封裝成函式庫的型式，並將其移植到 Android 的 application  framework，使 Android 上層之應用可以透過相對應的 framework 呼叫較底層之函式。&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1663&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;nsc099mss&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;用於雲端服務之行動裝置與網際網路服務異常行為監控與防護機制之研究。&lt;/span&gt;</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 09/27</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8149--0927"/>
+		<published>2010-09-27T11:43:54Z</published>
+		<updated>2010-09-27T11:43:54Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8149--0927</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1646&quot; target=&quot;_blank&quot;&gt;presafeautosar&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：預防保護系統是一個龐大複雜的電子系統，它的基本功能包含駕駛輔助、碰撞預警、可逆性防護、不可逆性防護、與營救。&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1645&quot; target=&quot;_blank&quot;&gt;amfes&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：從眾多的特徵中找出有意義的特徵值（AMFES for Feature Ranking and Feature Selection）。&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1644&quot; target=&quot;_blank&quot;&gt;wirelessvedio&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：實現基於 PR-SCTP 協定的快速語音/視訊 IP 串流在行動無線網絡之間的嵌入式平台。&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1643&quot; target=&quot;_blank&quot;&gt;ofapi&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：自由軟體鑄造場的 API 設計，此專案將為 OpenFoundry 網站設計 API 以利元件藕合式開發。&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1642&quot; target=&quot;_blank&quot;&gt;powermemo&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：PowerMemo 是一個能夠提供開發人員，調整不同之網路通訊訊號強度下，量測與分析移動式裝置耗電狀況的工具。</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1646&quot; target=&quot;_blank&quot;&gt;presafeautosar&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：預防保護系統是一個龐大複雜的電子系統，它的基本功能包含駕駛輔助、碰撞預警、可逆性防護、不可逆性防護、與營救。&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1645&quot; target=&quot;_blank&quot;&gt;amfes&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：從眾多的特徵中找出有意義的特徵值（AMFES for Feature Ranking and Feature Selection）。&lt;br /&gt;&lt;br /&gt;3. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1644&quot; target=&quot;_blank&quot;&gt;wirelessvedio&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：實現基於 PR-SCTP 協定的快速語音/視訊 IP 串流在行動無線網絡之間的嵌入式平台。&lt;br /&gt;&lt;br /&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1643&quot; target=&quot;_blank&quot;&gt;ofapi&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：自由軟體鑄造場的 API 設計，此專案將為 OpenFoundry 網站設計 API 以利元件藕合式開發。&lt;br /&gt;&lt;br /&gt;5. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1642&quot; target=&quot;_blank&quot;&gt;powermemo&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：PowerMemo 是一個能夠提供開發人員，調整不同之網路通訊訊號強度下，量測與分析移動式裝置耗電狀況的工具。</content>
+	</entry>
+	<entry>
+		<title>新進專案列表 09/13</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/283/8141-0913"/>
+		<published>2010-09-13T15:52:13Z</published>
+		<updated>2010-09-13T15:52:13Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/283/8141-0913</id>
+		<author>
+			<name>OSSF 工作小組</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1639&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;hwofnmcn&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：類生物計算之嵌入式硬體演化實作&lt;span&gt; &lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1637&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;touch2010&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;內嵌式系統之多點觸控手勢協定的使用者介面研發&lt;br /&gt;&lt;br /&gt;3. &lt;/span&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1636&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1635&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;ad3423453&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;Blog活動報名系統&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1628&quot; target=&quot;_blank&quot;&gt;gpscam-android&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;專案摘要：&lt;span&gt;拍照後於照片標記GPS座標&lt;br /&gt;&lt;br /&gt;5.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1618&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt;&lt;/span&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1618&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;tvcr&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;利用節目名稱在節目播放的過程中不會改變的特性，配合場景轉換偵測技術快速偵測出電視廣告的區間並移除之。&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;br /&gt;&lt;/span&gt;</summary>
+		<content type="html">1. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1639&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;hwofnmcn&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：類生物計算之嵌入式硬體演化實作&lt;span&gt; &lt;/span&gt;&lt;br /&gt;&lt;br /&gt;2. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1637&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;touch2010&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;內嵌式系統之多點觸控手勢協定的使用者介面研發&lt;br /&gt;&lt;br /&gt;3. &lt;/span&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1636&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1635&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;ad3423453&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;Blog活動報名系統&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span&gt;4. &lt;a href=&quot;https://www.openfoundry.org/of/projects/1628&quot; target=&quot;_blank&quot;&gt;gpscam-android&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;專案摘要：&lt;span&gt;拍照後於照片標記GPS座標&lt;br /&gt;&lt;br /&gt;5.&lt;a href=&quot;https://www.openfoundry.org/of/projects/1618&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt;&lt;/span&gt;&lt;a href=&quot;https://www.openfoundry.org/of/projects/1618&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;tvcr&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;專案摘要：&lt;span&gt;利用節目名稱在節目播放的過程中不會改變的特性，配合場景轉換偵測技術快速偵測出電視廣告的區間並移除之。&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;br /&gt;&lt;/span&gt;</content>
+	</entry>
+</feed>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Content delivery network (CDN)</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:01 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Amazon CloudFront</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Application-Layer/Storage/CDN/amazon-cloudfront</link>
+	<description><![CDATA[<p>&nbsp;</p>
+<p>Amazon CloudFront is a content delivery web service. It integrates with other Amazon Web Services to give developers and businesses an easy way to distribute content to end users with low latency, high data transfer speeds, and no commitments.</p>
+<p>References:<a href="https://aws.amazon.com/cloudfront/" target="_blank"> https://aws.amazon.com/cloudfront/</a><a href="https://en.wikipedia.org/wiki/Amazon_CloudFront" target="_blank"> https://en.wikipedia.org/wiki/Amazon_CloudFront</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 12:00:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Application-Layer/Storage/CDN/amazon-cloudfront</guid>
+</item>
+<item>
+	<title>BitTorrent</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Application-Layer/Storage/CDN/bittorrent</link>
+	<description><![CDATA[<p>
+<p>BitTorrent is a peer-to-peer file sharing protocol used for distributing large amounts of data. BitTorrent is one of the most common protocols for transferring large files, and it has been estimated that it accounts for approximately 27-55% of all Internet traffic</p>
+<p>Platform: Linux / Windows</p>
+<p>References: <a href="https://www.bittorrent.com/" target="_blank">https://www.bittorrent.com/</a><a href="https://en.wikipedia.org/wiki/BitTorrent_(protocol)" target="_blank"> https://en.wikipedia.org/wiki/BitTorrent_(protocol)</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 03:59:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Application-Layer/Storage/CDN/bittorrent</guid>
+</item>
+</channel>
+</rss>

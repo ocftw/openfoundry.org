@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<feed xmlns="http://www.w3.org/2005/Atom"  xml:lang="zh-tw">
+	<title type="text">OpenFoundry</title>
+	<subtitle type="text">OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</subtitle>
+	<link rel="alternate" type="text/html" href="https://www.openfoundry.org"/>
+	<id>https://www.openfoundry.org/component/content/category/510-faq</id>
+	<updated>2025-09-24T08:52:19Z</updated>
+	<generator uri="http://joomla.org" version="1.5"></generator>
+<link rel="self" type="application/atom+xml" href="https://www.openfoundry.org/tw/component/content/category/510-faq?format=feed&amp;type=atom" />
+	<entry>
+		<title>什麼是通信論壇?</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/510-faq/3016-what-is-mailing-list"/>
+		<published>2010-07-09T20:54:56Z</published>
+		<updated>2010-07-09T20:54:56Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/510-faq/3016-what-is-mailing-list</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;通信論壇可以讓專案開發者與其他使用者彼此互相交流意見，不論是透過網頁介面或電子郵件都可以存取其中的訊息並主動通知，使用者也可從以往的發言紀錄中汲取經驗。專案管理員可以就不同類型的話題分別開設論壇，也可以對不當的訊息加以管理。&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;通信論壇可以讓專案開發者與其他使用者彼此互相交流意見，不論是透過網頁介面或電子郵件都可以存取其中的訊息並主動通知，使用者也可從以往的發言紀錄中汲取經驗。專案管理員可以就不同類型的話題分別開設論壇，也可以對不當的訊息加以管理。&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>什麼是版本控制?</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/510-faq/3015-what-is-version-control"/>
+		<published>2010-07-09T20:53:27Z</published>
+		<updated>2010-07-09T20:53:27Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/510-faq/3015-what-is-version-control</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;版本控制功能可以保存著檔案的版本演進，也可讓不同的人同時分別修改。使用者可以於上傳時說明更新的原因，將來便可追溯到任何一行的程式與文件是由誰在何時為了什麼理由而修改。透過版本控制的支援，分散於世界各地的自由軟體開發者便能共同開發及維護其專案。&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;版本控制功能可以保存著檔案的版本演進，也可讓不同的人同時分別修改。使用者可以於上傳時說明更新的原因，將來便可追溯到任何一行的程式與文件是由誰在何時為了什麼理由而修改。透過版本控制的支援，分散於世界各地的自由軟體開發者便能共同開發及維護其專案。&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>什麼是共同筆記?</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/510-faq/3014-what-is-wiki"/>
+		<published>2010-07-09T20:51:40Z</published>
+		<updated>2010-07-09T20:51:40Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/510-faq/3014-what-is-wiki</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;共同筆記是一個可以提供多人共同編輯功能與簡易網頁語法的系統。使用者可以針對每篇文章制定不同的存取權限，決定文章是否可被其他人閱讀或修改。專案營運人員可在其上張貼專案簡介、使用手冊等資訊並可作為各個專案之首頁，也可以讓專案參與者在其上交換心得與問題。&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;共同筆記是一個可以提供多人共同編輯功能與簡易網頁語法的系統。使用者可以針對每篇文章制定不同的存取權限，決定文章是否可被其他人閱讀或修改。專案營運人員可在其上張貼專案簡介、使用手冊等資訊並可作為各個專案之首頁，也可以讓專案參與者在其上交換心得與問題。&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>什麼是待辨事項 ?</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/510-faq/3013-what-is-issue-tracker"/>
+		<published>2010-07-09T20:49:58Z</published>
+		<updated>2010-07-09T20:49:58Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/510-faq/3013-what-is-issue-tracker</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;可用來追蹤專案內應處理的事項，包括事項的相關負責人，事項的處理狀態及事項的處理過程記錄等資訊；專案管理人員也可以使用這些功能來分派成員工作與追蹤軟體錯誤回報修復的情形。&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;可用來追蹤專案內應處理的事項，包括事項的相關負責人，事項的處理狀態及事項的處理過程記錄等資訊；專案管理人員也可以使用這些功能來分派成員工作與追蹤軟體錯誤回報修復的情形。&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>什麼是OpenFoundry?</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/component/content/article/510-faq/3012-what-is-openfoundry"/>
+		<published>2010-07-09T20:48:13Z</published>
+		<updated>2010-07-09T20:48:13Z</updated>
+		<id>https://www.openfoundry.org/tw/component/content/article/510-faq/3012-what-is-openfoundry</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;OpenFoundry是一個讓自由軟體愛好者可以共同參與的網站，提供了包括待辦事項、版本控制、共同筆記、通信論壇、專案管理與網站代管等功能，讓開發者可利用此平台發展與分享自由軟體，使用者也可在此取得軟體並提供意見。&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;OpenFoundry是一個讓自由軟體愛好者可以共同參與的網站，提供了包括待辦事項、版本控制、共同筆記、通信論壇、專案管理與網站代管等功能，讓開發者可利用此平台發展與分享自由軟體，使用者也可在此取得軟體並提供意見。&lt;/p&gt;</content>
+	</entry>
+</feed>

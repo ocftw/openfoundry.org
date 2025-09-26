@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 車用嵌入式系統</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:09:54 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Navit</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/navit</link>
+	<description><![CDATA[Modular, touch screen friendly car navigation system with GPS tracking, realtime routing engine and support for various vector map formats. There's a GTK+ and a SDL user interface and also a GL accelerated 3d view.]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 11:55:28 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/navit</guid>
+</item>
+<item>
+	<title>CarLinO</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Environment-Development-Tools/</link>
+	<description><![CDATA[<p>Car Linux Object (CarLinO) is a framework, written in C++, for launch and control all others processes in the automotive embedded systems. Moreover CarLinO provides a graphic support based on OpenGL for the applications.</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 03:56:32 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Environment-Development-Tools/</guid>
+</item>
+<item>
+	<title>QpeGPS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/qpegps</link>
+	<description><![CDATA[qpeGPS is a program for displaying a moving map centered at theposition read from a GPS device.It's designed to run on a PDA with Qt/embedded (qtopia).]]></description>
+	<author>webmaster</author>
+	<pubDate>Thu, 12 Nov 2009 16:11:27 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/qpegps</guid>
+</item>
+<item>
+	<title>Mio Technology</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/mio-technology</link>
+	<description><![CDATA[<p>&nbsp;</p>
+<p>Since 2002, Mio Technology Corp. has developed some of the most advanced personal navigation products available today. Mio is continually exploring new technologies that help people explore the world around them.</p>
+<p>Platform: unknown; License: unknown</p>
+<p>Reference:<a href="https://eu.mio.com/en_gb/about-mio-technology.htm" target="_blank"> https://eu.mio.com/en_gb/about-mio-technology.htm</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 08 May 2009 23:17:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/GIS-and-Navigation/mio-technology</guid>
+</item>
+<item>
+	<title>Study on Automotive Embedded System. Design of Engine, Brake and Security System</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/study-on-automotive-embedded-system-design-of-engine-brake-and-security-system</link>
+	<description><![CDATA[<p>
+<p>This is a thesis on embedded system design for engine intake control system, anti-lock brake system and automotive security system.</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References: <a href="https://dspace.wul.waseda.ac.jp/dspace/bitstream/2065/28391/3/Honbun-4286.pdf" target="_blank">https://dspace.wul.waseda.ac.jp/dspace/bitstream/2065/28391/3/Honbun-4286.pdf</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 20 Apr 2009 14:05:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/study-on-automotive-embedded-system-design-of-engine-brake-and-security-system</guid>
+</item>
+<item>
+	<title>Model-Driven Hybrid and Embedded Software for Automotive Applications</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/model-driven-hybrid-and-embedded-software-for-automotive-applications</link>
+	<description><![CDATA[<p>
+<p>This paper presents a review of salient results on modeling of complex large scale embedded systems and results on composition, analysis, model checking, and verification of safety properties. It also presents a library of vehicle models designed for cruise control (and CACC).</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References: <a href="https://www.cse.wustl.edu/~cdgill/RTAS04/modes_ucb.pdf" target="_blank">https://www.cse.wustl.edu/~cdgill/RTAS04/modes_ucb.pdf</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 20 Apr 2009 14:01:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/model-driven-hybrid-and-embedded-software-for-automotive-applications</guid>
+</item>
+<item>
+	<title>Embedded Control Systems Design/Automotive</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/embedded-control-systems-designautomotive</link>
+	<description><![CDATA[<p>
+<p>This open book chapter discusses the design of embedded vehicular systems, including modern automobiles, trucks and busses. By and large, the chapter stays at overview level, talking about requirements and design process in general. Autosar (Automotive Open System Architecture) is a software architecture standard for component-based design. You can find in the chapter an overview of the standard and its impact on design.</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References: <a href="https://en.wikibooks.org/wiki/Embedded_Control_Systems_Design/Automotive" target="_blank">https://en.wikibooks.org/wiki/Embedded_Control_Systems_Design/Automotive</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 03 Apr 2009 13:57:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/embedded-control-systems-designautomotive</guid>
+</item>
+<item>
+	<title>MOBILE HANDSET Design Line</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/mobile-handset-design-line</link>
+	<description><![CDATA[<p>
+<p>This is a technical online community about the mobile handset design concept.</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References:<a href="https://www.eetimes.com/design" target="_blank"> https://www.eetimes.com/design</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 03 Apr 2009 13:57:04 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/mobile-handset-design-line</guid>
+</item>
+<item>
+	<title>New Solutions for In-Vehicle Embedded System Development</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/new-solutions-for-in-vehicle-embedded-system-development</link>
+	<description><![CDATA[<p>
+<p>New solution for the development of in-vehicle embedded systems was the purpose of the French 'Embedded Electronic Architecture' cooperative research and development program 'AEE'. The results are the identification of embedded component classes, the specification of a generic embedded architecture, as well as the definition of a declarative language.</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References: <a href="https://www.ercim.eu/publication/Ercim_News/enw52/simonot-lion.html" target="_blank">https://www.ercim.eu/publication/Ercim_News/enw52/simonot-lion.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 03 Apr 2009 13:39:57 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/new-solutions-for-in-vehicle-embedded-system-development</guid>
+</item>
+<item>
+	<title>Automotive embedded system design</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/automotive-embedded-system-design</link>
+	<description><![CDATA[<p>
+<p>This page introduces the concept, approaches and tools about model-based design of automotive embedded system.</p>
+<p>Platform:N/A ;License: N/A</p>
+<p>References: <a href="https://www.mathworks.com/automotive/;jsessionid=JjTjNhQcJ0pL8g85LxQjQY0B1dzl6ZmBlNyn25hH3BvlQL47QZXX!1990117559" target="_blank">https://www.mathworks.com/automotive/;jsessionid=JjTjNhQcJ0pL8g85LxQjQY0B1dzl6ZmBlNyn25hH3BvlQL47QZXX!1990117559</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 19 Mar 2009 20:33:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Automotive/Inspirations-and-Literatures/automotive-embedded-system-design</guid>
+</item>
+</channel>
+</rss>

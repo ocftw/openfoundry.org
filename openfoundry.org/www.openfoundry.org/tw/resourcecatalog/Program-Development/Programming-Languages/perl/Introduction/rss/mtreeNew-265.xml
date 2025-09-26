@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:23 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Perl</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Introduction/perl</link>
+	<description><![CDATA[<p> </p>
+<p>Perl is a high-level, general-purpose, interpreted, dynamic programming language. Perl was originally developed by Larry Wall in 1987 as a general-purpose Unix scripting language to make report processing easier. Since then, it has undergone many changes and revisions and become widely popular amongst programmers. Larry Wall continues to oversee development of the core language, and its upcoming version, Perl 6. Perl borrows features from other programming languages including C, shell scripting (sh), AWK, and sed. The language provides powerful text processing facilities without the arbitrary data length limits of many contemporary Unix tools, facilitating easy manipulation of text files. Perl gained widespread popularity in the late 1990s as a CGI scripting language, in part due to its parsing abilities.</p>
+<p>In addition to CGI, Perl is used for graphics programming, system administration, network programming, finance, bioinformatics, and other applications. Perl is nicknamed "the Swiss Army chainsaw of programming languages" due to its flexibility and power. It is also referred to as the "duct tape that holds the Internet together", in reference to its ubiquity and perceived inelegance.</p>
+<p>Platform: Cross-platform; Code license: GNU General Public License/Artistic License</p>
+<p>Reference: <span style="font-size: 14.4px; "><a href="https://en.wikipedia.org/wiki/Perl and https://perldoc.perl.org/perlintro.html#What-is-Perl%3f" target="_blank">https://en.wikipedia.org/wiki/Perl and https://perldoc.perl.org/perlintro.html#What-is-Perl%3f</a></span></p>
+<p> </p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 27 Feb 2008 15:17:03 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Introduction/perl</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 除錯/編輯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:48 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Xdebug</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/xdebug</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">The Xdebug extension helps you debugging your script by providing a lot of valuable debug information. The debug information that Xdebug can provide include the following:</span></p>
+<p><span style="white-space: pre;"> </span>1. Stack traces and function traces in error messages with</p>
+<p><span style="white-space: pre;"> </span>a. Full parameter display for user defined functions</p>
+<p><span style="white-space: pre;"> </span>b. Function name, file name and line indications</p>
+<p><span style="white-space: pre;"> </span>c. Support for member functions</p>
+<p><span style="white-space: pre;"> </span>2. Memory allocation</p>
+<p><span style="white-space: pre;"> </span>3. Protection for infinite recursions</p>
+<p>Platform: PEAR version 0.9.1-dev or higher and some UNIX; Code license: The Xdebug License</p>
+<p>Reference: <a href="https://xdebug.org/" target="_blank">https://xdebug.org/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:21:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/xdebug</guid>
+</item>
+<item>
+	<title>apd</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/apd</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">apd is a full-featured profiler/debugger that is loaded as a zend_extension. It aims to be an analog of C's gprof or Perl's Devel::DProf.</span></p>
+<p>Platform: Cross-plarform; Code license: PHP License</p>
+<p>Reference: <a href="https://pecl.php.net/package/apd" target="_blank">https://pecl.php.net/package/apd</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:20:38 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/apd</guid>
+</item>
+<item>
+	<title>DBG</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/dbg</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">DBG is a a full-featured PHP debugger, an interactive tool that helps you debugging php scripts. It works on a production and/or development WEB server and allows you debug your scripts locally or remotely, from an IDE or console.</span></p>
+<p>Platform: Cross-platform; License: OSI-Approved Open Source</p>
+<p>Reference: <a href="https://sourceforge.net/projects/dbg2/" target="_blank">https://sourceforge.net/projects/dbg2/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:20:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/dbg</guid>
+</item>
+<item>
+	<title>Expert Debugger</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/expert-debugger</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Expert Debugger is a free easy-to-use tool for debugging PHP scripts. Expert Debugger uses the DBG PHP Debugger and allow to debug scripts via network or on local computer. You can run scripts in step-by-step mode and to trace values of any variables and script output. The debugger has a comfortable interface and can be integrated with IDE or editors.</span></p>
+<p>Platform: Windows; License: Freeware</p>
+<p>Reference:<a href="https://www.skycn.com/soft/36356.html" target="_blank"> https://www.skycn.com/soft/36356.html</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:19:38 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/expert-debugger</guid>
+</item>
+<item>
+	<title>Gubed</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/gubed</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Gubed PHP Debugger is a program to debug PHP scripts.It currently supports stepping through code, watching contents of variables and setting breakpoints (line and conditional). No changes are needed to server software or scripts being debugged.</span></p>
+<p>Platform: Cross-platform; License: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/gubed/" target="_blank">https://sourceforge.net/projects/gubed/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:19:13 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/gubed</guid>
+</item>
+<item>
+	<title>Maguma Studio</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/maguma-studio</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px; ">Maguma Studio is the source-level IDE, equipped with all the features known from other languages' development environments.Through tight integration of the PHP interpreter and the PHP documentation, Maguma Studio gives developers a time-saving development tool. Features full integration of the PHP interpreter and the PHP documentation (through "function insight" and F1-key popup manual pages), integrated preview window, full syntax highlighting for HTML and PHP, Auto Complete for frequently used text constructs, tag buttons and all the standard editing functions like almost unlimited undo, copy and paste, searching, etc. Studio is smaller and faster loading than other PHP IDEs.</span></p>
+<p>Platform: Windows; License: Freeware</p>
+<p>Reference: <a href="https://www.maguma.com/maguma-studio.html" target="_blank">https://www.maguma.com/maguma-studio.html</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:18:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/maguma-studio</guid>
+</item>
+<item>
+	<title>SEG</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/seg</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">SEG is a text editor designed mostly for PHP scripting but may be used for lot more. Its features include:</span></p>
+<p><span style="white-space: pre;"> </span>1. Highlighters for HTML, PHP, CSS, JavaScript, VBScript, SQL, Java, C#, C++, Delphi, x86 Assembly, MS-DOS Batch, Perl, Tcl/Tk, Borland Form Files</p>
+<p><span style="white-space: pre;"> </span>2. User Menu whitch may be used for making templates, testing scripts etc.</p>
+<p><span style="white-space: pre;"> </span>3. Other useful features...</p>
+<p>Platform: Windows; License: Unspecified</p>
+<p>Reference: <a href="https://gonix.ten.lt/" target="_blank">https://gonix.ten.lt/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:18:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/seg</guid>
+</item>
+<item>
+	<title>Light PHP Edit</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/light-php-edit</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">PHP editor, made to be light, easy and simple,</span></p>
+<p>integrated with PHP by php4delphi component,</p>
+<p>Highlight by SynEdit component,</p>
+<p>Debuging XDebug.org DBGp protocol,</p>
+<p>has internal console for learning php easy, Run, Check, Breakpoints and Watches.</p>
+<p>Platform: Windows; License: GNU General Public License</p>
+<p>Reference: <a href="https://www.parmaja.com/projects/LightPHPEdit/" target="_blank">https://www.parmaja.com/projects/LightPHPEdit/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:17:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/light-php-edit</guid>
+</item>
+<item>
+	<title>Arisesoft Winsyntax</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/arisesoft-winsyntax</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Arisesoft Winsyntax - is a PHP-code editor, with the syntax highlighting and the context help for professional scripting.</span></p>
+<p>Platform: Windows; License: Freeware</p>
+<p>Reference: <a href="https://www.winsyntax.com/" target="_blank">https://www.winsyntax.com/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:17:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/arisesoft-winsyntax</guid>
+</item>
+<item>
+	<title>RSPE-Real Simple PHP Editor</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/rspe-real-simple-php-editor</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">RSPE is a Simple IDE for developing and editing PHP. RSPE comes with a database of premade script examples, tutorials, and some code snipits.</span></p>
+<p>Platform: Windows; License: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/rspe/" target="_blank">https://sourceforge.net/projects/rspe/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:16:54 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Debugger-Editor/rspe-real-simple-php-editor</guid>
+</item>
+</channel>
+</rss>

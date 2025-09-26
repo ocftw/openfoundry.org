@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:16 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Python</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Introduction/python</link>
+	<description><![CDATA[<p>
+<p>Python is a general-purpose high-level programming language whose design philosophy emphasizes code readability. Python aims to combine "remarkable power with very clear syntax", and its standard library is large and comprehensive. Its use of indentation for block delimiters is unusual among popular programming languages.</p>
+<p>Python supports multiple programming paradigms, primarily but not limited to object oriented, imperative and, to a lesser extent, functional programming styles. It features a fully dynamic type system and automatic memory management, similar to that of Scheme, Ruby, Perl, and Tcl. Like other dynamic languages, Python is often used as a scripting language, but is also used in a wide range of non-scripting contexts.</p>
+<p>Python has a large standard library, commonly cited as one of Python's greatest strengths,providing pre-written tools suited to many tasks. This is deliberate and has been described as a "batteries included" Python philosophy. The modules of the standard library can be augmented with custom modules written in either C or Python. Boost C++ Libraries includes a library, Boost.Python, to enable interoperability between C++ and Python. Because of the wide variety of tools provided by the standard library, combined with the ability to use a lower-level language such as C and C++, which is already capable of interfacing between other libraries, Python can be a powerful glue language between languages and tools.</p>
+<p>The standard library is particularly well tailored to writing Internet-facing applications, with a large number of standard formats and protocols (such as MIME and HTTP) already supported. Modules for creating graphical user interfaces, connecting to relational databases, arithmetic with arbitrary precision decimals, manipulating regular expressions, and doing unit testing are also included.</p>
+<p>Platform:Cross-platform<span style="white-space: pre;"> </span>;<span style="white-space: pre;"> </span>License:Python Software Foundation License</p>
+<p>Reference:<a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 22 Feb 2008 15:24:38 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Introduction/python</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - EAI(Enterprise Application Integration)</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:26 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>XMLBlaster</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/xmlblaster</link>
+	<description><![CDATA[<p>XmlBlaster is an event driven messaging middleware which you can use to integrate your new and existing software components inside your company and between different companies.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 19:11:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/xmlblaster</guid>
+</item>
+<item>
+	<title>NaradoBrokering</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p>NaradaBrokering is a content distribution infrastructure, and enables the development of secure, failure-resilient systems.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:16:54 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>MessageForge</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p>The framework was conceived and created during the development of an online trading system for a major bank on Wall Street. The project made heavy use of TIBCO/RV.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:15:19 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>OpenEAI</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p>OpenEAI defines a straightforward messaging protocol and message format in XML for both request/reply and publish/subscribe messaging models for any enterprise message object. The message protocol is based on principles inherent to EAI and is not tied to any specific technology used to implement integrations.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:14:19 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>S-Integrator</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/s-integrator</link>
+	<description><![CDATA[<p>S-integrator is a open source, service-oriented integration server. S-integrator is 	service container that empowers services with inherent connectivity, integration and security capabilities.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:13:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/s-integrator</guid>
+</item>
+<item>
+	<title>Proteous</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p> </p>
+<p>Proteous是一套針對創造傳訊應用軟體的框架。它有一個建立在框架上的訊息中間人，並且包含使資料庫、訊息佇列、檔案傳輸伺服器、電子郵件與其他訊息來源和容器(sinks)能夠被以簡易並且統一的方式定址的轉接器。</p>
+<p>適用平台: Linux; 原始碼授權類型: GPL</p>
+<p>資料來源: <a href="https://www.proteusx.org/" target="_blank" title="https://www.proteusx.org/">https://www.proteusx.org/</a></p>
+<p> </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:12:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>Xbus</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p>Xbus is a centralized EAI engine that does message routing and data transformation. It has an open and flexible architecture </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:10:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>OpenAdaptor</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</link>
+	<description><![CDATA[<p> Openadaptor is a Java based toolkit to allow rapid business system integration with little or no custom programming.  Openadaptor is EAI (Enterprise Application Integration) software. It provides many ready-built connectors that include JMS, JDBC, IBM MQ Series, TIBCO Rendezvous, TCP/IP Sockets, SOAP, HTTP and Files. It provides exception management and scriptable components for data filtering, transformation and validation. </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:09:59 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/</guid>
+</item>
+<item>
+	<title>Mule ESB</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/mule-esb</link>
+	<description><![CDATA[<p>Mule ESB is the most widely used open source ESB. A lightweight integration platform and service container, Mule ESB provides features for web services, message routing, mediation, transformation and transaction management.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:08:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/EAI/mule-esb</guid>
+</item>
+</channel>
+</rss>

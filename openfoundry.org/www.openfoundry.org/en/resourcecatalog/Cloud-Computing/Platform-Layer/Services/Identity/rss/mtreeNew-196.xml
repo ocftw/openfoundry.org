@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Identity</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:05 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>OpenID</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Identity/openid</link>
+	<description><![CDATA[<p>
+<p>OpenID is an open, decentralized standard for authenticating users which can be used for access control, allowing users to log on to different services with the same digital identity where these services trust the authentication body.</p>
+<p>Reference: <a href="https://openid.net/" target="_blank">https://openid.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 13:44:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Identity/openid</guid>
+</item>
+<item>
+	<title>OAuth</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Identity/oauth</link>
+	<description><![CDATA[<p>
+<p>OAuth is an open protocol that allows users to share their private resources (e.g. photos, videos, contact lists) stored on one site with another site without having to hand out their username and password.</p>
+<p>Reference: <a href="https://oauth.net/" target="_blank">https://oauth.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 13:43:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Identity/oauth</guid>
+</item>
+</channel>
+</rss>

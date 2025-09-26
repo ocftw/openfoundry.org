@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>OpenFoundry</title>
+		<description>OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</description>
+		<link>https://www.openfoundry.org/en/component/content/category/501</link>
+		<lastBuildDate>Wed, 24 Sep 2025 06:55:29 +0000</lastBuildDate>
+		<generator></generator>
+		<language>en-gb</language>
+		<item>
+			<title>我要廣告</title>
+			<link>https://www.openfoundry.org/en/advertising</link>
+			<guid>https://www.openfoundry.org/en/advertising</guid>
+			<description><![CDATA[<p>歡迎各界透過自由軟體鑄造場電子報這個宣傳媒介，來共同推廣自由軟體活動訊息，見刊後的活動消息稿，不給予稿費，投稿請寄至<a href="mailto:ossfepaper@openfoundry.org">ossfepaper@openfoundry.org</a>，自由軟體鑄造場電子報編輯小組保留適度增刪修改的權利，若文章事涉侵權事宜，其法律責任由撰稿者自行負責。活動刊載規範如下：<br /><br /></p>
+<ul>
+<li>屬性：需與自由軟體有正相關之推廣活動或宣傳消息</li>
+<li>字數：不超過800字為宜。</li>
+<li>語言：中英文皆可。</li>
+<li>圖片：格式請採用 jpg、png 檔。建議圖片寬度最小不小於 180px，最大不超過 500px，解析度為網頁專用即可，並請註明圖片來源。圖文呈現方式，<a href="https://www.openfoundry.org/component/option,com_docman/Itemid,112/gid,1086/task,doc_download/">請下載此範例</a>。</li>
+<li>格式：請用 txt、html 或 odt 檔案。</li>
+<li>作者：請提供本名或是筆名。</li>
+</ul>
+<strong><span style="text-decoration: underline;">聯絡我們</span></strong><br />
+<ul>
+<li>TEL：02-2788-3799*1477 或1404</li>
+<li>Email：<a href="mailto:ossfepaper@openfoundry.org">ossfepaper@openfoundry.org</a></li>
+<li>Skype：直撥「openfoundry」帳號即可</li>
+</ul>]]></description>
+			<author>ossfepaper@gmail.com (OSSF)</author>
+			<category>服務</category>
+			<pubDate>Thu, 22 Apr 2010 14:29:24 +0000</pubDate>
+		</item>
+		<item>
+			<title>我要投稿</title>
+			<link>https://www.openfoundry.org/en/component/content/article/501-services/2303-2010-07-13-14-05-15</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/501-services/2303-2010-07-13-14-05-15</guid>
+			<description><![CDATA[<p>自由軟體鑄造場電子報秉持開放、自由、分享的精神，自即日起開放文章徵稿，希望以此廣納更多自由軟體新知於本報中。</p>
+<p>您若有任何與自由軟體相關的主題，不論是嵌入式、資安、雲端運算等領域的技術分享；文書、多媒體、美工排版等一般應用軟體介紹；授權法律、自由軟體政策、市場趨勢觀察等（但不特別限定以上題目），<span style="color: #000000;">皆非常歡迎投稿給本報與其他讀者分享。</span></p>
+<p>每篇文章投稿字數以不超過 5,000 字為限，並請您附上個人背景資料，以不超過150字為宜，包含筆名、本名、聯絡方式（e-mail & 電話）、部落格 (blog)、噗浪 (Plurk)、臉書 (Facebook) 等其他任何您想讓讀者知悉的網路個人社交資訊。收到稿件後，我們會儘快進行內部審閱，審閱過程中如有任何問題，會依照您提供的聯絡方式跟您聯繫討論。</p>
+<p>稿件一經錄用，將以刊登字數為基準，依照中研院的標準給予每字 0.6 - 1 元的稿酬，但若該篇文章已經在其他雜誌、刊物，及相同類別的資訊平台發表，則無法提供稿費 (經自由軟體鑄造場同意重新彙編改寫者，則不在此限)，更詳盡的授權方式，以下投稿規範有進一步的說明。未錄用的文章，則不再另行聯絡。</p>
+<p>而為了拓深自由軟體研究與應用知識的散播範圍，自由軟體鑄造場工作團隊將不定期從已發布之電子報文章中，挑選適宜者轉投國內外其他資訊傳播媒體，而若轉投的文章已經自由軟體鑄造場提供首次發佈的稿酬，則接受轉投之資訊媒體與自由軟體鑄造場，將不再提供再次發佈之稿酬。</p>
+<p>投稿請寄至 <a href="mailto:ossfepaper@openfoundry.org">ossfepaper@openfoundry.org</a>，自由軟體鑄造場電子報編輯小組保留適度增刪修改的權利，若文章事涉侵權事宜，其法律責任由撰稿者自行負責，詳細投稿相關規範如下：</p>
+<p><span style="text-decoration: underline;"><strong>投稿語系及字數</strong></span></p>
+<ul>
+<li>每篇文章以不超過 5,000 字為宜。</li>
+<li>一般稿件每字 0.6 - 0.8 元，專業技術文件每字 0.6 - 1 元。</li>
+<li>投稿語系以繁體中文為主。</li>
+<li>英文稿件，請附上 300~500 字中文摘要。</li>
+<li>簡體中文稿件，請給簡體中文全文版文章連結。</li>
+</ul>
+<p><strong><span style="text-decoration: underline;">投稿文件格式</span></strong></p>
+<ul>
+<li>投稿請用 <a target="_blank" href="https://daringfireball.net/projects/markdown/">markdown</a> 標記語言編輯並使用 mkd 檔案。初學者可以參考<a target="_blank" href="https://www.openfoundry.org/tw/resourcecatalog/Program-Development/Markup-Languages/markdown">這篇</a>文章。</li>
+<li>圖片格式請採用 jpg、png 檔，建議圖片寬度最小不小於 180px，最大不超過 500px，解析度為網頁專用即可，並請註明圖片來源。</li>
+<li>文案如有連結，請不要使用超連結，建議用 -- 例如：OSSF (https://www.openfoundry.org/) 的呈現方式提供給我們，我們在編輯上稿時，會特別留意 OSSF 的連結設定。</li>
+<li>交稿時，請將文稿及其內嵌圖片以一整個壓縮檔案的方式提供，亦即「壓縮檔」內含「文稿本身」及「文稿裡內嵌的圖片」。</li>
+<li>文稿內有插入圖片時，請註明此圖片在壓縮檔裡的檔案名稱，並以一句話簡述此圖片所欲表達的內容。</li>
+<li>圖文撰寫方式，特別是教學文件，其呈現樣式有兩種，一種是圖片呈現在一個段落後，一種是圖片呈現在句子當中，細節請參照下列「圖片編碼規則」的說明。</li>
+</ul>
+<p><span style="text-decoration: underline;"><strong>授權方式</strong></span></p>
+<p>自由軟體鑄造場工作團隊自行採訪、報導、編譯、撰寫文章之智慧財產權利屬於中央研究院。非自由軟體鑄造場團隊自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，稿件經鑄造場錄用後，該篇文章仍可依原作者的安排自行向外刊登，但需先以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 及其後版本的方式對外進行散布。</p>
+<p>授權條款全文請見：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/tw/legalcode"> https://creativecommons.org/licenses/by-nc-nd/3.0/tw/legalcode</a>。<br />授權條款簡介請見：<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/tw/deed.zh_TW"> https://creativecommons.org/licenses/by-nc-nd/3.0/tw/deed.zh_TW</a>。</p>
+<p>若對上述的授權政策有所疑問，歡迎隨時透過電子報聯絡信箱 <a href="mailto:ossfepaper@openfoundry.org">ossfepaper@openfoundry.org</a>，與自由軟體鑄造場工作團隊聯絡。</p>
+<p><strong><span class="mw-headline"><span style="text-decoration: underline;">圖片編碼規則</span> </span></strong></p>
+<p>文章中的圖文呈現方式有兩種，特別在撰寫教學文章時，會常常碰到，一種是圖片呈現在一個段落後，一種是圖片呈現在句子當中，以下用範例，並標示圖片 大小還有圖檔編碼原則，建議投稿作者，依此規則提供檔案。</p>
+<p>第一種，圖片呈現在一個段落後，圖片格式請採用 jpg、png 檔。建議圖片寬度最大不超過 500px ，最小不小於 180px，解析度為網頁專用即可，並請註明圖片來源。</p>
+<p><a class="image" href="https://www.openfoundry.org/images/圖1_500px.png" title="圖片:圖1_500px.png"><img src="https://www.openfoundry.org/images/newsletter/ns1_500px.png" alt="圖片:圖1_500px.png" height="300" border="0" width="500" /></a> (圖1_500px)</p>
+<p><a class="image" href="https://www.openfoundry.org/images/圖2_180px.png" title="圖片:圖2_180px.png"><img src="https://www.openfoundry.org/images/newsletter/ns2_180px.png" alt="圖片:圖2_180px.png" height="100" border="0" width="180" /></a> (圖2_180px)</p>
+<p>第二種，圖片呈現在句子當中，圖片格式請採用 jpg、png 檔。建議圖片有三種規格可以選，寬度最大不超過32px ，最小不小於16px。</p>
+<p><br /> 例如：這是寬度32px <a class="image" href="https://www.openfoundry.org/images/圖3_32px.png" title="圖片:圖3_32px.png"><img src="https://www.openfoundry.org/images/newsletter/ns3_32px.png" alt="圖片:圖3_32px.png" height="32" border="0" width="32" /></a> (圖3_32px)</p>
+<p><a class="image" href="https://www.openfoundry.org/images/圖4_24px.png" title="圖片:圖4_24px.png"><img src="https://www.openfoundry.org/images/newsletter/ns4_24px.png" alt="圖片:圖4_24px.png" height="24" border="0" width="24" /></a> 例如：這是寬度24px (圖4_ 24px)</p>
+<p>例如：<a class="image" href="https://www.openfoundry.org/images/圖5_16px.png" title="圖片:圖5_16px.png"><img src="https://www.openfoundry.org/images/newsletter/ns5_16px.png" alt="圖片:圖5_16px.png" height="16" border="0" width="16" /></a> 這是寬度16px (圖5_16px)</p>
+<p>作者可以在這個規範下，依據需求，提供合適大小的圖檔。</p>
+<p><br /><strong> 請注意</strong></p>
+<ol>
+<li>請在圖片下方標示圖檔名稱，方便我們上傳稿件時，查找正確的圖檔，建議用(圖x_名稱)，x從1、2、3.....，以此類推，依序往後 編號，並在底線後加註圖片名稱，名稱由作者自行訂定即可。</li>
+<li>來函文章內若嵌有圖片，請將文件檔案併圖片檔以一個壓縮檔的方式投稿，例如壓縮檔裡內含有 txt、html 與 odt 格式的文件檔外，且另外夾附該文件檔內嵌所有的個別圖檔，實例請見以下範例。</li>
+</ol>
+<ul>
+<li>範例一：<ol>
+<li>壓縮檔名稱為「圖文範例.zip」</li>
+<li>壓縮檔「圖文範例.zip」內含：<ol>
+<li>圖文範例.odt 與 圖文範例.pdf</li>
+<li>圖1_500px.png</li>
+<li>圖2_180px.png</li>
+<li>圖3_32px.png</li>
+<li>圖4_24px.png</li>
+<li>圖5_16px.png</li>
+</ol></li>
+</ol></li>
+<li>範例二：<ol>
+<li>壓縮檔名稱為「Gnumeric.zip」</li>
+<li>壓縮檔「Gnumeric.zip」內含：<ol>
+<li>Gnumeric.txt</li>
+<li>Gnumeric_01.png</li>
+<li>Gnumeric_02.png</li>
+<li>Gnumeric_03.png</li>
+<li>Gnumeric_04.png</li>
+<li>Gnumeric_05.png</li>
+</ol></li>
+</ol></li>
+</ul>
+<p><strong><span style="text-decoration: underline;">撰稿用字類</span></strong> (建議但不強迫採用)</p>
+<ul>
+<li>在中文文章中，請在英數字前後加上一半形空格。</li>
+<li>數字標準用法
+<ul>
+<li>一律用阿拉伯數字表示 – 如：有 1 項調查指出；最近共有 5 位人士到訪。</li>
+<li>數字超過 1,000 以上，要加千分位 – 如：每日可節省美金 1,488 元</li>
+<li>超過 1 萬以上的表示法 – 如︰港幣 54 萬 3,120 元（約新台幣 228 萬 4,055 元）。</li>
+<li>錯誤用法– 如︰港幣 543,120 元（約新台幣 2,884,055元）。</li>
+<li>例外情況 – 成語如：有一就有二、無三不成禮 繼續用中文數字 – 「近一年」、「近二年」、「一律」、「兩難」。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>儘量避免英文文法／台語文法出現在中文文章中（除非你的筆法屬鄉土文學類），例如：倒裝和被動（中文很少用英文文法中的倒裝句和被動態）；要來去（明顯的台語文法）；進行一個文件的查詢（用「查詢文件」即可）。</li>
+<li>注意常錯字「做／作」（「做」是指實際進行一件事；「作」大部分時間當成「當作」解）；「再／在」（「再」是再一次、再度；「在」是指目前的狀況、位置）；「的／得／地」（形容詞用「的」；副詞用「地」；動詞用「得」）。</li>
+</ul>
+<p> </p>
+<p><strong><span style="text-decoration: underline;">標點符號類 </span></strong>(建議但不強迫採用)</p>
+<ul>
+<li>使用全形及正確的中文標點符號，請注意中文標點必為全形，易錯的幾個是：
+<ul>
+<li>……（中文刪節號，必須為六點置中）。</li>
+<li>（）（中文括號，必須為全形，也就是必須佔兩個字元）。</li>
+<li>／（中文斜線，亦為全形）。</li>
+<li>括號和引號中為中文時，使用「」；為英文時使用 " "。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>英文專有名詞的引號用 "  " – 如：openSUSE Education 計劃希望開發出一張 "openSUSE EDU-CD" 光碟。</li>
+<li>中文專有名詞的引號用「」 – 如：OSSF 計畫舉辦「自由軟體教學工作坊」。</li>
+<li>破折號以 1 個全型 "－" 表示，刪節號以 2 個全型 "…" 表示。</li>
+<li>要注意 m-dash 和 n-dash 的不同，n-dash（–，Mac上按法是 option + -），通常用於表示範圍，例如年代「1900–1918」等；而 m-dash（—，也就是破折號），才是用來承接上下文。</li>
+<li>專有名詞的表示法：先寫中文，再半形括號英文全名及簡稱；簡稱和全名間用半形逗點表示，半形逗點後面要空一格 – 如：自由軟體基金會 (Free Software Foundation, FSF) 。</li>
+<li>英文標註為半形括號，與中文空一格 – 如：對此軟體進行除錯 (Debug) 反應及提供改版建言。</li>
+<li>如果括號內的文字為中文或中英／數字夾雜，則該括號為全型括號，不用與中文間空格 – 如：我們使用 Linux 作為伺服器（同時作為過濾垃圾郵件及病毒的伺服器），……。</li>
+<li>文章中提到文件名時，用「」表示；提及書名時才用《》。</li>
+<li>標號第一層使用 1、2、3、4……；第二層使用 a、b、c、d……；第三層使用 1)、2)、3)、4) 。</li>
+</ul>
+<p><strong><span style="text-decoration: underline;">軟體教學文件注意事項</span></strong> (建議但不強迫採用)</p>
+<ul>
+<li>教學文章中提到按鈕時用〔〕；提及功能表選項時用【】；其他物件如連結、核取方塊時用「」。</li>
+<li>統一名詞：Check box=核取方塊；Dialog Window=對話視窗；Tab=活頁標籤；section=區塊。</li>
+<li>不同的系統有不同的選單和對話選項，如Windows要你選擇「Yes」時用「是」；Mac OSX則使用「好」，寫和翻譯的時候請注意。</li>
+</ul>
+<p><strong><span style="text-decoration: underline;">聯絡我們</span></strong><br /><br />● TEL：02-2788-3799 #1469、1474。<br />● Email：<a href="mailto:ossfepaper@openfoundry.org">ossfepaper@openfoundry.org</a>。<br />● Skype：直撥「openfoundry」帳號即可。</p>]]></description>
+			<author>ossfepaper@gmail.com (OSSF)</author>
+			<category>服務</category>
+			<pubDate>Thu, 22 Apr 2010 11:54:20 +0000</pubDate>
+		</item>
+		<item>
+			<title>工作坊推廣服務申請規範</title>
+			<link>https://www.openfoundry.org/en/component/content/article/501-services/2301-workshop-application</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/501-services/2301-workshop-application</guid>
+			<description><![CDATA[<h3>一、服務緣起</h3>
+<p>自由軟體鑄造場為了推廣自由軟體應用、及培育自由軟體開發人才，於97年開始陸續舉辦各種的<a href="https://www.openfoundry.org/workshop">工作坊（Workshop）</a>活動。近三年來自由軟體鑄造場秉持著推廣、分享、愛用自由軟體的精神，以類似社群聚會的輕鬆分享模式，在台北、台中、高雄等地舉辦各式各樣自由軟體相關的活動。一方面聚集各方的程式開發好手共同交流切磋，另一方面也讓來參與的學員能藉此活動了解自由軟體社群運動，並無形中培養自由軟體的開發種子。</p>
+<h3>二、工作坊定義</h3>
+<p>自由軟體鑄造場的工作坊提供一個舞台，讓想要分享自由軟體相關議題的社群或個人可以有一個自己的空間來發表、分享、展現。基於自由軟體的精神，工作坊的進行必須以公開、分享的精神為主軸，活動進行當天所有的分享內容（包含投影片、講義、錄音檔案、錄影檔案），都必須以<a href="https://creativecommons.org.tw/static/choose">創用CC授權</a>或其他更適宜的公眾授權方式分享給其他第三人。工作坊活動進行的方式有兩種︰</p>
+<ol>
+<li>教學式︰以實機操作為主，讓參與者親身體驗程式開發過程。（約30人參與）</li>
+<li>座談會︰類似社群活動，以較輕鬆的互相討論方式來進行。（約20人參與）</li>
+</ol>
+<h3>三、自由軟體鑄造場提供的資源</h3>
+<ul>
+</ul>
+<ul>
+<li>協助租用或借用工作坊活動所需場地。</li>
+<li>講師出席費用，以及必要的交通運輸費用。（限跨縣市搭乘大眾交通工具。）</li>
+<li>協助進行錄影，及視情況提供餐盒或點心。</li>
+</ul>
+<h3>四、申請辦法</h3>
+<ol>
+<li>直接聯絡自由軟體鑄造場工作坊負責人 - 洪華超（Rock）  
+<ul>
+<li>Email︰<a href="mailto:rockhung@citi.sinica.edu.tw">rockhung@citi.sinica.edu.tw</a> </li>
+<li>TEL︰(02)2788-3799 # 1477</li>
+<li>Skype︰rockhung99</li>
+</ul>
+</li>
+<li>至<a href="https://www.openfoundry.org/workshop-forum">討論區</a>發表新議題，或 Skype 直撥「openfoundry」帳號來聯絡我們。</li>
+</ol>]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>服務</category>
+			<pubDate>Mon, 19 Apr 2010 18:12:01 +0000</pubDate>
+		</item>
+		<item>
+			<title>徵選範例－Mozilla Taiwan</title>
+			<link>https://www.openfoundry.org/en/component/content/article/501-services/2006</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/501-services/2006</guid>
+			<description><![CDATA[<h3><font color="#0066cc">專案簡介</font></h3>
+Mozilla Taiwan - moztw.org 是台灣專屬於 Mozilla 相關資訊的網站， 於 2004 年九月正式開張。目前本站管理、維護 Mozilla 的正體中文語言套件(Language Pack) 跟已在地化 (Localized) 的安裝檔，提供 WWW (下載、文件)與 討論區 等服務。<br /><br />Mozilla Taiwan 本著推廣主力 &mdash; Firefox 易學常用的特性，自許為使用者接觸自由文化的起點。我們持續辦理推廣自由文化的課程與活動，若有相關需求或合作提案，請連絡社群連繫長。<br /><br />Mozilla Taiwan 名稱的正式寫法：<br />
+<ul>
+    <li>英文全名: Mozilla Taiwan</li>
+    <li>英文縮寫: MozTW</li>
+    <li>網址: moztw.org 或 mozilla-taiwan.org</li>
+</ul>
+<br />moztw.org 網站提供的服務清單如下：<br />
+<ul>
+    <li>Mozilla 相關中文軟體下載</li>
+    <li>說明及文件</li>
+    <li>社群討論區</li>
+    <li>社群共筆系統</li>
+</ul>
+<br />本站樣式修改自 mozilla.org，經原作者同意由 moztw.org 使用。主機由 中央研究院(sinica) 資訊科學研究所(iis) 自由軟體鑄造場(OSSF) 提供，也感謝台大資訊系(NTU CSIE)到 2004/08 前的支援。<br /><font color="#3399cc"><br /></font>
+<h3><font color="#0066cc">緣起與發展</font></h3>
+1999 年，當時尚就讀台大資工的林弘德（piaip）為 Mozilla 正體中文在地化專案管理員，並開始於個人網站上發佈測試檔案。 隨後 piaip 製作「Mozilla Localization: Traditional Chinese」網站，並於 2000 年啟用 Mozilla@Taiwan 討論區； 原先的測試網站演化為 Mozilla 相關產品正體中文版及資訊收集地，也有了固定支持的社群。<br /><br />2004 年，piaip 為了讓更多人參與專案，將 Mozilla 正體中文站自個人網站獨立而成為 Mozilla Taiwan (moztw.org)，並轉移到中央研究院的主機下。自此，MozTW 正式開張。<br /><br />piaip 退休後，MozTW 的在地化工作自 2006 起轉交由孫偉倫（Josesun）負責，而在 2008 年中完成第二次交接、由簡冠庭 (timdream) 與賴韋辰 (lRabbit) 分別負責 Firefox 及 Thunderbird 的在地化事宜。<br /><br />目前 MozTW 正式進入多人共治時代，討論區、新聞專案、文件等各有獨立負責人運作。<br /><br />
+<h3><font color="#0066cc">社群組成</font></h3>
+趙柏強 Bob<br />WWW: https://blog.bobchao.net<br />社群連繫長，處理社群庶務經營，新聞與合作案連絡人&lrm;<br /><br />簡冠庭 Tim<br />WWW: https://blog.timc.idv.tw/<br />Firefox 正體中文在地化專案經理，協調 MozTW 各在地化專案事宜。<br /><br />賴韋辰 lRabbit<br />WWW: https://abev66.blogspot.com/<br />Thunderbird 正體中文在地化專案經理。<br /><br />
+<h3><font color="#0066cc">軟硬體需求</font></h3>
+需求 5GB 空間，需放置相關中文化套件檔案，伺服器必須支援 PHP 程式語言。]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>服務</category>
+			<pubDate>Wed, 11 Mar 2009 17:17:26 +0000</pubDate>
+		</item>
+		<item>
+			<title>FOSS advanced web-hosting and promotion service</title>
+			<link>https://www.openfoundry.org/en/component/content/article/501-services/1982-foss-advanced-web-hosting-and-promotion-service</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/501-services/1982-foss-advanced-web-hosting-and-promotion-service</guid>
+			<description><![CDATA[<p>為了增強國內自由軟體的應用幅度及活絡社群發展，自由軟體鑄造場本著服務公眾的精神，藉由『應用典範』的相關服務，提供更多表演舞台予國內的開放源碼(Open Source)專案及開放內容(Open Content)網站，透過服務社群的方式，達到促進台灣自由軟體社群發展的目標。因此希望在善用有限資源的情形下，提供自由軟體社群接近企業級的虛擬伺服器服務，希望可納入更多具備潛力之自由軟體社群專案，共同為台灣自由軟體社群發展盡一份心力。</p>
+<h4>服務內容：鑄造場提供下列服務</h4>
+<ul>
+<li>提供硬碟空間及頻寬(視專案實際所需空間進行評估)</li>
+<li>舉辦自由軟體相關推廣活動時，得申請鑄造場協助支援(視活動向性及鑄造場年度工作負載進行評估)。</li>
+</ul>
+<h4>聲請評選條件</h4>
+<ul>
+<li>成功或具有潛力之團體／社群</li>
+<li>專案內容為開放源碼軟體或開放內容的資料（Open Source Software or Open Content Material）</li>
+<li>專案內容為非商業性</li>
+<li>須推派一位代表人擔任固定連絡窗口</li>
+<li>需配合下列事項<ol>
+<li>必須在網站首頁放置鑄造場所提供之識別標誌（簡稱標誌），並設定連結至鑄造場首頁。標誌圖樣與連結設定事項請參考鑄造場標誌使用規範說明頁面中的「Powered by OSSF（網頁使用）」部分，網址為：<a class="external free" href="https://www.openfoundry.org/OSSF-Logo.html/" title="https://www.openfoundry.org/OSSF-Logo.html/" rel="nofollow">https://www.openfoundry.org/OSSF-Logo.html/</a></li>
+<li>連結收集網頁必須有鑄造場之連結：若該專案在網站上設有連結收集網頁，鑄造場的連結也必須出現在這個頁面。</li>
+<li>在鑄造場Who’s Who（<a class="external free" href="https://whoswho.openfoundry.org/" title="https://whoswho.openfoundry.org/" rel="nofollow">https://whoswho.openfoundry.org/</a>）上登錄成為社群。</li>
+<li>應鑄造場要求，提供可資證明專案活動狀況的資料，例如MRTG圖表、瀏覽點閱率或Google Analytics等雙方認可之數據資料。</li>
+</ol></li>
+</ul>
+<h4>徵選辦法</h4>
+<ul>
+<li>提供資料　（<a href="https://www.openfoundry.org/index.php?option=com_content&amp;Itemid=414&amp;id=2006&amp;task=view">範例 － Mozilla Taiwan</a> )<br /><ol>
+<li>專案簡介<dl><dd>簡介專案目的與型態</dd></dl></li>
+<li>專案歷史<dl><dd>簡介專案發展緣起與現況</dd></dl></li>
+<li>社群組成<dl><dd>簡介參與專案之主要成員組成</dd></dl></li>
+<li>資源需求<dl><dd>提供預期需求的硬碟、頻寬與運算資源之評估</dd></dl></li>
+</ol><dl><dd><a class="internal" href="https://jail5.iis.sinica.edu.tw/ossfwiki/images/a/a5/Moztw.txt" title="Moztw.txt"><br /></a></dd></dl></li>
+<li>評選過程<ol>
+<li>將專案相關資訊寄至<a class="external text" href="mailto:contact@openfoundry.org" title="mailto:contact@openfoundry.org" rel="nofollow">contact@openfoundry.org</a>提報申請自由軟體鑄造場應用典範</li>
+<li>經過初步資料審核並評估系統資源是否充足後，鑄造場將進行內部會議進行投票決議。</li>
+<li>與決議通過之專案申請者連繫，簽訂應用典範契約並開啟相關資源。</li>
+<li>將通過決議之專案簡介公佈於自由軟體鑄造場網站上成為應用典範。</li>
+</ol></li>
+</ul>]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>服務</category>
+			<pubDate>Tue, 10 Feb 2009 17:15:59 +0000</pubDate>
+		</item>
+	</channel>
+</rss>

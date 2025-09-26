@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 工作流程管理系統</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:34 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>webERP</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/weberp</link>
+	<description><![CDATA[<p>
+<p>webERP is a complete web based accounting/ERP system that requires only a web-browser and pdf reader to use. It has a wide range of features suitable for many businesses particularly distributed businesses in wholesale and distribution. It is developed as an open-source application and is available as a free download to use. The feature set is continually expanding as new businesses and developers adopt it.</p>
+<p>Platform: Linux;License: GNU GPL</p>
+<p>Reference:<a href="https://www.weberp.org/HomePage" target="_blank"> https://www.weberp.org/HomePage</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:17:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/weberp</guid>
+</item>
+<item>
+	<title>Imixs Workflow</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/imixs-workflow</link>
+	<description><![CDATA[<p>
+<p>The Imixs Workflow is an open source project based on Java technology. You can use the Imixs Workfow in any kind of java application. Imixs Workflow provides a full featured Workflow Management System (WFMS) based on the Java EE 6 specification. It fulfills the requirements to a scalable, transactional, robust and simple deployable Java EE Workflow System.</p>
+<p>Platform: Linux;License: GPL</p>
+<p>Reference: <a href="https://www.imixs.org/" target="_blank">https://www.imixs.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:16:57 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/imixs-workflow</guid>
+</item>
+<item>
+	<title>Opentap</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/opentap</link>
+	<description><![CDATA[<p>
+<p>opentaps Open Source ERP + CRM is a fully integrated application suite that brings together top-tier open source projects to help you manage your business more effectively.</p>
+<p>Platform: Linux;License: GPL</p>
+<p>Reference: <a href="https://www.opentaps.org/" target="_blank">https://www.opentaps.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:50:03 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/opentap</guid>
+</item>
+<item>
+	<title>ADempiere ERP</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/adempiere-erp</link>
+	<description><![CDATA[<p>
+<p>The ADempiere project was created in September 2006 after a long running disagreement between ComPiere Inc., the developers of Compiere™, and the community that formed around that project. The community believed Compiere Inc. placed too much emphasis on the open source lock-in/commercial nature of the project, rather than the community sharing/enriching nature of the project, and after an impassioned discussion decided to split from Compiere™ giving birth to the ADempiere project.</p>
+<p>Platform: Linux;License: LGPL</p>
+<p>Reference: <a href="https://www.adempiere.com/index.php/ADempiere_ERP" target="_blank">https://www.adempiere.com/index.php/ADempiere_ERP</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:49:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/adempiere-erp</guid>
+</item>
+<item>
+	<title>JAllInOne</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/jallinone</link>
+	<description><![CDATA[<p>
+<p>JAllInOne is an ERP/CRM SOA based application having a Swing UI. It manages item variants, warehouse, selling, POS, provisioning, order tracking, BOM, manufactures, accounting, callouts, agenda, documents, multiple languages/companies/currencies.</p>
+<p>Platform: Linux;License: LGPL</p>
+<p>Reference:<a href="https://jallinone.sourceforge.net/" target="_blank"> https://jallinone.sourceforge.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:49:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/jallinone</guid>
+</item>
+<item>
+	<title>JFire</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/jfire</link>
+	<description><![CDATA[<p>
+<p>The new, powerful and free ERP, CRM, eBusiness and SCM /SRM solution for business enterprises.</p>
+<p>JFire is entirely free/open-source software, uses the latest technologies (EJB 3, JDO 2, Eclipse RCP 3.3) and is designed to be highly customizable.</p>
+<p>Therefore, JFire is the right software for you, because it is a complete and extensible solution that fulfills all your business needs like user management, online trade with business partners, points of sale, various distribution channels forming a distribution network, store management and many more.</p>
+<p>Platform: Windows, Linux, Mac OS X;License: GNU LGPL</p>
+<p>Reference: <a href="https://www.jfire.org/modules/content/" target="_blank">https://www.jfire.org/modules/content/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:54:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/jfire</guid>
+</item>
+<item>
+	<title>xTuple</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/xtuple</link>
+	<description><![CDATA[<p>
+<p>The commercially-licensed editions of xTuple are designed for enterprises with larger-scale distribution and manufacturing operations. Global 1000 companies are powering their businesses with xTuple ERP.</p>
+<p>Platform: Linux, Mac OS X, Windows;License: GNU LGPL</p>
+<p>Reference: <a href="https://www.xtuple.com/solutions/enterprise" target="_blank">https://www.xtuple.com/solutions/enterprise</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:53:31 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/xtuple</guid>
+</item>
+<item>
+	<title>Openbravo</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/openbravo</link>
+	<description><![CDATA[<p>
+<p>Openbravo provides the world's leading web-based open source ERP, improving the world's efficiency by making modern ERP accessible to all companies worldwide.</p>
+<p>Platform: Linux, Windows, Mac OS X, FreeBSD, Solaris;License: Openbravo Public License (OBPL)</p>
+<p>Reference: <a href="https://www.openbravo.com/product/erp/" target="_blank">https://www.openbravo.com/product/erp/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:53:04 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/openbravo</guid>
+</item>
+<item>
+	<title>Intalio BPMS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/intalio-bpms</link>
+	<description><![CDATA[<p>
+<p>Intalio|BPMS is the world's most widely deployed Business Process Management System (BPMS). Designed around the open source Eclipse BPMN Modeler, Apache ODE BPEL engine, and Tempo WS-Human Task service developed by Intalio, it can support any processes, small or large.</p>
+<p>Platform: Linux, Windows, Solaris;License: see for more details(Multiple License due to use of licensed code) https://community.intalio.com/faq/dispQlay-2.html#FAQ36</p>
+<p>Reference:<a href="https://www.intalio.com/bpms" target="_blank">https://www.intalio.com/bpms</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:52:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/intalio-bpms</guid>
+</item>
+<item>
+	<title>ProcessMaker</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/</link>
+	<description><![CDATA[<p>ProcessMaker is the first truly Open Source business process management (BPM) and workflow software designed for small and mid-sized businesses (SMBs) and organizations.</p> ]]></description>
+	<author>chkche1</author>
+	<pubDate>Wed, 30 Jun 2010 02:32:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Workflow/</guid>
+</item>
+</channel>
+</rss>

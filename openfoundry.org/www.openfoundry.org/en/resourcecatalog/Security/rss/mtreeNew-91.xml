@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 資訊安全</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:11:02 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>DNSSEC</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/dnssec</link>
+	<description><![CDATA[<strong>DNSSEC</strong> 是IETF (Internet Engineering Task Force)，對DNS網域名稱伺服器進行安全設計的擴充專案。原始的DNS網域名稱系統只有做到可擴充的分散式處理，但並未全盤考慮到安全性。由於使用者上網習慣依然是以網域名稱為基礎，當DNS伺服器被攔截時，可能導致使用者以正常的網域名稱連向釣魚網站或其他類型的惡意網站，讓這些非法網站的架設者，以盜取資訊的方式大量取得一般網路使用者的帳號密碼，並進而遂行其不法勾當。因此，DNSSEC專案在維持既有向下相容的前提之下，增加了相關安全性的防護措施。在Internet Society於2004年8月提出的RFC 3833報告書裡，便已描述當時已知的DNS安全問題，以及DNSSEC擴充專案可能對現狀進行補強的防護措施。 <br />&nbsp;<br />就現況來說，目前已有部份商業服務的DNS伺服器以及客戶端，支援DNSSEC的擴充協定，例如知名的BIND DNS伺服器就是一個具有代表性的例子。進一步說，不少國家頂級網域及ISP，亦開始使用DNSSEC，我國的TWNIC也在2011年時開始對.tw網域佈署DNSSEC，並開設相關的推廣教育課程。故此專案值得研究與應用，並在此專案的現有基礎下進行接續的探討與運用。]]></description>
+	<author>webmaster</author>
+	<pubDate>Fri, 28 Sep 2012 07:36:28 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/dnssec</guid>
+</item>
+<item>
+	<title>SELinux</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/selinux</link>
+	<description><![CDATA[<strong>SELinux</strong> 是一個與 Linux 權限控管有關的專案，用來減少惡意程式對 Linux 系統的破壞。SELinux 早期由美國國防部開發，在 2000 年釋出第一版，作為 Linux Kernel的修補程式，也一併成為自由開源的軟體專案，其後至 2003 年被合併至 Linux Kernel 2.6 版之中。SELinux 能用來實作 Flux Advanced Security Kernel (FLASK) 作業系統的安全架構，增強 Linux 系統下的權限控管，以減少惡意程式對系統可能帶來的傷害。鑑於目前 Linux 作業系統在嵌入式加值以及伺服器服務方面的應用已成趨勢，未來在相關服務的研究與建置上，系統安全性的構建重要性與需求性必然會再向上提升，故非常適合國內在嵌入式、雲端運算，以及資訊安全防護方面相關的專案進行研究與加值運用。 <br />&nbsp;<br />雖然一般應用上開啟 SElinux 的支援會降低系統執行效能，此一消耗值於最高程度約會到達5%，但現今 SELinux 專案於 Red Hat 及 Fedora 發行版上面，已經是預設安裝的套件，其並包含在各大 Linux 版本的可安裝套件裡，以讓需要透過 SELinux 在系統安全性方面支援的使用者，可以輕易取得並使用這個專案以增加伺服器的安全性。國內不少社群團隊與 Linux 的建置應用者，皆已開始進行相關的教學與分享(<a href="https://linux.vbird.org/linux_basic/0440processcontrol.php#selinux">https://linux.vbird.org/linux_basic/0440processcontrol.php#selinux</a>)，可知此一技術與標準的應用及延展，值得國內學研各界進行更深入的掌握與了解。]]></description>
+	<author>webmaster</author>
+	<pubDate>Thu, 27 Sep 2012 23:33:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/selinux</guid>
+</item>
+<item>
+	<title>Tcpcrypt</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/tcpcrypt</link>
+	<description><![CDATA[Tcpcrypt is a protocol that attempts to encrypt (almost) all of your  network traffic. Unlike other security mechanisms, Tcpcrypt works out of  the box: it requires no configuration, no changes to applications, and  your network connections will continue to work even if the remote end  does not support Tcpcrypt, in which case connections will gracefully  fall back to standard clear-text TCP.<br />Platform：Windows/Linux/FreeBSD/MacOS；License： New BSD License (BSD-2-Clause)<br />Reference：https://github.com/sorbo/tcpcrypt<br />]]></description>
+	<author>webmaster</author>
+	<pubDate>Wed, 21 Sep 2011 03:32:51 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/tcpcrypt</guid>
+</item>
+<item>
+	<title>Thep</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/thep</link>
+	<description><![CDATA[Thep project aims to provide homomorphic encryption libraries to  developers so they can in turn create privacy and confidentiality aware  software. Currently the code implements the Paillier cryptosystem in  Java, along with it's homomorphic operations and key generation.  Saving/transporting keys and encrypted integers can be accomplished  using methods inherited from Serializable.<br />Platform：Java；License： GNU Lesser General Public License v3 (LGPL-3.0)<br />Reference：https://code.google.com/p/thep/]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:40:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/thep</guid>
+</item>
+<item>
+	<title>Paillier</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/paillier</link>
+	<description><![CDATA[Paillier is a very basic pure Python implementation of the Paillier  Homomorphic Cryptosystem. The idea of homomorphic computation is to  encrypt some numbers, perform algebraic operations like "add" and  "multiply" on cyphertexts, then decrypt the result and find it to be  exactly the same as if corresponding "+" and "*" operations were applied  to the plaintexts. In other words, a homomorphic cryptosystem enables  cryptographically secure computations in an untrusted environment.<br />Platform：Python；License： GNU General Public License v3 (GPL-3.0)<br />Reference： https://github.com/mikeivanov/paillier]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:39:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/paillier</guid>
+</item>
+<item>
+	<title>Pccipher</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/pccipher</link>
+	<description><![CDATA[Pccipher is the ProgClub encryption software. That's the software that  allows you to encrypt and decrypt data in PHP and Javascript. It's  compatible with 32-bit and 64-bit implementations of PHP, and should  work in any Javascript capable web-browser.<br />Platform：Windows/Linux；License：MIT License or GNU General Public License v2 (GPL-2.0)<br />Reference：https://www.progclub.org/wiki/Pccipher]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:38:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/pccipher</guid>
+</item>
+<item>
+	<title>Sqlcipher</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/sqlcipher</link>
+	<description><![CDATA[SQLite Cipher is an SQLite extension that provides transparent 256 bit  AES encryption of database files. Pages are encrypted before being  written to disk and are decrypted when read back. Encryption is provided  by the OpenSSL crypto library.<br />Platform：Windows/Linux/FreeBSD/MacOS；License： BSD-3-Clause<br />Reference：https://github.com/sjlombardo/sqlcipher]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:37:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/sqlcipher</guid>
+</item>
+<item>
+	<title>Gibberish-AES</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gibberish-aes</link>
+	<description><![CDATA[A fully OpenSSL compliant javascript library for AES encryption. It only  supports CBC AES encryption mode, and it's built to be compatible with  one of the most popular AES libraries available, OpenSSL. It also passed  the FIPS certification from NIST. <br />Platform: Windows/Linux/FreeBSD/MacOS；License: MIT License <br />Reference: https://github.com/mdp/gibberish-aes]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:36:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gibberish-aes</guid>
+</item>
+<item>
+	<title>FBEncryptor</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/fbencryptor</link>
+	<description><![CDATA[FBEncryptor is enabled to encrypt/decrypt a message. Supported  encryption algorithm is AES 256 bit only. Additionally BASE64  encode/decode is supported.<br />Platform: MacOS；License: MIT License<br />Reference: https://github.com/dev5tec/FBEncryptor<br />]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:34:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/fbencryptor</guid>
+</item>
+<item>
+	<title>Ettercap</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Network-Auditing/ettercap</link>
+	<description><![CDATA[<p>Ettercap is a suite for man in the middle attacks on LAN. It features sniffing of live connections, content filtering on the fly and many other interesting tricks.</p>
+<p>It supports active and passive dissection of many protocols (even ciphered ones) and includes many feature for network and host analysis. All this feature are integrated with a easy-to-use and pleasureful ncurses/gtk interfaces.</p>
+<p>Platform： Windows/Linux/BSD/MacOS；License：GNU General Public License v2<br />Reference：<a href="https://ettercap.sourceforge.net/">https://ettercap.sourceforge.net/</a></p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Thu, 18 Aug 2011 23:56:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Network-Auditing/ettercap</guid>
+</item>
+</channel>
+</rss>

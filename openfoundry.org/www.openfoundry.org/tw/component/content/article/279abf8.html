@@ -1,0 +1,110 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw" >
+		
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/279?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:45:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="OSSFNL198" />
+  <meta name="title" content="BitKeeper 替代工具 git 功能日漸完善" />
+  <meta name="description" content="因應 BitKeeper 不再提供免費版本，Linux 創始人 Linus Torvalds 所開發的版本控制工具 git 功能已接近完善。日前渡假去的 Torvalds 認為 git 現有功能已能滿足他的需求，接下來就是要讓核心開發者開始使用這套新工具。 Linus Torvalds 於 2002 年 2 月開始使用版本控制工具 BitKeeper 管理 Linus" />
+  <meta name="generator" content="" />
+  <title>BitKeeper 替代工具 git 功能日漸完善</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">BitKeeper 替代工具 git 功能日漸完善</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="列印"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						建立日期			2005-05-11 08:00						&nbsp;&nbsp;&nbsp;&nbsp;						最近更新在 2007-03-09 01:54						</span>
+
+						<span class="rt-author">
+				作者是 謝良奇			</span>
+				
+					</div>
+		
+		
+		因應 BitKeeper 不再提供免費版本，Linux 創始人 Linus Torvalds 所開發的版本控制工具 git 功能已接近完善。日前渡假去的 Torvalds 認為 git 現有功能已能滿足他的需求，接下來就是要讓核心開發者開始使用這套新工具。 <p>Linus Torvalds 於 2002 年 2 月開始使用版本控制工具 BitKeeper 管理 Linus 核心開發，在開放源碼與自由軟體社群引發不小關注。BitKeeper 開發公司 BitMover，同時在商業版 BitKeeper 外，提供僅可免費使 用不允許加以修改釋出的 BitKeeper 功能精簡版。因為 BitMover 的這種做法，社群中始終有人對 Torvalds 使用 BitKeeper 感到不 滿，其中包括了 GNU 專案創辦人 Richard Stallman。 然而，市場上一直缺少其他具備 BitKeeper 相似功能的自由軟體可用。若干人嘗試針對 BitKeeper 進行逆向工程，也受到 BitMover 的警告。日前 OSDL 成員對 BitKeeper 的逆向工程嘗試，終於惹惱 了 BitMover，該公司於是決定停止提供 BitKeeper 免費版本。 為解決無工具可用的窘境，Linus Torvalds 4 月起自行開發 git ， 原意是希望在適用工具出現前，充當暫時解決方案。Torvalds 當時 稱 git 為愚蠢但快速的目錄內容管理器。然而 git 專案從此卻有了 迅速成長，很快地 Linus 建議能以 git 作為長期解決方案。4 月釋 出的 Linux核心 2.6.12-rc3 版本便成為第一個採用 git 的核心釋 出版本。 Linux 核心 2.4 stable 維護者 Marcelo Tosatti 日前於 2.4.31- pre1 釋出時更表示，正計畫把 2.4 轉移到 git 上。</p><p>&nbsp;</p><p> 相關網址：<br /> 1.<a href="https://kerneltrap.org/node/5091">Linux: Git 現況</a><br /> 2.<a href="https://kerneltrap.org/node/4982">Linux: 用 git 管理核心源碼</a> <br /></p>
+			<!-- Show relate article -->
+				<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'><b>自由軟體鑄造場電子報&nbsp;:</b>&nbsp;<a href='../../../../previous-issue74ae.html?task=view&amp;id=198'>第 32 期 Foundry 相關技術與發展</a><br>				<!-- End -->
+					<br>
+					<b>分類: </b><a href="../../../foss-news.html">				源碼新聞					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/279?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:45:57 GMT -->
+</html>

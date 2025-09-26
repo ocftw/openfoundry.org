@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:56 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>PHP Coder</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/php-coder</link>
+	<description><![CDATA[<p>
+<p>PHP Coder is an IDE (Integrated Development Environment) especially developed for PHP programmers.</p>
+<p>Through tight integration of the PHP interpreter and the PHP documentation, PHP Coder gives you a time-saving Development Interface. Features are Full Integration of the PHP Interpreter and the PHP documentation, Integrated Preview window, Full Syntax Highlighting for HTML and PHP, AutoComplete for frequently used text constructs, Project manager, Tag Buttons and all the standard editing functions like almost unlimited undo, copy and paste, searching, …</p>
+<p>Platform: Windows;License: Freeware</p>
+<p>References: <a href="https://www.phpide.com/php-editors/php-coder/" target="_blank">https://www.phpide.com/php-editors/php-coder/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 10:10:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/php-coder</guid>
+</item>
+<item>
+	<title>Roadsend Studio IDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/roadsend-studio-ide</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Roadsend Studio is an Integrated Development Environment (IDE) for the Roadsend Compiler for PHP.</span></p>
+<p>You can build, develop and debug both interpreted and compiled PHP projects in a graphical environment.</p>
+<p>Platform: Windows; License: Unspecified</p>
+<p>Reference: <a href="https://www.roadsend.com/home/index.php?rIDX=1&amp;pageID=pccIDE" target="_blank">https://www.roadsend.com/home/index.php?rIDX=1&amp;pageID=pccIDE</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:14:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/roadsend-studio-ide</guid>
+</item>
+<item>
+	<title>OpenWeb IDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/openweb-ide</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">OpenWeb IDE is intended to be a cross platform web development IDE to facilitate to development of web based applications built using PHP and web technologies such as XHTML, XML, CSS and Javascript.</span></p>
+<p>Platform: Cross platform; License: GNU General Public License (GPL)</p>
+<p>Reference: <a href="https://openwebide.sourceforge.net/" target="_blank">https://openwebide.sourceforge.net/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:14:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/openweb-ide</guid>
+</item>
+<item>
+	<title>Phido</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/phido</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Phido (Pronounced Fido) is an Integrated Desktop Environment for PHP, made with Java for Cross-platform compatiability. It features a debugging mode to view your web pages in action, and tab capabilities for editing multiple files.</span></p>
+<p>Platform: Cross platform; License: GNU General Public License (GPL)</p>
+<p>Reference: <a href="https://sourceforge.net/projects/phido/" target="_blank">https://sourceforge.net/projects/phido/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:13:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/phido</guid>
+</item>
+<item>
+	<title>ShishKabab PHP IDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/shishkabab-php-ide</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">A PHP IDE written in C++ with features like code completion, code templates, find (and replace) in project. The aim of the project is to make an IDE that is fast and just works.</span></p>
+<p>Platform: Cross platform; License: GNU General Public License (GPL)</p>
+<p>Reference: <a href="https://sourceforge.net/projects/skphpide" target="_blank">https://sourceforge.net/projects/skphpide</a>/</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:12:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/shishkabab-php-ide</guid>
+</item>
+<item>
+	<title>CodeLobster PHP Edition</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/codelobster-php-edition</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Codelobster PHP Edition streamlines and simplifies php development process. You don't need to keep in mind names of functions, arguments, tags and their attributes; methods etc - we've implemented it for you in the autocomplete feature for PHP, HTML, JavaScript and even CSS. Also, you can always get necessary help information by F1 or using special Help control.</span></p>
+<p>Platform: Cross platform; License: https://www.freevistafiles.com/license/CodeLobster-Software+CodeLobster-PHP-Edition.html</p>
+<p>Reference: <a href="https://www.codelobster.com/" target="_blank">https://www.codelobster.com/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:12:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/codelobster-php-edition</guid>
+</item>
+<item>
+	<title>IDE.PHP</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/idephp</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Ide.php is a web-based editor for quick development of server-side code. It offers a rapid prototyping environment, letting the user test and save snippets of code with minimal overhead.</span></p>
+<p>Ide.php was primarily written for PHP, but has been extended to enable development in any server-side scripting language available on the server where it's running, like SSI, ASP, JSP, SSJS, even CGI!</p>
+<p>Ide.php eliminates the need to use several separate programs (text editor, FTP program and web browser) for web development, since all work is done directly through the browser. This helps to shorten development time, and is also very helpful when learning a new scripting language, like PHP.</p>
+<p>Platform: Cross platform; License: GNU General Public License</p>
+<p>Reference: <a href="https://www.ekenberg.se/php/ide/about_ide.php?label=what" target="_blank">https://www.ekenberg.se/php/ide/about_ide.php?label=what</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:11:29 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/idephp</guid>
+</item>
+<item>
+	<title>Dev-PHP IDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/dev-php-ide</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Dev-PHP is a well-featured integrated development environment (IDE). You'll be able to create scripts and applications using the PHP scripting language and the PHP-GTK library(both included in the "PHP Package").</span></p>
+<p>Platform: Windows; License: GNU General Public License</p>
+<p>Reference: <a href="https://devphp.sourceforge.net/" target="_blank">https://devphp.sourceforge.net/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:11:01 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Integrated-Development-Environment/dev-php-ide</guid>
+</item>
+</channel>
+</rss>

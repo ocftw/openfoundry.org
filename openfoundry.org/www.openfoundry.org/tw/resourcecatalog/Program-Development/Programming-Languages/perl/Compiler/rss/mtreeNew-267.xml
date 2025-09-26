@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 編譯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:24 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Perl2Exe</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Compiler/perl2exe</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>Perl2Exe is a command line program for converting Perl scripts to executable files.</p>
+<p>This allows you to create stand alone programs in Perl that do not require the Perl interpreter. You can ship the executable files without having to ship your Perl source code.</p>
+<p>Perl2Exe can generate executables for Windows and Unix target hosts.</p>
+<p>Perl2Exe can generate cross-platform code.  For example you can generate code for Solaris from a Linux machine.</p>
+<p>Perl2Exe also allows you to create no-console programs using Tk.</p>
+<p>Platform: Cross-platform; Code license: Proprietary</p>
+<p>Reference: <a href="https://www.indigostar.com/perl2exe.php" target="_blank">https://www.indigostar.com/perl2exe.php</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 13 Sep 2010 03:29:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Compiler/perl2exe</guid>
+</item>
+</channel>
+</rss>

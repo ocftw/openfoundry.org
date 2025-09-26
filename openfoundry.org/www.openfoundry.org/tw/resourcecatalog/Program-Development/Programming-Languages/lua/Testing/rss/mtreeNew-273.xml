@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 測試</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:39 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>TestMore</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/testmore</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>lua-TestMore is a port of the Perl5 module Test::More.</p>
+<p>Platform: OS Independent; License: MIT/X Consortium License</p>
+<p>Reference: <a href="https://luaforge.net/projects/testmore/" target="_blank">https://luaforge.net/projects/testmore/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:16:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/testmore</guid>
+</item>
+<item>
+	<title>Luaunit</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/luaunit</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>LuaUnit is a unit testing framework modeled after Python unit testing framework.</p>
+<p>Platform: OS Independent; License: Public Domain</p>
+<p>Reference: <a href="https://phil.freehackers.org/programs/luaunit/" target="_blank">https://phil.freehackers.org/programs/luaunit/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:15:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/luaunit</guid>
+</item>
+<item>
+	<title>lunit</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/lunit</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>lunit is a unit testing framework for Lua, written in lua. It provides currently 27 assert functions, 8 type checking functions and a few miscellaneous functions for usage as an easy unit testing framework.</p>
+<p>Platform: OS Independent; License: MIT License</p>
+<p>Reference: h<a href="ttp://www.nessie.de/mroth/lunit/" target="_blank">ttp://www.nessie.de/mroth/lunit/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:14:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/lunit</guid>
+</item>
+<item>
+	<title>Shake</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/shake</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>Shake is a simple test engine for Lua that assumes that tests only use assert() and print() calls. If you are looking for something similar to JUnit, check lunit and luaunit instead. Shake depends on Leg and LPeg.</p>
+<p>Platform: Cross-platform; License: MIT/X Consortium License</p>
+<p>Reference: <a href="https://luaforge.net/projects/shake/" target="_blank">https://luaforge.net/projects/shake/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:13:25 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Testing%20/shake</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 表現層/框架</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:13 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Apache Click</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-click</link>
+	<description><![CDATA[<p>Apache Click is a modern Java web application framework, providing a natural rich client style programming model. Click provides a page and component oriented design with a event based programming model. Leveraging a stateless architecture Click encourages loosely coupled pages for easier maintenance. Click is designed to be very easy to learn and use, with developers getting up and running within a day. Support is provided for Velocity, JSP or FreeMarker page rendering. Click also provides exceptional performance for high volume web sites.</p>
+<p>License：Apache License Version 2.0<br />Reference：<a href="https://click.apache.org">https://click.apache.org</a></p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Wed, 24 Aug 2011 02:33:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-click</guid>
+</item>
+<item>
+	<title>Apache MyFaces</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-myfaces</link>
+	<description><![CDATA[<p>MyFaces is the free open source implementation of JavaServer(tm) Faces, a new and upcoming web application framework that accomplishes the MVC paradigm. It is comparable to the well-known Struts Framework but has features and concepts that are beyond those of Struts - especially the component orientation.</p>
+<p>License：Apache License Version 2.0<br />Reference：<a href="https://myfaces.apache.org/">https://myfaces.apache.org/</a></p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 23 Aug 2011 03:08:59 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-myfaces</guid>
+</item>
+<item>
+	<title>Apache Websh</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-websh</link>
+	<description><![CDATA[<p>Websh is a rapid development environment for building powerful, fast, and reliable web applications in Tcl. Websh is versatile and handles everything from HTML generation to data-base driven one-to-one page customization. Websh can be run in CGI environments and as Apache module.</p>
+<p>License：&nbsp; Apache License Version 2.0<a href="https://www.apache.org/licenses/LICENSE-2.0"></a><br />Reference： https://tcl.apache.org/websh/</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 22 Aug 2011 03:53:59 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-websh</guid>
+</item>
+<item>
+	<title>Apache Lenya</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-lenya</link>
+	<description><![CDATA[<p>Apache Lenya is an Open Source Java/XML Content Management Framework and comes with revision control, site management, scheduling, search, WYSIWYG editors, and workflow.</p>
+<p>License：Apache License Version 2.0<br />Reference：<a href="https://lenya.apache.org/">https://lenya.apache.org/</a></p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 22 Aug 2011 03:24:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-lenya</guid>
+</item>
+<item>
+	<title>Apache Excalibur</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-excalibur-</link>
+	<description><![CDATA[<p>The predecessor of Apache Avalon, Apache Excalibur hosts the Avalon framework, a Java container framework, the Excalibur and Fortress inversion of control containers, and a rich library of components. Excalibur code powers Apache James and Cocoon and numerous other open source and commercial projects.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference:<a href="https://excalibur.apache.org/"> https://excalibur.apache.org/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 17:09:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-excalibur-</guid>
+</item>
+<item>
+	<title>Apache Felix</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-felix</link>
+	<description><![CDATA[<p>
+<p>Apache Felix is a community effort to implement the OSGi R4 Service Platform and other interesting OSGi-related technologies under the Apache license. The OSGi specifications originally targeted embedded devices and home services gateways, but they are ideally suited for any project interested in the principles of modularity, component-orientation, and/or service-orientation. OSGi technology combines aspects of these aforementioned principles to define a dynamic service deployment framework that is amenable to remote management.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference: <a href="https://projects.apache.org/projects/felix.html" target="_blank">https://projects.apache.org/projects/felix.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:09:59 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-felix</guid>
+</item>
+<item>
+	<title>Apache MINA</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-mina</link>
+	<description><![CDATA[<p>
+<p>Apache MINA is a network application framework which helps users develop high performance and high scalability network applications easily. It provides an abstract, event-driven, asynchronous API over various transports such as TCP/IP and UDP/IP via Java NIO.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference:<a href="https://projects.apache.org/projects/mina.html" target="_blank"> https://projects.apache.org/projects/mina.html</a></p>
+<div></div>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:07:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-mina</guid>
+</item>
+<item>
+	<title>Apache Forest</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-forest</link>
+	<description><![CDATA[<p>
+<p>Apache Forrest™ software is a publishing framework that transforms input from various sources into a unified presentation in one or more output formats. The modular and extensible plug-in architecture of Apache Forrest is based on Apache Cocoon and the relevant industry standards that separate presentation from content. Forrest can generate static documents, or be used as a dynamic server, or be deployed by its automated facility.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference: <a href="https://projects.apache.org/projects/forrest.html" target="_blank">https://projects.apache.org/projects/forrest.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:06:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-forest</guid>
+</item>
+<item>
+	<title>Apache Geronimo</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-geronimo</link>
+	<description><![CDATA[<p>
+<p>The goal of the Geronimo project is to produce a server runtime framework that pulls together the best Open Source alternatives to create runtimes that meet the needs of developers and system administrators. Our most popular distribution is a fully certified Java EE 5 application server runtime.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference: <a href="https://projects.apache.org/projects/geronimo.html" target="_blank">https://projects.apache.org/projects/geronimo.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:05:49 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/apache-geronimo</guid>
+</item>
+<item>
+	<title>GNU Enterprise</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/gnu-enterprise</link>
+	<description><![CDATA[<p>
+<p>Firstly, GNUe is a set of tools, such as a data-aware user forms interface, a reporting system and an application server, which provide a development framework for enterprise information technology professionals to write or customise data-aware applications and deploy them effectively across large or small organizations. The GNUe platform boasts an open architecture and easy maintenance. It gives users a modular system and freedom from being stuck with a single-source vendor. GNUe supports multi-language interfaces, non-ASCII character sets, and most popular database systems.</p>
+<p>GNUe is also a set of packages written using the tools, to implement a full Enterprise Resource Planning (ERP) system. From human resources, accounting, customer relationship management and project management to supply chain or e-commerce, GNUe can handle the needs of any business, large or small. GNUe supports multi-currency processing (including euro support).</p>
+<p>Platform: Linux, Mac OS X;License: GNU GPL</p>
+<p>Reference: <a href="https://www.gnuenterprise.org/" target="_blank">https://www.gnuenterprise.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:03:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Presentation-Framework/gnu-enterprise</guid>
+</item>
+</channel>
+</rss>

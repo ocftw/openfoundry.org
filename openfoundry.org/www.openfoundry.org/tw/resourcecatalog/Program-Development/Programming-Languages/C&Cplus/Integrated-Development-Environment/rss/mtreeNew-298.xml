@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:47 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Sally</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/sally</link>
+	<description><![CDATA[<p>
+<p>Sally - A Simple C++ IDE" is a GPL multi-compiler C++ IDE for WindowsXP/2000.</p>
+<p>Platform:Windows                                                                    License:GPL</p>
+<p>Reference:<a href="https://sallyide.sourceforge.net/" target="_blank">https://sallyide.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:14:48 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/sally</guid>
+</item>
+<item>
+	<title>KDevelop</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/kdevelop</link>
+	<description><![CDATA[<p>
+<p>Kdevelop is a free, open source IDE (Integrated Development Environment) for MS Windows, Mac OS X, Linux, Solaris and FreeBSD. It is a feature-full, plugin extensible IDE for C/C++ and other programming languages. It is based on KDevPlatform, and the KDE and Qt libraries and is under development since 1998.</p>
+<p>Platform:Linux                                                                    License:GPL</p>
+<p>Reference:<a href="https://www.kdevelop.org/" target="_blank">https://www.kdevelop.org/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:13:49 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/kdevelop</guid>
+</item>
+<item>
+	<title>Ecere SDK</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/ecere-sdk</link>
+	<description><![CDATA[<p>
+<p>The Ecere IDE is a complete development environment for editing code, designing graphical user interfaces, managing and building projects as well as debugging. Its aim is to fully support eC and C programming, but also supports including and building e.g. C++ modules as part of the projects.</p>
+<p>Platform:Cross platform                                                                    License:BSD License</p>
+<p>Reference:<a href="https://www.ecere.com/technologies.html" target="_blank">https://www.ecere.com/technologies.html </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:13:18 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/ecere-sdk</guid>
+</item>
+<item>
+	<title>Relo</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/relo</link>
+	<description><![CDATA[<p>
+<p>Relo is an open source C/C++ Integrated Development Environment for Windows, for MingW32 and Borland C++ compilers, designed to be highly customizable and user friendly.</p>
+<p>Platform:Windows                                                         License:GNU General Public License (GPL)</p>
+<p>Reference:<a href="https://www.fifsoft.com/relo/" target="_blank">https://www.fifsoft.com/relo/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:12:48 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/relo</guid>
+</item>
+<item>
+	<title>Bloodshed Dev-C++</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/bloodshed-dev-c</link>
+	<description><![CDATA[<p>
+<p>Bloodshed Dev-C++ is a full-featured Integrated Development Environment (IDE) for the C/C++ programming language. It uses Mingw port of GCC (GNU Compiler Collection) as it's compiler. Dev-C++ can also be used in combination with Cygwin or any other GCC based compiler.</p>
+<p>Platform: Windows (under XP)                                 License:GNU General Public License</p>
+<p>Reference:<a href="https://www.bloodshed.net/devcpp.html" target="_blank">https://www.bloodshed.net/devcpp.html </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:10:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/bloodshed-dev-c</guid>
+</item>
+<item>
+	<title>Quincy</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/quincy</link>
+	<description><![CDATA[<p>
+<p>Quincy is freeware open-source. It is a simple programming environment for C/C++ on Windows. It contains an editor, a compiler, a debugger, and graphics and GUI toolkits.</p>
+<p>Platform: unknown                                                         License:unknown</p>
+<p>Reference:<a href="https://www.codecutter.net/tools/quincy/" target="_blank">https://www.codecutter.net/tools/quincy/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:10:11 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/quincy</guid>
+</item>
+<item>
+	<title>C-Free 5</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/c-free-5</link>
+	<description><![CDATA[<p>
+<p>C-Free is a professional C/C++ integrated development environment (IDE) that support multi-compilers. Use of this software, user can edit, build, run and debug programs freely.</p>
+<p>With C/C++ source parser included, although C-Free is a lightweight C/C++ development tool, it has powerful features to let you make use of it in your project.</p>
+<p>Platform:Windows                                                        License:https://www.programarts.com/cfree_en/programarts_enduser_license.htm</p>
+<p>Reference:<a href="https://www.programarts.com/cfree_en/index.htm" target="_blank">https://www.programarts.com/cfree_en/index.htm</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:09:15 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/c-free-5</guid>
+</item>
+<item>
+	<title>CodeLite</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/codelite</link>
+	<description><![CDATA[<p>
+<p>CodeLite is an open-source, cross platform IDE for the C/C++ programming languages.</p>
+<p>Platform: Cross platform                              License: GPL v2</p>
+<p>Reference:<a href="https://www.codelite.org/" target="_blank">https://www.codelite.org/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:08:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Integrated-Development-Environment/codelite</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 一般資訊</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:51 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>ToySbox-ScratchboxLivecd</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/toysbox-scratchboxlivecd</link>
+	<description><![CDATA[透過scratchbox FirmwareLinux來學習embedded linux。 <br /> 適用平台: 無相關資料;原始碼授權類型: 無相關資料<br /> 資料來源:<a href="https://toysbox.sourceforge.net/" target="_blank"> https://toysbox.sourceforge.net/</a>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 10:32:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/toysbox-scratchboxlivecd</guid>
+</item>
+<item>
+	<title>Embedded Star</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embedded-star</link>
+	<description><![CDATA[Embedded Star covers the embedded system industry. It includes articles, papers, vendors, blogs, jobs, journals and so on. The contents cover real-time operating systems (rtos), single board computers (sbc), unified modeling language (uml), wireless tools, microcontrollers, dsp, fpga, ip cores, test solutions, networking, and more. <br /> Platform: unknown; License: unknown<br /> References: <a href="https://www.embeddedstar.com/" target="_blank">https://www.embeddedstar.com/</a>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 03 Apr 2009 11:35:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embedded-star</guid>
+</item>
+<item>
+	<title>Learn-c.com</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/learn-ccom</link>
+	<description><![CDATA[<p>
+<p>This site uses hands-on experiments to show the basics of how real things in the real world are controlled with computers. That means it's about most of the computers in the world. Most computers don't sit on desks, but are used to control things that don't look anything like a computer, such as factories, spacecraft, toys and appliances. This site provides the opportunity to learn basic control and embedded system concepts while taking advantage of the low cost and conveneince of using a PC as a platform.</p>
+<p>Platform: unknown; License: unknown</p>
+<p>References: <a href="https://www.learn-c.com/" target="_blank">https://www.learn-c.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 19 Mar 2009 12:01:25 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/learn-ccom</guid>
+</item>
+<item>
+	<title>Linux for PowerPC Embedded Systems</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/linux-for-powerpc-embedded-systems</link>
+	<description><![CDATA[<p> </p>
+<p>這份文件試圖告訴你，為了在以PowerPC為基礎的嵌入式系統上使用Linux，你必須要了解的東西。這些內容是從linuxppc-embedded郵件列表的集體智慧中萃取而來的。</p>
+<p>適用平台: Linux ;原始碼授權類型: GNU Free Documentation License</p>
+<p>資料來源: <a href="https://penguinppc.org/embedded/howto/" target="_blank">https://penguinppc.org/embedded/</a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 04 Mar 2009 18:45:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/linux-for-powerpc-embedded-systems</guid>
+</item>
+<item>
+	<title>EmbeddedRelated.com</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embeddedrelatedcom</link>
+	<description><![CDATA[<p>
+<p>Portal for Embedded Systems Engineers, with discussion groups and forums, web access to Comp.Arch.Embedded, a database of embedded systems books, a list of Career Oportunities, and more.</p>
+<p>Platform: unknown; License: unknown</p>
+<p>Reference: <a href="https://www.embeddedrelated.com/index.php" target="_blank">https://www.embeddedrelated.com/index.php</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 04 Mar 2009 01:22:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embeddedrelatedcom</guid>
+</item>
+<item>
+	<title>Embedded System News.com</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embedded-system-newscom</link>
+	<description><![CDATA[<p>
+<p>This website provides daily news on embedded systems and microcontroller electronics for developers and decision makers.</p>
+<p>Platform: unknown; License: unknown</p>
+<p>Reference: <a href="https://embeddedsystemnews.com/" target="_blank">https://embeddedsystemnews.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 04 Mar 2009 01:13:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embedded-system-newscom</guid>
+</item>
+<item>
+	<title>Embedded.com</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embeddedcom</link>
+	<description><![CDATA[<p>
+<p>This is the official site of the embedded development community. It provides a wide variety of resources about embedded systems including design articles, tutorials, code and demos, columns, e-learning, forums and so on.</p>
+<p>Platform: unknown; License: unknown</p>
+<p>Reference:<a href="https://www.eetimes.com/design/embedded" target="_blank"> https://www.eetimes.com/design/embedded</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 04 Mar 2009 00:35:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/embeddedcom</guid>
+</item>
+<item>
+	<title>OpenCSL</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/opencsl</link>
+	<description><![CDATA[<p>
+<p>OpenCSL means an Open Computer System Lab course material which simulates embedded system environment through each kind of open source tool and provides an entry for the people who are interested in embedded system.</p>
+<p>Platform: Linux, Windows; License: unknown</p>
+<p>Reference: <a href="https://opencsl.openfoundry.org/" target="_blank">https://opencsl.openfoundry.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 26 Dec 2008 03:13:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/opencsl</guid>
+</item>
+<item>
+	<title>Jollen’s Network Academy</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/jollens-network-academy</link>
+	<description><![CDATA[<div>This website is Jollen's sharing platform. There are some instruction documents of embedded Linux, Linux device driver and Linux kernel as well as some personal sharing, all at Jollen's blog.</div>
+<div>Platform: Linux; License: unknown</div>
+<div>Reference: <a href="https://www.jollen.org/" target="_blank">https://www.jollen.org/</a></div>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 26 Sep 2007 14:04:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/jollens-network-academy</guid>
+</item>
+<item>
+	<title>LinuxDevices.com</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/linuxdevicescom</link>
+	<description><![CDATA[<p>
+<p>LinuxDevices.com is also a portal of embedded Linux, with some market news and samples of Linux devices.</p>
+<p>Platform: Linux; License: unknown</p>
+<p>Reference: <a href="https://www.linuxfordevices.com/" target="_blank">https://www.linuxfordevices.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 31 Jan 2007 06:40:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/General-Information/linuxdevicescom</guid>
+</item>
+</channel>
+</rss>

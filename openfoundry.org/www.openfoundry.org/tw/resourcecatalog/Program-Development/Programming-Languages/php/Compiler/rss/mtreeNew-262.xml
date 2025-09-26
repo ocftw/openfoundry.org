@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 編譯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:54 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Scriptol Php Compiler</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/scriptol-php-compiler</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">A fast compiler for the new object-oriented Scriptol programming language. This compiler produces standalone PHP code or run the script , or produce dynamic web pages.</span></p>
+<p>Platform: Unix; License: Unspecified</p>
+<p>Reference: <a href="https://www.softpedia.com/get/UNIX/Software-Development/Scriptol-Php-Compiler.shtml" target="_blank">https://www.softpedia.com/get/UNIX/Software-Development/Scriptol-Php-Compiler.shtml</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:23:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/scriptol-php-compiler</guid>
+</item>
+<item>
+	<title>Hiphop-php</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/hiphop-php</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">HipHop transforms your PHP source code into highly optimized C++ and then compiles it with g++ to build binary files. You keep coding in simplerPHP, then HipHop executes your source code in a semantically equivalent manner and sacrifices some rarely used features – such as eval() – in exchange for improved performance</span></p>
+<p>Platform: Cross-platform; License: PHP License</p>
+<p>Reference: <a href="https://github.com/facebook/hiphop-php/wiki" target="_blank">https://github.com/facebook/hiphop-php/wiki</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:22:40 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/hiphop-php</guid>
+</item>
+<item>
+	<title>phc</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/phc</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">phc is an open source compiler for PHP with support for plugins. In addition, it can be used to pretty-print or obfuscate PHP code, as a framework for developing applications that process PHP scripts, or to convert PHP into XML and back, enabling processing of PHP scripts using XML tools.</span></p>
+<p>Platform: Linux; License: BSD license</p>
+<p>Reference: <a href="https://www.phpcompiler.org/" target="_blank">https://www.phpcompiler.org/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:22:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/phc</guid>
+</item>
+<item>
+	<title>Roadsend PHP</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/roadsend-php</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Roadsend PHP is a free, open source implementation of the PHP language. It includes a compiler that produces native binaries (no interpreter required). Roadsend Compiler can build online web applications with Fast/CGI, offline web applications with an embedded web server (MicroServer), and console applications.</span></p>
+<p>Platform: Cross-platform; License: GNU General Public License</p>
+<p>Reference: <a href="https://www.roadsend.com/home/index.php" target="_blank">https://www.roadsend.com/home/index.php</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 20 Oct 2010 02:21:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/php/Compiler/roadsend-php</guid>
+</item>
+</channel>
+</rss>

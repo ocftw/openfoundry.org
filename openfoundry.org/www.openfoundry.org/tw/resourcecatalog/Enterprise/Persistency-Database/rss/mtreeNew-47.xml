@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 物件儲存/資料庫</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:30 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Apache Common dbutils</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/apache-common-dbutils</link>
+	<description><![CDATA[<p>DbUtils is a small set of classes designed to make working with&nbsp;JDBC&nbsp;easier.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 22 Aug 2011 05:42:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/apache-common-dbutils</guid>
+</item>
+<item>
+	<title>Apache OpenJPA</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/apache-openjpa</link>
+	<description><![CDATA[<p>Apache OpenJPA is a Java persistence project at The Apache Software Foundation that can be used as a stand-alone POJO persistence layer or integrated into any Java EE compliant container and many other lightweight frameworks, such as Tomcat and Spring.</p>
+<p>Platform： ；License：Apache License Version 2.0<br />Reference：https://openjpa.apache.org/</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 21 Aug 2011 21:39:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/apache-openjpa</guid>
+</item>
+<item>
+	<title>Hibernate</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/hibernate</link>
+	<description><![CDATA[<p>Hibernate is a powerful, ultra-high performance object/relational persistence and query service for Java. Hibernate lets you develop persistent objects following common Java idiom - including association, inheritance, polymorphism, composition and the Java collections framework. Extremely fine-grained, richly typed object models are possible. The Hibernate Query Language, designed as a ""minimal"" object-oriented extension to SQL, provides an elegant bridge between the object and relational worlds. Hibernate is now the most popular ORM solution for Java.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Fri, 28 Mar 2008 13:54:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/hibernate</guid>
+</item>
+<item>
+	<title>Ozone</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/ozone</link>
+	<description><![CDATA[<p>The Ozone Database Project is a open initiative for the creation of an open source, Java based, object-oriented database management system. Ozone includes a fully W3C compliant DOM implementation that allows you to store XML data. You can use any XML tool to provide and access these data. Support classes for Apache Xerces-J and Xalan-J are included.</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 24 Mar 2008 13:47:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/ozone</guid>
+</item>
+<item>
+	<title>Hibernate Spatial</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/hibernate-spatial</link>
+	<description><![CDATA[<p><strong>Hibernate Spatial</strong> is a generic extension to Hibernate for handling geographic data. Hibernate Spatial is open source and licensed under the LGPL license. Hibernate Spatial allows you to deal with geographic data in a standardized way. It abstracts away from the specific way your database supports geographic data, and provides a standardized, cross-database interface to geographic data storage and query functions.</p>
+<p><strong>License</strong>：LGPL</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Fri, 14 Mar 2008 22:01:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/hibernate-spatial</guid>
+</item>
+<item>
+	<title>C-JDBC</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</link>
+	<description><![CDATA[<p>C-JDBC is an open source (LGPL) database cluster middleware that allows any Java application (standalone application, servlet or EJB container, ...) to transparently access a cluster of databases through JDBC(tm). The database is distributed and replicated among several nodes and C-JDBC balances the queries among these nodes. C-JDBC handles node failures and provides support for checkpointing and hot recovery.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:55:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</guid>
+</item>
+<item>
+	<title>Apache DB Project</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</link>
+	<description><![CDATA[<p>DB is a Project of the  Apache Software Foundation, charged with the creation and maintenance of commercial-quality, open-source, database solutions based on software licensed to the Foundation, for distribution at no charge to the public. </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:54:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</guid>
+</item>
+<item>
+	<title>Apache ObJectRelationalBridge(OJB)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</link>
+	<description><![CDATA[<p>Apache ObJectRelationalBridge (OJB) is an Object/Relational mapping tool  that                 allows transparent persistence for Java Objects against  relational                 databases.             </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:53:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</guid>
+</item>
+<item>
+	<title>Apache Torque</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</link>
+	<description><![CDATA[<p>Apache Torque is an object-relational mapper for java.  In other words, Torque        lets you access and manipulate data in a relational database         using java objects.        Unlike most other object-relational mappers, Torque does not use        reflection to access user-provided classes, but it generates the        necessary classes (including the Data Objects) from an XML schema        describing the database layout (which can either be written by  hand        or generated from an existing database).        The XML schema can also be used to generate and execute a SQL  script        which creates all the tables in the database.      </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:53:14 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</guid>
+</item>
+<item>
+	<title>Speedo</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</link>
+	<description><![CDATA[<p>Speedo is an open source implementation of the JDO (TM) 1.0.1 specification. </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:52:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Persistency-Database/</guid>
+</item>
+</channel>
+</rss>

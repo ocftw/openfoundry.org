@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - .NET</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:16 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Azure Services Platform</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/NET/azure-services-platform</link>
+	<description><![CDATA[<p>
+<p>Microsoft's Windows Azure Platform is a cloud platform offering that "provides a wide range of Internet services that can be consumed from both on-premises environments or the Internet"</p>
+<p>Reference: <a href="https://www.microsoft.com/windowsazure/" target="_blank">https://www.microsoft.com/windowsazure/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:43:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/NET/azure-services-platform</guid>
+</item>
+</channel>
+</rss>

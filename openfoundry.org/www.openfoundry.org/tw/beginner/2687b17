@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<feed xmlns="http://www.w3.org/2005/Atom"  xml:lang="zh-tw">
+	<title type="text">寫在前面</title>
+	<subtitle type="text">OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</subtitle>
+	<link rel="alternate" type="text/html" href="https://www.openfoundry.org"/>
+	<id>https://www.openfoundry.org/beginner/268</id>
+	<updated>2025-09-24T12:15:56Z</updated>
+	<generator uri="http://joomla.org" version="1.5"></generator>
+<link rel="self" type="application/atom+xml" href="https://www.openfoundry.org/tw/beginner/268?format=feed&amp;type=atom" />
+	<entry>
+		<title>影音應用</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/beginner/268/1910"/>
+		<published>2008-12-26T14:37:13Z</published>
+		<updated>2008-12-26T14:37:13Z</updated>
+		<id>https://www.openfoundry.org/tw/beginner/268/1910</id>
+		<author>
+			<name>OSSF</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;VLC&lt;img height=&quot;275&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/VLC.jpg&quot; width=&quot;400&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●&amp;nbsp;軟體簡介&lt;br /&gt;&lt;/strong&gt;VLC（VedioLAN Client）是一款影音播放軟體，此軟體開發專案是由法國學生所發起的，可在許多作業平台上使用的多媒體撥放器，支援數種聲音及影像的格式（MPEG-1、MPEG-2、MPEG-4、DivX、mp3、ogg&amp;hellip;&amp;hellip;）對於DVDs、VCDs、MPEG 與 DivX 檔案及一些影音串流的通訊協定都有良好的支援。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Solaris、Mac OSX、FreeBSD &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.videolan.org/vlc/&quot;&gt;https://www.videolan.org/vlc/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;CDex&amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/CDex.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;br /&gt;CDex 可以將音樂 CD 中的音軌轉錄成 wav 或者 mp3 格式的檔案，也能連上 Internet 讀取 CDDB。並且內建錄製 mp3 的編碼器，可以直接將 CD 音軌轉為 mp3 格式，也可以將 wav 檔轉成 mp3 格式。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://cdexos.sourceforge.net/&quot;&gt;https://cdexos.sourceforge.net/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Audacity&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;Audacity 可以讓你輕易地將 WAV、AIFF 以及 MP3 等不同格式的檔案&lt;img height=&quot;68&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Audacity.jpg&quot; width=&quot;150&quot; align=&quot;right&quot; vspace=&quot;10&quot; /&gt;匯入並加以編輯，再搭配上剪輯、複製、混音等功能，便可修剪出令人滿意的基本而專業的編輯特效。 Audacity 可允許使用者將音樂檔案以 WAV、MP3、OGG 等三種不同格式加以輸出，若這樣的功能仍無法滿足你的需求，還可自網路上下載專為 Audacity 所設的外掛程式模組。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://audacity.sourceforge.net/about/?lang=zh-TW&quot;&gt;https://audacity.sourceforge.net/about/?lang=zh-TW &lt;/a&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;a name=&quot;faq4&quot;&gt;&lt;/a&gt;</summary>
+		<content type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;VLC&lt;img height=&quot;275&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/VLC.jpg&quot; width=&quot;400&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●&amp;nbsp;軟體簡介&lt;br /&gt;&lt;/strong&gt;VLC（VedioLAN Client）是一款影音播放軟體，此軟體開發專案是由法國學生所發起的，可在許多作業平台上使用的多媒體撥放器，支援數種聲音及影像的格式（MPEG-1、MPEG-2、MPEG-4、DivX、mp3、ogg&amp;hellip;&amp;hellip;）對於DVDs、VCDs、MPEG 與 DivX 檔案及一些影音串流的通訊協定都有良好的支援。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Solaris、Mac OSX、FreeBSD &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.videolan.org/vlc/&quot;&gt;https://www.videolan.org/vlc/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;CDex&amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/CDex.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;br /&gt;CDex 可以將音樂 CD 中的音軌轉錄成 wav 或者 mp3 格式的檔案，也能連上 Internet 讀取 CDDB。並且內建錄製 mp3 的編碼器，可以直接將 CD 音軌轉為 mp3 格式，也可以將 wav 檔轉成 mp3 格式。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://cdexos.sourceforge.net/&quot;&gt;https://cdexos.sourceforge.net/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Audacity&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;Audacity 可以讓你輕易地將 WAV、AIFF 以及 MP3 等不同格式的檔案&lt;img height=&quot;68&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Audacity.jpg&quot; width=&quot;150&quot; align=&quot;right&quot; vspace=&quot;10&quot; /&gt;匯入並加以編輯，再搭配上剪輯、複製、混音等功能，便可修剪出令人滿意的基本而專業的編輯特效。 Audacity 可允許使用者將音樂檔案以 WAV、MP3、OGG 等三種不同格式加以輸出，若這樣的功能仍無法滿足你的需求，還可自網路上下載專為 Audacity 所設的外掛程式模組。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://audacity.sourceforge.net/about/?lang=zh-TW&quot;&gt;https://audacity.sourceforge.net/about/?lang=zh-TW &lt;/a&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;a name=&quot;faq4&quot;&gt;&lt;/a&gt;</content>
+	</entry>
+	<entry>
+		<title>美工應用</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/beginner/268/1904"/>
+		<published>2008-12-26T14:26:34Z</published>
+		<updated>2008-12-26T14:26:34Z</updated>
+		<id>https://www.openfoundry.org/tw/beginner/268/1904</id>
+		<author>
+			<name>OSSF</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Gimp&lt;img height=&quot;206&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/GIMP.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●軟體簡介&lt;br /&gt;&lt;/strong&gt;Gimp 的全名是 GNU Image Manipulation Program，它是一個跨平台的圖像處理軟體，具備照片潤飾程式、線上批次做圖系統、支援多格式的影像瀏覽程式，或是影像格式轉換工具。它能夠透過外掛程式擴充功能，並具備程式腳本介面，可輕鬆編輯腳本。除了本程式外，使用者還必須下載 GTK+，並先完成 GTK+ 的安裝後，再安裝 Gimp。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、UNIX、Linux、MAC OSX&lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.gimp.org/&quot;&gt;https://www.gimp.org/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Inkscape&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;49&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Inkscape.jpg&quot; width=&quot;200&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;Inkscape 是一個開放源碼的向量繪圖軟體，功能就像CorelDRAW或&amp;nbsp; Illustrator。雖然沒有Illustrator功能那麼強大，但對於一般使用者或學生教師已足夠，除一般圖形繪製外，也可以做到立體及特殊色彩等功能。Inkscape 預設的圖案格式是開放標準 SVG，還可輸出 EPS／PS 等 Postscript 檔。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.inkscape.org/&quot;&gt;https://www.inkscape.org/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Tux Paint&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Tux%20Paint.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;Tux Paint 是一款免費且公開原始碼的兒童塗鴉軟體，專為3~12歲的兒童設計。它有簡單、容易使用的介面，有趣的音效，及鼓勵並帶領兒童使用這個軟體的卡通造型的吉祥物。它提供一張空白的圖紙和許多的繪圖工具，可以幫助您的小孩啟發創造力。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.tuxpaint.org/&quot;&gt;https://www.tuxpaint.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Blender&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;83&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Blender.jpg&quot; width=&quot;250&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;Blender 是一套專業級的3D造型畫圖軟體。有了 Blender 後，喜歡 3D 繪圖的玩家們不用花大錢，也可以製作出自己喜愛的模型。它不僅支持各種多邊形畫圖，也能做出動畫。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Solaris、MAC OSX、FreeBSD &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.blender.org/&quot;&gt;https://www.blender.org/ &lt;/a&gt;&lt;/p&gt;</summary>
+		<content type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Gimp&lt;img height=&quot;206&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/GIMP.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●軟體簡介&lt;br /&gt;&lt;/strong&gt;Gimp 的全名是 GNU Image Manipulation Program，它是一個跨平台的圖像處理軟體，具備照片潤飾程式、線上批次做圖系統、支援多格式的影像瀏覽程式，或是影像格式轉換工具。它能夠透過外掛程式擴充功能，並具備程式腳本介面，可輕鬆編輯腳本。除了本程式外，使用者還必須下載 GTK+，並先完成 GTK+ 的安裝後，再安裝 Gimp。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、UNIX、Linux、MAC OSX&lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.gimp.org/&quot;&gt;https://www.gimp.org/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Inkscape&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;49&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Inkscape.jpg&quot; width=&quot;200&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;Inkscape 是一個開放源碼的向量繪圖軟體，功能就像CorelDRAW或&amp;nbsp; Illustrator。雖然沒有Illustrator功能那麼強大，但對於一般使用者或學生教師已足夠，除一般圖形繪製外，也可以做到立體及特殊色彩等功能。Inkscape 預設的圖案格式是開放標準 SVG，還可輸出 EPS／PS 等 Postscript 檔。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.inkscape.org/&quot;&gt;https://www.inkscape.org/ &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Tux Paint&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Tux%20Paint.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;Tux Paint 是一款免費且公開原始碼的兒童塗鴉軟體，專為3~12歲的兒童設計。它有簡單、容易使用的介面，有趣的音效，及鼓勵並帶領兒童使用這個軟體的卡通造型的吉祥物。它提供一張空白的圖紙和許多的繪圖工具，可以幫助您的小孩啟發創造力。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.tuxpaint.org/&quot;&gt;https://www.tuxpaint.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Blender&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;83&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Blender.jpg&quot; width=&quot;250&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;Blender 是一套專業級的3D造型畫圖軟體。有了 Blender 後，喜歡 3D 繪圖的玩家們不用花大錢，也可以製作出自己喜愛的模型。它不僅支持各種多邊形畫圖，也能做出動畫。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Solaris、MAC OSX、FreeBSD &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.blender.org/&quot;&gt;https://www.blender.org/ &lt;/a&gt;&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>網路應用</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/beginner/268/1899"/>
+		<published>2008-12-26T14:12:51Z</published>
+		<updated>2008-12-26T14:12:51Z</updated>
+		<id>https://www.openfoundry.org/tw/beginner/268/1899</id>
+		<author>
+			<name>OSSF</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Firefox&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;96&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/firfox_logo.jpg&quot; width=&quot;99&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;這是由 Mozilla 基金會的一個專案計畫所發展出來的瀏覽器，操作介面非常親和力，還有很多很好用的擴充套件和 Plugins 來無限增加功能，也能任意的變換佈景主題，其為跨平台軟體，可於 Mac OSX、Windows 及 Linux 上正常執行。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/&quot;&gt;https://moztw.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot;&gt;&lt;font size=&quot;2&quot;&gt;Mozilla&amp;nbsp;&lt;/font&gt;&amp;nbsp;&lt;img height=&quot;209&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Mozilla%20Suite.jpg&quot; width=&quot;350&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;br /&gt;&lt;/strong&gt;這是由 Mozilla 基金會的一個專案計畫所發展出來結合瀏覽工具、進階的電子郵件與Newsgroup 管理程式、 IRC 線上聊天、簡易 HTML 編輯 &amp;mdash; 所有你對 Internet 的需求，全在一個應用程式中得到滿足。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/mozilla/&quot;&gt;https://moztw.org/mozilla/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;thunderbird&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Thunderbird.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;br /&gt;&lt;/strong&gt;為 Mozilla 系列軟體中的一套專門用來收發郵件的軟體，內建有人工智慧的垃圾過濾機制，可以幫助使用者擋掉垃圾郵件，另外，它也有支援擴充套件的功能，也能夠任意變換佈景主題，其為跨平台軟體，可於 Windows、Mac 及 Linux 上正常執行。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/thunderbird/&quot;&gt;https://moztw.org/thunderbird/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Nvu&amp;nbsp;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;276&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/NVU.jpg&quot; width=&quot;400&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;br /&gt;Nvu 是個完全自由開放的圖形化網頁編輯器，就像市面上常見的 FrontPage 或是 Dreamweaver 等網頁編輯程式，一樣是所見即所得的操作方式，以 Mozilla Suite 內附的 Composer 作為基礎開發而來，功能強大，完全免費。支援 CSS 等新網頁標準。目前已經有繁體中文化，並且有多種不同作業系統的版本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL、LGPL、GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/nvu/&quot;&gt;https://moztw.org/nvu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;補充說明：NVU 雖然是一款不錯的網頁編輯器，不過它有不少 bug 遲遲未修正 (最新版是在 2005 年 6 月推出的 1.0 版)，而 KompoZer 正是根據最新版的 NVU，修正一堆錯誤後，所釋出的unofficial bug-fix release (非官方錯誤修正版)。目前NVU則已停止開發。&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;FileZilla&lt;img height=&quot;48&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/FileZilla.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;FileZilla 和一般商用的 FTP 軟體相比，功能一點都不遜色，支援多線傳輸及檔案續傳功能，能夠穩定的傳輸大量資料。FTP 站台管理員可快速設定常用的伺服器，還支援 Proxy 及防火牆，以及 SSL 加密及 SFTP 加密協定，目前還有 Linux 和 Mac 版，相同介面，操作起來一樣順手。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Mac OSX&lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://filezilla-project.org/&quot;&gt;https://filezilla-project.org/ &lt;/a&gt;&lt;/p&gt;</summary>
+		<content type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Firefox&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;96&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/firfox_logo.jpg&quot; width=&quot;99&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;這是由 Mozilla 基金會的一個專案計畫所發展出來的瀏覽器，操作介面非常親和力，還有很多很好用的擴充套件和 Plugins 來無限增加功能，也能任意的變換佈景主題，其為跨平台軟體，可於 Mac OSX、Windows 及 Linux 上正常執行。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/&quot;&gt;https://moztw.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot;&gt;&lt;font size=&quot;2&quot;&gt;Mozilla&amp;nbsp;&lt;/font&gt;&amp;nbsp;&lt;img height=&quot;209&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Mozilla%20Suite.jpg&quot; width=&quot;350&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;br /&gt;&lt;/strong&gt;這是由 Mozilla 基金會的一個專案計畫所發展出來結合瀏覽工具、進階的電子郵件與Newsgroup 管理程式、 IRC 線上聊天、簡易 HTML 編輯 &amp;mdash; 所有你對 Internet 的需求，全在一個應用程式中得到滿足。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/mozilla/&quot;&gt;https://moztw.org/mozilla/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;thunderbird&lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Thunderbird.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;br /&gt;&lt;/strong&gt;為 Mozilla 系列軟體中的一套專門用來收發郵件的軟體，內建有人工智慧的垃圾過濾機制，可以幫助使用者擋掉垃圾郵件，另外，它也有支援擴充套件的功能，也能夠任意變換佈景主題，其為跨平台軟體，可於 Windows、Mac 及 Linux 上正常執行。 &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/thunderbird/&quot;&gt;https://moztw.org/thunderbird/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;Nvu&amp;nbsp;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;img height=&quot;276&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/NVU.jpg&quot; width=&quot;400&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;br /&gt;Nvu 是個完全自由開放的圖形化網頁編輯器，就像市面上常見的 FrontPage 或是 Dreamweaver 等網頁編輯程式，一樣是所見即所得的操作方式，以 Mozilla Suite 內附的 Composer 作為基礎開發而來，功能強大，完全免費。支援 CSS 等新網頁標準。目前已經有繁體中文化，並且有多種不同作業系統的版本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、MAC OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：MPL、LGPL、GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://moztw.org/nvu/&quot;&gt;https://moztw.org/nvu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;補充說明：NVU 雖然是一款不錯的網頁編輯器，不過它有不少 bug 遲遲未修正 (最新版是在 2005 年 6 月推出的 1.0 版)，而 KompoZer 正是根據最新版的 NVU，修正一堆錯誤後，所釋出的unofficial bug-fix release (非官方錯誤修正版)。目前NVU則已停止開發。&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;FileZilla&lt;img height=&quot;48&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/FileZilla.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;br /&gt;FileZilla 和一般商用的 FTP 軟體相比，功能一點都不遜色，支援多線傳輸及檔案續傳功能，能夠穩定的傳輸大量資料。FTP 站台管理員可快速設定常用的伺服器，還支援 Proxy 及防火牆，以及 SSL 加密及 SFTP 加密協定，目前還有 Linux 和 Mac 版，相同介面，操作起來一樣順手。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux、Mac OSX&lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://filezilla-project.org/&quot;&gt;https://filezilla-project.org/ &lt;/a&gt;&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>辦公室應用</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/tw/beginner/268/1897"/>
+		<published>2008-12-26T14:06:57Z</published>
+		<updated>2008-12-26T14:06:57Z</updated>
+		<id>https://www.openfoundry.org/tw/beginner/268/1897</id>
+		<author>
+			<name>OSSF</name>
+		<email>ossfepaper@gmail.com</email>
+		</author>
+		<summary type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;OpenOffice.org&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●&amp;nbsp;軟體簡介&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OpenOffice.org 是一套跨平台的辦公室軟件套件，能在 Windows、Linux、Mac OSX、和 Solaris 等操作系統上執行。它與 Windows Office 兼容。OpenOffice.org 是自由軟體，任何人都可以免費下載、使用、及散布它。下列是 OpenOffice.org 的主要元件： &lt;img height=&quot;120&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/OpenOffice.jpg&quot; width=&quot;250&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;bull;Writer（文書處理） &lt;br /&gt;&amp;bull;Impress（簡報） &lt;br /&gt;&amp;bull;Calc（試算表） &lt;br /&gt;&amp;bull;Draw（繪圖） &lt;br /&gt;&amp;bull;Math（公式） &lt;br /&gt;&amp;bull;Base（資料庫管理） &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;支援平台：Windows、Linux、Solaris、Mac OSX &lt;br /&gt;&amp;bull;授權方式：GPL、SISSL、PDL &lt;br /&gt;&amp;bull;官方網站：&lt;a href=&quot;https://zh.openoffice.org/new/index.html &quot;&gt;https://zh.openoffice.org/new/index.html&amp;nbsp;&lt;/a&gt; &lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/PDFCreator.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;PDFCreator&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PDFCreator是一個免費的PDF轉檔軟體，它的使用方式簡單，就像使用印表機列印一樣，它最大的特色就是合併列印功能，可以把多份文件合併列印成單一 PDF 檔案。&lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://sourceforge.net/projects/pdfcreator/&quot;&gt;https://sourceforge.net/projects/pdfcreator/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Dia&lt;img height=&quot;208&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Dia.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;font style=&quot;BACKGROUND-COLOR: #000000&quot; color=&quot;#ffffff&quot; size=&quot;2&quot;&gt;&lt;font style=&quot;BACKGROUND-COLOR: #ffffff&quot;&gt; &lt;/font&gt;
+&lt;h3&gt;&lt;font style=&quot;BACKGROUND-COLOR: #ffffff&quot; color=&quot;#000000&quot; size=&quot;2&quot;&gt;● 軟體簡介&lt;/font&gt;&lt;/h3&gt;
+&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;Dia 被設計成與商業版的視窗軟體 Visio 十分類似。 它可以被用來繪製不同種類的流程圖。在這一版中，也支援了 UML 靜態結構流程圖和網路流程圖。目前可以讀取和儲存流程圖到自定的檔案格式和匯出成 postscript， 並且內建了一些常用的圖示，如網路架構及流程圖等。&lt;br /&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● &lt;/font&gt;相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.gnome.org/projects/dia/&quot;&gt;https://www.gnome.org/projects/dia/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;FreeMind&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● 軟體簡介&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;功能如同 Mindmanager 一樣是一種視覺化思路整理軟體，可以協助使用者用圖形的方式來組織自己的想法、&lt;img height=&quot;150&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/FreeMind.jpg&quot; width=&quot;225&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;內容架構、並且展示說明的專案規劃工具。FreeMind 是一個由 Java 語言編寫的自由軟體，效率佳、操作簡單，方便做專案規畫或個人的知識整理。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● &lt;/font&gt;相關資訊&lt;/strong&gt; &lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、 Linux、Mac OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://freemind.sourceforge.net/wiki/index.php/Main_Page&quot;&gt;https://freemind.sourceforge.net/wiki/index.php/Main_Page &lt;/a&gt;&amp;nbsp; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</summary>
+		<content type="html">&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;OpenOffice.org&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;●&amp;nbsp;軟體簡介&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OpenOffice.org 是一套跨平台的辦公室軟件套件，能在 Windows、Linux、Mac OSX、和 Solaris 等操作系統上執行。它與 Windows Office 兼容。OpenOffice.org 是自由軟體，任何人都可以免費下載、使用、及散布它。下列是 OpenOffice.org 的主要元件： &lt;img height=&quot;120&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/OpenOffice.jpg&quot; width=&quot;250&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;bull;Writer（文書處理） &lt;br /&gt;&amp;bull;Impress（簡報） &lt;br /&gt;&amp;bull;Calc（試算表） &lt;br /&gt;&amp;bull;Draw（繪圖） &lt;br /&gt;&amp;bull;Math（公式） &lt;br /&gt;&amp;bull;Base（資料庫管理） &lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;支援平台：Windows、Linux、Solaris、Mac OSX &lt;br /&gt;&amp;bull;授權方式：GPL、SISSL、PDL &lt;br /&gt;&amp;bull;官方網站：&lt;a href=&quot;https://zh.openoffice.org/new/index.html &quot;&gt;https://zh.openoffice.org/new/index.html&amp;nbsp;&lt;/a&gt; &lt;img height=&quot;207&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/PDFCreator.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;PDFCreator&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;● 軟體簡介&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PDFCreator是一個免費的PDF轉檔軟體，它的使用方式簡單，就像使用印表機列印一樣，它最大的特色就是合併列印功能，可以把多份文件合併列印成單一 PDF 檔案。&lt;br /&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;● 相關資訊&lt;br /&gt;&lt;/strong&gt;&amp;bull;&amp;nbsp;支援平台：Windows &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://sourceforge.net/projects/pdfcreator/&quot;&gt;https://sourceforge.net/projects/pdfcreator/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;Dia&lt;img height=&quot;208&quot; alt=&quot;&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/Dia.jpg&quot; width=&quot;300&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;1&quot; /&gt;&lt;/font&gt;&lt;font style=&quot;BACKGROUND-COLOR: #000000&quot; color=&quot;#ffffff&quot; size=&quot;2&quot;&gt;&lt;font style=&quot;BACKGROUND-COLOR: #ffffff&quot;&gt; &lt;/font&gt;
+&lt;h3&gt;&lt;font style=&quot;BACKGROUND-COLOR: #ffffff&quot; color=&quot;#000000&quot; size=&quot;2&quot;&gt;● 軟體簡介&lt;/font&gt;&lt;/h3&gt;
+&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;Dia 被設計成與商業版的視窗軟體 Visio 十分類似。 它可以被用來繪製不同種類的流程圖。在這一版中，也支援了 UML 靜態結構流程圖和網路流程圖。目前可以讀取和儲存流程圖到自定的檔案格式和匯出成 postscript， 並且內建了一些常用的圖示，如網路架構及流程圖等。&lt;br /&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● &lt;/font&gt;相關資訊&lt;/strong&gt;&lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、Linux &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://www.gnome.org/projects/dia/&quot;&gt;https://www.gnome.org/projects/dia/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;font color=&quot;#3399cc&quot; size=&quot;2&quot;&gt;&amp;nbsp;FreeMind&lt;/font&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● 軟體簡介&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;功能如同 Mindmanager 一樣是一種視覺化思路整理軟體，可以協助使用者用圖形的方式來組織自己的想法、&lt;img height=&quot;150&quot; hspace=&quot;10&quot; src=&quot;https://www.openfoundry.org/images/QA/FreeMind.jpg&quot; width=&quot;225&quot; align=&quot;right&quot; vspace=&quot;10&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;內容架構、並且展示說明的專案規劃工具。FreeMind 是一個由 Java 語言編寫的自由軟體，效率佳、操作簡單，方便做專案規畫或個人的知識整理。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font size=&quot;2&quot;&gt;● &lt;/font&gt;相關資訊&lt;/strong&gt; &lt;br /&gt;&amp;bull;&amp;nbsp;支援平台：Windows、 Linux、Mac OSX &lt;br /&gt;&amp;bull;&amp;nbsp;授權方式：GPL &lt;br /&gt;&amp;bull;&amp;nbsp;官方網站：&lt;a href=&quot;https://freemind.sourceforge.net/wiki/index.php/Main_Page&quot;&gt;https://freemind.sourceforge.net/wiki/index.php/Main_Page &lt;/a&gt;&amp;nbsp; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content>
+	</entry>
+</feed>

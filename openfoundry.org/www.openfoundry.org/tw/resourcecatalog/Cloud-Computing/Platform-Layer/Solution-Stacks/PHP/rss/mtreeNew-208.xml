@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - PHP</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:14 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>rackspace Cloud Sites</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/PHP/rackspace-cloud-sites</link>
+	<description><![CDATA[<p>
+<p>rackspace Cloud Sites is a cloud platform offering, similar to traditional web hosting only built on horizontally scalable hardware infrastructure.</p>
+<p>The Rackspace Cloud is a web application hosting/cloud platform provider ("Cloud Sites") that bills on a utility computing basis.</p>
+<p>Reference: <a href="https://www.rackspace.com/cloud/" target="_blank">https://www.rackspace.com/cloud/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:35:01 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/PHP/rackspace-cloud-sites</guid>
+</item>
+</channel>
+</rss>

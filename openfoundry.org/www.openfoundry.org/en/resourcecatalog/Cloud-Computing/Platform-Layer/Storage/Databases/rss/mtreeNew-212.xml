@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Databases</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:18 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>BigTable</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/Databases/bigtable</link>
+	<description><![CDATA[<p>
+<p>BigTable is a compressed, high performance, and proprietary database system built on Google File System (GFS), Chubby Lock Service, and a few other Google programs; it is currently not distributed or used outside of Google, although Google offers access to it as part of their Google App Engine.</p>
+<p>Reference: <a href="https://labs.google.com/papers/bigtable.html" target="_blank">https://labs.google.com/papers/bigtable.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 27 May 2010 14:48:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/Databases/bigtable</guid>
+</item>
+<item>
+	<title>Amazon SimpleDB</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/Databases/amazon-simpledb</link>
+	<description><![CDATA[<p>
+<p>Amazon SimpleDB is a distributed database written in Erlang[1] by Amazon.com. It is used as a web service in concert with Amazon Elastic Compute Cloud (EC2) and Amazon S3 and is part of Amazon Web Services.</p>
+<p>Reference: <a href="https://aws.amazon.com/simpledb/" target="_blank">https://aws.amazon.com/simpledb/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 27 May 2010 14:43:49 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Storage/Databases/amazon-simpledb</guid>
+</item>
+</channel>
+</rss>

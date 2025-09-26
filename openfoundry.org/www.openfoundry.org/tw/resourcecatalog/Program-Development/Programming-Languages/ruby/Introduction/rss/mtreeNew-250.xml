@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:08 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Ruby</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/ruby/Introduction/ruby</link>
+	<description><![CDATA[<p>
+<p>Ruby is a dynamic, reflective, general purpose object-oriented programming language that combines syntax inspired by Perl with Smalltalk-like features. Ruby originated in Japan during the mid-1990s and was first developed and designed by Yukihiro "Matz" Matsumoto. It was influenced primarily by Perl, Smalltalk, Eiffel, and Lisp.</p>
+<p>Ruby supports multiple programming paradigms, including functional, object oriented, imperative and reflective. It also has a dynamic type system and automatic memory management; it is therefore similar in varying respects to Python, Perl, Lisp, Dylan, Pike, and CLU.</p>
+<p>Features</p>
+<p>Ruby has exception handling features, like Java or Python, to make it easy to handle errors.</p>
+<p>Ruby features a true mark-and-sweep garbage collector for all Ruby objects. No need to maintain reference counts in extension libraries. As Matz says, “This is better for your health.”</p>
+<p>Writing C extensions in Ruby is easier than in Perl or Python, with a very elegant API for calling Ruby from C. This includes calls for embedding Ruby in software, for use as a scripting language. A SWIG interface is also available.</p>
+<p>Ruby can load extension libraries dynamically if an OS allows.</p>
+<p>Ruby features OS independent threading. Thus, for all platforms on which Ruby runs, you also have multi-threading, regardless of if the OS supports it or not, even on MS-DOS!</p>
+<p>Ruby is highly portable: it is developed mostly on GNU/Linux, but works on many types of UNIX, Mac OS X, Windows 95/98/Me/NT/2000/XP, DOS, BeOS, OS/2, etc.</p>
+<p>References:<a href="https://www.ruby-lang.org/en/" target="_blank">https://www.ruby-lang.org/en/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:39:48 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/ruby/Introduction/ruby</guid>
+</item>
+</channel>
+</rss>

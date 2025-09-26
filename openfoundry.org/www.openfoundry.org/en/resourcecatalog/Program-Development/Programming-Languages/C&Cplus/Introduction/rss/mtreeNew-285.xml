@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:41 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>C++</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Introduction/c</link>
+	<description><![CDATA[<p>
+<p>C++ is a statically typed, free-form,multi-paradigm, compiled, general-purpose programming language. It comprises a combination of both high-level and low-level language features. It was developed by Bjarne Stroustrup starting in 1979 at Bell Labs as an enhancement to the C language and originally named C with Classes. It was renamed C++ in 1983.</p>
+<p>C++ provides more than 30 operators, covering basic arithmetic, bit manipulation, indirection, comparisons, logical operations and others. Almost all operators can be overloaded for user-defined types, with a few notable exceptions such as member access (. and .*). The rich set of overloadable operators is central to using C++ as a domain specific language. The overloadable operators are also an essential part of many advanced C++ programming techniques, such as smart pointers. Overloading an operator does not change the precedence of calculations involving the operator, nor does it change the number of operands that the operator uses (any operand may however be ignored by the operator, though it will be evaluated prior to execution). Overloaded "&amp;&amp;" and "||" operators lose their short-circuit evaluation property.</p>
+<p>Platform:Cross platform</p>
+<p>Reference:<a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank">https://en.wikipedia.org/wiki/C%2B%2B </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:07:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Introduction/c</guid>
+</item>
+<item>
+	<title>C</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Introduction/c</link>
+	<description><![CDATA[<p>
+<p>C is a general-purpose computer programming languagedeveloped in 1972 by Dennis Ritchie at the Bell Telephone Laboratories for use with the Unix operating system.</p>
+<p>Although C was designed for implementing system software,it is also widely used for developing portable application software.</p>
+<p>C is one of the most popular programming languages of all time and there are very few for which a C compiler does not exist. C has greatly influenced many other popular programming languages, most notably C++, which began as an extension to C.</p>
+<p>Like most imperative languages in the ALGOL tradition, C has facilities for structured programming and allows lexical variable scope and recursion, while a static type system prevents many unintended operations. In C, all executable code is contained within functions. Function parameters are always passed by value. Pass-by-reference is simulated in C by explicitly passing pointer values. Heterogeneous aggregate data types (struct) allow related data elements to be combined and manipulated as a unit. C program source text is free-format, using the semicolon as a statement terminator.</p>
+<p>Platform:Cross platform;</p>
+<p>Reference:<a href="https://en.wikipedia.org/wiki/C_(programming_language)" target="_blank">https://en.wikipedia.org/wiki/C_(programming_language) </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:05:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Introduction/c</guid>
+</item>
+</channel>
+</rss>

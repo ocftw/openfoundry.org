@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Python Django</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:15 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Disco</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Python-Django/disco</link>
+	<description><![CDATA[<p>
+<p>Disco is a distributed computing framework based on the MapReduce paradigm.  Disco is open-source; developed by Nokia Research Center to solve real problems in handling massive amounts of data. Disco is powerful and easy to use, thanks to Python.</p>
+<p>Platform: Linux and Mac OS X ;License: https://github.com/tuulos/disco/blob/master/LICENSE</p>
+<p>References: <a href="https://discoproject.org/about" target="_blank">https://discoproject.org/about</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 18 Mar 2011 08:02:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Python-Django/disco</guid>
+</item>
+<item>
+	<title>Appscale</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Python-Django/</link>
+	<description><![CDATA[<p>AppScale is an open-source implementation of the Google App Engine cloud computing interface. It is being developed by researchers in the UC Santa Barbara RACELab. AppScale enables execution of Google App Engine (GAE) applications on virtualized cluster systems. In particular, AppScale enables users to execute GAE applications using their own clusters with greater scalability and reliability than the GAE SDK provides.</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 05:52:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Python-Django/</guid>
+</item>
+</channel>
+</rss>
