@@ -1,0 +1,493 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 219 期 | 2013/05/28 □■□
+________________________________________________________________
+
+◎ 本期主題︰LGPL-3.0 訴訟案例解析：FreeAdhocUDF 侵權和解案 
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/06/11
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] LGPL-3.0 訴訟案例解析：FreeAdhocUDF 侵權和解案 
+
+■ [自由專欄] 資訊娛樂是開放源碼車載系統首要目標的五個原因
+
+﻿﻿■ [自由專欄] 企業開發者與系統管理者的最佳 Linux 工具
+
+■ [自由專欄] Linux.com 的問與答：ownCloud 提供企業安全的檔案分享
+
+﻿■ [源碼新聞] 德國電信公司團隊以創用 CC 授權條款釋出「自由開源軟體導入綱要」
+
+﻿■ [源碼新聞] Google 擬以交叉授權方式釋出 VP8 相關外部專利許可權
+
+﻿■ [源碼新聞] 開放雲端第二章：CloudStack 協同合作會議 2013
+
+﻿■ [源碼新聞] COSCUP 2013 總召 BobChao 專訪
+
+﻿■ [源碼新聞] 2013 年六月份社群活動列表
+
+■ [接案工作] 台灣創用CC計畫徵兼職資訊技術人才一名 
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] LGPL-3.0 訴訟案例解析：FreeAdhocUDF 侵權和解案 
+
+葛冬梅／文 
+
+今年 (2013) 3 月 adhoc dataservice GmbH 與 Buhl Data Service GmbH 兩間德國公司在 Bochum 地方法院達成和解協議（註一），這是針對違反 LGPL-3.0（GNU Lesser General Public License version 3.0，註二）授權條款所達成的法庭和解，具有司法審判上既判力的效果，此一和解結果當事人不得再依司法手段爭執，從實務上來看，這樣的法庭和解也很有機會在未來相類的爭訟案件上，具有參考的地位。在當前自由開源軟體的侵權案例中，多是當事人自行談妥條件後進行庭外和解，經過法院訴訟程序而具有既判力的案例較少，因此本文將會介紹此案的內容，以供有興趣進一步了解自由開源軟體侵權案例的讀者參照之用。 
+
+【背景事實】 
+
+(http://www.openfoundry.org/images/130528/lgplinfringementde/lc_201305_img1.png)
+▲ 圖1：FreeAdhocUDF 授權說明頁面，明示自 2007 年中開始改採 LGPL-3.0 授權。
+
+在這個案件中被判定侵權利用的程式為 FreeAdhocUDF 函式庫，這是由網頁設計與網路服務公司 adhoc dataservice 所開發並且擁有著作權利的程式，自 2007 開始採用 LGPL-3.0 釋出程式源碼 (Source Code)。被告 Buhl Data Service 為一家以開發、販售商用財稅管理軟體為主的公司，在這間公司所開發與販售的 WISO Mein Büro 2009 軟體中，有利用到 FreeAdhocUDF 函式庫，其將 FreeAdhocUDF  結合至 WISO Mein Büro 2009  裡，成為測試程式的一部份，但 Buhl Data Service 在 WISO Mein Büro 2009 的販售與提供上，卻沒有保留 FreeAdhocUDF 的著作權聲明，也沒有提供 FreeAdhocUDF 的程式源碼與 LGPL-3.0 全文內容，因而違反了 LGPL-3.0 的相關義務規定（註三）。 
+
+adhoc dataservice 在 2009 年初就注意到了這一個侵權利用的現象，因此與 Buhl Data Service 接觸溝通後，雙方協議簽署了一份附帶有罰金的「侵權行為停止聲明 (starfbewehrte Unterlassungsverpflichtungserklärung)」。顧名思義，此份聲明之目的是要 Buhl Data Service 明確宣示，未來將不會再以違反 LGPL-3.0 的方式侵權利用 FreeAdhocUDF，若沒有遵守此一協議，後續 Buhl Data Service 若再收到由 adhoc dataservice 所寄發的侵權通知，其除了必須要立即停止對 FreeAdhocUDF 函式庫的相關利用外，同時還必須支付 adhoc dataservice 一定額度的契約罰金。 
+
+在 Buhl Data Service 簽署這份聲明後，adhoc dataservice 對其產品進行了多次的測試購買，用來持續追蹤 WISO Mein Büro 2009 軟體後續的利用狀態，是否已經符合 LGPL-3.0 相關的授權條件，但是這些產品的測試結果卻顯示 Buhl Data Service 並未真正落實了任何的改善措施，WISO Mein Büro 2009 依然繼續以違反 LGPL-3.0 的方式被販售，因此 adhoc dataservice 公司轉而向德國 Bochum 地方法院，向 Buhl Data Service 提出軟體著作侵權的相關控訴（註四）。
+
+【爭執要點與法院判決結果】 
+
+針對此項訴訟 Bochum 法院於 2011 年 1 月底做出了中間判決（註五），認定原告 adhoc dataservice 之 FreeAdhocUDF 著作權利受到侵害，被告 Buhl Data Service 因此必須提供侵權產品的相關資訊，以方便原告計算損害賠償金額。基於此一諭示，被告提供了原告侵權產品相關的資訊後，雙方後續也展開損害賠償金額與相關和解條件的協商程序，二年後，雙方於 2013 年 3 月初在 Bochum 法院正式達和一致的和解協議，被告支付原告 15,000 歐元的損害賠償金額，這起違反 LGPL-3.0 的侵權糾紛在此條件下進行落幕（註六）。 
+
+以下為訴訟過程中雙方爭執的重點以及法院判決的結果與理由。 
+
+1、即使程式被當作測試軟體來利用，LGPL-3.0 的義務規定仍然必須被遵守。 
+
+在訴訟過程中，雙方首先爭執的重點在於，當 LGPL-3.0 函式庫被結合到測試軟體中進行散布時，就運作架構而言，其不具有執行軟體本身功能的定位，此時散布者是否可以據此而不遵守 LGPL-3.0 的義務。關於這點，Bochum 法院認為被告還是必須要遵守 LGPL-3.0，因為重點在於 FreeAdhocUDF 確實被結合到 WISO Mein Büro 2009 中，成為了 WISO Mein Büro 2009 整體程式的一部份，至於 FreeAdhocUDF 僅具有測試功用、而不執行軟體功能的事實，對於判斷是否必須遵守 LGPL-3.0 的授權義務並不相關。根據此點，法院肯定了原告所擁有的 FreeAdhocUDF 著作權受到被告的侵害。 
+
+2、被告必須提供侵權產品的相關販售資訊給被告，作為原告評估損害賠償的基礎。 
+
+在肯定原告著作權受到侵害的前提下，雙方進一步針對被告是否應該提供侵權產品相關商業資訊加以爭執。這項爭執的基礎是德國著作權法第 101 條所規定的「資訊請求權」，相關內容大意是說，當著作權法所保護的相關權利受到侵害，且此侵害規模亦達到相當的商業程度後，權利受侵害的一方便可以要求侵權人提供侵權事件相關的商業販售資訊，以作為原告評估損害賠償的基礎（註七）。Bochum 法院對於這一部份認同原告觀點，認為被告必須提供相關資訊給予原告，即使原告是透過 LGPL-3.0 這份不收取著作與專利授權金的條款來散布 FreeAdhocUDF，也無礙於原告依照德國著作權法來請求相當金額的損害賠償。因此 Bochum 法院最後判決被告必須將下列資訊提供給予原告： 
+
+(1) 被告自何時開始利用 FreeAdhocUDF？ 
+(2) 被告在哪些產品中利用到 FreeAdhocUDF？ 
+(3) 有多少 (2) 的產品已經被販售出去？ 
+(4) 被告透過 (2) 的產品所獲得的營業額與收益為多少？ 
+
+3、法官認為依被告 2009 年初簽署的停止聲明，其並未再次以違反 LGPL-3.0 的方式利用 FreeAdhocUDF。
+
+由於被告曾經於 2009 年初簽署過「侵權行為停止聲明」，因此原告主張，依據這份聲明被告有義務要召回侵權產品 WISO Mein Büro 2009，但是卻未召回，因此被告必須實踐停止聲明的內容，召回侵權產品，並支付原告罰金。不過法院在此並不贊同原告見解，其認為此份停止聲明是規範被告「未來再次」侵權利用 FreeAdhocUDF 的處理程序以及應該支付多少罰金，但依 Buhl Data Service 對 WISO Mein Büro 2009 的實際販售資訊來看，其在後續散布的版本裡並沒有繼續嵌入 FreeAdhocUDF 函式庫作為測試程式之用，故該項停止聲明的協議已然成立，但此案裡並未發生效力。然而，原告依然可以根據著作權法的相關規定，來主張過往 WISO Mein Büro 2009  版本的侵權利用狀態必須被去除，所以原告仍有機會透過著作權法的基本規定，來向被告提出權利損害賠償及召回侵權產品的要求。 
+
+【LGPL-3.0 的有效性與可執行性受到肯定】 
+
+(http://www.openfoundry.org/images/130528/lgplinfringementde/lc_201305_img2.png)
+▲ 圖2：Bochum 法院在判決書中明確肯定，透過 LGPL-3.0 無償授權他人利用函式庫，無礙著作權人向侵權人主張損害賠償。
+
+由於這是第一起與 LGPL-3.0 直接相關的訴訟案，因此這起訴訟案值得期待的焦點之一，就是 LGPL-3.0 這份授權條款的內容將會如何在訴訟的過程中被加以討論。但是從判決內容看來，不僅當事人沒有針對 LGPL-3.0 的內容提出任何相關的爭執點，Bochum 法院也沒有對 LGPL-3.0 條款有任何的評論，整個訴訟案是在直接承認 LGPL-3.0 為一份有效授權契約的前提下來進行。
+
+早期發生在德國的 GPL-2.0 侵權訴訟案，德國法院多少會針對 GPL-2.0 是否為有效的著作權授權契約、著作權利人是否可以據此提起著作權侵權主張等疑點來發表論述，例如 2005 年德國軟體工程師 Harald Welte 針對荷蘭 Sitecom 公司向慕尼黑地方法院聲請假處分，慕尼黑地院在裁定理由書中，就針對 GPL-2.0 在德國著作權法上的特性加以論述與肯定；而在 2006 年，同樣由 Harald Welte 為原告，控告台灣友訊德國子公司 D-Link 的侵權訴訟案中，法蘭克福地方法院也針對 GPL-2.0 在德國著作權法上的適用加以說明，也同時肯定前述 2005 年慕尼黑地方法院的論點。不過這樣的情況到了 2011 年有所轉變：在 2011 年 AMV 公司控告 Cybits 公司一案（註八），以及本文所介紹的 FreeAdhocUDF 案件中，德國法院與訴訟當事人均沒有針對 GPL-2.0 與 LGPL-3.0 是否為一份有效的著作權契約加以爭論。因此可以觀察到，在德國司法實務上，已經開始傾向於直接承認 GPL 類條款是一份有效的著作權授權契約，程式權利人因此可以根據 GPL 類授權條款來直接主張其著作權，這代表著 GPL 類授權條款在德國司法實務上的有效性基礎日漸穩固。 
+
+此外，自由開源軟體通常以「無償授權／免授權金 (royalty-free)」的方式來散布，一旦軟體遭到侵權利用的時候，權利人雖然可以要求侵權人支付損害賠償金額，但是法律所預設的損害賠償機制是以回復原狀為原則，也就是權利人可以請求的損害賠償幅度，一般限於實際所遭受到的損害以及所失去的合理預期利益，而由於自由開源軟體的散布原則是在不收取授權金的基礎下進行，因此有時難以有一個明確計算損害賠償的基礎，來讓權利人據以合理主張。但是在 FreeAdhocUDF 一案中，Bochum 法院在判決理由中明確地表示，即使原告透過 LGPL-3.0 以無償的方式提供他人利用程式，但亦得以其行使權利依通常情形可得預期之利益來計算所受損害，故並不妨礙原告依照德國著作權法的規定來向侵權人要求損害賠償（註九），此一類推機制在我國著作權法第 88 條亦有所載，所以此案中雖然判決書中並沒有進一步說明詳細的損害賠償計算方式，但是判決理由中明示強調原告所具有的這項權能，就是賦與原告一個強而有力的基礎，可以來跟被告進一步協商出合宜的損害賠償金額。而也就是在這樣的基礎之上，經歷了二年的協商後，原告 adhoc dataservice 與被告 Buhl Data Service 針對和解金額終於達成一致的協議。 
+
+比較可惜的是，此案所公布的和解協議內容僅限於和解金額 15,000 歐元，至於雙方是如何計算與協調出這個數額，則不得而知，尤其 FreeAdhocUDF 函式庫並非全部由原告 adhoc dataservice GmbH 獨力開發完成，其中有利用到第三方自由開源軟體程式碼，這些第三方程式碼又是如何影響損害賠償金額的計算，在沒有相關資訊充份揭露的情況下，仍無從一窺究竟（註十）。 
+
+【結語】 
+
+雖然 FreeAdocUDF 侵權和解案的協商過程保密，當事人雙方如何協商出最終的和解金額，無法一窺全貌，但是這中間透過 Bochum 法院的判決，不僅讓 LGPL-3.0 的有效性受到肯定，判決理由書明文強調自由開源軟體的無償授權／免授權金不影響權利人主張損害賠償的權利地位，全案最終並公布和解金額，進而宣示了自由開源軟體授權條款的可執行性，因此這一訴訟案強化了自由開源軟體的法律基礎，未來將可以為自由開源軟體的合法利用帶來更正面、積極的效應。也期待本文的介紹，可以讓感興趣的讀者，對於自由開源軟體的侵權案例更多一分的認識。
+
+------ 
+
+註一：adhoc dataservice GmbH 公司網站：http://www.adhoc-data.de/；Buhl Data Service GmbH 公司網站：http://www.buhl.de/。 
+
+註二：關於 LGPL-3.0 的內容介紹，請參閱：林誠夏，更為彈性中庸的 LGPL-3.0，http://www.openfoundry.org/tw/legal-column-list/1166--lgpl3。 
+
+註三：FreeAdhocUDF 首頁：http://freeadhocudf.org/index_eng.html；授權資訊頁面：http://freeadhocudf.org/licence_eng.html。WISO Mein Büro系列軟體：http://www.buhl.de/produkte/alle/wiso-mein-buero-2013/product.html。 
+
+註四：本訴訟原告乃是根據德國民事訴訟法第 254 條提起「階次訴訟 (Stufenklage)」(Zivilprozessordnung § 254 Stufenklage)。簡單來說，德國的階次訴訟是指，針對同一個案件，原告分階段提起正式的訴訟，通常第一次的訴訟是在於請求被告提供相關資訊，法院會在訴訟過程審理原告是否具有請求權，以及被告是否真的必須提供相關資訊，判決之後，原告根據被告所提供的這些資訊來計算出損害賠償的金額，接下來原告才為了請求損害賠償而提起後續的訴訟。當事人對單一的階次訴訟判決不服的話，可以提起上訴。因此，在本文的訴訟案中，原告提起的第一次訴訟，目的就是請求 Bochum 地方法院判決被告必須提供侵權產品相關的資訊，包括從何時開始利用 FreeAdhocUDF、利用的狀況與相關的營業額及收入多少等商業販售的細節資訊，有了這些資訊，原告可以方便地計算出在接下來的訴訟或和解協商程序中，可以請求的合理損害賠償金額是多少。 
+
+註五：判決書德文原文副本下載點：http://www.dr-bahr.com/download/zdf-wiso-mein-buro-urheberrechtswidrig.pdf。網路直接閱讀版本：http://www.telemedicus.info/urteile/Urheberrecht/Open-Source/1148-LG-Bochum-Az-I-8-O-29309-Ansprueche-bei-Verletzung-der-LGPL.html。此一判決在德文意涵為「部份判決 (Teilurteil)」，在訴訟上的定位相當於我國民事訴訟法第 383 條第 1 項規定之「中間判決」，代表法院對於原告之攻擊方法，認為已達可為裁判之程度者，所以透過中間判決來穩定見解，並讓後續的訴訟程序在此見解下進行評判。當事人對此中間判決見解不服的話，仍可以依程序提出上訴。相關法條請參見德國民事訴訟法第 301 條 (Zivilprozessordnung § 301 Teilurteil)。
+
+註六：中文新聞：德國 Bochum 地方法院肯定 LGPL 有效性－涉訴雙方法庭和解並明示公布和解金額，http://www.openfoundry.org/tw/foss-news/8947--bochum-lgpl-。英文新聞：http://www.h-online.com/open/news/item/German-court-case-confirms-validity-of-the-LGPL-1822882.html。原告律師的德文新聞稿：http://www.dr-bahr.com/news/vergleich-zdf-software-entwickler-muss-15000-euro-an-open-source-programmierer-zahlen.html。 
+
+註七：這項規定在德國著作權法第 101 條 ，其德文原文可參見下面網頁：http://www.gesetze-im-internet.de/urhg/__101.html，英文翻譯內容則請參見下面網頁：http://www.gesetze-im-internet.de/englisch_urhg/englisch_urhg.html#p0614。 
+
+註八：2004 年 Harald Welte 針對 Sitecom 聲請假處分，相關介紹請見：http://www.openfoundry.org/tw/case-study/1282-2004welte-vs-sitecom。2006 年 Harald Welte 控告台灣友訊在德國子公司 D-Link 一案，相關介紹請見下列文章：葛冬梅，全球第一個 GPL 完整法院訴訟案例剖析，http://www.openfoundry.org/tw/legal-column-list/504--gpl-；http://www.openfoundry.org/tw/case-study/1280-2006welte-vs-d-link。 AMV 公司控告 Cybits 公司一案相關新聞報導請見：嵌入式裝置事涉侵權 – GPL 再次成為全球焦點，http://www.openfoundry.org/tw/foss-news/8379--gpl-。 
+
+註九：德國著作權法第 97 條第 2 項後段規定了所謂的「類推授權 (Lizenzanalogie/License Analogy)」計算方式，這種計算損害賠償的方式，是假設侵權人在取得合法授權的前提下，會願意支付多少的合理授權金給權利人，而來計算出侵權人應該給予權利人多少的損害賠償金額。德國著作權法第 97 條德文原文可參見下面網頁：http://www.gesetze-im-internet.de/urhg/__97.html，英文翻譯內容則請參見下面網頁：http://www.gesetze-im-internet.de/englisch_urhg/englisch_urhg.html#p0598；我國就此規定的相關法制，可參照著作權法第 88 條第 2 項第 1 款：「依民法第二百十六條之規定請求。但被害人不能證明其損害時，得以 其行使權利依通常情形可得預期之利益，減除被侵害後行使同一權利 所得利益之差額，為其所受損害。」
+
+註十：在 FreeAdhocUDF 的授權說明網頁上，羅列著被利用到 FreeAdhocUDF 中的第三方自由開源軟體程式碼：http://freeadhocudf.org/licence_eng.html。
+_______________________________________________________________
+
+■ [自由專欄] 資訊娛樂是開放源碼車載系統首要目標的五個原因
+
+謝良奇／編譯 
+
+車載資訊娛樂 (In-Vehicle-Infotainment，IVI) 系統是汽車最為複雜的電子系統，負責收集所有車輛傳感器的資料，及整合各式各樣的功能，如導航、空調系統、媒體播放、手機連接等。如今，汽車製造商開始鎖定 IVI，作為開放源碼軟體協作的首要目標。Automotive Grade Linux 工作小組與 GENIVI 聯盟正率先為 IVI 軟體開發，發展以 Linux 為基礎的開放源碼平台。
+
+近年來 IVI 系統中的軟體程式碼有爆炸性成長。顧問公司 Strategy Analytics 全球汽車實務副董事 Roger Lanctot 指出，製造業的成本已經從硬體轉移到軟體，因應移動裝置同步增加的客戶需求，為了跟上行動市場快速的產品步調，汽車製造商已經倍感壓力。因此，為了面對這些挑戰，全球大型汽車製造商，如 General Motors、Jaguar Land-Rover、BMW Nissan、Toyota，相繼轉向開放源碼軟體，或者更具體而言，轉向 Linux 作業系統。
+
+Jaguar Land Rover 娛樂資訊資深技術專家，也是 GENIVI 副總裁的 Matt Jones 表示，目前相當多計劃已經朝向 Linux 開發進行，而且發展速度相當快。未來五年內汽車製造商將逐漸增加 Linux IVI 系統的功能，其中部分甚至會在全車系上廣泛應用。
+
+開放源碼軟體開發之所以適用於 IVI 系統，有五個原因。
+
+＊演進快速
+目前 IVI 系統的每個元件都有不同的作業系統，以及架構於其上的私有軟體。每次系統要升級時，開發者都必須從頭開始。Linux 基金會與 AGL 的嵌入式解決方案主任 Rudolf Streif 指出，以 Linux 為基礎的 IVI 系統，讓軟體開發者得以利用該作業系統在其他領域的成果，例如整合 Linux 影片與媒體播放的多媒體功能。現在想用 Linux 做系統開發的人，等於站在伺服器、桌面、移動市場多年累積的經驗上，這很不一樣。他們只需要加入所需功能，而不用浪費資源在作出已有的服務。
+
+＊節省成本與新營收契機
+除了減少多餘程式碼開發得以節省成本外，汽車製造商從加速開發流程也找到新的營收機會。Streif 表示，一兩年後汽車的娛樂資訊系統就過時了，到時候客戶為了跟上最新技術就會想加以更新。不過目前還做不到這一點。Lanctot 說，當開發時程加快，客戶能夠預期其技術更新更加接近行動產品約 6 個月的週期，而非他們傳統 4 到 5 年產品週期。重要的是，客戶願意為了便利性花更多錢。
+
+＊IVI 是新技術
+Streif 表示，引擎的歷史已經超過 100 年，控制系統也已經微調至完善的地步。對於行動與網路連接，這個產業由於還處於摸索階段，這些相對較新的技術於是成為創新的最好目標。開放源碼元件會為應用程式開發者敞開大門，讓他們貢獻解決方案、加速創新並縮短上市時間。
+
+＊客戶需求改變
+客戶希望他們的車就像他們的行動裝置一樣，保持連線狀態、易用的觸控或聲控介面、隨著科技不斷進步。Linux 基金會執行董事 Jim Zemlin 說過，當汽車製造商進入運算業務，最大的障礙並非彼此的競爭，而是行動運算無所不在所驅動的消費者預期。Lanctot 指出，問題就在於汽車製造商無法決定五年後哪種行動裝置會興起。快速開發以及整合其他領域所發展的技術，將因為使用開放源碼為基礎的 IVI 系統而成為可能。
+
+＊IVI 不是汽車安全性關鍵
+比起引擎控制軟體，修改 IVI 的軟體較不會造成車輛事故。不過，風險分析師還是會拿許多假設情況來嚇人。例如，IVI 軟體被駭可能會危及更為關鍵的系統。Jones 表示，如果有人要駭 IVI 系統，不論系統是開放源碼或封閉源碼，他們都會去駭。他強調，開放源碼的同儕審查甚至能降低被駭的可能性。汽車產業非常重視客戶安全及隱私，但更重要的是，完全迴避開放源碼進而扼殺創新的風險，也必須納入考量以取得平衡。
+
+汽車製造產業中的開放源碼軟體開發與 Linux 整合，將於未來數年內擴大超出 IVI 系統之外，下一個可能的目標將會是儀表板。
+_______________________________________________________________
+
+■ [自由專欄] 企業開發者與系統管理者的最佳 Linux 工具
+
+謝良奇／編譯 
+
+從最佳軟硬體清單上，處處可見 Linux 的蹤跡，即可證明該自由與開放源碼作業系統的普遍性與泛用性。例如，光是 Linux.com 過去幾個月內，就就刊出過「2013 最佳 Linux 伺服器」，與「2013 最棒的 7 個 Linux 散佈套件」這些文章。現在應該是企業 IT 人士登場的時間了，就讓我們看看企業系統管理者與開發者的最佳 Linux 應用程式與工具。
+
+在 Google+ 上對此問題進行非正式調查後，出現了一些入圍者，包括 Qt Creator、KVM、Puppet、Red Hat Satellite、Nagios、Archipel、Terminator、Samba、Cobbler、Git/Subversion、Perl、mrepo、Python、SaltStack、Wireshark、Clonezilla。RedMonk 共同創辦人與首席分析師 Stephen O'Grady 表示，這些選項並不出乎意料，其中可以合理地劃分成三個領域，Hudson/Jenkins 屬於持續建構 (continuous build)，Chef/Puppet 是組態管理與配置，Git 則是版本控制。
+
+451 Research 的企業軟體資深分析師 Jay Lyman 表示同意，他說，談到 Linux 系統管理者與開發者的工具時，我會想到的主要軟體技術與社群，是 Chef、Puppet、CFEngine、Juju、Salt，它們各自由 Opscode、Puppet Labs、CFEngine、SaltStack 提供商業支援。
+
+Lyman 表示，還有許多其他工具與框架，像是 Apache 的網路與應用程式伺服器、Git、Jenkins、node.js、PHP、Python、RabbitMQ、Ruby，和企業經常在 Linux 上使用到的其他軟體。此外，資料儲存與大數據工具也經常和 Linux 共同運用，其中包括 MySQL、PostgreSQL，MongoDB 與 Riak 等 NoSQL 資料庫，Cassandra 與 Hadoop 等資料管理技術。
+
+他指出，當然，由於運用多種語言已經成為一種趨勢，熱門且優異的工具清單可以想見會不斷增長與改變，所以在此列舉的不過是其中一部分。不過，這也顯示出今日的企業開發者與系統管理者，傾向運用各種資源，更為熟練且有能力為工作運用最佳工具，這也是多語言編程的主要動力之一。
+
+
+相關網址：
+1. 企業開發者與系統管理者的最佳 Linux 工具
+http://www.linux.com/news/enterprise/systems-management/719102-best-linux-tools-for-enterprise-developers-and-systems-administrators/
+______________________________________________________________
+
+■ [自由專欄] Linux.com 的問與答：ownCloud 提供企業安全的檔案分享
+
+謝良奇／編譯 
+
+使用用戶導向的雲端服務進行檔案儲存與分享，對希望避免機密資料外洩的企業來說，將構成安全上的問題。ownCloud 希望藉由提供安裝於企業自有資料中心的商業雲端服務，來解決這個問題。ownCloud 技術長 Markus Rex 表示，他們的開放源碼軟體建構於 Linux 上，多半由企業用戶部署在 Linux 上。在電子郵件中，Rex 談到 ownCloud 在開放雲端體系中的定位，開放源碼公司的意義為何，如何確保開放源碼軟體的安全性，以及最近他們為何加入 Linux 基金會。
+
+＊ownCloud 在開放雲端體系中的定位
+　ownCloud 核心是安全雲端引擎。企業與用戶透過整合 ownCloud 與其基礎架構和安全系統，能在他們的政策下，完全控制　其機密資料。我們整合開放源碼平台如 OpenStack，並且在高普及率的開放源碼堆疊上運行，如 Linux、Apache、MySQL、　PHP。
+
+＊ownCloud 如何運用 Linux
+　Linux 是我們的主要開發平台，這很重要，這一點不僅是技術聲明，也是社群聲明。我的意思是，開放源碼存在我們的 　DNA 之中。我們的本質就是開放的，這不僅有助吸引人們加入我們的社群，也讓我們能貼近現有的 IT，並迅速且輕易地　為用戶需求擴展我們的能力。
+　我們的部署大多在 Linux 上，而散佈與取得 ownCloud 的便利途徑之一，就是透過 Linux 套件管理程式，不論是 SUSE、Red 　Hat、Debian，或是 Ubuntu。當然，我們也可以輕易安裝在 Windows 上，我們當然也為大多數平台提供終端用戶存取工具　，不過許多 ownCloud 內部與相關人士都使用 Linux。
+
+＊如何確保開放源碼雲端軟體在企業應用的安全性
+　談到安全性，軟體是否開放源碼並非重點。你是否信任軟體的運行環境才是重點。部署在企業資料中心的 ownCloud，給　予 IT 人員強大而易用的工具，在其現有資料安全、監控、管理工具中，整合檔案同步與分享功能。透過控制 IT 環境，而　非仰賴不知道位於何處的第三方伺服器，用戶才能控制資料如何分享。如果能夠信任執行環境，其中莫過於你自己的資　料中心，開放源碼軟體並不會對此信任造成損害。
+
+＊為何加入 Linux 基金會
+　我是該基金會的前技術長，所以我知道其價值所在，像是教育訓練到體系連接等等。由於經營與 Linux 高度相關的業務，　加入該金會是理所當然。
+
+
+相關網址：
+1. 問與答：ownCloud 提供企業安全的檔案分享
+http://www.linux.com/news/featured-blogs/200-libby-clark/718207-qaa-owncloud-provides-secure-file-sharing-for-the-enterprise/
+_______________________________________________________________
+
+■ [源碼新聞] 德國電信公司團隊以創用 CC 授權條款釋出「自由開源軟體導入綱要」
+
+黃郁文、林誠夏／編譯
+
+「自由開源軟體導入綱要 (Open Source License Compendium, OSLiC)」是一份實用且具操作範例的商用開源專案導入指南，由任職於德國電信公司 (Deutsche Telekom AG) 的資深技術成員 Karsten Reincke 及 Greg Sharpe，在德國電信公司的支持，與許多自由開源軟體社群成員的協助下撰寫完成。該導入綱要將自由開源軟體的授權方式，提綱挈領的以分類的方式進行說明與介紹。難能可貴的是，OSLiC 並非一份僅提供給開源授權法務人員閱讀的理論書籍，其預設的主要閱覽對象，其實是商業公司裡會實際進行軟體專案開發作業的工程人員。所以該書籍的主要內容，是以範例解說的方式，將各類型自由開源授權專案的義務性要求步驟化的分述出來，閱覽者只要能夠先釐清所選用專案的授權方式，便可一步一步依照 OSLiC 例示的相關步驟，按圖索驥般的完成該商用產品的授權妥適性 (License Compliance) 流程。更引人矚目的是，OSLiC 採用「創用 CC-姓名標示-相同方式分享-3.0-德國版本 (Creative Commons Attribution-Share Alike German 3.0 license)」的方式向公眾釋出，這代表 OSLiC 將可以被以各國不同語言進行轉譯或是改寫，另外，OSLiC 亦非常「開源軟體工程思維」的採用了 GitHub 來釋出其編撰文件，有興趣的志趣者，亦有機會引用這些文獻，以程式實作的衍生方式來開發公司內部互動式的程式碼管理平台及其框架！
+
+簡要的說，OSLiC 就是一份具實用性的參考指南，它讓自由開源軟體領域的開發者、管理者、參與者，或是商用公司，都能夠在步驟化的基礎上，循序的踐履使用自由開源軟體應該要盡的相關義務。該書在第一章序章裡，簡述了 OSLiC 的分析架構與閱讀方式，第二章摘要式的整理了不同類別授權方式的基本特性，第三章進一步對商用自由開源軟體可能對商業模式帶來的影響進行披露；而從第四、第五章以降，則是實務性的指示商用自由開源軟體開發團隊裡的工程師，該如何透過表格與步驟分析自己所欲選用專案的授權狀態，例如：1、填註該自由開源專案的預設使用型態 (Type)，論其可被定位為連結性質的函式庫、插件、或是獨立程式等不同類型；2、再論其利用方式是在修改或不被修改的狀態 (State) 下進行；3、之後分析該專案在運作脈絡上 (Context)，是與其他程式為獨立關係或是直接的程式碼嵌入關係；4、填註該專案未來的傳遞對象 (Recipient)，會否將程式碼移轉出去，或是僅為內部使用；5、最後決定程式碼預計的散布格式 (Form)，將是以目的碼或是原始碼為主。完成此一系列的分析之後，便可以執此分析資訊來閱覽 OSLiC 第六章，關於授權妥適性方面的各項遵循義務與實踐步驟。設以商業使用到 Apache-2.0 授權的專案為例，便可逕行參照該書 6.3 以降的遵循指南，在此一遵循章節裡，OSLiC 將 Apache-2.0 授權程式碼的使用方式分為：1、單純內部使用，2、以未修改的型態散布程式源碼，3、以未修改的型態散布程式目的碼，4、以修改的型態散布程式源碼，5、以修改的型態散布程式目的碼，6、以修改函式庫的型態散布具獨立互動性的程式源碼，7、以修改函式庫的型態散布具獨立互動性的程式目的碼，8、以修改函式庫的型態散布嵌入到整體專案的程式源碼，9、以修改函式庫的型態散布嵌入到整體專案的程式目的碼。使用者只要依照前述表格分析所得的資訊，挑選正確對應的使用方式，便可從遵循章節的例示內容，了解到該商用型態所必須要盡的授權義務 (mandatory)、非強制性但建議可作的相關舉措 (voluntary)，以及依條款不得進行的禁止行為 (prohibits)。
+
+OSLiC 目前最新的版本為 2013 年 4 月 16 日釋出的 0.95.3 版，該書籍部份內容還在持續地被補足與修改中，但亦已於德國電信公司內部受到廣泛的採納與使用，可知，此種商用自由開源軟體專案的步驟化導入指南，對於商業公司內部對自由開源軟體採用的適法性管理，有著相當大的助益。建議國內對此專案有興趣的程式開發者以及授權研究人員，可透過相關連結下載 OSLiC 全文來進行瀏覽與學習，而若公司內部對此種自由開源軟體授權管理機制已有需求，亦可參照 Karsten Reincke 及 Greg Sharpe 已善加整理的流程與範例來建置所需要的內部平台，或是參與未來將 OSLiC 文件依創用 CC 進行中譯的相關活動！
+
+
+相關網址：
+
+1、「自由開源軟體導入綱要」專案首頁
+http://www.oslic.org/
+
+2、「自由開源軟體導入綱要」作者簡介
+http://dtag-dbu.github.io/oslic/en/oslic/initiators.html
+
+3、「自由開源軟體導入綱要」最新版本下載網址
+http://www.oslic.org/releases/oslic-en-0.95.3.pdf
+
+------
+
+Open Source Specialists in Deutsche Telekom AG Released Open Source License Compendium (OSLiC) in a Creative Commons License
+
+Yuwen Huang, Joseph Y. C. Chen, Lucien Lin / News Compiler
+
+With the support of Deutsche Telekom AG, the devotion of its senior technical engineers Karsten Reincke and Greg Sharpe, and the help from numerous Open Source Software community members, the practical and models-provided manual for Open Source Softwares in commercial use, the Open Source License Compendium (OSLiC) was released. By setting the target audience as in-house software engineers, OSLiC is NOT just a theoretical book for paralegal. Instead, OSLiC introduces Open Source Software licensing in a systematic and catalogic way. In other words, the book illustrates different obligation processes by model explanations. As long as users have defined their chosen projects, it is easy to complete the step by step License Compliance process. Another unique character of OSLiC is that it was released by a Creative Commons Attribution-Share Alike German 3.0 License. By that, OSLiC can be translated and revised into different languages. Besides, OSLiC, in a very Open Source thinking, was released in GitHub and had been committed and maintained in the same mode as Open Source projects. Interested persons can trace the revisions and develop their own modified and interactive versions or frameworks by derivative development.
+
+In a nutshell, OSLiC is a practical manual which enables Open Source License participants, no matter the participant is the developer, manager, Open Source expert, or company, to reliably specify how to use Open Source Software in a regular manner and fulfill the obligations from a specific Open Source License. Chapter 1 of the book introduces the analysis framework and suggested method to use it. Chapter 2 deals with basic characters of different licensing types in a summarizing manner. Chapter 3 further elaborates Open Source Software’s possible side effects on business models. While Chapter 4 & 5 instruct developers how to make use of the charts and step-by-step-analysis for gathering the relevant information to find suitable project licensing status. For instance, 1. The type of the Open Source Software as an includable code snippet, a linkable module or library, a loadable plugin, an autonomous program, application or server which can be executed?; 2. The state of modified one or unmodified one; 3. The implement context as an independent unit or an embedded component to other packages; 4. The recipient who are going to use the Open Source Software; and 5. The providing form on distribution in binaries or in sources. By completing the series analysis, users will be referred to OSLiC Chapter 6 for To-Do Lists on Open Source License Compliance. For example, Chapter 6.3 is about the commercial usage of Apache-2.0 softwares. OSLiC divides the Apache-2.0 software implementation model into the following 9 types: 1. Using the software only for yourself; 2. Passing the unmodified software as source code; 3. Passing the unmodified software as binaries; 4. Passing a modified program as source code; 5. Passing a modified program as binary; 6. Passing a modified library as independent source code; 7. Passing a modified library as independent binary; 8. Passing a modified library as embedded source code; 9. Passing a modified library as embedded binary. Based on the information acquired from fore mentioned charts analysis, users can pick correct implementation model and realize the mandatory, voluntary To-Do points, and prohibiting deeds by the examples.
+
+The latest OSLiC version is the 0.95.3 released in April 16, 2013. Though the content is still under revising and polishing, OSLiC is now firsthand adopted and used in Deutsche Telekom AG. This practice also ratified the fact that the manual is beneficial to the management of Open Source Software compliance and legitimacy for ICT industry. We strongly recommend interested Open Source developers and license researchers to download the OSLiC for further utilization. Were your respected company have the demand for this mechanism, you would find the well-defined process and model illustrated by Karsten Reincke and Greg Sharpe in this book very helpful.
+
+
+相關網址：
+
+1.OSLiC Homepage:
+   http://www.oslic.org/
+2.OSLiC Authors:
+   http://dtag-dbu.github.io/oslic/en/oslic/initiators.html
+3.Latest OSLiC version Download:
+   http://www.oslic.org/releases/oslic-en-0.95.3.pdf
+_______________________________________________________________
+
+■ [源碼新聞] Google 擬以交叉授權方式釋出 VP8 相關外部專利許可權
+
+黃郁文、林誠夏／編譯
+
+VP8 是一個自由開放的影像壓縮格式，目前智財權利是由 Google 所擁有，其以 BSD-3-Clause 加上額外的專利授權條款，將相關的軟體與格式以容許改作、不徵收授權金的方式釋出，目前多數的評論者，都認為 VP8 整體授權狀態符合自由開源授權的基本定義，其也被視為 Google 著眼未來網路影音編碼市場所推動的主流格式。然而，VP8 所用的影音編碼技術與格式，和 MPEG LA 持有的相關專利有無實質的重疊或衍生關係，一直是網路影音撥放市場上的一大爭議。為此，Google 於本年度 3 月份與 MPEG LA 及其相關的 11 家合作公司，共同簽訂了一份正式協議，約定若 VP8 所用的技術或格式被發現是來自這些公司所持有的專利，則此一狀況將無礙 Google 繼續以不徵收授權金 (royalty-free)，以及容許轉授權 (sublicense) 的方式，來提供 VP8 格式的授權與應用。也就是說，在 Google 與 MPEG LA 和這 11 家合作公司簽訂協議之後，其將具法律地位可以建置相應機制，讓 VP8 的商用和一般使用者，皆不致遭受來自 MPEG LA 方面的專利追訴，而為了達到這個目標，Google 近期在其網站上公布了，針對 VP8 影音格式外部專利所編撰的交叉授權協議書草稿，以吸收各界對 VP8 格式授權發展的批評與意見。
+
+簡要來說，這份 VP8 外部專利交叉授權協議書，要處理的並非 Google 本身就 VP8 格式已取得的權利，而是要將其與 MPEG LA 及 11 家合作公司簽訂協議之後取得的專利許可，擴張到 VP8 格式的商用和一般使用者身上進行保護。然而，以目前的評論來看，此份草稿引發的批評與非議不少，開放源碼促進會 (Open Source Initiative, OSI) 主席 Simon Phipps 即發文批評，指出：1、此份授權協議書要求欲取得 Google 授權者，必須另行與 Google 簽訂紙本文件，或是透過網路認證機制來取得授權許可，這與一般自由開源軟體授權，不需額外書面獲得授權人認證的運作方式存有隔閡；2、依協議書當前的草稿，Google 僅允許相關專利許可在預定授權範圍 (Licensed Field of Use) 內被使用，此與自由開源軟體授權不限制使用目的之核心理念亦有衝突。質言之，Simon Phipps 認為 Google 當前的交叉授權協議書版本，與開放源碼定義 (Open Source Definition, OSD) 的第 3、5、6、7 項定義皆有衝突，可被視為以「非開源」的其他協議限制開源專案的未來發展，所以是讓使用者存有高度疑慮的作法。
+
+然而，亦有論者持不同觀點，在此議題上為 Google 緩頰。有相當數量的不同意見指出，此份交叉授權協議書僅是要處理 VP8 可能涉及的外部專利問題，而 Google 本身持有的 VP8 相關權利，仍然是以 BSD-3-Clause 加上額外專利條款的方式進行開源釋出。而之所以不將 Google 與 MPEG LA 之間的協議內容，寫入 VP8 正式的授權文件裡，便是因為這些「外部專利」僅存在重疊或是衍生的「可能性」，並不能說 VP8 格式裡，已確定內含 MPEG LA 持有的第三人專利，所以才會採另文撰寫的方式，來處理 VP8 專案可能涉及的第三人專利問題。這樣的解釋態度是說，從 Google 網站取得 VP8 相關格式與技術的使用者，可以安心逕自以自由開源授權的方式來利用，而若擔心未來可能發生第三人專利侵權方面的問題，方需要額外與 google 簽訂交叉授權協議的方式，讓自己列入 Google 在 VP8 專案下的專利保護傘，但簽訂此協議的同時，簽約者也必須允諾不以本身專利來控告該保護傘裡的其他成員。
+
+中道的來說，此一交叉授權協議目前在政策上的宣示效果，大於其法律授權上的實質效果。因為透過此份協議，披露了 MPEG LA 及其背後支持協議的 11 家合作廠商立場與身份，這些公司包括：CIF Licensing LLC、France Telecom、、Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e.V.、Fujitsu Limited、Koninklijke Philips Electronics N.V.、LG Electronics Inc.、Mitsubishi Electric Corporation、NTT DOCOMO, INC.、Panasonic Corporation、Samsung Electronics Co., Ltd.，以及 Siemens Corporation。從列表中可以觀察到歐日韓的跨國大廠也加入了 MPEG LA 與 Google 之間的專利協議，這代表減緩或甚至摒除未來網路影音播放格式領域的專利衝突，各大商業公司雖各有立場，但大致可說是有志一同。此一自由開源軟體商務界的國際發展局勢，非常值得國人與此一領域的觀察家，接續關注其後續發展。
+
+
+相關網址：
+
+1、Google 釋出 VP8 影音格式外部專利交叉授權的協議書草稿
+http://lwn.net/SubscriberLink/551297/d71e166f0957014f/
+
+2、Google 與 MPEG LA 宣布簽訂協議以解決 VP8 相關的專利爭議
+http://www.businesswire.com/news/home/20130307006192/en/Google-MPEG-LA-Announce-Agreement-Covering-VP8
+
+3、VP8 影音格式外部專利交叉授權協議書草稿
+http://www.webmproject.org/cross-license/
+
+4、談影音編碼的開放專利與商業應用：從 WebM 與 H.264 格式的比較觀點出發
+http://www.openfoundry.org/tw/legal-column-list/8306--webm-h264-
+_______________________________________________________________
+
+■ [源碼新聞] 開放雲端第二章：CloudStack 協同合作會議 2013
+
+謝良奇／編譯 
+
+對於 Apache CloudStack 來說，去年可說是活力滿點的一年。自 Citrix 去年 4 月將 CloudStack 提交至 Apache 育成專案 (Apache Incubator)，一年過後、CloudStack將在 6 月 23 至 25 舉行第二次的協同合作會議。
+
+去年 CloudStack 發生了很多事：
+
+＊發佈了一次重大釋出，及兩次的維護釋出。
+＊去年 11 月在拉斯維加斯，聚集 CloudStack 社群舉行了成功的第一次會議。
+＊Apache CloudStack 於 3 月時從育成專案畢業成為頂層專案。
+
+如今 CloudStack 正接近第二次重大釋出，同時也在計劃即將到來的夏季會議，希望你能一起加入。
+
+這次會議有哪些重點呢？CloudStack 會聚集使用者、開發者、整合者，一起談談他們在 CloudStack 上的經驗，分享部署 CloudStack 的祕訣，討論這個專案的未來以及如何改進 CloudStack。
+
+不但只有 CloudStack 的開發者，圍繞 Apache CloudStack 的相關專案，如 Puppet、Ceph、Zenoss，屆時也會到場參與。
+
+你可以在 YouTube 上看到第一次會議的演講，像是 RedMonk 的 Tom Raftery、Apache 軟體基金會的 Jim Jagielski、Citrix 的 Peder Ulander，他們的主題演講，另外還有來自 CloudStack 體系貢獻者與參與者的精彩演說。
+
+如果你正好在美國加州聖塔克拉拉市附近，別錯過這次 CloudStack 協同合作會議。如果你得遠渡重洋才能到場，還會是非常值得的。
+
+
+相關網址：
+1. 開放雲端第二章：CloudStack 協同合作會議 2013
+http://www.linux.com/news/featured-blogs/196-zonker/719344-open-cloud-take-two-the-cloudstack-collaboration-conference-2013/
+_______________________________________________________________
+
+■ [源碼新聞] COSCUP 2013 總召 BobChao 專訪
+
+自由軟體鑄造場電子報／文
+
+開源人年會 (COSCUP) (http://blog.coscup.org/) 自 2006 年起舉辦至今，歷屆號召亞洲及世界各地開源愛好人士共聚一堂、互相交流，日漸成長茁壯，儼然成為亞洲最大規模的開放源碼研討會。今年 COSCUP 2013 (http://coscup.org/2013/zh-tw/) 已經是第八屆，訂於 8 月 3 日至 8 月 4 日，在台北國際會議中心舉行，主題鎖定在開放網路 (Web)、行動平台 (Mobile) 以及越來越被重視的開放資料 (Data)。
+
+自由軟體鑄造場特別在活動開始前，先行訪問辛苦籌劃的 COSCUP 2013 總召，趙柏強 (BobChao)，一個非常開朗、熱心服務、也熱愛自由與開源的推廣者，來聽聽看參與 COSCUP 多年的心得與感想，也聊聊這一屆的 COSCUP、預計一千五百參與人次的盛會，現在和未來有些什麼願景和展望。
+
+(http://www.openfoundry.org/images/130528/coscup/8722303193_4141cc7488.jpg)
+▲為人開朗、熱心的 BobChao。（photo by COSCUP 2013 記錄組：丞相）
+
+Q1：COSCUP 是一個怎麼樣的活動？魅力在哪裡？
+
+COSCUP，最容易被大家了解的面向，普遍會認為它是一個「資訊技術研討會」，有很多 OSS (open source software) 的參與者會到 COSCUP 分享最近參與的專案、新技術，或者是學習的心得... 等等。技術人可以在 COSCUP 獲知許多新資訊和知識，讓自己充電。
+不過，除了比較容易被看得到的技術面的研討會之外，COSCUP 其實也是一個「開源社群聚會」。除了分享自身技術的大神級人物之外，也有一些孜孜不倦的理念推廣者，闡述其參與社群組織的心得，同時也有很多的開源軟體使用者會在 COSCUP 聚會上熱情地分享軟體使用上的技巧。
+COSCUP 也可說是一個同好者的聚會，在 OSS 社群中的同好，CPU (Coder, Promoter, User)，都可以藉此機會，與網路上頗負盛名、所謂「大大」級的程式設計或其他相關領域的高手，見面相談或交換經驗。透過軟體技術、應用或是共享社群與推廣經驗，彼此也許能激盪出一些火花，而且會到 COSCUP 的 OSS 社群夥伴，大都有樂於分享交流的個性，所以這樣的聚會對所有的參與者來說是非常有益的。COSCUP 也盡可能在籌備期間多花些時間和心力，提供優質的講題，並在活動現場營造一片歡樂的氣息，這個的話、真的要來現場體會一下才能瞭解！
+
+Q2：是否可以請您就您所知的開放原始碼目前的使用、應用的方面來跟我們談談呢？
+
+過去 Open Source 軟體比較被關注的地方都集中在「基底建設」，像是作為開發工具的各種語言如 GCC、Python、PHP 等，以及一般使用者容易忽略也較難意識到的 Linux 相關應用，如無線通訊設備、嵌入式系統、伺服器... 等等。
+時至今日，OSS 也在消費應用商品端有所斬獲，例如行動作業系統 Android、深獲好評的 Firefox 及 Google 的 Chromium 瀏覽器等，以及一般使用者容易接觸到的辦公套裝軟體，也已經有部分公司組織開始全面導入 OpenOffice。
+許多企業看到開源社群的潛力、與開源軟體對企業本身商務上的優勢：如自由軟體開發模式的成效與發展性、或者節省軟體授權費用... 等，遂採用開源軟體、同時也支持 COSCUP，這也是支持著 COSCUP 能夠年年舉辦的重要原因之一。我們也更希望許多台灣的夥伴及公司行號，能進一步參與 OSS 社群，加入或是贊助 COSCUP，一起合作、共創雙贏。
+
+Q3：您覺得 COSCUP 值得國內的軟體或硬體廠商參與或是贊助的原因是什麼？
+
+COSCUP 是國內歷史悠久的老牌開源社群研討會，幾年下來參與人數眾多，今年更預計有 1,500 人次參與，對於廠商來說，無論是新產品或是新開源專案的發表、人才招募，或是想要接觸軟體社群長期耕耘，尋找質量並重的合作夥伴，COSCUP 每年都固定是全台眾多 coder、user、promoter 參與得盛會，因此絕對是相關廠商不能錯過的一個絕佳機會！
+
+Q4：您對於 COSCUP 2013 有哪些目標或是願景，為什麼？
+
+COSCUP 的主要目標一直都是提供國內 Open Source 社群參與者一年一度聚會的機會，今年也是以此為主要目標。
+其他的目標包括：一是規模的提升，2010 年和 GNOME.Asia 合辦，參與人數破千，也引進非常多的國外知名講者，也提升了 COSCUP 的國際知名度。人數激增下、COSCUP 也必須去試圖滿足參與者的需求，尋找更大的場地。二是想增加更多國際的交流，今年的 Keynote Speaker Greg Kroah-Hartman 曾經在社交平台上發言說應該去參與一下台灣的 COSCUP，我們也邀請他來了兩年，今年他也終於有時間前來參與 COSCUP！
+我也介紹一下 COSCUP 的幾個特色：社群攤位，是免費提供給台灣軟體社群申請的。BOF 則是一個讓大家可以有機會開 party 交流的時間。今年更有趣的創舉是「社群議程」，我們公開招募了很多的社群，讓社群們自己去 host 一個屬於自己社群的議程，今年的主題也是比較廣的主題，包括 Open Data、Open Web、Mobile Device，跨越幾個不盡相同的領域，議程的豐富程度也更好。
+另外值得一提的是，去年試辦過頗受好評的「社群 VIP 方案」，只要過去一年有參與 Open Source Community 給予貢獻，不論是寫 code 、推廣、寫文件，只要有貢獻，就可以來報名這個 VIP 方案，就有機會拿到一張 VIP 入場卷，也就不用擔心搶不到票，我們希望透過這個方案，可以讓 Open Source 的貢獻者更容易參與 COSCUP。
+
+Q5：您覺得今年在 COSCUP 的籌備上有遇到甚麼樣的困難？
+
+困難當然是也不少，但是我自己覺得大部分的困難都來自於我們換了一個我們不熟悉的場地，這個大概就是最困難的。
+
+Q6：COSCUP 今年把場地從辦了好幾年的中央研究院移到台北國際會議中心，有甚麼樣特殊的原因嗎？
+
+COSCUP 過去幾年參與人數已達 1200 人，但還是有一大群人反應擠不進來。我們希望改善這種新血沒有機會參與的狀況。而中央研究院的人文社會科學館已經無法容納更多的人，於是重新考慮許多其他的可能，例如「分場地」、「分時段（跨兩週）」、「換場地」等方案，換場地相對來說比較不那麼複雜。
+第二，COSCUP 的成員們想要挑戰更複雜的籌辦工作，無論在經費或人力等方面想轉換或是改變、今年的這個團隊，應該最合適去做改變。
+
+Q7：您所參與的 COSCUP 籌備過程當中，不論是議程籌備審稿、活動企劃或是工作人員的招募、到實際活動狀況，過去到現在，有沒有給你很大、很不一樣的感動？
+
+我還記得第一屆 COSCUP 有看到拍得很歡樂的照片（就是有 cosplay 女僕服裝的照片）。因為英文是 COSCUP 嘛，就被惡搞成 COSPLAY，有次更有某個大大吞下 20 個布丁的另類表演。COSCUP 在台大的時候都是盡量維持小組織，大概兩、三百人。後來 2010 年與 GNOME.Asia 合辦，由於許多美麗的錯誤，COSCUP 演變成千人研討會，到那一屆的時候，變化蠻大的，一方面是籌備成員裡面有部分是國外的成員，GNOME.Asia 是一個國際性的團體，很多的文件必須要做好語言上的溝通、二方面是作為一個上千人的研討會，思考模式不能再像以往一樣，事情都要考量的非常複雜和慎密。而且事情一多、工作人員的人數也越來越多，我們利用網路溝通和開會的頻率也越來越高，分工也越來越細。
+籌備 COSCUP 就像是撰寫一個很偉大的程式，沒有辦法一個人就把它全部寫出來，一定要靠大家分工合作，就像 Firefox 有幾千個人在寫、Open Office 有幾萬個人參與。我非常清楚，自己一個人沒有辦法扮演這樣的角色，所以在成功舉辦後，會更感謝這群跟我一起幫忙的人。
+
+Q8：您擔任過數屆的 COSCUP 工作的小組長，同時也擔任了 2012、2013 年的總召。這幾年的經驗，您有什麼心得想要分享及傳承呢？
+
+我認為任何活動、研討會都有他設立的目標與本質，而接任者最重要的就是要莫忘初心。每個社群、乃至於每個社群成員，都會有自己的個性跟參與籌辦的理由。內在動機遠勝於外在動機，身為總召、即協調者，最大課題或許就在瞭解他人的內在動機、並協助他完成目標同時也裨益籌辦工作。在籌辦團隊的人增加、也越來越專業的同時，溝通的難度與彼此抱怨的聲音也增加了，希望大家能稟持 OSS 做事的方法與精神、彼此體諒與合作。畢竟，COSCUP 不是公司、也不需像公司一般運作－這也是它最大的價值之一。
+
+Q9：接下來想要問您的是，您預期以後的 COSCUP 會朝著甚麼樣的方向經營呢？
+
+過去、很多 COSCUP 的前輩都有一些想法，不可避免的，我也有。
+我在這兩屆都會先寫信去問一些前輩們，他們的想法是怎麼樣，不過在問的同時，我覺得大家的共識都很清楚：做事的人有權利講話，但不代表做事的人講話一定是對的。所以，以下的想法只是我個人的想法，大家可以想一想說我想的東西有沒有意思，如果覺得還不錯的話，那可以做做看，但是我並沒有覺得 COCSUP 一定要往這個方向走。
+我不是 coder，從頭到尾就是一個很純的 promoter，我在社群裡面做行政工作比較多，所以對我來講一個社群有沒有辦法好好的聚合在一起，以及聚合之後有沒有辦法好好的發揮是最重要的。所以這幾屆我都一直在想辦法把社群這兩個字 hightlight 出來，我也會希望說 COSCUP 可以更加的落實它是一個社群共同創造的一個平台，也不斷的在社群參與的地方可以更有所發揮。
+
+Q10：您自己本身對於 COSCUP 的未來有甚麼樣的期許呢？
+
+就如同剛剛所講的，讓之後每一屆的總召去決定。
+我們之前都有討論很多、例如要不要收費的問題，我自己個人是站在使用者應該多少要負擔一點支出，不過這一點並沒有得到共識，之後的每一屆總召可以好好去思考這些討論過的問題，包括像是收費與否？規模要不要更大？要不要跟其他不同性質的活動合在一起？像美國的 SXSW (http://sxsw.com/) 一樣，要不要做成像那樣子的活動？要不要在台北以外的地方辦？我覺得我們都有好多好多的想像可以去想，要怎麼做、就交給後面幾屆的 COSCUP 人去決定囉。
+
+好的，謝謝！最後有一個問題，您對於「今年」活動成果有甚麼樣的感想呢？
+
+感想就是等活動辦完就可以知道了，所以活動辦完可以再來一次訪問，那時候就會有感想了！哈哈哈！
+
+(http://www.youtube.com/watch?feature=player_embedded&v=UICEr-V6OGg)
+▲COSCUP 2013 總召 BobChao 專訪錄影
+_______________________________________________________________
+
+■ [源碼新聞] 2013 年六月份社群活動列表
+
+作者是 OSSF 電子報團隊／整理
+
+六月份的活動列表出爐囉！有興趣的朋友們請多多邀請您的朋友一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+台中自由軟體愛好者固定聚會（雙週一，6/3、6/17）
+地點：台中市中港路二段 60-3 號（默契咖啡）
+時間：19:00~21:00
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+TOSSUG BoF（每週二，6/4、6/11、6/18、6/25）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+MozTW Lab @ 基隆（每週三，6/5、6/12、6/19、6/26）
+地點：基隆市仁愛區港西街 4 號 1 樓（1915 海洋咖啡館）
+時間：19:00~21:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+KSDG 高雄開發者社群 (Kaohsiung Software Developer Group) meetup（6/6）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+時間: 19:00~21:00
+社群網址: https://www.facebook.com/groups/KSDGroup
+
+Hacking Thursday（每週四，6/6、6/13、6/20、6/27）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:30
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（每週五，6/7、6/14、6/21、6/28）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:00~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+Taipei Wikipedia Moonthly Meetup: Writing Day 維基台北定期聚—假日寫作月聚（6/8）
+地點：台北市松山區南京東路二段一號 （伯朗咖啡 南京二店二樓）
+時間：14:00~16:00
+活動資訊：https://zh.wikipedia.org/wiki/Wikipedia:WPTP-W
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（雙週一，6/10、6/24）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zhwp.org/zh-tw/WP:WPTP-S
+
+Cocoaheads - Kaohsiung（6/13）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+時間: 19:00~21:00
+社群網址: https://www.facebook.com/groups/cocoaheads.kaohsiung/
+
+KSDG web course（6/15）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+社群網址: https://www.facebook.com/groups/KSDGroup
+_______________________________________________________________
+
+■ [接案 / 工作] 台灣創用 CC 計畫徵兼職資訊技術人才一名
+
+台灣創用 CC 計畫／文
+
+咦？這個 RSS feed 怎麼沒有 title？
+嘖...這個網站一看就知道是用 Drupal 6.0 架的...
+～我寫的部落格文章也用了創用 CC 的姓名標示授權...
+讚！有了這麼多自由軟體，開放的資料，可以讓我開發我想要的 Firefox 套件！
+
+如果你曾經有以上的念頭劃過心頭，我們誠摯的邀請你加入我們的團隊！
+
+你將會參與以下的工作
+
+＊台灣創用 CC 計畫所需軟、硬體資訊系統維持
+＊與美國 Creative Commons 技術團隊的持續聯繫及合作
+＊台灣創用 CC 計畫相關網站的企畫與編輯
+＊用 CC 授權相關資訊技術的熟悉與推廣
+
+你需要以下的資訊素養
+
+＊網站設計
+    ＊XHTML/CSS/XML/RDF/RDFa
+    ＊Javascript
+
+＊腳本語言
+    ＊PHP
+    ＊Perl
+
+＊內容管理系統 (CMS)
+    ＊如 Drupal, DokuWiki/MediaWiki, MovableType 等自由軟體套件
+
+＊伺服器管理
+    ＊FreeBSD/Linux
+    ＊Apache
+    ＊MySQL
+
+另外，有了以下的基本條件，能讓你工作更加順利
+
+＊自然語言能力需求
+    ＊台灣華語（聽、說、讀、寫均需流利）
+    ＊美式英文（讀、寫需佳，聽、說需可）
+
+＊學歷需求
+    ＊學士（含）以上，碩士佳（學、碩士以中央研究院專任研究助理聘請，依學經歷敘薪）
+
+請將履歷於 2013/06/16 前，寄至： trc@iis.sinica.edu.tw ，信件標題請用 " [CC] [tech] 王大同" （「王大同」三個字請您的姓名取代）
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>RESTful Rails course</title>
+  <style>
+  	pre { background-color: #eee }
+  </style>
+</head><body>
+<h1>RESTful Rails 上機實做步驟 (自由軟體技術教學工作坊 2008/12/12)</h1>
+
+<p><a href="http://ihower.idv.tw/course/rails-course-package.zip">下載所有檔案</a></p>
+<p><a href="http://ihower.idv.tw/course/restful-rails-of-12-11.pdf">下載投影片</a></p>
+
+<h2>1. 安裝 Ruby on Rails 基本環境 (windows)</h2>
+<ol>
+<li>下載安裝 <a href="http://rubyforge.org/projects/railsinstaller">1-Click Rails Installer</a></li>
+<li>下載安裝 <a href="http://www.e-texteditor.com/">E-TextEditor</a> ，安裝過程會出現錯誤，按下略過即可。啟動時會問你使否安裝 cygwin，請點手動不要安裝。</li>
+<li>啟動 -&gt; cmd -&gt; cd \</li>
+<li>rails my_event</li>
+<li>cd my_event</li>
+<li>ruby script/server</li>
+<li>開啟瀏覽器 <a href="http://localhost:3000/">http://localhost:3000</a> ，將會看到 Rails 的預設首頁</li>
+</ol>
+
+<h2>2. 建立一個 non-RESTful 的 Hello World! Rails Project</h2>
+<ol>
+<li>ruby script/generate controller welcome</li>
+<li>編輯 /app/controllers/welcome_controller.rb，加入
+	<pre>		def say
+		 render :text =&gt; "Hello world!"
+		end
+	</pre>
+</li>
+
+<li>瀏覽 <a href="http://localhost:3000/hello/say">http://localhost:3000/welcome/say</a>，將看到 Hello world!</li>
+<li>編輯 /app/controllers/welcome_controller.rb，加入
+	<pre>		def index
+		end
+	</pre>
+</li>
+<li>新增 /app/views/welcome/index.html.erb，內容是
+	<pre>		&lt;p&gt;Hola!&lt;/p&gt;
+		&lt;p&gt;&lt;%= link_to 'hello world', :controller =&gt; 'welcome', :action =&gt; 'say' %&gt;&lt;p&gt;
+	</pre>
+</li>
+<li>修改 /config/route.rb 加上 map.root :controller =&gt; "welcome"</li>
+<li>刪除 /public/index.html</li>
+<li>瀏覽 <a href="http://localhost:3000/welcome/say">http://localhost:3000/welcome/say</a>，將看到 Hola! 及 hello 超連結。</li>
+</ol>
+
+<h2>3. 實做一個 non-RESTful 的 CRUD</h2>
+<ol>
+	<li>ruby script/generate model event name:string description:text</li>
+	<li>rake db:migrate</li>
+	<li>ruby script/generate controller events</li>
+	<li>編輯 /app/controllers/events_controller.rb 加入
+		<pre>  def index
+    @events = Event.find(:all)
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
+  
+  def new
+    @event = Event.new
+  end
+  
+  def create
+    @event = Event.new(params[:event])
+    @event.save
+    
+    redirect_to :action =&gt; :index
+  end
+  
+  def edit
+    @event = Event.find(params[:id])
+  end
+  
+  def update
+    @event = Event.find(params[:id])
+    @event.update_attributes(params[:event])
+    
+    redirect_to :action =&gt; :show, :id =&gt; @event
+  end
+  
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    
+    redirect_to :action =&gt; :index
+  end
+		</pre>
+	</li>
+	<li>新增 /app/views/events/index.html.erb，內容如下:
+		<pre>&lt;ul&gt;
+&lt;% @events.each do |event| %&gt;
+  &lt;li&gt;
+    &lt;%= link_to event.name, :controller =&gt; 'events', :action =&gt; 'show', :id =&gt; event %&gt;
+    &lt;%= link_to 'edit', :controller =&gt; 'events', :action =&gt; 'edit', :id =&gt; event %&gt;
+    &lt;%= link_to 'delete', :controller =&gt; 'events', :action =&gt; 'destroy', :id =&gt; event %&gt;
+  &lt;/li&gt;
+&lt;% end -%&gt;
+&lt;/ul&gt;
+&lt;%= link_to 'new event', :controller =&gt; 'events', :action =&gt; 'new' %&gt;
+	</pre>
+	</li>
+	
+	<li>新增 /app/views/events/show.html.erb，內容如下:
+		<pre>&lt;%=h @event.name %&gt;
+&lt;%=h @event.description %&gt;
+
+&lt;p&gt;&lt;%= link_to 'back to index', :controller =&gt; 'events', :action =&gt; 'index' %&gt;&lt;/p&gt;
+		</pre>
+	</li>
+	
+	<li>新增 /app/views/events/new.html.erb，內容如下:
+		<pre>&lt;% form_for @event, :url =&gt; { :controller =&gt; 'events', :action =&gt; 'create' } do |f| %&gt;
+    &lt;%= f.label :name, "Name" %&gt;
+    &lt;%= f.text_field :name %&gt;
+    
+    &lt;%= f.label :description, "Description" %&gt;
+    &lt;%= f.text_area :description %&gt;
+    
+    &lt;%= f.submit "Create" %&gt;
+&lt;% end %&gt;
+		</pre>	
+	</li>
+	<li>新增 /app/views/events/edit.html.erb，內容如下:
+		<pre>&lt;% form_for @event, :url =&gt; { :controller =&gt; 'events', :action =&gt; 'update', :id =&gt; @event } do |f| %&gt;
+    &lt;%= f.label :name, "Name" %&gt;
+    &lt;%= f.text_field :name %&gt;
+    
+    &lt;%= f.label :description, "Description" %&gt;
+    &lt;%= f.text_area :description %&gt;
+    
+    &lt;%= f.submit "Update" %&gt;
+&lt;% end %&gt;
+		</pre>	
+	</li>
+	
+	<li>連往 <a href="http://localhost:3000/events">http://localhost:3000/events</a></li>
+</ol>
+
+<h2>4. 修改成一個 RESTful 版本的 CRUD </h2>
+<li>編輯 /config/routes.rb，加入
+	<pre>map.resources :events
+	</pre>
+</li>
+<li>編輯 /app/views/events/index.html.erb，內容如下：
+<pre><ul>
+&lt;% @events.each do |event| %&gt;
+  &lt;li&gt;
+    &lt;%= link_to event.name, event_path(event) %&gt;
+    &lt;%= link_to 'edit', edit_event_path(event) %&gt;
+    &lt;%= link_to 'delete', event_path(event), :method =&gt; :delete %&gt;
+  
+&lt;% end -%&gt;
+&lt;/ul&gt;
+
+&lt;%= link_to 'new event', new_event_path %&gt;
+</ul></pre>
+</li>
+<li>編輯 /app/views/events/show.html.erb，內容如下：
+<pre>&lt;%=h @event.name %&gt;
+&lt;%=h @event.description %&gt;
+
+&lt;p&gt;&lt;%= link_to 'back to index', events_path %&gt;
+</pre>
+</li>
+<li>編輯 /app/views/events/new.html.erb，內容如下：
+<pre>&lt;% form_for @event, :url =&gt; events_path do |f| %&gt;
+    &lt;%= f.label :name, "Name" %&gt;
+    &lt;%= f.text_field :name %&gt;
+    
+    &lt;%= f.label :description, "Description" %&gt;
+    &lt;%= f.text_area :description %&gt;
+    
+    &lt;%= f.submit "Create" %&gt;
+&lt;% end %&gt;
+</pre>
+</li>
+<li>編輯 /app/views/events/edit.html.erb，內容如下：
+<pre>&lt;% form_for @event, :url =&gt; event_path(@event), :html =&gt; { :method =&gt; :put } do |f| %&gt;
+    &lt;%= f.label :name, "Name" %&gt;
+    &lt;%= f.text_field :name %&gt;
+    
+    &lt;%= f.label :description, "Description" %&gt;
+    &lt;%= f.text_area :description %&gt;
+    
+    &lt;%= f.submit "Update" %&gt;
+&lt;% end %&gt;
+</pre>
+</li>
+
+<h2>5. 使用 RESTful 版的 Scaffold</h2>
+<ol>
+<li> ruby script/generate scaffold person name:string bio:text birthday:datetime</li>
+<li> rake db:migrate</li>
+<li>Ctrl+C 關閉 Server，重新啟動 script/server</li>
+<li> 瀏覽 <a href="http://localhost:3000/people">http://localhost:3000/people</a> 並操作 CRUD</li>
+</ol>
+
+<h2>6. Ajax 實做練習1 (傳回HTML更新)</h2>
+<ol>
+	<li>新增 /app/views/layout/application.html.erb，內容如下
+	<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
+&lt;head&gt;
+  &lt;meta http-equiv="content-type" content="text/html;charset=UTF-8" /&gt;
+  &lt;%= javascript_include_tag :defaults %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;%= yield  %&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+	</pre>
+	</li>
+	<li>編輯 /app/views/welcome/index.html.erb，加入
+	<pre>	  
+&lt;p&gt;&lt;%= link_to_remote 'Ajax hello', :url =&gt; { :controller =&gt; 'welcome', :action =&gt; 'say' }, :update =&gt; 'foobar' %&gt;&lt;/p&gt;
+
+
+&lt;div id="foobar"&gt;
+&lt;/div&gt;
+</pre>
+	</li>
+	<li>瀏覽<a href="http://localhost:3000/">http://localhost:3000</a></li>
+</ol>
+
+<h2>7. Ajax 實做練習2 (使用RJS) </h2>
+<ul>
+	<li>編輯 /app/views/events/index.html.erb，在迴圈中間和文件最後加入
+	<pre>&lt;%= link_to_remote 'ajax show', :url =&gt; event_path(event), :method =&gt; :get %&gt;
+</pre>
+<pre>	
+&lt;div id="content"&gt;
+&lt;/div&gt;
+	</pre>
+	</li>
+	<li>編輯 /app/controllers/events_controller.rb，在 show action 中加入
+	<pre>    respond_to do |format|
+      format.html
+      format.js
+    end	
+	</pre>
+	</li>
+	<li>新增 /app/views/events/_event.html.erb，內容與 show.html.erb 相同</li>
+	<li>新增 /app/views/events/show.js.rjs，內容如下
+	<pre>page.replace_html 'content', :partial =&gt;'event'
+page.visual_effect :highlight, 'content'
+	</pre>
+	
+	</li>
+	<li>瀏覽<a href="http://localhost:3000/events">http://localhost:3000/events</a></li>
+
+</ul>
+
+<h2>8. 使用者註冊登入 Generator 產生器</h2>
+<ul>
+<li>下載 http://github.com/technoweenie/restful-authentication 到 /vendor/plugins/，命名為 restful-authentication </li>
+<li>執行 ruby script/generate authenticated user sessions --old-passwords</li>
+<li>rake db:migrate</li>
+<li>Ctrl+C 關閉 Server，重新啟動 script/server</li>
+<li>連往 <a href="http://localhost:3000/users/new">http://localhost:3000/users/new</a> 註冊頁面</li>
+<li>編輯 /app/controllers/application.rb，加入
+<pre>include AuthenticatedSystem  
+</pre></li>
+<li>編輯 /app/views/layout/application.html.erb，加入
+<pre>&lt;%= render :partial =&gt; "users/user_bar" %&gt;
+</pre></li>
+<li>編輯 /app/controllers/events_controller.rb，加入 
+<pre>before_filter :login_required	
+</pre></li>
+<li>點選 Log out，再連往 <a href="http://localhost:3000/events/">http://localhost:3000/events/</a> 將導到登入頁面</li>
+</ul>
+
+<h2>9. 分頁 Plugin </h2>
+<ul>
+<li>下載 http://github.com/mislav/will_paginate 到 /vendor/plugins/，命名為 will_paginate</li>
+<li>修改 /app/controllers/events_controller.rb 的 index action 如下
+<pre>def index
+ @events = Event.paginate(:page =&gt; params[:page], :per_page =&gt; 3, :order =&gt; "id DESC")
+end
+</pre>
+</li><li>編輯 /app/views/events/index.html.erb，加入
+<pre>&lt;%= will_paginate @events %&gt;
+</pre></li>
+<li>連往 <a href="http://localhost:3000/events/">http://localhost:3000/events/</a></li>
+
+</ul>
+</body></html>

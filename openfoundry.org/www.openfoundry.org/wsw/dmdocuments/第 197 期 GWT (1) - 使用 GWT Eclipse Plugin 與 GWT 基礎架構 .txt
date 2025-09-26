@@ -1,0 +1,641 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 197 期 | 2012/06/12 □■□
+________________________________________________________________
+
+◎ 本期主題︰GWT (1) - 使用 GWT Eclipse Plugin 與 GWT 基礎架構
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/06/26
+◎ 上期勘誤︰自由軟體鑄造場電子報第 196 期「法律專欄 - 從 Copyleft 看自由開源軟體授權相容性」文章中，未於內文中註記「▲ 圖1 自由開源軟體授權條款相容圖」的網址為︰http://www.openfoundry.org/images/120529/license_compatibility/lc_201205_license_compatibility_01.png，特此更正。造成讀者不便之處，敬請見諒。
+
+□ 本期標題 □__________________________________________________
+
+﻿■ [源碼秘技] GWT (1) - 使用 GWT Eclipse Plugin 與 GWT 基礎架構
+
+■ [技術專欄] 網站程式上線前需要準備的事（四）
+
+﻿■ [自由專欄] OPEN 的力量 No. 1：ARDUINO 開放硬體計畫
+
+﻿■ [自由專欄] Facebook 的開源價值
+
+﻿■ [自由專欄] 為學生提供的創作平台 Mozilla Factory 始動
+
+﻿■ [源碼新聞] Fedora 17 發佈
+
+﻿■ [源碼新聞] Samsung 成為 Linux 基金會會員
+
+﻿■ [源碼新聞] Oracle Java API 關鍵判決︰Google 未侵犯專利
+
+■ [源碼新聞] Amazon EC2 提供 ARM 版 Ubuntu Server
+
+﻿■ [源碼新聞] 世界銀行實況活動報導：開放存取政策與發展
+
+■ [源碼新聞] OSSACC 徵求各領域自由軟體教學應用教案
+
+■ [源碼新聞] 歡迎參加北區技專校院 CMMI 研習工作坊
+
+□ 本期內容 □__________________________________________________
+
+﻿■ [源碼秘技] GWT (1) - 使用 GWT Eclipse Plugin 與 GWT 基礎架構
+
+Kent / 文
+
+GWT 是一個由 Google 所開發的開源 AJAX 網路開發框架。由於許多傳統 Java 的開發人員及後端工程師，並不見得有前端工程師或網路開發者一樣的技術背景和經驗， 因此開發網站往往對他們來講有著陡峭的學習曲線。GWT 便是為了簡化開發人員使用 Java 作為橫跨前後端的技術整合及溝通之實作語言。
+
+GWT 將 Java 作為開發的主要語言，因而 Java 的資源都成為 GWT 開發人員可以享受的工具。且團隊可以很輕易地找到會寫 Java 的開發者，亦可使用 Eclipse 的開發工具來實現 GWT。GWT 讓開發人員編寫 Java 代碼在透過 GWT 編譯器，把 Java 轉成高效的 JavaScript 代碼。GWT 的內建函式庫跟其所提供的框架延展性，讓開發人員可以快速地寫成互動性強的應用程式。
+
+從本篇開始，筆者將開始連載一系列的 GWT 的相關文章.透過解說、實例、實作來幫助讀者了解 GWT。
+
+作為系列文章的第一文，本文是熱身，將介紹一些 GWT 的入門知識，並帶領讀者使用 Google 所做的 Eclipse 外掛來實作運用 GWT。 
+
+安裝說明
+
+先前有提到 GWT 因使用 Java 加上 Google 釋出的相關開發工具，而編寫 GWT 最便利的方式就是用在 Java 世界裡被廣泛使用的 Eclipse 開發環境。Eclipse 具有非常多內建的工具，加上它的套件管理系統跟維護社群，開發者可以很輕易的使用現有的工具來達到有效開發的目的。本文所使用的工具是 Eclipse 所以基本上只要環境支援 Eclipse 即可。以下範例將使用 Eclipse 3.6。
+
+安裝 Eclipse
+
+請先至 Eclipse 官網，依照您的作業系統下載安裝檔，並執行安裝，安裝過程相當容易，請依照安裝套件下一步即可。
+
+若您的系統為 Ubuntu 即可使用以下指令直接安裝即可。
+
+apt-get install eclipse
+
+開啟相關套件
+
+開啟 Eclipse，於上排功能列，選擇 [Help -> Install New Software] 將會開啟如下圖操作畫面，並於 Work with 欄位輸入以下網址 http://dl.google.com/eclipse/plugin/3.6。
+
+▲ 圖1：http://www.openfoundry.org/images/RC/GWT/img1.png
+
+若您的 Eclipse 的版本不是 3.6，則您可依具您的版本號輸入不同的網址。例如： 若為 Eclipse 3.5 則可輸入 http://dl.google.com/eclipse/plugin/3.5。 在短暫的搜尋之後，Eclipse 會列出幾個套件。為了簡化流程，讀者可以全部勾選。安裝好了以後，重啓 Eclipse 即可。
+
+使用說明
+
+以下的篇幅為說明 GWT 的基本架構跟用法。首先新創一個 "Web Application Project" 的專案。
+
+▲ 圖2：http://www.openfoundry.org/images/RC/GWT/img2.png
+
+輸入想要的專案名稱.本文將會用 test 這個名字。
+
+▲ 圖3：http://www.openfoundry.org/images/RC/GWT/img3.png
+
+Google 的 Eclipse Plugin 在生成新的專案時會產生一個範例專案。我們先試著執行這個專案以確定安裝程序都順利。若是一切都順利（設定維持預設），讀者應該可以開啓瀏覽器後輸入 "http://127.0.0.1:8888/Test.html?gwt.codesvr=127.0.0.1:9997"，即可看到以下畫面：
+
+▲ 圖4：http://www.openfoundry.org/images/RC/GWT/img4.png
+
+輸入名字後會看到以下畫面：
+
+▲ 圖5：http://www.openfoundry.org/images/RC/GWT/img5.png
+
+接下來，我們試著理解這個 GWT 專案是如何運作的。
+
+我們先開啓 Test.java。可以先注意到 Test 這個類別是實作 EntryPoint 這個介面。在一個 GWT 專案中，實作 EntryPoint 的類別會是第一個被載入的程式。從實作的函式 onModuleLoad 這個名稱就可以猜到一二。現在我們進入這個函式裡一探究竟。
+
+曾經有 Java 使用者圖形界面 (GUI) 編程經驗的讀者，應該會對代碼有一定的熟悉感，因為 GWT 的內建函式庫有承襲一些 Java GUI 編程的規律。內建的 Button 類別在宣告以後，可以在傳入一個 ClickHandler 的類別來決定使用者按完按鈕後的後續動作。
+
+在 GWT 裡，有一個叫做 RootPanel 的物件，此物件，在 GWT 主要用來放置各種界面工具 (widget)。透過 RootPanel.get("x").add(widget) 這行代碼，GWT 會把 widget 加到頁面上，更具體地說，加到HTML id 是 "x" 的地方 (主頁HTML的代碼可以在war這個資料夾下找到)。GWT 有各式各樣的內建界面工具可以使用，在本實作專案中我們只有用到少數幾個，有興趣的讀者可以自己玩玩看不同的工具。
+
+最後，筆者將介紹一下 GWT 的 RPC (遠端過程調用)。作為一個網路應用程式，客戶端程式需要與伺服器溝通。 GWT 的 RPC 便是要讓應用程式透過 HTTP 交換 Java 物件的這個過程更加容易。您也許注意到這行代碼：
+
+private final GreetingServiceAsync greetingService = GWT
+            .create(GreetingService.class);
+
+此外，之後程序也有使用到 greetService 這個變數。這個便是應用到 RPC 的實例。在客戶端，開發者需要編寫 stub 函式，用意在於讓程式知道函式的各種輸入（請看GreetingServiceAsync.java）。實際的處理代碼則是編寫在伺服器端（見GreetingServiceImpl.java）。注意，這個伺服器端的代碼需要繼承 RemoteServiceServlet，然後，實作 GreetingService。
+
+RemoteServiceServlet 的繼承使得程序員不需要處理序列化的問題而交由內建已經實做的類別來執行以增加開發效率跟降低出錯率。透過這樣的方式,開發人員能夠輕鬆寫出與伺服器互動的程序。
+
+*以下是我的專案的代碼:
+
+package com.kent.app.client;
+
+import com.kent.app.shared.FieldVerifier;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+/**
+ * Entry point classes define onModuleLoad().
+ */
+public class Test implements EntryPoint {
+    /**
+     * The message displayed to the user when the server cannot be reached or
+     * returns an error.
+     */
+    private static final String SERVER_ERROR = "An error occurred while "
+            + "attempting to contact the server. Please check your network "
+            + "connection and try again.";
+
+    /**
+     * Create a remote service proxy to talk to the server-side Greeting service.
+     */
+    private final GreetingServiceAsync greetingService = GWT
+            .create(GreetingService.class);
+
+    /**
+     * This is the entry point method.
+     */
+    public void onModuleLoad() {
+        final Button sendButton = new Button("Send");
+        final TextBox nameField = new TextBox();
+        nameField.setText("GWT User");
+        final Label errorLabel = new Label();
+
+        // We can add style names to widgets
+        sendButton.addStyleName("sendButton");
+
+        // Add the nameField and sendButton to the RootPanel
+        // Use RootPanel.get() to get the entire body element
+        RootPanel.get("nameFieldContainer").add(nameField);
+        RootPanel.get("sendButtonContainer").add(sendButton);
+        RootPanel.get("errorLabelContainer").add(errorLabel);
+
+        // Focus the cursor on the name field when the app loads
+        nameField.setFocus(true);
+        nameField.selectAll();
+
+        // Create the popup dialog box
+        final DialogBox dialogBox = new DialogBox();
+        dialogBox.setText("Remote Procedure Call");
+        dialogBox.setAnimationEnabled(true);
+        final Button closeButton = new Button("Close");
+        // We can set the id of a widget by accessing its Element
+        closeButton.getElement().setId("closeButton");
+        final Label textToServerLabel = new Label();
+        final HTML serverResponseLabel = new HTML();
+        VerticalPanel dialogVPanel = new VerticalPanel();
+        dialogVPanel.addStyleName("dialogVPanel");
+        dialogVPanel.add(new HTML("Sending name to the server:"));
+        dialogVPanel.add(textToServerLabel);
+        dialogVPanel.add(new HTML("Server replies:"));
+        dialogVPanel.add(serverResponseLabel);
+        dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
+        dialogVPanel.add(closeButton);
+        dialogBox.setWidget(dialogVPanel);
+
+        // Add a handler to close the DialogBox
+        closeButton.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                dialogBox.hide();
+                sendButton.setEnabled(true);
+                sendButton.setFocus(true);
+            }
+        });
+
+        // Create a handler for the sendButton and nameField
+        class MyHandler implements ClickHandler, KeyUpHandler {
+            /**
+             * Fired when the user clicks on the sendButton.
+             */
+            public void onClick(ClickEvent event) {
+                sendNameToServer();
+            }
+
+            /**
+             * Fired when the user types in the nameField.
+             */
+            public void onKeyUp(KeyUpEvent event) {
+                if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+                    sendNameToServer();
+                }
+            }
+
+            /**
+             * Send the name from the nameField to the server and wait for a response.
+             */
+            private void sendNameToServer() {
+                // First, we validate the input.
+                errorLabel.setText("");
+                String textToServer = nameField.getText();
+                if (!FieldVerifier.isValidName(textToServer)) {
+                    errorLabel.setText("Please enter at least four characters");
+                    return;
+                }
+
+                // Then, we send the input to the server.
+                sendButton.setEnabled(false);
+                textToServerLabel.setText(textToServer);
+                serverResponseLabel.setText("");
+                greetingService.greetServer(textToServer,
+                        new AsyncCallback() {
+                            public void onFailure(Throwable caught) {
+                                // Show the RPC error message to the user
+                                dialogBox
+                                        .setText("Remote Procedure Call - Failure");
+                                serverResponseLabel
+                                        .addStyleName("serverResponseLabelError");
+                                serverResponseLabel.setHTML(SERVER_ERROR);
+                                dialogBox.center();
+                                closeButton.setFocus(true);
+                            }
+
+                            public void onSuccess(String result) {
+                                dialogBox.setText("Remote Procedure Call");
+                                serverResponseLabel
+                                        .removeStyleName("serverResponseLabelError");
+                                serverResponseLabel.setHTML(result);
+                                dialogBox.center();
+                                closeButton.setFocus(true);
+                            }
+                        });
+            }
+        }
+
+        // Add a handler to send the name to the server
+        MyHandler handler = new MyHandler();
+        sendButton.addClickHandler(handler);
+        nameField.addKeyUpHandler(handler);
+    }
+}
+
+結論
+
+本文介紹了 GWT 的一些相關知識以及基本的運作結構。透過 GWT，開發人員可以利用 Java 編寫前端跟後端的代碼。這使得代碼的統一性比混合式的架構更好。
+
+後續
+
+下次，筆者將帶讀者實踐一個利用更多 GWT 函式庫的專案。
+
+參考資料
+
+1. GWT 官方網站
+https://developers.google.com/web-toolkit/
+
+2. GWT RPC 官方介紹
+https://developers.google.com/web-toolkit/doc/latest/tutorial/RPC
+_______________________________________________________________
+
+■ [技術專欄] 網站程式上線前需要準備的事（四）
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net (http://blog.xdite.net/)。
+
+第 4 件事：架設一套 issue tracking system
+
+你用什麼工具來管理軟體專案的進度呢？我曾經一度認為使用 issue tracking 管理專案進度，是一件天經地義的事。大家都是這麼做的，所以這個題目沒什麼好談的。後來，我才發現這個印象大錯特錯…
+
+絕大多數的人真的只用「mail」和「cc」來管專案，that’s all（註1）。
+P.S. issue 真的太多的話，他們會改用 …Excel！！
+ZOMG…
+
+
+What is issue tracking system？
+
+Issue Tracking system，顧名思義就是紀錄、追蹤問題的系統。BugZilla (http://www.bugzilla.org/)、Trac (http://trac.edgewall.org/)、Redmine (http://www.redmine.org/)、JIRA (http://www.atlassian.com/software/jira/overview)、lighthoustapp (http://lighthouseapp.com/)、Basecamp (http://basecamp.com/)…等等這幾套軟體，都是知名的 Issue Tracking system。
+
+一套合格的 Issue Tracking system 的 Issue 至少要可以紀錄這些內容：
+
+Issue 的主題
+Issue 的內容
+Issue 現在的狀態（新建立、已指派、已解決、已回應、已結束、已擱置…etc）
+Issue 優先權（正常、重要、緊急、輕微、會擋路…etc.）
+Issue 發生日期
+Issue 希望解決日期
+Issue 實際解決日期
+Issue 被分派給誰
+Issue 的附件
+Isuue 的觀察者有誰
+
+
+為什麼 email 不管用？
+
+常人使用的 email 管理法其實會有幾個很大的缺點：
+
+1.喪失時間感、無確切完成日期
+
+專案中最珍貴的資源無非是「時間」。僅使用 email 往來，會造成一個嚴重的假象：大家都一直有信件往來，所以整件事其實是有進度的。但其實，專案進行的速度卻是牛步…
+
+後面的原因其實是因為：「回信」是一個「順序」執行動作，當一方回了，下一方才能決定要做什麼、要回什麼。「什麼時候」再回（有空回，做完回？）其實沒有人知道。通常一個來回就要搞掉一個上午，甚至是一個整天。但其實整件事沒什麼進展。
+
+這麼浪費效率，逼得某些 PM 還得自己用 TODO list + email tracking label 才可以勉強控制這種局面。
+
+2.無確切執行人
+
+有的 email，cc 者一大堆：A 先指派了 B 做這個工作，但 B 做到一半覺得需要 C 的火力支援，於是把 C 加入這個討論串裡面。C 做到一半覺得不妥，請示長官 D 要如何配合這個專案。往往一整個 mail 牽扯了一大堆人進去，大家討論來討論去，好不熱烈。
+
+但是呢…誰需要去執行，哪些事需要被執行，什麼時候這些事需要被執行完畢？在這一整個串裡面完全被模糊掉了。
+
+3.洩密
+
+cc 者一大堆。怎麼分得清楚誰有權知道、誰無權知道這一串信裡面提到的執行事項？
+
+4.優先權的分配
+
+一個專案可能同時間有幾十上百條待處理事項需要被執行。請問哪一條需要先被執行？它們的優先權又是用什麼標準決定的呢？
+
+5.處理事項目前的執行狀態
+
+一個較具規模的專案，可能不只一個人參與（多個 RD 和多個美術）。到底誰正在執行什麼項目，會不會相撞（項目、執行者）？什麼項目其實已經完工了，需要被 archive 起來？資訊有沒有 outdate 問題？
+
+Email + Excel 其實很不夠用…
+
+
+What you need : Project Management Tool
+
+其實由這一連串的問題整理下來，可以清楚的發現，一個專案需要的是什麼？這也是 Project Management Tool 可以提供給你的東西。
+
+與其說 Redmine、JIRA、Basecamp 是 Issue Tracking System，更精確的來說，它們應該被稱為「專案管理工具」。
+
+要能夠的讓專案項目有計畫且順利的被執行，需要：
+
+一個地方可以透明的列出所有需要被執行的項目。(Issue List)
+一個地方可以列出階段內需要被執行的項目。(Issue Milestone)
+一個可以記載內容、狀態、優先權、日期、分派者、觀察者，且具有「permalink」、「權限控管」，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+可以 cross reference 或具有子票功能。
+一個地方可以整理統合專案現在所有的相關資訊。（Wiki 功能）
+一個地方可以看到自己今天需要 Focus 進行哪些項目。(Issue Personal Dashboard)
+一個地方能讓 Manager 可以看到自己的 Employee 正在進行哪些項目，這些項目目前的狀態是什麼。(Issue Query)
+至於我個人一直以來偏好的系統，就是 Redmine。尤其是近一兩年的版本，Issue Query 的加強和子票／相關票的功能被開發出來，讓我在專案管理上更加的得心應手（註2）。
+
+簡單歸納
+
+專案往往會搞到失火，或是時間不夠用。問題往往出在整個專案之間的「不透明」。
+
+搞不清楚總共有多少事需要完成
+搞不清楚目前這件事的進行狀態
+搞不清楚今天要進行哪些事
+搞不清楚現在正在做的事，是否跟「目前」的全局有強大的正關聯
+搞不清楚哪些事必須在何時就需要「確切」的被完成，否則就會產生重大風險
+
+要讓專案順利上線，一套好的 issue tracking system 是不能少的啊。
+
+
+（註1）：我一直以為裝個 issue tracking system 是常識。為什麼會寫這種「常識」等級的東西？因為我後來發現這完全不是「常識」，特別對「PM」來說不是「常識」（顛覆了我的認知…orz）！之前在某社服務時，就發現他們竟然沒有這種東西，提議要部門內架設還被當作是異類。接著所有高階主管討論了超過一個月才勉強決定要裝 issue tracking。接著又花了兩個月的時間討論要裝哪一套 issue tracking，再花了一個月才把決定好的 issue tracking 架起來。真是嘆為觀止！實在受不了種種的低效率，最後早早 say bye。
+
+（註2）：切票示範（已取得授權）
+
+Redmine Nested Ticket Sample : http://www.flickr.com/photos/xdite/6469521821/sizes/o/in/photostream/
+Redmine Milestone Sample : http://www.flickr.com/photos/xdite/6469526205/sizes/o/in/photostream/ 
+_______________________________________________________________
+
+﻿■ [自由專欄] OPEN 的力量 No. 1：ARDUINO 開放硬體計畫
+
+ChiuHao Chen / 編譯
+
+◎ 本文轉載自台灣創用 CC 計畫︰http://creativecommons.org.tw/blog/20120530。
+
+2005 年，兩位來自義大利的互動設計師 Massimo Banzi 與 David Cuartielles 決定展開一個新的嘗試，他們將硬體設計圖使用創用CC 姓名標示-相同方式分享 (CC BY-SA) 釋出。他們稱這個計畫為開源的實體運算 (Physical Computing) 平台--Arduino。
+
+Arduino 其實就是一個電路板上面焊上簡單的微處理器，並且可以讓人們輕鬆的裝上開關與感測器。這樣的作法，可以讓人們從頭到尾創造自己的新應用，對於硬體 DIY 愛好者來說，簡直充滿的無限的想像。
+
+過去幾年，Massimo 從 Arduino 平台上看到了許多富有創意且成功的案子，像是合成器，吉他擴大器到網路電話 (VoIP) 的路由器。Wired 主編 Chris Anderson 也用 Arduino 做了一個 DIY Drone 專案讓無人飛行器飛了起來！另一個開源的 3D 印表機專案 Makerbot 也以 Arduino 為基礎建立了更為耐用的設計。
+
+正因為 Arduino 採用了創用CC 姓名標示-相同方式分享授權，也因而產生了許多衍生的專案。Banzi 銷售了超過 20 萬套 Arduino 電路版且銷售量持續增加中。正因為 Arduino 開放原始碼，團隊也不需要提供大量的技術支援。Banzi 說：人們反而傾向願意幫助我們而且原諒我們的缺失，這真是一個良性循環。 Banzi 一開始選擇讓 Arduino 開放平台也是因為他所執教的設計學校無法繼續提供資金。面對這個窘境，Banzi 決定上傳他的電路圖到 Berlios（一個德國的網站，功能類似 Google Code，Github 讓人放置開源專案），並且採用 GPL 授權釋出軟體，並用 CC BY-SA 釋出硬體設計。時至今日，這樣的舉動所產生的影響力，已經大大的超越了當初只是想要把設計圖讓人免費使用的簡單意圖。
+
+Banzi 最後這麼說：「藉由將創用CC 標章放在電路板與設計圖上，我們可以將單純的硬體設計轉化為一種文化（編案：自由開放的文化）讓人們可以盡情的在這個自由的園地上創造！而且，不管我們發生了什麼事情，這個 Arduino 專案將會一直存活下去。」
+
+原文出處：The Power of Open (http://thepowerofopen.org/)
+_______________________________________________________________
+
+﻿■ [自由專欄] Facebook 的開源價值
+
+Kenneth Mak / 文
+
+◎ 本文轉載自 Linuxpilot，原文請見此 (http://www.linuxpilot.com/industry/news/2012060101Facebook) 。 
+
+Facebook 因為股價急挫，飽受多方評論家和媒體指責。但作為開源業界的一份子，Facebook 其實作出了不少貢獻，值得後進的企業學習。
+
+http://www.openfoundry.org/images/120612/FACEBOOK/facebook.png
+▲ 圖1
+
+Facebook 與很多企業一樣，使用了 LAMP (Linux/Apache/MySQL/PHP) 來架設服務。很多大型企業都是開源技術的使用者，卻並非開源技術的貢獻者。這些企業利用了開源技術提供了生產力，但卻沒有想過把這些技術加以改良後，再回饋給開源社群。但 Facebook 卻不一樣，以 PHP 為例，Facebook 研發出 HipHop for PHP 的執行環境，並改良 PHP 以增加其執行速度與效率。資料庫方面，Facebook 使用了 MySQL 來保存用戶的數據，並引進了 NoSQL 資料庫的技術，改良的成果已經被整合到 Apache Hadoop 計畫中的 Cassandra 和 HBase 之中。
+
+數據分析方面 Facebook 使用的是開源的是 scribe，硬體上則把旗下數據中心和硬體規格以 Open Compute 方式公開。以往數據中心的設計屬於商業機密，Open Compute 將令更多的廠商可以參與有關設計，營運時有更好的能源效益。在 IPO 這件事上 Facebook 的確有不妥當之處，在財源充足的情況下上市集資仍然是一個謎團，但作為開源技術的使用者及貢獻者，Facebook 的確有不可抹殺的功勞。
+_______________________________________________________________
+
+﻿■ [自由專欄] 為學生提供的創作平台 Mozilla Factory 始動
+
+Kenneth Mak / 文
+
+◎ 本文轉載自 Linuxpilot，原文請見此 (http://www.linuxpilot.com/industry/news/2012052901MozillaFactory) 。
+
+如何可以提高學生的創作能力？英國的 Raspberry Pi (http://www.linuxpilot.com/industry/news/2012042801Raspberry-Pi%20) 便是一個好例子。最近開發 Firefox 的 Mozilla 支部 Mozilla Japan，就在日本開始了 Mozilla Factory 平台，為有志成為開發人員的中學生提供協助。
+
+http://www.openfoundry.org/images/120612/MozillaFactory/mozilla factory01.png
+▲ 圖1
+
+中學生正是人生中充滿夢想的時期，然而由於能力所限，縱使有天馬行空的想法，但沒有技術、也沒有專家提供意見，這些構思最後很可能胎死腹中。另一方面業界也有開發方案的需要但苦無人手，Mozilla Factory (http://www.mozillafactory.org/en-US/) 提供的便是一個讓學生可參與實戰開發、而又可以為企業帶來價值的平台。Mozilla Factory 有三種角色、分別是主力參與開發的中學生 Player、為 Player 提供支援的高中生和大學生 Tutor、以及提供意見的業界專家 Mentor。三種角色會合力執行由業界提供，或由 Player 發起的開發計畫，直到成品產出為止。
+
+http://www.openfoundry.org/images/120612/MozillaFactory/mozilla factory02.png
+▲ 圖2
+
+開發計畫的題材十分廣泛，可以來自研究機構、教育機關和企業，並由 Mozilla Factory 根據該題材對社會的貢獻，決定是否接納成為新的開發計畫。作為活動的第一階段，現時正在向公眾招募中，詳情可到官方網站了解。有關計畫由進度、到計畫內容和程式碼都必須保持完全公開，藉此希望全世界都可以得益。不知道類似的平台何時才可以在我們的學校中出現？希望有生之年可以看得到吧。
+_______________________________________________________________
+
+﻿■ [源碼新聞] Fedora 17 發佈
+
+黃湘婷 / 編譯
+
+Fedora 為 Red Hat 贊助的開放原始碼作業系統，於 5 月 29 日發布了 17 版，代號為 Beefy Miracle。Fedora 的專案負責人 Robyn Bergeron 表示，對於 Fedora 17 的發佈，他們感到非常自豪，oVirt 虛擬化平台及 JBoss 應用伺服器的增加、OpenStack 的增強以及對於桌面環境新版本的支援，使得 Fedora 17 成為適用於各類用戶的強大作業系統。
+
+新版本的 Fedora 採用 GNOME 3.4 與 KDE 4.8 桌面環境，可使用 OpenStack, Eucalyptus, CloudStack, Open Nebula 等多種雲端平台，供色彩列印用的 ICC 色彩描述檔，升級為 2.8 版的影像處理軟體 GIMP，以及 Red Hat 企業虛擬化產品 oVirt 的改善，提供更豐富的虛擬化管理系統。
+
+在 Fedora 17 提供的雲端運算平台中，OpenStack 為最新的 2012.1 (Essex) 版本，包括 Horizon 網路介面和 Quantum 網路工具兩個最新組件。OpenStack 擁有大型的供應商用戶，如︰Rackspace (http://www.rackspace.com/) 、HP 及 Dell，甚至 Red Hat 也已加入 OpenStack 團隊 (http://www.openstack.org/community/companies/)，致力於使用 OpenStack 來推出新產品。
+
+而此次增加的 JBOSS 同樣為 Red Hat 的產品，JBOSS 為一個快速、占用空間小，基於 Java EE 的應用伺服器，可獨立運作提供 JSP 動態網頁服務。另外還有預計在 2012 年 6 月發佈的 Eclipse SDK Juno 預覽版，以及 Java 7 預設執行環境。
+
+
+相關網址︰
+
+Fedora 17 發佈
+http://www.linux-magazine.com/Online/News/Fedora-17-Released
+
+Fedora 17 發佈，採用 Gnome 3.4 與 GIMP 2.8
+http://www.muktware.com/3641/fedora-17-released-comes-gnome-34-gimp-28
+
+使用最新開放原始碼軟體的 Fedora 17 發佈
+http://www.linuxuser.co.uk/news/fedora-17-finally-released-with-the-very-latest-in-foss/
+_______________________________________________________________
+
+﻿■ [源碼新聞] Samsung 成為 Linux 基金會會員
+
+黃湘婷 / 編譯
+
+Samsung 在 6 月 5 日宣佈耗資了 50 萬美元，成為 Linux 基金會白金等級的會員，支援 Linux 系統以及相關的非營利開放原始碼專案。這個會員身分也給予 Samsung 一個對於 Linux 開發有更多發言權的位置。
+
+Linux 基金會共有三個會員等級，分別為銀、金、白金，每級的會員皆須繳納年度會費作為幫助基金會對於 Linux 的貢獻，早在三年前 Samsung 就已經為銀等級的會員，而這次 Samsung 願意加入最高等級的白金會員，顯示 Samsung 瞭解到 Linux 協同開發的價值。
+
+當然投資的影響並不立即可見，這比較像是一個長期的承諾。Samaung 的許多產品如電視、相機及 Android 系統的手機都至少使用一些基於 Linux 的軟體，Linux 基金會的執行董事 Jim Zemlin 表示，Sausung 對於 Linux 基金會的貢獻將有助維護其產品的成功。
+
+Jim Zemlin 也表示，除了提升自身產品的效益外，也能使其在全球開放原始碼運動中占有一席之地，有助於與 Apple 的競爭。其他對於 Linux 基金會貢獻良多的公司還包括 Intel, Red Hat 及 Oracle 等等。
+
+Samsung 的副總裁 WonJoo Park 在一份聲明稿中表示，Samsung 期待能增加協同開發以及支援能令基於 Linux 設備持續成長的投資組合，並努力推進對於 Linux 的貢獻。
+
+
+相關網址︰
+
+Samsung 成為 Linux基金會白金級會員
+http://arstechnica.com/information-technology/2012/06/samsung-becomes-linux-foundation-platinum-member-takes-a-seat-on-board/
+
+Samsung 加入 Linux 基金會
+http://bits.blogs.nytimes.com/2012/06/05/samsung-jumps-on-linux-bandwagon/
+
+Samsung 成為 Linux 基金會白金級會員
+http://www.linuxfoundation.org/news-media/blogs/browse/2012/06/samsung-joins-linux-foundation-platinum-member
+_______________________________________________________________
+
+﻿■ [源碼新聞] Oracle Java API 關鍵判決︰Google 未侵犯專利
+
+黃湘婷 / 編譯 
+ 
+Oracle 與 Google 的智慧財產權之爭，又有了新的發展，自 4 月中首次開庭至今已進入第 6 個星期，根據最新一次的開庭結果，此案裁定 Google 的 Android 作業系統未侵犯 Oracle 的 Java 專利。 
+ 
+Oracle 認為 Google 涉嫌侵權的兩項專利分別為美國專利號 RE38, 104 (http://www.google.com/patents?id=8xkPAAAAEBAJ&pg=PA1&dq=RE38,104#v=onepage&q=RE38%2C104&f=false) 及 6,061,520 (http://assets.sbnation.com/assets/1108353/US6061520.pdf) 。 
+ 
+Google 表示，Android 作業系統所使用的 Java 應用程式介面 (API) 為開放原始碼，此部分 Java 平台的使用是公平且合法的。對於被 Oracle 查出是複製的 9 行 Java 程式碼，僅為「測試文件」，並沒有發布於 Android 手機上，但 Oracle 的律師指控，就是因為這 9 行程式碼的複製，才加快了 Android 的上市。 
+ 
+意外的是，此案的聯邦法官 William Alsup 被認為是站在 Google 這方，他透露自己曾經撰寫過程式，也曾寫出過類似的函式，既然他能夠做到，那麼其他人也可以，複製程式碼只是為了加快速度，純粹是個意外，他不覺得這和 Android 的上市時間有關。 
+ 
+對於這樣的審判結果，Oracle 誓言將提出上訴，繼續保護 Java 的智財權以及 Java 社群超過 900 萬的開發人員。 
+
+
+相關網址︰ 
+
+Oracle 與 Google 兩項專利權之爭
+http://www.infoq.com/news/2012/05/oraclevgoogle-patents 
+ 
+Google 贏得了關鍵的 API 判決 
+http://arstechnica.com/tech-policy/2012/05/google-wins-crucial-api-ruling-oracles-case-decimated/ 
+ 
+法官裁定 Oracle 的 Java API 元件不具可著作性，駁回其對 Google 的賠償請求
+http://www.theverge.com/2012/5/31/3055620/oracle-java-api-not-covered-copyright-law
+_______________________________________________________________
+
+﻿■ [源碼新聞] Amazon EC2 提供 ARM 版 Ubuntu Server
+
+Kenneth Mak / 文
+
+◎ 本文轉載自 Linuxpilot ，原文章請見此 (http://www.linuxpilot.com/industry/news/2012060501EC2-ARM-Ubuntu) 。
+
+Amazon EC2 已經是很多邁向雲端時其中一個最受歡迎的選擇，但一直以來 Amazon EC2 的虛擬機實例 (Instance) 都以 x86 平台為主。但這種狀況卻快將被打破。
+
+http://www.openfoundry.org/images/120612/UbuntuServer/ubuntuserver.png
+▲ 圖1
+
+最受歡迎的其中一個 Linux 版本 Ubuntu 發行廠 Canonical，在 2012 年 5 月 25 日，宣布向 Amazon EC2 提供 ARM 版本的 Ubuntu Server。Ubuntu 早在 4 年前已經積極支援 ARM 架構，比其他 Linux 廠商都來得早，正式版本的 ARM 版 Ubuntu Server 在 Ubuntu 11.10 開始提供，4 月分亦正式升級至 Ubuntu 12.04 Server LTS (Long Term Support)。目前 ARM 版 Ubuntu Server 的 AMI (Amazon Machine Image) 只是實驗性質，主要對象為開發人員和系統管理員。要使用的話可到 EC2 的控制台啟用新的 Instance，打開 Community AMIs 然後選擇 AMI ID 為 ami-aef328c7 的 Instance，便可使用 ARM 版本的 Ubuntu Server AMI，此 AMI 提供 Ubuntu 12.04 armhf (ARM Hardware Float) 系統環境，使用時因為記憶體用量比較多，必須使用 m1.large 的 Instance。
+_______________________________________________________________
+
+﻿■ [源碼新聞] 世界銀行實況活動報導：開放存取政策與發展
+
+謝良奇 / 編譯
+
+◎本文轉載自台灣創用 CC 計畫，原文請見此 (http://creativecommons.org.tw/blog/20120604) 。
+
+世界銀行週一召開了世銀開放存取政策之發展意義會議，與會者包括了哈佛大學的 Peter Suber、美國大學的 Michael Carroll（Mike 是創用CC 的理事會成員）和世銀的 Cyril Muller 與 Adam Wagstaff。大會的時間點正巧碰上世銀最近宣佈開放存取政策以及開放知識庫。世銀的開放存取政策要求該銀行發佈的所有研究產出及知識產物，都必須採用創用CC 姓名標示作為預設授權。
+
+會議對話圍繞著世界銀行研究以及普遍的開放存取，對於全球各國發展的影響與潛力。舉例而言，開放存取政策下的允諾的研究使用與重複使用，如何創造出解決大規模全球挑戰如氣候變遷和饑餓的契機？與會者指出，世界銀行的研究如今被彙整在一處，同時免費透過網際網路提供給所有人使用，正是開放存取政策立即帶來的好處。這一點和讀者必須付費瀏覽的訂閱性期刊，有著很大的不同。
+
+Carroll 點出著作權在開放政策中扮演的重要角色。讀者如果不知道被賦予了哪些權利，就無法讓開放存取的研究與資料發揮價值與影響。因為重新散佈以及從網路下載資訊都需要著作權許可。世銀採用的創用CC 姓名標示，會自動授與重新散佈與翻譯許可。類似方式在開放教育領域上，取得了如麻省理工學院的開放式課程這樣的成功範例。
+
+與會者拿哈佛最近無法負擔學術期刊成本的消息，藉此凸顯傳統期刊的高昂定價。Suber 指出以每年 9 百萬美元的期刊預算，哈佛大學圖書館仍無法負擔所有的期刊訂閱，更何況是其他大學。Suber 表示哈佛有 7 個學院已開始採取示範性的開放存取政策。
+
+聽眾提出學者為何要將成果以開放存取方式，而非在受到公認的期刊上發表。與會者表示世銀的開放存取政策允許作者兩者兼顧。作者只須將論文複製一份到開放知識庫中，也不會禁止發表到傳統期刊上。Suber 指出透過在研究成果上加諸開放授權，更可以提高對讀者與使用者的可用性。
+
+Carroll 也提出文字探勘等新技術在面對現今複雜問題上，可協助學者解決龐大的研究文獻帶來的資訊超載。傳統出版模式一般來說不允許進行這類的文字探勘分析，開放存取由於事先給予許可，能夠協助研究者更快解決問題並推展科學創新。英國正在討論文字探勘在著作權上所涉及的法律問題。
+
+原文出處：http://creativecommons.org/weblog/entry/32839。
+_______________________________________________________________
+
+■ [源碼新聞] OSSACC 徵求各領域自由軟體教學應用教案
+
+林珈宏 / 文
+
+教育部校園自由軟體數位資源推廣服務中心 (OSSACC) [註] 即日起徵選自由軟體應用於中小學各領域教學應用的教案，舉凡語言、數學、自然、社會、資訊、藝術與人文等領域中，可藉由自由軟體進行或輔助教學者，皆歡迎投稿。審核錄取的前 20 名將敬致稿費新台幣 2000 元以及 ezgo 10 限量版 T-shirt 乙件。並且，OSSACC 將於 2012 年 8 月 ezgo 發表會中，將所有投稿的教案公布分享給全國教師，亦將收錄於 OSSACC 網站及教育部相關網站之中。
+
+詳細資訊
+
+* 主題：自由軟體教學應用（含自由教材PhET、usgs 動畫…等）。
+* 內容：約 2000 字或以上。
+* 領域：不限。語言、數學、自然、社會、資訊、藝術與人文…皆可。
+* 著作權：需以創用 CC 授權「姓名標示-相同方式分享」(http://creativecommons.org/licenses/by-sa/3.0/tw/) 或「姓名標示-非商業性-相同方式分享」(http://creativecommons.org/licenses/by-nc-sa/3.0/tw/) 釋出，以便於提供給其他老師使用。
+* 截稿：2012 年 7 月 25 日 晚上 12：00 止。
+* 稿費：錄取 20 名。經錄取者，酌發稿費 2000 元，外加 ezgo 10 限量版 T-shirt 乙件。
+* 格式：可參考如下連結範本：
+	1. 高慧君老師「Scratch 程式設計」(http://utweb.nksh.tp.edu.tw/ezteach/content/教案研發國中電腦高慧君scratch程式設計)
+	2. 余瑞琮老師「波動」(http://utweb.nksh.tp.edu.tw/ezteach/content/教案研發高中物理余瑞琮波動)
+	3. 王立忠老師「創意夢想家」(http://utweb.nksh.tp.edu.tw/ezteach/content/教案研發國中生科王立忠創意夢想家)
+* 其他注意事項：
+	1. 可共同撰寫，但稿費一份教案只能領乙份。
+	2. 本教案需經教育部聘顧之委員評選。
+	3. 教案內容投稿後，即表示同意本單位將其放置於網站，提供給全國老師分享。若有其他授權方式或不同意分享，請註明於教案首頁。
+* 連絡人：有任何需要進一步說明的地方，歡迎隨時與 OSSACC 蔡小姐聯繫： ossacc@gmail.com
+
+[註] OSSACC 簡介：在自由軟體領域中，OSSACC (http://ossacc.moe.edu.tw/) 是一群致力於將自由軟體融入於國小、國中以及高中課程的教育部推廣單位。OSSACC 集結了一群愛好自由軟體的教師及學生，每年推出一版專門為師生量身打造的 ezgo 光碟 (http://ezgo.westart.tw/)，收錄許多可應用在教學上的自由軟體。並且舉辦各類型自由軟體相關活動，有針對教師的自由軟體研習活動、也有給同學們參與的自由軟體競賽。另外，OSSACC 也促成了教師自由軟體社群的產生，來自各方愛好自由軟體的老師會舉辦定期與不定期的聚會，分享自己的設計教案、建置自由軟體電腦教室環境的經驗以及自由軟體的新知。 
+_______________________________________________________________
+
+■ [源碼新聞] 歡迎參加北區技專校院 CMMI 研習工作坊
+
+中華科技大學資訊工程系 鄧姚文老師 / 文
+
+一、主旨：
+中華科技大學舉辦「北區技專校院 CMMI 研習工作坊」，敬邀夥伴學校師生參加。
+
+二、日期：
+101 年 6 月 19 日（星期二）08:20 - 12:20
+
+三、地點：
+中華科技大學復華樓 11F 演講廳
+
+四、參與對象：
+敬請各夥伴學校教師與學生撥冗參加本研習工作坊，對於軟體工程或專案管理相關課題有興趣者，都歡迎踴躍報名。
+
+五、主辦單位：北區技專校院教學資源中心
+執行單位：中華科技大學、台北科技大學、北台灣科學技術學院
+
+六、報名方式：
+僅受理線上報名，請於 101 年 6 月 12 日前至中華科技大學資訊工程系網站之活動公告處報名。
+網址：http://csiecc.cust.edu.tw/~csiecc/cmmi2012jun/
+
+七、聯絡方式：
+中華科技大學資訊工程系 黃碧琴小姐
+電話：(02) 2782-1862 轉 277
+E-Mail：chin3@cc.cust.edu.tw
+
+中華科技大學資訊工程系 鄧姚文老師
+電話：(02) 2782-1862 轉 277
+E-Mail：ywdeng@cc.cust.edu.tw
+
+八、備註：
+全程參與本研習工作坊之教師與學生授予研習證明。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、彭冠雯、王怡凱
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

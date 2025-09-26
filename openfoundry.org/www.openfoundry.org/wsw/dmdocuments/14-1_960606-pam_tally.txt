@@ -1,0 +1,66 @@
+
+pam_tally - login counter (tallying) module
+
+If you wanted to lock out users who failed at entering their passwords
+correctly after ¡ythree¡z attempts, you could use the pam_tally module
+in the ¡y/etc/pam.d/common-auth¡z configuration file by adding
+two lines like this:
+
+auth required pam_tally.so no_magic_root
+account required pam_tally.so deny=3 no_magic_root
+
+Then you need to create ¡y/var/log/faillog¡z and set it to read/write only by root:
+
+# touch /var/log/faillog
+# chmod 600 /var/log/faillog
+
+You can type ¡ypam_tally --help¡z as root to learn about its usage.
+To reset the tally for a user and unlock his account, type
+¡ypam_tally --user username --reset¡z.
+
+Examples:
+
+cyj@PBG4:~$ cat /etc/pam.d/common-auth 
+# 
+auth required pam_unix.so nullok_secure
+auth required pam_tally.so no_magic_root
+account required pam_tally.so deny=1 no_magic_root
+
+Debian GNU/Linux 3.1 PBG4 tty1
+
+PBG4 login: cyj
+Password:
+Login incorrect
+
+PBG4 login: cyj
+Password:
+Login incorrect
+
+PBG4 login: cyj
+Password:
+
+Authentication failure
+
+PBG4 login: root
+Password:
+
+PBG4:~# pam_tally --user cyj 
+User cyj (1000) has 3
+
+PBG4:~# pam_tally --user cyj --reset=0 
+User cyj (1000) had 3
+
+PBG4:~# pam_tally --user cyj 
+User cyj (1000) has 0
+
+PBG4:~# logout
+
+PBG4 login: cyj
+Password:
+
+cyj@PBG4:~$
+
+See Also:
+http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html
+http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html/sag-pam_tally.html
+

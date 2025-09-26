@@ -1,0 +1,46 @@
+#!/bin/bash
+# form http://wiki.ubuntu.org.tw/index.php/UbuntuServerTips
+
+# 清除所有防火牆規則，並建立全部阻擋封包進入
+iptables -F
+iptables -P INPUT DROP
+
+# 對於 ping 要求的封包全部拒絕，不過對於自己發出去的 ping 封包要接受
+iptables -A INPUT -p icmp --icmp-type 8 -j DROP
+iptables -A INPUT -p icmp --icmp-type 0 -j ACCEPT
+
+# 開放 ftp (20,21) ，ssh (22)，http (80) tcp port
+for port in 20 21 22 80
+ do
+    iptables -A INPUT -i eth0 -p tcp --dport $port -j ACCEPT
+ done
+
+# 開放 ssh (22)，bind (53) udp port 
+# 請參考 /etc/services
+for uport in 22 53
+ do
+    iptables -A INPUT -p udp --dport $uport -j ACCEPT
+ done
+
+# 不正確的封包擋掉
+# 擋掉 scan port 的程式
+iptables -A INPUT -i eth0 -m state --state RELATED,RELATED -j ACCEPT
+iptables -A INPUT -i eth0 -m state --state NEW,INVALID -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL ALL -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags ALL NONE -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+iptables -A INPUT -i eth0 -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
+
+# lo 所產生的 port 都允許接受
+iptables -A INPUT -i lo -j ACCEPT
+
+# 對於自己所產生的連線，並且後續的要求封包都接受
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# 擋掉某些 IP 的所有連線
+iptables -A INPUT -s 61.62.63.64 -j REJECT --reject-with icmp-host-prohibited
+iptables -A INPUT -s 65.66.67.68 -j REJECT --reject-with icmp-host-prohibited
+
+

@@ -1,0 +1,875 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 190 期 | 2012/02/21 □■□
+________________________________________________________________
+
+◎ 本期主題︰開放源碼的安全演算法工具︰OpenSSL（1） - 基礎操作與雜湊演算法
+◎ 訂閱網址︰http://www.openfoundry.org/
+◎ 下次發報時間︰2012/03/13
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 開放源碼的安全演算法工具︰OpenSSL（1） - 基礎操作與雜湊演算法
+
+■ [源碼祕技] 用 GIMP 輕鬆做出 LOMO 效果！
+
+■ [法律專欄] 善用管理流程以妥善利用自由開源軟體加入產品開發
+
+■ [自由專欄] 教科書平價化運動，也是大學自我行銷的機會  
+
+■ [自由文化] 英國開放資料政策的濫觴
+
+■ [自由文化] 維基化‧話維基（７） - 誰才是專家（下）
+
+■ [源碼快報] 釋出原始碼的 Google Sky Map 專案將會化蛹蛻變成未來之星
+
+■ [源碼快報] SOPA 與 PIPA 為何對開放源碼有害
+
+■ [源碼快報] Steam 平台 Linux 版謠言滿天飛 但是 Desura 平台將以開源與之一較高下
+
+■ [源碼快報] 惡意軟體 Citadel 採用開放源碼模式開發
+
+■ [源碼快報] Fedora 公佈新專案領導人 Canonical 不再贊助 Kubuntu
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「授權分析系統開發兼任助理」
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「資料整理兼任助理」
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「電子報執行編輯」
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「工讀生」
+
+■ [接案 / 工作] 2012 台灣創用CC計畫 工讀生徵才
+
+■ [接案 / 工作] Android 3.2 porting 專案 - 誠徵「中短期技術開發合作夥伴」
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 開放源碼的安全演算法工具︰OpenSSL（1） - 基礎操作與雜湊演算法
+
+曾義峰/文
+
+前言
+
+OpenSSL 提供了完整安全通信所需的編碼工具，諸如雜湊演算法（Hash algorithms）、加解密演算法（Encryption/Decryption algorithms）及 SSL/TLS 協議的實現等。加上其開放源碼的特性，使得許多開源專案或商業套件都有其踪跡。OpenSSL 除了提供程式 API 擴充接口外，也有命令列模式的操作。本篇將著重於命令列模式下的操作。
+
+本專案主要使用 C 程式語言撰寫，於 Windows/Linux/BSD/MacOS 下皆可運行。
+
+官方網站︰http://www.openssl.org/
+軟體授權︰OpenSSL License 或 SSLeay License 的雙重授權
+
+基礎操作
+
+01.查詢目前 OpenSSL 的版本
+
+請使用 "version" 為其參數:
+
+$ openssl version
+OpenSSL 0.9.8o 01 Jun 2010
+
+若想要了解更詳細的資訊，還可加上 "-a" 的參數:
+
+    $ openssl version -a
+    OpenSSL 0.9.8o 01 Jun 2010
+    built on: Thu Feb 10 01:49:17 UTC 2011
+    platform: debian-i386
+    options:  bn（64,32） md2（int） rc4（idx,int） des（ptr,risc1,1ong） blowfish（idx）
+    compiler: cc -fPIC -DOPENSSL_PIC -DZLIB -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DTERMIO -O3 -Wa,--noexecstack -g -Wall
+    OPENSSLDIR: "/usr/lib/ssl"
+
+02.列出 OpenSSL 的使用參數
+
+OpenSSL 沒有提供列出參數的功能，但當使用者使用任意非內建的參數時，OpenSSL 預設會列出支援的參數列表:
+
+$ openssl -h
+
+openssl:Error: '-h' is an invalid command.
+Standard commands
+asn1parse      ca             ciphers        crl            crl2pkcs7
+dgst           dh             dhparam        dsa            dsaparam
+ec             ecparam        enc            engine         errstr
+gendh          gendsa         genrsa         nseq           ocsp
+passwd         pkcs12         pkcs7          pkcs8          prime
+rand           req            rsa            rsautl         s_client
+s_server       s_time         sess_id        smime          speed
+spkac          verify         version        x509
+Message Digest commands （see the `dgst' command for more details）
+md2            md4            md5            rmd160         sha
+sha1
+Cipher commands （see the `enc' command for more details）
+aes-128-cbc    aes-128-ecb    aes-192-cbc    aes-192-ecb    aes-256-cbc
+aes-256-ecb    base64         bf             bf-cbc         bf-cfb
+bf-ecb         bf-ofb         cast           cast-cbc       cast5-cbc
+cast5-cfb      cast5-ecb      cast5-ofb      des            des-cbc
+des-cfb        des-ecb        des-ede        des-ede-cbc    des-ede-cfb
+des-ede-ofb    des-ede3       des-ede3-cbc   des-ede3-cfb   des-ede3-ofb
+des-ofb        des3           desx           rc2            rc2-40-cbc
+rc2-64-cbc     rc2-cbc        rc2-cfb        rc2-ecb        rc2-ofb
+rc4            rc4-40
+
+雖然上例使用 "-h" 為其參數，但是這個參數在 OpenSSL 是不支援的。使用其它非內建的參數，亦有相同的效果。
+
+使用 OpenSSL 測試系統效能
+
+測試系統效能的方法有很多，其中一種是以運行一連串的演算法，並計算其運行時間。除了利用 OpenSSl 來協助我們了解系統的效能外，也可以進一步了解各種演算法在系統上運行的速度差異。
+
+01.測試所有常見的演算法
+
+請使用 "speed" 為其參數︰
+
+$ openssl speed
+Doing md2 for 3s on 16 size blocks: 216134 md2's in 2.98s
+Doing md2 for 3s on 64 size blocks: 110034 md2's in 2.99s
+Doing md2 for 3s on 256 size blocks: 37397 md2's in 2.99s
+Doing md2 for 3s on 1024 size blocks: 10157 md2's in 3.00s
+Doing md2 for 3s on 8192 size blocks: 1322 md2's in 3.00s
+Doing md4 for 3s on 16 size blocks: 5080098 md4's in 2.96s
+Doing md4 for 3s on 64 size blocks: 4274286 md4's in 3.00s
+Doing md4 for 3s on 256 size blocks: 2889950 md4's in 2.94s
+Doing md4 for 3s on 1024 size blocks: 1262368 md4's in 2.94s
+Doing md4 for 3s on 8192 size blocks: 205260 md4's in 3.00s
+Doing md5 for 3s on 16 size blocks: 4010019 md5's in 3.00s
+Doing md5 for 3s on 64 size blocks: 3208521 md5's in 2.99s
+Doing md5 for 3s on 256 size blocks: 1998828 md5's in 3.00s
+Doing md5 for 3s on 1024 size blocks: 798719 md5's in 3.00s
+Doing md5 for 3s on 8192 size blocks: 120678 md5's in 2.99s
+Doing hmac（md5） for 3s on 16 size blocks: 3929559 hmac（md5）'s in 2.97s
+Doing hmac（md5） for 3s on 64 size blocks: 3053322 hmac（md5）'s in 2.98s
+Doing hmac（md5） for 3s on 256 size blocks: 1933109 hmac（md5）'s in 3.00s
+Doing hmac（md5） for 3s on 1024 size blocks: 783766 hmac（md5）'s in 2.99s
+Doing hmac（md5） for 3s on 8192 size blocks: 120355 hmac（md5）'s in 3.00s
+Doing sha1 for 3s on 16 size blocks: 3374252 sha1's in 2.99s
+Doing sha1 for 3s on 64 size blocks: 2356623 sha1's in 2.99s
+Doing sha1 for 3s on 256 size blocks: 1211815 sha1's in 2.99s
+Doing sha1 for 3s on 1024 size blocks: 415609 sha1's in 3.00s
+Doing sha1 for 3s on 8192 size blocks: 58418 sha1's in 2.99s
+...... （略）
+
+此方式會進行幾個常見的演算法，包含雜湊演算法，對稱式加解密演算法及非對稱式加解密演算法。需要特別提醒使用者，因為此方式針對多款演算法進行測試，所以測試時間會非常久，但使用者可以使用鍵盤上的 "Ctrl" + "c" 的組合鍵終止測試。
+
+02.測試 AES 對稱式加解密演算法
+
+請使用 "speed aes" 為其參數︰
+
+$ openssl speed aes
+Doing aes-128 cbc for 3s on 16 size blocks: 9105763 aes-128 cbc's in 2.99s
+Doing aes-128 cbc for 3s on 64 size blocks: 2389933 aes-128 cbc's in 2.99s
+Doing aes-128 cbc for 3s on 256 size blocks: 610982 aes-128 cbc's in 3.00s
+Doing aes-128 cbc for 3s on 1024 size blocks: 151887 aes-128 cbc's in 3.00s
+Doing aes-128 cbc for 3s on 8192 size blocks: 19063 aes-128 cbc's in 3.00s
+Doing aes-192 cbc for 3s on 16 size blocks: 7934694 aes-192 cbc's in 3.00s
+Doing aes-192 cbc for 3s on 64 size blocks: 2051030 aes-192 cbc's in 2.99s
+Doing aes-192 cbc for 3s on 256 size blocks: 508600 aes-192 cbc's in 2.95s
+Doing aes-192 cbc for 3s on 1024 size blocks: 129624 aes-192 cbc's in 3.00s
+Doing aes-192 cbc for 3s on 8192 size blocks: 16219 aes-192 cbc's in 3.00s
+Doing aes-256 cbc for 3s on 16 size blocks: 6914734 aes-256 cbc's in 2.99s
+Doing aes-256 cbc for 3s on 64 size blocks: 1779332 aes-256 cbc's in 3.00s
+Doing aes-256 cbc for 3s on 256 size blocks: 448172 aes-256 cbc's in 2.99s
+Doing aes-256 cbc for 3s on 1024 size blocks: 112342 aes-256 cbc's in 2.99s
+Doing aes-256 cbc for 3s on 8192 size blocks: 13953 aes-256 cbc's in 2.99s
+OpenSSL 0.9.8o 01 Jun 2010
+built on: Thu Feb 10 01:49:17 UTC 2011
+options:bn（64,32） md2（int） rc4（idx,int） des（ptr,risc1,1ong） aes（partial） blowfish（idx）
+compiler: cc -fPIC -DOPENSSL_PIC -DZLIB -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DTERMIO -O3 -Wa,--noexecstack -g -Wall
+available timing options: TIMES TIMEB HZ=100 [sysconf value]
+timing function used: times
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
+aes-128 cbc      48726.49k    51155.76k    52137.13k    51844.10k    52054.70k
+aes-192 cbc      42318.37k    43901.65k    44136.14k    44244.99k    44288.68k
+aes-256 cbc      37001.92k    37959.08k    38371.92k    38474.32k    38228.42k
+
+相對於前一指令，此方式僅測試 AES 對稱式加解密演算法，所以測試期間比較短。
+
+03.測試 RSA 非對稱式加解密演算法
+
+請使用 "speed rsa" 為其參數︰
+
+$ openssh speed rsa
+Doing 512 bit private rsa's for 10s: 8333 512 bit private RSA's in 9.99s
+Doing 512 bit public rsa's for 10s: 95531 512 bit public RSA's in 9.97s
+Doing 1024 bit private rsa's for 10s: 1367 1024 bit private RSA's in 9.98s
+Doing 1024 bit public rsa's for 10s: 27114 1024 bit public RSA's in 9.98s
+Doing 2048 bit private rsa's for 10s: 207 2048 bit private RSA's in 10.02s
+Doing 2048 bit public rsa's for 10s: 7363 2048 bit public RSA's in 9.99s
+Doing 4096 bit private rsa's for 10s: 30 4096 bit private RSA's in 10.14s
+Doing 4096 bit public rsa's for 10s: 2007 4096 bit public RSA's in 9.97s
+OpenSSL 0.9.8o 01 Jun 2010
+built on: Thu Feb 10 01:49:17 UTC 2011
+options:bn（64,32） md2（int） rc4（idx,int） des（ptr,risc1,1ong） aes（partial） blowfish（idx）
+compiler: cc -fPIC -DOPENSSL_PIC -DZLIB -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -DL_ENDIAN -DTERMIO -O3 -Wa,--noexecstack -g -Wall
+available timing options: TIMES TIMEB HZ=100 [sysconf value]
+timing function used: times
+sign    verify    sign/s verify/s
+rsa  512 bits 0.001199s 0.000104s    834.1   9581.8
+rsa 1024 bits 0.007301s 0.000368s    137.0   2716.8
+rsa 2048 bits 0.048406s 0.001357s     20.7    737.0
+rsa 4096 bits 0.338000s 0.004968s      3.0    201.3
+
+將前一指令的稍微替換後，也可以進行其它的演算法測試，如此方式將僅測試 RSA 非對稱式加解密演算法。
+
+雜湊演算法
+
+OpenSSL 支援常見的雜湊演算法（Hash algorithms），如 MD5, SHA1, SHA256 等。
+
+01.列出所有支援的雜湊演算法
+
+請使用 "dgst -h" 為其參數︰
+
+$ openssl dgst -h
+unknown option '-h'
+options are
+-c              to output the digest with separating colons
+-d              to output debug info
+-hex            output as hex dump
+-binary         output in binary form
+-sign   file    sign digest using private key in file
+-verify file    verify a signature using public key in file
+-prverify file  verify a signature using private key in file
+-keyform arg    key file format （PEM or ENGINE）
+-signature file signature to verify
+-binary         output in binary form
+-hmac key       create hashed MAC with key
+-engine e       use engine e, possibly a hardware device.
+-md5            to use the md5 message digest algorithm （default）
+-md4            to use the md4 message digest algorithm
+-md2            to use the md2 message digest algorithm
+-sha1           to use the sha1 message digest algorithm
+-sha            to use the sha message digest algorithm
+-sha224         to use the sha224 message digest algorithm
+-sha256         to use the sha256 message digest algorithm
+-sha384         to use the sha384 message digest algorithm
+-sha512         to use the sha512 message digest algorithm
+-mdc2           to use the mdc2 message digest algorithm
+-ripemd160      to use the ripemd160 message digest algorithm
+
+列表中可以發現，除了常見的 MD5, SHA1 及 SHA256 外，還有其它的雜湊演算法可供使用。
+
+02.使用 MD5 雜湊演算法
+
+請使用 "dgst -md5" 為其參數，並以 "-c" 來指定目標檔案︰
+
+$ openssl dgst -md5 -c testfile
+MD5（file）= f1:c9:64:5d:bc:14:ef:dd:c7:d8:a3:22:68:5f:26:eb
+
+輸出結果顯示，testfile 這個檔案的 MD5 Hash 為 "f1:c9:64:5d:bc:14:ef:dd:c7:d8:a3:22:68:5f:26:eb"。
+
+我們可以使用其它 MD5 演算法來驗證其正確性，例如 Debian / Ubuntu 的 coreutils 套件提供的 md5sum 指令。
+
+$ md5sum testfile
+f1c9645dbc14efddc7d8a322685f26eb  file
+
+輸出結果顯示，testfile 的 MD5 Hash 為 "f1c9645dbc14efddc7d8a322685f26eb"。這與 OpenSSL 的輸出結果吻合，只是在比較前，我們需要將 OpenSSL 輸出的結果刪去 ":" 冒號來進行比對。
+
+03.使用 SHA1 雜湊演算法
+
+請使用 "dgst -sha1" 為其參數，並以 "-c" 來指定目標檔案︰
+
+$ openssl dgst -sha1 -c testfile
+SHA1（file）= 8c:20:6a:1a:87:59:9f:53:2c:e6:86:75:53:6f:0b:15:46:90:0d:7a
+
+輸出結果顯示，testfile 這個檔案的 MD5 Hash 為 "8c:20:6a:1a:87:59:9f:53:2c:e6:86:75:53:6f:0b:15:46:90:0d:7a"。
+
+我們可以使用其它 SHA1 演算法來驗證其正確性，例如 Debian / Ubuntu 的 coreutils 套件提供的 sha1sum 指令。
+
+$ sha1sum testfile
+8c206a1a87599f532ce68675536f0b1546900d7a  file
+
+輸出結果顯示，testfile 的 SHA1 Hash 為 "8c206a1a87599f532ce68675536f0b1546900d7a"。這與 OpenSSL 的輸出結果吻合，只是在比較前，我們需要將 OpenSSL 輸出的結果刪去 ":" 冒號來進行比對。
+
+結語
+
+本篇範例介紹了幾款常見的操作，以及 OpenSSL 雜湊演算法的運用方式。在下一篇文章中，將介紹 OpenSSL 的對稱式加解密演算法的操作。
+________________________________________________________________
+
+■ [源碼祕技] 用 GIMP 輕鬆做出 LOMO 效果！
+
+FoolFitz／文
+
+◎ 本文轉載自 LibreSMS 開源短訊︰[教學] 用GIMP輕鬆做出LOMO效果！（http://libresms.blogspot.com/2012/01/gimplomo.html） 
+
+http://www.flickr.com/photos/28653536@N07/4501441798/
+▲ 圖1︰圖片作者︰elsamuko （http://www.flickr.com/photos/28653536@N07/4501441798/），CC BY-SA 2.0 方式分享
+
+話說市面上有相當多的小軟體和 APP 都能製作出 LOMO 效果的照片，卻少有軟體能夠自行調整參數，很難讓人達成滿意的效果。今天就來介紹一個簡單實用的 GIMP 外掛，讓大家輕輕鬆鬆就能做出滿意的 LOMO 效果！
+
+首先在 GIMP Plugin Registry （http://registry.gimp.org/node/7870） 下載 Lomo Script 腳本，網頁往下拉可以看到三個檔案︰elsamuko-curves.zip、elsamuko-lomo-batch.scm 和 elsamuko-lomo.scm，zip 檔記得解壓縮，之後將其丟到硬碟的這個資料夾︰
+
+    C:\\documents and Settings\\使用者名稱\\gimp-2.x\\scripts
+
+之後就可以在 GIMP 的選單中看到它了，路徑是︰Filters >> Light and Shadow >> Lomo
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/menu.png
+▲ 圖2
+
+點選之後，我們可以看到有相當多的參數可以調整︰
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/lomo-option.png
+▲ 圖3
+
+如果不想花太多腦筋的話，還可以在【Colors】選單中選擇不同的風格︰
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/color-menu.png
+▲ 圖4
+
+--------------
+
+以下是我自己的實驗成果（點擊照片可以觀看原圖）︰
+
+1.
+原始圖片（作者︰kodomut （http://www.flickr.com/photos/kodomut/5863481837/），以 CC BY 2.0（http://creativecommons.org/licenses/by/2.0/）方式分享）
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/flickr-barbecue.jpg
+▲ 圖5
+
+2. Lomo Script 預設參數（覺得【Motion Blur】太高，有點模糊）
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/flickr-barbecue-2.png
+▲ 圖6
+
+3. 【Motion Blur】調整為1，【Colors】選擇 "Movie"
+
+http://www.openfoundry.org/images/120221/GIMP-LOMO/flickr-barbecue-3.png
+▲ 圖7
+
+看到沒有，GIMP 也是很有生產力的！
+________________________________________________________________
+
+■ [法律專欄] 善用管理流程以妥善利用自由開源軟體加入產品開發
+
+葛冬梅／文
+
+經過這二、三十年的發展，自由開源軟體（Free and Open Source Software，FOSS）在品質與數量上面均有大幅度的成長，近年來更是大舉被產業界取來進行商業利用，也因此被應用的層面愈來愈廣，但對於傳統上僅熟悉私有軟體（proprietary software）授權模式的商業公司而言，初接觸自由開源軟體不免會引發各式各樣的問題與困擾，例如︰「是否可以在終端產品中嵌入自由開源軟體進行商業販售？」、「是否作為內部開發工具就沒有延申要提供程式原始碼（Source Code）的問題？」、「如何讓工程師快速了解授權內容，從第一線開始避免侵權利用？」。在國內，有些公司已設有專職人員來研究與處理上述的相關問題，不過就筆者所知，這樣的公司目前仍是少數，大部份的狀況是，面臨到自由開源軟體授權問題與困擾的產品工程師，必須肩負起閱讀授權條款、釐清授權義務規定、回覆客戶相關問題，以及研究如何實踐授權義務、讓客戶安心等等的責任，這使得工程師在原本的產品開發與既定的管理工作之外，又增加了研讀艱澀授權條文的工作，而可能導致心力分散、處於不堪負荷的狀態。這樣的現象挑戰著商業公司的管理階層︰如何在內部深化應用自由開源軟體的同時，又能夠同步降低可能產生的風險與困擾？因應這樣的轉變與問題，國外許多公司均制定有自由開源軟體產品應用的管理流程，讓員工在利用自由開源軟體元件加速產品開發的同時，有一套制式的流程可以遵循，不過這樣的觀念在國內仍屬少見，因此本文將介紹一個簡化版的自由開源軟體核准流程，作為商業管理流程的範例，藉此向讀者說明善用管理流程所可能發揮的功效。
+
+【自由開源軟體核准流程的運作介紹】
+
+http://www.openfoundry.org/images/120221/FOSS_GP/foss-gp-01.png
+▲ 圖1 自由開源軟體核准流程圖
+
+這個核准流程圖（註一）由五個問題的自我詢答以構成四種結果，從左邊一排開始，這些問題從上到下依序如下（註二）︰
+
+一、自由開源軟體的程式碼將會被保留到終端產品裡嗎？（Will FOSS end up in the final product?）
+
+這個問題關乎自由開源軟體是如何被利用的，若答案為否的話，很有可能這個自由開源軟體只是被當作是產品開發工具，而僅在企業內部使用，如此，原則上就不會有相關的程式碼被散布到組織之外，所以在散布之後才會衍生的種種義務性規定將不會被開啟。但若此題答案為肯定的話，就必須進行第二題的檢測。
+
+二、產品將會被散布到組織之外嗎？（Will the product be distributed outside of the organisation?）
+
+若第一個問題的答案為肯定，表示產品中包含有自由開源軟體的程式碼，第二題問題的重點是，這個包含有自由開源軟體的產品有沒有「被散布出去」，因為若是產品有被散布到組織外的話，就會啟動自由開源軟體授權條款的各種義務性規定，此時散布的組織，就必須要注意散布產品的過程是否遵守授權條款的各項規定，例如散布 GPL-2.0 授權的自由開源軟體的時候，除了將軟體本身的原始碼提供給使用者之外，還必須要提供衍生部份的原始碼才可以，而這樣的義務規定可能與某些產品的販售向性不盡相合 。因此若第二題答案為肯定的話，就必須繼續進行第三題，來檢測這個自由開源軟體是否真的可以用於開發是項產品；而若此題答案為否定的話，這個自由開源軟體便可以被標示為「僅供內部使用（internal use only）」，因為多數自由開源授權條款的義務性規定，皆不會僅在單純使用軟體時啟動，故確定不會再行散布此一自由開源軟體時，可以先行如此標示，若日後有再散布的需求和可能性，便再就其授權狀態來做細部考量。
+
+三、自由開源軟體是在「核准軟體清單」上嗎？（Is the FOSS on the "Approved Software" list?）
+
+配合這個核准流程圖，有個由公司主管、產品經理，與法務部門就公司產品販售向性，所預先擬定的「核准軟體清單」，在這個清單上面的自由開源軟體，工程師們便可以安心拿來開發產品，即使產品散布到組織之外，也不會引發與產品販售向性衝突的授權問題。因此若是走到第三題，並且答案為肯定的話，工程師們確定就可以利用這個自由開源軟體來開發產品（This FOSS may be used for this product），而不需要花費額外時間研究授權內容與進行個案判斷。
+
+四、自由開源軟體是在「拒絕軟體清單」上嗎？（Is the FOSS on the "Rejected Software" list?）
+
+若第三題的答案為否定，那麼就還要看看這個自由開源軟體是否被列在「拒絕軟體清單上面」。顧名思義，拒絕軟體清單就是一份工程師們不可以利用軟體的清單，在這份清單上的軟體一旦被利用到終端產品裡，非常有可能與產品販售向性產生衝突，並替組織帶來法律糾紛。因此若是軟體在拒絕軟體清單之列，工程師們就不可以將這個軟體用於開發是項產品（This FOSS may NOT be used for this product）。
+
+這邊值得注意的是，若是軟體既不在核准清單之列，也不在拒絕清單之列，那麼這個流程圖所導出的答案是︰「請與法務部門聯繫取得核可！（Please contact the legal department to obtain approval）」這代表當一個自由開源軟體既不在核准清單、也不在拒絕清單，是該組織法務部門之前所沒有瀏覽過的授權方式，這個軟體的授權規定可能與產品販售向性不符，若是貿然利用，可能會引起法律糾紛，所以必須要由經由法務部門進行個案式的瀏覽與研究，確認沒有問題之後，工程師才可以將這個軟體應用到產品中。
+
+五、透過自由開源軟體處理，而產生的額外程式碼將會被保留到終端產品裡嗎？（Will code generated by the FOSS end up in the final product?）
+
+第五個問題其實是承接第一個問題而來。當第一個問題的答案為否定，一個自由開源軟體本身的程式碼不會被保留在產品裡，此時、並不完全代表利用這個軟體，便確定沒有授權義務性方面的問題，因為有些被當作開發工具的自由開源軟體，在執行過程中，可能會將已身一部份的程式碼植入至該開發程式裡，例如 GCC（GNU Compiler Collection）在編譯的過程中，便會自動植入部份的程式碼至編譯成果裡，就解釋上來說、伴有其程式碼的編譯成果也有機會被認定為 GCC 的衍生程式，而必須一體適用 GPL 來向外授權，不過針對此點、GCC project 已清楚表示這種狀況適用其特別律定的 Runtime Library Exception（註三），使用者在編譯行為上，可以例外的不受到 GPL 授權條款的拘束，然而、並非所有的編譯或其他的自由開源軟體開發工具，都設有這樣的例外規定。所以、若是透過自由開源軟體處理，會產生額外的程式碼被保留到終端產品裡的話，此時這個被植入程式碼的產品專案，一樣必須要通過第二題以下的核准流程，工程師才可以利用這個自由開源軟體來開發產品。相反地，若是這個自由開源軟體並不會在產品中置入額外的程式碼，顯示這個軟體是單純的工具程式，那麼工程師便可以安心利用它來開發產品，而毋須擔心衍生授權義務性方面的爭議。
+
+【適當的規劃導入將帶來長期的整體效益】
+
+以上的核准流程圖僅為一個簡單的範例，以這份流程為基本架構，還可以有許多的調整變化，例如︰若公司已經有專案開發的版本控制系統（version control system），便可將這個流程圖加以系統化，融入成為版本控制系統的部份功能，讓工程師在開發產品的同時，直接透過系統平台的驗證程序，來檢查是否可以使用所欲取用的自由開源軟體；又或者可以延伸流程圖上第三題的內容，讓工程師在利用自由開源軟體開發產品的同時，知曉有哪些聲明必須一同置入到產品中，以符合自由開源軟體授權規定的要求。諸如此類的調整或內容延伸，可以視公司與產品販售向性的不同，而有許多的變化，來讓產業界商業化運用自由開源軟體時，能夠以更為便利而有效率的方式來進行。
+
+不過行文至此，筆者並不諱言，國內多數公司現階段在規劃與導入這樣一套管理流程上有其難度，因為要建置管理流程基礎的第一步，便是得了解自由開源軟體授權條款的相關內容，才可以規劃出適合公司產品販售向性的軟體清單、核准流程，或者是其他延伸的管理程序，不同販售向性的產品也可能無法共用同一份清單與流程，這些了解與規劃的過程都必須投入相當的人力與時間。然而！若是應用自由開源軟體來開發公司產品，已經是一個不能完全避免的選項，那麼制定適當的流程，以便利工程師與聘僱員工來認識並利用自由開源軟體，則將是一條不可避免的道路，因為這樣的流程不但可以省卻工程師身兼法務的窘境，進一步透過了解、規劃的過程，將可以強化公司成員對於自由開源軟體的正確認知，有助於活用自由開源軟體，同時降低未來所可能衍生的法律風險。因此從整體來看，投入一定期間進行適當規劃以導入管理流程，將會對產業界在自由開源軟體的長期利用上，帶來整體的效益與幫助。
+
+Acknowledgement: With thanks to Royal Philips Electronics, Shane Coughlan and other anonymous contributors for making efforts to release the chart under Creative Commons license to the public.
+
+註一︰這個核准流程圖的出處︰Shane Coughlan, presentation slide "Licensing Compliance as Business Intelligence", 2010/05/11, p.18, licensed under CC-BY-ND 3.0 Unported License, available at: http://www.openfoundry.org/slides-download/cat_view/35---/330-2010/356-0511。此核准流程圖原為荷蘭飛利浦公司 （Royal Philips Electronics） 內部管理自由開源軟體流程的一部份，經調整簡化後成為現在這個版本的基礎。自由軟體鑄造場於 2010 年邀請歐洲自由軟體基金會 （Free Software Foundation Europe, FSFE） 資深顧問 Shane Coughlan 來台演講，Coughlan 先生略為調整流程圖中的用語後，用在演講簡報中，並且採用「創用CC－姓名標示－禁止改作 3.0 未本地化版本」授權條款釋出此圖，也就是本文所採用的這個版本。感謝荷蘭飛利浦公司、Shane Coughlan 以及調整本流程圖以利釋出的貢獻者！
+
+註二︰Shane Coughlan 先生原核准流程圖中的英文採用「Free Software」一詞，不過由於本文的中文用詞統一採用「自由開源軟體 （Free and Open Source Software, FOSS）」，因此在解說流程圖的部份，改以「FOSS」一詞來置換原圖之「Free Software」，特此說明。
+
+註三︰進一步的說明資訊，可參照 GNU Project 對 GCC Runtime Library Exception 的正式說明頁面︰http://www.gnu.org/licenses/gcc-exception.html。
+________________________________________________________________
+
+■ [自由專欄] 教科書平價化運動，也是大學自我行銷的機會 
+
+洪朝貴／文
+
+◎ 本篇文章傳達作者意見，不代表自由軟體鑄造場電子報立場，回覆意見請見部落格原文網址（http://ckhung0.blogspot.com/2012/01/textbooks-expensive.html），採用 CC-BY-SA 授權
+
+加州參議員 Darrell Steinberg 推動 open source 大學教科書（http://www.teleread.com/paul-biba/california-pushes-for-free-open-digital-textbooks/），希望幫每位大學生每年省下大約一千美元的書籍費用，減輕大學教育對中低收入家庭的負擔。這項方案得到許多教授和學生共同支持。在臺灣，大學校長是否願意請教授們撥一點生產力幫學生減輕教科書費用的負擔，順便行銷學校？
+
+事實上，幾年前我還在教技術課程時，就發現網路上有太多講義可以下載了，尤其是科學與技術類的熱門學科。以學科名稱（例如 calculus 或 algorithm）加上（lecture）notes 為關鍵字做搜尋，很容易就可以找到許多教授分享的教學講義，也經常會逛到 Open Educational Resources（http://www.oercommons.org/）之類專門搜集開放分享教學資源的網站。
+
+在臺灣，其實我們的教育生態很適合推動這件事。先看看這幾年臺灣教授們的生產力（被迫拿來）對社會產生了哪些「貢獻」︰
+1.透過寫論文，把自己的智慧免費送給期刊作為他們的財產（http://www.openfoundry.org/tw/foss-forum/8416-researchers-results-become-publishers-property-the-open-access-of-academic），然後讓期刊回過頭來向大學收取高額費用。
+2.透過鼓吹和強迫學生考證照，免費幫軟體廠商強迫行銷新產品，幫 BSA 製造盜版原料（http://www.openfoundry.org/tw/foss-forum/8249--bsa-ms-office-）。
+3.透過申請專利，製造更多「傷害擴散的創新」（http://www.openfoundry.org/tw/foss-forum/2392-2010-09-08-13-58-44）──把專利束之高閣，不能將自己的發明商品化、實用化。而經過「生醫所長專利」跟「宇昌案」兩事件之後，科學家們還要當心被指控涉及不法。
+4. 透過填寫各種表格，向工廠生產線看齊，實踐扼殺創意的教學品保（http://ckhung0.blogspot.com/2011/11/creativity-vs-tqa.html）。
+
+教授從事這些活動並沒有賺入額外的錢，單單來自教育部和大學的政策已經給教授很大的壓力。更何況寫教科書的版稅本來就微薄（美國教授感嘆︰「錢都被二手書生態系跟書店賺走了。」），那麼為什麼不乾脆把「撰寫 CC 授權的教科書」也列入大學教授的績效呢？如果大學一定要追求頂尖卓越，如果前面所列舉的傷害社會的事情不可能從頂尖卓越的績效指標當中移除，那麼至少可以把「創作、分享、嘉惠經濟弱勢學子」加進去當做另外一項績效指標吧？
+
+在瑞典，繼盜版黨之後，又有一位 19 歲的哲學系大學生成功地註冊了「拷貝教」，這個宗教認為分享知識是神聖的行為。在美國，學生們發起「給我平價教科書！」連署，和「教科書革命」校園巡迴。在臺灣，誰會發起「教科書平價化」的運動呢？會是願意為了學弟妹出面、願意「前人種樹、後人乘涼」的大學生與家長嗎？會是總統或教育部長嗎？（可嘆的是，政治人物比較願意協助美國老大哥對師生進行「智慧財產權洗腦」。）
+
+又或者會是「具備遠見與智慧、擁有學術道德與勇氣」的大學校長呢？技專校長呼籲開放自訂評鑑指標，高教評鑑中心也宣布系所可以自訂評鑑指標。校長們大可以帶頭修改學校法規，給教授們「創作分享中文教科書」的動機；大可以鼓勵那些決定採用英文教科書的教授們，將 CC授權分享的網路講義納入考量；大可以在公開場合及媒體上發表支持教科書平價化的論述。「本校教授關心教學與學生權益，積極撰寫平價教科書」不就為校園增加了一項吸引學生的誘因嗎？這不是比撥款提供獎學金給極少數學生更有意義、更具有全面性的吸引力嗎？這不是比「賀！本校榮獲教育部補助云云」的紅布條跟跑馬燈更能讓學生熱切地在臉書上幫學校宣傳行銷嗎？如果單單一位「資訊人權貴」的部落格就可以創造每個月數千人次的流量，那麼一整所大學許多教授藉由上網分享 CC 授權的教科書著作，又可以為大學帶來多少網路流量、提升多少網路排名呢？（當然，有些技術細節要注意，例如為什麼 TED 演講都不超過 18 分鐘，甚至有許多短於 8 分鐘的場次？）
+
+善用網路力量、善用校長職權的影響力，用以減輕學生的經濟負擔，這不就是由校長親身示範「獨立思考與創新、專業知能、道德思辨與實踐、履行公民責任、人文關懷、溝通表達與團隊合作、國際視野」嗎？在臺大淪為口號的「十大素養」，有沒有機會在其他大學校長的手中實現呢？這個年代有許多「馮諼」教授，但是有沒有懂得放手讓馮諼幫他買「義」的「孟嘗君校長」呢？或者，貴校的校長與教授在宣傳「尊重智財權、勿印教科書」的時候，竟然沒有學生提醒他們「教科書平價化」的呼聲與趨勢？
+________________________________________________________________
+
+■ [自由文化] 英國開放資料政策的濫觴
+
+OpenData／TW 徐子涵
+
+如果要抓一個比較具體的起點，那麼發佈於 2007 年 6 月的研究報告「The Power of Information（http://www.opsi.gov.uk/advice/poi/power-of-information-review.pdf）」是英國開放資料（open data）政策的濫觴。這份報告的特出之處在於指出了政府公開資訊（public sector information）的巨大機會，並且彙整了由公民和國家所產生的資訊之使用以及發展現況。舉例來說，政府所產生的公開資訊包括地圖，心臟手術死亡率統計數據和公車時間表等，而公民所產生的資料，則是有民間意見回饋，政府服務和產品評論，甚至是線上食譜等。這兩種形態的資料都在研究的範圍之內。
+
+此份報告特別強調由於 1990 年代網際網路的興起，資訊近用的管道增多，普及度從幾乎是零成長到 2007 年 61% 的成人普及率（英國）。英國政府應該把握機會，針對新型態的創作，消費和資訊之再利用，主動提出因應的發展方案。報告並指出，目前的政策工具和執行面都尚未充分把握機會。因此，報告提出三項策略，建議政府部門應該︰
+
+-   歡迎並擁抱以使用者內容（user-generated）為中心的網路服務商以及其社群用戶，因為這些服務有助於追求共同的社會和經濟目標。
+-   提供資料給運用創新模式重製（re-use）政府公開資訊的民眾，當他們需要政府提供資料時，應在最大限度之內以保障全體公民長遠利益的方式提供，並且…
+-   為了確保公眾利益，應準備更為充分的資料（即使有時資料是不可靠的），並且協助可能因為此舉而被排斥於數位機會外的團體，取得競爭優勢。
+
+2008 年 3 月，英國國會議員 Tom Watson 在前首相 Gordon Brown 的任命之下，成立「Power of Information （http://webarchive.nationalarchives.gov.uk/20100413152047/http://poit.cabinetoffice.gov.uk/poit/）」的工作小組，將開放資料提高到內閣的層級，具體擘畫英國公共資訊的未來發展藍圖。
+________________________________________________________________
+
+■ [自由文化] 維基化‧話維基（７）
+
+Reke／文
+
+在上一話當中，提到了如何去辨認虛假的專家或撈過界的專家。在強調來源、依據的維基百科裡，文獻考證的攻防戰也正是經常圍繞著作者的身分展開。然而，不是每一次的爭論，都能夠用同樣的方式來處理。在一些領域，幾乎沒有足以公認為「專家」的角色，這個時候如何去做適當的判斷，也經常造成一些爭議。
+
+沒有同行的權威
+
+相對於傳統百科紀錄的都是「重大」的事物，對於一些市井小民關心的知識往往被排除在外；維基百科對於流行事物、次文化、民間常識等等事物，也有足夠的空間可以收錄其中。然而這些議題既然不被學術圈注意，相對的也表示權威性的研究人才、嚴守學術原則而生產的資料都很容易付諸闕如。對這些事物關注的消息，以往只來自於媒體記者，在網路興起後，則開始有些部落客因為大量的書寫並獲得認同，形成某種意見領袖式的形象，像是「宅神」朱學恆之於奇幻文學、或是「一劍浣春秋」之於色情影片之間的關係。
+
+我們並不否定這些人在其擅長的議題之上，確實有所成就，但是他們的意見是不是能夠視同為專家的發言，就得令人猶豫一下了。因為，在這種缺乏學術原則規範的圈子裡，意見領袖並不是經由大量的、嚴謹的考核之後出現的，往往只是發言多、文筆好，容易獲得讀者的認同以及轉載，自然而然形成的。而由於他們所擅長的範籌缺乏其他的專家存在，往往在意見領袖的地位形成之後，又更不容易受到挑戰、考核。於是，他們的發言變成一種不經同行審查，就自動升級成事實的意見。從這樣的角度來看，他們所生產出的「文獻」，其可靠度是需要被打些折扣的。然而由於其知名度，媒體記者在碰到相關領域的新聞事件時，又經常對訪問這些意見領袖的意見，使其發言出現在被視為「有公信力」的媒體上。經由這樣的漂洗之後，便成為被維基百科規範所承認的「可靠來源」。
+
+這並不意味著維基百科的可靠來源判定上出現重大的缺點，因為可靠度是相對的概念。對於非科學的知識（甚至可能是常識），要求極嚴謹的資訊來源並不合理。像奇幻文學中許多規則只是一種約定俗成的文化，沒有強制性和必然性，那麼只要大多數愛好者同意有這樣文化存在其實就可以視為事實，並不需要反覆實驗證明。同時，因為這些領域本來就缺乏更可靠的資訊，所以相對之下，這些行家意見的重要性已經被媒體所認證的情況下，本身就已經是能取得的文獻中最可靠的說法了。
+
+http://www.openfoundry.org/images/120221/toaru_kagaku_no_railgun.png
+▲ 圖1︰維基百科中動漫作品中的描述，只要經過大多數愛好者同意，就可視為事實而保留在維基百科上，但編寫時仍得符合百科的書寫格式與第三方觀點。
+
+簡單來說，面對沒有同行的權威，並不需要吹毛求疵到完全拒而不用。假如這些意見遭受到其他編輯者的質疑時，最好的方式則是在用詞上明確揭示這是某些意見領袖所說，具有一定影響力的說法，未必是絕大多數承認且毫無疑問的事實。這樣子意見正確性的責任就必須由原發言者去承擔，而非由維基百科編者自行擔負了。
+
+一個議題 各自表述
+
+比起沒有同行的權威來說，更麻煩的其實是一些「公說公有理、婆說婆有理」，同時又缺乏可驗證性的事件。最顯而易見的例子就是政治議題，像是對於政策、政黨或是政治人物的評價，我們常常可以看到一票「政治觀察家、資深政論家、資深媒體人」在媒體上高談闊論。在台灣的媒體生態下，他們往往各為其主，相持不下。
+
+在撰寫維基百科的時候，稍微謹慎編者面對這些意見，會記起國中課文裡的名言錦句「你聽你的鳥鳴、他看他的日出」，於是遵尋「中立的立場」指引，將多方對立的意見在文中並列，並且不做判斷。保持中立當然是個很棒的做法，不過單單注意到這點是不夠的。要記住維基是個「人人都可以編寫的百科全書」。保持中立只顧及前半段「人人都可以編寫」的部分，而照顧了多方意見，卻忽略了「百科全書」本身需要的嚴謹。
+
+http://www.openfoundry.org/images/120221/president_lee.png
+▲ 圖2︰因政治立場不同，對於前總統李登輝的看法南轅北轍，但編寫維基百科時仍得多方觀點並呈
+
+百科全書跟文學不同，衣料就必須是衣料，假如在條目中我們要把它寫成是棋盤、稿紙或是綠豆糕，那是很詭異的事情（註）。這些人的發言因為經過媒體的轉載，在形式上似乎可以通過維基百科裡對於可靠來源的最低底線，然而假如擁有更好的來源時，對於這些名嘴的說法，應該儘可能的刪節比較好。在前一話當中，我們就看到一個從事文化研究的教授，在與文化相關的文字學上也會犯下大錯；那麼對於一個昨天談稅改、今天談 NBA、明天又可以談恐龍法官的人來說，要我們相信他同時在財政、體育與司法上都有很好的認知，簡直是不可能的事情。如果因為其媒體上的知名度而將他們視為「專家」，條目的素質恐怕會相當值得憂慮。
+
+http://www.openfoundry.org/images/120221/chiu_yi.png
+▲ 圖3︰邱毅落選後在電視台開節目天南地北什麼話題都能談，引述其說法要小心百科全書所需要的嚴謹性
+
+或許有些人會因為名嘴常常引經據典，而稍微感到迷惑，認為有時候不妨參考他們的意見。不過由於他們立場先行，就算引述了許多數據、文獻也多半是斷意取義或刻意篩選，不能被信賴。如果真的要引述，利用名嘴的話當成線索，去挖出他們所引述的文獻，然後直接參考文獻進行編輯，應該會是更恰當的。
+
+慎選來源 不要貪圖方便
+
+不管是網路上的次文化意見領袖、還是政論節目中的名嘴，他們的意見經常出現在維基百科上，很多時候是編輯者偷懶的結果。因為這些人在傳媒、網路上的影響極大，很容易搜尋得到。相對於真正的專家可能只寫書，書本還沒有電子版可供下載，只能去圖書館找，這些知名人物的意見引用起來容易多了。如果被這樣的方便所誘惑，很容易就把不可靠的資訊帶進了維基百科中。
+
+在維基百科出現以前，所有的百科全書都是由知識上的菁英來編輯。往往在篩選什麼是值得收錄的條目時，不能夠滿足一般大眾的需要。維基百科的出現，讓大家關心的流行文化、次文化都能夠進入百科全書中，形成被流傳的知識，不但擴大了知識的視野，同時也深化了知識的自由。這種自由的出現必須要在儲存技術、網路通訊技術都發達的時代才可能被實踐，可以說是得來不易的，更需要我們珍惜，不把自由誤當成放縱。用嚴肅的態度做資料收集的工作，儘量避免引用到虛假專家的意見，才真正不辜負了手中神聖的編輯權力。
+
+註︰假如你看不懂句話或是上一段中的「名言錦句」出自什麼梗，請搜尋「宋晶宜 雅量」。
+________________________________________________________________
+
+■ [源碼快報] 釋出原始碼的 Google Sky Map 專案將會化蛹蛻變成未來之星
+
+Rowan Wilson／文 謝良奇／翻譯
+
+◎ 本文翻譯自 OSS Watch（http://osswatch.jiscinvolve.org/wp/2012/01/27/star-pupils/），採創用 CC 姓名標示-相同方式分享
+
+過去 6 個月裡不斷地傳出 Google 關閉旗下某些非正式開發專案（side projects）的消息。一般而言，這些專案會就此永遠塵封，然而在某些情況下，則是有轉型計畫，Google Sky Map 正是其中之一。和過去較為傳統業界廠商的作法相比，如 Nokia 與現在的 HP，「開放源碼後接著期望一切順利」，對於我們的社群來說，此種方式的改變甚為有趣。
+
+Sky Map 是 Android 行動裝置上的應用程式，其出現乃是源自 Google 給予工程師用來從事個人專案的所謂 20% 時間。回到 2009 年 Sky Map 剛推出時，當時市場上部份 Android 手機上少數硬體規格勝過 iPhone 的地方，就是硬體羅盤感測器了。Google 的 Android 裝置 （G1） 首次公開亮相最令人驚艷的一刻，就是展示 Streetview 服務如何與手機的羅盤結合運用，以顯示用戶所面向方向的相關資訊。架構於此一短暫的競爭優勢窗口（下一輪的 iPhone 就有了羅盤）上，Google 的 Pittsburgh 辦公室（當時在卡內基美隆大學的校區）開發並釋出了 Sky Map，主打的功能就是讓用戶只要對準某片天空，就得知某片天空的天文資訊，有用且富教育意義。在後續數年內衍生了數十個模仿者。
+
+有鑑於該軟體不再推廣 Android 硬體的競爭優勢，加上這類應用程式的競爭已經越來越激烈，在 Larry Page 看似沒有終止跡象的一回回緊縮開支動作中，該專案的結束多少也在外界的預料之中。Sky Map 回到了在卡內基美隆校區的家︰
+
+今天，我們很高興地宣佈我們將以不同的方式，分享 Sky Map︰我們將 Sky Map 貢獻給社群。我們正與卡內基美隆大學合作。在合作過程中，將看到 Sky Map 作為一系列學生專案而持續開發。Sky Map 將由學生帶動下持續開發，Google 工程師將以顧問角色維持緊密合作。此外，我們將開源釋出此應用程式，其他天文愛好者可以取得程式碼並依照希望予以修改。
+
+這是一種有趣的方式。雖然還不清楚將邀請什麼樣的學生專案（電腦科學？天文學？都是？都不是？），不過為了某些原因，我希望開源釋出結束生命週期的產品程式碼，能夠以促進學習與教學的模式，再之後受到普遍採納。
+
+首先，如此一來可以將開放式的開發方法論教授給學生軟體作者，這一點由於在太多的初中級學術軟體開發課程中仍有所不足，因此依舊值得關注。其次，這種做法針對學術機構的社群參與，提供了引人注目的途徑，對其教學打開了一扇通向外界和邀請合作的窗口。第三，它以一般履歷分派難以達到的直接與無障礙方式，對學生的技術做了良好宣傳。
+
+雖然 Google 這段時間關閉大量專案並未令我感到激動（再見了 Google Sets ~擤鼻聲~），類似針對 Sky Map 所提出的解決方案確實令人興奮，對於因此而產生的學術專案，我會拭目以待。
+________________________________________________________________
+
+■ [源碼快報] SOPA 與 PIPA 為何對開放源碼有害
+
+Simon Phipps／文  謝良奇／翻譯
+
+◎ 本文翻譯自 OpenSource.com （http://opensource.com/law/12/1/why-sopa-and-pipa-are-bad-open-source），採創用CC姓名標示-相同方式分享 3.0 Unported（CC-BY-SA 3.0） 
+
+為了抗議送交美國國會的失衡法案，上週遍佈網際網路的關站行動充滿戲劇性且受到關注。關於此事對開放源碼社群的重要性，我有一些問題。法案支持者制定該法案的方式，使得該法案看似針對檔案共享，特別是音樂和影片共享而來。然而，其中的問題出在他們創造出未受到適當限制的新權力，這股權力很容易在其原有框架之外遭到濫用。
+
+引發抗議的 SOPA 與 PIPA 草案已經飽受許多批評，但是我認為對於開放源碼專案的威脅，來自略為不同的角度。我曾經主張可以從針對技術而非使用者，來辨別出糟糕的法案。美國數位千禧年著作權法案（US Digital Millennium Copyright Act）有助於說明此一問題。
+
+當 DMCA 被提出討論時，其制定者曾經宣稱，該法案可以用來對抗偽造著作權的問題。儘管如此，DMCA 還是提供了抑制自由言論與創造性活動的工具，這些跟偽造著作權一點關係都沒有。寒蟬效應數據網站（http://www.chillingeffects.org/index.cgi）（Chilling Effects Clearinghouse）就搜集了有關 DMCA 流程經常遭到濫用的大量證據。
+
+在部分案例中（像是多起寄發給 YouTube 用戶的自動撤除通知，這些用戶發表的影片描述看來像是商業檔案），濫用 DMCA 的成本很低，因此先斬後奏的代價並不高。在其他例子中，就不是這麼簡單了，例如環球音樂（Universal Music）就曾利用 DMCA 撤除動作限制了與其有關案件的報導。
+
+在更為極端的濫用案例中，某家售後市場供應商試圖製造相容於 Lexmark 印表機的碳粉匣，Lexmark 曾透過 DMCA 阻擋競爭。在此案例中，雖然受害一方有足夠的資源提出上訴，Lexmark 能夠運用 DMCA 發起攻擊的事實，顯示出該法案的制訂範圍，對該法案的憂慮，並非毫無根據。
+
+然而在 SOPA 與 PIPA 的脈絡中，DMCA 被視為是值得好好記住的榜樣。SOPA 與 PIPA 以全新的方式，來使用一套受到 DMCA 利用的有力工具。DMCA 提供了安全庇護（safe harbor），也就是說，允許像是網路服務供應商和代管公司等第三方，透過在接獲投訴時主動採取動作的方式，獲得免於潛在 DMCA 起訴的保障。最近 Clay Shirky 的 TED 演說（http://www.ted.com/talks/defend_our_freedom_to_share_or_why_sopa_is_a_bad_idea.html）針對安全庇護如何導致寒蟬效應，提供了一個絕佳且易於理解的解釋。新的立法有類似的手段，只不過更進一步地，允許投訴者針對其目標，發動一連串先發制人的措施。
+
+受到免責保護的第三方會傾向採取粗糙的措施，立即中止服務投訴者的目標，稍後再讓他們證明自己的清白。一連串的結果已經遠超過所涉及的內容，更遠至代管、DNS、透過付款網站籌資與信用卡，以及所有投訴者能夠想得到且宣稱與案件有關的一切。
+
+這裡有著明顯的問題。Red Hat 的智財權經理人 Robert H Tiller 告訴我，自由的網際網路是開放源碼運動的基礎之一，也是開放源碼成功的關鍵因素。網際網路活動過分廣泛責任的威脅，很可能會對成功專案所必需的協同合作產生寒蟬效果，這是用以反對該立法的好理由之一。此外，我認為自由（意指沒有法律責任的風險）溝通可說是開放源碼社群根深蒂固的一項價值，該社群無法接受對於此自由加諸考慮不周的限制。
+
+比 Tiller 更進一步的是，我完全有理由相信，開放源碼社群會不時成為違反私有公司權利控訴的目標。濫用該法案而無需負擔後果，意味著這類的控訴將變得氾濫而難以解決。唯一的避免方式是避開所有美國的資源；在相依關係糾纏不清的網際網路時代中，這幾乎是不可能的任務。
+
+這就是我為何樂見 OSI 對抗 SOPA 與 PIPA 的原因。我相信這兩個法案草案創造過於強大且能隨意濫用於反競爭用途的工具，因而有著重大缺陷。和參議員 Ron Wyden 一樣，我相信我們必須針對這些法案中的錯誤思維，持續表達專業的反對意見。我希望這項不可避免的法律，在他們手上制訂時，能夠聯合來自開放源碼社群的專家，得到更好的結果。
+________________________________________________________________
+
+■ [源碼快報] Steam 平台 Linux 版謠言滿天飛 但是 Desura 平台將以開源與之一較高下
+
+Ruth Suehle （Red Hat）／文 陳瑞霖／翻譯
+
+◎ 本文翻譯自 Opensource.com（http://opensource.com/life/12/1/steam-rumors-are-flying-again-desura-beat-them-open-source），採用 CC-BY-SA 3.0 Unported 授權條款釋出
+
+http://www.openfoundry.org/images/120221/osdc_life_venngames_520x292_0112ll.png
+▲ 圖片來源︰opensource.com
+
+Desura 遊戲平台的用戶將不只有喜愛開放原始碼的玩家，現在還多了開發者。Desura 日前用 GPL V3 的授權條款，將客戶端以「Desurium （https://github.com/lodle/Desurium）」的名稱在 Github 網站釋出。
+
+Desura 類似 Steam 遊戲平台，提供遊戲讓買家以誘人的價格付費下載。Desura 允許開發者在遊戲中加入 Desura 獨有的特殊功能。
+
+去年秋季 Desura 首次釋出 Linux 版的客戶端，而 Steam 則並沒有提供。市面上一直有謠言指出 Steam 將推出 Linux 版客戶端。根據 IronHammers 部落格的文章揭露（http://ironhammers.org/?p=9232），Valve（http://www.valvesoftware.com/job-SenSoftEngineer.html）徵求資深軟體工程師，主要工作內容是將 Windows 遊戲移植至 Linux 上。
+
+Linux 下的遊戲市場已經成熟，玩家期待有朝一日能付費購買他們感興趣的遊戲。2dboy 在 Linux 上釋出 World of Goo 後的頭兩天，Linux 版本的遊戲下載量竟佔全部下載量的 4.6%。當天販售的套數也創下歷史新高。那些透過 Steam 以及 Desura 購買 Humble Bundle 的人，花在 Linux 平台玩的時間比其他平台還要久。而最近 Humble Bundle 在各平台使用者的出價[1]，Windows 使用者平均付 $4.87 美元，Mac 使用者平均付 $7.61 美元，而 Linux 平台上則是 $10.45 美元。
+
+[1] Humble Bundle 售價由使用者自行決定。台灣類似的例子為提倡公平貿易咖啡的生態綠咖啡店，其販售的冷熱飲由消費者自行決定要付多少錢。
+________________________________________________________________
+
+■ [源碼快報] 惡意軟體 Citadel 採用開放源碼模式開發
+
+謝良奇／編譯
+
+開放源碼成功地為用戶帶來了 Linux、Apache、Hadoop 等軟體，既然如此，那為何不能將開放源碼的開發模式，運用到其他類型的軟體上呢？大量惡意木馬軟體背後的電腦犯罪者，已經開始採用開放源碼模式來加強其惡意軟體的功能。根據網路安全公司 Seculert Research 的報告，Zeus 木馬程式的變種 Citadel，正是開放源碼模式下的產物。
+
+去年惡名昭彰的 Zeus 電腦犯罪工具集釋出原始程式碼，電腦犯罪者就開始在此銀行木馬程式的開發上，擁抱開放源碼模式。最近數週內出現了名為 Citadel 的多個 Zeus 木馬程式變種。
+
+Zeus 可說是最早、最常見的線上銀行木馬程式之一。Zeus 的作者在 2010 年底停止開發，並於數月後在網路上釋出該軟體的原始程式碼。此後，Zeus 的程式碼成為其他木馬程式的開發基礎，包括 Ice IX 與新的 Citadel。2011 年 12 月 17 日，Seculert 的研究實驗室首度發現 Citadel 殭屍網路的跡象。該公司宣稱，Citadel 的普及與開發都在快速成長中。
+
+除了開放源碼，Seculert 的報告更指出，該軟體的主要開發者也採用了軟體即服務（SaaS）模式，並使用客戶關係管理系統（CRM），透過論壇和留言板與使用該木馬的犯罪者溝通。
+
+Citadel 的用戶可以提出新功能的需求、貢獻模組、進行測試並回報臭蟲，並且和其他電腦犯罪者進行討論。Seculert 指出此種模式大大助長了惡意軟體的開發。Citadel 因此增加的新功能與模組包括了可針對設定檔與伺服器通訊進行 AES 加密、避免追蹤網站的偵測、支援安全廠商網站黑名單，以及基於觸發器的影片錄製。
+
+Seculert 技術長 Aviv Raff 表示，由於採用這種新的開發週期，這套惡意軟體得以快速演進，從去年 12 月以來他們已經發現由 Citadel 作者釋出的 5 個新版本，每個版本都增加了新功能與模組。
+
+擁抱開放源碼惡意軟體的電腦犯罪者，使用新的 Citadel 惡意軟體建構了 20 個殭屍網路。該軟體逐漸成為電子銀行詐欺者的強大工具。Raff 指出，其中若干殭屍網路已經感染了超過 10 萬部機器。
+
+事實上，網路犯罪者跟隨合法業界的潮流早已行之有年，例如 Citadel 作者會提供其用戶使用手冊、發行說明、授權協議。Seculert 指出，他們認為採用開放源碼模式的趨勢將日益增長。網路犯罪圈對於快速開發、尖端技術的追求，以及黑客們對於不斷受到認可的渴望，恐怕將使開放源碼模式在網路犯罪生態圈裡也和在軟體世界一樣，受到廣泛採納。
+
+相關網址
+
+1.壞傢伙也開始使用開放源碼了    
+http://www.networkworld.com/community/node/79789
+2.惡意軟體開發者擁抱開放源碼    
+http://www.theregister.co.uk/2012/02/10/open_source_malware/
+3.Citadel 銀行木馬程式透過開放源碼開發演進    
+http://www.computerworlduk.com/news/security/3336390/citadel-banking-trojan-evolving-through-open-source-development/
+4.Citadel 木馬程式︰開放源碼惡意軟體社群多了客戶服務    
+http://www.techweekeurope.co.uk/news/citadel-trojan-open-source-malware-community-adds-customer-care-60069
+5.惡意軟體作者透過社群改進網路攻擊    
+http://www.computing.co.uk/ctg/news/2145226/malware-authors-social-improve-cyber-attacks
+________________________________________________________________
+
+■ [源碼快報] Fedora 公佈新專案領導人  Canonical 不再贊助 Kubuntu
+
+謝良奇／編譯
+
+Red Hat 任命前 Fedora 計畫經理 Robyn Bergeron 為該散佈套件的下一位專案領導人，取代從 2010 年 6 月開始擔任此職務的 Jared Smith。Bergeron 計畫加強該作業系統的雲端服務。
+
+之前擔任 Fedora 計畫經理的 Robyn Bergeron 曾參與 Fedora 的行銷團隊，並於 2011 年舉辦了 FUDCon Tempe 大會。Smith 表示他將在接下來的幾個月內，協助 Bergeron 熟悉該職務。
+
+Bergeron 接替 Jared Smith 之際，該市場正處於微妙的時間點，該產業逐漸從基本的主從環境跨至更為雲端化的領域，並且有更多不同的電腦系統可供選擇。Bergeron 表示，她將關注的領域之一就是 Fedora 在雲端服務上的可用性。
+
+她說，目前市場充斥許多不同的架構即服務（IaaS）工具，他們必須佔有一席之地。她認為該公司在雲端領域不夠積極，然而許多 Fedora 的日常用戶卻很關注這個領域。這裡有一些機會需要重新審視，但不會有劇烈改變發生。
+
+Bergeron 表示 Fedora 會持續其 6 個月釋出週期，該專案將於 5 月釋出的 “Beefy Miracle”  正在按照計畫進行。發生重大問題是延緩程式碼釋出週期的唯一可能原因，而目前看來無此跡象。
+
+談到社群本身時，Bergeron 表示她希望把重點放在協助讓更多人參與該專案，以及分析 Fedora 運作所得的資料這兩件事上。
+
+另一套 Linux 散佈套件 Canonical 則似乎為了簡化在桌面上的工作重點，將在 4 月釋出 12.04 後，停止贊助 Ubuntu 的 KDE 延伸專案 Kubuntu。
+
+Ubuntu 開發者 Jonathan Riddell 日前在 Kubuntu 的開發郵件論壇上，宣佈 Canonical 將在 Ubuntu 12.04 釋出後，停止支付他在 Kubuntu 開發工作上的薪資。身為 Canonical 的員工，Riddell 過去 7 年來受雇從事 Kubuntu 的開發，他目前已經轉至該公司的其他任務上。
+
+Riddell 在文章中表示，Canonical 希望採用和其他社群延伸專案如 Edubuntu、Lubuntu、 Xubuntu 同樣的方式來看待 Kubuntu，支援這些專案的基礎架構。這對於 Kubuntu 和 KDE 都是一大挑戰。
+
+除了 Riddell 無法繼續在工作時間從事 KDE 開發之外，最主要的影響就是從 12.04 起，Kubuntu 不再提供付費支援。Riddell 認為這是一項合理的商業決策，因為 Kubuntu 在經過 7 年的嘗試後，並未獲得商業上的成功，期待有持續的財務資源挹注是不切實際的。
+
+儘管 Riddell 完全正確，Canonical 的邏輯也很合理，Linux 社群一向不只是看錢做事，所以顯然 Canonical 對 KDE 的態度，和 Mark Shuttleworth 在 2006 LinuxTag 博覽會，邀請 Kubuntu 與 KDE 社群和 Canonical 進行合作時，已經有所不同。
+
+必須強調的是，Canonical 作的這個決定不代表 Kubuntu 的結束。相反的，Kubuntu 將加入 Edubuntu 和 Xubuntu 這些 Ubuntu 衍生發行版本的行列。為了強調這點，Ubuntu 桌面經理 Jason Warner 也在該郵件論壇上公告，概述了作為長期服務（Long-Term Service）釋出所代表的意義，以及 Canonical 將提供何種服務與資源，與對社群的期待為何。
+
+儘管 Warner 並未提及，Riddell 在 Canonical 內位置的改變，無疑意味著在人員移動上以 GNOME/Unity 為重點。Riddell 則是以個人名義呼籲更多開發者參與協助 Kubuntu 的開發。Kubuntu 與更廣大的KDE 社群如何回應 Canonical 此一決定，將有待後續關注。
+
+相關網址
+
+1.新 Fedora 領導人力推雲端    
+http://www.theregister.co.uk/2012/02/07/new_fedora_boss_bergeron/
+2.新 Fedora 專案領導人公佈    
+http://www.h-online.com/open/news/item/New-Fedora-Project-Leader-announced-1429999.html
+3.Canonical 將視 Kubuntu 為社群衍生專案    
+http://www.itworld.com/it-managementstrategy/247708/canonical-aligns-kubuntu-community-flavor
+4.Canonical 裁撤 Kubuntu 贊助並停止商業支援    
+http://www.h-online.com/open/news/item/Canonical-pulls-funding-from-Kubuntu-drops-commercial-support-1429603.html
+________________________________________________________________
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「授權分析系統開發兼任助理」
+
+葛冬梅／文
+
+【公司名稱】中央研究院　資訊科技創新研究中心　自由軟體鑄造場
+【職　　稱】自由軟體鑄造場兼任助理
+【需求人數】1 名
+【工作地點】臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）。
+【工作經驗】不拘。
+【工作時間】每週二至三日，日數及時間可於面談時再議。
+
+【工作內容】
+協助開發維護軟體程式碼授權資訊的分析比對系統。
+
+【工作待遇】
+依資訊科技創新研究中心規定，採每月上班日數計算薪資。
+範例 （1）︰每週工作 2 日，月薪 8,000 元，有相關工作經驗者另議。
+範例 （2）︰每週工作 3 日，月薪 12,000 元，有相關工作經驗者另議。
+【必備條件】
+
+    大學/專科以上。
+    對於自由開源軟體有興趣。
+    基本程式開發能力。
+    良好的英文閱讀與日常溝通能力。
+    負責任的工作態度。
+    團隊合作的互助能力。
+    積極主動的學習能力。
+
+【加分條件】
+
+    對於自由軟體授權相關內容已有認知。
+    熟悉 Python 程式語言。
+    熟悉 Unix-like 作業系統的管理。
+    優異的程式開發能力。
+    優異的英文能力。
+    具備中文文章寫作能力。
+    樂於吸收新知與研究新事物。
+    熟悉網站內容管理平台的操作。
+    學經歷為法律、智財管理或資訊等相關領域。
+    任何您覺得適合本件工作的個人資訊，都歡迎您提供給我們。
+
+【補充說明】
+若錄取者為在學研究生，本計畫鼓勵以自由開源軟體作為其論文之研究主題。
+
+【應徵方式】
+
+    請準備個人資料與履歷，內容包括照片、學歷、經歷與聯絡方式。若有發表文章、外語能力檢測證明、網站或程式作品以及自由開源軟體社群活動參與經驗等，亦建議一併附上。資料電子檔請提供 ODT 或 PDF 格式以利後續作業。
+    請將上述資料 email 給葛冬梅小姐，標題請註明︰[應徵自由軟體鑄造場兼任助理-授權分析系統開發]。葛冬梅小姐 email︰tmk2005@citi.sinica.edu.tw ，聯絡電話︰02-27883799 # 1474。
+    將於收到應徵 email 後一週內擇優通知面試，未通知面試者恕不退件及函覆。
+________________________________________________________________
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「資料整理兼任助理」
+
+葛冬梅 / 文
+
+【公司名稱】中央研究院　資訊科技創新研究中心　自由軟體鑄造場 
+【職　　稱】自由軟體鑄造場兼任助理
+【需求人數】1 名 
+【工作地點】臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）。 
+【工作經驗】不拘。
+【工作時間】每週二至三日，日數及時間可於面談時再議。
+
+【工作內容】
+整理自由開源軟體授權相關文章與資料。
+
+【工作待遇】
+依資訊科技創新研究中心規定，採每月上班日數計算薪資。
+範例 （1）︰每週工作 2 日，月薪 8,000 元，有相關工作經驗者另議。
+範例 （2）︰每週工作 3 日，月薪 12,000 元，有相關工作經驗者另議。
+
+【必備條件】
+大學/專科以上。
+對於自由開源軟體有興趣。
+良好的中文閱讀與文字校對能力。
+基本的英文閱讀能力。
+細心、負責任的工作態度。
+團隊合作的互助能力。
+
+【加分條件】
+對於自由軟體授權相關內容已有認知。
+優異的寫作能力。
+優異的英文能力。
+樂於吸收新知與研究新事物。
+熟悉網站內容管理平台的操作。
+具備程式撰寫能力。
+具有新聞寫作、採訪或編輯等相關學經歷。
+學經歷為法律、智財管理或資訊等相關領域。
+任何您覺得適合本件工作的個人資訊，都歡迎您提供給我們。
+
+【補充說明】
+若錄取者為在學研究生，本計畫鼓勵以自由開源軟體作為其論文之研究主題。
+
+【應徵方式】
+請準備個人資料與履歷，內容包括照片、學歷、經歷與聯絡方式。若有發表文章、外語能力檢測證明、網站或程式作品以及自由開源軟體社群活動參與經驗等，亦建議一併附上。資料電子檔請提供 ODT 或 PDF 格式以利後續作業。
+請將上述資料 email 給葛冬梅小姐，標題請註明︰[應徵自由軟體鑄造場兼任助理-資料整理]。葛冬梅小姐 email︰tmk2005@citi.sinica.edu.tw ，聯絡電話︰02-27883799 # 1474。
+將於收到應徵 email 後一週內擇優通知面試，未通知面試者恕不退件及函覆。
+________________________________________________________________
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「電子報執行編輯」
+
+洪華超／文
+
+【公司名稱】中央研究院-資訊科技創新研究中心-自由軟體鑄造場 
+【職稱名稱】全職／兼任研究助理-自由軟體鑄造場電子報執行編輯 
+【需求人數】1~2 名 
+【工作地點】臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）
+【上班時間】
+◎ 兼任:每週一至週五安排2~3個工作天，09:30-17:30。 
+
+【工作內容】 
+◎ 執行一個月發刊兩期的電子報編輯工作。
+◎ 重新編譯英文為主的新聞內容。
+◎ 撰寫自由軟體專案與活動相關的採訪稿。
+
+【應徵資格】 
+◎ 學歷要求︰專科以上。
+◎ 工作經驗︰不拘，有文字編輯校稿相關經驗為佳。 
+
+【必備條件】 
+◎ 負責任的工作態度，以及對自由軟體領域知識的學習熱忱。 
+◎ 諳英文，如有相關英文能力檢定證照（如 TOEFL、TOEIC 或 IELTS 等），請將成績證明附於履歷中。 
+
+【加分條件】 
+◎ 有採訪編輯、編譯等相關經驗（請附作品）。
+◎ 對於資訊領域名詞很熟悉。
+◎ 具備 HTML 語法及網站架設、網頁編輯方面相關能力。 
+
+【工作待遇】 
+◎ 兼任:依資訊科技創新研究中心規定，時薪105~113元。有相關工作經驗者另議。 
+
+【應徵方式】視情形擇優通知面試，不合者恕不退件及函復。 
+◎ 郵件︰rockhung@citi.sinica.edu.tw ；負責人︰洪華超 。 
+◎ 郵件主旨撰寫格式︰【應徵自由軟體鑄造場電子報執行編輯】-中文姓名。 
+◎ 附加包含自傳、基本資料（學經歷、照片、聯絡方式、最快工作日期）等文件。 
+◎ 自傳、基本資料電子檔請用 ODT 或 PDF 格式寄送。
+________________________________________________________________
+
+■ [接案 / 工作] 自由軟體鑄造場 - 誠徵「工讀生」
+
+洪華超／文
+
+【職　　務】工讀生
+【需求人數】1名
+【工作內容】交辦事務處理，例如:影像處理、網頁編輯、資料整理...等等
+【學歷要求】專科以上（夜間部佳）
+【工作經驗】不拘
+【工作地點】11529 臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）
+【必備條件】
+
+    具電腦基本操作能力
+    需具備HTML語法編輯能力
+    英語能力具一定的基礎
+    負責任的工作態度，以及有學習意願者佳
+
+【工作待遇】時薪 110 起
+【工作時段】每週安排約 2~3 個工作天（09:30～17:30）
+【應徵方式】
+
+    請檢附履歷、基本資料（學經歷、照片、可安排之工作時間、聯絡方式等），寄至 rockhung AT citi.sinica.edu.tw ，洪先生收，標題請註明︰應徵工讀生。將擇優通知面試，不適任者恕不退件及函覆。
+________________________________________________________________
+
+■ [接案 / 工作] 2012 台灣創用CC計畫 工讀生徵才
+
+台灣創用 CC 計畫/提供
+
+◎ 名額︰1 名。
+◎ 薪資︰944 元/天 (8h)。
+◎ 工作時間︰每週間安排約 2-3 個工作天 (09:30-17:30)
+◎ 聘用期間︰2012 年 4-12 月
+◎ 工作地點︰南港中研院資創中心。
+◎ 性別、學歷︰不拘。
+
+資格條件
+
+◎ 熟電腦文書處理。
+◎ 做事負責細心，學習意願強烈，具服務熱忱。
+◎ PS.對 open data 議題有興趣者尤佳。
+
+工作內容
+
+◎ 每週交辦事務處理（ex公文送收、資料分類整理、名片建檔、活動宣傳、電話接聽等）。每日需填寫工作日誌。
+
+應徵方式
+◎ 於 2012 年 3 月 15 日前，檢附履歷 - 基本資料（學經歷、照片、可安排之工作時間、聯絡方式等） - 簡歷，mail 至 emyleo@citi.sinica.edu.tw （標題請寫︰應徵工讀生）
+
+將視情形擇優通知面試，不合者恕不退件及函復。
+
+聯絡人︰周小姐 (TEL︰02-27872387)
+_______________________________________________________________
+
+■ [接案 / 工作] Android 3.2 porting 專案誠徵中短期技術開發合作夥伴
+
+LZY／提供
+
+嵌入式行動裝置開發專案，誠徵各資訊領域有技術開發能力的創業者、SOHO 族，與個人接案者一同進行專案承接！
+
+基本資訊
+
+◎ 專案名稱︰Android 3.2 porting for NVIDIA Tegra 2 平板    
+◎ 開發時程︰預計 4 ~ 5 個工作月份，即日開始！    
+
+工作內容    
+
+◎ 移植與整合 Android 3.2 作業環境至 NVIDIA Tegra 2 硬體平台。
+◎ 從事「上市產品」的承接與開發，專案承接期間必須全力投入，必要時需提供就地支援（onsite support）。
+
+薪資給付
+
+◎ 以「非固定薪資所得」之款項按月給付，給付標準類同一般科技產業之研發工程師。
+◎ 以技術顧問之方式進行中短期聘用，其餘長期聘用員工之基本待遇，將轉為薪資津貼進行提供。
+◎ 有相關工作經驗者與其他合作細節，可當面詳談磋商。
+
+備註說明
+
+◎ 已有 NVIDIA BSP 及相關廠商驅動程式之提供，不須從零到有進行 Android 3.2 的 porting 工作。
+◎ 此案為拋磚引玉之起頭，若合作關係順暢，將有未來持續接案合作之可能性。
+◎ 相關緣由可參考右列文章︰http://fred-zone.blogspot.com/2012/02/soho.html
+
+聯絡方式
+
+◎ 請將您的聯絡資訊（Email、市話、行動電話）及相關說明資料電子檔郵遞至 lzy AT mandice.com，標題煩請註明︰[應徵　Android 3.2 porting 專案技術開發合作夥伴]。
+◎ 亦可透過 Skype: lzy7478，Gtalk: lzy7478 AT gmail.com，進行工作內容的聯繫與討論。
+________________________________________________________________
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、粘卉慈、林珈宏
+◎ 外稿編譯︰謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/
+http://enews.url.com.tw/ossf.shtml
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/
+
+或寄發電子郵件至︰ossfepaper at openfoundry.org，以進行人工退訂。
+
+
+

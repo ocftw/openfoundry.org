@@ -1,0 +1,830 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 215 期 | 2013/03/26 □■□
+________________________________________________________________
+
+◎ 本期主題︰利用 Apache-2.0 程式所應遵守的義務規定
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/04/16
+
+□ 本期標題 □__________________________________________________
+
+﻿■ [法律專欄] 利用 Apache-2.0 程式所應遵守的義務規定
+
+■ [源碼秘技] GNU Cash－從今天開始記帳！
+
+■ [自由專欄] Linus Torvalds 不滿 Linux 核心對 Secure Boot 的處理
+
+■ [自由專欄] 中國開源發展緩慢的理由
+
+■ [源碼新聞] 開放源碼開拓下一代聊天與論壇應用
+
+■ [源碼新聞] CeBIT 2013 中的開放源碼展覽
+
+■ [源碼新聞] LG 買下 webOS 為智慧型電視研發均勢進行長遠布局 
+
+■ [源碼新聞] Windows Azure Mobile Services 開始支援 Android   
+
+■ [源碼新聞] 德國 Bochum 地方法院肯定 LGPL 有效性－涉訴雙方法庭和解並明示公布和解金額
+
+■ [源碼新聞] 2013 年四月份社群活動列表
+______________________________________________________________
+
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 利用 Apache-2.0 程式所應遵守的義務規定 
+
+葛冬梅、林誠夏／文 
+
+Apache License 2.0（以下簡稱 Apache-2.0）是 Apache Software Foundation（簡稱 ASF）在 2004 年所發布的自由開源軟體授權條款（註一），雖然一開始從數據上來看，Apache-2.0 被開源專案使用的程度，並不如 BSD、GPL 等授權條款高，不過由於 ASF 旗下專案包括使用率極高的 Apache httpd，以及 Google 在智慧型行動裝置上主推的 Android 平台，均採用 Apache-2.0 來授權，因此此一授權方式的重要性與影響力日漸提升。近兩年來，筆者在工作上發現，愈來愈多人在詢問與討論 Apache-2.0 條款的相關內容，而這些問題中，又以詢問應該如何遵守 Apache-2.0 授權程式的義務性規定佔了大部分。為此，本文特別針對 Apache-2.0 的義務規定加以說明，並且模擬常見的幾種狀況，提供實際應用的著作權聲明範本，希望可以協助開發者安心取用 Apache-2.0 的授權程式來進行程式改作與專案開發（註二）。
+
+【Apache-2.0 義務首重智財權與貢獻者聲明的保留】 
+
+Apache 授權條款與 BSD、MIT 等授權條款非常相近，基本理念是只要使用者達到彰顯前手作者與貢獻者名譽的標示義務，則後續的利用方式原則上即不受限，此一特質與會拘束衍生程式授權方式的 GPL 類別有很大的不同（註三），所以說，利用 Apache-2.0 授權程式，首要義務性規定的重點：便是在於程式相關的智財權資訊必須標示清楚，如程式整體專案裡包含有其他非 Apache-2.0 授權之第三方元件的話，亦須同時彰顯這些元件權利人的聲明。基本上，只要使用者完成了這些聲明的標示義務，那就幾乎已經完成了 Apache-2.0 要求的所有義務性規定。
+
+相關的標示義務主要規定在 Apache-2.0 的第 4 條，節其要點分述如下：
+
+1、散布 Apache-2.0 授權程式須附上 Apache-2.0 授權條款全文
+
+使用者散布 Apache-2.0 授權的程式時，必須要附隨一份 Apache-2.0 授權條款的全文內容，讓後手可以閱讀授權條款全文，方有機會了解在利用程式時，能享有哪些權利以及必須負擔哪些義務。此一授權文件能以數位化格式內嵌至程式的互動介面，或程式的儲存媒體 (medium) 中，亦可透過紙本印刷夾附於產品包裝內，但不能僅提供網路連結，要求使用者自行上網瀏覽。
+
+2、標示修改檔案的相關資訊
+
+使用者若是有修改原以 Apache-2.0 授權釋出的檔案，必須在修改檔案中加上明顯的標示，讓收受此程式的後手，得以了解到哪些檔案是被修改過的，以及其修改者是誰。 
+
+3、保留原程式該保留的各項聲明 (notices)
+
+使用者以源碼格式 (Source Code) 散布 Apache-2.0 原程式及其衍生程式的時候，必須保留原程式中所有的著作權、專利、商標與署名聲明 (attribution notice)。而若原程式中部份聲明內容，已不適宜再於衍生程式中出現的話，則使用者亦必須將這些無關的聲明內容刪除，也就是說，與衍生程式無關的聲明內容毋需附上。
+
+4、讓後手閱讀到前手 NOTICE 檔案中的相關資訊
+
+http://www.openfoundry.org/images/130326/apacheobligation/lc_201303_img_1.png
+▲ 圖1：Apache httpd 源碼中的 NOTICE 檔案中，標示了 Apache httpd 包括及衍生自哪些著作權利人的程式碼。
+
+NOTICE 檔案指的是一個儲放各種聲明與標示內容的檔案，例如跟程式相關的著作權、專利權，或貢獻者特意聲明或標示的相關文字資訊。而根據 Apache-2.0 的規定，如前手 Apache-2.0 程式在其程式源碼中已內置了一個這樣的聲明檔案，則使用者在散布此一程式以及衍生程式的源碼格式時，也必須保留這個 NOTICE 檔案的內容，與其他程式檔案一併散布。所以，在 Apache-2.0 授權的程式裡，有任何資訊是程式的原始開發者及其後的貢獻者，想要讓使用者與後手了解的，都可以放置在這個檔案中。所以簡單來說，NOTICE 檔案是著作權利人將資訊傳遞給使用者與後手的一個重要媒介，即使使用者修改了程式，在散布衍生程式的時候，也不能捨棄該 NOTICE 檔案內含的相關資訊；而如果該程式的後手修改者有哪些資訊與聲明想要增添的，也可以直接增添到這個 NOTICE 檔案裡面來。此外，部份 Apache-2.0 程式的開發者，亦會將第三方元件的清單與相關資訊羅列進此一 NOTICE 檔案來，以 Apache httpd 專案為例，其便透過專案根目錄下的 NOTICE 檔案，將專案內含哪些第三方著作權利人的程式碼（註四）做了清楚的交待。
+
+而若是使用者採用 Apache-2.0 授權程式的方法，是將其融入其他程式併轉為程式目的碼 (object code) 的格式來運用，此時原專案源碼格式在 NOTICE 檔案羅列的資訊，便須轉以其他方式來進行顯示，例如在有圖形化介面的應用程式中，可以將 NOTICE 內容放在程式介面的「關於 (About)」之下，或是安裝時程式本就會顯示該專案整體的著作權聲明與第三方聲明，此時亦可將這些 NOTICE 內容一併以這個方式呈現，又或者在嵌入式硬體裝置的情況下，亦可以從權提供一份紙本的說明，將 NOTICE 的內容印製於此說明書之內，以上種種作法，都可以彈性滿足 Apache-2.0 第 4 條第 1 項第 4 款要求的標示義務。
+
+【Apache-2.0 要求義務在實際應用上具有彈性、但亦須費心調整】 
+
+上述這四項義務規定看似簡明清楚，不過在實際散布 Apache-2.0 程式與其衍生程式的時候，還需要進一步了解到 Apache-2.0 授權程式允許「轉授權／再授權（sublicense，註五）」利用的特性，使用者對相關程式的標示方式，才能達到標示清楚、避免糾紛的目的。 
+
+Apache-2.0 是一份允許使用者以轉授權方式利用程式的授權條款，這可以從 Apache-2.0 第 2 條與第 4 條第 2 項的規定明確得知（註六）。而透過轉授權方式來散布程式的時候，使用者可以替未經修改的原程式或衍生程式選擇一份新的條款來授權，但前提是該新撰條款的內容不與 Apache-2.0 產生衝突，並且必須將 Apache-2.0 條款原有的義務性條件 (conditions) 均羅列在內。此時，轉授權散布出去的程式，已不再是透過 Apache-2.0 授權，而是適用一份改寫自 Apache-2.0 或是與 Apache-2.0 各項義務性要求完全相容的其他條款，因此若使用者依文義解釋逕依上述第 4 條第 1 項第 1 款的規定，在散布新程式的同時仍然夾附一份 Apache-2.0 原始條款全文的話，反而有時會讓收受程式的後手，對該程式的授權狀態產生混淆與誤解。所以在轉授權並改用其他授權方式釋出程式的狀況下，筆者認為使用者僅需附上新訂條款的內容即可，而不需要再附上 Apache-2.0 原始的授權全文。
+
+另外，依照 Apache-2.0 第 4 條第 1 項第 3、4 款規定綜合以觀，Apache-2.0 授權條款具體要求，如前手程式的源碼檔案包含標示性質的 NOTICE 檔案，其後手便應將此檔案內含的資訊，在之後散布的源碼檔案中繼續留存，或是在其後散布的目的碼格式中，透過相應機制將該 NOTICE 檔案內含的資訊「顯示 (display)」出來，以讓收受該程式的後手，無論取得的是源碼格式或是目的碼格式，皆可以清楚了解所利用程式的智財權狀況。而此項標示義務其實是具有實際法律效果的，以專利授權為例，Apache-2.0 的授權機制規定，若程式的原始創作人及其後的開發者，自主性地將其擁有的專利技術寫入 Apache-2.0 程式裡，則其後的使用者，便可在 Apache-2.0 的授權基礎上，依 Apache-2.0 的相關規則合法的使用這些專利技術。故透過保存 NOTICE 相關資訊，與進一步「顯示」這些資訊的動作，能讓 Apache-2.0 程式的使用者，合法主張其是基於 Apache-2.0 的授權基礎取得這些專利授權。在此例中，即使該相關程式的運用方式經轉授權機制而有改變，保留前手標註的相關專利授權聲明，仍然得以讓後手的使用者合法的使用這些專利技術。
+
+【著作權與授權聲明範例】 
+
+Apache-2.0 是一份相容性頗高的自由開源軟體授權條款，因此以 Apache-2.0 授權散布的程式碼，很容易與其他不同授權方式的程式碼結合成為一個新專案。不過這個新專案的授權方式，並沒有被硬性要求仍然得採用 Apache-2.0 來進行運用，因此對於一般使用者來說，如何清楚標示 Apache-2.0 衍生專案，或是集合專案 (aggregation) 的授權資訊，就牽涉到許多較為複雜的環結，而若是程式碼檔案有經過修改，之後如何透過文字聲明來呈現對前手貢獻者的名譽尊重，也是一個困擾許多使用者的問題。以下，筆者針對這些常被提出來的疑惑，選擇三種最常見的使用態樣，分別提供標示範例以供讀者參考。
+
+1、利用 Apache-2.0 程式開發新專案、新專案整體採用其他的自由開源軟體授權條款來授權
+
+(1) 提供程式源碼時的相關聲明
+
+Apache-2.0 允許轉授權，因此使用者可以將 Apache-2.0 程式納入到新的自由開源軟體專案中，若新專案採用其他的自由開源軟體授權條款來授權，而此授權條款與 Apache-2.0 亦可直接相容時，則原本採用 Apache-2.0 授權的程式，便有機會直接改採新專案的授權方式來授權。此處預設新專案以採用 GPL-3.0 授權為例，建議該專案程式源碼的散布者，可以在程式碼根目錄位置的 README 或 LEGAL 等純文字檔案中，加上如下的文字，來說明專案整體著作權與相關的授權資訊。而下列文字亦可以放在專案網站中，當作簡要的著作權與授權聲明： 
+
+----
+
+2013 (c) BBB Software 1.1
+Developer Mr. B <bbb@example.org>
+URL: http://BBB.org/
+
+BBB Software 1.1 is licensed under GNU General Public License v3.0 as published by the Free Software Foundation. 
+
+This project is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+
+See the GNU General Public License v3.0 for more details. You should have received a copy of the GNU General Public License v3.0 along with this program. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>. 
+
+BBB Software 1.1 contains AAA Library 2.2 which is originally released under Apache License 2.0 and combined into BBB software 1.1 as a whole under GNU General Public License v3.0. Please see the NOTICE file in the root directory for more information.
+
+---- 
+
+此處的 NOTICE 純文字檔，即為滿足 Apache-2.0 第 4 條第 1 項第 4 款的義務性要求，此時 Mr. B 可以將原 AAA Library 2.2 的相關聲明一併存放於此，以作為一個基本的引據與紀錄，然後將整體專案以自己的名義，採用 GPL-3.0 的授權方式向後散布。
+
+(2) 程式源碼個別檔案檔頭的簡要聲明
+
+由於 GPL-3.0 要求在改作時，必須登載哪些檔案是經過改作，其改作時間，以及改作者，故個別檔案若原始是以 Apache-2.0 的方式授權，之後融入到整體以 GPL-3.0 授權的專案時，其檔頭 (header file) 部份的資訊，也建議能夠手動登錄必要的相關資訊，ASF 表示這部份的動作，可以參考軟體自由法律中心 (Software Freedom Law Center, SFLC) 所發布的《在 GPL 專案中維護寬鬆授權的檔案：開發者指南》（Maintaining Permissive-Licensed Files in a GPL-Licensed Project: Guidelines for Developers，以下簡稱「轉換指南」，註七），轉換指南中建議保留原本的著作權與授權聲明，然後再加上新專案的著作權與 GPL 授權聲明。筆者參考該轉換指南的內容後，改寫為如下的範例供作參考（註八）： 
+
+----
+
+/* 2013 (c) BBB Software 1.1
+ * Developer Mr. B <bbb@example.org>
+ * URL: http://BBB.org/
+ *
+ *  This file is free software: you may copy, redistribute and/or modify it  
+ *  under the terms of the GNU General Public License v3.0 as published by the  
+ *  Free Software Foundation.  
+ *  
+ *  This file is distributed in the hope that it will be useful, but  
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of  
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ *  General Public License v3.0 for more details.  
+ *  
+ *  You should have received a copy of the GNU General Public License v3.0  
+ *  along with this program. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.  
+ *  
+ * This file incorporates work covered by the following copyright and  
+ * permission notice:  
+ *  
+ * See the NOTICE file distributed with this work for additional information regarding
+ * copyright ownership. 
+ * Mr. A licenses this file to You under the Apache License, Version 2.0 
+ * (the "License"); you may not use this file except in compliance with 
+ * the License. You may obtain a copy of the License at 
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language 
+ * governing permissions and limitations under the License. 
+ */ 
+----
+
+http://www.openfoundry.org/images/130326/apacheobligation/lc_201303_img_2.png
+▲ 圖2：採用寬鬆授權條款的源碼檔案，若是包含有 GPL 程式碼，SFLC 在轉換指南中建議該如何標示該源碼檔案中的著作權與授權資訊。
+
+(3) 單獨散布目的碼格式時應有的標示資訊
+
+在散布此專案目的碼格式的時候，除了須一併提供一份 GPL-3.0 授權條款全文，讓後手知悉該程式碼是以 GPL-3.0 向後授權外，並在程式的安裝或互動介面上，呈現如下的一段文字，後手就可以知道透過何種方式得到該專案的程式源碼，亦可進一步瀏覽到 AAA Library 2.2 之前以 Apache-2.0 釋出時的相關聲明：
+
+----
+
+BBB Software 1.1 is licensed under GNU General Public License v3.0 as published by the Free Software Foundation.
+
+For instruction of getting its Source Code and related notices, please find the NOTICE information <here> or scroll down the text to browse all of it.
+
+<將原本 AAA Library 2.2 以 Apache-2.0 釋出時的相關聲明列示於此。>
+
+---- 
+
+2、利用 Apache-2.0 程式開發封閉專案、新專案中的 Apache-2.0 保留其原來的授權方式，併以不提供源碼的方式進行商業應用。
+
+有時候使用者利用 Apache-2.0 程式的方式，也可以不要去改變該程式原來 Apache-2.0 的授權宣告，在這樣所產生的新專案中，除了 Apache-2.0 程式碼外，還併存有自行開發的封閉專案程式碼。此時，Apache-2.0 授權的部份如果在散布時願意提供源碼的話，散布者仍可以自發性的提供源碼，但依 ASF 的解釋（同註二），如果散布者轉以不提供源碼的方式來運用此一原以 Apache-2.0 授權的程式，亦可。此時最低的義務性要求，就是散布時須一併提供 Apache-2.0 授權條款的全文，以及該程式前手已註解的相關聲明。所以，如果是採後者將專案整體程式碼封閉起來的利用方式，那筆者建議此時專案整體著作權與授權聲明的說明文字，求其簡便之故，可在適當的位置加入如下的簡要資訊來滿足 Apache-2.0 授權條款要求的標示義務，這些適當的位置可以是圖形化介面中的「關於 (About)」下拉選單、嵌入式裝置所附隨的說明書，或應用程式安裝過程中所出現的著作權與授權資訊頁面：
+
+----
+
+2013 (c) BBB Software 1.1
+Developer Mr. B <bbb@example.org>, ALL RIGHTS RESERVED.
+URL: http://BBB.org/
+
+The AAA Library 2.2 is included from http://AAA.org under Apache-2.0, and interacted with BBB Software 1.1 as a separate part, for its licensing rule and related notices, please find the NOTICE information <here> or scroll down the text to browse all of it.
+
+<將原本 AAA Library 2.2 以 Apache-2.0 釋出時的相關聲明，以及 Apache-2.0 授權條款全文列示於此。>
+
+---- 
+
+3、利用 Apache-2.0 程式開發新專案、將原 Apache-2.0 授權的程式碼完全融入新專案改以新的商業授權方式來進行商業應用
+
+由於 Apache-2.0 並沒有強制規定使用者在散布衍生程式時，必須要提供程式源碼，所以經過轉授權手續的 Apache-2.0 程式，也可以成為封閉源碼專案中的合法元件。此種利用方式，可說是第一種類型變化而來的，然而運作上比起第一種類型複雜許多，因為第一種類型是讓 Apache-2.0 授權的部份，轉以其他相容的自由開源軟體授權條款進行散布，這些可轉換的條款如 GPL-3.0，可以直接被引用為新的授權文件，然而，如果新專案的改作者，希望以自訂的商業授權方式來利用此一融入 Apache-2.0 授權程式碼的專案，那麼前提要件就是依 Apache-2.0 第 4 條第 2 項的規定，將本來 Apache-2.0 條款，文字內容裡的所有義務性要求都全盤改寫到新的商業授權條款裡，包含其專利反制條款與商標權相關的聲明資訊，也就是說，要經歷一個全盤改寫商業授權條款內容的工，所以一般來說這樣的應用方式並不多見，因為過程中多半要依賴法律專門的從業人員來進行條款的添附與改寫。
+
+【結語】
+
+Apache-2.0 是一份授權範圍廣大、義務規定寬鬆的授權條款，所以 Apache-2.0 在義務規定上著重授權資訊的傳遞、各項聲明的保留，以及貢獻者名譽的彰顯，這幾項資訊標示義務簡單扼要，要達成相關的規定對於使用者來說並不會太難。同時 Apache-2.0 不拘束衍生程式的授權方式，不硬性規定後續提供源碼的義務，這讓 Apache-2.0 程式碼在開發應用上有著很大的彈性空間，呈現出多樣化的應用型態，但適合每一種型態的資訊呈現方式可能有所不同，因此，反而讓 Apache-2.0 程式的開發者，必須多花些腦筋才能圓滿的達到適當標示的義務。本文所列舉的三個文字範例，在此僅供參考之用，若是在實際開發時，新專案的狀況與範例的應用方式有所不同，建議還是要稍加比較實際新專案與本文範例之間的差異，應該就可以自行修改出符合 Apache-2.0 義務規定的各項聲明內容！
+
+----
+
+註一：關於 Apache-2.0 內容的介紹，可以參考下列文章，林懿萱，化簡為繁的 Apache-2.0 授權條款：http://www.openfoundry.org/tw/legal-column-list/8581；葛冬梅，條文解析自由開源軟體的專利授權條款：http://www.openfoundry.org/tw/legal-column-list/8914；林誠夏，簡論「轉授權／再授權」於公眾授權領域的效力與應用方式：http://www.openfoundry.org/tw/legal-column-list/8929。 
+
+註二：ASF 針對開發者有一篇用字淺顯易懂的 FAQ，說明利用 Apache-2.0 程式碼時，所應該要知道的重要授權資訊，Apache License and Distribution FAQ：http://www.apache.org/foundation/license-faq.html。 
+
+註三：關於 GPL 類條款拘束衍生程式授權內容的說明，可以參考右列文章，林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（上）：http://www.openfoundry.org/tw/legal-column-list/8446；林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（下）：http://www.openfoundry.org/tw/legal-column-list/8447。 
+
+註四：ASF 所提供的 NOTICE 文字範本：http://www.apache.org/licenses/example-NOTICE.txt。
+
+註五：關於自由開源軟體轉授權／再授權進一步的說明，請參考，林誠夏，簡論「轉授權／再授權」於公眾授權領域的效力與應用方式：http://www.openfoundry.org/tw/legal-column-list/8929。 
+
+註六：Apache-2.0 第 2 條："Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form."；Apache-2.0 第 4 條第 2 項"You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License." 
+
+註七：ASF 說明 Apache-2.0 與 GPL 類條款相容性的網頁，Apache License v2.0 and GPL compatibility：http://www.apache.org/licenses/GPL-compatibility.html。此一網頁的首段文字，將讀者直接導引到 SFLC 所發布的轉換指南網頁，Maintaining Permissive-Licensed Files in a GPL-Licensed Project: Guidelines for Developers：http://www.softwarefreedom.org/resources/2007/gpl-non-gpl-collaboration.html。 
+
+註八：Apache-2.0 雖然有相容於 GPL-3.0 的特性，但是這種相容僅為單向，也就是 Apache-2.0 程式碼可以改以 GPL-3.0 授權，而 GPL-3.0 程式碼卻無法逆向地改為 Apache-2.0 授權。關於自由開源授權條款間的相容性議題，可以參考，Apache License v2.0 and GPL compatibility：http://www.apache.org/licenses/GPL-compatibility.html；林珈宏，從 Copyleft 看自由開源軟體授權相容性：http://www.openfoundry.org/tw/legal-column-list/8710；林誠夏，簡論「轉授權／再授權」於公眾授權領域的效力與應用方式：http://www.openfoundry.org/tw/legal-column-list/8929。
+______________________________________________________________
+
+■ [源碼新聞] GNU Cash－從今天開始記帳！
+
+林雪凡／文
+
+軟體名稱：GNU Cash
+介紹版本：2.4.7
+官網：http://www.gnucash.org/
+授權：GPL-2.0+
+
+
+簡介
+
+GNU Cash 是一套適用於所有平台的，非常有名的開源記帳軟體。在能免費使用的記帳軟體中，這或許是功能最為全面的一套－－他甚至適合小型企業記帳使用。 
+
+當然，有著強大的功能同時，也意味著它運用起來比較複雜，難以入手。
+
+網路上有很多中文教學，給了我不少啟發與幫助，但也因為有些觀念與使用方式互有矛盾，而讓我感到困惑。為了避免記帳記錯，後來索性去直接去挖英文觀念手冊，私下研究了一陣子後，便決定將自己的心得與注意事項分享給大家看看。
+
+因為這個確實蠻難的，如果您發現我哪裡弄錯了，請務必提醒一下，以免誤人記帳了。
+
+
+下載與安裝
+
+Mac OS X 與 Windows 使用者，請來這邊抓取檔案加以安裝：http://www.gnucash.org/download.phtml
+
+因為這個軟體相當有名，絕大多數的 Linux 發行版都有將它納入套件庫中，請直接從您發行版的套件庫中安裝即可。如果您無論如何找不到，可前往上面的連結，下載源碼包來試試。
+
+基本觀念
+
+GNU Cash 採用複式記帳法作為他的基礎。
+
+所謂的複式記帳法是說：「每一筆交易都會被紀錄在至少兩個帳目上」－－您可以這樣理解：每一筆「交易」都是水流，從一個「帳目」流入另一個「帳目」。
+
+這邊的「帳目」是什麼呢？
+
+帳目在這邊的意思，就是您記帳時用來分類的容器。舉例來說「支出：服裝」算是一個帳目，「收入：薪水」也算一個帳目，「資產：錢包」當然也是一個帳目。一旦您進行了「購買牛仔褲」、「發薪」、「繳稅」這類的「交易」，錢就會從一些帳戶，流到另外一些帳戶中。
+
+「讓錢在帳目之間流動，就叫交易。」－－只要記得這句話，您大概就能理解 Gnu Cash 的運作方式了。
+
+因為交易只是讓錢流動起來，而不是憑空創造，所以這些錢絕對不會無中生有地從一個帳戶中蹦出來。如果有筆帳款流入某帳戶，您一定能追蹤到它的來源。這就是複式記帳的好處：至少理論上，它是不會出現來源不明的交易項。
+
+
+會計等式
+
+在 GNU Cash 中，帳目被分為五大類：Assets（資產）、Liabilities（負債）、Equity（淨值）、Income（收入）、Expenses（支出）。
+
+資產
+    意味著您擁有的東西。
+負債
+    意味著您欠的東西。
+收入
+    意味著您增加的價值。
+支出
+    意味著您減少的價值。
+淨值
+    您本身的價值。
+
+關於淨值 = 您本身的價值。事實上是這樣被定義的：
+
+資產 - 負債 = 淨值
+
+您的價值 = 您擁有的減去您所欠的
+
+非常直觀對吧？這就是會計學中最基本的「會計等式」，如果您對此有興趣，可以翻翻會計書或查查維基百科。
+
+以上兩個等式，定義了一個靜止的資產狀態。不過在 GnuCash 中，我們用的不完全是上面的等式。因為當交易發生、錢在流動時，那就會在淨值上追加兩項代表變化的要素，於是成為以下的新平衡關係：
+
+資產 - 負債 = 淨值 + （收入 - 支出）
+
+這等式是什麼意思呢？
+
+和舊等式相比，在新等式中，收入與支出是獨立於淨值之外的。這表示淨值 = 您本身的價值，是不會因為您的「所賺所花」而改變－－你一開始有那麼多價值，您到最後也還是那麼多價值，您的淨值永不改變！
+
+這點特性在記帳中有什麼用，我們晚點再說。
+
+GnuCash 無論何時都會遵循以上的等式。如果記帳時有困惑，對照這個等式，很多時候就能立刻了解了。就先留個印象吧。
+
+
+科目類型
+
+上述的「會計等式」理論將帳目分成了 5 大類。但在 GnuCash 中，為了方便程式做一些自動化工作，五種帳目被更進一?細分，分成了 12 種。如下所示。
+Assets 類（六種）
+
+代表您所擁有的東西。GnuCash 將它細分為六種。
+Cash（現金）
+
+包括錢包、存錢筒、床墊下或書本裡面夾的錢，總之就是手上最容易流動的錢。
+Bank（銀行）
+
+這是保存在其他機構的錢，包括銀行、信用合作社、郵局、甚至是經紀人之類的地方。
+
+是次易流動的錢，因為它可以很輕易地轉換為現金。
+Stock（股票）
+
+這是記錄股票與債券的地方。
+
+毫無疑問，這些東西也有價值，但和其他的資產不同，它的價值並不固定－－通常不會和您購入它時的價值相同。故（相對而言）也不容易轉換為現金，因為他的價值受到合適的買家與出場時機影響。
+
+為了處理這些東西，本帳戶類別將會提供特別的處理方式。
+
+關於股票設定與自動抓價格的方法，這邊的部落格有提供心得：http://blog.xuite.net/michaelr/linux/23599287
+
+如果上面用了也無效，或許因為您的電腦上沒裝某些東西，官網另有說明請參考看看：http://gnucash.org/docs/v2.4/C/gnucash-guide/invest-stockprice1.html
+
+
+Mutual Fund（共同基金、信託基金）
+
+就是一般我們說買股票、買基金投資的那種「基金」。和股票有許多相似之處。
+Accounts Receivable（應收款項、A/Receivable）
+
+一言以蔽之，這裡記錄別人欠您的錢。
+
+這些當然也算是您資產的一部份，所以歸入資產之中。
+
+請參考後面 Accounts Payable 的說明，Account Receivable 是它的反面。
+
+
+Other Assets（其他資產）
+
+其他未涵蓋於其上的資產。
+
+liability 類（三種）
+
+您欠別人的東西，GnuCash 將其分為三種。
+Credit Card（信用卡）
+
+信用卡類型的帳戶，可用來管理信用卡收據與帳單。
+
+這是一種短期貸款帳戶，也可以用在銀行的貸款上面。
+
+
+Accounts Payable（應付帳款、A/Payable）
+
+這是應付但尚未付的錢......也就是您欠別人的錢。通常用在商務上。
+
+比方說，您談妥了一筆生意要買入某機器 A，整個生意流程已經跑起來了，您注定要在不遠的未來付上一大筆錢。但在這時間點，錢您還沒付，那要如何紀錄這筆交易？
+
+您可以從這類帳戶直接出款到某個支出 (Expense) 帳戶中，去購入您的機器 A。當然，您此時還沒實際出款。換句話說，此時這筆錢是積欠在別人那裡、要記在帳上。
+
+實際出款時，再從某個資產 (Assets) 類帳戶轉帳到應付帳款中，將債務抵消結清。
+
+
+Liability（普通貸款）
+
+GnuCash 用這個來追蹤其他不屬於以上的長期貸款，包括車貸與房貸等。
+
+equity 類（一種）
+
+在 GnuCash 中， Equity 被作為初始淨額（opening balances）使用。
+
+初始淨額的意思是說，在您建立帳本，開始學習記帳之前，你手頭上應該會有些資產、有些負債。這些東西來路混雜，無從追蹤，但您就是有它。
+
+對於這些東西，您可以將其列入 opening balances 中，作為您的「淨價值」登錄起來。
+
+沒錯，這個「最初狀況」，就是 GnuCash 中唯一一個提供您淨值的地方。之後的記帳中，您的淨值是不會改變的。
+
+income 類（一種）
+
+您的所有收入都該被歸在 Income 類裡，這包括薪水、稿費、公司獎金、老爸給的壓歲錢等等等。
+
+expense 類（一種）
+
+包含您所有的支出。這包括飲食、稅金、書籍、娛樂費、汽車加油錢、罰款等等。
+ 
+關於這些科目，您可以在這裡找到詳細介紹：
+
+http://gnucash.org/docs/v2.4/C/gnucash-guide/accts-types1.html
+
+
+設定 Gnu Cash 的科目體系
+
+理論說明暫告一段落，接下來進入 GNU Cash 實戰！
+
+請將 GNU Cash 打開。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_01.jpg)
+▲ 圖1：剛打開 GnuCash 的示意圖（不含精靈畫面）。
+
+初次開啟時，他會問您要不要用精靈新增科目體系。
+
+精靈新增的科目體系沒什麼不好，但就是稍微有點龐雜瑣碎，容易讓初學者覺得好厲害但完全看不懂，所以建議先把精靈關掉，我們手動來建立科目體系。當然，您也可以先用精靈建立一次看看，看看大概會變成怎樣。
+
+把精靈關掉，依照【檢視】→【新增科目頁】的順序，打開所謂的「科目頁」。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_02.jpg)
+▲ 圖2：新增科目頁
+
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_03.jpg)
+▲ 圖3：這就是科目頁，目前還空空如也。
+
+然後按下此時唯一能按的按鈕「新增科目」，叫出新增科目視窗。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_04.jpg)
+▲ 圖4：看起來就很複雜的新增科目視窗。
+
+裡面有不少東西可以設定。不過此處只需要輸入科目名稱－－如：郵局帳戶、錢包、購衣費用－－就好，其他像是科目代號等不知所謂的東西，都不用去管。
+
+另外要注意以下三個選項："placeholder"、「科目類型」與「母科目」。
+
+"placeholder" 打勾的話，表示這個科目「不允許直接被拿來記帳」，只能作為一個容器（資料夾）使用。反之不打勾的時候，科目既可做為容器使用也可直接記帳。
+
+為了避免混淆，強烈建議當容器的科目通通要打勾。
+
+「母科目」表示您現在新建的科目，要放在哪個（已經存在的、作為容器的）科目底下。請檢查一下位置是否正確。
+
+「科目類型」方面，您必須在內建的十二種科目中選一種，來套用給當前要新建的科目。
+
+
+應該建立哪些科目？
+
+首先要建立的科目是您的「資產」類科目，這裡是您藏錢的地方。比方說「錢包一號」、「郵局帳戶」、「床底下（私房錢）」，詳情請見上方的科目類型說明。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_05.jpg)
+▲ 圖5：我的資產體系列表，請參考著建立您自己的版本。
+
+「資產（容器）」的帳戶類型是選「資產」，「現金（容器）」的帳戶類型是選「現金」。以上兩大項只作為容器用，本身不拿來記帳，故 "placeholder" 都有打勾。
+
+在資產大項下又依我個人的需要，另建了「郵局」、「應收帳款」、「錢包」、「小抽屜（我把私房錢放這）」等項目。
+
+各帳戶的「描述」一項是我填好玩的，其唯一的用途只是用來提醒使用者自己這帳戶是幹嘛用，不填也沒關係。
+
+您在建立這些科目時，如果資產帳戶中原本就有錢（如銀行中原本就有存款一萬元），則可直接在【新增科目視窗】→【起始結餘標籤頁】中設定當前帳戶中所具有的金額，GnuCash 會自動產生一個新的「初始淨值」帳目出來。
+
+另外，此處也不用急著想一次到位，帳戶結構有異動，日後還可以回來新增與修改。科目不夠用時再添加就好。
+
+資產建立好後，其次要建立的是收入和支出帳戶。畢竟記帳主要就是在記收支。
+
+收支都是依據您想要的統計方式來建立。以支出為例，有人可能只想要做出食衣住行育樂六大類，這是很標準做法，但如果您是某方面的發燒友，則完全有可能會想將某些項目切細，比方說把電玩主機的支出分成五類，或是把桌遊獨立成一類出來，總之是因人而異。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_06.jpg)
+▲ 圖6：收入科目範本。
+
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_07.jpg)
+▲ 圖7：支出科目範本。看起來項目很多，但您不用像我一樣建立這麼多。有需要的再建。多不如少，少不如巧，剛剛好夠用才是最好的。
+
+請在 GnuCash 中按下 Ctrl + T 鍵，或是點開選單中的【動作】→【轉帳】。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_08.jpg)
+▲ 圖8：轉帳視窗。
+
+請看上圖，這是一個轉帳視窗。重要項目包括......
+
+＊總額：轉帳的金額。
+＊敘述：這是本次交易的明細，不填就只是筆白帳，日後也看不懂，沒有記帳的效果。一定要填。
+＊備忘錄：這是「敘述」的補充。其實有敘述就夠了，不寫也無妨。
+＊「轉帳自」與「轉帳到」：您要在此指定金流的起點與終點。舉例來說，花錢時是讓錢從資產類科目流入支出類科目，收錢時則是讓錢從收入類科目流入資產類科目。
+
+其他沒提到的都不用理會。
+
+記錄以上這些訊息後，按「確定」完成轉帳，然後我們就可以去看看轉帳結果了。
+
+看法也很簡單，總之就是去科目頁，雙擊有涉及剛剛那筆帳的科目（此處會涉及兩個科目），就會開啟個別科目的視窗。如下：
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_09.jpg)
+▲ 圖9：書籍（支出）帳戶。
+
+帳目會自動依時間排序，新的帳會出現在最下面。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_10.jpg)
+▲ 圖10：錢包（資產）帳戶。與書籍（支出）帳戶一樣，同樣也顯示了剛剛記下的那筆帳－－不過請仔細看，對應帳戶中的金流方向是相反的。
+
+所有涉及這筆帳的科目分頁，都會將您剛剛填入的帳給明確列出來，並在轉帳的那一欄，顯示相應的轉帳來源。
+
+轉帳項目後面那一排 “n”是用來對帳用的。顯示 n 表示 no 未對帳，顯示 y 表示 yes 已對帳，顯示 c 表示 clear 無需對帳。因為我沒在對錢包的帳，上面顯示的都是 n 來著，不過對於那種有帳單的科目，比方說一個信用卡帳戶，帳單寄來時倒是可以對帳看看，以免失手眼殘記錯帳，數字不對又找不到錯在哪裡。
+
+如果您對此有興趣，想要開啟對帳視窗，請選【動作】→【對帳】。
+
+如何對帳扯比較遠，此處不多提。繼續看記帳的部份。
+
+假使您不想用「轉帳」視窗記帳，也可直接在科目頁中記帳。
+
+請看上圖，每個科目頁最下方都有一行空白列（鵝黃色那行），這個空白列就是讓您直接記帳用的。您可以直接手工填入所有項目，而且內容只要填一次就好，不用每個相關的科目頁都手動去填，不同科目頁的內容，會隨著您輸入或更改相關帳目，自動產生並同步修正。
+
+基本記帳功能就是這麼簡單。
+
+
+分割交易
+
+現在我們來看個難一點的問題：「如果一筆帳同時涉及到超過三個以上的科目，怎麼辦？」
+
+打個比方，今天是您期待已久的發薪日，依照老闆與您的約定，您應該可以拿到 22000 元（請節哀），可是事實上打進您銀行帳戶的金額卻不是 22K，而是 22K - 國保、勞保、健保、退休儲蓄等照理說是為你好，而且你還不能說不要的東西。最後實際入帳的奶粉錢只有 20500左右。
+
+這時，您要怎麼記您的帳呢？
+
+方法有很多。具體用哪種方法，則取決於您想要記得多精確。
+
+最簡單的方法，是直接記一筆 20500 元的薪水收入進入您的銀行戶頭，方便快速。問題是，您賺的辛苦錢擺明就不只 20500，另一方面，您也無法記錄您的保險費繳費狀況，你什麼時候開始繳，這個月有沒有繳，去年與今年的保險費差異，您都不知道。
+
+其次，您可以用銀行帳戶做為緩衝，將一筆交易拆成多筆－－先將 22000 的薪水轉入銀行帳戶，然後從這個帳戶中付出各種各樣的錢，最後的結餘就會成為 20500。
+
+相比最簡單的方法，上述的記帳法能讓您確實記下正確的薪資與花銷，不過它也有問題：您的銀行帳戶中，事實上從來沒有一筆 22000 元的入帳，也沒有因為要繳各種保險費而做出的支出。您拿著銀行存簿基本沒法對帳－－除了結餘是一樣的以外。
+
+如果您希望 GnuCash 真正解決這個問題，您大可以試試分割交易的功能。
+
+在先前錢包帳戶的圖片中，有些交易的轉帳來源被註明為「-- 分割交易 --」，這意味著此項交易有三個以上的帳戶同時涉入其中。具體涉及情況，您必須先選擇那一項交易後，再按「分割」按鈕將其打開來看。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_11.jpg)
+▲ 圖11：薪水（收入）帳戶。可以按「分割」按鈕，來瀏覽或編輯單一交易的內部狀況。
+
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_12.jpg)
+▲ 圖12：按過分割按鈕後，交易的內部狀況就一清二楚了。您可看到本交易一共涉及四個科目。
+
+那要如何創建這種分割交易？
+
+請用「分割按鈕」打開一個新交易行（也就是最下方的那個空白行），然後逐行填入您希望記錄的東西，就像上圖的範例一樣。
+
+分割交易時需要注意的重要事項是：「您填入的所有金額，必須要保持正負相等，維持流入等於流出」。如果數額沒有平衡，就會出現失調或無主的提示（見下圖）。這種狀況當然不該發生，您應該確保它保持平衡。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_13.jpg)
+▲ 圖13：金流沒有平衡的一個範例。請務必平衡它。
+
+
+排程交易
+
+除了純手工記帳以外，您還可以設定 GnuCash 定時、自動地，建立一些會定期發生的固定交易。比方說每月薪水入帳、每月繳上網費、離婚贍養費轉帳等定時定額的固定性費用，這些瑣碎的帳目都可以交由 GnuCash 來自動建立。
+
+設定方法有兩種。
+
+第一種是先用普通方式建立一次交易，然後在交易上按右鍵，選擇右鍵選單中的【排程】選項，就會跳出【新建排程視窗】，稍加設定後就可以將當前選擇的交易給排程化。
+
+此處順便一提，新建排程視窗中要求您輸入的交易名字，並非指顯示在帳目中的交易敘述－－這個名字是日後您用來管理排程時用的，只會顯示在排程交易編輯器裡面。
+
+另一種建立方法，則是透過【動作】→【排程交易】→【排程交易編輯器】來管理。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_14.jpg)
+▲ 圖14：這就是「排程交易編輯器」。可在這管理您的排程交易。
+
+想要新建一筆排程交易時，打開排程交易編輯器，然後點選單中的【已排程】→【新增】（您不先打開【排程交易編輯器】是無法在選單上看到【已排程】這個選項的）。新建排程視窗就會跳出來。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_15.jpg)
+▲ 圖15：新建排程視窗。
+
+這邊的視窗，等於您用右鍵選單的方法時，按下方【進階】按鈕時會跳出來的視窗。比起用右鍵選單法，用這種方式從頭建立排程時必須要去編輯「交易範本」頁籤，來設定您所要定時執行的交易具體為何。
+
+視窗中的選項大約講一下：
+
+＊啟用：有啟用才會定時生效。
+＊自動建立：時間到了就自動執行（通常是開檔時執行）。沒勾的話，您要按【動作】→【排程交易】→【自上次執行後......】才會執行。
+＊建立時通知：可以提供實際建立前的確認機會。
+＊幾天前提醒：比方說，您有信用卡費要自動扣款，提前提醒可以早幾天提醒您先一步將錢匯入銀行帳號，免得扣款扣不到錢諸如此類。當然這種提醒也是要您有定時打開 GnuCash 的習慣才會有用。
+
+排程交易的完整說明請看此頁：http://gnucash.org/docs/v2.4/C/gnucash-guide/txns-sxn1.html
+
+
+用圖表顯示財富
+
+前面大致說明了如何記帳，文章最後來看看要如何看帳。
+
+看帳最基本的方法，當然是透過先前記帳時的科目介面來看。不過那種方法比較不直觀，GnuCash 另外提供了圖表產生的功能。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_16.jpg)
+▲ 圖16：其中一種圖表。
+
+GnuCash 可產生的圖表種類很多，預設約有 50 種左右，大致上分為「長條圖」、「圓餅圖」、「表格」等等。這 50 多種報表涵蓋了資產、收入、支出的方方面面，每種圖表還可以在一定程度內由使用者自行調整，基本上不用擔心會不夠用。
+
+不管哪種圖，叫出的方法都一樣，也就是要從主選單的【報表】項目中來選擇使用；比方說上圖，就是透過【報表】→【收入 & 支出】→【支出長條圖】所叫出來的。
+
+叫出圖表後，若有些小地方（如時間範圍等）不盡如人意，此時就要開啟設定視窗加以微調。
+(http://www.openfoundry.org/images/130305/gnucash/gnucash_17.jpg)
+▲ 圖17：開啟設定視窗。
+
+不同圖表的設定略有不同，但都大同小異，看看就會操作。這裡就不多作贅述了。
+
+相關連結
+
+＊nuCash 官網：http://gnucash.org/
+＊GnuCash 手冊：http://gnucash.org/docs.phtml
+______________________________________________________________
+　
+■ [自由專欄] Linus Torvalds 不滿 Linux 核心對 Secure Boot 的處理
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 (http://www.linuxpilot.com/industry/news/201302280101Linus-Torvalds-Linux-Secure-Boot)。
+
+由微軟推動的 UEFI Secure Boot 的餘波 (http://www.linuxpilot.com/industry/news/2011112801Windows8-UEFI-Linux)，引起了開源社區的爭論。Linux 之父 Linus Torvalds 最近就應該如何處理 Secure Boot，與開發人員意見分歧。
+
+(http://www.openfoundry.org/images/130326/Linus.jpg)
+
+UEFI Secure Boot 令微軟可以用「安全」作為藉口，防止用戶在他們的電腦上安裝 Windows 以外的作業系統。眾所周知大部分桌面電腦上安裝的 OS 都是 Windows，作為「少數派」的 Linux 要降低一般用戶安裝 Linux 的困難程度，目前唯一的可行方法便是「就範」。Red Hat 是貢獻最多 Linux 核心程式碼的企業，他們的取態自然非常重要。現時 Red Hat 的 Tim Burke 的對策，便是以 Fedora 的名義，向微軟購買價值 99 美元的「安全證明」數位簽署，但開源社區卻有人認為，Red Hat 此舉會助長微軟的氣焰。
+
+引發更大漣漪的是 Red Hat 的開發人員取得「安全證明」數位簽署後的處理方法。由於微軟只提供 EFI PE 二進制的數位簽署，Red Hat 開發者向 Linux 核心提交了修正檔，其做法是將 X.509 證書封裝到 EFI PE 二進制檔案，並改良令 Linux 核心可讀取 EFI PE 二進制，在所有核心空間驗證簽名，提取 X.509 證書。問題是 Linux 核心現有的 X.509 解析器已經十分複雜了，此舉有可能會把問題更複雜化，結果就是 Linus Torvalds 爆發了。他在郵件列表上炮轟 Red Hat 開發者 David Howells 和前開發者 Matthew Garrett(Howells 曾表示這種做法較為「優雅」 (Elegant)，大概是「優雅」這個詞彙觸動了 Linus Torvalds 的神經)。
+
+筆者認為 Red Hat 向微軟購買數位簽署的做法無可厚非，雖然此舉的確會助長微軟氣焰，但現階段這是唯一的方法，除非你打算放棄一眾不懂 Secure Boot 的用戶，否則就得向現實低頭。長遠的辦法就是一眾 Linux 廠商和 Google 都要向 Intel 和硬體廠商表達不滿，不然在微軟獨大的狀況持續下，沒有廠商會願意和自己的收入作對。至於 Linux 核心如何處理 Secure Boot，大家還可以再商討，但就不要再用「優雅」這個詞彙了，畢竟每個人對「優雅」的定義都可能不同。
+______________________________________________________________
+
+■ [自由專欄] 中國開源發展緩慢的理由
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 (http://www.linuxpilot.com/industry/news/201303070101Ronan-Berder-Wiredcraft-China)。
+
+開源技術在中國的發展比其他地區來得慢，有外國開發者認為，是因為在某些領域，中國文化並不鼓勵個性，嚴重的阻礙了創新，這正正是黑客與開源文化的最基本元素。
+
+(http://www.openfoundry.org/images/130326/China.jpg)
+
+這位外國朋友名叫 Ronan Berder，他的見解絕對有份量，因為他正是開源組織 Wiredcraft 的創始人，因為工作的關係，經常來往舊金山和上海。Wiredcraft 是一個以開源技術為客戶開發 Web 應用程式和手機程式的組織，客戶包括美國 Fortune 500 大企業、非牟利組織和政府部門，客戶遍佈歐美和亞洲，而且持續地在中國招攬開發人員。
+
+最近他發表一篇文章，指出由於中國教育落後，不鼓勵個性化，人員分散，導致中國開源遲遲不能成型。十年前在西方世界，開源同樣不是很流行，老闆們不會關心你是否熟悉 Linux，或是你對開源軟體項目組做過哪些貢獻。他們只需要你擁有 Java 相關的工作經驗，實際上，SourceForge 曾經就是一個託管開源軟體項目的平台，如果不是因為它的改變，GitHub 也不會在最近幾年成為另一個託管平台，但如今在美國和歐洲呈現了另一番景象。
+
+他指出由於存在大量的高品質、免費及對用戶友好的資源和工具，英語開發者的入行門檻降低了很多。聲譽激勵機制在行業內不斷得到增強，公司要求開發者提供其 GitHub 頁面地址和對開源貢獻的資訊。即使再小眾話題的項目，拋到社交網站 Meetup 上，也能招引一批專業人士前來解答，低在中國這種情景很難見到。
+
+「中國直到 1978 年才正式對外開放，中國的互聯網人口數量正逐漸成為全球之最，但規模不等同於文化。中國教育上嚴重偏向 CS 程式 (Java、.NET)，人們通常只考慮使用 CS，因為其他程式「過於複雜」，情況就和 1990 年代的歐洲一樣。不幸的是，教育系統的發展速度，遠遠落後於技術發展和消費行為。有很多年輕人在生活和工作中，只是想成為與其他人一樣的人，這嚴重的阻礙了創新和實踐，而這正是黑客與 OSS 文化的最基本元素。」他說。「年輕人會從多方面接觸到英語，但仍與受過正式教育的人差距甚遠。」
+
+但這並不是代表中國並不提倡開源。在一線城市如北京、上海和廣州，還是能找到一些活躍的本地社區，像北京和上海的 Python 社區便是，只是規模太小，而且非常的孤立並具有區域性。這種阻礙協作和知識傳遞的行為，將減緩其他社區的發展。在上海這些社區的發動者和領導人，多數都是外國人，讓本地人出席活動和分享經驗是一件非常困難的事。
+
+但近年來狀況開始改變，積極使用開源技術的淘寶，受到科技行業高度重視，以往在中國「免費」的 Windwos 現在要正版化了，令更多人開始轉用 Linux 。 Android 是中國移動市場的霸主，深圳製造商需要生產更多既便宜又快的硬體產品，令整個山寨產業已經順其自然的成為「開源」。這方面中國的「開源」非常先進，他們是複製、分拆、合併和升級產品的專家。未來這方面的需要，說不定會帶動中國的開源技術走出一條新路。
+______________________________________________________________
+
+■ [源碼新聞] 開放源碼開拓下一代聊天與論壇應用
+
+謝良奇／編譯
+
+由於對現今論壇軟體套件感到不足，Stack Exchange 共同創辦人 Jeff Atwood 成立了 Civilized Discourse Construction Kit，要推出可加以取代的軟體套件。根據該公司開發者表示，其開放源碼軟體 Discourse 採用 JavaScript、Ruby on Rails、PostgreSQL 打造，可滿足郵件列表或論壇使用的需求。該團隊表示，Discourse 是從零開始的重新啟航，是對現代化、可持續發展、完全開放源碼的網際網路論壇平台，一次重新想像的嘗試。
+
+Discourse 運用了 Ember.js 框架並採 GPLv2 授權，會自動偵測行動裝置，雖可用於觸控螢幕上，但目前最佳化僅限大於七吋以上的螢幕。雖然軟體已經可供使用，也有線上展示，開發者仍不建議在正式環境部署使用該軟體，而且 Discourse 目前應該僅作為建立新討論社群使用，而非用以遷移現有社群。有意測試該軟體的用戶可自 GitHub 取得程式碼。
+
+另一套新的開放源碼軟體 Kandan，則或許可以滿足即時性更高的溝通需求。最近宣布的 Kandan 1.0 其設計可輕易部署於雲端運算平台如 CloudFoundry、Heroku 等。該軟體提供無限量的聊天頻道，以及圖片、YouTube 影片、聲音檔案的嵌入功能，更可整合 GitHub 的 Hubot。
+
+採 AGPLv3 授權的 Kandan 可使用 MongoDB、MySQL、PostgreSQ 作為後端資料庫，Kandan 1.0 的原始程式碼可由 GitHub 取得，也提供了線上展示。
+
+
+相關網址：
+1. 開放源碼開拓下一代聊天與論壇應用
+http://www.h-online.com/open/news/item/Open-source-pioneers-next-generation-chat-and-forums-1801023.html
+______________________________________________________________
+
+■ [源碼新聞] CeBIT 2013 中的開放源碼展覽
+
+謝良奇／編譯
+
+每年的 3 月，許多企業、供應商、企業家、開發者相繼來到德國漢諾威，參加在世界上最大的展覽會場舉行的 CeBIT 貿易展。雖然在消費電子展 (Consumer Electronics Show，CES) 與世界移動通信大會 (Mobile World Congress，MWC) 後不久舉行，CeBIT 迄今仍然是全球最大且最為國際化的展會。從 1986 年起，該展會一直是來自全球各國數以千計公司最新最棒資訊科技產品與解決方案的展示會。
+
+今年的 CeBIT 已經是開放源碼軟體與公司在該展會上享有十足存在感的第 5 年，再加上還有知名的舞台區開放源碼論壇 (Open Source Forum) 提供不少演講者講座與展示。不過，參加過 CeBIT 的人這次一開始會注意到的，是開放源碼區不再位於 2 號展館，而是搬到展覽中心另一側的 6 號展館。根據主辦 CeBIT 的德國漢諾威展覽公司 (Deutsche Messe) 表示，這是為了提供更大空間給開放源碼論壇與開放源碼園區 (Open Source Park)，以因應近年來的龐大需求。
+
+位於 6 號展館的開放源碼園區，是用來讓商業開放源碼廠商展示產品，並且讓參觀者有機會親手操作。Canonical 是 CeBIT 今年的新人之一，該公司的 Ubuntu 散佈套件從未由該公司正式代表出席此一展覽。過去該散佈套件僅由德國 Ubuntu 用戶團體成員在展覽中進行推廣。和稍早在 CES 與 MWC 中的表現不同，Canonical 並未展示 Ubuntu for Phones。作為替代，其展示焦點放在該公司的雲端基礎架構產品與服務。
+
+儘管規模略小於去年，德國廠商 Univention 仍是開放源碼園區最大的攤位之一。該公司最為人所知的是基於 Debian 的伺服器作業系統 Univention Corporate Server。
+
+在 Univention 攤位後，是新的 CMS 園區，其中滿是戴草帽的工作人員在展示最新的 CMS 系統，如 Joomla!、WordPress、Typo3、Magnolia、Plone，以及 Django 之類的網路應用軟體開發框架。參觀者可以親手操作，並附贈免費指南，其中除了提供各 CMS 的資訊，這本協力撰寫而成長達 120 頁的指南，更針對開放源碼軟體與授權提供了簡要的介紹。
+
+另一個熱門攤位是專責於開放源碼 IT 解決方案的 B1 Systems，該公司展出其合作夥伴的產品如 Red Hat、SUSE、OpenStack、ownCloud、Nagios。
+
+正如所預料，其餘公司多半是德國廠商，包括 FOSS Group、專責基礎建設的 NETWAYS、位於慕尼黑的開放源碼出版商 Open Source Press、開放源碼文件管理公司 Agorum、開放源碼代管與顧問公司 Metaways，以及贊助今年開放源碼論壇的 Linux 訓練與顧問公司 Heinlein。
+
+6 號展館內另一個為開放源碼撥出的區域是開放源碼論壇。與去年一樣，該論壇為近 100 位與會者提供座位，加上額外的站立區，以及供各組織與知名社群成員演講的舞台區。IT 與開放源碼的專家講者包括，歐洲自由軟體基金會的 Erik Albers、自由軟體開發者 Klaus Knopper、Freies Office Deutschland 的 Jacqueline Rahemipour。Freies Office Deutschland 是德國的非營利組織，旨在推廣開放源碼生產力軟體。CeBIT 2013 之後，將可自 Linux Magazine 網站上下載各演講的錄影。
+
+Knoppix 創立者 Klaus Knopper 宣布其知名 Linux live 散佈套件更新釋出，似乎已成為 CeBIT 的傳統。以 Debian "Wheezy" 為基礎，Knoppix 7.1 為非技術用戶帶來許多新功能，此外也升級到 3.7.7 Linux 核心。被問到在 Knoppix 新 CeBIT 版本中他最愛的 3 項功能為何，Knopper 認為是針對快閃磁碟安裝的新分割方法，以及易用的新 TOR 與 VNC 啓動程式。快閃磁碟安裝上的新的分割方法移除過去 4GB 的限制，允許用戶存取磁碟上的所有空間。由於使用 ReiserFS 之故，效能得以提升。當系統運作中一旦 USB 磁碟誤拔後，ReiserFS 會自動進行修復。
+
+此外，使用即時解壓縮的 Knoppix 7.1，由於更改了壓縮方式，如今可為應用程式提供多達 3 倍的記憶體。這個新支援的功能 zRam，被 Knopper 描述為基本上是記憶體中的壓縮交換分割區，在記憶體少於 512MB 的老舊電腦上的表現特別好。
+
+在演講之後，Knopper 提到他正在考慮製作可在智慧型手機上運作的行動版 Knoppix，他表示許多智慧型手機已擁有執行所需的硬體。他拿出運行最新版 CyanogenMod 客制 Android 韌體的 Samsung Galaxy Note II，表示 Knoppix 可在該硬體上順利運作，並有利於 GIMP 等應用軟體。然而，他也指出儘管這個想法已經有一段時間，他也在思考是否有其必要性，畢竟這類裝置的主要用途並非在小螢幕上進行日常桌面作業。擁有針對所需用途的正確外形尺寸才是關鍵，他說。
+
+知名開放源碼推廣者也是 Linux International 執行董事 Jon "maddog" Hall 首次在 CeBIT 發表演講。演說後他談到最近的個人專案之一 Project Cauã。於 2007 年初次構思的 Project Cauã，是一項推廣自由軟體、高效率運算與創造就業機會的計劃，並提供低成本電腦、支援與網際網路給低收入使用者。該專案希望透過同時將 IT 專家訓練成系統管理者與企業家，使其擁有自己的事業，來達成所設定的目標。一開始將鎖定巴西的大型貧困城市地區，最後再擴大到拉丁美洲其他地區。聖保羅是該專案第一個主要的目標城市。
+
+走精簡型主從模式的 Project Cauã，為了減少電腦與網際網路存取的取得成本，將使用位於辦公室與公寓大樓地下室的高可用性伺服器，並連接至客制且開放源碼的精簡型用戶系統。Hall 表示這些無風扇的精簡型用戶系統，成本預計為 200 美元。一旦完成後，Project Cauã 的所有文件與規格將以開放源碼授權免費公開。
+
+當精簡型用戶端仍處於設計階段，Hall 在 Project Cauã 中的第一個專案將是低成本的 Raspberry Pi，可掛載於任何具備 VESA-mount 能力顯示器的背板。這部 Raspberry Pi 採用客制的 Debian Linux，提供媒體中心功能與電話服務支援。Hall 預期 Project Cauã 第一個硬體將於 4 月問世，屆時 50 位新企業家將受邀參與先導計劃。3 個月後，計劃會進行評估，然後再進一步開放給1000 位企業家。
+
+6 號展館中，距開放源碼區域不遠處來自 Fabbster 與 Ultimaker 的 3D 印表機，吸引了關注最新個人 3D 列印技術的圍觀群眾。其中 Ulitimaker 採用完全的開放源碼硬體，在印表機控制上也使用該專案的開放源碼軟體 Cura。跨平台的 Cura 支援 Windows、Mac OS X、Linux，以易於使用並盡可能簡化操作為設計。
+
+雖然開放源碼的普及與成長在 CeBIT 中促成了更大的展覽空間，CeBIT 不得不說仍然是一個商業展覽會場。儘管過去包括 Debian、KDE、Python、LibreOffice 等專案的開發者，曾在該展會中充分地體現了開放源碼社群，CeBIT 2013 的情況卻有所不同。過去供自由與開放源碼專案展示並會談的開放源碼專案休憩室 (Open Source Project Lounge)，這次顯然已不復見。這意味著社群能見度大幅降低，轉而讓更多的商業開放源碼廠商提供其軟體與服務。
+
+儘管此一轉向並非意料之外，畢竟 CeBIT 的展區要價不菲，但仍然有些令人失望，特別是與今年 CeBIT 主題 "共享經濟" (Shareconomy) 對照之下。展望未來的 CeBIT 展，期望該展會主辦單位或商業開放源碼廠商，能改善此一情況。
+
+
+相關網址：
+1. CeBIT 2013 中的開放源碼展覽
+http://www.h-online.com/open/features/Open-Source-at-CeBIT-2013-1819870.html
+______________________________________________________________
+
+■ [源碼新聞] LG 買下 webOS 為智慧型電視研發均勢進行長遠布局 
+
+黃郁文／編譯
+
+HP 於近日宣布將 webOS 相關資產賣給南韓電子產品大廠 LG，據傳 LG 會進一步將 webOS 用於網通型 smart TV 的研發與製造上。
+
+LG 已經付費取得 webOS 的程式碼、相關文件與網站，並且移轉開發人員與相關工程師至其轄下任職。LG 並沒有付費取得 webOS 有關專利的專屬授權，但透過協議，其仍然從 HP 得到所有 webOS 相關專利的使用授權，這包括 HP 從 Palm 收購行動中得到的各項專利。
+
+LG 的技術長 Skott Ahn 表示：webOS 的收購對 LG 而言，是產品研發歷程中嶄新的一頁，LG 將能提供消費電子產品使用者更直接的網路新體驗。後續的產品研發成果，也將會持續開放源碼的精神。不過 LG 對 webOS 的應用重心不會放在手機市場，而是放在 smart TV 上。許多論者認為 HP 與 LG 此次交易並不非常令人意外，從去年十月開始，LG 可能收購 webOS 用於新一代 smart TV 研發的傳聞本就甚囂塵上。WebOS 原本被讚譽為讓 Palm 重回 PDA 與智慧手機舞台寶座的致勝武器，其以開源專案之姿釋出當初，也的確獲得不少掌聲，不過 WebOS 終究未能跟上潮流腳步，而 Palm 也於 2010 年春天被 HP 收購。收購之初，HP 曾宣告將承繼 Palm 的創新作業系統，以拓展 HP 行動裝置策略。言猶在耳，HP 的 Leo Apotheker 卻於其後指出，webOS 在行動裝置因入場過慢，已幾近毫無前景可言。
+ 
+針對 LG 出資收購 webOS 一事，webOS Ports 專案的核心成員 Tom King 表示樂觀其成。而有論者指出，LG 對於 webOS 收購交易可說是「逢低買進另創新局」，因為雖然 HP 與 LG 雙方都未對外透露實際的收購金額，但同時指出此項交易並不會對當季公司的財報造成重大影響，而考量到 LG 自家電視系統使用的 NetCast 網路平台已屆更新期，而若未來完全依賴 Google TV 的製作，也可能會將多數的產銷優勢轉手予 Google 而失去商業談判的優勢，故當此 webOS 已轉開源專案重啟活力之際，適時的買入 webOS，很有可能是助其日後適當掌控 smart TV 研發均勢的長遠布局。
+
+
+相關網址：
+
+1、LG 買下 webOS
+http://www.h-online.com/open/news/item/LG-buys-most-of-webOS-from-HP-1811057.html
+
+2、Hewlett-Packard 將Palm 的 webOS 賣給 LG Electronics
+http://www8.hp.com/us/en/hp-news/press-release.html?id=1375489#.UUbTltF5OPJ
+
+3、從 LG 對 webOS 的收購交易看 Google TV
+http://gigaom.com/2013/02/25/lg-webos-smart-tv/
+______________________________________________________________
+
+■ [源碼新聞] Windows Azure Mobile Services 開始支援 Android   
+
+黃郁文／編譯
+
+Microsoft 近日宣布，其將透過 Windows Azure Mobile Services，提供原生 Android 應用程式 (native Android applications) 的開發協助。也就是說，日後 Android 應用程式的開發者，也可將所開發的程式連線至 Azure Mobile Services，以儲存資料、利用使用者認證工具，以及使用平台上各項的進階服務。
+
+Microsoft 的 Windows Azure Mobile Services，原本預設的服務範疇，是要幫助開發者將他們的應用程式，順暢整合至 Microsoft 提供的 Windows Azure cloud services。過往此一服務僅有支援 Windows 與 iOS 為基礎的應用程式，但目前鑑於 Android 智慧型手機的使用量已逐步升高至其無法忽視的程度，故改弦易轍，將服務平台的範圍擴大到 Android 原生程式的支援。Microsoft Windows Azure 的開發者 Ahmed Sabbour 表示：對此服務方案有興趣的使用者，將可於 Github 找到由 Microsoft Open Technologies 開發的 Azure software development kit for Android，該開發工具組採用 Apache License 2.0 授權釋出，使用者將可自由下載此一開發工具組進行研究。
+
+合理的推論是，Microsoft 這樣的轉變是希望更多的開發者，能利用 Windows Azure 所提供的服務來從事應用程式的創作，然而，科技新聞評論家 Lawrence Latif 指出：即使開發工具組是採 Apache-2.0 授權的開源方式釋出，未來程式要透過 Azure 平台上線提供服務，一樣會受限於平台的服務政策，所以使用者仍然要考慮 Microsoft Azure 平台的整體運作規劃，來決定是不是要採用目前 Microsoft 暫時提供免費試用額度的此項服務。這是因為 Microsoft 因應商業策略考量而調整服務方式向來有跡可尋，例如最初 Windows Azure 所提供的 Paas (Platform as a Servive) 服務並不支持 Linux 作業系統的應用，而後因為市場趨勢而逐步開放了 SLES, openSUSE, CentOS 以及 Ubuntu Linux 方面的支援，這些策略調整純粹是基於商務考量，故未來亦有可能因為商務策略的變動而有所變動。
+
+
+相關網址：
+
+1、Microsoft 的 Windows Azure Mobile Services 開始支援 Android 
+http://www.theinquirer.net/inquirer/news/2252943/microsoft-brings-android-support-to-windows-azure-mobile-services
+
+2、Microsoft 的 Windows Azure Mobile Services 支援 Android
+http://www.techmeme.com/130306/p4#a130306p4
+
+3、Windows Azure 提供 Linux 的支援
+http://www.openfoundry.org/tw/foss-news/8736-windows-azure--linux--
+______________________________________________________________
+
+■ [源碼新聞] 德國 Bochum 地方法院肯定 LGPL 有效性－涉訴雙方法庭和解並明示公布和解金額
+
+黃郁文／編譯
+
+WISO Mein Buro 軟體（2009 年版本）的開發者 Buhl Data Service GmbH，已經由法庭上的和解，同意支付 15,000 歐元（約 60 萬新台幣）給數據服務供應商 ADHOC DATASERVICE GMBH，理由是 Buhl Data Service GmbH 在其商用軟體內使用 ADHOC DATASERVICE GMBH 以 LGPL 授權釋出的自由開源軟體函式庫，卻未遵循 LGPL 授權條款規定的義務性要求！
+
+因為雖然依照 GNU Lesser General Public License，使用者可以在免支付授權金的基礎下使用該函式庫，但 LGPL 授權條款也同時規定：1、使用者需特別標明被使用的授權程式碼為何，並指出該軟體函式庫是以 LGPL 授權；2、同時附上 LGPL 授權條款全文；3、並且透過合理途徑讓後手取得該函式庫的程式源碼 (Source Code) 等條件。
+
+在 2011 年 1 月的時候，德國 Bochum 地方法院已用「裁定」，指出被告的 Buhl Data Service GmbH 是以違反 LGPL 授權條款的方式，來運用 ADHOC DATASERVICE GMBH 以 LGPL 授權釋出的 FreeadhocUDF 函式庫，其並認為 LGPL 授權條款為有效條款，故函式庫權利人 ADHOC DATASERVICE GMBH 有資格請被告就其使用 FreeadhocUDF 函式庫的商業行為提出相關報告，包括該函式庫的使用狀況、相關產品的銷售量，以及販售該類產品所生利益的各項資料，以據此評估適宜的損害賠償金額。而到目前，雙方就損害賠償的範圍已達成共識，並透過法院的正式程序進行公示和解，Buhl Data Service GmbH 同意就其未遵守 LGPL 授權義務性要求的商用行為，支付 15,000 歐元予 ADHOC DATASERVICE GMBH，並經法院程序將此資訊向外公示。此一和解結果對於 GPL、LGPL 這類自由開源授權專案的發展相當重要，因為 GPL、LGPL 等公眾授權條款雖被廣泛使用，但卻鮮有法院以終局判決或法庭和解等具既判力的作為，來支持其合法性與執行力。
+
+並且，自由開源軟體授權多採「無償授權／免授權金 (royalty-free)」的方式釋出，而法律上對於損害賠償的修補原則在於「回復原狀」，故一般得以請求的侵權費用，限於侵權行為對於權利人造成的金錢損害，以及失去的合理預期利益，但自由開源軟體授權在「無償釋出／免授權金提供」的基礎下，權利人很難簡易舉證自己蒙受了哪些金錢損失，更難以聲明自己失去了哪些金錢利益；然而，「難以舉証」並不完全等同於「無法舉証」或是「無法聲明」，如果權利人能夠透過某些情狀，據以主張所受損失能夠合理的被換算為具體金額，則其仍具一定程度的損害賠償金額請求基礎，德國 Bochum 地方法院於 2011 年初所作的裁定，以及訴訟雙方近期完成的這個法庭和解程序，無疑便是闡釋上述論理的最佳例證！
+
+德國 Bochum 地方法院此一和解案件，除了肯認 LGPL 條款的有效性之外，也具體的將損害賠償計算後的和解金額公諸於世，相信能為自由開源軟體專案未來的合法運用帶來正面的效應，並喚起自由開源軟體商用使用者，對於授權條款內容的重視與自我惕勵。
+
+
+相關網址：
+
+1、德國法院肯定 LGPL 授權條款的有效性
+http://www.h-online.com/open/news/item/German-court-case-confirms-validity-of-the-LGPL-1822882.html
+
+2、德國法院看 LGPL（德文資料）
+http://www.heise.de/open/meldung/Deutsches-Gericht-bestaetigt-Gueltigkeit-der-LGPL-1822508.html
+
+3、雜談自由軟體無償授權的侵權賠償問題
+http://lucien.cc/?p=70
+______________________________________________________________
+
+■ [源碼新聞] 2013 年四月份社群活動列表
+
+作者是 OSSF電子報團隊／整理
+
+四月份的活動列表出爐囉！有興趣的朋友們請多多邀請您的朋友一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（雙週一，4/1、4/15、4/29）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zhwp.org/zh-tw/WP:WPTP-S
+
+TOSSUG BoF（每週二，4/2、4/9、4/16、4/23、4/30）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+KSDG 高雄開發者社群 (Kaohsiung Software Developer Group) meetup（4/4、4/20）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+時間: 19:00~21:00
+社群網址: https://www.facebook.com/groups/KSDGroup
+
+KuLUG 大高雄 Linux 使用者協會固定聚會（每週四，4/4、4/11、4/18、4/25）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~22:00
+活動資訊：http://kalug.linux.org.tw/
+
+Hackathon in Taichung (HTC) meetup（4/4、4/18）
+地點：台中市中港路二段 60-3 號 （默契咖啡）
+時間：19:00~22:00
+活動資訊：https://groups.google.com/forum/?fromgroups#!forum/hackathonintaichung
+
+Hacking Thursday（每週四，4/4、4/11、4/18、4/25）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:30
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（每週五，4/5、4/12、4/19、4/26）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:00~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+台中自由軟體愛好者固定聚會（雙週一，4/8、4/22）
+地點：台中市中港路二段 60-3 號（默契咖啡）
+時間：19:00~22:00
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+Cocoaheads - Kaohsiung（4/11）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+時間: 19:00~21:00
+社群網址: https://www.facebook.com/groups/cocoaheads.kaohsiung/
+
+Taipei Wikipedia Moonthly Meetup: Writing Day 維基台北定期聚—假日寫作月聚（4/13）
+地點：台北市大安區泰順街 60 巷 11 號（小哲食堂）
+時間：14:00~16:00
+活動資訊：https://zh.wikipedia.org/wiki/Wikipedia:WPTP-W
+
+WoFOSS 好自由小組聚會（4/18）
+地點：伯朗咖啡-北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.tw/
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

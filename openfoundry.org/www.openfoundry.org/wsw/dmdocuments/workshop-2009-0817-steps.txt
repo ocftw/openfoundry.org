@@ -1,0 +1,193 @@
+[[ ZFS基礎管理 ]]
+********************************************************************************************************
+********************************************************************************************************
+[磁碟池管理]
+1. 檢查磁碟:
+# devfsadm
+# iostat -En
+# format
+
+2. 建立磁碟池:
+2-a. 建立mirror:
+# zpool create -f -m /zfs/mirror test_pool mirror c0t1d0 c0t1d1 mirror c0t1d2 c0t1d3 spare c0t1d4
+2-b. 建立raidz:
+# zpool create -f -m /zfs/raidz raidz_pool raidz c0t1d0 c0t1d1 c0t1d2 spare c0t1d3
+2-c. 顯示組態而不實作
+# zpool create -n test_pool mirror c0t1d0 c0t1d1 mirror c0t1d2 c0t1d3 spare c0t1d4
+
+3. 檢視磁碟池:
+# zpool list 
+# zpool status [-x]
+# zpool iostat -v test_pool 5
+
+4. 檢視/設定磁碟池參數:
+# zpool get all test_pool
+# zpool set autoreplace=on test_pool
+
+5. 匯入/匯出磁碟池
+# zpool import [-f] test_pool
+# zpool export test_pool
+
+PS. 使用localfile建立pool ( for test only... )
+# mkfile 64m /tmp/f1 /tmp/f2 /tmp/f3
+# zpool create -f test_pool mirror /tmp/f1 /tmp/f2 spare /tmp/f3
+
+********************************************************************************************************
+
+[檔案系統操作]
+1. 建立檔案系統:
+# zfs create test_pool/fs1
+# zfs create -p test_pool/a/b/c
+# zfs create -o mountpoint=/mnt/fs1 test_pool/fs1
+
+2. 檢視/設定ZFS參數:
+# zfs get all test_pool/fs1
+# zfs set compression=on test_pool/fs1
+# zfs set quota=10G test_pool/fs1
+# zfs set reservation=1G test_pool/fs1
+# zfs set mountpoint=/temp/mirror_dir test_pool/fs1
+# zfs set mountpoint=legacy test_pool/fs1           => mount -F zfs test_pool/fs1 /mnt/fs1
+# zfs set mountpoint=none test_pool/fs1
+
+3. ZFS快照:
+# zfs snapshot test_pool/fs1@20090817
+# zfs rollback test_pool/fs1@20090817
+# zfs clone test_pool/fs1@20090817 test_pool/fs2
+# zfs promote test_pool/fs2
+PS.
+# zfs set snapdir=hidden|visible test_pool/fs1
+
+4. 時間滑動軸
+# svcs -a *auto-snapshot*
+系統 -> 管理 -> 時間滑動軸 -> 啟動時間調整器 -> 進階選項 -> 自訂
+開啟檔案瀏覽器 -> 復原 -> 移動滾軸
+
+[[ Lab1 ]]
+********************************************************************************************************
+********************************************************************************************************
+請建立下列環境: 
+* 建立一組使用三個硬碟(or slices)所構成的mirror的磁碟池(磁碟池的名稱為mypool), 其中一個硬碟(or slice)必須為hotspare.
+* 變更磁碟池的掛載點為/mnt/mypool
+* 建立一個mypool/fs1的檔案系統
+* 在fs1上建立一個檔案(檔名為f1)
+* 將fs1上設定一個快照(快照名為s1)
+* 複製(clone)一個檔案系統(檔案系統名為c1)
+* 使用promote子指令將c1取代掉f1, 並將c1的檔案系統名變更為f1
+
+
+[[ 建立簡易NAS系統 smb + nfs + ftp ]]
+********************************************************************************************************
+********************************************************************************************************
+[設定SMB client/server]
+ref:
+http://docs.sun.com/app/docs/doc/820-2429
+
+0. 停用samba server
+SMB server 與 samba server不能同時使用.  
+所以需先停止samba server.
+# svcs *samba*
+# svcadm disable svc:/network/samba
+# svcadm disable svc:/network/wins
+
+1. 安裝SAMBA
+點擊工作列, 系統 -> 管理 -> 套裝軟體管理員
+開啟套裝軟體管理員後, 搜尋關鍵字 "smb"
+點選套件 "SUNWsmbs, SUNWsmbskr", 點擊上方 "安裝/更新" 圖示
+安裝完畢後, 重新啟動server.
+# init 6
+
+2. 啟動SMB server, 安裝PAM模組,  並加入WORKGROUP群組, 
+# svcadm enable -r smb/server
+在/etc/pam.conf檔案中加入此行
+other password required pam_smb_passwd.so.1 nowarn
+註: password指令會自動產生SMB密碼, 但是, 對於已存的使用者, 必須手動在設定一次密碼.
+# smbadm join -w WORKGROUP
+
+3. 啟動SMB client
+# svcadm enable -r smb/client
+
+4.  建立SMB workgroup使用者/密碼
+# pfexec su - (root/opensolaris)
+# mkdir -p /export/home
+# useradd -m -d /export/home/stanley stanley
+# passwd stanley (stanley123)
+註: samba密碼將存放在 /var/smb/smbpasswd
+
+5. 設定SMB檔案分享
+5-1. 建立ZFS
+# zfs create -o casesensitivity=mixed -o nbmand=on rpool/nas
+第一個-o告訴ZFS, UINX下區分大小寫, Windows下不分大小寫.
+第二個-o告訴ZFS, SMB與NFS的鎖(Locking), ZFS均支援.
+
+5-2. 使用ZFS指令分享檔案
+# zfs set sharesmb=name=nas,rw=@192.168.1.0/24 rpool/nas
+# smbutil view //stanley[:stanley123]@smb_server, 如果沒有輸入":stanley123", 則會出現密碼確認提示.
+
+5-3. 使用 sharemgr指令分享檔案
+建立分享群組
+# sharemgr create nasgrp
+將目錄加入分享
+# sharemgr add-share -s /tmp -d "tmp folder" -r tmp nasgrp
+# sharemgr set -P nfs -p anon=0 nasgrp
+檢查分享設定
+# sharemgr show -vp
+
+6. 連線
+a. OpenSolaris
+a-1. 使用檔案管理員
+位置 -> 連接到伺服器
+服務類型: Windows分享
+伺服器: smb_server
+分享: rpool_share
+使用者名稱: stanley
+a-2. 使用mount指令
+# mount -F smbfs //stanley[:stanley123]@smb_server/nas /mnt
+b. Windows
+開始 -> 執行
+\\smb_server\
+
+7. 查看SMB server的狀態
+# smbstat -i
+
+8. 移除分享
+# sharemgr remove-share -s /tmp/nasgrp nasgrp
+# sharemgr delete nasgrp
+# sharemgr show -vp
+
+********************************************************************************************************
+********************************************************************************************************
+
+[ 設定nfs]
+1. 檢查NFS服務
+svcs *nfs*
+2. 啟動NFS服務
+ svcadm enable -r nfs/server
+3. 設定NFS分享
+4-2. 開啟NFS
+# zfs set sharenfs=rw=@192.168.1.0/24,root=@192.168.1.0/24 rpool/nas
+# zfs set sharenfs=on pool_name/fs
+# sharemgr set -P nfs -p anon=0 nasgrp
+4. 取消NFS分享
+# zfs set sharenfs=off pool_name/fs
+
+********************************************************************************************************
+
+[設定ftp]
+1. 檢查ftp服務
+# svcs *ftp*
+2. 啟動ftp服務
+# svcadm enable ftp
+3. 限制使用者連線至ftp server
+/etc/ftpd/ftpusers
+
+
+[[ Lab2 ]]
+********************************************************************************************************
+********************************************************************************************************
+建立一個NAS系統:
+* 這個系統必須能使用SMB方式與Windows系列的作業系統分享檔案.
+* 建立一個SAMBA使用者, 並設定該帳號與作業系統的帳號/密碼結合.
+* (延續LAB1)建立一個mypool/samba_share的ZFS檔案系統目錄, 
+   並將其掛載點設定在目錄/samba_share, 並使其透過zfs指令達成SMB的方式分享目錄內的檔案.
+* 使用zfs指令來達成nfs的方式分享檔案.
+開啟FTP伺服器.

@@ -1,0 +1,731 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 234 期 | 2014/01/14 □■□
+________________________________________________________________
+
+◎ 本期主題︰在 PhoneGap / HTML5 上實現卡片 (Card) 的使用者介面
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2014/01/28
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 在 PhoneGap / HTML5 上實現卡片 (Card) 的使用者介面
+
+■ [自由專欄] Windows XP 之後：自由開源軟體與自帶設備上班
+
+■ [自由專欄] OpenHatch 把開放源碼帶進校園
+
+■ [自由專欄] 太空上的 Linux
+
+■ [源碼新聞] 慕尼黑市表示開源轉換成功結束
+
+■ [源碼新聞] 搭載 MariaDB 資料庫的 Red Hat Enterprise Linux 7 beta 版來了
+
+■ [源碼新聞] 利用自由開放源碼軟體與相關學習資源在家自學
+
+■ [源碼新聞] 2013 五大 Linux 與開源新聞
+
+■ [源碼新聞] 2013 年最不可思議的前 10 大開源硬體專案
+
+■ [源碼新聞] Panasonic 電視將預載 Firefox OS
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 在 PhoneGap / HTML5 上實現卡片 (Card) 的使用者介面
+
+張准榕／編譯 
+
+◎本文翻譯自 DZone，原作者為 Andrew Trice：http://css.dzone.com/articles/implementing-card-ui-pattern
+
+這些日子，在使用者互動 (user interface) 領域中「卡片」(card) 似乎越來越風靡。有許多地方都可以看到卡片為基礎的使用者互動範例，例如Google Glass、Pinterest、Google Plus、Spotify、Flipboard，以及許許多多數也數不清的地方。
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image001.jpg)
+
+有些人宣稱卡片的使用者互動介面是網站設計的絕對未來，而有些人認為只是另一種趨勢。在這兩種情況下，你可能需要在你自己的應用程序中實現卡片的使用者互動介面。如果你恰巧正以構建 PhoneGap 或瀏覽器的應用程序為目標，你很幸運！
+
+在這篇文章中，我們包含了許多建構卡片式使用者互動範例的網路標準技術。因為這個模式是可以純粹從 HTML 與 CSS 建立出來的，並利用 JavaScript 建立互動行為與動態機制，因此文中我們不會過於注重 PhoneGap 本身。所有在此文中討論的範例之原始碼將可在 https://github.com/triceam/cards-ui 存取。
+
+
+什麼是「卡片」？
+
+在我們討論如何建立卡片的互動介面之前，我們必須真正明白什麼是卡片。本質上，卡片是一種邏輯上封裝資料的容器。在大部分的時候，卡片式一個包含少量容易 digestible 資訊的矩形空間。矩形區域的邊框 (border) 被用來傳遞封包的資訊。另一種說法是邊框把卡片中的內容從畫面的其他內容中分離出來。通常會有許多卡片放置於使用者的畫面上，並利用邊框或顏色來區分卡片彼此之間的資訊。如果你瀏覽 Pinterest 或 Google Plus 的使用者互動介面，你將會很快地了解到卡片的使用者互動介面。
+
+
+利用 PhoneGap 或是在 HTML、CSS 和 Javascript 開發
+
+在網頁技術中，你可以非常容易的建立矩形視覺化結構並可以在這些結構中建立內容。讓我們從基本的開始。在下面圖片中，我們有兩個用 HTML 開發的基本卡片結構。
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image004.jpg)
+這兩個範例你都可以在 GitHub 知識庫中的 01_simple_card.html (https://github.com/triceam/cards-ui/blob/master/01_simple_card.html) 看到。
+
+在我們討論卡片之前，讓我們看一下網頁結構中包含的卡片。有檔頭 (header) 資料、檔尾 (footer) 資料以及主要的內容區域。檔頭資料用來作為一個 PhoneGap 區域的檔頭瀏覽器。這些每一個 HTML 結構都有一個 CSS 樣式來決定要如何呈現這些內容。所有的卡面我們都增加在<div>標籤中，並使用名為 "content" 的 CSS 樣式。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01.<body>
+02.<div class="content">
+03.<!--- All cards go here --->
+04.</div>
+05. 
+06.<div class="header">
+07.Cards in an HTML UI
+08.</div>
+09. 
+10.<div class="footer">
+11.All images copyright 2013 <a href="/http://tricedesigns.com/"target="_blank">Andrew Trice</a>.
+12.</div>
+13.</body>
+
+這些元件都有自己的 CSS 樣式，這些 CSS 獨立控制個別的格式。如果你查看原始碼，你將會看到它們都有固定的位置跟樣式，這些決定了一般呈現的顏色、邊框以及觸摸時的捲動行為。
+
+在內容的<div>標籤是我們放置卡片的地方。正如我上面提到的，卡可以是非常簡單的。我們給予內容的<div>標籤一個淺灰色的背景，並一個給予每張卡片一個白色背景跟黑色的邊框。這樣我們就可以在視覺上將每張卡片從背景色區分出來，並可以區分出彼此很接近的卡片。
+
+在下面的程式碼中，針對第一張卡我們簡單的在<div>中包含了一個標頭跟一段文字的元件。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1.<div class="card">
+2.<h1>This is a card!</h1>
+3.<p>In essence, a card is just a rectangular region which contains content.  This content could be text, images, lists, etc... The card UI methaphor dictates the interaction and layout of these regions.</p>
+4.</div>
+
+我們在 HTML 中使用了一些簡單的 CSS 樣式來達到這樣的視覺效果。這個卡片的容器已經事先定義了背景色、邊框顏色、填充 (padding) 及溢出 (overflow) 的規則。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1..card {
+2.background:#FFF;
+3.border:1px solid #AAA;
+4.border-bottom:3px solid #BBB;
+5.padding:0px;
+6.margin:15px;
+7.overflow:hidden;
+8.}
+
+在每一個標頭及段落的元件，我們也事先定義了頁邊 (margin) 及填充的規則來管理元件間的空格。同樣地，你可以看到這並不會相當複雜。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01..card h1 {
+02.margin:0px;
+03.padding:10px;
+04.padding-bottom:0px;
+05.}
+06. 
+07..card p {
+08.margin:0px;
+09.padding:10px;
+10.}
+
+現在讓我們來說明第二張卡片，其中包含了圖片、標頭影像 (caption overlay) 和一個橫幅標語 (banner)。你會注意到在卡的佈局和段落格式上，第二個例子使用了完全相同的 CSS 樣式。然而，其中也有一個圖片樣式的<div>、一個橫幅標語樣式的<div>和一個檔頭影像的標題。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1.<div class="card">
+2.<div class="card-image image2">
+3.<div class="banner"></div>
+4.<h2>Image, Banner, & HTML</h2>
+5.</div>
+6.<p>All standard HTML structures, styled with CSS.</p>
+7.</div>
+
+你將注意到這些卡片並沒有包含用來定義圖片的 HTML <img>標籤。取而代之的是透過 .card-image 和 .image1 的 CSS 樣式來呈現圖片。 .card 的 CSS 樣式定義了長、寬以及背景的屬性。 .image1 的 CSS 樣式定義了用這<div>元件所實現的背景圖片。在這樣的情況下，圖片會是以 CSS 背景來實現，因此他們因為<div>的變動尺寸而造成影像延展或是變形。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01..card-image {
+02.width:100%;
+03.height:200px;
+04.padding:0px;
+05.margin:0px;
+06.background-position:center;
+07.background-repeat:no-repeat;
+08.position:relative;
+09.overflow:hidden;
+10.}
+11. 
+12. 
+13..image1 {
+14.background-image:url('http://farm6.staticflickr.com/5323/9902848784_cbd10ba3ca_c.jpg');
+15.}
+
+在這些例子中，針對不同的圖片有許多不同的 CSS 樣式。但所有的圖片都使用 .card-image 這一個 CSS 樣式，所以它們具有相同的呈現規則。
+
+黃色 "NEW" 的橫幅也是<div>元素，一個實際上透過 CSS 實現的圖片橫幅，並放置在圖片<div>元件中的左上角。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01..card-image .banner {
+02.height:50px;
+03.width:50px;
+04.top:0px;
+05.right:0px;
+06.background-position:top right;
+07.background-repeat:no-repeat;
+08.background-image:url('../images/new.png');
+09.position:absolute;
+10.}
+
+標頭 (caption) 是一個放置在圖片<div>中最下方的簡單檔頭元件。而這個檔頭在實際的圖像內容上重疊了半透明背景和白色文字的樣式。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01..card-image h1,
+02..card-image h2,
+03..card-image h3,
+04..card-image h4,
+05..card-image h5,
+06..card-image h6 {
+07.position:absolute;
+08.bottom:0px;
+09.width:100%;
+10.color:white;
+11.background:rgba(0,0,0,0.65);
+12.margin:0px;
+13.padding:6px;
+14.border:none;
+15.}
+
+你所看到的，到目前為止一切都非常簡單的 HTML 和 CSS，並且是相當簡單的。當我們開始把多張卡彼此相鄰事情開始變得稍微複雜一些，然而它並不是過於複雜。
+
+讓我們看看下一個範例，這範例呈現了彼此相當接近的多張卡片。
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image006.jpg)
+
+這個範例你可以在 GitHub 知識庫中的 02_multiple_cards_float.html (https://github.com/triceam/cards-ui/blob/master/02_multiple_cards_float.html) 看到。
+
+在這例子中，我們使用了之前說明的 HTML 以及 CSS 來定義多張卡片。然而，在這情況下我們為每一張卡片的內容元件添加了一個靠左浮動 (float-left) 屬性的 CSS 樣式。你可以在下面看到這個 CSS 的實作方法。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1..float-left .card {
+2.float:left;
+3.width:300px; 
+4.height:270px;
+5.}
+
+因為每張卡定義了靠左浮動的屬性，如果水平方向具有足夠的空間，卡片們將會被部屬在前一張卡片的右側。如果沒有足夠的空間，那下一張卡片將會向下移動到到垂直方向下一個換行。你會注意到每張卡的<div>具有固定高度跟 300px 的固定寬度。這個固定的尺寸確保所有的內容將會被瀏覽器編排好，而不會被瀏覽器決定重疊和斷行的狀況（瀏覽器決定了縱向旋轉時呈現兩張卡，以及在橫向旋轉時呈現三張卡）。
+
+如果你的所有卡片都有完全相同的大小將會是偉大的工程。然而，這樣的狀況在實際世界中並不常見。這方法並不允許變動高度或是變動／反應寬度的內容。因此，我們來看看其他的範例。
+
+在這案子中，我們的卡有兩個欄位。每一張卡有一個隨著內容多寡的變動高度，並且這些卡的寬度是根據每個欄位的寬度而變動的。
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image008.jpg)
+你可以在GitHub知識庫中的 03_multiple_cards_columns.html (https://github.com/triceam/cards-ui/blob/master/03_multiple_cards_columns.html) 看到這個範例。
+
+為了支援變動高度的內容，你需要在一個獨立的垂直容器中堆疊 (stack) 這些卡片。如果你試著在單一 div 元件中使用 CSS 欄位，你將會在包裝成獨立欄位時遇到卡片被從中切斷的問題。
+
+為了實現這點，我建立了兩個 div 容器，並個別放置卡片的 HTML。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1.<div class="content ">
+2.<div class="leftColumn">
+3.<!--- cards here --->
+4.</div>
+5.<div class="rightColumn">
+6.<!--- cards here --->       
+7.</div>
+8.</div>
+
+這些欄位的 CSS 指揮每一個欄位將有可視區 (viewport) 的 49% 寬度，而其中包含的每張卡片將會有此空間中的 100% 寬度。這使得內容可以隨著可視區的尺寸縮放，並且因為每張卡片存放在獨立的容器中將不會有變動高度內容的影響。因為每個命名為 "column" 的<div>元件呈現時具有 "inline-block" 的屬性，使得網頁瀏覽（或瀏覽器）會將這些元件呈現在彼此的下一個位置。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+1..rightColumn,
+2..leftColumn {
+3.display:inline-block;
+4.width:49%;
+5.vertical-align:top;
+6.}
+
+所以，這是朝正確方向邁出的一步，對不對？
+
+我們現在有變動高度的卡片，並可以一個接著一個。然而，這仍不是最理想的解決方案。如果你在一台電話上瀏覽，你會有兩個被壓扁內容的細小欄位。如果你在橫向瀏覽的平板上，你將會看到兩個被延伸內容的欄位，或者至少是低效率的使用空白處。
+
+到目前為止，我們只討論實際上的 HTML 結構以及呈現內容時使用的 CSS 樣式。在真實世界的應用中，你將需要動態和反應的事情。
+
+如果你將建立一個 PhoneGap 應用程式或者使用用戶端 (client-side) 動態呈現方式，你將需要增加 JavaScript，使其根據設備的可視區有條件地編排 html 元件。
+
+所以，讓我們接著添加一些 JavaScript 去定義這方面經驗的一些適當行為。
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image010.jpg)
+
+(https://www.openfoundry.org/images/140114/PhoneGap/image011.jpg)
+你可以在 GitHub 知識庫中的 04_programmatic_cards.html (https://github.com/triceam/cards-ui/blob/master/04_programmatic_cards.html) 看到此範例。
+
+這例子是完全動態的。使用了 Zepto.js (http://zeptojs.com/) 去快速操作 DOM 並使用 Mustache.js (https://github.com/janl/mustache.js) 去產生html的樣板。在這例子中，根據網頁瀏覽區域的寬度程式化的決定欄位數量。然而，每張卡片的 HTML 內容則是根據已定義的資料加上 HTML 樣板產生的，並配置於適當的欄位中。
+
+如果你以前從未使用過 HTML 樣板，這邊有個快速的簡介...... HTML 樣板允許你根據資料內容動態產生 HTML 字串。這使得你容易將資料 (data model) 從呈現層 (presentation layer) 的 HTML 結構區分出來。你定義了一個樣板並標記資料應該要在哪個地方呈現。樣板文庫 (template library) 需要樣板，放入資料並產生完整的 HTML 字串。而產出的 HTML 字串是根據任何資料輸入時完全動態。
+
+在這例子中，我們使用了跟之前我們使用的例子完全一樣的 CSS 樣式。我們只是在執行時 (runtime) 產生所有的 HTML 結構。如果可視區的寬度可以有一個欄位，它將產生一個欄位所需要的寬度。如果可視區有兩個欄位的空間，它將產生兩個欄位。依此類推。在這例子中，我們也針對視窗變動尺寸增加了事件行為，所以當使用者切換橫向與縱向模式時我們可以動態的在兩個及三個欄位間動態轉換。用這方法，我們可以交代變動高度內容及變動寬度的可視區。
+
+現在，讓我們看一下這個產生每張卡片的樣板。這使用了Mustache.js的函式庫符號去標記HTML字串中有條件的元件和資料注入的地方。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01.<script id="card-template" type="text/template">
+02.<div class="card">
+03.{{#image}}
+04.<div class="card-image {{ image }}">
+05.{{#banner}} <div class="banner"></div> {{/banner}}
+06.{{#caption}} <h2>{{caption}}</h2> {{/caption}}
+07.</div>
+08.{{/image}}
+09.{{#title}} <h1>{{title}}</h1> {{/title}}
+10.{{#message}} <p>{{{message}}}</p> {{/message}}
+11.</div>
+12.</script>
+
+這裡是這個例子在生活中所使用的語法。一旦頁面被負載進來，相對應的尺寸變動事件將會被加進來，同時初始化的佈局會根據視窗或可視區的尺寸產生出來。
+
+view source print? (http://css.dzone.com/articles/implementing-card-ui-pattern#viewSource)
+01.<script>
+02.var content, columns, compiledCardTemplate = undefined;
+03.var MIN_COL_WIDTH = 300;
+04. 
+05.//data used to render the HTML templates
+06.var cards_data = [
+07.{   title:"This is a card!",
+08.message:"In essence, a card is just a rectangular region which contains content. This content is just HTML.  This could be <b>text</b>, <i>images</i>, <u>lists</u>, etc... The card UI methaphor dictates the interaction and layout of these regions."  },
+09.{   message:"Yep, just some simple content ecapsulated in this card.",
+10.image:"image1"},
+11.{   image:"image2",
+12.banner:true,
+13.caption:"Image, Banner & HTML",
+14.message:"All standard HTML structures, styled with CSS."},
+15.{   title:"This is another card!",
+16.image:"image4",
+17.message:"Here, you can see a more complex card.  IT is all just layout of HTML structures.",
+18.caption:"Look, it's Vegas!",  },
+19.{   message:"Yep, just some simple content ecapsulated in this card.",
+20.image:"image5",
+21.banner:true, },
+22.{   image:"image6",
+23.caption:"It's a college!",
+24.message:"With HTML in the content.<ul><li>Bullet 1</li><li>Bullet 2</li><li>Bullet 3</li></ul>"},
+25.{   image:"image1",
+26.caption:"San Francisco City Hall",
+27.message:"All of these photos were captured with a quadcopter and GoPro! Check out my blog <a href='http://tricedesigns.com'>http://tricedesigns.com<;/a> to learn more!"},
+28.];
+29. 
+30.//page load initialization
+31.Zepto(function($){
+32.content = $(".content");
+33.compiledCardTemplate = Mustache.compile( $("#card-template").html() );
+34.layoutColumns();
+35.$(window).resize(onResize);
+36.})
+37. 
+38.//resize event handler
+39.function onResize() {
+40.var targetColumns = Math.floor( $(document).width()/MIN_COL_WIDTH );
+41.if ( columns != targetColumns ) {
+42.layoutColumns();  
+43.}
+44.}
+45. 
+46.//function to layout the columns
+47.function layoutColumns() {
+48.content.detach();
+49.content.empty();
+50. 
+51.columns = Math.floor( $(document).width()/MIN_COL_WIDTH );
+52. 
+53.var columns_dom = [];
+54.for ( var x = 0; x < columns; x++ ) {
+55.var col = $('<div class="column">');
+56.col.css( "width", Math.floor(100/columns)+"%" );
+57.columns_dom.push( col );  
+58.content.append(col);
+59.}
+60. 
+61.for ( var x = 0; x < cards_data.length; x++ ) {
+62.var html = compiledCardTemplate( cards_data[x] );
+63. 
+64.var targetColumn = x % columns_dom.length;
+65.columns_dom[targetColumn].append( $(html) );   
+66.}
+67.$("body").prepend (content);
+68.}
+69.</script>
+
+一定要檢查即時 HTML 所產生的東西以得到它所影響的最佳想法。如果你是桌上型的瀏覽器，你可以變動你視窗的尺寸並確認欄位有動態的改變。如果你是平板式電腦，你可以旋轉你的設備並觀察使用者介面從兩個欄位變動成三個欄位。
+
+
+結論
+
+這是一個在 PhoneGap 應用程式中開發卡片式使用者互動介面時相當基礎的概念。如果你想知道如何開始建立一個 PhoneGap 應用程式，請到 PhoneGap.com (http://phonegap.com/) 並下載所需要的工具即可開始。如果你想要增加手機主題的使用者互動介面，像是在你的應用程式中增加按鈕或列表（不管它們是否使用卡片式布局），一定要查 Topcoat (http://topcoat.io/) 。 Topcoat 是一個提供使用者互動元件的開放源碼環境。如果你想要增加其他效果或是互動行為，請查閱 CSS 轉換跟動態有關的 Effekt (http://h5bp.github.io/Effeckt.css/dist/) 函式庫。如果你想要增加任何附加的互動行為，或者根據資料動態產生一些事情，你將需要依賴 JavaScript 去在執行時程式化地動態產生新的 HTML 結構，而不是重新載入 HTML5 的檔案。你可以在 https://github.com/triceam/cards-ui 下載所有範例的原始碼，並且也可以在我的部落格 tricedesigns.com 看到任何的更新。
+
+
+本文受到 Intel 及 Tizen (https://www.tizen.org/) 行動網站開發團隊所委託。
+
+發表於 DZone，並由作者 Andrew Trice(http://css.dzone.com/users/triceam) 及 DZone MVB 授權。
+
+
+＊譯者簡介：張准榕，Lilina Chang。畢業於中華大學資訊管理碩士。
+目前任職於華晶科技研發部門，以 C++ 撰寫 PC 應用程式為主。過去曾經任職於漢民科技資訊部門，便以 PHP、MySQL 及 Javascript 開發網頁應用程式。喜歡資訊科技及旅行，本持著資源共享及共同學習成長的原則與人交流。
+_______________________________________________________________
+
+■ [自由專欄] Windows XP 之後：自由開源軟體與自帶設備上班
+
+謝良奇／編譯
+
+◎本文翻譯自 Computer World，原作者為 Dave Lane：
+http://www.computerworld.co.nz/article/532915/opinion_life_after_windows_xp_foss_byod/?fp=16&fpid=1
+
+從 XP 的全盛時期到現在，事情已經有了許多改變，在昔日桌面的單一文化之外，我們如今必須因應各種廣泛的裝置。除了自由與開源軟體 (FOSS) 體系，你還必須周旋在 Apple 筆電與 i 系列裝置、FOSS 的 Android 裝置、古怪的 Windows 8/8.1 桌面或筆電之間，甚至是偶而出現的 Windows 8 手機 或 RT 平板。
+
+本文將檢視如何應對 FOSS 環境中的多樣性。
+
+
+以 Samba 因應多樣性
+
+自帶設備上班 (BYOD) 的革命很適合以 FOSS 為基礎的生態體系，能夠包容如此多樣化裝置的利器，稱之為 Samba（對 Microsoft 私有協定 Server Message Block 所開的玩笑），在每一套 Linux 系統中都找得到。
+
+Samba 專案是由堪培拉的澳洲國立大學博士生 Andrew Tridgell，於 1991 年所發起，動機出自於用他的 MS DOS PC 讀取實驗室 UNIX 伺服器檔案時，時常遭遇到的問題。時至今日，Samba 4 能讓所有 MS Windows 電腦以為自己正在與真正的 Microsoft Server 溝通。Samba 允許 Linux 伺服器作為網域控制器、Active Directory、網路檔案與列印伺服器、名稱伺服器，以及其他重要的網路服務。
+
+因為 Apple 礙於 Microsoft 主導地位，將 Windows 網路整合至 Mac 電腦以刺激企業佔有率的緣故，Samba 也能夠將其納入整合。當然，Linux 桌面與筆電也能與 Samba 整合。
+
+行動端的支援也同樣地完整。儘管對 Windows Phone 8 用戶來說支援細節比較粗略，不過我想他們應該能夠連線才對。
+
+在 Windows Server 方面，雖然你可以自行設定，你最好還是請專業 IT 人員來設定 Samba，並依照你的需求調整組態。
+
+
+你自己的雲端、同步與其他
+
+現代運算環境一項關鍵特色在於各裝置間關鍵資料的同步化，像是你的電郵、聯絡人、行事曆、工作待辦事項、書籤、密碼。許多用戶會把這些個人資訊交托給 Google 或 Firefox，以便在桌面、智慧型手機、平板之間傳輸。
+
+對於密碼，我偏愛像 Lastpass 這樣的特殊解決方案，它相容於我使用的所有 FOSS 技術，並以加密形式儲存我的所有網路相關密碼。對於在雲端上儲存與傳輸檔案，你可以使用知名的私有雲端服務，像是 DropBox 或 Ubuntu One。這些服務提供簡易的方式，能在各種裝置間安全地分享並自動同步檔案。
+
+在這個後 Snowden 時代，對於許多人來說，雲端已經失去了大部份的吸引力，特別是這些雲端服務大部份位於美國。這些雲端服務供應大廠們，其中未能貫徹 IT 專家組織 (IITP) 雲端運算實務準則 (Cloud Computing Code of Practice) 的比例，實在令人不安。
+
+假如你希望掌握自己的隱私，做一個自己的雲端並不困難，ownCloud 就提供了和 DropBox 與 Google 同步服務一樣的許多功能，只不過是在你自己的伺服器上，不管那是在你的辦公室裡，或是你租用的伺服器。
+
+
+地理位置分散的組織
+
+設計安全 (Secure-by-design) 應該是所有 IT 架構的口號，不過對分散型組織來說更是重要。在 FOSS 世界裡，對於安全性不需要吝嗇，因為所有工具都在你的指尖。
+
+大部份的 FOSS 桌面預設都支援一些具工業強度的 VPN 用戶端與伺服器。我們經常在 Windows、Mac、Linux 桌面上，使用 FOSS 的 OpenVPN。你的行動裝置也可以使用。
+
+你或你的 FOSS 技術能用 OpenVPN，將你的多個區域網路，透過跨網際網路的加密資料通道合在一起，變成安全的廣域網路。OpenVPN 也支援讓個別遠程工作者，透過任何網路連線，安全地存取組織的資源。
+
+
+結論
+
+FOSS 是由使用、部署、支援這些軟體的社群所開發。經過某些 IT 大廠的設計與調整，所有人都能享有他們為自己所打造的技術。聰明的組織藉由採用 FOSS 能節省授權費用，並獲得競爭力。
+
+改用 FOSS 可以循序漸進，而非全有或全無的選擇。透過 FOSS，你可以擁抱多樣性，同時支援 FOSS 桌面、裝置，以及來自 Microsoft 與 Apple 相似但是私有的解決方案。
+_______________________________________________________________
+
+■ [自由專欄] OpenHatch 把開放源碼帶進校園
+
+作者是 謝良奇／編譯
+
+
+◎本文翻譯自 opensource.com，原作者為 Shauna Gordon-McKeon：
+http://opensource.com/education/13/12/openhatch-brings-open-source-campus
+
+不到一年之前，有人請我主持 OpenHatch 的開源到校園 (Open Source Comes to Campus) 系列活動。這個活動是一個向大學生介紹開放源碼的工作坊，教導他們如何使用像版本控制跟問題追蹤 (issue trackers) 之類的工具，並指引他們完成首次貢獻。當我加入時，OpenHatch 平均每年會舉行 2 次活動。有人問我，是不是能在 2013 年辦 7 個活動。
+
+
+2013 年
+
+這一年開始並不順遂。我意外地把第一個活動排到總統日 (Presidents' Day) 週末。在那個雪白早晨，我們只有不到十幾個人參加。不過，我們玩得很開心，當與會者之一的 Jane 邊大笑邊說，經過今天我很有自信能掌握我的電腦時，那天看來還算蠻成功的。我趕緊把這句話寫在餐巾紙上以免忘記。
+
+之後，我們又舉辦了 12 次的活動，幾乎是年初時計劃的兩倍之多。我們去到紐約、舊金山、芝加哥等大城市，以及像 Wellesley、Amherst、Lafayette、Morris、Minnesota 等小型大學城。我們教過數百位學生。感謝我們在東北大學 (Northeastern)、麻州大學安城校區 (UMass-Amherst)、舊金山市立學院 (CCSF)、伊利諾大學芝加哥校區 (UIC) 的東道主，他們慷慨地為當地其他學校的學生敞開大門，我們才得以不錯過這些學生。我們碰見許多令人驚奇的人，收到過發人省思的問題，也看見了許多有意思的創作。經由嘗試錯誤，我們得以在流程與課程上做出重大改進。很棒的一年。
+
+不過呢，我們成功舉辦的每一次活動背後，總是有其他地方的活動邀約我們無法回應。除了一位兼職的工作人員（就是我），OpenHatch 完全是由自願者所組成。我們沒有時間和金錢，到所有提出邀請的地方舉辦活動，不論遠在阿拉斯加、印度、澳大利亞，或是近在家鄉附近。
+
+
+擴展我們的活動
+
+我們的解決方案？就是開源到校園盒裝版 (In a Box)。我們詳盡地記錄了我們活動的每個環節，從我們展示的教材，到我們建構公開網站的方式，從食物與空間核對表，到我們寄送的所有電郵範本。我們希望當地的主辦單位能運用這些材料，舉行他們自己的活動，就像我們的 Python 工作坊一樣。
+
+我們已經有了一個成功案例。十一月下旬，來自普林斯頓電腦科學女子 (Princeton’s Women in Computer Science) 一群熱情的學生，舉辦了一場有超過 30 人參與的超棒活動，這是她們這個新成立開源團體的第一項成果。她們給了我們如何改進活動與記錄方式的寶貴回饋。我們很高興能持續下去！波士頓大學將於春天舉辦類似的活動，我們正在尋找更多有興趣的學校。
+
+我們用來改進與擴展開源到校園活動的努力，在其他方面也收到了成效。由於我們的教材在線上公開，我們可以請沒辦法準時抵達的學生，事先查看演講與活動。我們也可以在其他活動場合使用這些內容。我在 AdaCamp 做了開源通訊工具的簡報，並且在 BarCamp Boston 舉辦了我們的 git 上機課程。針對如何改進貢獻工作坊認真思考後，催生出指導如何讓開源專案更具親和力的手冊。另外還有細心編排，由 OpenHatch 相關專案提供的新手入門首要任務。這些任務非常適合我們活動的參加者，以及在線上接觸我們的新手。
+
+
+貢獻
+
+我們一直在幫開源到校園找幫手。要如何參與呢？如果你身處於大學院校之中，你可以舉辦活動。假如你是開放源碼的愛好者，志願擔任導師一職，請報名等待通知。如果你有開源專案歡迎新手加入，你可以成為 OpenHatch 附屬專案。你可以幫忙解決我們問題追蹤系統裡的問題，針對我們的課程給予意見，隨時歡迎在 IRC 上加入我們。
+
+如果財務上許可，你也可以捐款贊助我們。因為有你們的貢獻，來自 Puppet Labs、Github、Google 等公司的贊助，以及數十位志願者的努力，我們才得以在今年達成超過 200 位學生的成績。
+_______________________________________________________________
+
+■ [自由專欄] 太空上的 Linux
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結按此 (http://www.linuxpilot.com/blog/kiji/201401030101Linux-ISS)。
+
+Windows 感染病毒早已經見怪不怪，可幸的是 PC 感染病毒頂多是個人資料被竊，不會令電腦爆炸造成傷亡。但如果是重要基建設施受感染，就是另一回事了。
+
+(https://www.openfoundry.org/images/140114/201401030101.jpg)
+
+較早前 Kaspersky Lab 首席執行長 Eugene Kaspersky 在一次訪問中，就披露國際太空站 (ISS) 曾經感染病毒，管理 ISS 的 United Space Alliance (USA) 最後在 2013 年 5 月，決定將 ISS 上全部的系統都更換為 Linux。國際太空站感染病毒和我們有什麼關係？恐怖份子既然可以讓飛機撞向摩天大樓，要令 ISS 偏離航道甚至墜落地球，也並非不可能（要精準命中目標非常困難）。數年前出現的病毒 Stuxnet，就是最好的示範。德國保安專家發現，Stuxnet 從一開始就以破壞伊朗核設置離心機為目標而設計，並以 USB 隨身碟作為感染途徑，直到接觸到離心機前都不會顯示任何「病徵」，是一枚名乎其實的「數位定向炸彈」。德國專家一直指美國政府是 Stuxnet 的幕後黑手，但美國一直拒絕承認。
+
+這次的 ISS 中毒事件中，USB 隨身碟同樣是病毒的載體，自然觸動美國政府的神經。事件起因是一名俄羅斯太空人持有的 USB 隨身碟有毒，令太空站內部的 Windows XP 電腦中毒。事實上在 2008 年也發生過同類事件，同樣是俄羅斯的太空人，把一台感染了 W32.Gammima.AG 的筆記本電腦帶進 ISS，快速地感染了多台電腦，令 ISS 明白到單是不讓電腦上網並非萬全之策。USA 痛定思痛，最後決定將 ISS 上全部的系統都更換為 Linux。
+
+ISS 內部有一個為太空人提供服務的網路 OpsLAN，用戶就只有 6 個，因為在 ISS 體制中，長駐的太空人只有 6 名。但網路內部卻有十多台電腦，作為桌面電腦使用時，其功能包括查詢設備和物料的庫存量、科學實驗的流程控制、遙控拍攝地球的鏡頭、和查看 ISS 目前的位置等等。這些軟體原本以在 32 位元的 Windows 電腦上執行為前提而設計，現在將會改寫為在 Linux 上執行。為加快日常作業效率，Linux 基金會為太空人提供了最基本的 Linux 訓練，包括 Red Hat、CentOS 和 Debian 的操作方法，現時 ISS 內部有一定數量的電腦已經使用了 Red Hat 和 CentOS，今後將主力部署 Debian 6 作為桌面使用。
+
+USA 的負責人 Keith Chuvala 表示，系統安全是選用 Linux 的主要考慮，但另一個採用 Linux 的主因是系統的穩定性，畢竟 ISS 位於地球的 400 公里上空，身在地面的技術人員難以為他們提供實地的支援。美國太空總署 (NASA) 的下一步計畫是積極研發人型機械人，代替太空人在 ISS 長期工作，包括進行最危險的 ISS 外部維修任務。這個名為 Robonaut 2 的機械人，同樣以 Linux 為作業系統，上半身的組件已經在 2011 年太空梭的最後任務中送上 ISS，只欠缺電池和腳部便可以開始裝配。完成後的首個任務，將會是測試人類和機械人能否在無重力狀態下合作無間地作業。太空上只有「人」的時代，很快就會成為過去。
+_______________________________________________________________
+
+■ [源碼新聞] 慕尼黑市表示開源轉換成功結束
+	
+謝良奇／編譯
+
+◎本文翻譯自 PCWorld，原作者為 Loek Essers：
+http://www.pcworld.com/article/2079800/switch-to-open-source-successfully-completed-city-of-munich-says.html
+
+德國慕尼黑市政府官員表示，該市已經成功轉換為開源軟體，如今絕大多數公共行政使用者使用的是他們自有的 Linux 版本。
+
+在歐洲成為率先進行開源軟體部署的起跑者，該市從 Windows NT 轉移到自有的 Linux 散佈套件 LiMux。LiMux 納入了完整的開源桌面基礎架構。該市也決定使用開放文件格式 (Open Document Format，ODF) 作為取代私有選項的標準。
+
+歷經十年之後，慕尼黑市議會在其網站公佈的文件中指出，LiMux 專案如今將進入正常運作。
+
+去年 11 月為止，該市由於此一轉換，已經節省超過 1170 萬歐元，相當於 1610 萬美元。雖然沒有更新的數字佐證，不過節省成本並非此一行動的唯一目標。該市市議會指出，減少對於製造商、產品週期、私有作業系統的依賴，也是目標之一。
+
+該議會表示，所有專案目標皆已達成，有些甚至超出預期。目標其中之一是把 12000 部桌機轉換為 LiMux，不過，到最後，該市成功將預估 15500 部桌機中的 14800 部，轉換為 LiMux 系統。
+
+市議會表示，絕大多數的使用者與官員對於該作業系統早已熟悉，而且儘管該轉換涉及數以千計的電腦工作站，市政府仍舊維持運作。
+
+該市也成功開發出一套稱為 WollMux 的論壇管理系統，其中包含像是模板與信箋抬頭等多項功能。WollMux 已經開源釋出，並分享給其他城市、企業、個人。
+
+慕尼黑副市長 Christine Strobl 在聲明中表示，隨著該專案的成功以及與公眾的成果分享，該市已經朝向更加開放，以及獨立於個別軟體廠商，跨出了重要的一步。
+_______________________________________________________________
+
+■ [源碼新聞] 搭載 MariaDB 資料庫的 Red Hat Enterprise Linux 7 beta 版來了
+
+黃郁文／編譯
+
+Red Hat 近日釋出 Red Hat Enterprise Linux (RHEL) 第 7 版的測試版本。此一版本，除了在虛擬化和雲端方面增加了新的功能，並進一步加深系統安全性外，經由此次釋出，Red Hat 一併將 RHEL 預設使用的資料庫，與資料庫管理系統 (database management system, DBMS)，從 Oracle 的 MySQL 更換成 MariaDB。
+
+預計在 2014 年初釋出的 RHEL 7，其基礎架構是 Red Hat 的 Linux 社群版本 Fedora 19，核心則是採用 Linux kernel 3.10 版，這樣的搭配剛好呼應最近 Linux kernel 開發者所言，將會持續支援 kernel 3.10 版在商業環境的應用。而過去這幾個月來，Red Hat 都很顯著的在進行 Fedora 19 的穩定性與安全性強化工作，好在此一社群版本的研發基礎上，讓未來 RHEL 7 在功能表現上更加優異，後讓企業使用戶的升級經驗能更為順利。另外，如前所述，Red Hat 更將 DBMS 從過去的 MySQL，更換成越來越被廣泛使用的 MariaDB。不過，Red Hat 此舉並非徹底遺棄 MySQL 的使用者，據表示，其仍會在包含 RHEL 6 的進階版本中，繼續支援 MySQL，但因應目前確實有許多的商業使用者，已漸以 MariaDB 取代 MySQL 的使用，故 RHEL 也在現行推出的 beta 版本，先行試驗此一轉換的可行性，與使用者的接受度。
+
+RHEL 7 新增功能還有使用最新的 Linux Container 技術，例如採用 Docker 這樣的開源專案，以讓使用者可以更簡便地在獨立環境中開發配置的應用程式，此時系統資源可以被分割至各個應用程式的 container 裡，讓每個應用程式只用到所需的資源，且較不會有相依性方面的問題。此種資源簡省的手段，是傳統 Linux 核心上虛擬應用環境 (Linux Kernel-based Virtual Machine, KVM) 所較為不足的。另外，RHEL 7 提供的更新工具，可協助使用者將 RHEL 6.5 的系統，轉換成為 RHEL 7，而虛擬機器方面，亦可以透過這個更新工具，直接從 RHEL 6 host 轉換成 RHEL 7 host 的環境，而不需要進行太多額外的升級調校，或在過程中讓虛擬機器暫停運作。
+
+其他的更新，還有將預設的檔案儲放系統由 Ext 4 轉換成 XFS，以因應企業處理巨量資料的要求，這樣一來 RHEL 7 所能管理的分割區容量將可達致 500 TeraBytes，而能夠支援的個別檔案大小，也將從 16 TB 提升到 50 TB，至於資料儲放上的 block sizes 則可達 1 MB，此舉將大為減少 block allocation 在配置上所需的時間。不過，Red Hat 仍會持續支援 Ext 4 ，並一併支援 Btrfs 檔案系統，以在資料相容性與便利性上，能與對手 SUSE 及 Oracle 抗衡。畢竟，Btrfs 的使用能整合基本儲存區管理、支援系統狀態快照 (snapshot)，以及增加資料大小核對 (checksum) 的功能，以整合一般資料與 metadata 的儲放運用。此外， RHEL 7 在儲存容量設定上也有改進，其更新了 NFS (Network File System) 的傳輸協定，並藉此強化了資料分享與存取之際的系統安全性，相關作為包括增加網路資料存取的管理程式與指令列介面 (Command Line Interface )，並透過這些強化功能來簡化相異儲存環境的管理步驟。進一步，RHEL 7 更直接搭配 Samba 4.1 版本，來順暢其與 Microsoft Windows 伺服器之間的資料交換，對於專業的管理員而言，甚至可以直接透過程式腳本 (scripting) 與客製化 API 介面的方式，來自動化跨平台系統之間的資料管理。
+
+若對 RHEL 7 所描繪的資訊系統框架有興趣進行深入瞭解，可參考 RHEL-focused blog 上所載的相關資訊：http://rhelblog.redhat.com/，至於有意測試 RHEL 7 beta 版本的玩家，則可透過右列網址，進行試用：http://www.redhat.com/promo/partner-early-access/。
+
+
+
+參考網址：
+
+1、Red Hat Enterprise Linux 7 beta 版以 MariaDB 當作預設資料庫
+http://www.zdnet.com/red-hat-enterprise-linux-7-beta-arrives-with-mariadb-as-its-default-database-7000024194/
+
+2、拒絕 Oracle "看似不破" 的獨門系統，轉為支持較為開放多元的 Red Hat Enterprise Linux 吧！
+http://techrights.org/2013/12/12/red-hat-enterprise-linux/
+
+3、Red Hat Enterprise Linux 7 進入 Beta 測試階段
+http://www.eweek.com/enterprise-apps/red-hat-enterprise-linux-7-enters-beta.html/
+
+4、現在進行式 - Google 棄 MySQL 轉向 MariaDB
+http://www.openfoundry.org/tw/foss-news/9070--google-mysql-mariadb
+
+5、毫無理由使用 MySQL：MariaDB、MySQL 創始者 Michael Widenius 的訪談
+http://www.openfoundry.org/tw/foss-forum/8974--mysqlmariadbmysql-michael-widenius-
+
+6、Wikipedia 漸採 MariaDB 來代換 MySQL
+http://www.openfoundry.org/tw/foss-news/8900-wikipedia--mariadb--mysql
+_______________________________________________________________
+
+■ [源碼新聞] 利用自由開放源碼軟體與相關學習資源在家自學
+
+黃郁文／編譯
+
+近年學齡兒童在家自學 (Homeschooling) 的風氣漸起，這泰半是因為，有一定比例的家長因為宗教信仰、環境或不滿學校教育制度與授課內容，而認為讓小孩依循傳統模式至學校上課，並不必然是符合小孩學習最佳模式的方案，而改以自身或是委請家教在家教導小孩，讓小孩能夠接受更符合其學習向性的教育內容。從法令基礎來看，英國早在四十年前，便已有法律明文容許在家自學，我國在解釋上，也因為憲法規定學齡兒童受學校教育是權利，而並非定式的義務，故在家自學，也可以被視為讓孩子接受適合教育的彈性方案。其實，《國民教育法》裡，已明定國民教育階段得辦理非學校型態的實驗教育，與此配套的更有《國民教育階段辦理非學校型態實驗教育準則》和《高級中等教育階段辦理非學校型態實驗教育辦法》的增訂，以規範在家自學學童的資格、評鑑與升學方式。所以，在家自學其實於法有據，然而實際的作法還有很多彈性的變化，尤其在家自學的教學資源如何去充實，更是許多家長在考慮在家自學方案會碰到的第一個疑慮和瓶頸，而這樣的問題，其實自由開放源碼軟體，也有可以協助加以解決的優勢與地位！
+
+在美國，在家自學的風氣頗盛，根據美國教育部調查，父母不滿當地學校教育的環境，是啟動在家自學方案的主要考量因素，不過也有不少家長是對學校統一式的課程設計與學習指導不滿，而選擇讓學童在家自學。另外，美國各州對於教育方針、法令及標準等各有一套規定，此種多頭系統的優勢是因地制宜，但寬嚴不一的浮動標準也常會為人詬病，所以當齊頭式的教育內容與方式，並不符合特定學齡孩童的最佳利益時，爭取因才施教的家長此時便會尋覓協助學童在家自學的方案與相關資源，以協助自己的孩子得到最佳模式的教育與成長。
+
+而業界為了爭食在家自學這塊愈趨成熟的市場大餅，傳統參考書出版商以及微軟等商業公司，都已著手開發針對在家自學或是補充傳統學校系統不足的學習與補充教材。這些補充教材種類繁多，有實體書本、電子書，也有輔助的電腦軟體，費用則從免費到上千上萬所費不貲的都有，然而，由於定式化可以降低編撰上的時間與成本，上述這些教材大部份都是以基於一般小孩，在何種年齡應該學習哪些知識的假設來編排教導的內容，故在學習引領的向性上，便少有令人驚豔的差異性存在。所幸，現在自由開放源碼的軟體與教學資源，已經逐漸成熟，而可以提供與商用軟體不同的在家自學輔助教材！透過自由開放源碼軟體及相關的教學資源，這些採用在家自學的家長，便可以進一步創造出專屬於特定學童的個人學習環境 (personalized learning environment, PLE)。舉例來說，家長們可以利用 wiki 這樣的共筆頁面，或是部落格等方式紀錄孩子的學習曲線與進度，更可以利用 Libre Office、Inkscape、GIMP、Scribus、Celestia、School’s Play，以及 G Compris 等自由開源軟體，來打造自製化的學習環境，或是利用 Mahara (https://mahara.org/) 平台，來分享自家教學模式的相關資訊及學習方法，或為自家的學童設計階段式的學習計畫 - ePortfolios。簡要來說，Mahara 這個教學環境建置平台，本身就是採用自由開放源碼軟體來打造，是一個專為差異化學習所修改與建置的 Moodle 學習管理系統 (https://moodle.org/)，在線上註冊會員之後，使用者便可以用它來上傳檔案、編寫日記，及收集網路資源，以進一步編制專屬於自家學童的電子教學文件夾。
+
+另外還有像是 Library of Books, Links & More (http://www.bookslinksandmore.org/) 這個網站，所提供內容從最基本的在家自學入門注意事項，到遍及數學、科學、社會、美術等專門的學習內容與大學先修課程等，對於家長掌握在家自學方法與資源非常有幫助。上述的網站平台與相關內容，都可以被用來協助家長尋求建議、比較學習方式，並搭配學童特有的學習步驟來調整學習內容，更棒的是，相關的資訊與資料一切都是以免費與開放的方式來提供！此外，還有 Davidson Institute's Gifted Issues Discussion Forum (http://giftedissues.davidsongifted.org/BB/)、Hoagies' Gifted Education Page (http://www.hoagiesgifted.org/gifted_101.htm)、Gifted Homeschoolers Forum (http://giftedhomeschoolers.org/resources/parent-resources/)、I Am Homeschooling (http://www.iamhomeschooling.com/os-links)、PBS Cyberchase (http://pbskids.org/cyberchase/videos/a-perfect-score-ep-608/) 等外文網站，或是國內本地化的台灣自學法律網 (http://law.chen-wernik.net/community)，在在皆可以幫助在家自學的學童，能不受阻礙地發展所愛與所長，家長也將得以取得更多的教育資源，了解及獲取最適合自家小孩的學習教材，相信在這些自由開放源碼軟體與相關學習資源的協助下，家長與學童們都能較無畏懼地加入在家自學的行列，而偏鄉地區的小朋友與大朋友，也不會再因為學習資源缺乏，而在教育與知識取得上，有落後都市學童的不平等發展。
+
+
+
+參考網址：
+
+1、幫助在家自學或補充兒童學習內容的開放資源
+http://opensource.com/education/13/12/open-source-tools-homeschooling
+
+2、7 種自由開源軟體打造你的在家自學環境
+http://www.hsclassroom.net/7-open-source-resources-for-your-homeschool/
+
+3、台灣自學法律網 - 自學的法源依據
+http://law.chen-wernik.net/regulation
+
+4、「Teach for Taiwan - 為台灣而教」官方網址
+http://www.teach4taiwan.org/
+
+5、Mahara 電子教學文件編排平台
+https://mahara.org/
+_______________________________________________________________
+
+■ [源碼新聞] 2013 五大 Linux 與開源新聞
+
+謝良奇／編譯
+
+◎本文翻譯自 ZDNet，原作者為 Steven J.Vaughan-Nichols：
+http://www.zdnet.com/5-top-linux-and-open-source-stories-in-2013-7000024621/
+
+Linux 長期以來稱霸某些計算領域，例如超級運算，但是在 2013 年，Linux 和開源軟體開發方法，已經開始悄悄地攻佔所有的計算面向，從車輛到雲端，還有終端用戶運算，那得多虧了 Android 與 Chrome OS。
+
+我在 Linux 第一天開始觀察它已經超過 20 年，也對它在 2013 年的進展感到印象深刻。以下是我所看到的前五大發展。我保證其中有些你聽都沒聽過，但是、相信我，在未來幾年內你絕對會受到影響。不論你涉足的是哪種計算機領域，你都將使用 Linux 與開源軟體。
+
+＊隨處可見開源軟體方法論
+
+現在的開發者很少不用到或發展開放源碼軟體。即使 Microsoft 都正在加碼投入其開源行動，例如 Node.js。Microsoft 現在甚至在幫忙開發 Linux。
+
+但讓我驚訝的是，各種不同的大公司全都在 Linux 基金會 (Linux Foundation) 領導下，共同建構開源專案以統整他們的努力。
+
+光是 2013 年，Linux 基金會就匯集了物聯網的 AllSeen Alliance、開源生物研究的 OpenBEL、囊括幾乎所有軟體定義網路 (Software-Defined Networking，SDN) 的 OpenDaylight、還有 KVM 與 Xen 虛擬化的開放虛擬聯盟 (Open Virtualization Alliance) 以及 Xen 專案。
+
+而且不只是 Linux 基金會。Facebook 的開放運算專案 (Open Compute Project)，將開源技術帶往資料中心。Juniper 與其 Contrail 則有他們的開源 SDN。Apache 持續地推動優勢專案如海量資料的 Hadoop，以及搜尋方面的 Lucene 與 Solr。
+
+這些專案的共通點是他們都拉進宿敵一起協作。這些公司這麼做，並不是開放源碼有什麼魔法或政治正確之處。他們使用開放源碼，只因為開源讓他們以經濟有效方式創造最棒的軟體。務實地來說，這些公司認為，比起開發分歧的私有軟體，分享統一的開放源碼軟體更具有商業意義。
+
+＊Chromebook 的興起
+
+Google 以 Linux 為基礎的 Chromebook，在你看來普及率不高，但有若干跡象顯示 Chromebook 正快速地贏取到用戶青睞。
+
+最後一家沒有 Chromebook 產品的主要 OEM 廠商 Dell，將在 2014 年初推出第一款 Chromebook。消費者電子大廠 LG 也在準備為 Chrome OS 推出新的尺寸外形 Chromebase。這部全功能 (all-in-one) PC 結合了 Chrome 與 21.5 吋具備 1,920 x 1,080 full HD 解析度的顯示器。
+
+Android 顯然也正在向桌面進軍中。根據報導，PC Plus 產品正準備推出。這些筆電同時搭載 Windows 8.1 與 Android，首批產品將於 1 月的拉斯維加斯 CES 展覽中亮相。
+
+隨著 Windows 8.x 奮力要如前版般迅速贏得市佔率，且 Microsoft 與其 Surface 裝置如今直接與該公司的 PC 夥伴們對打，在 Linux 死忠玩家們之外，以 Linux 為基礎的桌面競爭終於要浮上台面。
+
+＊SteamOS：主流 Linux 遊戲駕臨
+
+沒有什麼比得上主流 PC 遊戲廠商 Valve 釋出 SteamOS，更能突顯桌面的版圖轉移。這個以 Debian 為基礎的 Linux，明確地是為 Linux PC 遊戲所設計。
+
+就像其他投資 Linux 與開源軟體的公司一樣，Valve 之所以如此並非對 Linux 懷抱著溫暖的感覺。並非如此，Valve 之所以釋出自己的桌面 Linux，還有 Linux 的專用遊戲機 Steam Machines，根據該公司執行長 Gabe Newell 表示，是因為 Windows 8 對於 PC 領域中每個人來說都是場災難。
+
+對 Valve 來說，Linux 是運算的未來。
+
+＊雲端處處有 Linux
+
+對於 Linux 在桌面的興起，你可能有意見。不過沒人會質疑 Linux 在雲端的影響力。除了 Microsoft 的 Azure，所有主要雲端軟體平台，包括 Amazon 的 EC2、Google Compute Engine、各個 OpenStack 實作，全都是以 Linux 和開源軟體為基礎。而基於大眾需求，你也可以在 Azure 上跑 Ubuntu、CentOS、SUSE Linux Enterprise Server (SLES)、openSUSE。
+
+如果你不久將使用雲端的 IT 建設，而這看來機會很大，你就會用到 Linux。就是這麼回事。
+
+＊Android 稱霸行動領域
+
+除了桌面，Linux 以 Android 的面貌，已經主宰了終端用戶運算。Android 已經在智慧型手機上，充分地領先了 Apple iOS。到了 2013 年年中，Android 平板佔有率已經打敗 Apple 的 iPad 產品線。頭號的行動作業系統如今是 Android。剩下要問的，只是誰會佔到 Android 與 iOS 後的第三順位。
+
+的確，隨著 PC 持續衰退，看來 Android 有可能成為所有平台上，最受歡迎的單一終端用戶作業系統。
+
+好了，你知道了。在這沒有頭條 Linux 新聞的一年裡，Linux 與開放源碼仍在每個運算領域持續成長著。接下來的一年也只會看到更多相同情況。Linux 基金會執行董事 Jim Zemlin 最近說過，2013 是 Linux 遍地開花的一年。
+
+他說得對，以後我們也只會看到更多 Linux 四處盛開的花朵。
+_______________________________________________________________
+
+■ [源碼新聞] 2013 年最不可思議的前 10 大開源硬體專案
+
+謝良奇／編譯
+
+◎本文翻譯自 Open Electronics，原作者為 Simone Cicero：
+http://www.open-electronics.org/10-of-the-most-incredible-open-source-hardware-projects-born-in-2013/
+
+本文表揚了 2013 年最不可思議的幾個開源硬體專案。其中大部分專案是由群眾募資，我相信這透露出目前資助並鼓勵創新的方式。2013 是充滿開放創新的一年，由於大公司與獨立開發者和新創公司，越來越關注此種創新途徑，2014 看來會是前景可期的一年。
+
+
+七月：開放源碼儀器 Red Pitaya
+
+當然，添購實驗室設備費用可能相當可觀：這就是 Red Pitaya 這群人為何決定開發出，可以把手機、平板、個人電腦，轉換為實驗室設備的硬體。顯然許多人相信這個專案，以至於最終募集到原先目標五倍之多的資金。根據最新進度，這些人可望在僅有兩個月延遲下，如期交付產品。對於一個收到出乎預料成功的群眾募資計劃來說，還不賴。
+
+該專案的限制：儘管軟體堆疊是開放源碼的，硬體則不是。
+
+
+八月：融合設計與技術的個人製造器 Fabtotum
+
+這項專案是今年夏天由兩位出身米蘭理工大學的創辦者所發起：這兩位義大利人設計出超酷的三合一功能機器（掃描、3D 列印、打磨），由於出自義大利設計發源地米蘭，這部機器外形相當美觀。啊，有誰不愛跨界交流呢！相對其 5 萬美元的預算目標，該專案募集到近 60 萬美元（我相信是，當時與目前為止，最重要的歐洲群眾募資專案），可說相當成功。他們已經預售出 300 部印表機，並可如期於來年初夏交付。
+
+
+八月：開源的黑客射頻 (RF)
+
+如果你正在猜想全世界有多少射頻愛好者，我可以說，有很多。黑客射頻 (Hack RF) 這個平台可以協助你，在 USB 供電下收發從 30 MHz 到 6000 MHz 的無線電信號。根據在 kickstarter 上的最新專案消息，一切似乎如期進行。對於一個原先要求 8 萬美元，最後募集超過可觀的 60 萬美元的專案來說，很顯然開發團隊不會有資金短缺的問題。
+
+這項專案再次顯示，不管是哪個商業或技術領域，或是更為傳統的領域，你都可以用開放源碼途徑來創新。等不及要看看這些開發者開發的應用。
+
+
+九月：開放源碼車 Tabby
+
+這沒什麼好說的：一家公司決定接管城市的車輛設計。這家公司剛剛為小城市車輛開發出模組化、可以黑客的模板，可做為城市汽車共享計劃開發與品牌城市車輛模型的基礎。他們採用開放源碼，藍圖也是公開的。即使專案與社區互動的整體能力有待適當開展，這項專案仍因將開放源碼車輛帶往下一階段而令人興奮。
+
+可說是交通運輸的 Arduino。
+
+
+九月：未來智慧型手機願景 Phonebloks
+
+儘管這項專案目前還只是夢想，該願景正在飛快地建立當中。 九月時，Dave Hakkens 才以其 Phonebloks 影片（youtube 上超過 1800 萬次瀏覽）建立起關注社群，並成功在 thunderclap 活動中，吸引 1 百萬人支持他的產品願景。之後，一切飛快地發生：Motorola 這個受到 Google 支持的智慧型手機廠商，加入了 Dave 的計劃，而其願景如今清楚的開展為：開放源碼、長期、可互換、模組化、可客製化的手機。
+
+
+十月：開放且實惠的人形機器人 Poppy
+
+機器人是個活躍的產業：儘管開放機器人基金會 (Open Robotics Foundation) 正在打造一套作業系統，目前並沒有多少完整的機器人開放平台存在。當 Poppy 在十月初首次亮相時，這個法國專案吸引了不少關注。這是一項開放（包括程式碼與硬體設計）且實惠（機器人大部分是 3D 列印，整體成本約 8000 歐元）的專案。這項專案目前正在接受超過 60 位測試者的測試，完成度約 70%。
+
+
+十月：Shamduino 顯示開源硬體無國界
+
+認識這些人是寶貴的經驗，並逐漸了解在一個正在經歷嚴重安全與穩定性問題的國家裡，推廣如此開放技術與黑客所遭遇的複雜性。Shamduino 從純技術角度看來並不新穎，也不是完全開放源碼。儘管如此，我們還是決定推舉它為 2013 年最棒的開源專案之一。因為我們相信開源硬體不只是另一種發展硬體專案的方式，也是面對市場、社群、創新的全新途徑。
+
+
+十一月：開源、超級電容供電的可攜式揚聲器 Helium
+
+這是 2013 年最有趣的專案之一：不只是因為這些揚聲器充電 5 分鐘後，可播放至少 6 小時，而且可充電超過 50 萬次，更因為他們也是開放源碼（至少在超級電容技術上）。他們在網頁上寫道：
+
+我們會釋出完整的材料明細表、光繪檔案 (Gerbers) 等等，一切你製作自己超級電容供電可攜式揚聲器，或其他產品，所需的東西。你希望你的產品能瞬間充電嗎？我們也是。
+
+非常酷，已達成群眾募資。
+
+
+十一月：不到 2000 美元的金屬 3D 印表機
+
+這項專案在全世界獲得了廣大的報導。對於製作者社群來說，擁有一部便宜的金屬 3D 印表機是一大夢想，對小公司以及開發中國家社群的潛力，會產生巨大的影響，加速他們創造技術創新的潛能。而這項專案是以 RepRap delta 為基礎，又賦予了這個專案更多的重要性，我們確實可以預見到快速發展以及有關這項專案若干更多的詮釋。
+
+
+十二月：大眾的開源大腦電腦介面 OpenBCI
+
+醫學應用方面的開源創新，一直是外界所樂見與鼓勵的。擁有開源、高品質的硬體以收集腦波 (EEG) 信號，能夠在此一領域釋放出許多社群創新。儘管腦波可以使用在非醫學應用如人機互動、遊戲上，生物黑客可以使用這套硬體，更深入探索腦部疾病、心理狀態，並且將精神和身體問題與大腦模式做出關聯。
+
+相當有趣，還在進行群眾募資中。
+_______________________________________________________________
+
+■ [源碼新聞] Panasonic 電視將預載 Firefox OS
+
+Kenneth Mak／文
+◎本文原載 Linux Pilot，原文章連結按此 (http://www.linuxpilot.com/industry/news/201401080101Panasonic-Firefox-OS)。
+
+Panasonic 和研發開源瀏覽器 Firefox 的 Mozilla 基金會宣布合作，未來能在 Panasonic 的智慧型電視上，運行的作業系統將會是開源的 Firefox OS。
+
+(https://www.openfoundry.org/images/140114/201401080101.jpg)
+
+Panasonic AVC Networks 電視事業部部長楠見雄規表示，一直以來 Panasonic 智慧型電視上的功能都用自家技術開發，合作後 Panasonic 將對部分電視功能改以 HTML5 架構驅動，同時提供 WebAPI 讓開發者得以利用產品的硬體效能，目的是加強旗下品牌進一步融入網路世界，吸引更多開發者為下一代的智慧型電視開發新功能，令 HTML5 成為次世代電視應用程式主流開發架構的態勢愈趨明朗。
+
+(https://www.openfoundry.org/images/140114/201401080102.jpg)
+
+Firefox OS 是 Mozilla 在 2013 下半年公開的開源作業系統，其應用程式主要以 HTML5 和 JavaScript 語法編寫。他表示在次世代智慧型電視裡，像選單和數位頻道指南 (EPG) 等功能，都將改用 HTML5 撰寫，讓開發者得以更容易為智慧型手機或平板，設計 Apps 來與電視互動，實現像利用手機遙控家中電視、或利用雲端讓網路和傳統媒體內容相互共享。Firefox OS 的特點是完全的開源，比 Android 的「絕大部分開源」更加徹底，保證完全不會有 NSA 等美國政府機構加入有問題的程式碼。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 執行編輯︰陳蕙蓁
+◎ 外稿編譯︰林誠夏、黃郁文、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰(1) 不得為商業目的之利用；(2) 必須標明本電子報智慧財產權屬於中央研究院；(3) 完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群(ossfepaper at openfoundry.org) 聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群 (ossfepaper at openfoundry.org) 來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

@@ -1,0 +1,556 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 220 期 | 2013/06/11 □■□
+________________________________________________________________
+
+◎ 本期主題︰GCStar 收集狂的藏寶箱
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/06/25
+
+□ 本期標題 □__________________________________________________
+
+■ [源碼秘技] GCStar 收集狂的藏寶箱
+
+■ [源碼秘技] 如何在單一伺服器上安裝與設定 OpenStack
+
+﻿﻿■ [自由專欄] Code Reading @ RubyKaigi 2013
+
+■ [自由專欄] 關於留才，IT 管理者可以從 2013 年 Linux 職場報告學到什麼 
+
+﻿■ [源碼新聞] Eben Moglen 闡述當前自由開源軟體生態系的兩大挑戰趨勢
+
+﻿■ [源碼新聞] 從 SOPA 到 CISPA - 軟體自由、網路自由與公民自由知多少？
+
+﻿■ [源碼新聞] OpenStack 傳訊即服務新登場
+
+﻿■ [源碼新聞] Pidora - 針對 Raspberry Pi 最佳化的 Fedora Linux
+
+﻿■ [源碼新聞] 回饋社會的開源技術
+
+■ [源碼新聞] 公眾領域 (The Public Domain) 專題論文徵求（2013.08.31截止）
+
+□ 本期內容 □__________________________________________________
+
+■ [源碼秘技] GCStar 收集狂的藏寶箱
+
+林雪凡／文
+
+「狂熱者們，為汝輩的瘋狂而喝彩吧！」
+
+您有沒有在收集什麼？就是那種......被其他人發現您收集的類型或規模時，會用異樣神情盯著您瞧的東西？
+
+郵票？模型？酒？軟體？書籍？錢幣？唱片？
+
+您對您的收藏有多著迷？您會建立清單嗎？您有收藏櫃嗎？您曾經晚上站在收藏品前面自得自滿，自言自語，東挑西撿地說著「今天晚上就來享受／鑑賞／保養這一個好了！」？
+
+您有這樣的經驗嗎？
+
+如果沒有，恭喜您，您是個正常而又普通的人，請繼續維持您的普通，並停止閱讀本篇文章，本文對您沒有任何幫助，反而可能會害您變得不太正常。
+
+不過如果您擁有另一種可歌而又可泣的回答，那麼本軟體就是為您而準備的。
+
+GCStar 是款專門為收集狂設計的收藏品管理軟體，您可以用它來記錄您的收藏品，預設的收藏品模版涵蓋「酒」、「錢幣」、「智慧卡」、「唱片」、「郵票」、「漫畫」等等共十來種。另外，除了直接使用現有的模版以外，您也可以簡單修改這些模版，替他們加上新欄位。您甚至可以自訂全新模版，供您自己的某些特定收藏類型使用。
+
+
+安裝
+
+Linux 用戶請從發行版套件庫進行安裝，GCStar 支援包含 ArchLinux、ubuntu、Fedora、Gentoo 等眾多主流發行版；如果您沒有在您發行版的套件庫中找到這款軟體，也可以從 http://wiki.gcstar.org/en/Install 下載原碼包進行安裝。
+
+至於 Windows 平台用戶，請到 http://wiki.gcstar.org/en/install_windows 下載安裝包。
+
+Mac OS X 也能安裝 GCStar，不過手續相當地麻煩，建議各位還是別整自己了。如果您無論如何都想試試，請看這一頁：http://wiki.gcstar.org/en/install_macos。
+
+
+使用簡介
+
+第一次啟動 GCStar 後，您會看到一個選擇畫面，讓您選擇您要記錄的物品類型。不同的類型會提供您不同的記錄欄位。
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_01.png)
+▲ 圖1：剛開啟 GCStar 時，會出現選擇收藏品類型的視窗。
+
+如果您想要記錄的收藏類型沒有列於其中，則可選擇「新的收藏集類型」來自訂一個新的收藏集。
+
+您也可以在此將記錄在其他收藏軟體中的收藏資料，又或是用 excel 記錄的資料，匯入到 GCStar 中。
+
+現在，請隨便建立一個收藏集試試看。
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_02.png)
+▲ 圖2：一個漫畫收藏集。
+
+
+收藏集的主畫面很簡單，左側是一串清單列表，列出每一個單獨的收藏項目（在上例中就是每一本漫畫），右側是選中項目的資訊，依據當初所選的收藏集類型不同，此處的欄位也有所不同。
+
+
+變更預設的欄位配置
+
+預設可填的資料通常會有很多甚至太多，請注意上圖僅僅只顯示了一個標籤頁而已。除非您有不錯的資料來源，可以讓程式自動抓取資料，否則這邊的項目全都必須要由您親自填寫，會發瘋的......
+
+這些欄位之中，有些很少用到，有些更是壓根不知道要填什麼才好，留白的話又難免讓完美主義者感到不爽（嗯，我相信收藏狂大都是完美主義者......）。總之我們先將現有的欄位重新整理一下，讓它更符合我們的個人需求。
+
+請按「設定」→「顯示資訊」，則會出現以下的顯示項目視窗： 
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_03.png)
+▲ 圖3：顯示項目視窗。您可以在本視窗中到處打勾，沒勾到的東西就不會顯示出來。
+
+Id 用不到、出版商我不在乎、底部的網頁按鈕不知是幹啥的一樣去掉、日式漫畫幾乎沒有專門獨立出著色師，我也用不著......
+
+如此東刪西砍，需要填入的資料量就大大減少了。如下：
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_04.png)
+▲ 圖4：經過精減的畫面。
+
+有時我們也需要加入一些預設沒有提供的欄位，比方說我可能會想加入一項名叫「所屬書架」的項目，日後才容易尋找。
+
+請按「編輯」→「變更收藏集欄位」：
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_05.png)
+▲ 圖5：編輯新欄位
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_06.png)
+▲ 圖6：在新的標籤頁中建立了新欄位
+
+搜尋與過濾器
+
+記錄了資料，要能方便地將資料取出才有意義，而這就要透過搜尋與過濾器功能。
+
+您可以透過主選單上的「過濾器」來進行搜尋與篩撿。此處過濾器中的項目，受到您當前收藏集的類型不同而有所不同。
+
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_07.png)
+▲ 圖7：過濾器的項目因收藏集不同而異。
+
+搜尋選項也在其中。一旦您進行過搜尋，還可以將搜尋結果儲存起來，供下次快速點取使用。
+其中有個「今晚」選項讓人困惑，不過那其實只是隨機骰骰子挑出一個項目而已。如果您不知道今晚要享受什麼才好，就骰骰看吧。
+
+
+其他設定與小技巧
+
+您可以透過「設定」→「新項目的預設值」，來定義新項目的各個參數。
+
+除此之外，您還可以在現有項目上按右鍵選「複製項目」，來複製一筆一模一樣的項目。當新資料與舊資料有許多欄位都一樣時（比方說同一系列書籍的不同集數），這招可以讓您只需修改部份訊息，省下不少填表的時間，很好用。
+
+GCStar 左側的列表，除了基本的平鋪以外，還可以透過主介面上的「分組依據」，以各種方式進行分組。這方面請參考下圖。
+
+(http://www.openfoundry.org/images/130528/gcstar/gcstar_08.png)
+▲ 圖8：本圖左側的方框標示了「複製項目」在右鍵選單中的位置。此外也請注意左側的列表型式和先前的示意圖不一樣，能被折疊，這是因為在右側方框中選擇了某種分組方式；您可以以幾乎所有的欄位進行分組，比方說出版商、作者等等。
+
+如果您想要將您的寶貝收藏品借給他人炫耀（傳教），您還可以去「設定」→「出借對象」處，設定可能的出借對象名單與其聯絡方式，這份名單將會在「出借狀況」頁籤中被使用。當然如果您壓根不打算出借就沒必要理會這個功能。
+
+
+Bug
+
+剛開啟程式時新建收藏集可能存在問題
+
+在進入程式、創建某些類型的收藏集時，如果會讓程式中所有按鈕都變成灰色無法繼續操作，則您可以先試著創建其他類型的、能正常被您建立的收藏集，然後再從主選單中選擇「File」→「新增」來重新創建您想要新建的收藏集種類，如此按鈕就不會變成灰色。
+
+您可以參考看看這種作法。
+
+
+圖片儲存位置
+
+指定的圖片，似乎無法自動搬移到收藏集檔案的所屬資料夾中，且這我找不到解決方法。建議乾脆不要記錄圖片。
+
+
+翻譯問題
+
+在下最近才重新提交了繁體中文翻譯，然而依照 GCStar 的更新速度，這翻譯可能要花上一段時間才會併入主程式庫中。如果各位無法忍耐的話，此處也直接提供最新版的翻譯包下載 (http://www.openfoundry.org/tw/papers-and-teaching-materials/cat_view/214-/691-/728-220-gcstar-17-)。您可以將翻譯包中的 ZH 資料夾置入 lib/gcstar/GCLang 之下，取代同名資料夾，作為暫時解決方法。
+
+如果您覺得還是有什麼地方翻譯不好，您也可以告訴我。比方說一本書的 Collection、Category 與 Type 分別應該翻成什麼，郵票的紙質、齒孔、黏膠與郵戳類型，模型車的 Manufacturer 與 Constructor 的正確翻法。諸如此類。雖然有查資料，但受限於常識不足，恐怕仍然無法面面俱到。
+
+
+另一些想法
+
+除了親手填入資料以外，許多 GCStar 模版其實也包含了透過網路下載 Metadata 的功能。不過受限於中文資料來源的匱乏，各位恐怕還是親手填入比較乾脆。
+
+其他收藏品姑且不論，在台灣出版的書籍，Metadata 往往都不知道該去哪裡下載才好，這讓許多書籍類管理軟體能取得的資訊，都有很大的殘缺，特別是適合機讀的 Metadata 更是難找。在下之前研究 Calibre 時就有注意過這個問題了。那時就很想給 Calibre 寫個 plugin，但是首先就沒有資料來源可用。
+
+現在覺得比較可用的中文書籍資料來源，大概只有 anobii 吧，但其機讀 API 最近似乎也掛了，得直接爬網頁抓資料，各位有興趣或許可以研究看看。
+
+
+參考連結
+
+1.GCStar 的官網在此：http://www.gcstar.org/
+2.另一款類似的軟體 Tellico：http://tellico-project.org/
+_______________________________________________________________
+
+■ [源碼秘技] 如何在單一伺服器上安裝與設定 OpenStack
+
+謝良奇／編譯 
+
+有三種相當簡單的方法，可以讓你嘗試 OpenStack，其一是使用像 Rackspace 或 Cloudwatt 這類的商業公有雲，或是免費的 Trystack。不過如果你有興趣一探 OpenStack 的內部，了解如何加以管理，那麼你就得自己架設伺服器。DevStack 安裝程式是一支很棒的 shell 腳本，用來安裝 OpenStack 元件、LAMP 堆疊以及 CirrOS。CirrOS 是用以執行雲端 guests 的小型 Linux 散佈套件。
+
+由於 OpenStack 需要一部專用系統，因此別把它安裝在你主要的電腦上。以下會用 Linux Mint 13 系統上安裝 Lubuntu 12.04 的 VirtualBox 虛擬機器為例。儘管真正的伺服器專家不會在伺服器上跑圖形化環境，不過為了測試方便，而且 Lubuntu 的輕量級特性還是值得一試。如果你選擇在虛擬機器內安裝 OpenStack，請至少給它 1.5GB 記憶體與 6GB 儲存空間。假如你有多核心系統，可以的話請空出一個以上的核心給 OpenStack，因為即使是測試安裝，它仍是吃 CPU 的龐然大物。
+
+首先請建立安裝 DevStack 的用戶名稱 stack：
+
+$ sudo useradd stack
+$ sudo passwd stack
+Enter new UNIX password: 
+Retype new UNIX password: 
+
+並給予 stack 完整 sudo 權限：
+
+$ sudo visudo
+stack ALL=(ALL:ALL) NOPASSWD: ALL
+
+用 stack 登入後，安裝 git：
+
+$ sudo apt-get install git -y
+
+接著從 Github 抓下 OpenStack，請 cd 到 /var 然後執行 git：
+
+$ git clone git://github.com/openstack-dev/devstack.git
+
+這麼一來抓下來的程式會在 /var/devstack。cd 到 devstack，花幾分鐘看看各個腳本跟檔案。因為某些我不知道的原因，第一次執行時我碰上權限問題，因此我把 /var/devstack 跟 /opt/stack 的所有人設為 stack：
+
+$ sudo chown -R stack:stack /opt/stack
+$ sudo chown -R stack:stack /var/devstack
+
+我也把 /var/www 設給 www-data:www-data。Ubuntu 的預設值是 root，那不是好的做法。
+
+最好能有日誌記錄，所有請建立 /var/stacklog，然後設給 stack。
+
+有不少安裝前提需求，請建立/var/devstack/localrc. localrc，其中設定網路、密碼、日誌記錄等等。以下是最簡安裝的設定：
+
+HOST_IP=10.0.1.15
+FLAT_INTERFACE=eth0
+FLOATING_RANGE=10.0.1.224/28
+ADMIN_PASSWORD=supersecret
+MYSQL_PASSWORD=supersecret
+RABBIT_PASSWORD=supersecret
+SERVICE_PASSWORD=supersecret
+SERVICE_TOKEN=supersecret
+
+OpenStack 會用到許多密碼，因為是測試，所以全用同一個密碼即可。HOST_IP 是你 OpenStack 伺服器的網路位址，不管是否在虛擬環境中，例如：
+
+$ ifconfig
+eth0  Link encap:Ethernet  HWaddr 90:ee:aa:a2:50:aa  
+      inet addr:10.0.1.15  Bcast:10.0.1.255  Mask:255.255.255.0
+
+為你的 DevStack 伺服器建立靜態的 IP 位址，不然會很麻煩。網路在 OpenStack 中是個複雜議題，目前維持簡單即可。
+
+FLAT_INTERFACE 是伺服器的 Ethernet 介面，如果你只有一個介面，可以不必設定。你可以把內部與公開介面分開，而 FLAT_INTERFACE 對應於內部介面。FLOATING_RANGE 是該網路上可用的所有 OpenStack 伺服器位址空間，且不能跟該伺服器 IP 位址重疊。
+
+好了，設定完成後是時候結束安裝。到 /var/devstack 執行：$ ./stack.sh
+
+安裝需要一點時間，你的螢幕會出現各種輸出訊息。請休息一下去做點別的事。完成時你會看到安裝成功的訊息。
+
+現在在 OpenStack 伺服器上開啟瀏覽器，輸入螢幕顯示的位址，我的例子是 http://10.0.1.15。如果你看到登入頁面，恭喜你已經安裝成功，可以使用 Horizon 儀表板。請用 admin 帳號以及 localrc 中設定的密碼登入，你可以到處試試，看看各個頁面。
+
+如果你把系統弄壞了，好心的 DevStack 團隊提供了一支重頭再來的腳本 clean.sh。該腳本會倒轉 stack.sh，回復到剛從 git 抓下檔案的狀態，因此在 clean.sh 結束後執行 stack.sh 以重新安裝你的系統。
+
+
+相關網址：
+1.如何在單一伺服器上安裝與設定 OpenStack
+http://www.linux.com/learn/tutorials/721712-intro-to-openstack-part-two-how-to-install-and-configure-openstack-on-a-server/
+_______________________________________________________________
+
+﻿﻿■ [自由專欄] Code Reading @ RubyKaigi 2013
+
+高見龍／文
+
+很高興這次能有機會到日本參加 RubyKaigi 2013 (http://rubykaigi.org/2013) ，我分享的題目是：「Code Reading, Learning More about Ruby by Reading Ruby Source Code」 (http://rubykaigi.org/2013/talk/S41) ，算是個滿冷門的題目，主要是分享我自己從閱讀 Ruby 原始程式碼中學習到的一些經驗。不過當天還有不少朋友來捧場，讓場子看起來不會太冷清，真是太意外了 (其實我也搞不清楚到底有多少人，我當時已經緊張到沒辦法算數了) 。
+
+在進入主題之前，我問大家有多少人曾經來過台灣，結果在場有十來個人舉手，就以現場人數的比例來說不算少。
+
+(https://speakerdeck.com/eddie/code-reading)
+
+View on Speaker Deck (https://speakerdeck.com/eddie/code-reading)  | Download PDF (https://speakerd.s3.amazonaws.com/presentations/0186a390abc5013057536ee43d4d4638/Code_Reading.pdf)
+
+雖然之前有一些些上台演講的經驗，但這是第一次出國演講，而且還是全程用英文演講，我知道有很多的大神甚至 Ruby Committer 就坐在台下，所以我相當緊張。我那個「上台的前一天不會睡」的魔咒果然還是依舊存在，所以演講當天凌晨四點，我拿著筆電到飯店的大廳練習對著空氣講，練到早上七點，但還是覺得不夠穩。
+
+我的演講廳是小間的，所以壓力有稍微小一點點。
+
+為了怕現場出包，所以在 code review 展示的部份我是用預錄的，不過事後想想好像直接現場操作比較容易掌控時間
+
+上午的演講結束後，下午發生的小插曲讓我抖了好大一下。我在演講內容裡有提到一些在 Ruby 的原始碼裡面有一些小地方的命名不太優，當下大家笑得很開心，雖然娛樂效果達到了，但我其實也有點擔心會不會有什麼不好的副作用。結果上午的講場結束，下午就看到這則 (https://twitter.com/_zzak/status/340391416314331136)：
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-zzak.jpg)
+
+哇!! 我有嚇到的感覺了，不過因為我個人覺得這樣好像有些失禮，所以當晚的 Official Party，我就親自去跟 @nobu 說聲不好意思，希望沒有造成他的困擾。其實我也是想趁這個機會認識一下只有在網路上才能看得到的傳說大神，而且他好像一點也不在意。
+
+第三天的議程，我本來就打算要來聽 Jim Gay (https://twitter.com/saturnflyer) 的主題(他是 Clean Ruby (http://www.clean-ruby.com/) 一書的作者 )，沒想到坐下來沒多久竟然看到自己的名字跟前一天講的東西出現在投影片上：
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-jim-gay.jpg)
+
+再度有被嚇到的感覺。
+
+活動結束後，RubyKaigi 2013 的頭目角谷也推了一篇 (https://twitter.com/kakutani/status/341202764472406017)：
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-kakutani.jpg)
+
+再次看到自己的名字被提到，有些驚訝也有些不好意思，不過這個「Conference-Driven Development(CDD)」 聽起來好像不錯，而且我喜歡「RubyKaigi made Ruby Better」，如果有朝一日我有能力，我也希望可以多貢獻一些心力。
+
+感謝高井さん (@takai) (https://twitter.com/takai) 幫我拍的照片，讓我在 Rubyist 時計 (http://rubyistokei.herokuapp.com/) 上也可以有一張漂亮的照片。
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-rubyist-clock.jpg)
+photoed by @takai (https://twitter.com/takai)
+
+這趟日本之行有學習到不少東西，收獲很多，會在接下來的幾篇文章介紹。最後，有講的不好的地方，還請多多指教。
+
+Thank you all, RubyKaigi team, you’re all AWESOME!
+
+
+------
+
+Code Reading @ RubyKaigi 2013
+
+高見龍／文
+
+Really glad to go to Japan and join the RubyKaigi 2013 (http://rubykaigi.org/2013) , the topic of my talk is "Code Reading, Learning More about Ruby by Reading Ruby Source Code",  (http://rubykaigi.org/2013/talk/S41) which I don't think it's a popular topic, and it's about my experience while reading Ruby source code. Thanks to those friends who are willing to come to my talk.(Actually I was too nervous to count how many people already)
+
+Before I jump into my topic, I asked everyone how many of you have been to Taiwan before, to my surprise, there're more than 15 people raised their hand, which is about 20% of the attendees in this hall(I think).
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-code-reading.jpg)
+
+View on Speaker Deck (https://speakerdeck.com/eddie/code-reading)  | Download PDF (https://speakerd.s3.amazonaws.com/presentations/0186a390abc5013057536ee43d4d4638/Code_Reading.pdf)
+
+Although I have a some experience about having public speech, but it's my first time to have a presentation abroad and do my speech in English, and I also know there might be lots of awesome rubyists sitting there, including some Ruby core committer, so I really feel nervous. And I have a curse that "I won't sleep if I have a public presentation on the next day", so I practiced in the lobby of the hotel from 4 A.M. to 7 A.M., but still not stable enough. 
+
+My presentation hall is the smaller one, so my pressure is also slightly smaller, too.
+
+I think I might make some mistakes while presenting, so I recorded the code review demo in advance, but I think the real live demo might be easier for me to control time.
+
+After finishing my talk, there's something surprised me. In my speech, I mentioned some interesting naming in the Ruby source code just for fun. I know it might be entertaining but still a little worried about if there would be any bad consequence. Then in the afternoon, I saw this tweet (https://twitter.com/_zzak/status/340391416314331136) : 
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-zzak.jpg)
+
+Wow! That's really really surprised me!! and I don't know if this would cause any trouble for committer, so I went to @nobu and said sorry to him on the official party in the night, and hope didn't cause extra trouble for him. In fact, I went to him also want to know him by this chance, and actually he didn't mind at all. 
+
+In the last day, I was planning to attend Jim Gay's (https://twitter.com/saturnflyer) talk, whihc is the author of the book "Clean Ruby" (http://www.clean-ruby.com/). After sitting in the hall, I suddenly found my name was quoted in the slide: 
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-jim-gay.jpg)
+
+Yes, Supprised me again.
+
+the Organizing Director of RubyKaigi 2013 Shintaro Kakutani also tweeted this (https://twitter.com/kakutani/status/341202764472406017) : 
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-kakutani.jpg)
+
+I feel surprised again and also little embarrassing, but the "Conference-Driven Development(CDD)" sounds workable, and I love the "RubyKaigi made Ruby Better", I hope I can do more contributions to Ruby and this community someday if possible. 
+
+Thanks to Naoto Takai(@takai) (https://twitter.com/takai) to take a photo for me so that I can have a nice picture on the Rubyist Tokei. (http://rubyistokei.herokuapp.com/)
+
+(http://www.openfoundry.org/images/130611/RubyKaigi/rubykaigi-rubyist-clock.jpg)
+
+photoed by @takai (https://twitter.com/takai) 
+
+Anyway, I learned a lot on this trip to Japan, and I'll write them down in next blog posts. At last, if there's any bad or something wrong about my speech, please feel free to comment.
+
+Thank you all, RubyKaigi team, you're all AWESOME!
+_______________________________________________________________
+
+■ [自由專欄] 關於留才，IT 管理者可以從 2013 年 Linux 職場報告學到什麼 
+
+謝良奇／編譯
+
+Linux 基金會最近公佈了 2013 年 Linux 職場報告 (2013 Linux Jobs Report)，在這個競爭激烈的市場中，企業莫不積極找尋人才，薪資也跟著飛漲，相反地，企業也更注重留住現有人才。如果你認為沒什麼好擔心的，看看這個數字：有 75% 的受訪對象表示最近 6 個月內接到過招聘電話，更有 35% 的人計劃在 2013 年跳槽。與其監看員工的來電記錄，以下我們提供若干可以留下 Linux 人才的方法給 IT 管理者。
+
+在該工作調查中，Linux IT 專業人員被問到待在目前工作的前三個動機為何，有 74% 的人要更多薪水，61% 的人需要工作與生活間有更好的平衡，47% 的人想要的是彈性工作時間或遠端辦公。專業發展上的機會也是經常被提及的一項，特別是與晉升有關時。
+
+以下是讓員工留在目前工作崗位的四個方法：
+
+＊給工程師參與決策的機會
+如果沒有機會參與決策制定，優秀的工程師會對工作感到不滿。讓你的工程師參與架構決策過程，在部署新系統之前，確保你的技術支援人員有機會提供意見。不要只是要求遵循技術決策，讓每個人參與設計過程，可以增加他們對基礎架構的所有感。
+
+當你跟他們分享想法與未來計劃，讓他們有機會分享他們的看法，可以提高他們與管理者和組織的連接。
+
+＊給他們挑戰性與學習機會
+ 在對工作感到不開心或無趣前，多數員工不會提前思考自己職業生涯的未來。一個員工在其中持續學習的工作環境，是讓他們保持快樂的關鍵。考慮在組織內為他們找個導師，或讓他們參與那些有助於朝新方向推動他們的專案。為你的員工投資 Linux 訓練，藉此證明你希望幫助他們提升技能，同時也可為你的組織或部門帶來回饋。
+
+＊對清楚、有意義的目標提供持續回饋
+當優秀職員了解到他們每天的工作如何幫助團隊、部門、整個組織獲得成功，他們對工作的興趣、責任感、參與程度、留職率都會增加。
+
+＊給他們自由
+2013 年 Linux 職場報告顯示，你的工程師想要有在家或在自行安排的時間中，完成所交付工作的彈性與自由。工作之外，我們都有需要關注的家庭與生活。 你的目標應該是雇用優秀人才，為他們設定有挑戰性而實際的目標，當他們遭遇困難時幫他們一把，然後放手。相信他們有通過挑戰達成目標的能力。
+
+
+相關網址：
+
+1.關於留才，IT 管理者可以從 2013 年 Linux 職場報告學到什麼
+http://training.linuxfoundation.org/why-our-linux-training/blogs/lftstaff/773-what-it-managers-can-learn-about-retention-from-2013-linux-job-report
+_______________________________________________________________
+
+﻿■ [源碼新聞] Eben Moglen 闡述當前自由開源軟體生態系的兩大挑戰趨勢
+
+黃郁文／編譯
+
+Eben Moglen 教授的身份除了任職於美國哥倫比亞大學從事法律研究與教學之外，其亦為 GPL-2.0 與 GPL-3.0 的起草編撰者，以及軟體自由法律中心 (Software Freedom Law Center, SFLC) 的創辦者與主持人。在本年度 (2013) 歐洲自由軟體基金會 (Free Software Foundation Europe, FSFE) 主辦的歐洲自由軟體法律與授權工作坊 (Free Software Legal and Licensing Workshop 2013) 上，Mr. Moglen 提供了一場名為「自由軟體生態系當前挑戰」的專題演講，演講內容主要論述專利 (Patent) 與著佐權 (Copyleft) 議題如何對當前自由開源軟體的生態系產生影響，以及從商業發展的角度，觀察與反思此兩大議題未來的發展趨勢。
+
+自由軟體法律與授權工作坊，為 FSFE 在自由開源軟體授權領域與商務界重點推動的年度大事，會議參與人員包括自由開源軟體商用公司的重要法律政策規劃人員、公眾授權領域的專職研究者，以及自由開源領域重要專案的管理人與技術開發者，國內設有開源授權研究專職部門的自由軟體鑄造場 (Open Source Software Foundry, OSSF)，亦自第 2 屆開始每年指派負責授權與商業模式研究的同仁參與，許多自由開源軟體界跨越國家、公司、與社群的重要改變，不乏是在此一會議中，被發聲討論並於後續著力推動而產生的。此會議全程採用 Chatham House 規則來進行，也就是說，與會者可以自由地使用在會議中獲得的資料與資訊，但卻不得透露演講者及其他與會者的身份與所屬機構，以讓會議的參與者皆可暢所欲言，而不致揹負過重的法律包袱。此次 LWN.net 的編輯作者 Michael Kerrisk 特別透過向會議主辦者 FSFE，與個別演說者協商，在雙方的例外同意下，得以披露部份自由軟體法律與授權工作坊的討論內容，以下就 Eben Moglen 教授演講內容所編譯的新聞報導即為一例。
+
+在此次演講的專利議題上，Eben Moglen 認為資通訊產業未來在專利議題上的謀合必然是大勢所趨，其指出依概略的量化統計，全球大廠目前每年花費在專利檢索、專利協商、專利撤銷、專利訴訟上的金錢支出，已達 400 億美元之譜，這已經是除了專利蟑螂 (Patent Troll) 之外，一個對於起訴方、應訴方，及其他致力於販售產品與服務的商業公司，都過於沉重而不符合經濟效益的巨額支出；而許多專利領域的專家與意見領袖，例如美國上訴法院的法官 Richard Posner、美籍的諾貝爾獎得主們，以及美國共和黨部份的政治領袖，都已經起身撰文，表達其反對軟體專利無止盡虛耗創作人創意以及產業生產力的態度。Eben Moglen 更指出，歐美國家過去數十年間依靠專利獲取巨額商業利益的穩定局勢已經改變，放眼中國在經濟改革之後，已經迅速成為全球第二大經濟體，在專利申請與專利佈局方面，中國產業亦正在試圖迎頭趕上，其每年都以數以萬計的效率提報並完成相關專利的申請與登記，如果歐美資訊廠業大廠對於專利議題不能捐棄成見，轉以嶄新的視野來因應，那麼未來引發全球性的專利大戰時，其未必會是最後的贏家。
+
+而在著佐權的議題上，Eben Moglen 指出近年商業公司對於具有 Copyleft 性質的自由開源軟體，如 GPL、AGPL 等授權類型，存有一種排拒式與迴避式的使用態度，但從商業發展的經濟面來分析，其並不了解此種迴避態度究竟是奠基於翔實的市場獲利分析數據，抑或僅能歸因於未必理性的恐懼心理？Moglen 指出，Copyleft 性質的自由開源軟體專案，確實會對商用使用者產生一定的義務性拘束，例如改作程式之後必須在釋出時一併提供自己基於原程式衍生出來的相關程式碼，許多廠商往往從商業機密 (Trade Secrecy) 的角度，評判此一要求為不利公司發展的特性，卻沒有從「公開公平競爭的角度」來思考 Copyleft 專案所能進一步帶來的應用特性，舉例來說，Linux Kernel 這個舉世聞名、影響力日深的自由開源軟體專案，便是奠基於 Copyleft 特性從而成長到今日的規模，Linux Kernel 運作的模式，是讓每一個參與應用與產品化的公司，都能夠站在同一個出發點進行公平競爭，原則上每個應用 Linux Kernel 來進行產品開發的廠商，在其商品販售的同時都必須以 GPL-2.0 的方式來提供程式源碼 (Source Code)，從而 Linux Kernel 也可以在這些實作的裨益下持續的發展下去，而這些廠商也可以不斷的從 Linux Kernel 的開發站台上，下載到最新的穩定版本，並在此版本的基礎下去延續開發自己的最新產品，也就是說，從經濟效益上來說，Linux Kernel 具有的 Copyleft 特性，讓廠商只要將心力放在如何加值共通專案，以最佳狀態服務其顧客，而不需要將心力和大量的時間與金錢，耗費在保護自我產品但未必能真正收益的商業機密上。
+
+總要的說，Eben Moglen透過此次演講表達出來的基礎想法為：「自由開源軟體授權是一個全球性幾近共通的授權規則，如果個人使用者、商業使用者，都能夠同意並依其預先規劃的規則進行參與，將可以在共通與公平的基礎下，以群聚共識的作法，來解決各地紛爭日益擴大且難以收攏的專利侵權爭議；而 Copyleft 特性看似減損公司商業機密的保護，但從公平競爭的角度來看，反而可以讓參與的商業公司不受限拘執自我的立場，而產生真正跨公司、跨聯盟的產業合作關係。」這樣的立場與闡釋雖已非新論，但 Mr. Moglen 在此次演講夾附了不少的引證基礎，讓相關論述擲地有聲，建議感興趣的讀者能夠參閱全文，透過其與一般論者不同的視野，來拓展自己對自由開源授權領域的深度了解！
+
+
+相關網址：
+
+1、「自由軟體生態系當前挑戰」演講摘要
+http://lwn.net/Articles/547379/
+
+2、Chatham House 規則各國語文註解
+http://www.chathamhouse.org/about-us/chathamhouserule-translations
+_______________________________________________________________
+
+﻿■ [源碼新聞] 從 SOPA 到 CISPA - 軟體自由、網路自由與公民自由知多少？
+
+黃郁文、林誠夏／編撰
+
+2012 年在美國由 Hollywood 影界支持與主導的線上盜版防制法案 SOPA (Stop Online Piracy Act)，經眾多公民社群與網路公司的聯手杯葛之下鎩羽而歸、無功而返，不過當時許多的網路評論家已預見並指出，未來勢必會有相類似的數位自由 (digital freedom) 威脅法案再被提出來。果不其然，暫名為「網絡情報共享防護條例 (Cyber Intelligence Sharing and Protection Act, CISPA)」的法案，已於今年 (2013) 4 月份的時候，在美國眾議院中被提出，目前該法案正在進行立法前的討論程序。簡單來說，CISPA 是要透過立法的手段，來讓政府業管機構與商業公司之間，能擴大使用者相關資訊的共享權限，來擋禦更多潛在性的網路駭客攻擊。此一法案推出之後可說毀譽參半，支持者與反對者皆有之，主要的支持團隊有 IBM 與 Intel 這些資訊領域的傳統大廠，其認為此一法案的通過，將有助於美國官方與產業界組成合作鏈，有效防禦駭客入侵竊取商業機密及其他重要的智慧財產權；然而從反對者「電子前哨基金會 (Electronic Frontier Foundation, EFF)」以及 Mozilla Foundation 的立場來看，其認為抵禦駭客還有很多其他更合情合理的手段可以使用，斷不需要因案設事的增立此種綁架騎劫，騎在人民隱私權利頭上 (riding roughshod over privacy laws) 的法案，因為此種定義不清的法案一經施行，民眾對於政府機關與商業公司的違法擴權，將陷於無法即時、適當反應，及權利喪失無法回復的劣勢！
+
+其實就現況來觀察，近年國內外對於網路行為管制法令方面的議題爭議不斷，考究其核心的爭議點，在於部份的利益團體以及配合推動法案的政府機構，是僅將「網路空間」視為「現實世界」的擴張工具，從而欲透過修法的手段，將現實世界裡種種的法規範，擴張到網路空間來施行，以保障既得利益者手上已獲得的營利模式能夠延續維持；然而，從網路參與者、公民社會的角度來看，社會上的多數成員，卻是漸漸將「網路空間」視為一個嶄新的「活動領域」，而從這個立場出發倡議網路自治、政府自制，因其期待的是，透過網路參與群眾反覆的理性討論來建立共識，並進一步以自主性、草根性的模式，來真正落實與體現較諸現實世界更為自由與平等的網路使用規則。這樣由下至上的規則建立理念，從近 30 年前自由軟體運動 (Free Software Movement) 開始推展時便已被披露，所謂的「軟體自由 (Software Freedom)」簡化來說，便是資訊時代人類對於軟體的使用及研究自由，已從「知源碼」而「思改作」，所以提倡以自由開源軟體授權 (Free and Open Source Software License) 的模式，讓軟體釋出方主動宣告其軟體的運作規則，而非僅僅依循各國政府在著作權法裡預設的傳統模式，這些運動的參與者，爭逐的是資訊時代人類對於軟體改作權利的新自由。而經過 30 年的發酵與推廣，在不依賴各國政府機構介入管制的基礎下，此一自由開源 (Free and Open) 的運作模式已然茁然成為當前商業軟體世界的運作主軸之一，許多行動式運算與雲端服務方案，皆有賴自由開源軟體專案為其運作的基礎架構，Android 平台的智慧型手機是如此，Google、Facebook、Amazon 背後賴以維繫商業服務的伺服器系統，亦是如此。可以說，自由開源軟體的專案開發者們，透過授權條款私人契約合作的方式，構築了當代嘉惠社會多數人的嶄新運作模式。
+
+所以說，人權體系其實是一個動態挪移的發展觀念，何謂自由的內涵，應該是一個在人類歷史中需要不斷被擴充深化的面像。當前，資訊時代科技的進步一日千里，世界因之而寬廣，人們對於公眾事務的參與自由，亦透過網路平權的架構被重新釋放，但是既定規則如智慧財產權與相關的資訊散布法令，卻沒有從基礎面被改變，在數位時代，人們取得了更大的自由，但是也可能同時觸犯了更多過往制定的法律規定，而被指稱違法，但是回歸民主國家法律制度的本質，它應該要能造就多數人最大的權益，並且不去剝奪少數人的核心價值與尊嚴，也就是說應該創造維護一個多數人皆可安心追求人生職志，且脫逸常規的少數人亦可不受到過份壓迫的生存環境，這也便是「法社會學」理論所一再強調的：「法須與時俱進，進行根本面的反思與調整，才能真正符合社會的需求。」從這個立場來看，過往的 SOPA 與現被推動的 CISPA，為何會引發公民社會、網路族群這麼大的意見反彈與懷疑，主因也就不言可喻了。應該是：「軟體自由、網路自由，與近代重新被賦予定義的公民自由，推動者強調的都是透過一個技術中立的前提，輔以公平、公開的討論平台與機制，以建立由下而上 (Bottom–up Approach) 草根式的自主與民主規則，而若此一模式漸漸能夠成為普遍的共識，則法律律則亦不得不隨之修正改變，以呼應社會變遷的事實，並遂行法律沿革的推展，最後的目標則是達到『庶民式立法時代』的來臨。」
+
+不過以 CISPA 為例進行觀察，當初鼓吹抵制 SOPA 的連署成員，就 CISPA 一案上似乎存有分裂立場，Mozilla 與一些較本於自由開源軟體運作精神的公司，明確表達 CISPA 法案應該要被仔細盤檢修改，或是逕予廢棄審理，然而以 Facebook 為首的商業聯盟 TechNet，卻也公開表達對 CISPA 的支持，另一個資訊產業重要的趨勢引領公司 Google 目前尚無正式表態，其表示對於 CISPA 的進行程序與後續影響還在「密切觀察」中。但無論如何，可預見的是隨著網際網路的運作，一天又一天持續的擴張深入到人們生活的各個層面與領域裡，像 SOPA 與 CISPA 這樣導引既定規則至網路世界的法案，必然是會被陸續推出來討論，其產生的效應究竟是好是壞，如何建立適當處理的通則與模式，確實是有待也有賴公民社會的每一份子，自發性自主性地貢獻自己的心力來持續關注，才有機會將其導引到正確的方向上來。
+
+
+相關網址：
+
+1、從 SOPA 到 CISPA - 《經濟學人》對美國網路資訊查察法案的觀察
+http://www.economist.com/news/united-states/21576425-controversial-cyber-bill-sparks-heated-debate-about-online-privacy-sopa-cispa
+
+2、「網絡情報共享防護條例」當前審議草案
+http://thomas.loc.gov/cgi-bin/bdquery/z?d113:h.r.624:
+_______________________________________________________________
+
+﻿■ [源碼新聞] OpenStack 傳訊即服務新登場
+
+謝良奇／編譯 
+
+當前少有不熟悉 OpenStack 的企業雲端管理者，OpenStack 是開放源碼架構即服務 (IaaS) 雲端運算專案，用以建構公開、私有和混合雲。OpenStack 中包含了若干關鍵元件，專門作為虛擬機器配置與管理、儲存、虛擬磁碟管理等，最近更有一個新服務首次登場。
+
+源自於去年的 OpenStack Grizzly 高峰會，OpenStack Cloud Messaging as a Service 是一套可延展的訊息匯流排，設計用來為 OpenStack 雲端中運行的應用程式發送與收取資訊。
+
+HP Cloud 開放源碼工程主任 Mark Atwood 解釋，應用程式內傳訊的必要性，是超越 LAMP 堆疊之外新應用程式設計模式需求的跡象之一。當 HP 正設法公開他們開發中的應用程式傳訊服務，給其 HP Cloud 用戶使用時，代號 Marconi 的 OpenStack Message Bus 專案卻 出現在去年 10 月的 Grizzly 高峰會上。
+
+他表示，Marconi 專案出現後，HP 決定與其讓開發者社群在無意義的 API 標準戰中分裂，不如複製並追蹤公開的 Marconi API，然後貢獻到開放源碼 Marconi 專案。4 月時，HP Cloud Messaging 公開宣布使用 OpenStack Marconi API 標準，目前已經有開發者預覽版本。
+
+這是什麼樣的新服務呢？基本上，該專案設計用來填補 OpenStack 對穩固且具 Web 規模的訊息佇列服務的成長需求，以支援大型網路應用程式的分散式特質。Marconi 的定義是高可用性、模組化、可延展的雲端傳訊匯流排。
+
+該專案團隊表示，他們的目標是建構 SQS 與 SNS 的開放替代方案，可以運用在 OpenStack 雲端運行的應用程式。該專案將定義出清晰的 RESTful API，使用模組化架構，將支援一致性的發佈-訂閱 (pub-sub) 及工作佇列語意。
+
+用戶可以依據廣泛的效能、持續性、可用性、效率目標，來客制化 Marconi。使用案例包括多重工作單元間的工作分派、轉送事件至資料收集器、發佈事件給眾多訂閱者、發送指令給一至多個代理程式、要求代理程式執行動作或取得其資訊。
+
+451 Research 企業軟體資深分析師 Jay Lyman 表示，傳訊服務是另一個因為越來越多大型企業與服務供應商採用 OpenStack 雲端架構，使得關鍵 OpenStack 元件發展迅速的例子。
+
+Lyman 解釋，當 OpenStack 在運算、網路、儲存的主要元件，為建構雲端運算架構提供基礎時，許多用戶嘗試將這些元件，與已存的舊有架構、工具、監控與管理相互整合。擁有許多大型用戶，特別是企業組織的身份認證服務 (Identity services)，即是另一個進展與成熟相對快速的 OpenStack 元件。新的傳訊服務對這些組織是另一個關鍵元件，Lyman 表示期待看到該專案有類似的發展。
+
+
+相關網址：
+1.OpenStack 傳訊即服務新登場
+http://www.linux.com/news/enterprise/cloud-computing/721243-openstack-branches-out-with-messaging-as-a-service/
+_______________________________________________________________
+
+﻿■ [源碼新聞] Pidora - 針對 Raspberry Pi 最佳化的 Fedora Linux
+
+謝良奇／編譯 
+
+隨著 Fedora 18 Remix 的釋出，終於讓 Fedora 粉絲們，有了這個名為 Pidora、針對 Pi 最佳化的散佈套件。由聖力嘉開放技術開發中心 (Seneca Centre for Development of Open Technology，CDOT) 開發的 Pidora，以 Fedora 18 為基礎，也就是 Red Hat Enterprise Linux (RHEL) 的上游貢獻者。
+
+Pidora 是 Fedora 針對 Pi 的第五個混搭版 (remix)，但卻是第一個運用 Fedora 18 最新支援 ARMv6 架構的版本，因此效能上據稱超越過去的 ARMv5 版本。
+
+此一散佈套件包含了 yum 上幾乎所有的 Fedora 18 套件，皆針對 Pi 預先編譯，以及納入 C、Python、Perl 程式開發環境。Pidora 提供圖形化的首次開機組態設定，簡潔的初始映像容量可以針對儲存裝置自動調整。
+
+CDOT 表示，Pidora 加入可提供更大記憶體用量的自動記憶體置換建構功能，以及針對無顯示裝置的 headless 模式。其他的特點包括 Midnight Commander 檔案管理器、在圖形化模式對 Gedit 編輯器的插件支援。IP 位址資訊可經由揚聲器或 LED 燈加以表示，並提供馬達與機器人 I/O 的程式庫。
+
+就在 Pidora 日前於 LinuxGizmos.com 上發佈不久後，俄語讀者發現 Pidora 和某個俄語貶義單詞相近，因此 CDOT 正就該散佈套件的名稱重新考慮。不過 CDOT 可能只會更改該散佈套件的俄語版名稱。
+
+
+相關網址：
+1. Pidora - 針對 Raspberry Pi 最佳化的 Fedora Linux
+http://www.linux.com/news/embedded-mobile/mobile-linux/721509-pidora-fedora-18-for-the-raspberry-pi/
+_______________________________________________________________
+
+﻿■ [源碼新聞] 回饋社會的開源技術
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 http://www.linuxpilot.com/blog/kiji/2013032103。
+
+從事醫療行業的朋友，可能都曾經用過一個叫 3D Slicer 的醫療圖像處理軟體。3D Slicer 可以用 3D 的形式，將器官以不同的角度「切割」以查看橫切面，並可結合磁力共震 (MRI) 的數據，以便對一些像腦神經外科等危險程度較高的手術，進行更多的事前計畫與模擬。
+
+(http://www.openfoundry.org/images/130611/linuxpilot/201303210301.jpg)
+
+醫療軟體由於只針對特定的少數用戶族群，因此售價必須設定得比較高，才有可能將開發成本收回。但對於一些不大富裕的國家來說，高售價便成為了他們採用新技術的障礙，這時開源技術便大派用場了。3D Slicer 正是一個在 Linux 上的開源醫療軟體，任何人都可以自由下載程式碼，然後自由編譯使用，完全免費。開發 3D Slicer 的核心人物，便是在哈佛大學醫學院任教的波多伸彥教授。
+
+波多伸彥早在攻讀博士學位時，就已經進行 3D Slicer 的開發，有人問他為什麼要將自己努力的成果，公開讓所有人免費使用。他的答案十分簡單：「我們從國家的稅收得到研究經費，將研究成果回饋社會很正常啊。」在學術界有不少人都有這樣的想法，或多或少都是因為受到當年人類基因組計劃 (Human Genome Project, HGP) 事件的影響。
+
+1990 年代美國政府投入了 30 億美元在 HGP 上，目的是找出成人類染色體中所包含的 30 億個鹼基對組成的核苷酸序列，其後研究成果在 GenBank 網站上公開。沒隔多久一家名為 Celera 的企業也宣稱用了 3 億美元完成類似研究，但後來卻被揭發其「研究成果」其實是挪用了 GenBank 的資料加工而成的。Celera 被學術界猛烈批評後態度軟化，同意讓公眾在非商業目的下取得研究結果的數據，條件是每個人可下載的數據均有上限。其後學術界都傾向把開發成果盡快開源化，3D Slicer 便是在這個時代背景下的產物。
+
+有人會問在 GenBank 網站上公開的數據有什麼用？假設研究人員在調查一種癌症過程中，鎖定了某個遺傳因子，GenBank 可讓他得知其他研究人員過去曾經對此遺傳因子進行過怎麼樣的調查、它的機能是什麼、和其他人類遺傳因子在進化上有何關係、有沒有突然變異的可能性、與其他遺傳因子的相互作用、在什麼組織上被發現、有什麼疾病與此有關等等。開源不單是 IT 業界破格的新文化，也可以為病人帶來新希望。
+_______________________________________________________________
+
+■ [源碼新聞] 公眾領域 (The Public Domain) 專題論文徵求（2013.08.31截止）
+
+周文茵／文
+
+◎ 本文原載台灣創用 CC 計畫，原文章連結 http://creativecommons.tw/blog/20130529。
+
+2013 台灣資訊社會研究學會年會暨學術研討會 (http://app.asoce.com/tais/) 預定於 11 月 16 日 (六) 召開，我們再度與台灣資訊社會研究學會攜手合作，今年籌組「公眾領域」專題，8 月 31 日前進行論文徵求。歡迎對自由文化議題有興趣的朋友們踴躍投稿。
+
+
+公眾領域 (The Public Domain)
+
+公眾領域 (The Public Domain)，也有人稱為公共領域。進入公眾領域的著作已不受著作權法的限制，任何人皆可以自由使用。
+
+著作權法賦予著作權人排他的使用權利，透過這樣設計來鼓勵創作，但這樣的排他權利，卻也不能永無止盡、無限上綱的。畢竟著作權法的立法目的，除了保障著作人權益，還顧及社會公共利益，以促進國家文化發展。然而，即使已過保護年限的創作，若沒有明確的方式標示其已進入公眾領域的狀態，一般人也並不會拿來自由使用。
+
+因此，明確標示公眾領域有其必要性，「公眾領域標章」（Public Domain Mark） (http://wiki.creativecommons.org/Zh-tw:PDM_%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C) 的使用也因應而生。此外，著作權人也可以透過「公眾領域貢獻宣告」(CC0) (http://wiki.creativecommons.org/Zh-tw:CC0_%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C) 的方式，表達放棄某項創作的所有著作權利，將其捐入公眾領域，方便任何人自由使用。
+
+在 2011 年的研討會，我們探討了「資訊時代的共有資源」，今年我們想進一步討論公眾領域的議題，一同思考該如何共同維持文化的自由園地，而不會為少數人所掠奪；眾人甚或可透過集體的力量，擴張這個領域豐沛的養分，整體提高創作的自由與能量。 
+
+
+2013 台灣資訊社會研究學會年會暨學術研討會 (http://app.asoce.com/tais/)
+
+＊會議時間：2013 年 11 月 16 日 (六)
+＊會議地點：國立交通大學客家文化學院，新竹
+＊一律採線上投稿 (http://app.asoce.com/tais/index.php/2013-05-03-08-46-38)。
+＊投稿系統為：http://app.asoce.com/tais/index.php/upload (開放時間:即日起至 2013/08/31 日止)。
+＊論文投稿格式：http://www.tais.org.tw/paperformat.doc
+＊學生組論文競賽：優勝一名 6000 元，佳作數名各 2000 元。
+
+
+相關時程：
+
+＊教師組及其他身分組：
+    全文或摘要投稿截稿日期 2013 年 8 月 31 日
+    摘要審查結果通知：2013 年 9 月 15 日
+    通過摘要審查者之全文繳交日期: 2013 年 10 月 15 日
+
+＊學生組：
+    全文投稿截稿日期為 2013 年 8 月 31 日
+    公布審查結果、寄發錄取通知：2013 年 10 月 20 日
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

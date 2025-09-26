@@ -1,0 +1,1222 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 198 期 | 2012/06/26 □■□
+________________________________________________________________
+
+◎ 本期主題︰利用 GitHub 建立自己的 PEAR 頻道
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/07/10
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 利用 GitHub 建立自己的 PEAR 頻道
+
+■ [技術專欄] 網站程式上線前需要準備的事（五）
+
+■ [法律專欄] 淺談商業公司額外附加的「例外許可條款」 
+
+■ [企業應用] 2012 OpenOffice／LibreOffice 的回顧與展望
+
+﻿■ [源碼秘技] Sigil－自製電子書的開源利器
+
+﻿■ [源碼新聞] Twitter 的開源軟體 Zipkin
+
+■ [源碼新聞] Firefox 13 正式版發布
+
+■ [源碼新聞] Linux 版 Skype 離開 Beta 階段，發佈 4.0 正式版
+
+■ [源碼新聞] Windows Azure 提供 Linux 的支援
+
+■ [源碼新聞] 開放源碼醫療設備 - 當程式碼掌握生殺大權
+
+■ [源碼新聞] DrupalCamp Taipei 2012 研討會--學習 Drupal 的第一課，初學者的您更是不容錯過！
+
+■ [源碼新聞] 七月份社群活動列表
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 利用 GitHub 建立自己的 PEAR 頻道
+
+jaceju / 文
+
+目前一些主流的語言都有提供所謂的套件管理機制，像是 Perl 的 CPAN (http://www.cpan.org/)，Ruby 的 gem (http://rubygems.org/)，Node.js 的 npm (http://npmjs.org/) 等等。而它們都屬於集中式的管理，可以讓開發者上傳自己所開發的套件。
+
+當然 PHP 也是有套件管理機制，那就是 PEAR (PHP Extension and Application Repository, http://pear.php.net/)。只是 PEAR 官方為了套件的品質，所以在審查機制上非常嚴格；這也使得開發者很難把自己的成果，藉由官方提供的管道來分享給其他人。
+
+雖然後來陸續有一些高手實作了某些方案，想要解決這個問題，但可惜都不了了之。
+
+註：相關的資訊可以參考 c9s (http://c9s.blogspot.tw/) 在 OSDC 的介紹：OSDC.TW 2012 - The ecosystems of PHP and Perl (https://speakerdeck.com/u/c9s/p/osdctw-2012-the-ecosystems-of-php-and-perl)。
+
+在 PEAR 中，套件會被放在 PEAR Channel Server 上面，這個 Server 就像是套件的倉庫；例如 PEAR 官方的 PEAR Channel Server 就是 pear.php.net。一個 Server 就是一個頻道 (Channel)，這個頻道就是 pear 指令用來識別及取得套件來源的地方。
+
+那麼除了官方的頻道外，我們能不能建立自己的 PEAR 頻道，以便管理自己開發的套件呢？當然是可以的，接下來本篇文章就要為大家介紹如何達到這個目的。
+
+建立頻道
+
+事實上所謂的 PEAR 頻道其實就是個網站，它必須要能存放套件的原始碼，並且提供套件的更新資訊。這些內容一般來說是靜態的，所以我們只需要有個網站空間就可以建立一個 PEAR 頻道。
+
+這裡筆者選用 GitHub (http://github.com/)，因為它可以用 git 讓我們方便管理，而且也不限制流量與空間；就我們的需求來說，是一個不錯的選擇。
+
+建立 GitHub Repository
+
+首先我們要到 GitHub (http://github.com/) 申請一個免費帳號，這裡筆者就不再詳述申請流程，請各位自行參考 GitHub 的網站。
+
+接下來要建立一個 Repository (https://github.com/new)，名稱格式為 [a-z0-9\-]+（千萬不要包含底線，這樣 pear 指令會無法判讀），這裡筆者用 pear 作為範例。
+
+▲ 圖1：http://www.openfoundry.org/images/120626/GitHub/01.png
+
+建立好之後，就可以用以下的 git 位址來存取：
+
+https://github.com/yourusername/pear
+
+建立頻道內容
+
+有了空間後，接下來就該建立頻道的內容了。只是頻道的內容該用什麼樣的格式？有沒有什麼方便的工具能幫我們處理這個問題呢？
+
+答案當然是有的，Pirum (http://pirum.sensiolabs.org/) 就是這樣的一個解決方案。
+
+Pirum 是一個 PEAR Channel Server 管理工具，它可以幫我們建立與管理 PEAR 頻道內容，同時也能把套件加入頻道中。
+
+它的安裝方式很簡單，直接使用 pear 指令安裝即可：
+
+pear channel-discover pear.pirum-project.org
+pear install pirum/Pirum
+
+這樣一來我們就有一個 pirum 指令可以用了。
+
+接下來在本機端建立一個目錄（這裡筆者假設是 /path/to/pear_repository），裡面放一個 pirum.xml 檔案：
+
+mkdir /path/to/pear_repository
+cd /path/to/pear_repository
+vi pirum.xml
+
+內容如下：
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+    <name>yourusername.github.com/pear</name>
+    <summary>My PEAR Channel</summary>
+    <alias>yourusername</alias>
+    <url>http://yourusername.github.com/pear</url>
+</server>
+
+其中 name 表示頻道完整名稱，一般就是頻道網站的位址（但不包含 http://）；summary 則是頻道網站的標題；alias 是頻道別名，讓我們在用 pear 指令管理頻道時不需要輸入完整名稱；最後 url 則是讓使用者可以使用瀏覽器查看的頻道網址。
+
+將 pirum.xml 存檔後，就可以用 pirum 指令來建立頻道內容。
+
+pirum build .
+
+如果一切正常的話，應該會出現：
+
+Pirum 1.1.4 by Fabien Potencier
+Available commands:
+  pirum build target_dir
+  pirum add target_dir Pirum-1.0.0.tgz
+  pirum remove target_dir Pirum-1.0.0.tgz
+
+Running the build command:
+   INFO   Building channel.
+   INFO   Building maintainers.
+   INFO   Building categories.
+   INFO   Building packages.
+   INFO   Building composer repository.
+   INFO   Building releases.
+   INFO   Building index.
+   INFO   Building feed.
+   INFO   Updating PEAR server files.
+   INFO   Command build run successfully.
+
+現在我們可以利用 git 指令把這些內容送到我們前面建立好的 GitHub Repository 上面了：
+
+git init
+git remote add origin git＠github.com:yourusername/pear.git
+git add *
+git commit -m 'init pear channel'
+git branch gh-pages
+git checkout gh-pages
+git push -u origin master
+git push -u origin gh-pages
+
+特別要注意的是，遠端分支必須還要加上 gh-pages，這樣 GitHub 才會把這些新增的檔案當做是網站內容。
+
+稍等幾分鐘，GitHub 會幫我們把 gh-pages 的內容放到 http://yourname.github.com/pear 上。用瀏覽器打開這個網址，應該會出現以下畫面：
+
+▲ 圖2：http://www.openfoundry.org/images/120626/GitHub/02.png
+
+使用新建立的頻道
+
+現在我們已經有了自己專屬的 PEAR 頻道，以下就來看看怎麼使用它。
+
+加入新頻道
+
+我們可以將頻道加到本機的 PEAR 中，用以下的指令就可以在 PEAR 上註冊我們剛剛建立的頻道：
+
+pear channel-discover yourusername.github.com/pear
+
+查看頻道中的套件
+
+接著我們可以用以下的指令來查看這個頻道中有什麼套件：
+
+pear remote-list -c yourusername
+
+如果出現：
+
+(no packages available yet)
+
+是正常的，因為我們還沒有加入任何套件。
+
+註：執行 pear 指令時，如果有權限問題的話，可以加上 sudo 來執行。
+
+更新頻道資訊
+
+當頻道更新資訊時，要如何知道呢？我們可以透過以下指令來更新：
+
+pear channel-update yourusername
+
+通常這個動作是在新增套件或更新套件前要先做的。
+
+但如果 PEAR 中已經有很多頻道和套件，那麼一一手動更新太麻煩了，直接用以下指令就可以一次更新：
+
+pear update-channels
+pear upgrade-all
+
+套件管理
+
+有了頻道後，接下來就可以放套件放上去了。
+
+跟建立頻道一樣，建立一個 PEAR 套件也是需要制式的設定檔；只是 PEAR 官方給的設定檔規格實在是太複雜了，一般開發者可能還沒寫完設定檔就會先放棄 PEAR 了。
+
+有沒有什麼好工具可以協助我們呢？當然有！目前有兩套很強大也很方便的工具，分別是：Phix (http://phix-project.org/) 及 c9s (http://c9s.blogspot.tw/) 的 Onion (https://github.com/c9s/Onion)。
+
+筆者強力推薦大家使用 Onion，因為它的設定檔較為簡單便捷，而且還能處理佈署專案時的套件相依性；再加上作者是台灣人，有任何疑問都可以直接到 GitHub 上請教他。
+
+註：原本筆者是使用 Phix 作為範例，不過有 c9s 的加持，筆者就改用 Onion 了；在這裡要特別感謝他。
+
+建立套件架構
+
+在 Onion 的說明檔裡已經提到如何製作 PEAR 套件了，這邊筆者僅做簡單的流程說明。
+
+首先我們要先建立一個套件的存放路徑，這個路徑是任意的，這裡筆者用 /path/to/first_package 為例。
+
+mkdir /path/to/first_package
+
+接著在這個套件目錄下建立三個資料夾：src 、 doc 及 tests，這三個資料夾是 Onion 最基本的要求。
+
+cd /path/to/first_package
+mkdir src
+mkdir doc
+mkdir tests
+
+現在我們可以在 src 資料夾裡建立我們的套件內容，這裡筆者先假設我們的套件命名空間為 FirstPackage，其中包含了一個 FirstClass 類別，它的路徑就是 src/FirstPackage/FirstClass.php。
+
+mkdir src/FirstPackage
+vi src/FirstPackage/FirstClass.php
+
+當然這裡示範的套件內容是比較簡單的，實作上我們可能還會有更多類別或命令列程式等。往後有機會的話，筆者會再另文介紹 PEAR 套件製作與測試的相關方法，在這之前大家可以先參考其他 PEAR 套件的原始碼。
+
+用 Onion 包裝套件
+
+接下來就是 Onion 最令人激賞的功能之一：利用簡單的 INI 設定檔來產生複雜的套件 XML 描述檔。
+
+繼續在 /path/to/first_package 下建立一個 package.ini 檔：
+
+vi package.ini
+
+內容如下：
+
+[package]
+name = FirstPackage
+desc = My First Package
+version = 0.0.1
+author = yourusername 
+channel = yourusername.github.com/pear
+
+這是 Onion 所要求最小的設定，詳細的設定方式可以參考官方說明 (https://github.com/c9s/Onion/blob/master/README.md#a-more-detailed-example)。
+
+有了 package.ini 這個設定檔後，我們可以用以下指令來一次建立出套件的包裝檔：
+
+onion build --pear
+
+成功的話，就會在 /path/to/first_package 下得到一個 FirstPackage-0.0.1.tgz 套件檔，它就是我們要放到頻道供使用者下載的檔案。
+
+將套件包裝檔加入頻道
+
+接著我們就要用 Pirum 來將套件包裝檔加到頻道中，一樣在 /path/to/first_package 這個路徑下，執行以下指令：
+
+pirum add /path/to/pear_repository FirstPackage-0.0.1.tgz
+
+這樣一來 Pirum 會幫我們分析套件內容，將它加到頻道中，並且更新頻道中的相關資訊。
+
+當然加入套件後，就得把更新的頻道內容上傳到 GitHub 上：
+
+pirum add /path/to/pear_repository FirstPackage-0.0.1.tgz
+
+最後驗證一下套件是否上傳成功：
+
+pear channel-update yourusername
+pear remote-list -c yourusername
+
+正確無誤的話，應該就會看到以下訊息了：
+
+Channel yourusername Available packages:
+==================================
+Package      Version
+FirstPackage -n/a-
+
+現在就可以透過 pear 指令來線上安裝我們的套件：
+
+pear install yourusername/FirstPackage-0.0.1
+
+套件更新後也是相同的處理模式，請各位舉一反三自行實驗看看。
+
+當然這裡還有很多細節沒有提到，這點就留待往後介紹如何開發 PEAR 套件時再介紹。
+
+給頻道一個專屬網域
+
+如果各位有自行管理的 DNS，那麼我們可以讓自己的 PEAR 頻道有一個專屬的網域名稱。
+
+假設我們已經有 yourusername.com 這個網域名，而我們希望用 pear.yourusername.com 這個網域名稱來指向我們的頻道。
+
+第一步我們先在網域管理商的 DNS 管理畫面中新增一筆 A 記錄，主機名稱為 pear，IP 則指向 204.232.175.78（參考自 GitHub:Help - Setting up a custom domain with Pages, https://help.github.com/articles/setting-up-a-custom-domain-with-pages）。
+
+接著在 /path/to/pear_repository 下建立一個 CNAME 檔案，其內容如下：
+
+pear.yourusername.com
+
+然後參考前面的做法，將新增的 CNAME 檔案用 git 指令推上 GitHub。
+
+接下來回頭修改 /path/to/pear_repository/pirum.xml，將原來的 yourusername.github.com/pear 改成 pear.yourusername.com ：
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+    <name>pear.yourusername.com</name>
+    <summary>My PEAR Channel</summary>
+    <alias>yourusername</alias>
+    <url>http://pear.yourusername.com</url>
+</server>
+
+最後再重新執行一次前面的步驟即可。
+
+視 DNS 更新的時間，大約一小時到一天後，頻道就可以用專屬網域名稱了。
+
+結論
+
+PEAR 在設計上或許沒有其他語言套件管理機制來得方便，但是利用 Pirum 及 Onion 可以幫我們處理掉大部份麻煩的事情。配合上 GitHub Pages 這個免費的網頁空間，我們就能夠方便建立出自己專屬的 PEAR 頻道。
+____________________________________________________________
+
+■ [技術專欄] 網站程式上線前需要準備的事（五）
+
+XDite / 文
+
+
+
+◎ 本文轉載自 Blog.XDite.net。(http://blog.xdite.net/)
+
+第 5 件事：Close Alpha Test、Close Open Test
+
+
+
+終於談到跟這個系列標題比較吻合的內容了！最後一個月上線前該做些什麼事？
+
+
+在本系列（一）(http://blog.xdite.net/posts/2012/03/17/website-online-todo/)，我提到了無論如何最後一個月是測試期。這一個月又分成
+
+
+close alpha
+
+close beta
+
+
+
+
+
+Close Alpha 內測 (一週)
+
+
+
+close alpha 的對象是開發組以及營運組人員。也就是與核心較為相關的組別。此時針對的測試目標是這個 project 業務上應該被「實作」的 functionalty。比如說是食譜網站，就應該可以：
+
+
+＊ 上傳食物照片
+＊ 新增烹飪步驟
+
+＊ 站方精選
+
+＊ 有熱門食譜、新進食譜
+
+＊ 分享到社群網路 …etc
+
+
+
+如果是討論區，要應該可以：
+
+
+＊ 可以發表文章
+
+＊ 可以回應文章
+
+＊ 可以貼圖
+
+＊ 可以收藏
+
+＊ 可以搜尋
+
+＊ 編輯器運作正常 …etc.
+
+
+
+另外測試時要擬定使用「未登入會員」、「登入會員」、「營運權限」、「Admin 權限」各測過一次。
+
+
+
+因為開發組成員在撰寫功能時，為了方便，幾乎都是以 admin 帳號在開發，如果不制定測試步驟和角色，很容易沒測到死角。
+
+
+
+此時的修復重點放在 feature complete（或取捨）以及 functionaly 是否正常運作。
+
+
+
+請不要在此時進行任何 UI 動線調整 。
+
+
+
+
+
+Close Beta 半公測（二週+）
+
+
+
+close beta 的對象是全公司所有人，公司員工的親朋好友，可以信賴的死忠會員等等…etc. 此時針對的測試目標是這個 project 的 UI 動線。
+
+
+
+如果是討論區：
+
+
+＊ 發表的動線是否順暢
+
+＊ 是否 UI 的暗示容易讓使用者 miss 掉上傳照片步驟
+
+＊ 回應文章的動線是否流暢
+
+＊ 網站新訊息的流動是否不夠快速，容易造成網站看起來一片死城。
+
+
+
+此時已經是視同準上線了（所以 Close Alpha 階段的資料會清掉），所有營運組的人必須視同營運狀態一樣運營站務，以避免正式開站遇到狀況時手忙腳亂。
+
+
+
+（這一招是從參訪壹電視時學到的。當時壹電視快開台時有受邀去內部參訪，當時聽到他們已經內部試 run 報新聞 run 了一年時，震撼非常…XD）
+
+
+
+此時的修復重點放在 UI 動線的調整，以及運營方針、步驟的調整，避免開站之後網站就變成死城。
+
+
+
+
+
+Performance Tuning 與 Website Optimized （一週）
+
+
+
+我在開發階段時，最常向 RD 宣導的事情是：我不想管你這個功能怎麼寫出來，但我要你準時交出來。（但最少要符合內部寫程式規範，有辦法讀懂）
+
+
+
+原因是：網站最重要的是 Deliver 上線。而不是站上的 feature 用了多屌的技術，用了多棒的 best practices，沒有用戶會在意這件事。而「貪玩」「遲交」會砸了一切。
+
+
+
+直到 Open Beta 期，Optimized 這件事都不會被提到。因為在網站稍微 stable 之前，所有的 optimized 都毫無意義，做了也是白做。因為會發生效能瓶頸的地方，永遠在你設計時意想不到的地方。
+
+
+
+
+Backend Performance Tuning
+
+
+
+如何做 Performance Tuning？
+
+
+
+＊ 抓出最慢的地方 Refactor 掉
+
+
+
+幸運的是，我的專案都是 Rails Project，有 New Relic (http://newrelic.com/) 這套軟體可以用。它可以幫你找出你的網站哪一段 Ruby Code 特別沒效率，哪一段 code 製造出來的 SQL query 特別 slow。
+
+
+
+其他技巧請看：Rapid development with Rails (http://www.slideshare.net/xuitejoke/rapid-development-with-rails-7394238) P.54- P.59
+
+
+
+＊ Scaling Rails Site：Reading Material # 1 (http://wp.xdite.net/?p=1597)
+
+＊ Scaling Rails Site：Reading Material # 2 (http://wp.xdite.net/?p=1617)
+
+＊ Scaling Rails Site：Reading Material # 3 (http://wp.xdite.net/?p=1664)
+
+＊ Scaling Rails Site：Reading Material # 4 (http://wp.xdite.net/?p=1682)
+
+＊ Scaling Rails Site：Reading Material # 5 (http://wp.xdite.net/?p=1704)
+
+
+
+這是其他題目了。有空我會再整理 update 一篇 Rails Performance Tuning 的文章。
+
+
+
+＊找出最常造訪的頁面壓力測試
+
+
+
+既然已經進入 Open Beta 期了，這時候手上應該可以拿到這個網站最常造訪和效率最差的頁面。
+
+
+
+可以使用 ab (http://httpd.apache.org/docs/2.0/programs/ab.html) 去對網站進行壓力測試。
+
+
+
+再決定是要 refactor slow code 或者是先上 cache 檔著先。
+
+
+
+
+Frotend Performance Tuning
+
+
+
+影響網站使用者感受最大的其實不是 backend 的效率，而是 Browser side 的效率。上線前我會
+
+
+
+＊ 按照 Best Practices for Speeding Up Your Web Site (http://developer.yahoo.com/performance/rules.html) 調整
+
+
+
+其他技巧請看：
+
+
+1.Rapid development with Rails P.42- P.53 (http://www.slideshare.net/xuitejoke/rapid-development-with-rails-7394238)
+
+2.Scaling Rais Site by default (http://www.slideshare.net/xuitejoke/scaling-rails-sites-by-default)
+
+Website Optimized
+
+
+
+以上說的都只是 Performance。但是這跟實際運營沒有那麼大的正關係。我擅長開發的是「內容網站」以及「社群網站」，這一類的網站重點其實是 SEO 以及社群穿透力。
+
+
+
+SEO 以及 Facebook OpenGraph
+比如說：這是在 T 客邦累積出來的兩套 gem。
+
+
+
+＊ seo_helper (https://github.com/techbang/seo_helper)
+
+＊ open_graph_helper (https://github.com/techbang/open_graph_helper)
+
+
+
+網站的每一個頁面都會確保分享至社群網站是正常的。
+
+
+
+＊ Advertising
+
+
+
+靠廣告賺錢，所以要調整廣告板位
+
+
+
+＊ RSS / Email Subscribe / 粉絲團活動經營操作
+
+
+
+跟 user 的互動…etc.
+
+
+
+
+
+開站
+
+
+
+這些都確認沒什麼問題了，然後才是開站。然而開站不是這一切的結束，還有其他事情需要做…
+
+_______________________________________________________________
+
+■ [法律專欄] 淺談商業公司額外附加的「例外許可條款」
+
+葛冬梅 / 文 
+
+商業公司將自由開源軟體做為營利產品或是服務內容已經不是新聞，而隨著商業化程度的加深，這些商業化應用的自由開源軟體也開始在授權條款方面出現變化，其中最常見的變化是在既有的開源模式之外，加上不同的授權選擇，雙重授權模式（註一）就是一個典型而著名的例子，這種模式讓使用者可以在自由開源授權與商業授權之間做選擇，以符合其不同的需求，同時也維持了商用自由開源軟體的多重目的。不過除了雙重授權模式之外，還有一種因應嚴格授權拘束性（License Inheritance，註二）而附加的「例外許可條款」（以下簡稱「例外條款」），讓使用者在應用 GPL 類元件產生衍生程式之後，有著為衍生程式選擇非 GPL 類授權方式的可能性，同時也維持商用自由開源軟體的多重目的。　 
+
+【以增加條款相容性為主要目的】 
+
+就筆者目前所觀察到的現象，典型的例外條款是附隨於 GPL 這份主授權條款而存在。由於 GPL 規定衍生專案的整體仍然必須採用 GPL 繼續授權，若是衍生專案中包含了 MPL、EPL 這類具有部份授權拘束性的軟體元件，這時候就會產生授權方式不相容的狀況（註三），如此將會限制 GPL 類別元件與 MPL、EPL 類別元件的結合應用。但是對於這些商業公司來說，採用 GPL 來授權其軟體亦可能為公司帶來一定的利益，例如勸誘使用者為迴避授權拘束的爭議，而向其洽購商業授權版本，或是勸服社群開發者、能在專案進行商業化利用之後，在認同 Copyleft 理念的基礎下，繼續參與該 GPL 授權主元件的除錯與開發。所以在維持主元件採用 GPL 授權的前提下，部份商業公司有時會在基本的 GPL 授權方式之上，額外附加了其他的授權條件，例如允許 GPL 授權主元件的衍生程式中，有時可以選用非 GPL 的其他自由開源軟體授權方式，以降低直接繼受 GPL 授權方式所可能帶來的衝擊。 
+
+http://www.openfoundry.org/images/120626/ExceptionLicense/lc_201206_el_img1.png
+▲ 圖1 MySQL 5.5.25 自由開源版本中 README 的授權資訊 
+
+舉著名的自由開源資料庫 MySQL 為例，其自由開源版本採用 GPL-2.0 做為主授權條款，同時附隨有一份「自由開源授權除外規定 (FOSS License Exception)」（註四）。如圖1 所示，在程式源碼第一層目錄中的 README 檔案裡，開始的幾段文字清楚說明 MySQL 除了採用 GPL-2.0 授權之外，為了增加相容性，還有特殊例外規定，並請使用者自行到網站上瀏覽細節。 
+
+http://www.openfoundry.org/images/120626/ExceptionLicense/lc_201206_el_img2.png
+▲ 圖2 MySQL 自由開源授權除外規定中的條款清單
+
+使用者連到指定的網頁後（註五），會看到一份簡短的除外規定，主要內容是一些名詞定義與額外附加的條件 (conditions)，最後則是一份授權條款清單。這份清單上羅列著數十份目前常見的自由開源軟體授權條款，這就是本文所說的例外條款清單。只要 MySQL 衍生程式符合這份除外規定所設立的條件，就可以不需要直接繼受 GPL-2.0 的授權方式，而可以改採例外清單上面的授權條款。在此一例外條款的影響下，我們較容易看到非 GPL 授權元件存在於 MySQL 衍生專案中的大融合景象，透過此一例外條款的機制，也直接增加了 MySQL 與其他非 GPL 授權的自由開源軟體元件結合應用的可能性。 
+
+除了 MySQL 之外，近年來應用相當普遍的 Sencha 系列專案也是一個好例子，其部份元件也是採用 GPL-3.0 搭配例外條款的方式來授權（註六），藉此提升 Sencha 與其他自由開源軟體的結合應用機率。
+
+【實質上修改主授權條款的規定】 
+
+若是仔細閱讀這些例外條款的相關規定，會發現其中都會有類似的文字，表示這份例外條款的規定並沒有完全取代 GPL-2.0，而是增修了若干 GPL-2.0 的內容。許多人也許會感到疑惑，因為一般來說、適用 GPL 這類嚴格授權拘束性的自由開源授權條款時，應不能就其授權文字進行直接或是額外的修改，然而、直接考究 GPL 授權條款的文句，可以發現其嚴令要求的是「禁止向後手增添條款本身所無之額外限制（註七）」，而一般來說例外條款是「向後手增添條款本身所無之額外放寬」，所以許多施行者認為這樣的方式並不直接違反 GPL 授權條款的相關規定，例如知名的 GCC RUNTIME LIBRARY EXCEPTION（註八），也是在這樣的立場上被解讀。
+
+所以、我們可以用修補程式 (patch) 與原軟體主元件的關係，來理解例外條款與主授權條款的關係：修補程式原則上單獨存在，並不會影響主元件的程式碼與架構，不過一旦將修補程式的內容實際加入到主元件中的話，軟體專案因此就被修改了；例外條款形式上獨立存在，它的存在並沒有直接修改原來主授權條款的任何文字，但若是想要了解軟體專案的授權細節，就必須要將例外條款的內容，與主授權條款進行對照並一併解讀，此時會發現，某些主授權條款的內容，實質上已經被例外條款的相關規定修改了。所以 MySQL 雖然採用 GPL-2.0 授權，依照 GPL-2.0 的預設規定，所有衍生專案的程式碼都必須要繼續採用 GPL-2.0 來授權，但因為 MySQL 的著作權利人另外制定了「例外條款」，並適用到 MySQL 這個專案上，因此 MySQL 資料庫的整體授權內容，實質上已經跟 GPL-2.0 的基本類型有所不同，使用者利用 MySQL 所產生的衍生專案，部份程式碼只要符合除外規定，就可以採用另外的自由開源軟體授權條款來進行釋出。 
+
+不過必須要注意，雖然依照例外條款的規定，使用者為衍生程式選擇授權方式的選項變多，但並不一定就代表主元件中的義務規定也必然因此被放寬，所以在利用此類專案的時候，必須要詳細了解授權條款的細部規定，以避免未來法律糾紛的產生。此外，還有一點需要加以說明：有權附加這類例外條款的人，通常是軟體著作權利人，或取得軟體著作權人額外同意的合法被授權人，而不能單單是軟體的使用者。這是因為一般使用者，所擁有的只是依照 GPL 相關規定對軟體元件進行使用、修改，與後續散布的權利，而並不能逾越 GPL 授權條款本身的規則，進一步修改授權條款的相關內容。所以本文所援引的例子，商業公司本身即為該專案完整的著作權利人，站在得以雙重授權該專案的地位上，來為這些專案附加例外條款。而這些商業公司本身都有一套完整的著作權管理制度，讓公司可以擁有該專案完整、合法的著作權利或是授權地位，來作為持續維持這些例外條款的基礎（註九）。 
+
+【從整體面理解授權內容以靈活應用】 
+
+例外條款本身的內容相當簡短，軟體權利人也因此為使用者提供了一個較彈性的選擇方案，但是在其簡短與多選擇的外表下，有可能隱藏著複雜的授權運作機制，這是因為該專案的授權政策，必須要併合主授權方式與例外條款一同理解才能夠窺其全豹，有時會讓該專案整體的授權內容，比起基本款的 GPL 授權模式更加複雜難懂。所以在利用到有附加例外條款的商用自由開源軟體專案時，仍是必須從整體面來多加注意例外條款影響了哪些主授權條款的內容，對於使用者的權利又產生了哪些更動，如此才可以靈活運用這些例外條款所帶來的應用彈性。 
+
+----
+
+註一：關於自由開源軟體雙重授權模式的進一步說明，可參考：林誠夏，自由軟體的商業應用模式（下）－雙重授權篇，http://www.openfoundry.org/tw/legal-column-list/1056；葛冬梅，自由／開放源碼軟體的多重授權，http://www.openfoundry.org/tw/legal-column-list/506。 
+
+註二：關於授權拘束性詳細的說明與相關影響，請參閱：林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（上），http://www.openfoundry.org/tw/legal-column-list/8446；林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（下），http://www.openfoundry.org/tw/legal-column-list/8447。 
+
+註三：關於自由開源軟體授權條款間的相容性與衝突狀況，進一步詳細說明請參考：林珈宏，從 Copyleft 看自由開源軟體授權相容性 ，http://www.openfoundry.org/tw/legal-column-list/8710。 
+
+註四：相關資訊請參考下列網頁：MySQL :: MySQL Editions：http://www.mysql.com/products/；MySQL :: MySQL Community Edition：http://www.mysql.com/products/community/；MySQL :: FOSS License Exception，http://www.mysql.com/about/legal/licensing/foss-exception/。 
+
+註五：MySQL 的「自由開源授權條款除外規定 (FOSS License Exception)」：http://www.mysql.com/about/legal/licensing/foss-exception/。 
+
+註六：Sencha 公司針對應用與開發這兩種不同的利用方式，分別制定了兩份不同的例外許可授權條款：Exception for Applications，http://www.sencha.com/legal/open-source-faq/open-source-license-exception-for-applications/；Exception for Development，http://www.sencha.com/legal/open-source-faq/open-source-license-exception-for-development/。
+
+註七：GPL-2.0 此項義務性規定原文為："You may not impose any further restrictions on the recipients' exercise of the rights granted herein." GPL-3.0 為 "You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License."
+
+註八： GCC RUNTIME LIBRARY EXCEPTION 的條款內容原文請見：http://www.gnu.org/licenses/gcc-exception-3.1.html；其運作說明與問答集請見：http://www.gnu.org/licenses/gcc-exception-faq.html。
+
+註九：也因此本文所討論的這種例外條款，並不是根據 GPL-3.0 第 7 條附加條款 (Additional Terms) 而產生的，在此一併說明。
+_______________________________________________________________
+
+■ [企業應用] 2012 OpenOffice／LibreOffice 的回顧與展望
+
+曾義峰 / 文
+
+本文將從各種不同的角度來探討 OpenOffice／LibreOffice 計畫，包括歷史演進、主要贊助者、近期新功能，以及法律授權方面所帶來的影響。
+
+
+1. OpenOffice
+
+1-1. OpenOffice 歷史演進
+
+詳細的歷史演進，可以參考 2012 年 6 月 2 日-「OpenOffice 3.4 Release Party」(http://registrano.com/events/aoo34) 活動中，林誠夏分享的「From Star to Apache－從 OpenOffice 看自由開源軟體的授權轉換」(http://www.openfoundry.org/of/download_path/openlegal/From_Star_to_Apache_Knowing_Open_Source_license_transition_based_on_OpenOffice_analysis/20120602.pdf) 簡報 (PDF)。本文擷略如下。
+
+1. StarOffice（OpenOffice 最早的前身），為 StarDivision 公司的產品（1984-1999）
+2. Sun OpenOffice，為 Sun 併購 StarDivision 後的產品名稱（1999-2010）
+3. Oracle OpenOffice，為 Oracle 併購 Sun 後的產品名稱（2010-2011）
+4. Apache OpenOffice，為 Oracle 捐贈 The Apache Software Foundation（Apache 基金會，http://www.apache.org/）後的產品名稱（2011-present）
+
+另外需要補充說明的是，Apache OpenOffice 目前尚屬於育成計畫（Apache Incubator）。
+
+1-2. Apache OpenOffice 授權條款及「The Apache Way」精神
+
+任何進駐 The Apache Software Foundation 的計畫，都必須符合他們的哲學觀，也就是所謂的「The Apache Way」。我們可以在官方網站「How to ASF works」(http://www.apache.org/foundation/how-it-works.html) 的 Philosophy 段落見到以下 6 點。
+
+＊ collaborative software development
+＊ commercial-friendly standard license
+＊ consistently high quality software
+＊ respectful, honest, technical-based interaction
+＊ faithful implementation of standards
+＊ security as a mandatory feature
+
+其中第二項「commercial-friendly standard license」，目前在官方網站上找不到任何對於該項的進一步描述。但是在 Oracle 捐贈 OpenOffice 給 The Apache Software Foundation 前，OpenOffice 使用的是 LGPL-3.0 (http://www.gnu.org/licenses/lgpl-3.0.html) 授權條款，而受贈後專案團隊隨即決議將授權條款更改為 Apache-2.0 (http://www.apache.org/licenses/LICENSE-2.0.html)。因此，自 Apache OpenOffice 成立至今的版本，其軟體授權條款使用的不再是原先 Oracle OpenOffice 的 LGPL-3.0 而是 Apache-2.0。
+
+1-3. Apache OpenOffice 贊助者
+
+身為 The Apache Software Foundation 的其中一員，未來將承襲其豐厚的資源。目前該基金會有許多贊助者，包括 Yahoo、Microsoft、Google、Facebook、Citrix、AMD、HP 及 IBM 等，都是知名的大企業。
+
+更詳細列表請參考官方網站「Thanks」(http://www.apache.org/foundation/thanks.html)。
+
+
+2. LibreOffice
+
+2-1. LibreOffice 歷史演進
+
+自從 Oracle 併購 Sun 之後，有些社群人士不認同 Oracle 處理 OpenOffice 的方法及態度，於是在 2010 年另外成立了 The Document Foundation（文件基金會，http://www.documentfoundation.org/）。同時由當時 OpenOffice 的程式碼裏，另創一個分支 (fork) 的程式碼版本，並命名為「LibreOffice」（註1），以接續開發。
+
+2-2. LibreOffice 授權條款
+
+從法律觀點來看，當時 Oracle OpenOffice 的著作財產權人仍為 Oracle 所擁有，因此即使 LibreOffice 有意修改其授權方式，也仍需依照當時的授權條款（LGPL-3.0）規則行事，例如延用 LGPL-3.0 或是改用 GPL-3.0 (http://www.gnu.org/licenses/gpl-3.0.html) 亦可。
+
+但由於 LibreOffice 核心團隊成員熱衷且認同於原先 Copyleft (http://zh.wikipedia.org/zh-tw/Copyleft) 的分享精神，所以在另創分支時，也繼續延用了 LGPL-3.0 的授權條款。
+
+2-3. LibreOffice 贊助者
+
+LibreOffice 屬於 The Document Foundation 旗下的計畫，而目前該基金會的贊助成員包括 Canonical（Ubuntu 的公司）、FSF（美國自由軟體基金會）（註2）、Google、Red Hat 等，都是知名的大企業。
+
+更詳細列表請參考官方網站「Our Supporters」(http://www.documentfoundation.org/supporters/)。
+
+
+3. Apache OpenOffice 與 LibreOffice 的現況
+
+3-1. 授權條款策略
+
+目前 Apache OpenOffice 使用的是 Apache-2.0，而 LibreOffice 則是 LGPL-3.0。
+
+按照授權條款的特性而言，LGPL-3.0 要求使用者的付出義務較多，但是在某種程度上也保障使用者貢獻的回饋。反之，Apache-2.0 要求使用者的付出義務較少，但是對於後續使用者之義務回饋的力道也較小。
+
+進一步舉例來說，若我們在 LibreOffice（LGPL-3.0）上開發新功能或擴充套件，很可能必須遵循其義務，將該部分的程式原始碼公開，但是後續若有別的開發者或公司將該功能強化或瑕疵修正，那麼他們也很可能必須同時提供該部分的原始碼，於是我們可以進一步得到其義務上的持續回饋。
+
+反之，若我們在 Apache OpenOffice（Apache-2.0）上開發新功能或擴充套件，幾乎可以不用公開自己的程式原始碼，但是相對於其它開發者或公司來說，他們的貢獻也未必有義務要回饋，於是在這種情形下，雙方都無法共享彼此的貢獻。
+
+因此，選用不同的條款，對於後續的商業模式，甚至是社群未來的發展，都會帶來不同的影響。
+
+3-2. 近期功能的比較
+
+近期推出的 Apache OpenOffice 3.4，除了增添新功能外也修正了一些問題，包括中文字數統計修正及端點圓角樣式 (Rounded) 等，而中文字數統計的修正是很多人期待已久的特性，其他更多的特性可以參考依瑪貓的簡報-「歡迎光臨 Apache OpenOffice 3.4 (http://www.slideshare.net/imacat/welcome-to-apache-openoffice-34)」。而 LibreOffice 近期推出的 3.5.4 版本則是針對大型檔案的開啟速度上做了改進。(http://www.h-online.com/open/news/item/LibreOffice-3-5-4-boosts-large-file-performance-1586636.html)
+
+經過實際於 Ubuntu 12.04 作業系統的測試後，LibreOffice 3.5.4 確實對於大檔案的開啟速度快於 Apache OpenOffice 3.4，但 Apache OpenOffice 的中文字數統計較 LibreOffice 來得正確，且沒有端點圓角樣式等其他瑕疵問題。
+
+
+4. 結語
+
+由於目前 Apache OpenOffice 及 LibreOffice 的新功能尚未彼此整合，所以對於一般使用者而言，若是有中文字數統計的要求，目前就只能使用 Apache OpenOffice 3.4 及其後版本，而對於大檔案開啟速度有要求者，則建議 LibreOffice 3.5.4 及其後版本。
+
+至於未來雙方的功能是否可以合併，除了需要視雙方團隊是否願意接納彼此貢獻的政治因素外，還需要考量兩者授權條款的相容性問題。因為 Apache-2.0 與 LGPL-3.0 有著單向相容的特性，也就是說 Apache-2.0 授權的程式可以「相容」於 LGPL-3.0 授權，但是反之則不行，除非另行授權。所以，依照目前的授權方式，使用 LGPL-3.0 的 LibreOffice 可以直接取用 Apache OpenOffice 的 Apache-2.0 程式碼；反之，使用 Apache-2.0 的 Apache OpenOffice 則無法直接取用 LibreOffice 的 LGPL-3.0 程式碼。
+
+綜觀整個歷史演進，我們可以知道商業模式可以如何策動法律授權的異動，甚至進而影響未來技術的發展及融合。
+
+
+註1：LibreOffice 中的「Libre」一詞是法文及西班牙文的「自由」之意，剛好與 OpenOffice 中的「Open」一詞相呼應。
+
+註2：FSF（Free Software Foundatoin，美國自由軟體基金會）針對 Apache OpenOffice 使用 Apache-2.0 授權條款一事，有表達出其捍衛 Copyleft 的立場。詳細請參閱 FSF: Statement on OpenOffice.org's move to Apache (http://www.fsf.org/news/openoffice-apache-libreoffice) 一文。
+_______________________________________________________________
+
+﻿■ [源碼秘技] Sigil－自製電子書的開源利器
+
+林雪凡 / 文
+
+(http://www.openfoundry.org/images/120626/sigil/sigil00.png)
+
+軟體名稱：Sigil
+介紹版本：0.5.3
+官網：http://code.google.com/p/Sigil/
+授權：GPL-3.0
+
+簡介
+
+Sigil 是一款開源的 epub 電子書編輯軟體。它以所見即所得介面為主體，提供了能夠產生常見格式的按鈕，而對於某些特別的需求，也具有原始碼編輯能力。另外還有自動產生目錄、檔案整體正確性驗證、自動修正原始碼錯誤、meta data 編輯、拼寫檢查、調整頁面樣式表等特色，功能相當完全。可以在 Windows、Mac 和 linux 平台下運行，是一個跨平台、全方位的電子書編輯製作軟體。
+
+安裝指引
+
+1. 如果您是 Linux 使用者，您可以參照本頁 (http://code.google.com/p/sigil/wiki/LinuxDistroPackages) ，看 Sigil 有沒有針對您所使用的發行版進行打包。
+2. 如果您是 Mac 或 Windows 使用者，您可以直接到官網下載頁 (http://code.google.com/p/sigil/downloads/list) 下載最新版本。
+
+介面與操作
+
+打開 Sigil 後，首先出現在眼前的就是這樣一個畫面。
+
+▲ 圖1：Sigil 剛啟動時的畫面 (http://www.openfoundry.org/images/120626/sigil/sigil01.png)
+
+1. 選單列
+2. 按鈕列。提供各種常用功能。使用者可以任意拖動按鈕以變更位置，也可以透過【View】→【Toolbars】來將不需要的按鈕關掉，空出空間。
+3. Book Browser。epub 的本質是一種被律定好格式的壓縮檔，而透過這個資料夾，您可以看到當前壓縮檔內的實際結構（雖然嚴格說來有被精減過）。
+4. 編輯區。您可以在這裡編輯 Book Browser 中選擇的文字檔。
+5. 目錄。顯示電子書中的目錄結構。
+6. 目錄產生按鈕。可透過這個按鈕重新產生目錄。
+7. 檢查訊息。Sigil 可以幫您檢查您製作的電子書是否有問題。當您要求檢查時，檢查訊息就會出現在這裡。
+8. 編輯區內容縮放控制。
+9. 您可以透過這兩個按鈕，將面板關掉或拆分成獨立的視窗。
+
+以下我們分別介紹！
+
+Book Browser
+
+如前所述，Book Browser 體現了 epub 的內部結構；為了讓後續的介紹更容易，姑且讓我們先看看這邊。
+
+▲ 圖2：Book Browser 視窗 (http://www.openfoundry.org/images/120626/sigil/sigil02.png)
+
+Book Browser 中顯示了 epub 中有幾個資料夾，其中：
+
+1. Text 資料夾：xhtml 或 html 格式的文字檔案一律會放在這裡。一本書可以有許多文字檔。當檔案不只一個時，這裡的順序也代表著閱讀器實際顯示的順序。
+2. Styles 資料夾：可以放置 CSS 樣式表檔案，供文字檔引用。
+3. Images 資料夾：圖檔會放在這邊，供文字檔引用。
+4. Fonts 資料夾：字型放在這邊，供文字檔引用。
+5. Misc 資料夾：收藏其他由您加入，但 Sigil 不知道該如何歸類的附加檔案。
+6. toc.ncx 與 content.opf：這兩個檔案 Sigil 會在內部自動維護。除非您是 epub 專家，否則請當它們不存在就好。
+
+理論上，您可以用拖曳的方式改變檔案的順序（即章節的順序）然而在 0.5.3 版的 Sigil 中，變更檔案排序常常導致當機。建議一開始就預留下封面，以儘量避免重新排序的問題。
+
+您可以在 Book Browser 內的項目上按右鍵，就可以召喚選單。
+
+▲ 圖3：Book Browser 右鍵選單 (http://www.openfoundry.org/images/120626/sigil/sigil03.png)
+
+在不同項目上按右鍵，跳出的選單內容也會略有不同。這邊以在文字檔上按右鍵為例子。
+
+您可以選擇【Add Existing files...】插入現有的檔案。您插入的檔案將會被 Sigil 自動歸放到正確的資料夾中。【Add Blank Section】則可以讓您加入空白的 xhtml 文字檔案，這讓您可以快速地建立空白章節。
+
+關於這部份的細部說明，請看這裡：http://web.sigil.googlecode.com/git/files/OEBPS/Text/book_browser.xhtml
+
+書本目錄
+
+▲ 圖4：讓 Sigil 產生目錄 (http://www.openfoundry.org/images/120626/sigil/sigil04.png)
+
+目錄面板中最初是空白的。如要產生目錄，您必須按目錄面板上的【Generate TOC from headings】按鈕，接著選擇要用哪些等級的標題來建立目錄，最後再按下確認按鈕，則目錄就會被產生出來。
+
+如果您接著又更動了檔案與標題，則必須要重新進行這個動作。
+
+File 選單
+
+▲ 圖5：File 選單 (http://www.openfoundry.org/images/120626/sigil/sigil05.png)
+
+您可以從這裡新增、儲存、讀取並驗證電子書檔案。Sigil 並沒有自訂的內部編輯格式；他讀取的是 epub，儲存時也總是將資料回存成 epub 檔案。
+
+【Validate Epub】按鈕可以檢查當前的 epub 有沒有內含任何潛在問題。從 Meta Data 沒被正確填入、epub 內含未使用到的多餘檔案、引用了不正確的檔案等等，偵測的範圍相當廣，將 epub 正式發佈之前強烈建議用這功能檢查一下。
+
+另外，雖然選單中有提供列印功能，不過該功能只能提供給單個 Section 檔案使用。想用 Sigil 印出整本書的話，恐怕還有些難度。
+
+Edit 選單
+
+▲ 圖6：Edit 選單 (http://www.openfoundry.org/images/120626/sigil/sigil06.png)
+
+提供雜項編輯功能，以下分別介紹。
+
+插入圖片
+
+【Insert Image...】可以在游標位置插入圖片。
+
+需要注意的是：能透過【Insert Image...】插入的圖片，只限於「已經放入 epub 中的圖檔」。換句話說，必須先令該圖檔存於 Book Browser 的 Images 資料夾下，然後您才可以將它們編輯到電子書的頁面上。
+
+您可以透過【File】→【New】→【Add Existing File(s)...】將圖檔導入 epub 之中。
+
+分章
+
+【Edit】→【Split Chapter】會替您的章節進行硬分章：具體說來，會將當前游標所在的行「視為本頁最後一行」，並將後面多出來的內容轉移到新檔案中，然後將此新檔案插入到當前檔案的正後方。至於【Insert Chapter Marker】則會在當前游標位置處插入一個分章符號（快捷鍵 Crtl + Shift + Enter）；一旦閱讀器遇到這個符號，就會將符號後方內容視為新的章節……這被稱為軟分章。
+
+不管軟分章或硬分章，以上兩種做法對讀者來說都完全相同。然而基於硬體限制，單一檔案內容如果過長，可能會使閱讀器出現異常，因此以硬分章切割章節通常是好主意。
+
+【Split at Chapter Marker】可以一次性地幫您將所有軟分章轉成硬分章。
+
+搜尋與取代
+
+Sigil 的搜尋取代功能相當強大。支援一般模式、regex 模式、一次處理全部檔案等功能，可以幫書籍製作者減少很多工作。比方說高亮特定字串，格式化超連結，替換括號等等……值得使用者稍微研究一下。
+
+▲ 圖7：搜尋取代介面 (http://www.openfoundry.org/images/120626/sigil/sigil07.png)
+
+Meta Editor
+您可以從【Edit】→【Meta Editor】召喚中繼資料編輯器。
+
+▲ 圖8：Meta Editor (http://www.openfoundry.org/images/120626/sigil/sigil08.png)
+
+中繼資料編輯器可以讓使用者指定電子書的書名、作者名以及使用語系。如果您還需要更多欄位的話，請按【More】按鈕。
+
+View 選單
+
+▲ 圖9：View 選單 (http://www.openfoundry.org/images/120626/sigil/sigil09.png)
+
+您可以在此調整 Sigil 的顯示方式。
+
+【Toolbars】子選單可以將某些不常用的按鈕列關掉。
+
+【Book View】、【Split View】與【Code View】這三項可以變更主編輯區的顯示方式。【Book View】表示正常模式；【Code View】表示原始碼模式；【Split View】代表同時使用兩種模式。您還可以前往設定視窗（於【Edit】→【Preferences】）調整 Split View 的分割方式。
+
+最下面的【Book Browser】、【Validation Result】與【Table of Content】3 個選項，代表主畫面中那 3 個額外視窗的顯示與否。若您嫌主編輯區被旁邊的視窗擠壓得過小，您可以把這邊的勾去掉。
+
+Format 選單
+
+▲ 圖10：Format 選單 (http://www.openfoundry.org/images/120626/sigil/sigil10.png)
+
+內建了常用格式供使用者直接調整。
+
+別的不說，在製作電子書時，強烈建議使用 Heading 功能來標識各段落的標題（而非使用黑體與加大字）；因為只有依據 heading 標籤，Sigil 才能自動產生出電子書的目錄來。如果您不滿 Heading 的預設外觀，您應該透過層疊樣式表 (CSS) 來變更顯示方式。
+
+Quick Setting 選單
+
+▲ 圖11：Quick Settings 選單 (http://www.openfoundry.org/images/120626/sigil/sigil11.png)
+
+這兩個選項都是用來處理 HTML 原始碼的。若您從不編輯原始碼，則您大可略過。
+
+【Cleaning With HTML Tidy】打勾表示 Sigil 會自動正規化 HTML 原始碼。這包括自動替原始碼分行、加入縮進等等。而不打勾則不會進行正規化。
+
+……雖然說明是這樣寫的，不過根據測試，本選項在 0.5.3 內沒有作用。無論勾不勾，Sigil 都會強制正規化原始碼。
+
+【Check For Well-Formed Errors】打勾表示：當 Sigil 發現您輸入了不正確的 HTML 原始碼時，Sigil 跳出詢問視窗，問您要讓 Sigil 自己修正或是由您手動修正。本項如果不打勾，則 Sigil 會不經提示就自動修正原始碼－其結果有時並非是您想要的。
+
+建一本書的基本流程
+
+如果您想用 Sigil 建立一本全新的書，您可以參考以下的做法。
+
+1. 使用【File】→【New】→【New Book】來建立一本全新的空白書。
+2. 接著透過【Edit】→【Meta Editor】設定作品名、作者名與語系。
+3. 依需要將文字剪下貼上、調整格式、增加頁面、放入插圖等等等……
+4. 按下【Generate TOC from heading】按鈕來產生目錄。
+5. 按下【Validate Epub】來確認格式正確。
+6. 儲存。
+
+其他補充技巧
+
+連結 CSS 樣式表
+
+從 0.5.901 版開始，Sigil 可以透過右鍵選單來方便地連結頁面內容與 CSS 樣式表。不過很遺憾的，在大部份 linux 發行版的套件庫中版本號還追不上。如果您想要在 0.5.901 之前的 Sigil 中指定某頁連結到某樣式表，您必須要直接編輯內部頁面的原始碼。比方說……
+
+在原始碼編輯模式中找到 <head> 區段，並在區段中插入：
+
+    <link href="../Styles/style.css" rel="stylesheet" type="text/css" />
+
+就可以在 Sigil 中使用檔名為 style.css 的樣式表。
+
+▲ 圖12：將 style.css 樣式表指定給當前頁面 (http://www.openfoundry.org/images/120626/sigil/sigil12.png)
+
+使用內嵌字型
+
+您可以在 CSS 檔案中插入以下原始碼，就可以讓文字套用內嵌字型。
+
+    @font-face {
+            font-family: Custom; /* 這邊名字可以亂取 */
+            src: url("../Fonts/font.ttf");
+    }
+    body { /* 讓全頁都套用指定字型 */
+    font-family: Custom; /* 對應到之前的名字 */
+    }
+
+參考資料
+
+1. Sigil 手冊：http://web.Sigil.googlecode.com/git/index.html
+手冊是針對最新版本的 Sigil 編寫的，細節可能和您所用的版本略有不同。參考時請稍微注意。
+2. Sigil 基礎指引：http://code.google.com/p/Sigil/wiki/BasicTutorial
+開發者對使用者的簡單建議。
+_______________________________________________________________
+
+﻿■ [源碼新聞] Twitter 的開源軟體 Zipkin
+
+黃湘婷 / 編譯
+
+Zipkin 為分散式的追蹤系統，功能為收集所有 Twitter 不同服務的時序資料，使 Twitter 執行更加快速，類似於 Firefox 的擴充套件 Firebug，不同的部分在於︰Zipkin 是藉由網站後端追蹤，Firebug 則是以瀏覽器追蹤。此套追蹤系統於 6 月 7 日以 APLv2 (http://www.apache.org/licenses/LICENSE-2.0) 授權成為開放原始碼軟體。
+
+Zipkin 能幫助我們找到一些未開發的性能優化，如刪除 memcache 的請求、重寫太慢的 MySQL SELECT 指令，以及修正不正確的服務逾時等。尋找與修正這些類型的性能瓶頸，能幫助 Twitter 更加快速。
+
+微博公司表示，他們也使用 Zipkin 收集其所有服務的時序資料。Twitter 目前已創建檢測庫來收集能通過 Collector 程序的的追蹤資料，並儲存於資料庫中，開發人員與系統管理員便能透過網頁前端分析這些資料。典型的使用例子為找出使用者請求逾時的原因，可讓開發人員查明瓶頸位於系統中的哪個地方。
+
+Zipkin 使用分散式 NoSQL 資料庫系統 Apache Cassandra (http://cassandra.apache.org/) 為數據儲存系統，分散式應用程序協調服務 Apache ZooKeeper (http://zookeeper.apache.org/) 為協調系統，以及 Facebook 收集日誌的服務器 Scribe (https://github.com/facebook/scribe) 記錄追蹤數據。這些都是開放原始碼的軟體，Twitter 也將 Zipkin 釋出為開源軟體，希望能擴展支援更多的系統。
+
+
+相關網址︰
+
+分散式追蹤系統 Zipkin
+http://engineering.twitter.com/2012/06/distributed-systems-tracing-with-zipkin.html
+
+Zipkin : Twitter 新的開放原始碼專案
+http://www.h-online.com/open/news/item/Zipkin-Twitter-s-new-open-source-distributed-tracing-project-1612884.html
+
+Github : Zipkin 為分散式追蹤系統
+https://github.com/twitter/zipkin
+_______________________________________________________________
+
+■ [源碼新聞] Firefox 13 正式版發布
+
+黃湘婷 / 編譯
+
+Mozilla 於六月初推出 Firefox 13 正式版，此次更新的特色為開啟新分頁時，會顯示使用者常瀏覽的網頁，以及在預設的起始頁下方新增了捷徑，這些捷徑包括了下載記錄、書籤、歷史記錄、附加元件及設定等。
+
+當然，這些功能以往都能藉由選單或鍵盤快捷鍵來執行，但對於新的使用者來說，不需要花時間去尋找這些按鈕在選單的哪個位置，或是花功夫去記憶鍵盤的快捷鍵。透過預設的起始頁，就能看到這些常用的按鈕，使用上就方便許多。
+
+而開啟新分頁時所顯示經常瀏覽的網頁是以 3x3 共 9 個縮圖的方式呈現，較 Google Chrome 預設的 4x2 多出了一個分頁，此外分頁也能依使用者的喜好自行新增、釘選以及重新排列，在瀏覽網頁時能更有效率。
+
+除了瀏覽器介面的改變外，Firefox 13 為了加快瀏覽網頁的速度，預設啟用 SPDY 協定。SPDY 協定為 Google 研發，目的在於加快網路傳輸速度，透過壓縮網頁標頭 (http header) 來減少網頁下載時間，同時減輕伺服器的工作量。
+
+另外，SPDY 在讀取網頁時採用 SSL 標準，網頁伺服器和瀏覽器之間以加解密的方式溝通，確保資料的安全性。其實早在 Firefox 11 版 (http://hacks.mozilla.org/2012/02/spdy-brings-responsive-and-scalable-transport-to-firefox-11/) 就內建支援 SPDY，此次的改版才將其改為預設啟用，令網路傳輸更加快速。
+
+
+相關網址︰
+
+Firefox 13 正式推出
+http://news.softpedia.com/news/Firefox-13-Launched-Officially-273892.shtml
+
+Firefox 13 的特色：全新的首頁
+http://news.softpedia.com/news/Firefox-13-Feature-Highlight-a-Brand-New-Homepage-274007.shtml
+
+Firefox 13 發布穩定版，增加快速開啟及新的首頁
+http://www.omgubuntu.co.uk/?p=58231
+_______________________________________________________________
+
+■ [源碼新聞] Linux 版 Skype 離開 Beta 階段，發佈 4.0 正式版
+
+黃湘婷 / 編譯
+
+Linux 版的 Skype 於 6 月 14 日發佈，版本號由 2.2 直接晉升為 4.0，代號為 "Four Rooms for Improvement"，改善了以往 Linux 與其他桌面版本的差距，目前可於官方網站中下載 (http://www.skype.com/intl/en/get-skype/on-your-computer/linux/)。
+
+Skype 為一款提供語音通話的即時通訊軟體，透過申請的帳號，便能直接撥打給對方進行語音通話甚至是視訊通話，並且支援多方通話的功能，一次可與許多人對談，帳號與帳號間的通話為免費，對於出國旅遊、跨國會議或是總公司與分公司間的聯絡帶來相當大的便利。
+
+此次改版帶來的新功能有：可在同一個地方管理所有聊天訊息的統一對話視窗，若是不習慣的使用者也可在「聊天選項」中關閉此功能、新的播號介面、更好的語音及視訊通話品質、新的表情符號、能夠儲存及查看 Skype 聯絡人的號碼、更迅速的讀取歷史訊息，以及支援捷克及挪威兩種新的語言等等。
+
+雖然 Linux 版推出的新功能有些是其他桌面版本已經有的，但對 Linux 版來說是很大的躍進，成功縮短了不同桌面版本間的差異。
+
+
+相關網址︰
+
+Linux 版 Skype 4.0
+http://blogs.skype.com/linux/2012/06/skype_40_for_linux.html
+
+Linux 版 Skype 4.0 可供下載
+http://www.webupd8.org/2012/06/skype-40-for-linux-available-for.html
+
+Linux 版 Skype 離開 Beta 階段，成為 4.0 正式版
+http://www.omgubuntu.co.uk/2012/06/skype-for-linux-loses-beta-tag-bumps-to-4-0
+_______________________________________________________________
+
+■ [源碼新聞] Windows Azure 提供 Linux 的支援
+
+黃湘婷 / 編譯
+
+Windows Azure 是由微軟開發的雲端服務作業系統，提供開發、服務代管及服務管理環境的平台，是一種 Paas (Platform as a Servive) 產品，能執行 Windows 應用程式並將資料儲存於雲端，減少 IT 管理作業的人力與成本。另外，Windows Azure 支援常用的標準與通訊協定，如：SOAP, REST, XML 與 PHP 等等，開發人員使用現有的開發技術即可建置雲端應用程式。
+
+在經過多年與 Linux 的競爭下，微軟為 Windows Azure 雲端服務作業系統提供了 Linux 的版本，包括 SLES (http://www.suse.com/products/server/), openSUSE (http://news.opensuse.org/), CentOS (http://www.centos.org/) 以及 Ubuntu (http://www.ubuntu.com/)，可供使用者於 Windows Azure Image Gallery 中選擇。
+
+Linux 基金會行銷開發服務的副總裁 Amanda McPherson 表示，雲端運算大多為 Linux 與開放原始碼的事情，而微軟投入雲端的舉動顯示他是一個聰明的公司，為了技術上的應用，他同意接受其他的作業系統，雖然微軟的使用者可能不會為此感到高興，但這對於使用者是有好處的。
+
+在過去的一年中，微軟的工程師做了相當多的工作，確保其虛擬化技術 Hyper-V 也能運行於 Linux 系統。微軟的合作夥伴 Wade Wegner 表示，雲端運算為連接這些不同的平台與技術提供了一條路徑，微軟也正致力於使 Windows Azure 無論平台或技術在執行應用程式上是最好以及最簡單的地方。
+
+
+相關網址︰
+
+微軟在 Azure 雲端服務提供 Linux 作業系統
+http://arstechnica.com/information-technology/2012/06/microsoft-welcomes-linux-to-the-azure-cloud/
+
+微軟 Azure 支援 Linux
+http://www.itworld.com/software/280313/microsoft-run-linux-azure
+
+微軟 Azure 提供 Linux 的支援
+http://www.techrepublic.com/blog/opensource/microsoft-now-offering-linux-on-azure-what-does-this-mean/3679
+_______________________________________________________________
+
+■ [源碼新聞] 開放源碼醫療設備 - 當程式碼掌握生殺大權
+
+謝良奇 / 編譯
+
+
+
+許多人的生命有賴於心臟起搏器和人工心臟確保血液順利流通全身，醫療裝置可說是現代奇蹟之一。在美國售出的醫療裝置中，半數以上的大部份功能有賴於軟體來達成。心臟起搏器的軟體靠的是超過 8 萬行以上的程式碼，藥物輸液泵有 17 萬行，核磁共振掃描器則超過 7 百萬行。
+
+
+
+對軟體的逐漸依賴產生了令人熟悉的問題：臭蟲、當機、攻擊漏洞。美國 1999 年到 2005 年間所售出以軟體為基礎的醫療裝置中，有 1/3 因為軟體錯誤而被召回。在 1980 年代，放射性治療機器 Therac-25 中的軟體臭蟲，造成若干位病人被暴露在大規模的過量輻射下，至少有 5 人因此死亡。
+
+
+
+絕大多數的醫療裝置使用的是封閉與私有軟體，使得安全研究者難以找出軟體問題。許多學者開始希望運用開放源碼重新塑造醫療裝置產業，例如美國賓州大學與 FDA 的通用輸液泵專案，希望醫院最終可以利用快速原型機列印出輸液泵，然後下載開放源碼軟體安裝，在幾個小時內就有裝置可用。
+
+
+
+威斯康辛大學麥迪遜分校的開放源碼醫療裝置計畫，正在設計一部結合放射線治療、高解像力電腦斷層與正子斷層造影的機器。由西雅圖華盛頓大學設計，名為 Raven 的開放源碼手術機器人，為全球研究者在機器人手術的新技術實驗上，提供了可負擔的平台。
+
+
+
+為了臨床使用，開放源碼裝置必須通過 FDA 昂貴且冗長的核可程序。規管制度帶來的高成本迫使部分非營利的開放源碼專案修改其商業模式。其他人則試著迴避美國的規管制度。
+
+
+
+不過 FDA 也逐漸走向開放。醫療裝置隨插即用互通計畫是由國家衛生研究院在 FDA 支持下所贊助的千萬美元計畫，該計劃為不同製造商的裝置互連制訂開放標準。這表示，未來血壓壓脈帶在偵測到病人有不良反應時，能夠指示藥泵停止送藥。
+
+
+
+更有趣的是由美國堪薩斯州立大學 John Hatcliff 所開發的醫療裝置協調框架。該框架的目標是建構一套開放源碼硬體平台，包含許多醫療裝置的常用元件，如顯示器、按鍵、處理器、網路介面，以及執行軟體。藉由連接不同的偵測器或驅動器，這些通用核心可以成為數十種不同的醫療裝置，而相關功能可以寫成可下載的“App”。
+
+
+
+在此期間，有許多為了改進醫療裝置軟體整體安全與可靠性的計劃正在進行。美國國家標準與技術研究所不久前建議，應該由單一機構負責審核與追蹤醫療裝置的網路安全。此一機構很可能是 FDA。FDA 也在重新評估該局因應軟體使用成長的能力。
+
+
+
+原文出處：http://www.economist.com/node/21556098。
+
+_______________________________________________________________
+
+■ [源碼新聞] DrupalCamp Taipei 2012 研討會--學習 Drupal 的第一課，初學者的您更是不容錯過！
+
+Drupal 媒體公關 蔡婉如 / 文
+
+Drupal 是一套開放原始碼的架站系統，從西元 2000 年時開始發展，至今已 12 個年頭，目前全世界有 228 個國家總共 82 萬多人在使用，1 萬 6 千多種不同功能、1 千多種佈景主題，由 1 萬 7 千多名工程師共同維護。軟體還可以讓大家免費下載的。 
+
+▲ 圖1：http://www.openfoundry.org/images/120612/DrupalCampTaipei2012/drupalcamp%20taipei%202012%20%20-%20%20drupal%20.png
+
+今年的 DrupalCamp Taipei 2012 也順著這股潮流，訂定主題為「Drupal 101 - 學習 Drupal 的第一課 (http://camp.drupaltaiwan.org/2012/content/%E6%9C%83%E8%AD%B0%E4%B8%BB%E9%A1%8C)」將會在 7/7（六）-7/8（日）於中國科技大學（台北校區）舉行，期望今年引領更多的初學者加入 Drupal 的行列，無論是否具備任何基礎，只要有興趣對 Drupal 這套便利的架站系統有進一步了解的人，不妨把握機會親身體驗一下。
+
+首日 7 月 7 日提供了三軌議程，各個議程都非常的精采絕倫，想了解更多的人都能有更多元選擇，對於初學者，大會還特別邀請到，在 Drupal 教學經驗非常豐富吳鳳科技大學邱垂鎮老師，來為剛入門的新手，進行完整的基礎教學，學習架設 Drupal 網站。詳細議程資訊請見大會議程 (http://camp.drupaltaiwan.org/2012/program/schedule-table)，即可看到詳細資訊。
+
+第二日 7 月 8 日還有提供進階練工坊課程，讓想更深入了解 Drupal 的應用參與者能更多元學習，其中在行動裝置應用的課程還特別邀請到 John Wilkins 來授課，指導如何使用 Drupal 結合 Responsive Design 技術建立行動裝置網頁。John Wilkins 是 Drupal 頂尖的開發者（Top 20），許多台灣社群的活動常常見到他的身影，他不只帶來先進的 Drupal 技術，也為台灣與國際 Drupal 社群搭起橋樑。
+
+▲ 圖2：John Wilkins (http://www.openfoundry.org/images/120612/DrupalCampTaipei2012/johnabinjohn%20%20palantir.net%20drupal%20top%2020.png)
+
+詳細資訊請見第二日練功坊 (http://camp.drupaltaiwan.org/2012/program/about-workshop)，了解更多資訊！您千萬不可錯過！敬請大家踴躍參與！
+
+新聞聯絡人：
+Drupal 媒體公關
+蔡婉如 judy 0988107916 drupal.tw@gmail.com 
+_______________________________________________________________
+
+■ [源碼新聞] 七月份社群活動列表
+
+OSSF電子報團隊 / 整理
+
+七月份的活動列表出爐囉！本月份又有新的台中社群朋友,發起了新的聚會,讓中部的自由軟體夥伴們更有機會參與活動並互相交流,有興趣的朋友們不妨邀請有共同興趣的朋友一同前往看看！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信： ossfepaper@openfoundry.org 。
+
+2012 年 7 月活動
+
+TOSSUG 社群聚會（7/3）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+台中自由軟體愛好者固定聚會（7/3）
+地點：台中市西屯區大墩二十街 111 號（黑貓月亮咖啡館）
+時間：19:00~21:00
+社群論壇：https://groups.google.com/forum/?fromgroups#!forum/taichung-foss-fans-party
+
+Taipei GTUG（7/4）
+地點：台北市中山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：19：30-21:30
+活動資訊：http://www.taipei-gtug.org/
+
+RGBA 網路設計師聚會（7/4）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（7/5）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:30
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（7/6）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+台灣維基人臺北定期聚會「社群經營工作雙週聚」（7/9） 
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡） 
+時間：18:00~20:00 
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（7/10）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（7/11）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（7/12）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（7/13）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+TOSSUG 社群聚會（7/17）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+Taipei GTUG（7/18）
+地點：台北市中山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：19：30-21:30
+活動資訊：http://www.taipei-gtug.org/
+
+RGBA 網路設計師聚會（7/18）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+WoFOSS 好自由小組聚會（7/18）
+地點：伯朗咖啡-北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.com/2012/04/wofosswofoss.html
+
+Hacking Thursday（7/19）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（7/20）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+台灣維基人臺北定期聚會「社群經營工作雙週聚」（7/23） 
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡） 
+時間：18:00~20:00 
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（7/24）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（7/25）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（7/26）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（7/27）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+TOSSUG 社群聚會（7/31）
+地點：台北市中正區南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、彭冠雯、王怡凱
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

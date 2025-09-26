@@ -1,0 +1,434 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 210 期 | 2012/12/25 □■□
+________________________________________________________________
+
+◎ 本期主題︰從產品租賃來看 GPL 的散布定義與範圍
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/1/15
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] 從產品租賃來看 GPL 的散布定義與範圍
+
+■ [自由專欄] Learning JavaScript Design Patterns
+
+■ [自由專欄] 開源貨幣新世界
+
+■ [源碼新聞] 取代 Windows 檔案伺服器的 Samba 4.0 登場
+
+■ [源碼新聞] 多麼 Linux 的一年
+
+■ [源碼新聞] ownCloud KDE 用戶程式即將報到
+
+■ [源碼新聞] REBOL 程式語言框架改以自由開源軟體授權方式釋出！
+
+■ [源碼新聞] Google 建置 Android 平台上的專用軟體市集 Channel
+
+■ [源碼新聞] MIT Game Jam #2（Global Game Jam 2013 台北場）即日起開始報名！
+
+■ [源碼新聞] 2013 年一月份社群活動列表
+_______________________________________________________________
+
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 從產品租賃來看 GPL 的散布定義與範圍
+
+葛冬梅、林誠夏／文 
+
+GPL 授權條款有著許多不同於傳統軟體授權方式的相關規定，其中散布程式的時候必須提供源碼的規定，則是影響最大、也最常被違反的一項。這項義務與其他 GPL 條款中所規定的義務一樣，都是透過散布行為而被開啟，也就是說，程式被利用或移轉的方式若不是 GPL 條款所定義的散布行為，散布者就可以自由選擇是否要去遵守其他後續的相關義務規定。因此散布的內涵有著左右 GPL 義務規定是否被啟動的重要地位。 
+
+在單純的例子裡，大家都可以輕易理解什麼是散布，例如甲從網路下載了 GPL 程式 A 之後，再將程式 A 拷貝到朋友乙的電腦中，這時候程式 A 就是從甲的手中被散布到了乙的手中，因此依照 GPL 規定，甲負有將程式 A 源碼提供給乙的義務。但是隨著資訊科技的發展與商業交易行為的多樣化，使用者可能在利用銀行自動化設備與租借嵌入式裝置的同時，而間接利用到、或者甚至間接占有了 GPL 程式一段期間，例如前一陣子才停止網路電視服務的壹多傳媒，該服務出租網樂通機上盒給予客戶，客戶只要自行將顯示螢幕與網路線接到機上盒，就可以收看所提供的網路電視節目，這個機上盒為嵌入式的 Linux 作業系統，有利用到很多 GPL 程式，但是壹多媒體在最初時並沒有釋出機上盒的程式源碼，因而引發後續爭議，就是一個典型的例子。這種透過出租產品與提供服務，所造成程式碼移轉的行為，是否也屬於 GPL 所規定的散布程式碼的行為？針對這個問題，本文將會針對目前被廣泛採用的 GPL-2.0 與 GPL-3.0 說明相關規定，並嘗試釐清問題的癥結點，期望可以拋磚引玉的讓大家對這個議題，有一些基本的認識。
+
+【GPL-2.0 與 GPL-3.0 均以占有程式碼為啟動義務的核心概念】 
+
+GPL-2.0 中關於散布程式必須提供源碼的規定是在第 3 條第 1 項，相關的主要內容如下： 
+
+"3. You may copy and distribute the Program (or a work based on it, under Section 2) in object code or executable form under the terms of Sections 1 and 2 above provided that you also do one of the following:......" 
+
+這一個條項規定使用者可以重製與散布 (distribute) GPL 程式與衍生程式的目的碼或可執行檔，但必須透過特定方式來提供程式源碼。GPL-2.0 針對「散布 (distribute)」一詞並沒有另外加以定義或說明，因為 GPL-2.0 制定於 1991 年，依照當時的資訊科技而可以想像到的程式碼移動態樣並不複雜，原則上只是很單純地透過一個儲存媒介轉換到另外一個儲存媒介，來改變其被占有的狀態，即使程式碼有可能透過當時並不普遍的學術網路來改變其儲存位置，這樣的過程也與儲存媒介轉換所差無幾，所以 GPL-2.0 採用「散布 (distribute)」一詞就足以含括當時程式碼移動的可能態樣，也足以達到 GPL 所蘊含的目的：「占有程式之人皆可以取得源碼來研究與改進程式。」因此在這樣的時空背景之下，「散布」一詞並沒有必要在 GPL-2.0 中進一步地被定義。
+
+但是隨著科技進步與商業行銷的多元化，針對「散布」內涵的討論與爭議逐漸浮上檯面（註一），因此在 GPL-3.0 改版的過程中，也對於這一個詞進行置換，並且給予新的定義。 
+
+"6. Conveying Non-Source Forms. 
+
+You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:......" 
+
+以上文字截錄自 GPL-3.0 第 6 條第 1 項，這一條的內容與地位相當於 GPL-2.0 的第 3 條第 1 項，因此這兩條的文字結構非常類似，但是為了解決前一個版本在用詞上所產生的問題，以及避免不同司法管轄領域針對同一用詞有著不同解釋的歧異，所以 GPL-3.0 將一些定式的法律用語，置換為相對來說更通俗白話的語彙，以避免司法機構沒有深入了解 GPL-3.0 的授權架構，便逕依傳統因襲的方式來解釋這些重要名詞。因此在上面節錄的內容中會看到不同於二版的用詞，例如："covered work" 是兼指 GPL 程式與被修改後的衍生程式；"convey" 則是用來替代二版的 "distribute"，並且擴大涵蓋到複製、散布、傳輸程式等等行為，簡單來說，除了執行與修改程式之外，任何一種可以讓他人複製程式或取得程式的行為，就是 "convey"（註二），而本文採用「傳遞」作為這個詞的中譯。所以，依照 GPL-3.0 這一條項的規定，只要使用者可以讓後手複製或取得 GPL 程式的話，那麼他就負有讓後手複製或取得程式源碼的義務。 
+
+這樣的用詞改變並且加以定義，可以看得出來「傳遞」的內涵較「散布」來的要廣，其甚至將散布的前置複製行為都囊括在內，顯示出 GPL-3.0 想要將協助後手占有程式碼的各相關行為都包括在內，因此 GPL-3.0 這些用語的變化其實是在強化 GPL 所欲達到的目的：「只要經合法途徑占有程式之人，皆可以取得源碼來研究與改進程式。」可知，「散布 (distribute)」與「傳遞 (convey)」等詞本身的內涵與定義已有分別，因此筆者以為，只要後手透過散布或傳遞行為，而到達占有程式的狀態，這樣的結果論就符合 GPL 的規定，後手就可以轉為具有索取程式源碼的狀態，至於這位後手本身是否有能力來進一步研究或修改程式源碼，則不是 GPL 授權條款所要規範的，因為即使後手本身沒有能力，但他可以尋找有能力之人，來協助他研究或修改 GPL 程式。因此租用含有 GPL 程式碼的智慧型手機、路由器、機上盒等等，只要是長期持有達致一個實質占有 (substantial possession) 的狀態，例如承租人一定期間持續性占有程式的結果，承租人便可以依據 GPL 來向出租人索取這些裝置或設備中所含有的 GPL 程式源碼，出租人亦有義務提供相關的程式源碼。 
+
+【包含 GPL-3.0 程式碼的一般性使用商品必須附隨提供源碼】 
+
+那麼，何謂「實質占有」就是一個後續應被釐清的重要概念。此處表述的「實質占有」，指的是使用人雖未直接透過商務契約取得該產品內嵌 GPL 程式碼的直接授權，然而，因為產品的使用狀態已讓使用人實質性等同占有了這些程式碼，而佐以 GPL 條款的相關規定，讓其跨越商務契約的形式規定，而進一步取得這些 GPL 程式碼的相關授權。此一相關規定可以參照 GPL-3.0 第 6 條第 5 項：若 GPL 程式是以被包含在「一般性使用商品 (User Product)」中的方式被傳遞的話，只要 GPL 程式碼的占有狀態與產品的使用權能 (use of the User Product) 均被移轉給後手，只要這個占有或被移轉的狀態是達到實質一般長期性使用的程度，則不論其移轉是基於什麼樣的名目，在傳遞這項商品的同時，也必須要提供程式源碼與安裝資訊給取得商品之人（註三）。這項規定的原文如下： 
+
+"If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information......." 
+
+這裡的「一般性使用商品 (User Product)」，指的是任何包含有 GPL-3.0 程式碼的消費型裝置或設備，該產品的販售目的可能是給個人或家庭使用，而因一般消費者並沒有能與廠商個別議定契約的地位，所以 GPL-3.0 特別律定，只要是一般性使用商品，無論是什麼樣的硬體裝置或設備，其中若包含有 GPL 程式碼，並且這個裝置或設備的使用權能與程式碼的占有狀態均被移轉，即使是因為出租、借用設備或裝置等各種不同名義，程式源碼也視同已授權，一樣必須一併提供出來。因此在本文開頭所提到的網樂通機上盒的例子中，假若這個機上盒中所利用的是 GPL-3.0 授權的程式碼，出租時沒有一併提供 GPL 授權的程式源碼，就是違反 GPL-3.0，將會導致產品販售者原本所獲得的 GPL 授權全部自動終止的效果。 
+
+【暫時性使用人並非 GPL 程式碼實際占有人】 
+
+不過，在討論這個問題的時候，必須要區別暫時性的使用人與 GPL 程式碼實質的占有人。舉例來說：餐廳老闆丙向多媒體音樂公司丁租借了一台大型的投幣式音樂點唱機，為期半年，點播機的控制程式碼部份利用到 GPL-3.0 軟體，則透過租借點唱機放到餐廳的行為，丙是 GPL-3.0 程式碼的實質占有人，因此可以向丁索取源碼，而餐廳常客戊雖然經常投幣點唱、利用點唱機，不過戊只是暫時性的使用人，並不實際占有 GPL-3.0 軟體，所以也沒有權利向丙或丁來索取該點唱機的程式源碼。
+
+同樣的道理，自由軟體基金會 (Free Software Foundation, FSF) 在其 FAQ 也曾明確表示：使用投票機來進行投票的選民，並沒有實質占有投票機，因為投票僅為暫時性的使用行為，因此投票者並未占有任何程式碼。所以選民對於投票機中運作的 GPL-3.0 程式並沒有索取程式源碼的權利，自然也沒有後續要求修改的權利（註四）。 
+
+【不具有維護與修改地位的占有人原則上仍應享有取得程式源碼的權利】
+
+比較大的爭論點是，有論者指出，承租人雖然實際占有租賃的裝置與設備，但是一般的租賃契約僅允許其進行預設的使用行為，而不允許其修改與維護其中的程式碼，依商務契約預設的狀態是，一旦裝置或設備發生問題，仍必須通知出租人來處理，因此即使承租人取得源碼，但由於沒有維護、修改整個裝置或設備的地位，所以並無法真正達到 GPL 制定時所預設的目的：研究與改進程式的權利。也因此在這種租賃關係，與包含 GPL 程式碼的裝置或設備相關時，也並沒有提供程式源碼的必要。 
+
+然而，筆者對上述這樣的觀點持反向看法，因為若是從 GPL 授權條款的內容來進行分析，承租人依商務契約不能修改產品控制程式碼，這的確是普遍存在的慣約，不過，該產品與服務若是已然內嵌 GPL 授權的程式碼，則「散布」與「傳遞」時原則上都必須要尊重與依循原始軟體權利人的意思來進行，因此當 GPL 已經有明確規定，而授權人又選擇 GPL 作為軟體的授權條款時，GPL 條款就代表著授權人的意思，後續拿到這個軟體的使用者因此必須要遵守其中的規定，而不能因為後續施行上可能遭遇管控模式的困難，就將整體 GPL 的內容解釋為「在租賃關係中包含 GPL 程式碼的裝置或設備時，不需要提供源碼」。再者，若是刻意執前述論者的解釋態度，又使用到權利人對軟體自由理念較為堅持的自由開源軟體專案，則後續衍生司法爭議的可能性並不是沒有。
+
+【結語】
+
+軟體屬於無形的智慧財產，與傳統物權一般有形的實體財產不同，也因此其所適用的法律制度與論理邏輯會有所不同，再加上 GPL 是一個不同於以往的授權模式，因此在思索出租內含 GPL 程式碼的產品，是否屬於 GPL 所規定散布／傳遞行為的時候，必須將軟體與產品的法律關係加以適當地區別、分開觀察，以避免軟體授權人的授權意思受到誤解或限制。而本文舉例的壹多傳媒，後來亦從善如流釋出了網樂通機上盒的 GPL 程式源碼（註五），雖然其並未在散布機上盒的第一時間就同步釋出，但也算是為此議題開了一個不錯的先例，可以用來當作 GPL 散布／傳遞行為實質內涵的一個註腳。
+
+本文所討論的內容僅為現實應用中所遭遇到問題的一部份，限於文章篇幅，還有其他相關的問題並未被納入討論，例如：今天租、明天還的超短租賃期間，是否並不包括在實質占有的內涵？所謂形式占有與實質占有之間的分野與通則如何介定，又如何讓這些規則能在個案中獲得實踐。因此筆者期待本文可以起拋磚引玉之效果，引發各方不同角度的思考，以彙集後續更深入的相關討論與迴響。
+
+(http://www.openfoundry.org/images/121225/GPLinembedded/lc_201212_gplinembedded_1.jpg)
+▲ 圖1：壹多傳媒釋出網樂通機上盒程式源碼的網頁（註五）。
+
+----
+
+註一：AGPL-1.0 這份授權條款的產生，就是因為部份自由開源軟體社群成員認為， GPL-2.0 的「散布」行為無法涵蓋網路應用程式提供者 (Application Service Provider, ASP) 透過網路應用 GPL-2.0 程式的行為，因此在 GPL-2.0 的基礎之上增添條款成為 AGPL-1.0，所增添的條款即規定 ASP 業者也必須要提供使用者程式源碼。進一步相關資訊可以參閱：葛冬梅，因應網路時代與雲端應用而生的 AGPL-3.0 授權條款，http://www.openfoundry.org/tw/legal-column-list/8809；葛冬梅，ASP 與自由／開放源碼軟體的散布條款，http://www.openfoundry.org/tw/legal-column-list/494。
+ 
+註二：不過 GPL-3.0 在定義傳遞 (convey) 的同時，也有除外規定：若程式僅是透過網路與使用者互動，並沒有涉及程式碼的移轉，這樣的行為並不是屬於傳遞 (convey)，因此透過網路提供 GPL-3.0 應用程式服務讓使用者來利用，服務提供者並沒有提供使用者程式源碼的義務。 
+
+註三：GPL-3.0 第 6 條第　4、5　項分別針對「一般性使用商品 (User Product)」、與「安裝資訊 (Installation Information)」有加以定義，其中針對「 一般性使用商品 (User Product)」的定義原文如下："A “User Product” is either (1) a “consumer product”, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, “normally used” refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product." 
+
+註四：http://www.gnu.org/licenses/gpl-faq.html#v3VotingMachine。
+
+註五：壹多傳媒於 2012 年中開始陸續停止服務、回收機上盒，因此在該公司官網上已經找不到相關頁面，原來可以下載到源碼的網址也已不存在。本文所附之圖為截自網路媒體報導內容的附圖，該篇報導網址如下：http://chinese.engadget.com/2011/03/09/nexttv-stb-now-open-its-kernel/。
+_______________________________________________________________
+
+■ [自由專欄] Learning JavaScript Design Patterns
+
+jaceju ／文
+
+◎本文原載網站製作學習誌，原文章連結：(http://www.jaceju.net/blog/archives/review-learning-javascript-design-patterns/)。
+
+在看到玩物尚志 (http://blog.lyhdev.com/) 介紹的「O’Reilly Blogger Review Program 邀請部落客寫書評」 (http://blog.lyhdev.com/2012/09/oreilly-blogger-review-program.html) 這篇文章後，讓我對這個活動非常有興趣；因此，我也報名了這個活動，並選擇了「Learning JavaScript Design Patterns」 (http://oreillynet.com/pub/reviewproduct/842) 一書來做 Review 的主角。
+
+
+閱讀心得
+
+(http://www.openfoundry.org/images/121225/java.jpg)
+
+＊書名： Learning JavaScript Design Patterns
+＊Addy Osmani
+＊O’Reilly Media
+
+第 1 章至第 8 章對模式的由來與目的做了簡單的介紹，對模式不熟悉的朋友可以從這幾章的內容來瞭解模式；當然大部份的理論內容算是把經典的設計模式書籍做了一個整理，已經對模式有所概念的朋友可以快速複習或是跳過不看。
+
+第 9 章介紹了部份 GoF 所包含的模式，這裡最棒的部份是作者會透過一些實際的例子來說明這些模式的應用場合。
+
+例如 Facade 模式，作者就以 jQuery 是如何把多種複雜的 Browser API 包裝起來為例；而 Flyweight 模式，則是從瀏覽器如何管理 DOM Tree ，減少記憶體的損耗來介紹。這麼一來，讀者可以很清楚的瞭解這些模式想要解決的問題，也能學到許多跟瀏?器打交道的技巧。
+
+不過因為 JavaScript 為 prototype-based 的語言，因此有些以 class-based 語言所發展出來的模式實作方式就無法直接用 JavaScript 來呈現。
+
+只是作者在某些模式上的見解似乎跟以往我所理解的模式有所不同，最明顯的例子是 Decorator 模式；作者在這個模式一開始的說明和範例，似乎是把它當成 subclassing 的替代方案。
+
+但事實上在 Decorator 模式中，以 Decorator 所包覆的物件對 client 程式來說應該是透明的，而不會加入其他額外的方法。這點我認為「 JavaScript Patterns 」 (http://shop.oreilly.com/product/9780596806767.do) 一書中對 Decorator 的介紹，才較為符合 Decorator 模式的精神。
+
+不過除此之外，作者在本章所列舉的模式實作方式及技巧的介紹，都非常值得參考。
+
+第 10 章談到 MV* (MVC / MVP / MVVM) 模式，這裡作者採用現有的 Framework / Library 來解釋。在 MVC / MVP 的部份，用到 Backbone.js  (http://backbonejs.org/) / Spine.js  (http://spinejs.com/) 來做介紹；而在 MVVM 的部份，則是以 KnockoutJS 搭配 (http://knockoutjs.com/) 時下最流行的 Todo 為範例。
+
+不過要這章主要是介紹 MV 的觀念，因此如果想瞭解這些 Framework 或是 Libray 更進一步的資訊，就要再參考其官方資源。這麼一來，會未接觸過這些工具的讀者，在理解 MVC 時要多花點精神。
+
+第 11 章則是介紹了瀏覽器端及伺服器端 JavaScript 模組載入的模式，分別從 AMD 及 CommonJS 這兩個規範做為進入點。但這邊我想如果可以用基本的方式介紹原理的話，會讓讀者有更深刻的認知，而不會因為直接切入工具的實作而產生困惑。
+
+第 12 章很簡潔地說明 jQuery 中用了哪些 GoF 模式。我個人覺得這是很不錯的分析，從這裡可以看到模式的精神發揮得很徹底：重義不重形。但這裡的 Proxy 模式實作方式，跟我以往所理解的有所落差；作者是直接用 jQuery.proxy 這個函式來說明，讓 jQuery 物件同時扮演了執行層與代理層，這點倒是滿有趣的。
+
+第 13 章的重點放在 jQuery Plugin ，從最簡單的 plugin 建構模式、 jQuery UI 、 jQuery Mobile 、 RequireJS 到如何用 namespace 來管理 JavaScript 。但是這章的問題也在於它的結構過大，國外的讀者也認為應該把 Namespace Patterns 的部份獨立成一章。
+
+第 14 章是整本書的結論，但似乎有點簡短而沒有必要。
+
+
+排版問題
+
+本書的電子版在第 9 章中，有數個模式的 UML 圖是錯置的。分別是：
+
+＊第 47 頁 - Figure 9-4. Publish/Subscribe 錯置為 Mediator Pattern 。
+＊第 60 頁 - Figure 9-5. Mediator pattern 錯置為 Prototype Pattern 。
+＊第 69 頁 - Figure 9-6. Prototype pattern 錯置為 Command Pattern 。
+＊第 72 頁 - Figure 9-7. Command pattern 錯置為 Facade Pattern 。
+＊第 74 頁 - Figure 9-8. Facade pattern 錯置為 Factory Pattern 。
+＊第 77 頁 - Figure 9-9. Factory pattern 錯置為 Mixins 。
+＊第 83 頁 - Figure 9-10. Mixins 錯置為 Decorator Pattern 。
+＊第 87 頁 - Figure 9-11. Decorator pattern 錯置為 Flyweight Pattern 。
+
+而原本的 Publish/Subscribe UML 圖示，則跟第 42 頁的 Figure 9-3. Observer pattern 放在一起。
+
+
+總結
+
+我覺得這本書可以算是對常見的 JavaScript 模式做了一個總覽，並輔以實際應用來讓讀者對模式有所共鳴，因此可以很明顯地看出作者偏好用實際的 Framework 或是 Library 來解說。不過從另一個角度來看，透過工具的介紹也可能會造成讀者對模式基本原理的迷失。
+
+如果你是 jQuery 粉絲的話，這本書也是非常棒的參考書籍。從 jQuery 的設計理念到功能擴充等，都可以看到本書非常精采的介紹。
+
+不過我對這本書的編排有點小小的失望，誠如 found_drama 對這本書的 review  (http://blog.founddrama.net/2012/09/review-learning-javascript-design-patterns/) 中所提到的：
+
+    The structure of the book is important. How the information flows from one chapter to the next is important.
+
+整體而言，本書在技術面的價值還是非常高的。對於想要瞭解模式是如何在 JavaScript 實現，或是對 jQuery 原理想更進一步瞭解的朋友，都推薦一讀。
+_______________________________________________________________
+
+■ [自由專欄] 開源貨幣新世界
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結(http://www.linuxpilot.com/blog/kiji/20121221702bitcoin)。
+
+很多人在網上付款時都會選擇使用 PayPal，原因卻不一定因為它是最好的，只是因為沒有其他選擇，但今後 Paypal 獨大的局面卻有可能被打破。較早前由開源部落格管理系統 WordPress.com 所營運的公司 Automattic，開始接受客戶利用開源貨幣 Bitcoin 支付費用，令 Bitcoin 由小眾的玩意，一躍而成真正全球化的電子貨幣。
+
+(http://www.openfoundry.org/images/121225/open.jpg)
+
+PayPal 是全球化的電子貨幣嗎？當然不是。現時全世界至少有 60 個國家禁止使用 PayPal，甚至號稱「世界通行」的 VISA 和 MASTER，也不一定在任何國家都可以使用。原因或多或少與電子貨幣的安全性有關，但更大的理由是政治上的考慮，畢竟 PayPal、VISA 和 MASTER 說到底都屬於美資企業。例如在 2010 年，維基解密 (WikiLeaks) 就因為公開美國在伊拉克的戰爭罪行，其 PayPal 帳號被封殺，資產亦遭凍結。
+
+Bitcoin 的好處在於它並不受任何國家或團體的控制，因為它只存在於一個龐大的 P2P 網路中，利用由開源社團一致公認的演算法，在一定時間內生成新的貨幣。而且只要下載一個開源程式，任何人都可以參與生成 Bitcoin 的操作，發行貨幣再不是一國銀行專有的權利。除非有人能夠同時修改在每一個節點的演算法和參數，否則沒有人可以控制 Bitcoin 的幣值，令幣值升跌純粹由供求決定。傳統貨幣必須有一間銀行作為中央節點的角色，負責管理交易和結算。但 Bitcoin 卻不需要，其 P2P 網路上的每個節點，都記錄了 Bitcoin 自誕生以來的每筆交易詳情，從中可算出每個 Bitcoin 屬誰。
+
+Bitcoin 的貨幣單位是 BTC，在 MtGox 和 BitPay 等網站都可自由以各國貨幣兌換，匯率是浮動的，交易 Bitcoin 的網站上亦有列明。現時 1BTC 大概可以兌換 13 美元，如果在最低值時的 3 美元持有的話，現在已經升值超過四倍了。但筆者認為 Bitcoin 的最重要價值並非財富，而是公平。二次大戰後美元成為國際交易的指定貨幣，只因當時美國保證美元可兌換成等價的黃金。今天金本位名存實亡，但美國卻繼續印鈔票，掠奪全球經濟成果。Bitcoin 提供了一個令全球貨幣擺脫美國控制的契機，關鍵只在我們是否能夠把握機會，創造一個真正屬於全球人類的金錢新世界。
+_______________________________________________________________
+
+■ [源碼新聞] 取代 Windows 檔案伺服器的 Samba 4.0 登場
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結：(http://www.linuxpilot.com/industry/news/201212120101Samba-4)。
+
+Samba 4.0 的重點功能之一，是可以取代 Windows 成為 Active Directory 網域的伺服器，只是研發多年仍然停留在測試版本。 Samba Team 在 2012 年 12 月 11 日，終於宣布推出正式版本的 Samba 4.0，成為業界一時的話題。
+
+(http://www.openfoundry.org/images/121225/Windows.jpg)
+
+Samba (https://www.samba.org/) 是在 Linux 或 UNIX 等 OS 上，提供相客於 Windows 檔案伺服器功能和目錄服務功能的開源軟體。早期以相容 Windows NT Server 為目標開發，在 2.0 版本時已經具備與 Windows NT Server 的同等功能，並且可架設 Windows 網域，成為其 Domain Controller。但自 Windows 2000 起，微軟用 Active Directory 取代以往的 Windows 網域，Samba 於是急起直追，至 3.0 時開始可以架設 Active Directory 的成員伺服器，但卻未能架設 Active Directory 的 Domain Controller。Samba 4.0 的出現令企業可以完全以 Samba 取代 Windows 2003/2008 Server 管理 Active Directory。
+
+Samba 開發團隊表示，Active Directory 相容功能得以成功開發，除了有賴微軟公開的技術文件外，亦得到微軟工程師協助進行相容性測試。這次微軟向 Samba 伸出友誼之手，原因是希望令微軟的技術普及。微軟的的 Windows Server 負責人 Thomas Pfenning 表示「Active Directory 是企業 IT 環境的核心技術，微軟有令不同平台的 Active Directory 產品相容的義務。」Samba 4.0 的新亮點包括支援 SMB 2.1 協定、存放管理資訊的 Trivial Database (TDB) 支援群集、以及新加入的模組化功能，目的是讓 OEM 廠商無需改動 Samba 的核心程式碼，也能為 Samba 加入延伸的功能。
+_______________________________________________________________
+
+■ [源碼新聞] 多麼 Linux 的一年
+
+謝良奇／編譯
+
+從許多方面看來，2012 對 Linux 來說都是關鍵的一年。
+
+這裡是一些例子：
+
+* Android 的市場接受度超過 iPhone。
+* Red Hat 達成 10 億美元里程碑。
+* 根據 Goldman Sachs 表示，Linux 在運算市場的市佔率突破 Windows。
+
+同樣令人難以忽略的是，此次假期最受歡迎的禮物，像是 Chromebook 與 Amazon 的 Kindle HD，都採用了 Linux。
+
+Linux 之所以達成如此巨大成功的部分原因，在於其協同開發環境創造的網絡效應：嵌入式工程師為了設備節能而奮鬥；同樣的程式碼隨後被資料中心用來降低電費。國防工業改善了 Linux 核心的即時功能，汽車製造商跟著受惠。再者，由於 Linux 沒有品牌限制，Linux 可以作為 Android 出現在 Kindle 或 Chromebook 之中，用戶卻毫不知情。這種自由使得廠商們得用無以倫比的速度進行創新。
+
+我們邀請你一同加入慶祝 Linux 令人驚嘆的一年。打造此一成功有賴於全球社群，今年每一位接觸到 Linux 的個人與組織都值得為這些成就而慶祝。
+
+請欣賞並分享我們最新的影片，多麼 Linux 的一年，告訴我們你最愛的 2012 里程碑以及你對 Linux 來年的期許。
+
+(http://www.youtube.com/watch?feature=player_embedded&v=Unfx2qCj6Ao)
+
+相關網址：
+
+＊多麼 Linux 的一年
+https://www.linux.com/news/featured-blogs/167-amanda-mcpherson/680136-video-what-a-year-for-linux/
+
+＊影片網址
+http://www.youtube.com/watch?feature=player_embedded&v=Unfx2qCj6Ao
+_______________________________________________________________
+
+■ [源碼新聞] ownCloud KDE 用戶程式即將報到
+
+謝良奇／編譯
+
+免費的開放源碼雲端解決方案 ownCloud，很快就會有特別針對 KDE Plasma Desktop 的用戶程式了。KDE 開發者之一的 Sebastian Kugler，最近在自己的部落格裡宣布此一 KDE 用戶程式的開發。
+
+在今年度 KDE 社群會議 Akademy 上，Kugler、ownCloud 的員工 Klaas Freitag 以及一群開發者，討論起如何改進與 KDE 的整合。由於 ownCloud 的構想與開發出自於 KDE 專案開發者 Frank Karlitschek，同時獲得 KDE e.V 的部分資助，與 KDE 的整合可說在預料之中。
+
+這些開發者取用 Mirall 的程式碼開始設計為 ownCloud 設計 KDE plasma 用戶端，以下是他們想出的結果：
+
+＊來自 Mirall 的使用者介面與同步程式碼將會區分開來，同步機制會拆分至一個共享程式庫。
+
+＊有個後台程序會使用這個共享程式庫，該程序一方面負責檔案的同步，一方面會輸出到一個 DBus 控制介面。
+
+＊有個 Plasma widget 會顯示同步狀態，並提供一些基本控制功能，例如關閉同步。
+
+＊會有系統設定模組提供 ownCloud 用戶端的同步設定。
+
+＊Plasma Active 設定模組提供從手機設定 ownCloud 用戶端的功能。
+
+該用戶程式正處於開發階段，目前計劃在 2013 年 3 月隨著 Plasma Active 4 一同釋出。該專案正尋求貢獻者，隨著 ownCloud 進入企業領域，該專案有很大的潛力。如果讀者有興趣貢獻專案開發，請與該專案開發者聯繫。
+
+
+相關網址：
+＊ownCloud KDE 用戶程式即將報到
+http://www.muktware.com/4978/owncloud-kde-client-coming-soon#.UNkREHdOtws
+
+＊專案網址
+https://github.com/sebasje/mirall
+_______________________________________________________________
+
+■ [源碼新聞] REBOL 程式語言框架改以自由開源軟體授權方式釋出！
+
+黃郁文／編譯
+
+REBOL 是由 AmigaOS 主要開發者 Carl Sassenrath 所開發的革新式程式語言，於 1997 年首度釋出，其專案名稱的發聲方式為 "reb-ol"，意指以近乎「造反 (rebel)」的態度來改變程式撰寫的方式，而不欲同於主流發展，將軟體專案的框架愈寫愈大愈複雜。近期，Sassenrath 將最新版本 REBOL 3 的程式語言框架，以自由開源軟體的授權方式 Apache License Version 2.0 (Apache-2.0) 釋出。可以說，透過自由開源軟體的授權方式，REBOL 這個年輕的新創程式語言，顯然找到與公眾加深互動的新法寶。
+
+REBOL 在運作上採用「事件導向 (task-specific language)」、「領域導向 (domain-specific languages)」的方式，讓使用者可以自己定義許多不同模式的程式方言 (dialects)，以依自己需求彈性化的調整這套程式語言及其框架，再用於自己特殊領域的程式開發上。這種讓開發者可以自行彈性調整所使用程式語言部份內容的模式，讓透過 REBOL 撰寫程式這件事變得非常有趣。
+
+其實 Sassenrath 創立的 REBOL Technologies 公司，從 1998 年就開始推廣該程式語言，一開始是以純免費使用的授權方式來進行推廣，訴求該程式語言框架，能夠用於高度優化有客製化需求的伺服器軟體專案與其相關圖形介面上，不過迄今這樣的單純免費推廣模式已被證實收效有限。所以，在嗅到程式語言的市場，已轉向以自由開源的共工模式為重要趨勢與潮流之後，2012 年 9 月，Sassenrath 正式宣布將最新版本的 REBOL 3 程式語言及其框架，轉以自由開源軟體的授權方式釋出，Sassenrath 表示這是為 Rebol 注入新活力的方法，也可能是再造該語言框架的唯一方法。REBOL 3 本來預計是要以 GPL-2.0 的方式釋出，不過在與參與成員反覆討論之後，最後是在今年的 11 月，確認改以較易統合其他商業公司相關創作能量的 Apache-2.0，作為最終選用的授權方式。
+
+目前 REBOL 3 第一版本的開源程式碼可於 GitHub 平台下載到，而 REBOL 的開發成員，也已經建立了將 REBOL 框架轉植至 Linux、Mac OS，以及 Windows 作業系統上的分流專案，而未來預計該專案，亦會逐步建置移植至 Android 這類行動式裝置上的可行方案。
+
+
+相關網址：
+
+＊REBOL 3 成為開放源碼專案
+http://www.h-online.com/open/news/item/REBOL-3-open-source-code-arrives-1768697.html
+
+＊REBOL 3 轉向開源授權的作者宣告
+http://www.rebol.com/cgi-bin/blog.r?view=0519
+
+＊REBOL 3 於 GitHub 上的專案釋出頁面
+https://github.com/rebol/r3
+_______________________________________________________________
+
+■ [源碼新聞] Google 建置 Android 平台上的專用軟體市集 Channel
+
+黃郁文／編譯
+
+網路搜尋引擎龍頭 Google 又有新招，聲明為了降低被植入惡意程式碼的風險，以及增加企業內部在 App 程式運用上的掌控性，其於近期推出 "Google Play Private Channel for Google Apps" 服務。雖然此一動作與自由開源軟體專案的應用與開發沒有直接關係，不過由於目前全球軟體應用的趨勢，也漸以行動式 App 程式為散布上的一個重要面向，未來必然會有愈來愈多的自由開源軟體授權元件，或是其衍生專案，會透過線上軟體市集的方式進行散布，所以特別編譯這則新聞，讓國內的讀者了解到此則重大變化。
+
+Google 於 Android 平台上建置的專屬軟體市集，是讓已向 Google Play 付費註冊商業方案 (Business subscription plan) 的使用者，可以後續在 Google Play 上建立一個專用的 Channel，該 Channel 能夠透過設定，僅容許在特定網域內的使用者方得透過該 Channel 下載 App，進一步的，此一商業方案的管理人員還可分層管制使用者可以下載的 App 範圍，藉此建立不同使用權限的群組清單。
+
+Google 表示這樣的 Private Channel System 可讓公司便於在內部管控的框架下，提供與散布自行開發的業務流程或內部服務相關的 App，例如公司的共用會議室搜尋與預約軟體。只要是向 Google Play 付費註冊商業方案的使用者，在繳交 25 美金的註冊費用登記為 Google Play Apps 的發行人之後，便可以建立此套系統，之後公司的管理人員就可以透過 Private Channel System 的方式，來向內部職員提供該公司專屬的 App。Google 表示，Private Channel System 具有 Google Play 的所有功能，像是使用者認證、病毒或惡意軟體偵測、裝置辨識與鎖定、使用者評定，及使用意見回報等功能一項也不少。然而，既然是公司私用的專屬市集，Private Channel 上的 App 不會出現在 Google Play 的公開網路搜索介面上，目前的政策是，個別的 App 專案不能同時出現在公開的及私用的 Google Play Channel 上，所以若本來置於私用 Channel 的 App，要改置到公開平台上，管理者就必須調整該專案的發布屬性 (Restrict Availability) 來更改設定。
+
+從技術面來說，透過 Private Channel，商業公司的管理者可控管公司應用程式的流通過程，進而提高安全性與資訊防護的級數。而不獨有偶的，在 GNU GENERAL PUBLIC LICENSE Version 3 (GPL-3.0) 裡面，也定義了 GPL-3.0 元件置於公司內部使用並不必然視同法律意義散布 (convey) 的相關條款，然而，GPL-3.0 此一條款在解釋下是必須該職員的使用行為，完全依照公司指示，或是代為進行軟體專案維護的方式 (making or running the covered works for you must do so exclusively on your behalf)，所以，向職員提供 App 供其自行使用，是不是完全符合該項條款的定義範圍，則還有待進一步的討論與釐清。但無論如何，Google 建立專用軟體市集的策略，未來必定會對現行的軟體市集運作模式帶來一定程度的變動，值得各方持續觀察其後續效應。
+
+相關網址：
+
+＊Google 啟動企業專屬 Android 商店 
+http://www.h-online.com/open/news/item/Google-launches-private-Android-app-stores-1764257.html
+
+＊Google Play Private Channel 官方說明頁面
+https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=2494992
+_______________________________________________________________
+
+■ [源碼新聞] MIT Game Jam #2（Global Game Jam 2013 台北場）即日起開始報名！
+
+洪華超／文
+
+相信大家都有玩過電腦遊戲的經驗，到底一個電腦遊戲是如何製作的呢？想要親身體驗一下嗎？
+
+全球規模最大的遊戲開發者聚會之一：GGJ (Global Game Jam, http://globalgamejam.org/) 是一個專為遊戲開發者而設計的 hackathon 與交流的聚會。GGJ 有部分的靈感是源自於 2002 年開始的 IGJ (Indie Game Jam, http://www.indiegamejam.com/)，一個為全球獨立遊戲開發者而發起的 Game Jam 大會。
+
+獨立遊戲 (Independent video game, or indie games) (http://en.wikipedia.org/wiki/Indie_game) 是指由個人或一個小隊伍，在沒有遊戲開發商的金援下獨力完成的遊戲。試想在沒有遊戲公司金援的情況下，要如何開發出一個電腦遊戲呢？IGDSHARE（獨立遊戲開發者分享會, http://igdshare.org/）在 2011 年開始舉辦獨立遊戲開發者的分享聚會 (http://igdshare.org/forum/event)，並且也在 2012 年 4 月開始跟隨世界潮流在台灣舉辦 MIT Game Jam#1 (http://registrano.com/events/mitjam120428)（MIT 指的是 Made in Taiwan、Make it Today 的意思。），吸引不少遊戲開發者參與。當然因為獨力開發的關係，各種免費與開源的工具是絕對必要的，主辦單位也介紹了幾項 Open Source 和 Creative Commons 的工具 (http://igdshare.org/content/mitjam-discuss)。
+
+而就在明年年初，2013 年的 MIT Game Jam #2（Global Game Jam 2013 台北場）即日起開始報名 (http://registrano.com/events/mitjam2-ggj2013) 了！時間是 1 月 25 日 17:00 至 1 月 27 日 18:00，分別在資策會 204 教室與大同大學尚志大樓 814 舉行，長達三個半天的活動，相信更能讓參賽者充分討論、並激盪出更多遊戲開發設計的火花！而且報名網頁中特別說明最後的成品不管是桌上遊戲、甚至於團康遊戲都完全符合活動規定，讓許多不會寫程式的遊戲愛好者、或是遊戲設計者也可以到場一起體驗這一起腦力激盪的 Game Jam 大會呢！請各位有興趣的朋友們及早報名囉！
+
+報名網頁：
+http://registrano.com/events/mitjam2-ggj2013
+
+獨立遊戲相關的開發開源工具：
+http://igdshare.org/content/mitjam-discuss
+_______________________________________________________________
+
+■ [源碼新聞] 2013 年一月份社群活動列表
+
+作者是 OSSF 電子報團隊／整理
+
+新的一年即將到來！除舊佈新之外，別忘了持續關注與參與社群聚會和活動喔！也請多多邀請您的朋友一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+
+2013 年 1 月活動
+
+TOSSUG BoF（每週二，1/1、1/8、1/15、1/22、1/29）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+KuLUG 大高雄 Linux 使用者協會固定聚會（每週四，1/3、1/10、1/17、1/24、1/31）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~21:30
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（每週四，1/3、1/10、1/17、1/24、1/31）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（每週五，1/4、1/11、1/18、1/25）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+軟體專案管理營 - 專案管理與版本控制系統（1/5~1/6）
+地點：中華科技大學電資館 K 404 教室
+時間：8:20~17:00
+活動資訊：http://www.openfoundry.org/tw/activities/details/362-git_redmine
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（隔週一，1/7、1/21）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zhwp.org/zh-tw/WP:WPTP-S
+
+Hackathon in Taichung (HTC) meetup（雙週四，1/10、1/24）
+地點：台中市中港路二段 60-3 號 (默契咖啡)
+時間：19:00~21:00
+活動資訊：https://groups.google.com/forum/?fromgroups#!forum/hackathonintaichung
+
+Taipei Wikipedia Moonthly Meetup: Writing Day 維基台北定期聚—假日寫作月聚（每月第二個週六，1/12）
+地點：台北市大安區泰順街 60 巷 11 號（小哲食堂）
+時間：14:00~16:00
+活動資訊：https://zh.wikipedia.org/wiki/Wikipedia:WPTP-W
+
+WebConf 2013
+地點：中央研究院 人文社會科學館（1/12~1/13）
+時間：9:00~17:40
+活動資訊：http://www.webconf.tw/
+
+台中自由軟體愛好者固定聚會（單週一，1/14、1/28）
+地點：台中市中港路二段 60-3 號（默契咖啡）
+時間：19:00~22:00
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+WoFOSS 好自由小組聚會（1/16）
+地點：伯朗咖啡 - 北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.tw/ 
+
+MIT Game Jam #2（Global Game Jam 2013 台北場）（1/25~1/27）
+地點：台北市復興南路一段 390 號 2 樓（資策會204教室）、台北市中山北路三段 40 號（大同大學尚志大樓 八樓 814 電腦教室）
+時間：1/25 17:00 ~ 1/27 18:00
+活動資訊：http://registrano.com/events/mitjam2-ggj2013
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

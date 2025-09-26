@@ -1,0 +1,1411 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 193 期 | 2012/04/10 □■□
+________________________________________________________________
+
+◎ 本期主題︰使用 Debian 與 KVM＋libvirt 架設虛擬化叢集－線上移轉與其他工具
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/04/24
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 使用 Debian 與 KVM＋libvirt 架設虛擬化叢集－線上移轉與其他工具
+
+■ [企業應用] 授權流言終結者#2: The JSON License 的分析與探討
+
+■ [源碼秘技] 多功能的標記語言及排版系統 - LaTeX
+
+■ [自由專欄] 為什麼必須使用 Issue Tracking System 管理專案？
+
+■ [自由文化] 自由軟體轉換心得（一）：Ubuntu 11.04 在圖形介面下的基礎操作
+
+■ [源碼快報] 冰島政府推動使用開放原始碼軟體
+
+■ [源碼快報] ﻿Microsoft 成為 Linux 貢獻商
+
+■ [源碼快報] ﻿Yahoo Mojito 成為開放原始碼軟體
+
+■ [源碼快報] ﻿GNOME 釋出 3.4 版
+
+■ [源碼快報] ﻿Google Chrome 釋出 18 版
+
+■ [源碼快報] ﻿Mozilla 推出網頁遊戲 BrowserQuest
+
+■ [源碼快報] OpenStreetMap 為微軟與 Google Maps 抗衡的祕密武器
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 使用 Debian 與 KVM＋libvirt 架設虛擬化叢集－線上移轉與其他工具
+
+魏藥 / 文
+
+線上移轉 (Live Migration)
+
+在系統管理的工作中，若發生可預知的硬體問題時，往往需要停機方可進行修復，相對地服務也必須停止運作。如果是透過虛擬技術來建置服務環境時，即可以減少因硬體維修所造成的停機時間 (service down time)。
+
+在前幾篇文章中：
+
+1. [基於 KVM 與 libvirt 的虛擬化叢集系統－Debian 篇](http://www.openfoundry.org/tech-column/8448)
+2. [基於 KVM 與 libvirt 的虛擬化叢集系統－儲存空間的配置](http://www.openfoundry.org/tw/tech-column/8539-the-clustered-virtualization-system-based-on-kvm-and-libvirt-chapter-of-debian-storage-allocation)
+
+我們曾經介紹過如何架設虛擬機器的儲存池，這樣就會建立起共同的儲存空間，如此一來，當有一台實體主機需要停機維護時，就可以利用線上移轉的功能將虛擬機器移至另一台實體主機中繼續執行，而且中間切換只需極短的停機時間（service down time）。
+
+要使用線上移轉功能有兩個必要前提：
+
+1. 兩台虛擬主機必須要有共同的儲存池；
+2. 兩台虛擬主機必須要在相同的網段。
+
+在先前的文章中所架設的網路拓樸環境，即符合上述兩個條件。符合這些前提後，我們就可以使用 virt-manager (Virtual Machine Manager) 來進行以下操作：
+
+請在您需要轉移的虛擬機器上點右鍵，並點選「Migrate」。
+
+http://www.openfoundry.org/images/120410/debiankvm/debian_kvm_03_01.png
+▲ 圖1：於虛擬機器管理員中選擇「Migrate」
+
+接著，再選取您要移轉虛擬機器的目標主機，最後再按下「Migrate」確認即可。
+
+http://www.openfoundry.org/images/120410/debiankvm/debian_kvm_03_02.png
+▲ 圖2：確認「Migrate」
+
+當移轉工作完成後，我們就可以看到剛才被移轉的虛擬機器已經被轉到另一台實體主機上繼續運作了。
+
+http://www.openfoundry.org/images/120410/debiankvm/debian_kvm_03_03.png
+▲ 圖3：於虛擬機器管理員中移轉完成
+
+命令列工具 virsh
+
+相對於 virt-manager 這個圖形化前端介面，virsh 是一個透過命令列來控制虛擬機器的文字模式客戶端程式，也是 libvirt 工具組內建提供的管理工具。
+
+當我們要透過 virsh 進行操作時，請先打開終端機並輸入 virsh 以進入互動模式。接下來，為了連接伺服器上面的虛擬機器，請輸入以下指令：
+
+    connect qemu+ssh://[位置]/system
+
+如果使用 virsh 的位置跟連接的虛擬機器伺服器同一台，也可以使用以下指令來運到本機操作。
+
+    connect qemu:///system
+
+這樣就可以連上伺服器，並可透過其內建提供的各種指令來進行管理及操作。以下是常見的指令與說明：
+
+* start [虛擬機器名稱]：啟動指定名稱的虛擬機器
+* shutdown [虛擬機器名稱]：對指定的虛擬機器進行 ACPI 關機
+* reboot [虛擬機器名稱]：對指定的虛擬機器進行 ACPI 關機後重新開機
+* destroy [虛擬機器名稱]：對指定的虛擬機器進行強制關機
+* reset [虛擬機器名稱]：對指定的虛擬機器進行強制重新啟動
+* list：列出已經開機的虛擬機器
+* list --all：列出所有虛擬機器
+* edit：使用 XML 編輯虛擬機器配置，可以手動配置網路設定、儲存裝置設定等。
+
+值得一提的是，這套工具可以透過 XML 檔案建立虛擬機器，能夠進行儲存空間管理、網路管理。它也能透過「qcow」格式建立快照 (snapshot)。但限於篇幅關係，本篇將不詳述。
+
+命令列的虛擬機器安裝工具 virt-install
+
+virt-install 是「libvirt」工具組所提供的另一個文字模式工具，可以讓使用者在命令列裡面新增一個虛擬機器並進行安裝動作。舉例來說，如果您需要透過 virt-manager 在目前的目錄裡面建立一個映像檔，並使用放在同一個目錄底下的「ubuntu-11.10-alternate-amd64.iso」進行安裝，虛擬機器規格為 512 MiB 的記憶體，可以使用以下指令：
+
+    virt-install --connect=qemu:///system -n ubuntu-11.10 -r 512 --os-type='linux' \
+    --os-variant='ubuntuoneric' -c ubuntu-11.10-alternate-amd64.iso \
+    --disk path=ubuntu-11.10.img,size=5
+
+其實，如果您只需要網路安裝，也可以直接指定安裝時使用的 URL，不但不需要下載 ISO 來裝 (也要看頻寬是否適合網路安裝)，而且不用指定安裝的作業系統類型，virt-install 會自動幫您偵測。例如：
+
+    virt-install --connect=qemu:///system -n ubuntu-11.10 -r 512 \
+    -l http://ftp.tw.debian.org/debian/dists/squeeze/main/installer-amd64/ \
+    --disk pool=default,size=5
+
+以上僅介紹常用的操作方式及其參數，詳情則請參考 man virt-install。
+
+直接使用 QEMU/KVM
+
+如果在不需要「libvirt」工具組的情況下（像是只需要一個環境來執行 Live CD 映像檔），或者沒有「libvirt」工具組的環境下，我們可以直接使用 kvm 或是 qemu 指令來執行、操作虛擬機器。
+
+透過這樣的使用方式，磁碟映像檔可以利用前一篇講過的 qemu-img 來建立，也可以使用來自 VMware 以及 VirtualBox 的映像檔，也可以是實體裝置（/dev/sdb 之類，但請在沒在使用的狀況下啟動，以免硬碟內容出現問題）。
+
+QEMU 的基本選項羅列如下：
+
+* -m：記憶體大小 (MiB)
+* -smp：核心數
+* -hda, -hdb, -hdc, -hdd：指定硬碟
+* -cdrom：指定光碟（無法與 -hdc 同時使用）
+* -boot menu=on：開機時顯示開機選單（預設是硬碟開機，詳細開機方式請參考 man qemu）
+
+舉例來說，如果我今天要建立一個「qcow2」映像檔，並準備要安裝 Ubuntu 11.10，機器的參數設成雙核心，512 MiB 記憶體，可以使用以下指令：
+
+    qemu-img create -f qcow2 ubuntu-11.10.img 10G
+    kvm -m 512 -smp 2 -cdrom ubuntu-11.10-alternative.iso -boot order=d ubuntu-11.10.img
+
+QEMU 使用網路
+
+QEMU 使用網路，除了需要建立虛擬網路卡以外，還需要建立網路的連結方式，例如：
+
+    kvm -net nic,vlan=0 -net user,vlan=0（後略）
+
+這樣的操作是，建立一張網路卡及一個 user mode 的網路（QEMU 會自動分配 DHCP 給虛擬機器，並與外部的網路連接。它相當於 virt-manager 預設的 NAT 模式），並將網路卡接在那個網路上（同一個 vlan 的意思）。其實若不指定網路型態，預設也會是自動分配的形式。
+
+此外，QEMU 也可以將封包倒 (dump) 出來，格式與 tcpdump 和 Wireshark 的 libpcap 格式共通：
+
+    kvm -net nic,vlan=0 -net user,vlan=0 -net dump,vlan=0（後略）
+
+在不指定檔名的情況下，預設會倒在工作目錄的「qemu-vlan0.pcap」這個檔案底下。
+
+若要與主機的網路裝置橋接在一起的話，設定上會比較繁雜，在此就不詳述了。所以，如果要架設對外提供服務的伺服器，筆者會強烈建議使用「libvirt」工具組來解決這個問題，同時也可以簡化管理的工作。
+_______________________________________________________________
+
+■ [企業應用] 授權流言終結者#2: The JSON License 的分析與探討
+
+曾義峰 / 文
+
+前言
+
+JSON，英文全名為 JavaScript Object Notation，是一種輕量級的資料交換格式。
+
+這裡指的輕量級，通常是與 XML 或 SOAP (Simple Object Access Protocol) 等標準化的資料交換格式比較。因為 JSON 相較於 XML 或 SOAP 擁有易於讓人閱讀及編寫的特性，而且也容易讓電腦程式解析與執行。同時，JSON 資料交換格式屬於 1999 年 JavaScript 程式語言 Standard ECMA-262 第三版中的一個子集合，是標準的一部分。
+
+接下來，本篇文章將探討「The JSON License」常見的誤解，以及面對或使用此授權時需要特別注意的事項。
+
+
+常見的誤解及探討
+
+1. 「The JSON License」指的不是實作 JSON 規格的授權
+
+目前遇過最多的問題是誤將「The JSON License」與「JSON 規格」(JSON specification) 之間劃上了等號。原因出自於 [JSON.org 官方網站] (http://www.json.org/) 針對「The JSON License」有一專屬的說明頁面，如下圖，
+
+![圖1: JSON.org 官方網站上的「The JSON License」聲明] (imgs/myth02-json_license/2012-03-16_TheJSONLicense_at_JSONorg.png "JSON.org 官方網站上的「The JSON License」聲明")
+
+▲ 圖1: JSON.org 官方網站上的「The JSON License」聲明 (http://www.json.org/license.html)
+
+因為該頁面標示為「The JSON License」又同時刊於 [JSON.org 官方網站] (http://www.json.org/) 上，使得很多人誤以為這是「JSON 規格」的授權聲明。
+
+當實作一個功能時，必須先區分何謂「方法」及「目的」。舉個例子，當我們利用 [google-gson] (http://code.google.com/p/google-gson/) 函式庫 (提供 Java 程式語言處理 JSON 格式的函式庫) 實作出標準 JSON 規格的應用時，此時的 JSON 規格即為「目的」，而 [google-gson] (http://code.google.com/p/google-gson/) 函式庫則是為了該「目的」而實踐的其中一個「方法」。
+
+回到問題本身，上述 [JSON.org 官方網站] (http://www.json.org/) 的授權聲明，指的不是「JSON 規格」本身，而僅是「The JSON License」的授權全文內容。所以當我們實作「JSON 規格」時，並不需要遵守「The JSON License」的規定，而是唯有使用任何依據「The JSON License」聲明散佈的程式時才有遵守的權利及義務。
+
+簡言之，當我們使用 [google-gson] (http://code.google.com/p/google-gson/) 函式庫來實作 JSON 時，只需要遵守 [google-gson] (http://code.google.com/p/google-gson/) 函式庫的授權要求，而不是因為實作 JSON 而需符合「The JSON License」的規定。
+
+
+2. 不是所有 JSON.org 官方網站列出的函式庫都必須是「The JSON License」
+
+雖然 [JSON.org 官方網站] (http://www.json.org/) 上有標明著「[The JSON License] (http://www.json.org/license.html)」的頁面，但並不表示所有列在官方網站上的 JSON 函式庫都是使用「The JSON License」的授權條款。
+
+![圖2: JSON.org 官方網站上所列的 JSON 函式庫列表] (imgs/myth02-json_license/2012-03-16_JSON_libraries_at_JSONorg.png "JSON.org 官方網站上所列的 JSON 函式庫列表")
+
+▲ 圖2: JSON.org 官方網站上所列的 JSON 函式庫列表 (http://www.json.org/)
+
+例如其中的 [google-gson] (http://code.google.com/p/google-gson/) 使用的是 [Apache License 2.0] (http://www.apache.org/licenses/LICENSE-2.0)，而不是「The JSON License」的授權條款。我們可以從 [google-gson](http://code.google.com/p/google-gson/) 專案的首頁中可以查證，
+
+![圖3: Google Gson 專案授權聲明] (imgs/myth02-json_license/2012-03-16_google-gson_license.png "Google Gson 專案授權聲明")
+
+▲ 圖3: Google Gson 專案授權聲明 (http://code.google.com/p/google-gson/)
+
+因此在使用官方列表中的 JSON 函式庫時，仍然需要視各別函式庫的授權條款而定，並不是所有 [JSON.org 官方網站] (http://www.json.org/) 列出的函式庫都必須依據「The JSON License」。
+
+
+3. 「The JSON License」非自由軟體基金會／開放源碼促進會所定義的「自由／開放源碼軟體」授權條款
+
+「[自由軟體基金會] (http://www.fsf.org/)」(Free Software Foundation) 提供「自由軟體授權條款」的定義及規範之服務，而「[開放源碼促進會] (http://www.opensource.org/)」(Open Source Initiative) 則提供審核「開放源碼授權條款」的服務。但是「The JSON License」都不符合兩組織所定義的「自由軟體授權條款」及「開放源碼授權條款」之要求。主要原因是「The JSON License」在其條款內容中有「For Good Not Evil」的要求，如下圖紅色區塊所示，
+
+![圖4: The JSON License 的 For Good Not Evil 要求] (imgs/myth02-json_license/2012-03-16_TheJSONLicense_NotEvil_Statement.png "The JSON License 的 For Good Not Evil 要求")
+
+▲ 圖4: 「The JSON License」的「For Good Not Evil」要求 (http://www.json.org/license.html)
+
+「The JSON License」全文其實是衍生自「[MIT License] (http://en.wikipedia.org/wiki/MIT_License)」，不同之處在於「The JSON License」額外添增了下列的授權聲明，
+
+    The Software shall be used for Good, not Evil.
+
+這中文意指「此軟體僅能行善，不得從惡」。意謂著任何使用此軟體（以「The JSON License」為其授權條款）的人，僅能利用該軟體從事任何為善之目的，而不得為惡。可是問題在於「善」與「惡」的範圍要如何界定？這在「The JSON License」中也並未特別說明清楚，這使得每個人可以對於「善」與「惡」進行各自表態。
+
+因此「自由軟體基金會」認為「For Good Not Evil」的要求，違反了自由軟體 (Free Software) [四大精神] (http://www.gnu.org/philosophy/free-sw.html) 中的第 0 條，
+
+    The freedom to run the program, for any purpose (freedom 0).
+
+並且在其官方網站上也特別說明「自由軟體基金會」對於「The JSON License」的看法，截圖如下，
+
+![圖5: 自由軟體基金會官方網站對於「The JSON License」的看法] (imgs/myth02-json_license/2012-03-16_FSF_Explain_JSON_license.png "自由軟體基金會官方網站對於「The JSON License」的看法")
+
+▲ 圖5: 自由軟體基金會官方網站對於「The JSON License」的看法 (http://www.gnu.org/licenses/license-list.html)
+
+同樣地，「For Good Not Evil」的要求，也無法滿足「開放源碼促進會」[十大開放源碼定義] (http://opensource.org/docs/osd) 中的第 6 條，截圖如下，
+
+![圖6: 開放源碼促進會的十大開放源碼定義之第 6 條] (imgs/myth02-json_license/2012-03-16_OSI_OSD_six_definition.png "開放源碼促進會的十大開放源碼定義之第 6 條")
+
+▲ 圖6: 開放源碼促進會的十大開放源碼定義之第 6 條 (http://opensource.org/docs/osd)
+
+正因「善」與「惡」可能因地域、文化、風俗、民情等不同而有不一樣的界定，所以「For Good Not Evil」的要求潛藏著過多限制自由的可能，也因此使得無論是「[自由軟體基金會] (http://www.fsf.org/)」亦或是「[開放源碼促進會] (http://www.opensource.org/)」都不認為「The JSON License」是個合乎於「自由」或「開放源碼」的授權精神。
+
+
+面對或使用「The JSON License」的注意事項
+
+無論是授權者（撰寫程式供他人利用之人），或是被授權者（利用他人所授權程式之人），在面對或使用「The JSON License」的程式時，都有一些需要特別注意的事項。
+
+1. 需要特別注意各別授權條款中是否有「For Good Not Evil」的聲明
+
+因為「The JSON License」與常見的「[MIT License] (http://en.wikipedia.org/wiki/MIT_License)」幾乎類似。見下列的比較圖，
+
+![圖7: 「The JSON License」及「MIT License」授權全文比較圖] (imgs/myth02-json_license/json-mit.png "「The JSON License」及「MIT License」授權全文比較圖")
+
+▲ 圖7: 「The JSON License」及「MIT License」授權全文比較圖
+
+唯獨「The JSON License」多了下列聲明，
+
+    The Software shall be used for Good, not Evil.
+
+因為「MIT License」是個常見的授權條款，所以在蒐集與整理專案中各程式及函式庫的授權清單時，很容易遺漏或忽略「The JSON License」額外的「這一行」，而誤將「The JSON License」授權之程式誤判為「MIT License」。這不僅將錯誤資料植入於專案的「第三方程式授權清單列表」，也同時可能會衍生出後續法律遵行上的問題與盲點。所以在整理授權清單時，務必比對各條款中是否有額外「多餘」的聲明。
+
+
+2. 「The JSON License」的授權相容性問題
+
+實務上，一個專案中存有多種不同授權的程式已是常態，在開發過程中除了要注意第三方程式的授權內容外，還需要分析該授權是否與專案中其它相關程式的授權存有相容性的問題。
+
+授權相容性指的是，彼此授權的要求是否具有衝突。意即，若甲授權要求不得進行某行為，而乙授權要求必須從事該行為時，代表著甲授權與乙授權有衝突性，即不具相容性。此時，甲授權與乙授權的程式很可能不得存在於同一專案或產品中，這也意謂著此產品將不得進行散布或銷售。
+
+然而，從本篇文章前述之探討中，我們已知「The JSON License」並不符合自由軟體基金會／開放源碼促進會所定義的「自由／開放源碼軟體」授權條款。這同時也意謂著「The JSON License」與其它「自由／開放源碼軟體」間可能存在著授權相容性的問題。
+
+舉個例子，由於「The JSON License」不符合「自由軟體基金會」對於自由軟體的定義，因此很可能無法與 GNU General Public License (GPL) 及 GNU Lesser General Public License (LGPL) 類的「自由軟體授權條款」，共同存在於具有互動關係的專案或產品中。
+
+簡言之，如果我們撰寫出一程式，而且使用「The JSON License」聲明散布時，則可能會因為授權相容性的問題，而使得他人無法與此一程式共存於相同專案中，降低了我們程式的推廣及可利用性。反之，當我們專案中欲使用「The JSON License」聲明散布的程式時，需要特別注意該授權是否會與目前專案中其它相關程式的授權，存在著授權相容性的問題。
+
+
+結語
+
+隨著 JSON 資料交換格式的流行，愈來愈多相關的授權流言浮出檯面。在本篇文章中，整理了目前親自處理過的 JSON 實務問題，以及網路上常見的誤解，並進一步對於「The JSON License」潛藏的陷阱提供見解，希望能夠給予讀者一些參考依據。
+
+最後，建議讀者參閱林珈宏先生於 2010 年所撰寫的『[自由軟體授權條款的附加限制-從被 Google 拒絕的「善行條款」談起] (http://www.openfoundry.org/news/2245)』一文。該文中所提及的 JSMin-PHP，即是以「The JSON License」為其授權條款的軟體專案，從其面臨的法律問題中，可進一步供我們在實務運作上有所參詢。
+_______________________________________________________________
+
+■ [源碼秘技] 多功能的標記語言及排版系統 - LaTeX
+
+Kent / 文
+
+簡介
+LaTeX 是一個使用同樣名為 LaTeX 的標記語言的排版系統。LaTeX 的使用在學術界尤其興盛。其絕佳的排版以及強大的數學公式和表格生成讓使用者可以很輕易的編輯出高質量的印刷品。很多人會因為 LaTeX 不是一款“所見即所得”（What You See Is What You Get）的排版軟體所以抗拒它，確實 LaTeX 是一款不容易精通的軟體，可是其實透過使用預設好的模板，LaTeX 的上手也就不是那麼的困難了。
+
+Official website：www.latex-project.org
+Platform：Cross-platform
+License：LaTex Project Public License (LPPL)
+Files：res2.tex (0 views)
+
+本文將介紹一些 LaTeX 的入門知識然後帶領讀者實作幾份文件，透過實例輕鬆學習使用 LaTeX 的方式，希望可以幫助想要學習 LaTeX 的人克服可以被避免的陡峭學習曲線。
+
+安裝說明
+LaTeX 是個歷史悠久的軟體，所以在各大主流作業系統都有發行版本。以下介紹 Windows, Linux , Mac OS X 上的 LaTeX 圖形界面編輯器：
+
+1.Linux 用戶請下載 Texmaker [http://www.xm1math.net/texmaker/]
+2.Windows 使用者請下載 TeXworks（此編輯器被包含在 MiKTeX 的安裝包中 [http://miktex.org/]）
+3.Mac OS X 使用者可以使用 TeXShop [http://pages.uoregon.edu/koch/texshop/]
+
+使用說明
+首先，先介紹一個 LaTeX 文檔如何生成一個 pdf。LaTeX 文檔有著 .tex 的副檔名。首先 .tex 檔需要先被編譯，在確認文檔裡並沒有錯誤以後，一個 .dvi 檔會先被生成然後最終檔案格式才會被生出（如.pdf）。這就是為什麼 LaTeX 並不是一個所見即所得的文檔編輯軟體。接下來，筆者將討論一些 LaTeX 的文檔標籤。
+
+% this is a comment
+
+\documentclass
+
+% SETTINGS
+% \textwidth 6.5truein
+% \textwidth 9.5truein
+
+\begin
+
+Hello World!
+
+\end
+
+以上是一個簡單的範例。
+% 是讓 LaTeX 分辨代碼跟註釋的方式，所以任何在 % 之後的字元（直到換行字元）都不會被 LaTeX 的編譯器檢查。 \documentclass 是用來指定文檔排版的風格。其他常用的風格還有如 book 以及 beamer（可用於製作簡報，詳見之後的介紹）。在 \documentclass 以及 \begin 這些中間一般會針對使用者的需求設置全域的文檔設置。由於這些設置種類繁多，而且詳述這個部分超出本文的範圍，故在此僅提示讀者，若是有想深究的讀者，可以在閱讀完本文和參考完本文的附件之後實際操作看看。 
+
+LaTeX 的格式化以及文字調配基本上可以看作像是在寫程式碼。如果要使一段文字粗體化，就放入那段文字到一個函式中，那可以使用 \textbf，bold 是想要粗體化的文字。
+以下的範例表現幾個常用到的函式：
+
+\documentclass
+
+% SETTINGS
+% \textwidth 6.5truein
+% \textwidth 9.5truein
+
+\begin
+
+This is \LaTeX
+
+To emphasize something， simply \emph it. Or， make it \textbf.
+
+The date today is \today
+
+\begin
+\item one
+\item two
+\item three
+\end
+
+\end
+
+文件編譯後的結果如下圖：
+如之前所說的，\textbf 會使 text 粗體化，而 \emph 會讓字體斜體化。在 LaTeX 中有些是預設的 macro，像上面的 \LaTeX 跟 \today，可以直接叫喚。另外值得一提的是 itemize。在 \begin 跟 \end 之間的設定將會視 itemize 的環境設定而決定如何編譯之間的文字。在 LaTeX 中，許多的擴充包都是利用這樣來表現專屬的環境設定。這個設計讓 LaTeX 更富有擴充性跟彈性。
+
+在進入案例研究以前，我們先看看 LaTeX 強大的數學公式排版。我們來看以下幾個範例：
+
+\documentclass
+
+% SETTINGS
+% \textwidth 6.5truein
+% \textwidth 9.5truein
+
+\begin
+
+Fractions: $\frac$
+
+Greek letters: $\alpha$， $\beta$， $\Sigma$， $\Omega$
+
+\begin
+root = \frac}
+\end
+
+\end
+
+產生出來的結果如下圖:
+
+▲ 圖1
+
+$ 是用來分別一般字元跟特殊字元（如希臘文字）的，所以在呼叫這些特殊字元時，都需要用 $ 包覆住特殊字元。這裡我們也使用了 equation 這個環境設定。這使得式子置中靠齊並有一個 "(1)" 來標記這是第一個式子。這個簡單的例子很輕易地表現出 LaTeX 在公式排版方面的便利性跟彈性。
+
+接下來， 我們來研究幾個實例。
+
+實例研究
+學習 LaTeX 最好的方式就是實際運用它。讀者在讀完了前一個段落以後應該已經對 LaTeX 有了足夠的認識可以開始使用了。本文中的實例都是以開源社群中熱心的 LaTeX 愛好者使用的模板加以改造的。以下是以 LaTeX 來編撰的兩個簡單範例。
+
+範例一：簡報
+在簡報的實作，我們將會使用到 beamer 這個風格 
+
+\documentclass
+
+% \usepackage // Activate for custom appearance
+
+\title
+\author
+\date
+
+\begin
+
+\frame
+
+\section[Outline]
+\frame
+
+\section
+\subsection
+\frame
+
+
+  \begin
+  \item＜1-＞ Normal LaTeX class.
+  \item＜2-＞ Easy overlays.
+  \item＜3-＞ No external programs needed.      
+  \end
+}
+\end
+
+
+輸入以上代碼以後，應該會得到這個檔案 [demo1.pdf]。 beamer 這個 document class 最好的地方在於其非常直觀的函式命名，每張幻燈片都被視為一個 frame，frame title 則用來設定每張的標題。這讓在 LaTeX 中編輯簡報非常的簡單。若是簡報內容涉及許多數學公式，那就更可以發揮 LaTeX 的強大排版功能了。
+
+範例二：個人履歷
+LaTeX 可以生成各式各樣的文件。以下就要用 LaTeX 來編寫一份個人履歷（範例出自 [http://www.rpi.edu/dept/arc/training/latex/resumes/]）記得要先下載 res.cls [http://www.rpi.edu/dept/arc/training/latex/resumes/res.cls] 因為主文檔會使用到這份文件。 
+
+如果想要直接下載這份檔案，請下載 res2.tex [http://www.rpi.edu/dept/arc/training/latex/resumes/res2.tex]。有興趣的讀者現在不妨試者讀讀看代碼然後用之前介紹的概念試著了解一下文檔的結構吧！
+\documentclass[margin] 
+% the margin option causes section titles to appear to the left of body text 
+\textwidth=5.2in % increase textwidth to get smaller right margin
+%\usepackage % uses helvetica postscript font (download helvetica.sty)
+%\usepackage   % uses new century schoolbook postscript font 
+
+\begin 
+ 
+\name % the \\[12pt] adds a blank line after name
+ 
+\address \\ 204 Pawling Avenue \\ Troy， NY 12180  \\
+        (518) 273-4617 }
+\address \\ 29 Runner Lane \\ Syosset， NY 11971 \\
+        (516) 921-7653 }
+
+ 
+\begin 
+ 
+\section 
+Auditing/Analysis of Operations 
+
+\section 
+B.S. in Management， Rensselaer Polytechnic Institute， Troy， NY， May 1986 \\
+Concentrations in Accounting and Management Systems \\
+QPA 3.9 in major， 3.7 overall
+ 
+
+\section
+  National Money Bank USA， Melville， NY \hfill Summer  1985
+ \begin \itemsep -2pt  % reduce space between items
+ \item Created regression model to lower check volume 
+                 forecast errors
+ \item Authored PC-based software to determine optimal 
+                 staff levels 
+ \end
+
+ 
+ 
+ Fleet Van Lines， Bayridge， NY \hfill  Summer 1984
+\begin \itemsep -2pt %reduce space between items
+\item Researched， implemented new computer accounting 
+                 system 
+\item Customized existing software for inventory 
+                 management 
+\item Trained employees on both accounting and inventory 
+                 systems 
+\end
+
+ Solutions Unlimited， Lake Grove， NY \hfill
+Summer 1983                
+                \begin \itemsep -2pt
+                 \item  Demonstrated extensive range of software and 
+                 hardware 
+                
+                 \item Developed leads by offering seminars for specific 
+                 professions 
+
+		 \end
+
+\section 
+                Monarch Computer Products Inc.， Freeport， NY    \hfill         1985 
+                \begin \itemsep -2pt
+              \item Leader of marketing effort for V.R.S. (Video 
+                 Rental System)， \\
+                  currently in test phase 
+                 
+                \item  Perform accounting duties 
+
+		 \end
+
+		 Delta Epsilon Pi Fraternity \hfill   1985 
+                \begin \itemsep -2pt
+                 \item  Responsible for the overall performance of the 
+                 chapter 
+                
+                 \item Chair all house and alumni committee meetings 
+                
+                 \item Liaison to the national fraternity and the RPI 
+                 administration 
+		 \end
+
+                    Rensselaer Fraternity Managers 
+              Association     \hfill                                 1984 
+                 \begin \itemsep -2pt
+
+               \item    Evaluated and approved purchases in excess of 
+                 1，000，000 yearly 
+                 
+               \item  Formulated bookkeeping checklists for use by all 
+                 fraternities 
+		 \end
+
+\section 
+Dean's List of Distinguished Students， all semesters \\
+National Merit Scholarship \\
+Alan T. Hundert Memorial Scholarship \\
+ Epsilon Delta Sigma， Honorary Management Society 
+ 
+
+% Tabulate Computer Skills; p defines paragraph 3 inches wide
+\section
+   \begin}
+    \underline & COBOL， Pascal，C， APL， Basic \\
+
+     \underline &  SPIRES， dBase III， Datastar database 
+                        systems， GPSS simulation， FCS-EPS financial 
+                        planning， SAS statistical analysis， 
+                        Lotus1-2-3， MPSX optimization modeling 
+ \end
+
+\end 
+\end 
+
+結論
+LaTeX 是一個非常多功能的標記語言以及排版系統。相關的資源也非常非常多，透過各種函式庫跟模板，LaTeX 可以被用來製作各式各樣的格式跟印刷品。尤其對於需要排版公式的人來說，LaTeX 無疑為他們解決了一個大問題。讀者若是有時間不妨試試看，利用 LaTeX 來取代一些桌面出版的軟體。
+
+參考資料
+LaTeX 履歷模板，http://www.rpi.edu/dept/arc/training/latex/resumes/
+LaTeX 官方網站，http://www.latex-project.org/
+_______________________________________________________________
+
+■ [自由專欄] 為什麼必須使用 Issue Tracking System 管理專案？
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net。
+
+我在網站程式上線前需要準備的事（四）(http://blog.xdite.net/posts/2012/03/18/website-online-todo-4/) 提到了為了順利進行專案，一個好的專案管理系統絕對是必備的。
+
+專案管理系統背後運作的邏輯何在，就是這篇文章主要的重點。
+
+What is issue tracking (project management) system?
+
+Issue Tracking system，顧名思義就是紀錄、追蹤問題的系統。BugZilla (http://www.bugzilla.org/)、Trac、Redmine (http://www.redmine.org/)、JIRA (http://www.atlassian.com/software/jira/overview)、lighthoustapp (http://lighthouseapp.com/)、Basecamp (http://basecamp.com/)…等等這幾套軟體，都是知名的 Issue Tracking system。
+
+一套合格的 Issue Tracking system 的 Issue 至少要可以紀錄這些內容：
+
+Issue 的主題
+Issue 的內容
+Issue 現在的狀態（新建立、已指派、已解決、已回應、已結束、已擱置…etc）
+Issue 優先權（正常、重要、緊急、輕微、會擋路…etc.）
+Issue 發生日期
+Issue 希望解決日期
+Issue 實際解決日期
+Issue 被分派給誰
+Issue 的附件
+Isuue 的觀察者有誰
+
+
+Project Management Tool
+
+其中 Redmine、JIRA、Basecamp 並不僅止是 Issue Tracking System，更精確的來說，它們應該被稱為「專案管理工具」。
+
+它們多半能夠提供以下作用：
+
+一個地方可以透明的列出所有需要被執行的項目 (Issue List)
+一個地方可以列出階段內需要被執行的項目 (Issue Milestone)
+一個可以記載內容，狀態、優先權、日期、分派者、觀察者，且具有「permalink」、「權限控管」，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+可以 cross reference 或具有子票功能
+一個地方可以整理統合專案現在所有的相關資訊。(Wiki 功能)
+一個地方可以看到自己今天需要 Focus 進行哪些項目 (Issue Personal Dashboard)
+一個地方能讓 Manager 可以看到自己的 Member 正在進行哪些項目，這些項目目前的狀態是什麼。(Issue Query)
+
+
+背後運作的原理
+
+網站程式上線前需要準備的事（四）這篇文章刊出後，得到不少的迴響。其中我看到的絕大多數的回應多是多半抱怨 PM 根本不稱職不盡責，只顧著畫規格，然後只按照自己寫出來的無法執行的天才（？）規格的催進度。所謂的 M 不是 Management，而是 Magic。即使成員賣了命的加班，專案還是得不到好的結果：超時，品質粗糙，成本過高，scope 過大無法完成。
+
+在我進行開發軟體專案時，也發現所謂的其實絕對多數的 PM，其實職稱與進行的事務完全不合。它們的工作內容往往只有 Project Planning，應該被稱作是 Planner，而不是 Project Manager。
+
+一個軟體開發專案，最重要的變數有四：成本、品質、時間和規模。真正的 Project Management，是能夠準確 Manage 這四項變因，在可以接受的與變動差異下，完成整個專案，產出預期的成果。
+
+我認為 Project management tool 可以協助做到專案中以下幾項的管理：
+
+規模管理
+
+專案會無限膨脹，主要多半是因為規模的掌控不佳。而規模掌控不佳，時間和成本就會隨之膨脹。
+
+規模之所以膨脹，有幾個原因：
+
+沒有人知道，到底「總共」有多少事情需要完成。
+離目前的時間表，「還有」多少事情需要完成，還有多少時間可以用。這些事情裡面有沒有可以被「調整縮減」的餘地。
+
+所以，專案需要一個工具能提供以下功能：
+
+一個地方可以透明的列出所有需要被執行的項目 (Issue List)
+一個地方可以列出階段內需要被執行的項目 (Issue Milestone)
+一個可以記載內容，狀態、分派者、執行者，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+
+時間管理
+
+一個專案中，最寶貴的資源是「時間」。什麼東西都可以用「錢」買到，唯獨時間不能。在專案中時間最容易被浪費的地方在：
+
+使用信件往來，交涉的互相等待時間。
+沒有被壓定「完成日期」，「詳細需求品質」的工作細項。（陷入不必要的完美，或者是悠哉的怠惰）
+不符合期待，修改的來回時間。（沒有達到良好溝通，導致方向錯誤）
+類似的事情，重複消耗資源。（沒有 SOP，每次都要花費一定以上的資源去解決）
+
+所以，專案需要一個工具能提供以下功能：
+
+一個可以記載內容，狀態、優先權、預計完成日期、分派者、執行者，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+可以平行討論，而不是信件順序往來
+明確的完成時間
+一個地方可以整理統合專案現在所有的相關資訊。( Wiki 功能)
+提供專案相關的資訊以及 SOP
+同時，專案最好能夠搭配舉行每日的 Standup Meeting，確保每個人正在進行的方向是正確的，以及確保專案資源沒有被浪費的跡象。
+
+團隊工作管理
+
+一個專案，成員至少會有兩人以上。兩個人以上，就會有溝通與工作協調安排的問題。專案的工作項目往往是有 related 的，少有獨支。 比如說 Planner 沒有把規格寫完，RD 和 Art 就不太容易先動工。沒有把 Database schema 規劃好，後續就很難繼續開發程式。
+
+這也是專案當中最傷資源的狀況：優先權等級為：「block」票。因為 A 方沒有交付，導致 B 方不能交付，連帶導致 C 不能開始。
+
+而專案當中也有很多工作項目分別是「對最終專案目標很重要，但當下不重要」、「對當下 milestone 很重要，對最終目標沒那麼重要」，「只對合作同事很重要」…etc
+
+如果工作項目不能夠按照當下狀況調整正確的優先等級分派給團隊成員。就很容易會造成所有的人雖然很努力，整體工作效益卻非常低的情形。
+
+當然，不只是 Project Manager 需要知道全部的人今天要做什麼。而被分派到項目的成員，也需要能夠知道自己當天所需要執行的項目依序是哪些，按照優先狀況完成。如果優先狀況有錯誤，可以及早告知資源協調者 (Manager)。
+
+所以，專案需要一個工具能提供以下功能：
+
+一個地方可以列出階段內需要被執行的項目 (Issue Milestone)
+一個可以記載內容，狀態、優先權、日期、分派者、觀察者，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+可以 cross reference 或具有子票功能
+一個地方可以看到自己今天需要 Focus 進行哪些項目 (Issue Personal Dashboard)
+一個地方能讓 Manager 可以看到自己的 Member 正在進行哪些項目，這些項目目前的狀態是什麼。(Issue Query)
+
+資源調配管理
+
+Project Management，並不是在專案的一開始設下「完成時間」，切出所有「工作項目」，列出「完成目標」這麼簡單。隨著專案的進行，開始會有很多變因出現，造成資源不足，需求改變，規模追加，人力減少…等等的挑戰障礙出現。
+
+都在考驗著專案經理對於資源調配的管理能力。能不能在預定的時間、預定的預算、預定的人力資源內，如期完成當初設立的目標以及交付達到品質要求的產品。
+
+如果條件不允許，當下必須作出取捨、做出決定，而非死板的捍衛規則與命令。
+
+所以，專案需要一個工具能提供以下功能：
+
+一個地方可以列出階段內需要被執行的項目，並可以移動改變階段項目。(Issue Milestone)
+一個可以記載內容，狀態、優先權、日期、分派者、觀察者，且讓大家可以討論執行項目細節的地方。(Issue Ticket)
+
+Agile Method
+
+若讀者對於專案管理有興趣的話，研究過一些「敏捷開發」的 method，不管是 XP、Scrum、Kanban…，你會發現到這些工作方法都在傳達幾件類似的事：
+
+專案必須透明，進行局勢一目了然
+專案要能拆分成可執行的階段
+溝通、溝通再溝通
+不斷的消除浪費
+不斷的 deliver
+
+而一個好的 Project Management Tool 能夠輔助專案具備以上的特徵。
+
+小結
+
+還是老話一句：真正的 Project Management，是要能夠準確管理，成本、品質、時間和規模這四項變因，在可以接受的與變動差異下，完成整個專案，產出預期的成果。
+
+「Project Manager」必須要做到的事，也就是要在動態的環境下，利用種種手段盡力讓這件事發生。
+
+所謂的「Project Management」其實可以用很科學的手段達成，因為事實上這本身就是一門科學。
+
+一般所謂的 PM 很常誤以為 Project Management 就是用 mail+excel、口頭分配任務，得到專案成員的口頭回覆，接著只要坐著回去發呆或無時無刻的跑到座位上催專案成員作事，整件事情就會發生。如果你真的一直這樣想，我想可能最後程式設計師可能做的事：就是直接用 shell script 換掉你。
+
+no kidding。
+
+http://www.openfoundry.org/images/120410/IssueTrackingSystem/lg-go-away-tshirt.jpg
+▲ 圖1：Thinkgeek : Go away or I will replace you with a very small shell script (http://www.thinkgeek.com/tshirts-apparel/unisex/frustrations/374d/)
+
+推薦書單
+
+http://www.openfoundry.org/images/120410/IssueTrackingSystem/7014948309_52e099ec27_z.jpg
+▲ 圖2：廣告：Essential Rails Pattern 開始 update 了
+
+Essntial Rails Pattern (http://rails-101.logdown.com/books/3-essential-rails-pattern) 這本書已經進入排版階段。 詳情請看這篇文章 (http://blog.xdite.net/posts/2012/03/24/essential-rails-pattern-update/)。
+_______________________________________________________________
+
+■ [自由文化] 自由軟體轉換心得（一）：Ubuntu 11.04 在圖形介面下的基礎操作
+
+Attila / 文
+
+前言：轉換的原因
+
+引領我入電腦領域的師父，採用的就是微軟 MS-DOS 作業系統，因此理所當然地跟著用。此後就是加入 Windows 3.1，接著一路到 Windows 7。不論其他人怎麼評論微軟的產品，我始終不認為它們很糟，讓我不滿的主因只有一個：合法使用的代價頗高，非一般上班族所能負荷。以時下新進人員起薪新台幣二萬二來說，一套彩盒零售版的 Windows，再便宜的管道起碼也要薪水的四分之一左右。這樣的代價可以用多久？如果被微軟各種間接強迫使用者升級的方式所惑，大約每兩年還會再花一筆約三到四千的升級費。以個人使用者來說，等於每年花了四千到五千元買到作業系統的使用費，如果又加上微軟的 Office，費用更高。
+
+微軟的間接強迫手段有哪些？大家耳熟能詳的有：宣稱多久之後不再提供更新與支援（同時暗示缺乏更新與支援的作業系統容易遭受惡意攻擊）、新軟體有多少好處、利誘硬體廠搭售 Windows 等。所以，除了 DIY 之外，市面上能買到的電腦幾乎全都搭配 Windows，一般消費者要從一開始就接觸到自由軟體，除非有人願意引領進門，否則還真不容易。
+
+大約在 Windows XP 問世沒多久，我就開始考慮要建構一台全自由軟體的電腦來用，期望能徹底擺脫微軟三不五時的警告。基於此，近幾年都會花一點時間來研究並測試家用電腦完全自由化的實驗，測試的系統以 Ubuntu 為主。直到 Ubuntu 11.04 出現，才有滿意的成果。測試成熟後，乃以一台老舊的筆記型電腦，作為家中第一台具有全自由軟體的應用示範機。經過近半年的測試和使用，終於讓這台電腦能在完全符合家中使用需要的前提下，完全不必再用 Windows 環境。
+
+只是我個人很堅持使用圖形介面，不大願意如同在 MS-DOS 時代一樣背文字指令。原因無它，圖形介面很容易理解和操作，而且在有限的選項內，很快就知道有沒有自己想用的東西。我的理念是，應用工具所需要的學習時間，是愈短愈好。電腦買來，是為了生活或工作上的應用，如果還要花上很多時間學習操作，就表示該應用的時間成本過高，不然就是屬於專家的工具，若非在該特定領域討生活或者有興趣，其實大可不必學。採用圖形介面的作業系統，可以讓使用者不必學太多偏向技術性的東西，就能讓電腦派上用場。
+
+惟，周遭許多朋友對 Linux 的使用還存在於「必須要背很多文字指令，才有辦法使用」的刻板印象。雖然個人才疏學淺，為了證明這個觀念有其錯誤性，仍決定將自己的研究和使用心得，以系列文的方式和大家分享轉換的心得，希望對於想從 Windows "跳"出來的朋友有幫助。
+
+關於本系列文，有一點必須先聲明：大家若留言或來信詢問相關問題，如牽涉到文字指令，我的回答大概就是：我不會。理由如下：
+一、我對於 Linux 下的指令不熟，自己碰到的許多問題，網路上的前輩高手幾乎都有解決辦法，但所教的方式大都以文字指令為主，而我自己也常常搞不清楚，又如何能回答呢？
+二、許多想使用 Linux 的朋友，並無意思想要成為高手，只是單純的基礎應用而已。我認為想要普及，就得先引起使用者「想用」的意願，在實際使用時才會發現其美妙之處，進而引起繼續"挖寶"的興趣，才有可能繼續去鑽研其他技巧，也就是文字指令的美妙世界。
+請大家對我不必抱過高的期待（尤其是文字指令方面），以免浪費你我的寶貴時間和網路資源。
+
+系統安裝的幾個重點
+
+Ubuntu 的安裝相當簡單，相關的過程和技巧可以參考 Ubuntu 的官網教學，在其下載網頁內，有各種不同的安裝方式可供大家參考（參考網址：http://www.ubuntu.com/download/ubuntu/download）。基本上，圖形介面下的安裝過程並沒有太大的難度，過程也和官網的教學相似，在此就不浪費篇幅。
+至於版本的選擇，當然是愈新愈好。原因無他，新版本才會支援新技術，有需要時才不會扼腕。當然也要看硬體本身有沒有支援相對應的功能。安裝完成後，第一次使用 Ubuntu 時，若硬體效能不足以讓系統的某部份功能完全發揮時，會出現警示，讓使用者知道"極限"何在。以我的老筆電來說，在顯示部分就遇到相關警示。在此先羅列其主要規格如下：
+筆電的廠牌型號：Fujitsu S6230
+CPU：Intel(R) Pentium(R) M processor 1.60GHz
+記憶體：1.5 GB
+顯示晶片：Intel 855GM
+硬碟：ATA FUJITSU MHV2120AH PL，120 GB
+
+http://www.openfoundry.org/images/120327/Ubuntu/10002.jpg
+▲ 圖1：CPU 與記憶體
+
+http://www.openfoundry.org/images/120327/Ubuntu/05001.jpg
+▲ 圖2：顯示晶片
+
+http://www.openfoundry.org/images/120327/Ubuntu/120gb.jpg
+▲ 圖3：硬碟
+
+以現在常見的圖形效果來說，顯示卡效能很顯然不夠，在 Ubuntu 底下完全不能使用 Unity 效果，只能使用傳統介面。所幸檢視圖片和觀賞影片不但正常，還比 Windows XP 底下還漂亮。若安裝 11.10，不但會出現警示，實際播放影片時，還會同時出現 RGB 三色鬼影。因此只有死心塌地的安裝 11.04 的版本。
+
+一、磁碟分割
+關於磁碟分割，對於 Linux 來說，只需要系統碟和置換空間碟 (swap)。然而，Ubuntu 所需要的空間不大，即使考慮之後還要安裝其他的應用軟體，總共大概也只要 15 GB 就夠了。（除了 Ubuntu 預設會安裝者之外，我在軟體中心選了 40 個應用軟體來安裝，可用空間居然還有 8.5 GB）。至於 swap，預設建議是 1.5 GB，如無特別需要，使用建議的大小即可。
+
+所以磁碟空間配置的方式，最單純的作法當然是 swap 分配 1.5 GB，其他都給系統碟。只是我還想保留筆電所附的 Windows XP，所以磁碟分割就要另行規劃。至於為何要保留 Windows XP？一來這是已經花了錢的可用資源，不可隨便浪費（搭配各種自由軟體來用，照樣合法又好用）。二來，可在同樣的硬體資源中，比較看看做同樣的事，到底何者能勝出。（目前的心得：各有擅場，有些項目無法比較）
+基於這樣的目的，我的磁碟分割如下：
+1. Ubuntu 系統碟：15 GB
+2. swap：1.5 GB
+3. WindowsXP 系統碟：35 GB
+4. 資料碟1（檔案系統為 FAT 32）：4 GB
+5. 資料碟2（檔案系統為 NTFS）：63.5 GB
+
+FAT 32 這一個磁碟，實在是因為自己認知有誤所導致的錯誤分割。以前曾測試過某個版本的 Ubuntu，當時對於 NTFS 的支援度還不夠，對於此類磁碟只能讀取而不能直接儲存檔案，想要儲存，必須要安裝額外的應用程式，但效果不佳。進行分割時，只想到要保留一個可以和 Windows XP 共用檔案的磁碟，卻沒先上網查資料確定需不需要採用 FAT 32，雖說事後要合併到 NTFS 碟也不難，但總是得多費些時間處理。
+
+至於系統的安裝順序是先安裝 WindowsXP，然後才安裝 Ubuntu。如此 Ubuntu 內的 GRUB 會自動建立開機選單，讓使用者在開機前可以選擇想用的作業系統。
+
+二、驅動程式
+安裝作業系統後，最怕的就是某個硬體沒有驅動程式可安裝。如果以作業系統問世以前的硬體來安裝，通常不會有這樣的問題，尤其是相隔數個世代的產品。要是用比較新的硬體呢？以 Ubuntu 來說，我認為最主要的關鍵是作業系統有沒有支援網路卡或網路通訊晶片。只要這一項能安裝起來，就可透過「額外的驅動程式」這項工具，自網路下載並安裝所需的驅動程式。
+
+http://www.openfoundry.org/images/120327/Ubuntu/04001.jpg
+▲ 圖4：控制中心內的"額外驅動程式"選項，藉此可安裝特定硬體的驅動程式
+
+目前多數的電腦大概都採用大廠的網路通訊晶片，如 Broadcom、3 Com、瑞昱半導體、Intel 等，Ubuntu 必定有支援，所以系統安裝完畢後要連上網路，應該不會有困難才是。
+
+系統更新
+
+從 Ubuntu 官網下載回來的 CD 光碟映像檔（格式為 ISO），檔案小，下載較快，不過安裝完之後的更新數量，與已發行時間的長短成正比，若下載 DVD 映像檔，則所需的更新時間比較少。（DVD 下載的參考網址：http://cdimage.ubuntu.com/）
+為何要進行系統更新呢？除了與系統本身的安全性有關者之外，通常也包括應用程式的安全或版本更新。為了讓系統的運作穩定、安全和有新功能可用，系統更新有其必要。通常開機且網路連線完成，系統即會自行進行檢查，此時會出現如下的畫面，以滑鼠按一下「安裝更新套件」鈕，就會進行下載並安裝。
+
+http://www.openfoundry.org/images/120327/Ubuntu/08004.jpg
+▲ 圖5：系統更新
+
+當然，我們也可以自己手動來進行更新。作法如下：
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/08001.jpg
+▲ 圖6
+
+按一下面板上的「系統」，從選單內點選「管理」＼「更新管理員」。
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/08002.jpg
+▲ 圖7
+
+出現系統更新的視窗後，如沒出現可用的更新，可按一下「檢查」鈕。
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/08003.jpg
+▲ 圖8
+
+此時會出現檢查和下載清單的視窗。
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/08006.jpg
+▲ 圖9
+
+檢查完畢後，若有可用的更新檔案就會顯示出來，且會區分為安全更新和選用更新。可以按一下「更新說明」，以檢閱更新檔案的基本說明。
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/08005.jpg
+▲ 圖10
+
+在此建議大家在更新之前要了解一下到底更新檔案有何重點，比較容易掌握電腦的狀況。如有不想更新的檔案，可以取消勾選。選定後按一下「安裝更新套件」。
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/08004.jpg
+▲ 圖11
+
+此時會出現「認證」的視窗，此處所需要輸入的密碼就是帳戶的密碼。輸入完畢後按一下「認證」就會進行更新檔案的下載和安裝。
+
+【補充說明】
+Ubuntu 安裝的過程中，會要求使用者建立一個具有完整權限的帳戶（包括帳戶名稱和密碼），當進行各種系統重要設定值的改變或安裝移除軟體時，都必須使用這個帳戶來認證，以確保系統的安全。如果該電腦只是自己使用，為了方便起見，只要建立一個此種權限的帳目即可。如果是多人使用，為了避免非管理員的使用者隨意安裝來路不明的軟體或更改重要的系統設定值，可設定部分權限的帳戶給電腦管理者以外的人使用。
+
+檢視和設定重要的系統資訊
+
+系統安裝完畢後，對於系統本身有哪些重要資訊或可用的設定項目，有必要了解並設定，以符合自己的習慣，提升使用效率。以下是我認為重要的項目，分別一一述之。
+
+一、系統監控：了解一下機器運作狀況
+「系統監控」裡面並沒有可以設定的項目，但有助於了解作業系統版本為何、重要硬體的基本資料、已經載入使用的程式、記憶體使用狀況等。當某些程式在使用上覺得有些異常，也許可以到這裡來看看是不是因為該程式過度消耗硬體資源的緣故，而可決定是否要繼續使用該程式或搭配其他方式檢查看看該程式有沒有問題。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/10001.jpg
+▲ 圖12
+依序點選面板的「系統」＼「管理」＼「系統監控」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/10002.jpg
+▲ 圖13
+在「系統」標籤下所顯示的是作業系統的版本與 CPU、記憶體等重要硬體的基本資料。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/10003.jpg
+▲ 圖14
+點選「程序」標籤，顯示的是目前已載入的程式及其運作情形、耗用的記憶體狀況等。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/10004.jpg
+▲ 圖15
+「資源」標籤內所顯示的是重要硬體及網路的使用紀錄。
+
+二、滑鼠設定：提升操作效率
+滑鼠是目前在圖形介面下最主要的操控工具（以後說不定會被「觸控」功能取代），操作的靈敏度，一定程度上會影響操作效率和使用者的心情。只是每個人的需要不同，建議先行調整到最適合自己使用的狀況會比較好。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/09001.jpg
+▲ 圖16
+依序點選面板上的「系統」＼「偏好設定」＼「滑鼠」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/09002.jpg
+▲ 圖17：
+在「指標速度」下的項目，分別拖曳滑桿調整指標移動的靈敏度。調到適合自己的靈敏度後，按一下「關閉」即可。
+
+三、桌面主題：看的舒適為主
+桌面主題除了視覺感官喜好的問題之外，相關配色會影響長期使用的舒適度，因此選擇一個適合自己的桌面主題也值得注意。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/12001.jpg
+▲ 圖18
+在桌面上按一下滑鼠右鍵，從快選功能表內點選「更改桌面背景」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/12002.jpg
+▲ 圖19
+在「佈景主題」標籤內，有一些配色方式可以選擇，預設是「Ambiance」，在此選擇自己喜歡者即可。建議不要選擇顏色反差大的配置方式，否則需要長時間使用電腦時，很容易讓眼睛感到疲累。
+
+四、語言：減少理解上的隔閡
+在 Ubuntu 內安裝應用程式最方便的方式莫過於透過其所提供的「Ubuntu 軟體中心」，只是某些軟體的繁體中文語言套件不一定會同步發行，因此會出現軟體的使用介面有部分非繁體中文的怪現象。所幸，我們隨時可以透過「語言支援」，檢查看看是否已經發布。當然，使用「軟體更新」時也會對這一方面進行檢查。
+
+另外，如果想要將系統更改為其他的語系，也可以在這裡進行設定。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/11001.jpg
+▲ 圖20
+點選面板的「系統」＼「管理」＼「語言支援」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/11002.jpg
+▲ 圖21
+此時會自動檢查有沒有新的語言套件可用，如有可以依據視窗的提示來決定要不要安裝。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/11003.jpg
+▲ 圖22
+接著會開啟「語言支援」視窗。在「語言」標籤內顯示的是目前所用的語系及可用的語系，有需要可加以變更或安裝。
+
+五、字型安裝：符合顯示效果的各種需要
+安裝作業系統的同時，Ubuntu 已經有不少字型可用。雖然中文字型屈指可數，不過若非專業的工作者應該也用不到太多種字型，畢竟字型的運用頻率不高，但卻佔頗大的空間。只是，某些時候還是會用到特定字型，不裝還真是不行。例如到全國法規資料庫去列印法規時，該網站所提供的友善列印版本，預設的文字是新細明體，若沒有安裝此字型，列印出來的版面就不整齊，有些地方還可能疊字，因此了解字型的安裝還是必要的。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/font001.jpg
+▲ 圖23
+Ubuntu 已經預設好一些使用者可能常用的資料夾，並且有快速開啟的方法，此處的範例是把所需要的字型檔案儲存在「文件」資料夾內，故依序點選面板的「位置」＼「文件」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/font002.jpg
+▲ 圖24
+此時會開啟檔案管理員，所顯示的即是在系統碟內的「文件」資料夾。在想要安裝的字型檔上按二下滑鼠。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/font003.jpg
+▲ 圖25
+預設會以字型瀏覽器開啟字型檔。此處要注意，如果左邊的欄位內無法正常顯示中文，通常安裝後在應用軟體內常常也無法正常顯示，所以要先確定可用後，才按右下角的「安裝字型」。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/font004.jpg
+▲ 圖26
+安裝字型後，右下角可能會顯示為安裝失敗，但這並不表示真的安裝失敗。
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/font005.jpg
+▲ 圖27
+安裝是否成功，要看帳戶內的「.font」的資料夾內有沒有把字型檔複製過來。所以在左邊欄位內點選使用者帳戶的資料夾，接著在右邊的欄位內找出「.font」並開啟之。
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/font006.jpg
+▲ 圖28
+開啟後只要有看到安裝的字型檔，就表示安裝成功。舉一反三，只要是能在 Ubuntu 內正常使用的字型檔，直接將之複製到此處就能用了。
+
+步驟七：
+http://www.openfoundry.org/images/120327/Ubuntu/font007.jpg
+▲ 圖29
+接著開啟 Firefox 來看看是否真的安裝成功。在功能表列上依序點選「編輯」＼「偏好設定」，切換到「內容」標籤，在「字型與色彩」這一欄內按一下「進階」。
+
+步驟八：
+http://www.openfoundry.org/images/120327/Ubuntu/font008.jpg
+▲ 圖30
+在任一設定字型的欄位內（除了「比例字型」以外），點選下拉式選單按鈕，在選單內就可以看到剛剛安裝的字型。
+
+軟體的安裝與移除
+
+光是安裝作業系統，是不足以應付使用者所需，還得要安裝各式各樣的應用軟體才行。因此了解如何安裝應用軟體，自然是必要的。
+在 Ubuntu 內安裝軟體的方式主要有三種，一是透過「Ubuntu 軟體中心」，二是從「Synaptic 套件管理程式」，三是下載 Debian 可用的程式。其中最簡單的自然是從「Ubuntu 軟體中心」，因為不必花時間到各個網站逐一尋找。而從「Synaptic 套件管理程式」安裝，其實和「Ubuntu 軟體中心」很像，只是這裡有不同的分類和版本可用，如果比較清楚想用哪個版本，從這裡安裝倒是不錯的選擇。最後一種則是軟體中心沒有，但在該應用程式的官網有提供 Ubuntu 可用的 Debian 檔案，自然是可以下載來安裝，安裝方式也很簡便。
+
+一、軟體的安裝
+此處只介紹比較簡易的「Ubuntu 軟體中心」和 Debian 檔，至於「Synaptic 套件管理程式」則對於移除非「Ubuntu 軟體中心」的軟體很有用，故於後面介紹之。
+（一）Ubuntu 軟體中心
+Ubuntu 軟體中心，和現今流行的 APP Store 很像，使用者可以在此尋找合用的自由或開源軟體來使用（當然也可選擇付費軟體），讓使用者省去許多尋找合用軟體的時間。自行尋找的軟體，還得先確定可否在 Ubuntu 底下使用，而在這裡出現的，一定都是可以用的啦！
+既然我的筆電顯示晶片老到無法使用 Unity 效果，就別用它吧……可是看過 Unity 那個位於左邊的啟動列，覺得真的很不錯，實在蠻想用的。但總不能為了這個就把還可用的筆電丟掉，換一台新的吧？這也太浪費了！沒關係，在軟體中心內有 Unity 2D，惟，這並非是要讓顯示效能不足的電腦能使用所有的 Unity 效果，只是有一些比較有特色的東西而已，也就是我最想用的 Unity 面板和啟動列。以下就以 Unity 2D 來示範安裝的步驟。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/01001.jpg
+▲ 圖31
+依序在面板上點選「應用程式」＼「Ubuntu 軟體中心」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/01002.jpg
+▲ 圖32
+在搜尋欄位內輸入「Unity」，下方的欄位內會顯示搜尋的結果。點選「Unity 2D」後按一下「更多資訊」，就可看一下該軟體的相關說明，包括程式的簡介、版本和有無相關程式。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/01003.jpg
+▲ 圖33
+檢視完畢，確定想安裝後，可勾選相關的附加程式，然後按一下「安裝」。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/08006.jpg
+▲ 圖34
+和前述相同，會出現認證視窗，輸入帳戶密碼後按「確定」。
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/01004.jpg
+▲ 圖35
+此時會開始下載並安裝，圖中箭頭所示即安裝進度。
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/01005.jpg
+▲ 圖36
+安裝完畢後會顯示安裝日期，而原來的「安裝」鈕也會變為「移除」。我們按一下上面的「搜尋結果」看看安裝後還有哪些變化。
+
+步驟七：
+http://www.openfoundry.org/images/120327/Ubuntu/01006.jpg
+▲ 圖37
+在清單中的 Unity 2D 圖示下方，會多出一個已勾選的小圖，表示這台電腦已經安裝了該軟體。
+
+步驟八：
+http://www.openfoundry.org/images/120327/Ubuntu/01007.jpg
+▲ 圖38
+安裝完成後，按面板最右方的「開關」鈕，選擇「登出」，用相同的帳戶重新登入一次，就可以看到 Unity 2D 的效果了。（範例圖中所示乃按下左上角的 Ubuntu 鈕，所顯示的程式選擇介面）
+
+安裝 Unity 2D 後，日後開機均以此為預設桌面，如不想以之開機，可在選擇要登入的帳戶後，在下方面板的「作業階段」欄位內，選擇其他的開機桌面，如「傳統 Ubuntu 桌面」等。
+（二）下載並安裝 Deb 版本的軟體
+Ubuntu 作業系統是 Debian（通常簡寫為 Deb）下的一個分支，原則上 Deb 版本的應用軟體，在 Ubuntu 下是可以安裝使用。安裝後絕大多數都能正常運作，僅少數會有不穩定的現象，除了軟體本身的問題外，也可能是和其他軟體不相容的關係。當然，若開發者有提供 Ubuntu 版本時，相容性和穩定度都比較好，當然以之為首選囉！底下將以 Google Chrome 為例來示範。
+順帶一提，Ubuntu 預設的瀏覽器是 Firefox，不過我覺得近來的 Firefox 表現不佳，無論是瀏覽體驗或是技術更新，明顯和 Google Chrome 有別。若大家喜歡使用 Google Chrome，在 Ubuntu 軟體中心的「網際網路」分類下，可以找 Chromium 來安裝。這是 Google Chrome 的源頭計畫，功能和操作方式並無明顯差異，只不過更新的速度比較慢，已知的安全漏洞相對修補得慢。像我這種容易因此而心理有疙瘩的人，自然就會改用 Google Chrome。不過最近兩個版本的更新速度愈來愈接近，建議擇一安裝就好。
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome001.jpg
+▲ 圖39
+到 Google 的瀏覽器下載網頁，把 Ubuntu 版本的 Google Chrome 下載至電腦。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome002.jpg
+▲ 圖40
+Google 提供的版本相當齊全，選擇合用者來下載。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome003.jpg
+▲ 圖40
+Google 網頁內預設是邊下載邊安裝。惟，現在很多瀏覽器為了安全起見，對於此類會直接安裝的檔案，會改讓使用者先下載後再決定要不要安裝。當然，用意是讓使用者有自我檢查的機會，避免因滑鼠點按錯誤而安裝了不想用的軟體。（很多網頁就是故意把連結弄得很近，使用者不小心就會安裝所提供的「免費」軟體！）
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome004.jpg
+▲ 圖41
+將檔案儲存到想存放的資料夾內。（預設是帳戶資料夾下的「下載」）
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome005.jpg
+▲ 圖42
+開啟存放檔案的資料夾。
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome006.jpg
+▲ 圖43
+在所開啟的資料夾內，可看見剛剛下載回來的程式安裝檔案（副檔名為 *.deb）。按二下該檔案。
+
+步驟七：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome007.jpg
+▲ 圖44
+等待一下後會開啟 Ubuntu 軟體中心，按一下「安裝」，以便開始安裝程序。
+
+步驟八：
+http://www.openfoundry.org/images/120327/Ubuntu/google chrome008.jpg
+▲ 圖45
+同樣會出現認證視窗，如前所述，輸入密碼後就會開始進行安裝，完成後就可以使用了。
+
+二、軟體的移除
+主要的方法有二，一是從「Ubuntu軟體中心」，適用於移除從軟體中心安裝的程式；二是「Synaptic 套件管理程式」，主要目的是移除自行下載的程式。因為自行下載的程式，往往不會出現在軟體中心的「已安裝軟體」的清單內，故無法以第一個方法移除。
+（一）從軟體中心
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/02001.jpg
+▲ 圖46
+和安裝軟體一樣，先開啟「Ubuntu 軟體中心」，在左邊欄位內點選「已安裝軟體」後，右邊的欄位就會出現已安裝軟體的清單。點選想移除的軟體，該項目的右邊就會出現「移除」鈕，按一下該鈕，就會進行移除程序。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 006.jpg
+▲ 圖47
+在「認證」視窗內輸入密碼後按「認證」。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/02003.jpg
+▲ 圖48
+開始進行移除，和安裝一樣也會顯示進度。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/02004.jpg
+▲ 圖49
+移除完畢後，該軟體的前方就沒有表示已安裝的勾選圖示。下一次開啟「已安裝軟體」時，該軟體就不會出現在已安裝軟體清單內。
+
+（二）從「Synaptic套件管理程式」
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 001.jpg
+▲ 圖50
+依序點選「系統」＼「管理」＼「Synaptic套件管理程式」。首先會出現要求輸入密碼的視窗，比照前述安裝或移除軟體的「認證」處理即可。
+
+步驟二
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 002.jpg
+▲ 圖51
+在「快速過濾」的欄位內輸入想移除的軟體名稱，下方的清單欄內就會出現有關的程式。在程式前的核取方塊如有顏色，表示該程式已經安裝在電腦內。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 003.jpg
+▲ 圖52
+在該程式上按滑鼠右鍵，從選單內點選「標記為徹底移除」。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 004.jpg
+▲ 圖53
+此時前方的核取方塊會有打叉的符號，表示將會被移除。同時工具列上的「套用」鈕就變為可用，按一下該按鈕。
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 005.jpg
+▲ 圖54
+此時會出現「摘要」視窗，告知將要移除的項目，讓使用者再確認一次，以免誤刪。確認要刪除的話，就按一下「套用」。
+
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 006.jpg
+▲ 圖55
+在認證視窗內輸入密碼後按「認證」。
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/synaptic 007.jpg
+▲ 圖56
+進行刪除中。刪除完畢後，該項目也會從清單內移除。
+
+設定一開機啟動某程式
+
+有些程式必須要在開機時就啟動才有用處，例如每日的行事曆或工作清單等，如此才能在開機完畢後就知道當天該做什麼事。類似這一類的軟體在安裝時，不見得會在安裝後就出現在「啟動應用程式清單」內，這時只好自行手動加入囉！底下就以我喜歡使用的行事曆行程管理軟體 Rainlendar 2 為例，示範如何把程式加入「啟動應用程式清單」內。（Rainlender 2 非 Ubuntu 軟體中心內所提供的軟體，乃另行下載安裝者也）
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/13001.jpg
+▲ 圖57
+按一下「開關」鈕，點選「系統設定值」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/application002.jpg
+▲ 圖58
+開啟的是「控制中心」視窗，在「個人」分類內，按二下「啟動應用程式」。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/application003.jpg
+▲ 圖59
+此時會開啟「啟動應用程式偏好設定」視窗，按一下「加入」鈕。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/application004.jpg
+▲ 圖60
+接著還會再開啟「新增初始啟動程式」視窗，在「名稱」欄內輸入應用程式的名稱，以便於日後管理；而在「註解」欄內輸入該程式的簡單的說明，以免日後忘了這到底是什麼。最後按一下「指令」右邊的「瀏覽」鈕。
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/application005.jpg
+▲ 圖61
+在「位置」欄內選擇檔案系統所在的磁碟機，然後依序開啟 user\ lib\ Rainlendar 2 資料夾，找到 Rainlendar 2 並點選之，隨之按「開啟」。
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/application006.jpg
+▲ 圖62
+回到上個視窗後按「加入」。
+
+步驟七：
+http://www.openfoundry.org/images/120327/Ubuntu/application007.jpg
+▲ 圖63
+在「啟動應用程式」的清單內就會有 Rainlendar 2 的項目，勾選後按「關閉」。
+
+步驟八：
+http://www.openfoundry.org/images/120327/Ubuntu/application008.jpg
+▲ 圖64
+以後開機時就會自動啟動 Rainlendar 2，桌面上就會自動開啟相關的內容，不必每次都得到應用程式清單內去開啟。
+
+在桌面上新增啟動圖示
+
+在測試過程中，我發現有些應用程式無法順利地加入 Unity 2D 的啟動列中（或許以文字指令修改設定檔後就可以，但本文開宗明義說過，就是不使用此法），偏偏遇到的又是常用的應用程式，在等到新版本之前，還是要想個可以快速啟動的方法才行，否則使用起來太沒效率。
+「新增啟動圖示」算是一個不錯的解決方法，它的原理很簡單，就是在桌面上建立一個可以直接開啟應用程式的設定檔（在 Windows 內稱為捷徑）。惟，對於比較喜歡有乾淨桌面的人來說，這是個會破壞桌面底圖美感的方法。底下將以 Krusader 這個雙視窗檔案管理軟體為例來說明。（此一軟體安裝自 Ubuntu 軟體中心）
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/07001.jpg
+▲ 圖65
+在桌面上按滑鼠右鍵，點選清單中的「新增啟動圖示」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/07002.jpg
+▲ 圖66
+在「名稱」欄內輸入應用程式的名稱；在「備註」欄內輸入簡單的說明。最後按一下「指令」右邊的「瀏覽」鈕。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/07003.jpg
+▲ 圖67
+在「位置」欄中選擇檔案系統所在的磁碟機，然後依序開啟 /usr/bin 找到 krusader 並點選，接著按「開啟」。
+
+步驟四：
+http://www.openfoundry.org/images/120327/Ubuntu/07004.jpg
+▲ 圖68
+回到上個視窗後按「確定」即完成設定。若想更改圖示，可在現有的圖示上按一下。
+
+步驟五：
+http://www.openfoundry.org/images/120327/Ubuntu/07005.jpg
+▲ 圖69
+此時會開啟「選擇圖示」的視窗，顯示原有的檔案存放位置為：/usr/share/icons/hicolor/scalable/apps。可在此處選擇其他喜歡的圖示。只要點選檔案，視窗的右邊會出現預覽圖示。如找不到喜歡的圖示，可以在左邊的「位置」欄位內點選「pixmaps」資料夾（路徑為：/usr/share/pixmaps）
+
+步驟六：
+http://www.openfoundry.org/images/120327/Ubuntu/07006.jpg
+▲ 圖70
+在此選擇喜歡的圖示後按「開啟」。
+
+步驟七：
+http://www.openfoundry.org/images/120327/Ubuntu/07007.jpg
+▲ 圖71
+回到上一個視窗後按「確定」。
+
+步驟八：
+http://www.openfoundry.org/images/120327/Ubuntu/07008.jpg
+▲ 圖72
+桌面上就會出現能直接啟動 Krusader 的圖示，在上面按兩下，就會啟動 Krusader 這個雙視窗檔案管理程式。
+
+設定「首選應用程式」和「檔案預設開啟之應用程式」
+
+某些常用的應用程式，遇到相關應用情境時，總希望是使用自己最熟悉的一個，萬不得已時才使用次要的相關程式。為了方便起見，可以事先設定，之後遇到此類應用時，就能以之開啟。
+
+若是遇到特定檔案要開啟呢？此時「首選應用程式」就派不上用場了，而是要將該類型檔案設定為需特定應用程式來開啟，也就是所謂的檔案與應用程式的關聯設定。在 Ubuntu 內，HTML 檔案預設的開啟應用程式為 Firefox，底下將示範如何改為 Google Chrome。當然，圖片檔、聲音檔或影像檔等等，都可用相同的方法來修改喔！
+一、「首選應用程式」的設定
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/06002.jpg
+▲ 圖73
+開啟「控制中心」，點選左邊欄位內的「Set Preferred Applications」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/06003.jpg
+▲ 圖74
+在「網際網路」標籤內，「瀏覽器」的欄位中可以選擇已安裝的瀏覽器程式。
+
+步驟三：
+http://www.openfoundry.org/images/120327/Ubuntu/06004.jpg
+▲ 圖75
+選擇完畢後，按一下「關閉」即可。以後只要是使用瀏覽器的情境，就會以自己設定好的瀏覽器來開啟。
+
+二、設定「檔案預設開啟之應用程式」
+步驟一：
+http://www.openfoundry.org/images/120327/Ubuntu/03001.jpg
+▲ 圖76
+開啟「檔案管理員」，選擇存放 HTML 檔的資料夾，在檔案上按右鍵，點選「屬性」。
+
+步驟二：
+http://www.openfoundry.org/images/120327/Ubuntu/03002.jpg
+▲ 圖77
+切換到「以此開啟」標籤，會顯示目前預設開啟的瀏覽器與其他可用的瀏覽器，選擇其一為開啟此類檔案的預設應用程式。選擇完畢後按一下「關閉」即可。以後只要在此類檔案上按二下滑鼠，就會以所選擇的應用程式開啟。
+
+結語
+以上是我認為 Ubuntu 初次使用者最該了解的部份，當然還有很多實用且好用的功能，在篇幅限制下唯有留待大家去發掘囉！相信了解這一些，想要以 Ubuntu 電腦來作一些常見應用，應該是不成問題啦！
+_______________________________________________________________
+
+■ [源碼快報] 冰島政府推動使用開放原始碼軟體
+
+黃湘婷 / 編譯
+
+冰島政府最近針對行政單位展開一項為期一年的軟體及系統轉移計畫，計畫的發起人 Tryggvi Björgvinsson 表示，此計畫的目標並非要在一年內完成軟體及系統轉移，而是替將來的轉移建立穩固的基礎，好讓行政部門實施此計畫。
+
+目前開始實施計畫的三大公家機構有中央政府、冰島首都雷克雅未克（Reykjavik）以及各大醫院，將對系統轉移建立共通的基礎，公家機關評估開放原始碼取代商業軟體的成熟度並將其文件化，有助於促進政府、IT 產業以及開放原始碼社群之間的相互合作。在執行此計畫的同時，也有一群專家監督此計畫的實施，避免計畫失敗。
+
+2008 年冰島面臨金融危機，冰島貨幣對歐元的匯率大跌 8 成，面臨全國破產的危機，為了節省支出，也有說法指出冰島之所以推廣自由軟體是為了減少相對於商業軟體所需的高額費用。
+
+此外，冰島政府也令各公立學校不可限制對開放原始碼軟體的應用，包括對於開放原始碼軟體的採購，提升自由軟體在學校體系中的使用。過去四年來，公家機關已慢慢移植為自由軟體，2011年至2012年也有兩所學校已完成系統轉移。冰島政府表示，希望此次全國性的移植計畫能夠為其他機構未來的轉移鋪路。
+
+相關網址：
+
+冰島的公家機關推廣開放原始碼軟體
+All of Iceland's public administrations moving towards open source
+https://joinup.ec.europa.eu/news/all-icelands-public-administrations-moving-towards-open-source
+
+冰島政府計畫移植至開放原始碼軟體
+Government of Iceland Plans a Migration to Open Source Software
+http://techie-buzz.com/foss/iceland-open-source-software.html
+
+冰島推廣自由與開放原始碼軟體
+Iceland Has the Hots for FOSS
+http://www.technewsworld.com/story/74715.html
+_______________________________________________________________
+
+■ [源碼快報] ﻿Microsoft 成為 Linux 貢獻商
+
+黃湘婷 / 編譯
+
+根據 Linux 基金會（http://www.linuxfoundation.org/）2012 年 Linux 發展報告顯示，微軟首次列入 Linux 貢獻榜單，排名擠進前 20 名。此報告內容主要討論 Linux 內核有多快，究竟是哪些人在做這些事情，他們到底做了什麼，以及提供其背後贊助的廠商。
+
+Linux 內核大概兩至三個月會更新一次，每次都有顯著的新功能並提高性能，最後一次的 3.2 版本甚至完成了 1 萬多個補丁修改，報告顯示，自 2005 年的 2.6.11 版以來，有越來越多的企業與個人名義的開發者一同參與開發，3.2 版包含了 226 個企業及 1316 個人名義開發貢獻的內核。
+
+報告結果也列出了贊助內和開發的企業，第一名為 Red Hat，其他知名企業如 Novell、Intel、IBM、Google、Samsung、Nokia 及 Oracle 也是一同參與提出修改與贊助的企業。
+
+此次微軟提出了 2174 項修改建議，有 688 項被接受修改。雖然微軟主要的建議項目在伺服器虛擬化應用的 Hyper-V 技術，但現今 Linux 的普及率越來越高，許多企業與市場對此作業系統越來越依賴，所以微軟也正慢慢適應 Linux。除了Linux 外，同時也將 OpenStreetMap 資料應用在地圖服務上，期盼能與 Google Maps 抗衡。
+
+相關網址：
+
+2012年 Linux 開發報告
+http://go.linuxfoundation.org/who-writes-linux-2012
+
+誰協助了 Linux 開發? 微軟!
+Who helps make Linux? Microsoft.
+http://www.zdnet.com/blog/open-source/who-helps-make-linux-microsoft/10704
+
+Microsoft 成為 Linux 的貢獻商
+Microsoft counted as key Linux contributor -- for now, anyway
+http://www.infoworld.com/d/open-source-software/microsoft-counted-key-linux-contributor-now-anyway-190104
+_______________________________________________________________
+
+■ [源碼快報] ﻿Yahoo Mojito 成為開放原始碼軟體
+
+黃湘婷 / 編譯
+
+Mojito 是一個 JavaScript 網頁應用程式框架，為 Yahoo 開發的開放原始碼 Web 技術，早在去年 11 月就已正式公布，直到最近才開放給開發者下載。Mojito 可在一般電腦、iOS 及 Android 系統的智慧型手機上執行，透過此平台能解決應用程式不穩定的情況，加快程式的執行速度。
+
+Mojito 主要的功能為使程式運行於瀏覽器和伺服器兩端，若瀏覽器啟用了 JavaScript，Mojito 便會在瀏覽器上執行，若沒有啟用，仍會在伺服器上執行，因此程式開發人員只需撰寫一套程式碼便能使程式正常運作。
+
+Mojito 透過 HTML5、CSS3、JavaScript、Node.js、YUI3 與 YQL 技術構建。Node.js提供伺服器端的 JavaScript 環境，讓 Mojito 在伺服器上面運行。YUI3 為 Yahoo 開放原始碼的 JavaScript 函數庫，提供了許多 API，由於 YUI 在撰寫時就已解決跨瀏覽器的問題，程式開發人員可直接參考應用。YQL 為Yahoo 查詢語言，將整個網路的公開內容視為一個巨大的資料庫，抓取公開網站資料，有效解決 JavaScript 跨網域的安全限制。
+
+Yahoo 於去年底發表的 LiveStand 就是使用 Mojito 在桌面瀏覽器上開發，並配合 Manhattan 伺服器作為平台，為 iPad 上的應用程式。Manhattan 是針對 Mojito 應用程式的 JavaScript 環境平台，提供安全性、可擴展性及監控等服務，並提供開發者簡單的介面來管理 Mojito。
+
+相關網址：
+
+Yahoo 開放 Mojito
+Yahoo Open Sources Its Apple App Store Killer
+http://www.wired.com/wiredenterprise/2012/04/yahoo-open-sources-mojito/
+
+Yahoo 開放了網頁應用程式框架 Mojito
+Yahoo releases open source web application framework Mojito
+http://www.computerworlduk.com/news/applications/3348758
+
+Yahoo Mojito 為開放原始碼軟體
+Yahoo!’s Mojito is Now Open Source
+http://developer.yahoo.com/blogs/ydn/posts/2012/04/yahoo%E2%80%99s-mojito-is-now-open-source/
+_______________________________________________________________
+
+■ [源碼快報] ﻿GNOME 釋出 3.4 版
+
+黃湘婷 / 編譯
+
+GNOME 全名為 The GNU Network Object Model Environment（GNU 網路對象模擬環境），主張無論是否具備相關技術和身體殘疾都能易於使用，並可適用於多種語言，功能為替類 Unix 作業系統建構功能完善、易於操作的桌面環境。在 3 月 28 日，推出了 3.4 版本，是自 2011 年 4 月 3.0 版以來第二個 GNOME 版本，包含了重大的新功能與小部分的錯誤修正。
+
+GNOME 3.4 的新功能包括文件搜尋工具，可搜尋在電腦上的文件與儲存在網路帳號上的文件。應用程式「Boxes」，能夠讓使用者簡單的連接遠端機器和使用虛擬機器。應用程式選單，能在 GNOME 的最頂端工具列看到應用程式名稱的選單，如文件、網路及連絡人等，未來也將令更多的應用程式能適用於這個選單。
+
+這次更新的部分還包括將原先的網頁瀏覽器 Epiphany 更名為 Web，有漂亮的新介面，包含重新設計的工具列、及許多效能的改進。對於聊天程式 Empathy，則提供了支援 Windows Live Messenger 和 Facebook 聊天與新的視訊通話功能。其他還有隨時間變化的動畫背景、更好的硬體支援以及讓頁面滑動較平順的平滑捲動等等。
+
+從許多地方做小幅度的改善是這次改版的重點，針對每個細節，一一確定需要修復的錯誤，成果顯示在品質上有大幅的進步。由於 GNOME 為開放原始碼軟體，自上個版本以來，已有 1275 人對 GNOME 進行了 41000 項修改，GNOME 團隊也希望能有更多有興趣的人一同參與開發，協助讓產品更好。
+
+相關網址︰
+
+GNOME 釋出 3.4 版
+GNOME 3.4 Released
+http://www.gnome.org/news/2012/03/gnome-3-4-released/
+
+GNOME 釋出 3.4 版：一個大躍進
+GNOME 3.4 Released: a Big Leap Forward
+http://www.gnome.org/press/2012/03/gnome-3-4-released-a-big-leap-forward/
+
+新的 GHOME 3.4 版提供了功能、娛樂與使用者介面
+New GNOME 3.4 Release Offers Features, Fun & UI Finesse
+http://www.omgubuntu.co.uk/?p=54784
+
+GNOME 釋出 3.4 版
+GNOME 3.4 HAS BEEN RELEASED
+http://www.webupd8.org/2012/03/gnome-34-has-been-released.html#more
+_______________________________________________________________
+
+■ [源碼快報] Google Chrome 釋出 18 版
+
+黃湘婷 / 編譯
+
+Google 在前幾天釋出了 Chrome 18 版本，目前已經開放下載。此次的更新增加了 Canvas 2D 的 GPU 加速功能與以軟體模擬的方式執行 WebGL 3D 圖形功能。Google Chrome 於 2008 年推出，根據統計結果顯示，至 2011 年底的市佔率已超過 Firefox，成為第二名的瀏覽器（僅次於 IE）。
+
+新版本的 Chrome 主要針對舊版中的效能表現做調整。Canvas 為 HTML5 的標籤，可用來繪製 2D 圖形或是點陣圖，也常用來製作 HTML5 遊戲之用，但 Canvas 的使用往往較消耗 CPU 資源，硬體渲染功能便能有效的將 Canvas 渲染的壓力交給 GPU（Graphic Processing Unit，圖形處理器），加速了網頁的執行，更順暢的瀏覽網頁。
+
+另一更新為讓沒有 GPU 的舊型電腦也能以軟體模擬的方式執行 WebGL 3D圖形，不因硬體老舊不支援而影響執行 WebGL 3D應用。WebGL 是一種 3D 繪圖標準，能借助顯示卡在網頁瀏覽器上呈現 3D 畫面。為了實現這項功能，Google 向 TransGaming 公司取得了 SwiftShader 軟體的授權，只要瀏覽器偵測到使用者沒有 GPU，並會啟動 SwiftShader 來模擬 WebGL 效果。
+
+相關網址︰
+
+Google Chrome 18 穩定版發布
+Google Chrome 18 Stable Released
+http://www.ghacks.net/2012/03/29/google-chrome-18-stable-released/
+
+Google Chrome 18 發布，主打 GPU 加速功能
+Google Chrome 18 Released With GPU Acceleration Features
+http://www.techzek.com/google-chrome-18-released-with-gpu-acceleration-features/
+
+Google Chrome 18 穩定版發布
+Google Chrome 18 stable version released
+http://www.techshortly.com/2012/03/google-chrome-18-stable-version.html#
+_______________________________________________________________
+
+■ [源碼快報] Mozilla 推出網頁遊戲 BrowserQuest
+
+黃湘婷 / 編譯
+
+Mozilla 基金會除了廣為人知的 Firefox 瀏覽器外，在 3 月 28 日推出了一般瀏覽器也能執行的網路遊戲，取名為 BrowserQuest，與法國網頁設計工作室 Little Workshop 共同開發製作，是一個以 HTML5 與 JavaScript 等技術製作而成的網頁版大型多人線上角色扮演（MMORPG）遊戲。
+
+Christian Heilmann（Mozilla 基金會開發人員）表示，推出此款遊戲的主要目的為證明網頁也可以是遊戲的平台，顯示 JavaScript 可被用於在伺服器上執行的 Node.js，而不需依靠 Web Server 或套件來執行。
+
+Node.js 是建於 Google Chrome 開放原始碼的 V8 JavaScript 的平台，使用non-blocking I/O 的概念，可避免傳統 I/O 需等待資料回應而影響到程式執行的問題，便能更加輕便有效率。Node.js 也擁有廣大的社群支援，網路上更提供上千個套件讓開發者做擴充使用，加快了 Node.js 的開發速度。
+
+藉由 HTML5 技術，遊戲使用 WebSocket 協議，透過瀏覽器發出連線請求，伺服器做回應後兩者之間便形成了快速通道，可直接傳送數據，有效的節省伺服器資源與頻寬，並達到即時通訊。
+
+由於 BrowserQuest 是由 HTML5 與 JavaScript 製成的網頁遊戲，除了在電腦上能使用外，一般的智慧型手機與平板電腦利用內建的瀏覽器也能夠執行，只需輸入網址，便能馬上享受線上 RPG 的樂趣。
+
+BrowserQuest 使用 2D 人物，操作方式與「薩爾達傳說」類似，玩家在遊戲中發掘寶藏、探索洞穴並與 npc 對話，透過打敗怪物獲得裝備來提升能力，遊戲中甚至有特殊的藥水，使用後會變成火狐（firefox）外觀的盔甲，讓角色在特定時間內不受傷害。
+
+遊戲網址：http://browserquest.mozilla.org/
+
+相關網址：
+
+BrowserQuest 顯示 HTML5 可與 Flash 抗衡
+BrowserQuest' Shows HTML5 Could Slay Flash
+http://www.technewsworld.com/story/74739.html
+
+Mozilla 推出 HTML5 遊戲 BrowserQuest
+Mozilla releases BrowserQuest for HTML5 gamers and warriors 
+http://www.engadget.com/2012/03/28/mozilla-browserquest-html5-game/
+
+BrowserQuest 僅使用 HTML5 便能完善執行
+BrowserQuest Is Pure HTML5 Gaming Goodness
+http://www.webmonkey.com/2012/03/browserquest-is-pure-html5-gaming-goodness/
+_______________________________________________________________
+
+■ [源碼快報] OpenStreetMap 為微軟與 Google Maps 抗衡的祕密武器
+
+黃湘婷 / 編譯
+
+若想要藉由網際網路搜尋電子地圖，第一個想到的無非是 Google 搜尋引擎提供的 Google Maps 服務，不僅能標示實體店面與一般公共場所或機構的位置，甚至有規劃路線的功能，提供大眾運輸交通工具的選擇，並大略計算出所需花費的時間與距離。
+
+但根據紐約時報報導，Google Maps 收費過高，讓為數眾多的公司卻步，轉而使用開放原始碼的電子地圖「OpenStreetMap（http://www.openstreetmap.org/）」，不讓 Google Maps 專美於前。
+
+以 Apple 為例，行動裝置 iPhone、iPad 的使用者越來越多，這些設備皆內置 Google Maps，龐大的使用量將成為價值不斐的支出。因此 Apple 最新 The New iPad 中的 iPhoto 使用的便是 OpenStreetMap，鄙棄以往使用的 Google Maps。
+
+OpenStreetMap 是一個類似 Wiki 的電子地圖網站，提供自由編輯的開放地圖資料庫，任何人經由註冊後便能提供資料，目前已有 50 萬名志工為地圖提供資料與更新，讓 OpenStreetMap 更加完善。
+
+近來業界傳出微軟是 OpenStreetMap 背後重要的支持者，藉此來對抗 Google Maps。微軟與 OpenStreetMap 的關係始於 2010 年底，微軟聘雇了 OpenStreetMap 創始人 Steve Coast 作為其 Bing Mobile 的首席架構師，開發更出色的地圖體驗，並將這些體驗導入 OpenStreetMap 以及其他開放原始碼計劃。
+
+Steve Coast 致力開發的開放原始碼軟體，讓其他開發者能輕易從 OpenStreetMap 取得資料，而微軟的 Bing 搜尋引擎也將 OpenStreetMap 資料應用在地圖服務上。雖然目前 Google Maps 的使用者仍占大多數，但Foursquare（https://foursquare.com/）、Apple 等企業的離開確實對 Google Maps 產生了一些影響。
+
+相關網址：
+
+OpenStreetMap 為微軟用來對付 Google Maps 的祕密武器
+Microsoft's Secret Weapon To Counter Google Maps – OpenStreetMap
+http://news.ebrandz.com/microsoft/2012/5384
+
+開放原始碼為微軟用來對抗 Google Maps 的祕密武器
+Microsoft's secret weapon against Google Maps -- open source
+http://mcts-training.over-blog.com/article-microsoft-s-secret-weapon-against-google-maps-open-source-102608489.html
+
+iOS 6.0 的傳聞：OpenStreetMap 將取代 Google Maps
+iOS 6.0 Rumor: Google Maps Replaced By OpenStreetMap
+http://www.webpronews.com/ios-6-0-rumor-google-maps-replaced-by-openstreetmap-2012-04
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、粘卉慈
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。
+
+
+

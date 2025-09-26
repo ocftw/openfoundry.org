@@ -1,0 +1,731 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 221 期 | 2013/06/25 □■□
+________________________________________________________________
+
+◎ 本期主題︰商業利用自由開源軟體之商標須知
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/07/16
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] 商業利用自由開源軟體之商標須知
+
+■ [自由專欄] 451 讓事實不被掩蓋
+
+■ [自由專欄] RubyKaigi 2013
+
+■ [自由專欄] 你在講、我在聽
+
+■ [源碼新聞] Rootstrikers 籌辦開放內容重混競賽來改善美國民主制度的貪腐困局
+
+■ [源碼新聞] Ubuntu 13.10 可能改用 Chromium 作為預設瀏覽器
+
+■ [源碼新聞] edX 學習平台全面開放源碼
+
+■ [源碼新聞] Open to everything! Drupal Camp Taipei 2013
+
+■ [源碼新聞] 自由軟體達人募集活動開跑！
+
+■ [源碼新聞] 2013 年七月份社群活動列表
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 商業利用自由開源軟體之商標須知
+
+林珈宏／文
+
+1. 前言
+
+第三方利用人將自由開源軟體專案（以下簡稱「專案」）運用於其商品或服務的開發及相關商業行為時，首要重視者即其利用方式是否合乎該專案之授權條款。所有 OSI 認證的授權條款對於著作權授權皆有規範，較新近的條款對於專利權授權亦多有規範（註一）。然而，不同於著作權及專利權，商標權在授權條款中若有明文者，皆明示其專案之智慧財產權之授權範圍不包含商標及相關標章和名稱；未於授權條款中規範者，亦等同未就商標進行授權。其原因是，商標權乃利用該商標於商品或服務的法定專用權，目的在於保護商標權人之品牌，使他人不能隨意攀附商譽，亦避免其品牌價值被其他劣質商品或服務所影響，或是品牌印象被淡化，而失卻其商標權之保護（註二）；同時，商標權亦旨在保障消費者對於該商品或服務之質量水平的信賴。因此，若利用人欲於其商品或服務中利用自由開源軟體，並會利用到該專案的名稱、商標或標識等，亦需注意利用方式必須符合該專案的商標政策或者合於商標法制規範，始得為之。
+
+2. 有取得商標授權之必要者：未經授權且非附屬的商業行為
+
+所謂有取得商標授權之必要者，意指利用人並非單獨利用該專案之程式碼於商品或服務中，還包括了利用該專案之商業名稱 (trade names)、商標 (trademarks)、服務標章 (service marks)、 標識 (logos) 等表彰該專案之文字圖樣（以下統稱為「商標」）於商品或服務中，使消費者能接觸該專案之商標並消費取得利用人之商品或服務；此行為即屬商業行為。本文設定之利用人是指未經授權 (unauthorized) 且非附屬 (non-affiliated) 於該自由開源軟體專案之第三方而言；若已獲得個別之商業授權，成為該專案之代理、經銷、合作或附屬廠商，即依雙方擬定之契約內容為之即可，非本文指涉對象。
+
+商業行為之定義如前段所描述，惟實際上的認定則不見得一致、清楚。較明確者如：修改原專案並與其產品整合而出售者，利用原專案提供導入或整合服務者，或是針對利用該專案開發商品之公司的諮詢顧問服務提供者等，此外尚可能包含：以該專案進行教育訓練，發行相關於該專案之教材書籍及影片，甚至是印製包含該專案名稱及商標的紀念品，如馬克杯、貼紙、T 恤及吉祥物，或是舉辦與該專案相關的收費活動及研討會而使用到其商標之商業行為等，都可能被認定為針對該專案之商業行為，因此需要取得商標授權。若專案之商標政策中有針對商業行為作定義或例示，利用人可先參考該商標政策的內容；若其中並無相關定義，甚至並無公告商標政策，則前述相關之所有利用方式，皆應先假定該行為需取得商標授權，以避免法律風險，除非該利用行為明顯非屬商業行為，或該商業行為係符合商標法中關於合理使用之規定，始有例外為之的可能性。
+
+3. 各專案的商標政策
+
+目前較著名的自由開源軟體專案，都有公開的商標政策 (trademark policy) 或智慧財產權政策 (Intellectual Property Rights Policy) 提供公眾作為參考。利用人若認為其於提供商品或服務時可能落入需取得授權之範疇時，第一步應先詳讀其商業行為是否合乎於該專案之政策。每個專案基於諸多考量，其商標政策或同或異，本段將以 Ubuntu、Debian 及 Mozilla 為例，說明各專案商標政策之異同之處。
+
+　　(1) Ubuntu 智慧財產權政策
+
+今年 (2013) 5 月 14 日修訂後發布的 Ubuntu 的智慧財產權政策（以下簡稱「智財權政策」，註三）中，將利用行為區分為商業使用與社群使用。社群基於討論、開發及推廣之目的而使用相關商標是不必經過授權的（第六條）；且若利用人再散布未經任何修改的發行版本，亦不會違反其智財權政策（第二條）。此外，若利用人對 Ubuntu 進行修改，惟僅於個人或組織內部使用，而未再散布給他人，亦不在其智財權政策之限制範圍（第二條）。
+
+本智財權政策第三條明列：UBUNTU、KUBUNTU、EDUBUNTU、XUBUNTU、JUJU、LANDSCAPE 之文字及標識為其註冊商標。此外，內含有「UBUNTU」或「BUNTU」的文字，亦應得到 Canonical 的同意。若利用人合乎本智財權政策之規範，但是需要修改標識 (logo) 之後才加以利用的話，則修改標識時必須要遵守「Ubuntu 標識使用準則 (Ubuntu logo guidelines)」及「Canonical 標識使用準則 (Canonical logo guidelines)」（註四）。
+
+此外，Ubuntu 智財權政策中尚有提及關於「商品外觀及包裝 (trade dress)」及「感觀 (look and feel)」的保護（第四條），亦即，即使完全未利用到其商標權之文字、標識等，只要未經授權、非附屬利用人的軟體、網站等商品或服務，感觀上使消費者有混淆之虞，恐認定此屬 Ubuntu 官方或授權之相關商品或服務者，亦需得到其授權，始得為之（註五）。從上述規範中，在在能看出 Canonical 對於品牌價值及企業識別的嚴謹態度。
+
+若利用人於修改 Ubuntu 後仍欲利用 Ubuntu 相關商標於商業行為，或從事其他未於智財權政策中明示同意之利用行為，Canonical 為維護其品牌價值，需確保衍生著作之質量，因此要求利用人須至 Ubuntu trademark license 頁面填寫其聯絡方式、利用行為及目的（註六），以待 Canonical 的審核回覆，利用人亦可能需支付商標權之授權金。
+
+若利用人利用修改得之衍生著作另立品牌販售商品或服務，應禁止使用到其明示列舉的商標，亦需避免使該商品外觀、包裝之設計風格太近似於 Ubuntu 以混淆消費者觀感，即可為之。然而，在此亦需提醒著作權之規範：利用人不得因其品牌上非屬 Ubuntu，而拒絕遵循 Ubuntu 的授權條款 GPL-2.0 之相關義務，例如需告知消費者該產品之授權屬於 GPL-2.0，以及在提供二進位碼時亦應提供源碼給消費者等等。
+
+　　(2) Debian 商標政策
+
+今年 (2013) 1 月 19 日所發布新版的 Debian 商標政策中（註七），明確指出三個目標：1. 鼓勵各界廣泛使用 Debian 商標；2. 釐清第三方利用 Debian 商標的正確方式；以及 3. 避免 Debian 商標的誤用行為導致使用者對於 Debian 本身或其附屬者的困惑或誤導。這樣的目標並非在於限制相關的商業行為，該商標政策中更直言，只要遵循該政策，鼓勵各方對於 Debian 的商用。
+
+這份商標政策也直接以實例說明，在無需經過詢問的前提下，第三方利用人得逕行為之的六件事，以及絕不可為之的四件事。以下分述之：
+
+得逕行為之的事項：一、可以使用 Debian 商標進行真實陳述或真實地宣傳產品的相容性；二、對於 Debian 商標所預期的用途足以成立「指示性合理使用 」，例如僅僅在一段文字中提及 Debian，並未暗示其中存在贊助或認可關係。本文第四段中「描述性及指示性合理使用」一節，針對此有詳細的說明；三、可以使用 Debian 商標敘述或廣告相關於 Debian 的商品或服務，只要不要誤導即可；四、可以使用 Debian 商標在文章、標題或部落格文章中敘述 Debian；五、可以製作有 Debian 商標的 T 恤、桌布、帽子，或其他產品，作為非商業利用；以及，六、可以製作含有 Debian 商標的商品，作為商業利用，而若是部份營收將會捐給 Debian 計畫的話，可以在廣告中如實地向顧客說明捐款的狀況。
+
+絕不可為之的事項：一、不得以任何方式使用 Debian 商標暗示為 Debian 專案或社群的附屬，或被認可背書；二、不得使用 Debian 商標作為一個公司或組織的名稱，亦不得作為一個商品或服務的名稱；三、不得使用一個與 Debian 商標相似並易造成困惑的名稱；以及，四、不得使用 Debian 商標作為網域名稱，不論商業利用與否。
+
+較之前文介紹的 Ubuntu 智財權政策，Debian 的商標政策相對更為寬鬆，從 Debian 專案以社群為本位、堅持自由開源精神更甚於商業的立場來說，很容易理解此等差異。 Debian 商標政策共同起草人之一的 Benjamin “Mako” Hill 在其「開放品牌（Open Brands，註八）」一文中，進一步闡釋了這種堅持自由開源精神的商標政策。
+
+Mako 表示 Debian 商標政策之所以如此不同，是因為希望：第一、讓大家都來使用這個品牌。商標是否被誤用不是 Debian 該討論的重點，問題反倒是完全不夠多人來使用它。與其嚴格限制以保障品牌，Debian 選擇儘可能擴散這個品牌；同時，他也相信，控制對於一個自由開源專案來說，不見得是個健康、有幫助的方式。第二、讓 Debian 成為一個不斷發展、演化的專案。典型的商標權人可以控制、形塑一個專案的樣貌，卻限制了專案本身有機成長的潛能；Debian 所不樂見專案發展控制在少數人身上，也不希望造成社群中誰才是正統與否，而應該著重在專案的長期發展、促進內部不斷溝通，以及保持高度的靈活度。第三、希望不要使 Debian 社群成員感到困惑。商標的目的在於確保消費者對於商品及服務來源的認知不被混淆，但未必只有商標權一條路才能達到此等認知。例如 OSI 在申請 "open source" 作為商標時雖遭遇失敗（註九），然而這也並未造成眾人不正確地使用 "open source" 這個詞。因此，讓專案的使用者及開發者擁有並保持正確的認知才是最重要的事，商標權的保護只是手段之一，並非必要條件。
+
+　　(3) Mozilla Firefox 與 Debian Iceweasel
+
+於 2009 年發布更新版本的 Mozilla 商標政策指出其政策的目的是為兼顧平衡兩個目標（註十）：Mozilla 必須確保其商標作為品質、來源及安全的指標；同時，Mozilla 也期望能讓社群成員、軟體散布者，及其他與 Mozilla 共事的人，能就 Mozilla 的產品進行討論，同時正確地描述其與 Mozilla 的附屬或其他關係。究其商標政策，較之 Ubuntu 智財權政策，內容更加詳細，也有許多舉例說明；惟因內容過多，逐一介紹恐致本文篇幅過長，因此，僅就過去 Mozilla 與 Debian 的爭議事件（註十一）進行說明，其餘部分請讀者自行參考 Mozilla 商標政策。
+
+2006 年，Mozilla 的代表於 Debian 的 bug tracker 中請求 Debian 開發者在修改 Firefox 並置入 Debian 前，需先依 Mozilla 商標政策送交該修改後版本以取得商標授權。Mozilla 商標政策於「修改 (Modifications)」之段落中清楚規範，若利用人修改專案後仍欲以 Mozilla 或 Firefox 之商標進行再散布，因為 Mozilla 須確保以其商標釋出之軟體的質量水平符合其認定標準，並且防範他人誤導，在保護消費者的同時也能維護其品牌價值，故嚴謹地要求任何人，包含 Debian 開發者在內，皆需在此情況下進行審核程序。
+
+然而，由於雙方對於商標權的理念不盡相同，結果是 Debian 確定將其專案中利用之 Mozilla 旗下的各專案，分枝並另立名稱及標識，例如將 Mozilla Firefox 改為 Iceweasel、Mozilla Thunderbird 改為 Icedove 以及 SeaMonkey 改為 Iceape 等，以避免未經授權之商標侵權，亦能免除使用 Mozilla 商標所需進行的審核程序。
+
+　　(4) 小結
+
+從前述三個專案的商標政策及實際發生的爭議案例，即可了解到，商標權將限制利用人在專案名稱及品牌使用的自由，此限制寬嚴程度於不同專案中或有差異，但原則上利用人仍應遵循商標政策的內容，否則即落入商標侵權之可能性。商標侵權，如同著作權或專利侵權，法院將依商標權人之請求，對侵害嚴重者將可能發出禁制令 (injunction) 以禁止侵權商品的販賣或服務的提供，利用人不可不慎。
+
+4. 面對無商標政策之利用態度
+
+自由開源軟體專案無數，雖然大部分知名專案都有公開的商標政策可參考，然而並非所有專案均有明確的商標政策可供參考，在沒有的情況下，利用人可以依尋哪些通則，或者能主張何種「合理使用」來防衛未經授權就利用專案商標的行為？以下將針對美國商標法的相關法制進行說明，供作參考。（註十二）
+
+　　(1) 描述性及指示性合理使用
+
+描述性合理使用 (descriptive fair use) 指的是，第三方使用組成該商標的文句，僅係用於誠實且精確地描述其自身的商品或服務，而非指示其商品及服務係源自於該商標權人。指示性合理使用 (nominative fair use) 則是，允許第三方使用商標作為識別商標權人的產品，只要並不會造成相似性的困惑即可，例如會引起第三方商品來自商標權人，或者第三方與商標權人有贊助或附屬關係等誤解，就不屬於合理使用的保護範圍。
+
+判斷何種情況能落入指示性合理使用的保護範疇，首先，該商品或服務若非使用該商標，即無法容易地識別；例如，以其商標作描述性的使用。第二，使用該標章之程度，僅以合理的必要性，為求識別該商品或服務；例如，僅使用該商標文字而未使用其字型或標識等。第三，使用人不得暗示其與商標權人的贊助或附屬關係。（註十三）
+
+描述性合理使用與指示性合理使用最大的不同點在於，前者僅以他人商標作為一種描述，而非刻意要使用他人商標；後者則係第三方利用人為提供其產品或服務，須利用他人商標作為指示（而非描述）之用途，因此對於該商標的利用乃屬不可或缺者。比較性廣告即為適例。
+
+　　(2) 未經授權又作為附屬的代表關係
+
+商標權人站在其自身之角度，往往更傾向將第三方利用人未經授權的利用行為理解為不真實的附屬或是經銷的代表關係。然而，若無證據顯示有詐欺的故意、亦無造成消費者困惑，利用他人商標的商品或服務在宣傳時並不必然認定存在與商標權人之間的附屬關係的暗示。易言之，若是對於一個商標進行顯著且無孔不入的使用始得認為是附屬關係的暗示；第三方利用人單純地利用他人商標或將之作為參考對象，並不會提高附屬關係或認可背書的程度。在個案判斷上，若事實上能證明利用人之行為，刻意地誤導消費者產生混淆印象，而認為利用人即屬商標權人或為其附屬之情況，即屬法所不許。因此，即使商標人在其商標政策中明示不得利用其商標暗示附屬關係，甚至羅列許多描述方式，舉例來說：不得使用「based on OpenFoundry」作為利用人的商品描述等，其實在法律上的認定，不盡然如此嚴格。
+
+　　(3) 欠缺質量管控 -「欠缺真品之侵權」
+
+「欠缺真品之侵權 (in lack of genuineness infringment)」主張，通常出現在品牌商委託製造商生產帶有其商標的商品，製造商在未經品牌商同意之下，將品牌商未查核之商品出售給通路商，使品牌商無法就該批商品進行質量管控 (quality control)，因而指控製造商侵害其商標權；最常見的情況為未經授權之水貨平行輸入。
+
+然而自由開源軟體的情況與這類合理使用的典型案例略有不同。舉例來說，Ａ公司擁有Ａ專案的著作權及商標權，並將Ａ專案以自由開源之方式發布，同時亦提供Ａ軟體的工作坊課程及諮詢服務，而未經授權的第三方利用人Ｂ公司亦利用Ａ專案提供工作坊課程之服務，此時Ａ公司或許認為Ｂ公司所提供的服務非屬於真品 (geniune)，且其提供服務前並未經過Ａ公司的質量控管，因而可能主張Ｂ公司之行為成立欠缺真品之侵權。
+
+事實上，Ａ公司的主張在此種情況下，是難以適用而成立欠缺真品之侵權。因為，Ｂ公司完全是以其自有品牌獨立提供Ａ專案的教學服務，消費者亦不會誤認為該服務係由Ａ公司所提供。而欠缺真品之侵權則僅可成立於商標權人創造了一個實體有形的品牌商品，第三方卻在商標權人無法進行質量管控之情況下出售該商品而言。這顯然不同於Ａ公司以自由開源方式出品Ａ專案後，Ｂ公司利用Ａ專案提供服務之關係。
+
+　　(4) 第三方利用專案商標的技巧
+
+此外，第三方利用人提供服務時，需使用原專案之商標者，還可以參考下述相關之方式：
+
+一、以名詞，而非以形容詞來使用該商標。舉例來說，使用「We offer hosting and training service for OpenFoundry」會比使用「We offer OpenFoundry hosting and training」來的更好。因為，後者比較模糊，可能會讓人產生困惑，是否該服務是由商標權人的附屬者所提供？或是，是否「OpenFoundry hosting and training」是由商標權人所認證並經授權者？其目的即係儘可能從文字描述中避免最多的風險。
+
+二、只有在能夠精確描述利用人所提供的服務時，才使用該商標；反之，如果第三方利用人使用該商標以推廣其服務，卻無法說明使用之必要性，則可能無法符合描述性或指示性合理使用的要件，而形成商標侵權。
+
+三、避免使用商標權人的標識或徽章。因為商標法最重要目的即在於避免消費者對於商品或服務的來源有誤解及困惑，因此若利用人僅利用文字即可描述或指示非屬其所有的商標，卻仍要利用到標識及徽章，甚至是該商標相關的特殊字型等，法院即可能基於此非必要之使用，而認為該利用行為非屬合理使用。
+
+四、利用該商標於第三方服務的廣告中，應限制使用的次數及方式。如果利用人於其廣告中提及該商標的次數，較其欲廣告的服務而言，過於頻繁，或使用字體較大或較為顯著者，法院將傾向認為此行為已逾越合理的範圍，因為這恐將導致消費者的誤解印象。
+
+五、禁止使用與該商標結合的、易使消費者產生該服務係由商標權人所提供的印象之文字。如此做法將使法院較傾向認為屬於合理使用，理由同上述第四點，避免消費者以為其服務係經官方正式授權，或是其代表商標權人提供該等服務。
+
+六、包含明示的免責聲明表示無附屬關係 (explicit disclaimer of affiliation)，或聲明商標權的來源 (statement of attribution of tradmark ownership)。此為消費者不見得會詳細閱讀，但在法律上很重要的聲明；這代表第三方已如實聲明其與商標權人之間無附屬關係，理由同前述第四、第五點。例如：「THIRD PARTY is an independent service provider or group and is not affiliated with, authorized by, sponsored by, or otherwise approved by TRADMARD OWNER.」只要這段文字合理地存在於消費者可接觸之廣告宣傳中，可使法院傾向認定第三方對該商標之利用屬於合理使用。
+
+七、判斷是否有可提及該專案、卻不會使用該專案商標的方式。如果不使用該專案商標，而該專案本身即可被識別的話，法院對於第三方對於該商標之利用，即會傾向認為非屬合理使用之範圍。幾乎無法想像，一個自由開源專案要如何在不使用其商標、不提及其名稱的情況下，其本身即具有識別性；然而，如果有某軟體是使用在一特殊領域，該領域中只有唯一這款軟體可用，無任何其他替代方案時，或是某軟體的功能或介面是極其特殊獨有，只要提到這個功能或介面，即能被認定是該軟體時，第三方於其商業推廣宣傳中則應使用更加含糊的字詞，才能同時正確地提及該專案，卻又能避免使用其商標。
+
+5. 結語
+
+綜上所述，未經授權且非附屬之第三方利用人若利用自由開源軟體專案進行商業利用，在商標方面，首要先就該專案之商標政策詳細閱讀並了解相關規範，若利用方式符合其商標政策，即可安心利用。惟若利用人希望的利用方式與該商標政策之規範有所扞格時，即需考慮如何調整作法，例如將所有的商標去除，分枝並另立新專案名稱，以符合政策。若無法調整至符合該專案的商標政策，即應進一步與商標權人聯絡並洽談商權授權，在這種狀況之下，第三方利用人可能因此必須支付授權金。而在專案無商標相關政策或規範可以遵循的情況，第三方利用人可以參照本文所說明的合理使用原則與利用技巧，來確認利用商標的方式是在合法範圍內，降低侵權風險，以正確合法地享有自由開源軟體在商業利用上所帶來的優勢。
+
+–
+
+註一：例如，GPL-3.0 第 11 條、Apache-2.0 第 3 條、MPL-2.0 第 2.1 (b) 條等，對於專利授權皆有明示規定。
+
+註二：商標淡化 (trademark dilution)，或稱為商標稀釋 / 減弱 / 沖淡，係指跨領域的生產者或服務者，在未經著名商標權人之許可下，使用與該著名商標相同或近似之標示，而使消費者縱使對該標示不至於與著名商標產生混淆誤認，但因其不當使用，將會對著名商標之識別性或信譽造成減損，最終帶來損失者。
+
+註三：Ubuntu 智慧財產權政策全文請見： http://www.canonical.com/intellectual-property-policy。
+
+註四：Ubuntu 標識使用準則 (Ubuntu logo guidelines) 內容請見：http://design.ubuntu.com/brand/ubuntu-logo/；Canonical 標識使用準則 (Canonical logo guidelines) 內容請見：http://design.ubuntu.com/brand/canonical-logo/。
+
+註五：我國商標法對於 trade dress 雖無明文規定，然而，公平交易法第 20 條第 1 項有針對「表徵」進行保護，該條所保護商品之表徵係指事業用以區別彼我商品之特徵，使一般人看見該表徵即知該產品為某特定事業所產製者。此外，我國專利法有「設計專利」的保護機制。專利法 121 條規定，對物品之全部或部分之形狀、花紋、色彩或其結合，透過視覺訴求之創作，即屬「設計」；應用於物品之電腦圖像及圖形化使用者介面，亦得依專利法申請設計專利。因此，相同的情況在我國，亦有公平交易法或專利法可茲援引作為保護。
+
+註六：Ubuntu trademark license 頁面：https://forms.canonical.com/trademark/。
+
+註七：Debian 商標政策詳細內容請見：http://www.debian.org/trademark#policy。
+
+註八：開放品牌（Open Brands) 全文請見，http://mako.cc/copyrighteous/open-brands。
+
+註九：相關資訊請見當時 OSI 理事長 Eric S. Raymond 所發表的說明：http://web.archive.org/web/20110724120200/http://opensource2.usrbinruby.net/pressreleases/certified-open-source.html%7Ctitle=OSI。
+
+註十：Mozilla 商標政策詳細內容請見，http://www.mozilla.org/en-US/foundation/trademarks/policy/。
+
+註十一：關於本件事情的相關資訊請參見：Debian Bug report logs - #354622 (Uses Mozilla Firefox trademark without permission)，http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=354622 ；英文維基百科之「Mozilla Corporation software rebranded by the Debian project」條目，http://en.wikipedia.org/wiki/Mozilla_Corporation_software_rebranded_by_the_Debian_project。
+
+註十二：本文第四段文章之論理架構及內容，係參考 Brian Pyne, Trademark Can’t Be Used To “Close” Open Source 一文摘錄引述而成，該文請參見：http://www.nyls.edu/user_files/1/3/50/51/214/pyne_trademark_open_source.pdf。
+
+註十三：參見，2010 年，美國聯上訴法院邦的「Tiffany v eBay」一案。原文為：“First, the product or service in question must be one not readily identifiable without use of the trademark; second, only so much of the mark or marks may be used as is reasonably necessary to identify the product or service; and third, the user must do nothing that would, in conjunction with the mark, suggest sponsorship or endorsement by the trademark holder.”
+_______________________________________________________________
+
+■ [自由專欄] 451 讓事實不被掩蓋
+
+蕭景燈／文 
+
+對於大多數使用網路的人而言，使用 WWW 就是透過瀏覽器，在網址列輸入 URL，瀏覽器依此 URL 向伺服器發出請求 (Request)，伺服器再根據請求資訊，將回應 (Response) 的內容送到使用者的瀏覽器上。上述的流程看似直覺，然而實際運作並非如此乾脆俐落，HTTP 的設計還包含介於 User Agent 與 Server 之間的中介程式 (Intermediary)，中介程式可能讓請求與回應直接通過，也可能為了增加效能、節省頻寬、過濾內容或保 護使用者隱私等原因改寫請求或回應內容。例如許多公司不允許員工在上班時間透過網路連上與業務無關的網站（例如運動賽事報導），因而藉 Proxy 過濾特定 URL 即是一種類型的中介程式運用，而 TOR (http://www.openfoundry.org/tw/foss-news/8310-tor-roger-dingledine-) 則是為了保護使用者隱私的另一種中介程式。
+
+近日智慧財產局打算修法，針對認定為侵權的境外網站，直接下令 ISP 業者封鎖，阻絕台灣使用者獲取境外侵權資訊，技術上要攔阻網站做法很多，一種簡單的方法是 ISP 以其主幹上的 HTTP Proxy 比對使用端的請求後，經判斷為應阻絕網站，則不將請求導向伺服器，且直接回應攔阻訊息給使用端，如此一來，使用端的 User Agent 收到的不是真正伺服器的回應頁面，而是中介程式的替代內容。
+
+英國的網路觀察基金會 Internet Watch Foundation (IWF) 主要的工作是監看網路上的兒童色情及其他有害資訊，該基金會長期整理維護網站黑名單，英國許多 ISP 業者均採用此黑名單用以過濾兒童色情資訊。2008 年 12 月，IWF 將 Wikipedia 一頁介紹某張 1976 年發行的重金屬搖滾樂唱片列為黑名單，因為該唱片的封面是一個未成年少女的裸體照片，IWF 認定此封面照片為兒童色情，將 Wikipedia 這個頁面加入黑名單。雖然只是過濾一頁，但 ISP 採用的過濾方法相當笨拙，因此在那段時間，英國的用戶連上未攔阻的 Wikipedia 的頁面或其他功能都發生困難。更甚者，使用者連上這頁受阻攔唱片頁面時，得到的是一個「造假的」 404 狀態碼（圖 1），許多人認為英國 ISP 的中介程式將攔阻內容以 404 Not Found 之錯誤訊息回應給使用者，是破壞了使用 HTTP Status Code 傳遞訊息的常規。
+
+(http://www.openfoundry.org/images/130625/Error451/VK.jpg)
+▲ 圖 1：「造假的」 404 狀態碼。
+（圖片來源：http://en.wikinews.org/wiki/File:VK_WikipediaBlock.png）
+
+HTTP Status Code 是伺服器回應 User Agent 請求時同時傳送的一個特定意義代碼，用以告訴 User Agent 關於伺服器處理其請求內容之後的額外資訊，最常看到的有 200 OK、302 Found、304 Not Modified、403 Forbidden、404 Not Found 等。前述英國 ISP 中介程式以 404 回應 User Agent，其代表的意思是該 URL 連結的內容不存在，這是很嚴重的誤導。即便當時沒有一個 HTTP Status Code 用以表示沒有通過內容檢查的代碼，但是中介程式還是應該告知使用端看不到內容的真正理由，維持網路的中立性。因為沒有標準，成了 ISP 便宜行事的藉口，除了 404 之外，403 也是 ISP 常用來回應給使用端且不提供真正攔阻理由說明。
+
+HTTP Status Code 最早定義於 1999 年的 IETF RFC 2616，過去幾年也有不少與 HTTP 有關的 RFC 通過，HTTP 狀態碼也因此漸漸擴充，甚至也有公司（如微軟）或服務（如 Twitter）自行定義狀態碼 (http://en.wikipedia.org/wiki/List_of_HTTP_status_codes)。去年 6 月初，一位英國的工程師 Terence Eden 在他的部落格提到，用 403 或 404 表達資訊過濾阻絕是違反事實 (http://shkspr.mobi/blog/2012/06/there-is-no-http-code-for-censorship-but-perhaps-there-should-be/)，而且提出一些不同的建議方案。這篇文章引發一些網友在 Slashdot 上面討論要定義一個新的 HTTP Status Code 以忠實呈現網頁內容攔阻的情況 (http://yro.slashdot.org/story/12/06/09/1927246/an-http-status-code-for-censorship)，最後 451 得到最多人的贊同，兩天之後 Google 的工程師 Tim Bray，他也是 XML 規格的撰寫者之一，向 IETF 提交了一份規格草案 "A New HTTP Status Code for Legally-restricted Resources" (https://tools.ietf.org/html/draft-tbray-http-legally-restricted-status-00)，如果這個規格受到認可，未來就會用 451 Unavailable For Legal Reasons 來表明資訊被攔阻無法取得的狀態，規格內也提到 "Responses using this status code SHOULD include an explanation, in the response body, of the details of the legal restriction; which legal authority is imposing it, and what class of resources it applies to." 強烈建議回應內文中將攔阻網頁的法律權責機關與相關條文說明清楚。
+
+選擇 451 這個三位數代碼是呼應 Ray Bradbury 的反烏托邦小說《華氏 451 度》(http://zh.wikipedia.org/wiki/%E8%8F%AF%E6%B0%8F451%E5%BA%A6) 的故事主軸，這本小說描寫未來世界，在這個世界思想被壓制，人們不能擁有書籍，小說故事的主角是一位消防員，他的工作就是焚燒書籍，而華氏 451 度，正是紙張的燃點。
+
+前面提到智慧財產局打算修法的舉動，引發台灣網友的不滿，網路社群用各種方式抗議，moztw.org 與 coscup.org 兩個網站發起「網站熄燈」 (http://taiwanfreeandopen.blogspot.tw/p/blackout-intro.html) 活動，仿效去年初維基百科抗議美國 SOPA 與 PIPA 法案的全球 Blackout（圖 2），這次的熄燈活動發起單位號召大家共同響應，在智慧局提出封網草案的同時，讓網站的造訪者看到抗議的熄燈頁面，而此頁面清楚標示「ERROR 451: 本網頁基於國家法律而封鎖」及其他解釋文字。
+
+(http://www.openfoundry.org/images/130625/Error451/WBS.jpg)
+▲ 圖 2： 去年初維基百科抗議美國 SOPA 與 PIPA 法案的全球 Blackout 熄燈活動。（圖片來源：http://upload.wikimedia.org/wikipedia/commons/2/28/Wikipedia_Blackout_Screen.jpg）
+
+網路中立是許多人努力捍衛的成果，如果中立原則被破壞，網路使用者所看到的將是一個被修改、粉飾的世界，Tim Bray 的規格草案正是在技術上提供解決方案，讓使用者不被誤導與蒙蔽，這是網路 Geek 的人文關懷。雖然只有短短的四頁文件，卻是可以將《一九八四》或《華氏 451 度》的小說情節驅離現實世界的法寶。
+_______________________________________________________________
+
+■ [自由專欄] RubyKaigi 2013
+
+高見龍／文 
+
+今年日本的 RubyKaigi 2013 (http://rubykaigi.org/2013) 在 5/29 (四)、5/30 (五)、6/1 (六) 舉辦，議程是雙軌同時進行，共計有超過五十場演講及十場 Lightning Talk，並包括三場主題演講 (Keynote)，跟上一屆一樣也是三天。這次有超過 500 位 Ruby 開發者參加，其中有超過 100 位是從國外來的，這樣的規模短期內在台灣可能還是沒辦法達到 (全台灣真的有在用 Ruby 工作的開發者加起來總數說不定都還不到 500 人) 。
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/01.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+門票的部份比往年貴不少，上一屆的門票是 6,000 日幣，而今年沒有折扣的票種是 35,000 日幣(報名網站 http://rubykaigi.doorkeeper.jp/events/2980)。我運氣很好，因為演講投稿有被大會接受，所以省下了門票錢。
+
+要特別一提的是，RubyKaigi 的門票票種除了一般票、學生票以及早鳥票之外，還有給地區 RubyKaigi 的主辦單位的優待票，還有曾經來參加 Rails Girls 的朋友及主辦單位。另外，即使投稿沒上的，也有部份的優惠。最有趣的是 Ruby Committer 票種，並不是成為 Committer 就可以理所當然的免費參加，要有超過 200 次 commit 數的才是免費，低於這個數字的還是得乖乖買票進場。
+
+
+Pre-event
+
+在 RubyKaigi 正式開始前一天晚上，Asakusa.rb (http://qwik.jp/asakusarb/) 主辦了一個暖身活動 (報名網站 http://www.tokyorubyistmeetup.org/events/3954) ，地點在日本相當知名的食譜網站公司 Cookpad (http://cookpad.com/)。
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/02.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+現場來了許多只能在網路上才能見到的高手，而且連 Ruby 的老爸 Matz 也來了。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/03.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+現場氣氛十分熱絡，Cookpad 的廚師還親自動手作飯給大家吃，真的是太切題了。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/04.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+
+RubyKaigi
+地點
+
+RubyKaigi 的舉辦地點是在日本東京的國際交流館：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/05.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+主會議廳有上下兩層樓：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/06.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+本次大會主席角谷信太郎 (@kakutoni) (https://twitter.com/kakutani) 開場就說到：「那些平常只有在教課書裡才會出現的人物，現在很可能就坐在你身邊」。高手、大神們出沒的密度，遠超過我的想像。
+
+T-shirt
+
+大會發給每位會眾一人一件 T-shirt，擺放在報到處，會眾自己報到的時候就自己拿一件，而我因為講者的身份，我又多賺到一件。
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/07.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+可惜大會只提供 M 跟 L 尺寸，我太胖了，L 號的穿不太下..
+
+名牌
+
+往年聽說就是用名信片大小的空白名牌讓大家自己手寫，不但可以省下印刷的時間跟成本，而且還可讓大家發揮自己的創意。另外，裝名牌的袋子背後的有個拉鏈，裡面可以放一些名片，這樣要跟現場的朋友交換名片的時候就方便多了。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/08.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+行動應用
+
+大會有提供手機版的 App 供大家下載 (iRubyKaigi13) (https://itunes.apple.com/us/app/irubykaigi13/id648686610?mt=8) 。App 的作者是位資深但非常客氣的前輩，為了應景特地採用 RubyMotion 製作，有這個 App 在現場要查詢議程或講師個人資料的時候相當方便。
+
+訊息牆
+
+在演講廳講台旁邊，設立了兩道訊息牆，一邊是來自 Twitter 的資料，另一邊則是來自 IRC。當沒有同步翻譯的的時候，訊息牆會貼心的出現善心人士的即時文字翻譯。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/09.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+RubyFriends
+
+網址：http://rubyfriends.com/
+
+Ruby 開發者 (通常又稱 Rubyist) 大多有使用 twitter 的習慣，只要 twitter 發文的內容裡有標記 #rubyfriends 這個 tag 就會被拉進來，並且在現場播放。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/10.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+我本來以為播放的是超薄的電視機，後來才知道原來用投影機加上 Android Smart TV 的組合就能做出這樣的效果，效果很不錯，而且成本比想像中的便宜 (參考資料來源 http://hmsk.hatenablog.com/entry/2013/06/02/202411)。
+
+Ruby 時計
+
+網址：http://rubyistokei.herokuapp.com/
+
+參考 uniqlo 的 「UNIQLOCK」 概念製作的時鐘，目的是希望讓每位前來參加的 Rubyist 都有出現在螢幕上的機會，讓大家更有參與感。加照片的方式也很簡單，就自己直接 fork 一份指定的 github repository，加完照片資訊後發 pull request 就行了，這對習慣使用 git 做為版控工具的 Rubyist 們來說相當方便，也很切題。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/11.jpg)
+
+世界 Rubyist Sticker
+
+RubyKaigi 的會眾來自世界各地，這個設計也可以讓與會者更有參與感。台灣雖然不大，但我們這回可是來了五、六個人，當然一定要去衝一下人氣： 
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/12.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+塌塌米
+
+如果你不想聽議程，或是想到外面透透氣，又或是在會場見到許久不見的好友想好好聊一下，在會議廳外面亦備有塌塌米可以隨時坐下來休息或工作，再走過去幾步就有 Microsoft 提供的免費飲料：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/13.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+中午用餐時間塌塌米則轉變成野餐型式：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/14.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+講師
+
+講者名單 (http://rubykaigi.org/2013/speakers) 裡面就有 16 位 Ruby Core Committer，陣容相當豪華，小弟有幸能跟這些講師排在一起，真的是有些心虛。
+
+議程
+
+三天共計有三場主題演講 (Keynote)，四十餘場一般演講以及十場 Lightning Talk，二軌議程同時進行。身為地主國而且又是 Ruby 之父的 Matz 當然是免不了一定要來一場的：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/15.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+至於其它精彩內容也不需要多做介紹，直接參考 RubyKaigi 議程 (http://rubykaigi.org/2013/schedule) 頁面會得到更多的資訊。
+
+演講
+
+在 RubyKaigi 沒有司儀、沒有議程主持人，也沒有講者或主題的簡介或開場，直接自己上台，接上投影機自己喊開始，全部採「自助式」的方式進行。講者自己控制時間，時間到就自己下台換下一位準備上台，相當有趣。
+
+演講內容只有日文跟英文兩種選擇。日文演講的議程，現場有提供日翻英同步口譯，但英文演講則沒有提供，因為大會期望與會者都應該聽得懂英文。
+
+Lightning Talk
+
+每個人只有五分鐘的時間，而且必須用英文演講。時間一到旁邊的「ドラ娘」會敲鑼，並且將訊號線切斷：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/16.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+Ruby Committer v.s. the World
+
+Ruby 不愧是發源自日本的程式語言，平常要有機會可以跟 Ruby Committer 近距離接觸可能沒那麼容易，這次活動議程裡有一場叫做 「Ruby Committers vs. the World」 ，就是請這些 Committer 們全部一起上台跟大家互動，或是討論 Ruby 之後的方向。一口氣看到台上大概二、三十位的 Ruby Core Committer 排排坐，雖然他們討論的內容是日文我沒能全部聽懂 (這個時段沒有同步翻譯)，但依舊感到十分熱血。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/17.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+TRICK 2013
+
+網址：https://sites.google.com/site/trickcontest2013/
+
+這一個小時的議程我印象非常深刻，因為這是一場我覺得非常「變態」的議程。
+
+請不要誤會，這裡的 「變態」 是稱讚意味。TRICK 這個比賽並不是要寫出什麼偉大的程式，而是希望參賽者在限定的檔案大小內，儘可能使用 Ruby 神奇或鮮為人知的技巧來寫程式。每個得獎作品，真的都非常變態，讓現場的大家驚嘆怎麼會有人想得出來把 Ruby 寫成這樣。
+
+評審陣容同樣也是非常豪華：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/18.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+Official Party
+
+Official Party 是在第二天的晚上舉行，地點就在會場附近，活動由 Github 贊助，每個人都可以自由參加。加上因為我自己的演講結束了，輕鬆很多，可以放心大膽的吃吃喝喝，也在現場用我破破的英文認識不少日本朋友。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/19.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+書商
+
+近年國內的技術研討會也都有書商的出現，RubyKaigi 則是請淳久堂在現場賣書。
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/20.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+有趣的是，淳久堂帶來的這些書，書的作者本人幾乎都有在現場，買完書可以馬上厚臉皮的找作者簽名，相當方便。
+
+贊助商
+
+打開 RubyKaigi 網站的贊助商列表 (http://rubykaigi.org/2013/sponsors)，據長期待在日本的友人說，這個贊助商列表幾乎都是目前日本一線的軟體公司，在不太重視軟體產業的台灣，這大概是很難看到的畫面了。
+
+除了現金贊助之外，也有一些其它的物資贊助，例如，Heroku 贊助大會三天活動的便當、Microsoft 讓大家在會場有免費的飲料可以喝，:DeNA 贊助現場的 WiFi，Ricoh 贊助現場的投影相關設備，Github 則是贊助 Official Party。
+
+不得不提一下，這回大會的便當不錯吃，而且還挺高級的 (據說是日本知名的燒肉便當)：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/21.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+
+RubyHiroba (Hiroba 日文為「廣場」意思)
+
+這個活動是接在 RubyKaigi 的隔天，需要報名，但免費參加的活動。活動在日本 Microsoft 舉辦：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/22.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+令我有些意外，原來日本 Microsoft 對 Ruby 有這麼多的贊助，除了前面提到贊助 RubyKaigi 的免費飲料外，也提供 RubyHiroba 的場地使用，這在台灣可能比較少見。
+
+不愧是大公司，雖然這只是一個角落的照片，還是可以看得出來工作環境相當不錯：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/23.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+照片右下角不小心入鏡的正是 Ruby 的核心成員之一，Rubygems 跟 RDoc 的維護者 Eric Hodel (https://twitter.com/drbrain)。
+
+上網回答問題的話 (Ruby 程式相關的問題，網址：https://codeiq.jp/ace/ramen_burger/q330)，中餐可以得到一份 「拉麵漢堡」。
+
+另外，活動也有製作很可愛的貼紙：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/24.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+基本上 RubyHiroba 並沒有任何即定的議程，跟 RubyKaigi 比起來相對比較輕鬆。除了很多的 Lightning Talk 之外，在這個「廣場」的各個角落有一些同好會的聚集 (例如 dRuby 或是地區 Ruby 社群)，如果不想參與，也可以自己找個角落坐下來寫寫程式，或是去跟偶像們搭訕、請益。我在現場還跟著一位前輩學著折了紙做的紅寶石：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/25.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+可惜我的日文能力太差，不然應該還可以認識更多的新朋友。
+
+Rails Girls
+
+網址：http://railsgirls.com/
+
+Rails Girls 在全世界好幾個地方都有分支，成立的目的是希望可以給女性提供一個技術交流、學習的管道，而且並不一定限定只學習 Rails。
+
+Rails Girls Tokyo 在 RubyHiroba 也有一個角落，一開始我本來以為這會是台上講師講課，然後其它人坐在台下聽的方式進行，後來經由 organizer Yuki Torii (https://twitter.com/yotii23) 的說明才知道，原來她們並不一定每次都會像在學校”上課”的形式，反而是由一個教練 (Coach) 帶一到兩位學員進行小班制教學，以維持較好的學習品質。
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/26.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/27.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/28.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/29.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/30.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+
+心得
+
+日本不愧是 Ruby 的發源地，不僅與會的 Ruby Committer 數量多，而且有一種整個日本 Ruby 圈在這個星期都動起來的感覺。除了地區社群的人也出現在這邊宣傳之外，整個星期除了 RubyKaigi 本身三天的行程之外，前後或晚上都有活動，幾乎可以說是 「Ruby 週」 了。
+
+除了 RubyKaigi 這種年度大型的聚會外，日本地區性的 Ruby 社群 (http://regional.rubykaigi.org/) 也相當活躍，例如 Asakusa.rb、okinawa.rb (http://qwik.jp/okinawarb/) 等社群，各有各的活動跟當地特色。
+
+在 RubyKaigi，資深前輩或高手出現的密度，真的可以用滿地都是來形容。我沒誇張，除了 Ruby Core Committer 之外，我大概書架上所有的日文 Ruby 相關書籍的作者我都遇到本人了 (我還跟 Ruby Hacking Guide 一書的作者青木峰郎握到手了) ，而且這些高手們都十分的客氣。我在會場看到我的偶像 Aaron Patterson (https://twitter.com/tenderlove)，就馬上厚臉皮的衝上前去拍照：
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/31.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+可以跟這麼一大群來自各地而且喜歡 Ruby 而且厲害的朋友聚在一起，雖然彼此說著不同國家的語言，但仍有著 Ruby 這個共同的語言，溝通起來並沒想像中的困難。
+
+話說回來，以我自己曾經參加過的幾個程式語言相關的技術研討會來說，Ruby 相關的技術研討會似乎算是相對比較國際化的。就以台灣在 2012 年底舉辦的 RubyConf Taiwan (http://rubyconf.tw/) 來說，就有共計 10 個國家的人前來參加。
+
+另外，關於活動贊助這件事，我自己曾主辦過一些中、小型活動，知道贊助一向都是活動最麻煩的事。以 RubyKaigi 的贊助來說，即使是最大贊助商，也只有在 Keynote 之前上台的幾分鐘的致詞 (sponsor appeal)，或者是換得一場五分鐘的 Lightning Talk。將贊助跟議程分開，我個人覺得這是很棒的事。我認為 Keynote (主題演講，日文稱做 「基調講演」) 是整場活動的主軸，如果因為贊助而出售給贊助商，贊助商很可能會因為為了推廣自家產品而讓主題演講的主軸有所偏差，我想這是主辦單位跟會眾們所不願樂見 的。
+
+雖然這回 RubyKaigi 的門票不算太便宜，但我覺得這樣三天的活動非常值得，2014 年再舉辦的話，我一定會再報名參加。
+
+(http://www.openfoundry.org/images/130625/RubyKaigi2013/32.jpg)
+photo by @eddiekao (https://twitter.com/eddiekao)
+
+最後，感謝 RubyKaigi 的籌辦團隊，給我們這群喜愛 Ruby 的人帶來了一個這麼好的活動，辛苦了。
+_______________________________________________________________
+
+■ [自由專欄] 你在講、我在聽
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot，原文章連結 (http://www.linuxpilot.com/blog/kiji/201306240101NSA-Skype-PRISM)。
+
+美國國家安全局 (NSA) 以國家安全為名收集用戶個人資訊，引起了一場大風波。可能風波實在鬧得太大，倒沒有人注意到視像會議工具 Skype，最近同樣發生了盜聽疑雲。
+
+(http://www.openfoundry.org/images/130625/Linuxpilot/201306240101.jpg)
+
+德國保安公司 Heise 員工，在透過 Skype 傳送一個私人網站的登入帳戶及密碼時，意外地發現微軟曾使用該組密碼登入網站，懷疑微軟一直有監視 Skype。Heise 的研究團隊發現，每次使用 Skype 與同僚對話後，網路流量會有不尋常提升，決定查清原因。
+
+他們透過 Skype 傳送私人雲端伺服器的帳戶和密碼後，監視相關帳戶。數小時後他們發現有用戶登入，根據 Apache 伺服器的記錄，有一名來自 IP 位址 65.52.100.214 的用戶登入，經追溯後發現此 IP 地址 來自微軟在美國雷德蒙德的總部。研究團隊就此事向 Skype 查詢，但得到的卻只是一個節錄了 Skype 隱私權政策部分內容的回信，大意是 Skype 為了防止有人傳送垃圾郵件和網路釣魚信件，會檢查雙方通訊的內容云云。
+
+好一個彷彿合理的藉口。有不少科技記者都認為這是杞人憂天的陰謀論，但筆者卻不敢認同。因為在一般情況下，要過濾垃圾郵件或釣魚信件，首先要檢查的是含有 HTTP 的 URL。但微軟查看的卻是含有 HTTPS 的 URL，對含有 HTTP 的 URL 視若無睹。而且 Skype 在嘗試存取該 URL 的內容時，亦沒有如常地向伺服器發出查看網站內容的 GET 要求，而是發出要取得 HTTP Header 的 HEAD 要求，似是要同時收集伺服器端和瀏覽者雙方的資訊，明顯地與 Skype 的說法南轅北轍。
+
+事實上在 2013 年 1 月，美國有民權運動組織就曾發表公開信，對被微軟收購的 Skype 會否成為政府監控對象表示憂慮。美國國民的憂慮不是沒理由的，近日媒體相繼揭露 NSA 秘密收集個人隱私的計畫 PRISM 的全貌，2007 年第一個成為 PRISM 夥伴的正是微軟，及後 Yahoo、Google、Facebook、PalTalk、YouTube、Skype、AOL 和 Apple 才相繼加入。
+
+很多人都用「隔岸觀火」的心態看待此事，但其實這幾間公司也有我們的個人資訊，身為「外國人」的我們亦正正是 NSA 收集情報的目標。世界的重心正從美國慢慢移至歐亞，新興國家在關心技術上必須減少對美國的依賴，才能把技術的主導權搶回來。
+_______________________________________________________________
+
+■ [源碼新聞] Rootstrikers 籌辦開放內容重混競賽來改善美國民主制度的貪腐困局
+
+黃郁文、林誠夏／編譯
+
+在 2010 年，據 Rock the Vote 網站的統計，62% 的美國年輕人表達不會參與該年度 11 月美國期中大選的投票，該次大選是為了選出美國國會，亦即眾議院與參議院的議員。但在美國多數具投票權的年輕朋友表示：「不願意參與投票的主因在於，不論哪一個議員在大選中勝出，商業財團的利益還是會影響這些議員的意志，而不會讓國家政治有實質良性的改變。」年輕人對國家政治充滿灰色的無力感是該年度特有的巧合嗎？其實不然，現行多數民主國家採取的代議制度，皆蘊含了少數人得以累積高度資本來影響代議士行為的缺陷，所以如果要讓民主政體真能照顧到多數人的福址，那麼公民社會的成員們，也必須要透過更積極努力的行動來影響政治，以導引其回歸正軌才行。
+
+這也就是為什麼在 2012 年秋季時，Rootstrikers 這個從美國大學校園深根出發的青年團體，開始透過傳單發送、專題演講，以及會議召集的方式，來提醒年輕人，唯有透過公民意識的自覺以及團體行動，才能在政府官員、代議士貪腐化之前穩住陣形且據一席之地，以維護民主政治保障多數人基本權益的理念基礎。透過這些理念的激盪與分享，該團體合縱連橫了美國十餘校的青年意見領袖，並在其後兩個學期的時間，達到許多讓人感到耳目一新的作為，例如：德州大學的青年團體聚集在州府大樓的階梯上，施壓改革該州選舉獻金的金流模式；美國各州大學的青年團體，創建了一個名為「凡貪腐必留下痕跡 (On the Record)」的網路頁面，將國內代議士涉及貪腐弊端的相關資訊登錄上去，並透過群眾參與者的力量，來對這些資訊進行事後查驗與後續更新；近期，柏克萊大學加州分校 (UC Berkeley) 與舊金山州立大學 (San Francisco State University) 的青年學子，更共同出力協助 Rootstrikers 成功舉辦了 2013 年的年度大會。
+
+而為了對這股清新的政治改革風潮推波助瀾，Rootstrikers 與美國著名的法學名家 Lawrence Lessig 教授展開合作，以 Lawrence Lessig 在 TED 平台上專題演講「人民當家－什麼樣的共和政體方為民之所欲 (We the People, and the Republic we must reclaim)」的影帶為基本內容，美國的青年學子將可以此開放內容 (Open Content) 的影片為基礎，來製作其參與競賽的投影片、音樂帶，以及相關影帶，並將這些競賽作品放置於網路上，以提醒美國公民社會的每一個成員，如何透過公眾參與的力量，來抗拒財團與政客的貪腐行為。第一名的獲獎者，可以得到 2500 美金的獎勵，並有機會邀請 Lawrence Lessig，至其就讀學校一同展示該得獎作品；其次第二名的獲獎者，將可獲得 1500 美金的獎勵；而第三名的獲獎者，亦可獲得 500 美金的獎勵。
+
+抵制民主制度下財團與政客的貪腐，看來也算是一種全球運動。從 Rootstrikers 的創新作為我們可以看到：「資訊、資料、內容的開放與公開共享，不僅有助於群眾分享創意，就整體面與趨勢面來看，它還可能是未來直接民主制度推動上，不可或缺、無法缺席的重要元素！」
+
+
+相關網址：
+
+1、Rootstrikers 在美國校園推動 Lawrence Lessig「人民當家」影片的重混競賽
+http://www.rootstrikers.org/campus_remix_challenge
+
+2、Rootstrikers「凡貪腐必留下痕跡」紀錄專頁
+http://www.rootstrikers.org/on_the_record
+
+3、Rock the Vote 美國青年政治參與推動網站
+http://www.rockthevote.com/about/
+_______________________________________________________________
+
+■ [源碼新聞] Ubuntu 13.10 可能改用 Chromium 作為預設瀏覽器
+
+謝良奇／編譯 
+
+如果 Canonical 部份開發者的計劃得以順利進行，從 13.10 版本開始，Ubuntu 中預設且預先安裝的網路瀏覽器將不再是 Firefox。Canonical 內部以 Chromium 取代 Firefox 的支持聲浪正不斷高漲，許多開發者相信，透過 Chromium 可以提供更好的終端用戶體驗。
+
+由於 Firefox 與 Chromium 都屬於開放源碼，納入 Chromium 並不違反 Ubuntu 作為百分百開放源碼作業系統的理念。但是別把 Chromium 與 Google Chrome 給搞混了，後者是以 Chromium 程式碼為基礎的免費瀏覽器，其中部分屬於私有軟體。
+
+更換瀏覽器的想法，首次在 5 月舉行的第二次線上 Ubuntu 開發者大會中，由某些 Canonical 開發者提出。在某 Hangouts 議程上，Chromium 瀏覽器維護者 Jason Warner、Chad Miller 與其他人，和與會者討論到這個想法並徵求使用者意見。根據統計數字顯示 Google Chrome 已成為當前最普遍網路瀏覽器，有鑑於此，不難想見多數用戶也對以 Chromium 更換 Firefox 表示贊同。
+
+對於此一發展，Jason Warner 最近發出了一封後續的電子郵件。節錄如下：
+
+過去數周內，對此可能的轉換有許多文章與評論，針對於此，我想要讓此一討論著重在某些層面。
+
+＊這跟哪個瀏覽器比較好無關。
+＊這無關乎哪個瀏覽器功能比較多，或者有某些功能。
+＊開放性與自由仍是我們核心價值之一。不過我不想讓此一討論串，變成誰較開放與自由的爭論。
+
+重要且最終將為決定因素的是，普遍的終端使用者體驗。哪個瀏覽器，在普遍情況下，會是一般終端用戶較佳的選擇？和此一討論有關的，我想應該是品質、穩定性、穩固性、熟悉度、易用性與整體使用者體驗。
+
+Jason 在電郵最終再次保證，不論最後決定為何，即使其中之一不會出現在下一版 Ubuntu 釋出中，Ubuntu App Store 還是會持續提供 Firefox 與 Chromium。
+
+
+原文網址：
+
+1.Ubuntu 13.10 可能改用 Chromium 作為預設瀏覽器
+   http://www.muktware.com/5632/firefox-may-be-replaced-chromium-ubuntu-1310
+_______________________________________________________________
+
+■ [源碼新聞] edX 學習平台全面開放源碼
+
+謝良奇／編譯 
+
+edX 學習平台完成了開放源碼的轉移，如今以 AGPL 授權釋出。該系統核心 edx-platform 包含了學習管理系統 LMS，以及課程創建工具 Studio。系統的其他部分，如課件 (courseware) 元件架構 XBlock、以機器學習為基礎的評級系統 EASE、discern 工具、部署工具、外部評級系統界面、Python 工具程式，都可從新的 code.edx.org (http://code.edx.org/) 下載。
+
+該源碼庫的開放源碼實現了美國史丹福大學 4 月加入 edX 專案時的承諾。edX 專案是麻省理工學院和哈佛大學創立，由全球 27 所大學院校組成的 xConsortium 加以管理。
+
+在此一釋出中，史丹福大學為開放源碼 edX，貢獻了即時交談、批次電郵、新安裝腳本、外部整合工具的程式碼。加州柏克萊大學 Armando Fox 教授為此平台，貢獻了他在軟體即服務課程 CS169 的判卷 (graders)，以便讓教學者運用自動化評級功能。柏克萊的學生更投入著手整合論壇軟體，便於讓學生討論作業。
+
+該專案程式碼開發工作相當國際化，例如澳洲昆士蘭大學就貢獻出互通學習工具的 XBlock 元件，並正著手開發身份認證 XBlock 元件與問答形式的討論工具。edX 大多以 Python 實作，也包括部分 Ruby 與 Node.js 程式碼。MongoDB 幕後公司 10gen 與 Concord Consortium 也都各自對此專案有所貢獻。
+
+
+原文網址：
+
+1.edX 學習平台全面開放源碼
+   http://www.h-online.com/open/news/item/edX-learning-platform-now-all-open-source-1883314.html
+_______________________________________________________________
+
+■ [源碼新聞] Open to everything! Drupal Camp Taipei 2013
+
+洪華超／文
+
+Drupal 是一個以 PHP 撰寫而成的開放原始碼的內容管理系統 (Content Management System, CMS)。由於其具有開放原始碼更新快速、自由開放的特性，以及強大的網站建構和內容管理功能，深受國內外許多網站開發者的喜愛。根據維基百科的資料 (http://zh.wikipedia.org/zh-tw/Drupal)，至 2012 年 9 月，全球有約 2.2 % 的網站是使用 Drupal 製作的。這些網站中也不乏知名的網站如美國白宮 (http://www.whitehouse.gov/)、哈佛大學 (http://harvardscience.harvard.edu/)、台灣的癮科技 (http://www.cool3c.com/)、吳鳳科技大學的活動管理系統 (http://signup.wfu.edu.tw/) ...等等，都是使用 Drupal 這套功能強大的 CMS。在今年 4 月份，Drupal 也更新到 7.22 版，並以 GPLv2 授權釋出 (https://drupal.org/drupal-7.22-release-notes) 了。
+
+Drupal 在台灣的在地社群 Drupal Taiwan (http://drupaltaiwan.org/) 這幾年持續在台灣默默地推廣 Drupal，也在各地舉辦了不少的聚會活動，期盼廣召各界愛好 Drupal 的人士一起聚首交流。而比較大型的聚會，DrupalCamp Taipei (http://2013.drupalcamp.tw/) 也從 2010 年開始舉辦，到今年已經是第四屆。今年選在 7/6 ~ 7/7，在台北科技大學舉行。這次 DrupalCamp Taipei 除邀請到中央研究院資訊科技創新研究中心的蕭景燈博士和大家分享全球開放資料走向與相關技術的實作 (http://2013.drupalcamp.tw/scheduleitem/115) 之外，也有許多豐富多元的 Drupal 相關議題 (http://2013.drupalcamp.tw/program/session-schedule)。第一天聽聽心得分享、技術交流之後， DrupalCamp 在第二天也會舉辦實做性質的技術練功坊 (http://2013.drupalcamp.tw/workshop) 和頗具開源共工意義的網站改造馬拉松 (http://2013.drupalcamp.tw/page/56)，募集各地的志工替兩個開源社群網站：Ubuntu 正體中文站 (http://www.ubuntu-tw.org/) 和台灣開放街圖 (http://www.openstreetmap.tw/) 進行網站改造的活動。
+
+DrupalCamp Taipei 2013 報名 (http://2013.drupalcamp.tw/ticket) 只開放到 6/30，如果您還沒有報名，想一窺 Drupal、開源軟體及社群的魅力，就千萬不要錯過囉！
+_______________________________________________________________
+
+■ [源碼新聞] 自由軟體達人募集活動開跑！
+
+自由軟體鑄造場電子報／文
+
+行政院研究發展考核委員會與自由軟體鑄造場為了讓全台民眾對於自由軟體的便利與自由性有更深的認識，舉辦了「體驗開源－自由軟體達人甄選活動」。期盼透過：自由軟體的概念與推廣介紹的短片創作、自由或開放原始碼軟體的實際開發與創作、以及自由軟體相關技術與應用的教學文章及部落格的推廣達人等三種方式，以輕鬆活潑的創作內容，讓民眾更能夠接受及學習平常比較少接觸的自由或開源軟體，進而更加地認識、使用它們，進而參與各種自由軟體社群的討論與交流活動。
+
+歡迎各界對於自由／開源軟體有興趣以及熱忱的朋友們報名參加！
+
+詳細資訊如下：
+
+
+活動目標
+
+＊以推廣自由軟體為目標，藉由此活動的舉辦，讓自由軟體的好處更廣為人知，並進而引起社群間討論、使用及研究自由軟體的風氣。
+＊期望藉此活動，活絡自由軟體社群、並扶植與經營新的社群，如：Kurogo 行動網站平台社群、Sigil 電子書社群等。
+
+
+報名資格
+
+＊凡中華民國之國民，且熱愛自由軟體，均可參加。
+＊欲報名者可選擇單人報名、或是團隊報名，團隊報名者，每隊以 5 人為限，惟「自由軟體推廣達人」甄選只限個人報名，不得組隊報名。
+＊個人或團隊可以重複報名「甄選辦法」中不同分項的自由軟體達人甄選。
+
+
+甄選辦法
+一、自由軟體短片達人
+
+＊參加甄選「自由軟體短片達人」之甄選者，需於活動期間（102 年 4 月 3 日至 102 年 6 月 30 日）內，以自由軟體的推廣、教學、創作或其他任何主題，拍攝一段 10 分鐘以內的短片，如微電影或宣傳短片，並上載至 YouTube (http://www.youtube.com/) 平台。
+＊上載時須選擇公眾授權方式：「創用CC -姓名標示(BY)」 (http://creativecommons.org/licenses/by/3.0/tw) 。對其創作作品授權（因 YouTube 預設授權方式為「標準 YouTube 授權」，故需自行調整授權方式。）。
+＊本創作短片須為報名者自行創作，具備原創性之作品，不得侵害他人之智慧財產權，若作品經檢舉或告發涉及著作權之侵害，經查證屬實者，主辦單位將取消參賽資格，如為得獎作品將追回發出之獎狀及獎品，若引起智慧財產權糾紛、訴訟，由參賽者自行負責。
+＊評分辦法：網路投票佔 70 %。專業評審佔 30 %。
+
+二、自由軟體創作達人
+
+＊參加甄選「自由軟體創作達人」之甄選者，需於活動期間（102 年 4 月 3 日至 102 年 6 月 30 日）內，使用自由開源之開發工具，於 OpenFoundry (http://www.openfoundry.org/) 平台建立專案，進行軟體專案之創作開發，專案之主題、類型不限定。
+＊開發完成後，須以 OSI (http://opensource.org/) 所認可之自由開源軟體的授權方式（即 http://opensource.org/licenses/alphabetical 所列授權），釋出源碼及二進位碼（直譯式語言則不在此限），供公眾自由使用。若不熟悉授權條款，可參考「授權精靈」 (http://www.openfoundry.org/tw/license-wizard) ，或直接來電或來信 OSSF ( contact@openfoundry.org ) 詢問。
+＊參加甄選者欲以先前在 OpenFoundry 開發並釋出之專案參賽，則須於活動期間內，更新該專案描述、提交新創作或新修正之程式碼，並釋出新版本。
+＊評分辦法：網路投票佔 50 %。專業評審佔 50 %。若參加甄選者將開發過程、創作成果及技術心得，撰文並投稿至自由軟體鑄造場電子報，包含技術投稿、源碼秘技、源碼專案等類別之文章，且獲刊登者，為鼓勵其推廣自由軟體開發及創作之精神，會將該文章納入評分標準並給予比例加分。
+
+三、自由軟體推廣達人
+
+＊參加甄選「自由軟體推廣達人」之甄選者，需於 Westart (http://www.westart.tw/xoops/) 網站註冊會員 (http://www.westart.tw/xoops/register.php) 並於活動期間（102 年 4 月 3 日到 102 年 8 月 31 日）內，於Westart 指定自由軟體討論版主題（S4A 教學應用、Greenfoot 教學應用、Inkscape 教學應用、Kurogo 行動網站自由軟體示範應用），進行相關議題之討論，包含問題回覆及心得分享，教學文件發表等相關文章。
+＊評分辦法：邀請專業評審針對文章的品質與數量進行審查。
+
+
+活動時間
+
+＊活動時間依照活動類型將甄選達人區分以下兩個類別：
+    。類別 A：自由軟體短片達人、自由軟體創作達人
+        102 年 4 月 3 日至 102 年 6 月 30 日
+    。類別 B：自由軟體推廣達人
+        102 年 4 月 3 日至 102 年 8 月 31 日
+＊得獎公告：102 年 9 月 1 日
+＊頒獎時間：102 年 11 月。
+
+
+活動獎品
+
+＊自由軟體短片達人：
+    。優勝 1 名：「Asus TF300 32GB 3G」1 台。
+    。佳作 3 名：自由軟體短片達人獎狀乙只、紀念 T 恤 1 件。
+＊自由軟體創作達人：
+    。優勝 1 名：「Asus TF300 32GB 3G」1 台。
+    。佳作 3 名：自由軟體創作達人獎狀乙只、紀念 T 恤 1 件。
+＊自由軟體推廣達人：
+    。優勝 1 名：「Asus TF300 32GB 3G」1 台 。
+    。佳作 3 名：自由軟體推廣達人獎狀乙只、紀念 T 恤 1 件。
+＊優勝與佳作均可獲得該討論版之榮譽版主。以茲獎勵。
+
+
+注意事項
+
+＊參賽者請務必留下完整資料，以便作為日後寄送及領獎的依據。
+＊若得獎者名單公佈後於三天之內無法聯絡到當事人，即視為喪失資格，因此請務必隨時注意網站上的最新動態。
+＊主辦單位因不可抗拒之因素，有權更換獎項為等值商品之權利，贈品以實物為準，並不得折換現金。
+＊主辦單位保留對上述活動解釋與變動商品之權利。
+＊倘得獎人所得獎項依中華民國所得稅法規定應納稅者，由得獎人自行負擔。依據財政部《各類所得扣繳率標準》規定，中獎應納稅款說明如下： 中獎人為中華民國境內居住之個人，則按獎金、獎品給付金額，扣取百分之十之稅款 ，但扣繳稅額不超過新台幣 2,000 元者，得免辦理扣繳所得稅款，僅須填列免扣繳憑單；亦即，以扣繳率百分之十換算，中獎獎額價值達新臺幣 20,000 元以上者，需辦理扣繳。對同一中獎人給付獎額不超過新台幣 1,000 元者，得免扣繳稅款，亦得免填列免扣繳憑單。 若中獎人為非中華民國境內居住之個人，則無論獎金、獎品金額大小，均須按給付金額扣取百分之二十之所得稅款。詳細規定，請參閱財政部國稅局網站 http://www.ntact.gov.tw/
+
+
+聯絡資訊
+
+＊客服信箱： rdec@steps.com.tw
+＊客服電話：886-2-2351-8063
+＊服務時間為上午 09:30 到下午 18:00。
+
+
+報名請按此 (http://daren.steps.com.tw/daren02.html)
+
+
+主辦單位
+行政院研究發展考核委員會
+中央研究院  資訊科技創新研究中心  自由軟體鑄造場
+協辦單位
+中華民國軟體自由協會
+承辦單位
+智新資通股份有限公司
+_______________________________________________________________
+
+■ [源碼新聞] 2013 年七月份社群活動列表
+
+OSSF 電子報團隊／整理
+
+七月份的活動列表出爐囉！暑假開始囉，相信各位朋友們有更多的時間可以參加有興趣的聚會活動了～有興趣的朋友們可以多多邀請您的朋友一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+
+台中自由軟體愛好者固定聚會（單週一，7/1、7/15、7/29）
+地點：台中市中港路二段 60-3 號（默契咖啡）
+時間：19:00~21:00
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+TOSSUG BoF（每週二，7/2、7/9、7/16、7/23、7/30）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+MozTW Lab @ 基隆（每週三，7/3、7/10、7/17、7/24、7/31）
+地點：基隆市仁愛區港西街 4 號 1 樓（1915 海洋咖啡館）
+時間：19:00~21:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+KSDG meetup （高雄軟體開發者社群定期聚會） （7/4）
+地點：高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓 708 室）
+時間：19:00~21:00
+社群網址：https://www.facebook.com/groups/KSDGroup
+
+Hacking Thursday（每週四，7/4、7/11、7/18、7/25）
+地點：台北市大安區建國南路一段 166 號 2 樓 (伯朗咖啡館建國店)
+時間：19:30~22:30
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（每週五，7/5、7/12、7/19、7/26）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:00~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+DrupalCamp Taipei 2013（7/6~7/7）
+地點：台北科技大學 宏裕科技研究大樓（台北市忠孝東路三段 1 號）
+時間：8:30~18:00
+活動資訊：http://2013.drupalcamp.tw/home
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（雙週一，7/8、7/22）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zhwp.org/zh-tw/WP:WPTP-S
+
+Cocoaheads - Kaohsiung（7/11）
+地點: 高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+時間: 19:00~21:00
+社群網址: https://www.facebook.com/groups/cocoaheads.kaohsiung/
+
+Taipei Wikipedia Monthly Meetup: Writing Day 維基台北定期聚—假日寫作月聚（7/13）
+地點：台北市松山區南京東路二段一號 (伯朗咖啡 南京二店二樓）
+時間：14:00~16:00
+活動資訊：https://zh.wikipedia.org/wiki/Wikipedia:WPTP-W
+
+HITCON 2013 台灣駭客年會（7/19~7/20）
+地點：中央研究院 人文社會科學館 國際會議廳
+活動資訊：http://hitcon.org/2013/
+
+KSDG web course （7/20）
+地點：高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓 708 室）
+時間：19:30~21:30
+社群網址：http://kalug.linux.org.tw/ 
+_______________________________________________________________
+
+□ 關於本報 □_________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 執行編輯︰王怡凱、陳蕙蓁
+◎ 外稿編譯︰林誠夏、黃郁文、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

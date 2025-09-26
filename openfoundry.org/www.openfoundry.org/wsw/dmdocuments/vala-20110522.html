@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Vala 幼幼班</title>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Droid+Sans+Fallback" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        font: 20px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px; top: 0px;
+      }
+
+      .presentation {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0px;
+        top: 0px;
+        display: block;
+        overflow: hidden;
+        background: #778;
+      }
+
+      .slides {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        display: block;
+        -webkit-transition: -webkit-transform 1s ease-in-out;
+        -moz-transition: -moz-transform 1s ease-in-out;
+        -o-transition: -o-transform 1s ease-in-out;
+        transition: transform 1s ease-in-out;
+
+        /* so it's visible in the iframe. */
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+
+      }
+
+      .slide {
+        display: none;
+        position: absolute;
+        overflow: hidden;
+        width: 900px;
+        height: 700px;
+        left: 50%;
+        top: 50%;
+        margin-top: -350px;
+        background-color: #eee;
+        background: -webkit-gradient(linear, left bottom, left top, from(#bbd), to(#fff));
+        background: -moz-linear-gradient(bottom, #bbd, #fff);
+        background: linear-gradient(bottom, #bbd, #fff);
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+      }
+
+      .slide:nth-child(even) {
+        -moz-border-radius: 20px 0;
+        -khtml-border-radius: 20px 0;
+        border-radius: 20px 0; /* includes Opera 10.5+ */
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+      }
+
+      .slide:nth-child(odd) {
+        -moz-border-radius: 0 20px;
+        -khtml-border-radius: 0 20px;
+        border-radius: 0 20px;
+        -webkit-border-top-right-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+      }
+
+      .slide p, .slide textarea {
+        font-size: 120%;
+      }
+
+      .slide .counter {
+        color: #999999;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        display: block;
+        font-size: 70%;
+      }
+
+      .slide.title > .counter,
+      .slide.segue > .counter,
+      .slide.mainTitle > .counter {
+        display: none;
+      }
+
+      .force-render {
+        display: block;
+        visibility: hidden;
+      }
+
+      .slide.far-past {
+        display: block;
+        margin-left: -2400px;
+      }
+
+      .slide.past {
+        visibility: visible;
+        display: block;
+        margin-left: -1400px;
+      }
+
+      .slide.current {
+        visibility: visible;
+        display: block;
+        margin-left: -450px;
+      }
+
+      .slide.future {
+        visibility: visible;
+        display: block;
+        margin-left: 500px;
+      }
+
+      .slide.far-future {
+        display: block;
+        margin-left: 1500px;
+      }
+
+      body.three-d div.slides {
+        -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        transform: translateX(50px) scale(0.8) rotateY(10deg);
+      }
+
+      /* Content */
+
+      @font-face { font-family: 'Junction'; src: url(src/Junction02.otf); }
+      @font-face { font-family: 'LeagueGothic'; src: url(src/LeagueGothic.otf); }
+
+      header {
+        font-family: 'Droid Sans';
+        font-weight: normal;
+        letter-spacing: -.05em;
+        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+        left: 30px;
+        top: 25px;
+        margin: 0;
+        padding: 0;
+        font-size: 140%;
+      }
+
+      h1 {
+        font-size: 140%;
+        display: inline;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+      }
+
+      h1.x-large {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: black;
+        font-size: 1200%;
+        line-height: 110%;
+      }
+
+      h1.large {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: black;
+        font-size: 800%;
+        line-height: 110%;
+      }
+
+      h1.middle {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: black;
+        font-size: 500%;
+      }
+
+      h1.small {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: black;
+        font-size: 300%;
+      }
+
+      h2 {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: black;
+        font-size: 120%;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      section, footer {
+        font-family: 'Droid Sans', 'Droid Sans Fallback';
+        color: #3f3f3f;
+        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+        margin: 100px 30px 0;
+        display: block;
+        overflow: hidden;
+      }
+
+      footer {
+        font-size: 100%;
+        margin: 20px 0 0 30px;
+      }
+
+      a {
+        color: inherit;
+        display: inline-block;
+        text-decoration: none;
+        line-height: 110%;
+        border-bottom: 2px solid #3f3f3f;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      button {
+        font-size: 100%;
+      }
+
+      pre button {
+        margin: 2px;
+      }
+
+      section.left {
+        float: left;
+        width: 390px;
+      }
+
+      section.small {
+        font-size: 24px;
+      }
+
+      section.small ul {
+        margin: 0 0 0 15px;
+        padding: 0;
+      }
+
+      section.small li {
+        padding-bottom: 0;
+      }
+
+      section.middle {
+        line-height: 2em;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        height: 700px;
+        width: 900px;
+      }
+
+      pre {
+        text-align: left;
+        font-family: 'Droid Sans Mono', Courier;
+        font-size: 80%;
+        padding: 10px 20px;
+        background: rgba(255, 0, 0, 0.05);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 0, 0, 0.2);
+      }
+
+      pre select {
+        font-family: Monaco, Courier;
+        border: 1px solid #c61800;
+      }
+
+      input {
+        font-size: 100%;
+        margin-right: 10px;
+        font-family: Helvetica;
+        padding: 3px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+
+      button {
+        margin: 20px 10px 0 0;
+        font-family: Verdana;
+      }
+
+      button.large {
+        font-size: 32px;
+      }
+
+      pre b {
+        font-weight: normal;
+        color: #c61800;
+        text-shadow: #c61800 0 0 1px;
+        /*letter-spacing: -1px;*/
+      }
+      pre em {
+        font-weight: normal;
+        font-style: normal;
+        color: #18a600;
+        text-shadow: #18a600 0 0 1px;
+      }
+      pre input[type="range"] {
+        height: 6px;
+        cursor: pointer;
+        width: auto;
+      }
+
+      div.example {
+        display: block;
+        padding: 10px 20px;
+        color: black;
+        background: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      div.x-code {
+        font-family: 'Droid Sans Mono', 'Droid Sans Fallback';
+        text-align: left;
+        display: block;
+        padding: 10px 20px;
+        margin: 10px 20px;
+        color: black;
+        background: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        font-size: 200%;
+        line-height:100%;
+      }
+
+      div.code {
+        font-family: 'Droid Sans Mono', 'Droid Sans Fallback';
+        text-align: left;
+        display: block;
+        padding: 10px 20px;
+        margin: 10px 20px;
+        color: black;
+        background: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        font-size: 150%;
+        line-height:100%;
+      }
+
+      div.s-code {
+        font-family: 'Droid Sans Mono', 'Droid Sans Fallback';
+        text-align: left;
+        display: block;
+        padding: 10px 20px;
+        margin: 10px 20px;
+        color: black;
+        background: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        font-size: 125%;
+        line-height:100%;
+      }
+
+      video {
+        -moz-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .key {
+        font-family: 'Droid Sans';
+        color: black;
+        display: inline-block;
+        padding: 6px 10px 3px 10px;
+        font-size: 100%;
+        line-height: 30px;
+        text-shadow: none;
+        letter-spacing: 0;
+        bottom: 10px;
+        position: relative;
+        -moz-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -o-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+      }
+
+      .key { font-family: Arial; }
+
+      :not(header) > .key {
+        margin: 0 5px;
+        bottom: 4px;
+      }
+
+      .two-column {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+
+      .stroke {
+        -webkit-text-stroke-color: red;
+        -webkit-text-stroke-width: 1px;
+      } /* currently webkit-only */
+
+      .center {
+        text-align: center;
+      }
+
+      #presentation-counter {
+        color: #ccc;
+        font-size: 70%;
+        letter-spacing: 1px;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      div:not(.current).reduced {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+      }
+
+      .no-transitions {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
+
+      .no-gradients {
+        background: none;
+        background-color: #fff;
+      }
+
+      ul.bulleted {
+        padding-left: 30px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">Vala</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">自我介紹</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">本名</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">李世元</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">暱稱</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">四元</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">其它的</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small"><a href="http://about.me/fourdollars">http://about.me/fourdollars</a></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">Vala 是什麼？</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+
+        <div class="code">
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;hello.vala </font><font color="#8080ff">*/</font><br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;Hello World!</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}
+      </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">變成</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+        <div class="code">
+ <font color="#8080ff">/*</font><font color="#8080ff">&nbsp;hello.c </font><font color="#8080ff">*/</font><br>
+<br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;glib.h&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;glib-object.h&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;stdio.h&gt;</font><br>
+<br>
+<font color="#00ff00">void</font>&nbsp;_vala_main (<font color="#00ff00">void</font>);<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;_vala_main (<font color="#00ff00">void</font>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fprintf (<font color="#ff6060">stdout</font>, <font color="#ff6060">&quot;Hello World!</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}<br>
+<br>
+<font color="#00ff00">int</font>&nbsp;main (<font color="#00ff00">int</font>&nbsp;argc, <font color="#00ff00">char</font>&nbsp;** argv) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;g_type_init ();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_vala_main ();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+}
+      </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">Vala → C</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">Vala 程式碼</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">被轉譯成</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">C 的程式碼</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">然後</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">GCC 編譯成執行檔</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">沒了</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">Vala 就是這樣</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">只不過...</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">Vala 也常常被說成</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">GObject 型別系統的編譯器</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">GObject 是什麼？</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">用 C 實作的 OOP</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">OOP = Object Oriented Programming</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">物件導向程式設計</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">蝦咪</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">C 也可以 OOP</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">沒錯</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">Vala 也可以 OOP</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+        <div class="code">
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;my-object.vala </font><font color="#8080ff">*/</font><br>
+<br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;MyObject : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">static</font>&nbsp;<font color="#00ff00">int</font>&nbsp;main(<font color="#00ff00">string</font>[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;Hello World</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+        </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">$ valac my-object.vala</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">產生 my-object 執行檔</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">$ valac -C my-object.vala</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">產生 my-object.c 原始碼</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">$ valac -C -H my-object.h my-object.vala</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small">產生 my-object.h 標頭檔</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="red">變數介紹</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+        <div class="code">
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;atomic types </font><font color="#8080ff">*/</font><br>
+<font color="#00ff00">unichar</font>&nbsp;c = <font color="#ff6060">'字'</font>;<br>
+<font color="#00ff00">float</font>&nbsp;percentile = <font color="#ff6060">0.75f</font>;<br>
+<font color="#00ff00">const</font>&nbsp;<font color="#00ff00">double</font>&nbsp;MU_BOHR = <font color="#ff6060">927.400915E-26</font>;<br>
+<font color="#00ff00">bool</font>&nbsp;the_box_has_crashed = <font color="#ff6060">false</font>;<br>
+<br>
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;defining a struct </font><font color="#8080ff">*/</font><br>
+<font color="#00ff00">struct</font>&nbsp;Vector {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;x;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;z;<br>
+}<br>
+<br>
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;defining an enum </font><font color="#8080ff">*/</font><br>
+<font color="#00ff00">enum</font>&nbsp;WindowType {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TOPLEVEL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;POPUP<br>
+}
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">基本變數</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>位元組</b>: char, uchar</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>字</b>: unichar</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>整數</b>: int, uint</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>長整數</b>: long, ulong</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>短整數</b>: short, ushort</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small"><b>有號保證大小</b>: int8, int16, int32, int64</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="small"><b>無號保證大小</b>: uint8, uint16, uint32, uint64</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>浮點數</b>: float, double</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>真假值</b>: true, false</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>字串</b>: string</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">自訂變數</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>資料結構</b>: struct</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>列舉值</b>: enum</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>類別</b>: class</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><b>介面</b>: interface</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large"><font color="blue">陣列</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">一維陣列</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">int</font>[] a = <font color="orange">new</font>&nbsp;<font color="#00ff00">int</font>[<font color="#ff6060">10</font>];<br>
+<font color="#00ff00">int</font>[] b = { <font color="#ff6060">2</font>, <font color="#ff6060">4</font>, <font color="#ff6060">6</font>, <font color="#ff6060">8</font>&nbsp;};<br>
+<br>
+<font color="#00ff00">int</font>[] c = b[<font color="#ff6060">1</font>:<font color="#ff6060">3</font>];<br>
+<font color="#8080ff">// =&gt; { 4, 6 }</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">二維陣列</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">int</font>[,] c = <font color="orange">new</font>&nbsp;<font color="#00ff00">int</font>[<font color="#ff6060">3</font>,<font color="#ff6060">4</font>];<br>
+<font color="#00ff00">int</font>[,] d = {{<font color="#ff6060">2</font>, <font color="#ff6060">4</font>, <font color="#ff6060">6</font>, <font color="#ff6060">8</font>},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<font color="#ff6060">3</font>, <font color="#ff6060">5</font>, <font color="#ff6060">7</font>, <font color="#ff6060">9</font>},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<font color="#ff6060">1</font>, <font color="#ff6060">3</font>, <font color="#ff6060">5</font>, <font color="#ff6060">7</font>}};<br>
+d[<font color="#ff6060">2</font>,<font color="#ff6060">3</font>] = <font color="#ff6060">42</font>;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">N 維陣列</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">int[,,,,,,]</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large"><font color="blue">字串</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">UTF-8</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+ <font color="#00ff00">string</font>&nbsp;text = <font color="#ff6060">&quot;這是個字串&quot;</font>;
+           </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">string</font>&nbsp;verbatim = <font color="#ff6060">&quot;&quot;&quot;這也是個字串</font><br>
+<font color="#ff6060">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可以跨行的字串&quot;&quot;&quot;</font>;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">int</font>&nbsp;a = <font color="#ff6060">6</font>, b = <font color="#ff6060">7</font>;<br>
+<font color="#00ff00">string</font>&nbsp;s = @<font color="#ff6060">&quot;$a 乘以 $b 等於 $(a * b)&quot;</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;=&gt; &quot;6 乘以 7 等於 42&quot; </font><font color="#8080ff">*/</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">string</font>&nbsp;slice = <font color="#ff6060">&quot;字串切片&quot;</font>;<br>
+<font color="#00ff00">string</font>&nbsp;s1 = slice[<font color="#ff6060">0</font>:<font color="#ff6060">2</font>];<br>
+<font color="#8080ff">// =&gt; &quot;字串&quot;</font><br>
+<font color="#00ff00">string</font>&nbsp;s2 = slice[-<font color="#ff6060">2</font>:slice.length];<br>
+<font color="#8080ff">// =&gt; &quot;切片&quot;</font><br>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">數值轉換</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">bool</font>&nbsp;b = <font color="#ff6060">&quot;false&quot;</font>.to_bool();<br>
+<font color="#8080ff">// =&gt; false</font><br>
+<font color="#00ff00">int</font>&nbsp;i = <font color="#ff6060">&quot;-52&quot;</font>.to_int();<br>
+<font color="#8080ff">// =&gt; -52</font><br>
+<font color="#00ff00">double</font>&nbsp;d = <font color="#ff6060">&quot;6.67428E-11&quot;</font>.to_double();<br>
+<font color="#8080ff">// =&gt; 6.67428E-11</font><br>
+<font color="#00ff00">string</font>&nbsp;s1 = <font color="#ff6060">true</font>.to_string();<br>
+<font color="#8080ff">// =&gt; &quot;true&quot;</font><br>
+<font color="#00ff00">string</font>&nbsp;s2 = <font color="#ff6060">21.</font>to_string();<br>
+<font color="#8080ff">// =&gt; &quot;21&quot;</font><br>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">標準輸出輸入</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+stdout.printf(<font color="#ff6060">&quot;Hello, world</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+stdout.printf(<font color="#ff6060">&quot;%d %g %s</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, <font color="#ff6060">42</font>, <font color="#ff6060">3.1415</font>, <font color="#ff6060">&quot;Vala&quot;</font>);<br>
+<font color="#00ff00">string</font>&nbsp;input = stdin.read_line();<br>
+<font color="#00ff00">int</font>&nbsp;number = stdin.read_line().to_int();<br>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">字串比對</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">string</font>&nbsp;family = <font color="#ff6060">&quot;溫瑞凡 謝安真 溫雨萌 黎薇恩&quot;</font>;<br>
+<br>
+<font color="orange">if</font>&nbsp;(<font color="#ff6060">&quot;黎薇恩&quot;</font>&nbsp;<font color="orange">in</font>&nbsp;family) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;家裡有小三</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">string</font>[] people = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff6060">&quot;溫瑞凡&quot;</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff6060">&quot;謝安真&quot;</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff6060">&quot;溫雨萌&quot;</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff6060">&quot;黎薇恩&quot;</font>};<br>
+<br>
+<font color="orange">foreach</font>&nbsp;(<font color="#00ff00">string</font>&nbsp;person <font color="orange">in</font>&nbsp;people) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">if</font>&nbsp;(person == <font color="#ff6060">&quot;黎薇恩&quot;</font>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;找到小三</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">型別推斷</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="orange">var</font> foo = ...</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="orange">var</font>&nbsp;p = <font color="orange">new</font>&nbsp;Person();<br>
+<font color="#8080ff">// same as: Person p = new Person();</font><br>
+<font color="orange">var</font>&nbsp;s = <font color="#ff6060">&quot;hello&quot;</font>;<br>
+<font color="#8080ff">// same as: string s = &quot;hello&quot;;</font><br>
+<font color="orange">var</font>&nbsp;l = <font color="orange">new</font>&nbsp;List&lt;<font color="#00ff00">int</font>&gt;();<br>
+<font color="#8080ff">// same as: List&lt;int&gt; l = new List&lt;int&gt;();</font><br>
+<font color="orange">var</font>&nbsp;i = <font color="#ff6060">10</font>;<br>
+<font color="#8080ff">// same as: int i = 10;</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large"><font color="red">運算元</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">=</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">+, -, /, *, %</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">+=, -=, /=, *=, %=</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">++, --</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">|, ^, &, ~, |=, &=, ^=</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">&lt;&lt;, &gt;&gt;</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">&lt;&lt;=, &gt;&gt;=</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">==, &lt;, &gt;, &gt;=, &lt;=, !=</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large">!, &amp;&amp;, ||</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">? :</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">??</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+stdout.printf(<font color="#ff6060">&quot;Hello, %s!</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, name ?? <font color="#ff6060">&quot;unknown person&quot;</font>);
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="red">控制結構</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">while</font>&nbsp;(a &gt; b) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a--;<br>
+}:
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">do</font>&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a--;<br>
+} <font color="orange">while</font>&nbsp;(a &gt; b);<br>
+</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">for</font>&nbsp;(<font color="#00ff00">int</font>&nbsp;a = <font color="#ff6060">0</font>; a &lt; <font color="#ff6060">10</font>; a++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">foreach</font>&nbsp;(<font color="#00ff00">int</font>&nbsp;a <font color="orange">in</font>&nbsp;int_array) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="orange">if</font>&nbsp;(a &gt; <font color="#ff6060">0</font>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;a is greater than 0</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}<br>
+<font color="orange">else</font>&nbsp;<font color="orange">if</font>&nbsp;(a &lt; <font color="#ff6060">0</font>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;a is less than 0</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}<br>
+<font color="orange">else</font>&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;a is equal to 0</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">switch</font>&nbsp;(a) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">case</font>&nbsp;<font color="#ff6060">1</font>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;one</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">break</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">case</font>&nbsp;<font color="#ff6060">2</font>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">case</font>&nbsp;<font color="#ff6060">3</font>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;two or three</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">break</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">default</font>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;unknown</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">break</font>;<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="red">語言元素</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">方法 Method</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">int</font>&nbsp;method_name(<font color="#00ff00">int</font>&nbsp;arg1, Object arg2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">1</font>;<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">void</font>&nbsp;draw(<font color="#00ff00">string</font>&nbsp;text) { }<br>
+<font color="#00ff00">void</font>&nbsp;draw(Shape shape) { }&nbsp;&nbsp;<font color="#8080ff">// not possible</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">void</font>&nbsp;draw_text(<font color="#00ff00">string</font>&nbsp;text) { }<br>
+<font color="#00ff00">void</font>&nbsp;draw_shape(Shape shape) { }
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">void</font>&nbsp;f(<font color="#00ff00">int</font>&nbsp;x, <font color="#00ff00">string</font>&nbsp;s, <font color="#00ff00">double</font>&nbsp;z) { }<br>
+<font color="#00ff00">void</font>&nbsp;f(<font color="#00ff00">int</font>&nbsp;x, <font color="#00ff00">string</font>&nbsp;s) { f(x, s, <font color="#ff6060">0.5</font>); }&nbsp;&nbsp;<font color="#8080ff">// not possible</font><br>
+<font color="#00ff00">void</font>&nbsp;f(<font color="#00ff00">int</font>&nbsp;x) { f(x, <font color="#ff6060">&quot;hello&quot;</font>); }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#8080ff">// not possible</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">void</font>&nbsp;f(<font color="#00ff00">int</font>&nbsp;x, <font color="#00ff00">string</font>&nbsp;s = <font color="#ff6060">&quot;hello&quot;</font>, <font color="#00ff00">double</font>&nbsp;z = <font color="#ff6060">0.5</font>) { }
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+f(<font color="#ff6060">2</font>);<br>
+f(<font color="#ff6060">2</font>, <font color="#ff6060">&quot;hi&quot;</font>);<br>
+f(<font color="#ff6060">2</font>, <font color="#ff6060">&quot;hi&quot;</font>, <font color="#ff6060">0.75</font>);<br>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">string</font>? method_name(<font color="#00ff00">string</font>? text, Foo? foo, Bar bar) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// ...</font><br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">委任 Delegate</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">void</font>&nbsp;DelegateType(<font color="#00ff00">int</font>&nbsp;a);
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">void</font>&nbsp;DelegateType(<font color="#00ff00">int</font>&nbsp;a);<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;f1(<font color="#00ff00">int</font>&nbsp;a) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+}<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;f2(DelegateType d, <font color="#00ff00">int</font>&nbsp;a) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;d(a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Calling a delegate</font><br>
+}<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;f2(f1, <font color="#ff6060">5</font>);<br>
+&nbsp;&nbsp;<font color="#8080ff">// Passing a method as delegate argument to another method</font><br>}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">class</font>&nbsp;Foo {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;f1(<font color="#00ff00">int</font>&nbsp;a) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;a = %d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">void</font>&nbsp;DelegateType(<font color="#00ff00">int</font>&nbsp;a);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">static</font>&nbsp;<font color="#00ff00">int</font>&nbsp;main(<font color="#00ff00">string</font>[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foo foo = <font color="orange">new</font>&nbsp;Foo();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DelegateType d1 = foo.f1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d1(<font color="#ff6060">10</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">匿名函式 Closures</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+(a) =&gt; { stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a); }<br>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">void</font>&nbsp;PrintIntFunc(<font color="#00ff00">int</font>&nbsp;a);<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PrintIntFunc p1 = <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) =&gt; { stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a); };<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p1(<font color="#ff6060">10</font>);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Curly braces are optional if the body contains only one statement:</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;PrintIntFunc p2 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a) =&gt; stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p2(<font color="#ff6060">20</font>):<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">int</font>&nbsp;Comparator(<font color="#00ff00">int</font>&nbsp;a, <font color="#00ff00">int</font>&nbsp;b);<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;my_sorting_algorithm(<font color="#00ff00">int</font>[] data, Comparator compare) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// ... 'compare' is called somewhere in here ...</font><br>
+}<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>[] data = { <font color="#ff6060">3</font>, <font color="#ff6060">9</font>, <font color="#ff6060">2</font>, <font color="#ff6060">7</font>, <font color="#ff6060">5</font>&nbsp;};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// An anonymous method is passed as the second argument:</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_sorting_algorithm(data, (a, b) =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">if</font>&nbsp;(a &lt; b) <font color="orange">return</font>&nbsp;-<font color="#ff6060">1</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">if</font>&nbsp;(a &gt; b) <font color="orange">return</font>&nbsp;<font color="#ff6060">1</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">delegate</font>&nbsp;<font color="#00ff00">int</font>&nbsp;IntOperation(<font color="#00ff00">int</font>&nbsp;i);<br>
+<br>
+IntOperation curried_add(<font color="#00ff00">int</font>&nbsp;a) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;(b) =&gt; a + b;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// 'a' is an outer variable</font><br>
+}<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff6060">&quot;2 + 4 = %d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, curried_add(<font color="#ff6060">2</font>)(<font color="#ff6060">4</font>));<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">命名空間 Namespace</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">namespace</font>&nbsp;NameSpaceName {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// ...</font><br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">using</font>&nbsp;NameSpaceName;<br>
+<br>
+<font color="#8080ff">// ...</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#8080ff">// foo-bar.vala</font><br>
+<br>
+<font color="#00ff00">namespace</font>&nbsp;Foo {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Bar : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;blah () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;Hello World!</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#8080ff">// main.vala</font><br>
+<br>
+<font color="orange">using</font>&nbsp;Foo;<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">var</font>&nbsp;bar = <font color="orange">new</font>&nbsp;Bar();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bar.blah();<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#8080ff">// main.vala</font><br>
+<br>
+<font color="#00ff00">void</font>&nbsp;main () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">var</font>&nbsp;bar = <font color="orange">new</font>&nbsp;Foo.Bar();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bar.blah();<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">資料結構 Struct</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">struct</font>&nbsp;StructName {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;a;<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">struct</font>&nbsp;Color {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;red;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;green;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;blue;<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#8080ff">// without type inference</font><br>
+Color c1 = Color();<br>
+Color c2 = { <font color="#ff6060">0.5</font>, <font color="#ff6060">0.5</font>, <font color="#ff6060">1.0</font>&nbsp;};<br>
+Color c3 = Color() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;red = <font color="#ff6060">0.5</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;green = <font color="#ff6060">0.5</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;blue = <font color="#ff6060">1.0</font><br>
+};<br>
+<br>
+<font color="#8080ff">// with type inference</font><br>
+<font color="orange">var</font>&nbsp;c4 = Color();<br>
+<font color="orange">var</font>&nbsp;c5 = Color() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;red = <font color="#ff6060">0.5</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;green = <font color="#ff6060">0.5</font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;blue = <font color="#ff6060">1.0</font><br>
+};
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="red">類別 Class</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;ClassName : SuperClassName, InterfaceName {<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;TestClass : GLib.Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Fields </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;first_data = <font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">private</font>&nbsp;<font color="#00ff00">int</font>&nbsp;second_data;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Constructor </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;TestClass() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.second_data = <font color="#ff6060">5</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Method </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;private data: %d&quot;</font>, <font color="orange">this</font>.second_data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="orange">this</font>.second_data;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">存取修飾字</font><h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">完全開放 <font color="green">public</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">預設私有 <font color="green">private</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">保護家人 <font color="green">protected</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle">內部限定 <font color="green">internal</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">建構子</font><h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Button : Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Button() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Button.with_label(<font color="#00ff00">string</font>&nbsp;label) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Button.from_stock(<font color="#00ff00">string</font>&nbsp;stock_id) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="orange">new</font>&nbsp;Button();<br>
+<font color="orange">new</font>&nbsp;Button.with_label(<font color="#ff6060">&quot;Click me&quot;</font>);<br>
+<font color="orange">new</font>&nbsp;Button.from_stock(Gtk.STOCK_OK);
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Point : Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;x;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">double</font>&nbsp;y;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Point(<font color="#00ff00">double</font>&nbsp;x, <font color="#00ff00">double</font>&nbsp;y) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.x = x;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.y = y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Point.rectangular(<font color="#00ff00">double</font>&nbsp;x, <font color="#00ff00">double</font>&nbsp;y) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>(x, y);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Point.polar(<font color="#00ff00">double</font>&nbsp;radius, <font color="#00ff00">double</font>&nbsp;angle) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.rectangular(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius * Math.cos(angle),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius * Math.sin(angle));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+            <div class="s-code">
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">var</font>&nbsp;p1 = <font color="orange">new</font>&nbsp;Point.rectangular(<font color="#ff6060">5.7</font>, <font color="#ff6060">1.2</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">var</font>&nbsp;p2 = <font color="orange">new</font>&nbsp;Point.polar(<font color="#ff6060">5.7</font>, <font color="#ff6060">1.2</font>);<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">解構子</font><h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">class</font>&nbsp;Demo : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;~Demo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;in destructor&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">信號</font><h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Test : GLib.Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">signal</font>&nbsp;<font color="#00ff00">void</font>&nbsp;sig_1(<font color="#00ff00">int</font>&nbsp;a);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">static</font>&nbsp;<font color="#00ff00">int</font>&nbsp;main(<font color="#00ff00">string</font>[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test t1 = <font color="orange">new</font>&nbsp;Test();<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t1.sig_1.connect((t, a) =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t1.sig_1(<font color="#ff6060">5</font>);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">屬性</font><h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">class</font>&nbsp;Person : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">private</font>&nbsp;<font color="#00ff00">int</font>&nbsp;age = <font color="#ff6060">32</font>;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;get_age() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="orange">this</font>.age;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;set_age(<font color="#00ff00">int</font>&nbsp;age) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.age = age;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+            <div class="code">
+<font color="orange">var</font>&nbsp;alice = <font color="orange">new</font>&nbsp;Person();<br>
+alice.set_age(alice.get_age() + <font color="#ff6060">1</font>);
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">class</font>&nbsp;Person : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">private</font>&nbsp;<font color="#00ff00">int</font>&nbsp;_age = <font color="#ff6060">32</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// underscore prefix to avoid name clash with property</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Property </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;age {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">get</font>&nbsp;{ <font color="orange">return</font>&nbsp;_age; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">set</font>&nbsp;{ _age = <font color="orange">value</font>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+            <div class="x-code">
+<font color="orange">var</font>&nbsp;alice = <font color="orange">new</font>&nbsp;Person();<br>
+alice.age = alice.age + <font color="#ff6060">1</font>;<br>
+<font color="#8080ff">// or even shorter:</font><br>
+alice.age++;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;Person : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Property with standard getter and setter and default value </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;age { <font color="orange">get</font>; <font color="orange">set</font>; <font color="orange">default</font>&nbsp;= <font color="#ff6060">32</font>; }<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+obj.notify.connect((s, p) =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;Property '%s' has changed!</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, p.name);<br>
+});
+            </div>
+            <div class="code">
+alice.notify[<font color="#ff6060">&quot;age&quot;</font>].connect((s, p) =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;age has changed</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+});
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;MyObject : Object {<br>
+<font color="#ff40ff">&nbsp;&nbsp;&nbsp;&nbsp;[CCode(notify = false)]</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// notify signal is NOT emitted upon changes in the property</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;without_notification { <font color="orange">get</font>; <font color="orange">set</font>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// notify signal is emitted upon changes in the property</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;with_notification { <font color="orange">get</font>; <font color="orange">set</font>; }<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">繼承 Inheritance</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;SuperClass : GLib.Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">private</font>&nbsp;<font color="#00ff00">int</font>&nbsp;data;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;SuperClass(<font color="#00ff00">int</font>&nbsp;data) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.data = data;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">protected</font>&nbsp;<font color="#00ff00">void</font>&nbsp;protected_method() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">static</font>&nbsp;<font color="#00ff00">void</font>&nbsp;public_static_method() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<font color="#00ff00">class</font>&nbsp;SubClass : SuperClass {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;SubClass() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">base</font>(<font color="#ff6060">10</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">抽象類別 Abstract Classes</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">abstract</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Animal : Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;eat() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;*chomp chomp*</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">abstract</font>&nbsp;<font color="#00ff00">void</font>&nbsp;say_hello();<br>
+}<br>
+<br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Tiger : Animal {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">override</font>&nbsp;<font color="#00ff00">void</font>&nbsp;say_hello() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;*roar*</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Duck : Animal {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">override</font>&nbsp;<font color="#00ff00">void</font>&nbsp;say_hello() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;*quack*</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">介面 Interface Mixins</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">interface</font>&nbsp;InterfaceName : SuperInterfaceName {<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">interface</font>&nbsp;ITest : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">abstract</font>&nbsp;<font color="#00ff00">int</font>&nbsp;data_1 { <font color="orange">get</font>; <font color="orange">set</font>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">abstract</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1();<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Test1 : GLib.Object, ITest {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;data_1 { <font color="orange">get</font>; <font color="orange">set</font>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="orange">var</font>&nbsp;t = <font color="orange">new</font>&nbsp;Test1();<br>
+t.method_1();<br>
+<br>
+ITest i = t;<br>
+i.method_1();
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">interface</font>&nbsp;List : Collection {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// 強制 List 介面一定要實作 Collection 介面</font><br>
+}<br>
+<br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;ListClass : GLib.Object, Collection, List {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// 所有需要實作的介面一定要全部寫出來</font><br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><font color="blue">多型 Polymorphism</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;SuperClass : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// 這裡有個 method_1()</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;SuperClass.method_1()</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<font color="#00ff00">class</font>&nbsp;SubClass : SuperClass {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// 這裡也有個 method_1()</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;SubClass.method_1()</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+SubClass o1 = <font color="orange">new</font>&nbsp;SubClass();<br>
+o1.method_1();<br>
+<br>
+SuperClass o2 = o1;<br>
+o2.method_1(); <font color="#8080ff">// 哪一個才是對的？</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;SuperClass : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">virtual</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;SuperClass.method_1()</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<font color="#00ff00">class</font>&nbsp;SubClass : SuperClass {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">override</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_1() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;SubClass.method_1()</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+SubClass o1 = <font color="orange">new</font>&nbsp;SubClass();<br>
+o1.method_1();<br>
+<br>
+SuperClass o2 = o1;<br>
+o2.method_1();<br>
+<font color="#8080ff">// 變成 SubClass 裡面 method_1()</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">override</font>&nbsp;<font color="#00ff00">void</font>&nbsp;method_name() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">base</font>.method_name();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;extra_task();<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">方法隱匿 Method Hiding</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">class</font>&nbsp;Foo : Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;my_method() { }<br>
+}<br>
+<br>
+<font color="#00ff00">class</font>&nbsp;Bar : Foo {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="orange">new</font>&nbsp;<font color="#00ff00">void</font>&nbsp;my_method() { }<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">void</font>&nbsp;main() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">var</font>&nbsp;bar = <font color="orange">new</font>&nbsp;Bar();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bar.my_method();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(bar <font color="orange">as</font>&nbsp;Foo).my_method();<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><font color="blue">執行期型別判斷</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+<font color="#00ff00">bool</font>&nbsp;b = object <font color="orange">is</font>&nbsp;SomeTypeName;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+Type type = object.get_type();<br>
+<br>
+stdout.printf(<font color="#ff6060">&quot;%s</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, type.name());
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+Type type = <font color="orange">typeof</font>(Foo);<br>
+<br>
+Foo foo = (Foo) Object.<font color="orange">new</font>(type);
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><font color="blue">動態型別轉換</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="x-code">
+Button b = widget <font color="orange">as</font>&nbsp;Button;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+Button b =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(widget <font color="orange">is</font>&nbsp;Button) ? (Button) widget : <font color="#ff6060">null</font>;
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="middle"><font color="blue">泛型 Generics</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Wrapper&lt;G&gt; : GLib.Object {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">private</font>&nbsp;G data;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">void</font>&nbsp;set_data(G data) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">this</font>.data = data;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;G get_data() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">return</font>&nbsp;<font color="orange">this</font>.data;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="code">
+<font color="orange">var</font>&nbsp;wrapper = <font color="orange">new</font>&nbsp;Wrapper&lt;<font color="#00ff00">string</font>&gt;();<br><br>
+wrapper.set_data(<font color="#ff6060">&quot;test&quot;</font>);<br><br>
+<font color="orange">var</font>&nbsp;data = wrapper.get_data();
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">class</font>&nbsp;TestClass : GLib.Object {<br>
+}<br>
+<br>
+<font color="#00ff00">void</font>&nbsp;accept_object_wrapper(Wrapper&lt;Glib.Object&gt; w) {<br>
+}<br>
+<br>
+<font color="orange">var</font>&nbsp;test_wrapper = <font color="orange">new</font>&nbsp;Wrapper&lt;TestClass&gt;();<br>
+accept_object_wrapper(test_wrapper);
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="large"><font color="blue">建構區塊</font></h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">class</font>&nbsp;Person : Object {<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;Construction properties </font><font color="#8080ff">*/</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">string</font>&nbsp;name { <font color="orange">get</font>; <font color="orange">construct</font>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;age { <font color="orange">get</font>; <font color="orange">construct</font>&nbsp;<font color="orange">set</font>; }<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Person(<font color="#00ff00">string</font>&nbsp;name) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object(name: name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">public</font>&nbsp;Person.with_age(<font color="#00ff00">string</font>&nbsp;name, <font color="#00ff00">int</font>&nbsp;years) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object(name: name, age: years);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">construct</font>&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// do anything else</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stdout.printf(<font color="#ff6060">&quot;Welcome %s</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>, <font color="orange">this</font>.name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#8080ff">/*</font><font color="#8080ff">&nbsp;This snippet of code is run when the class</font><br>
+<font color="#8080ff">&nbsp;* is registered with the type system </font><font color="#8080ff">*/</font><br>
+<font color="#00ff00">static</font>&nbsp;<font color="orange">construct</font>&nbsp;{<br>
+&nbsp;&nbsp;...<br>
+}
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <div class="s-code">
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;a { <font color="orange">get</font>; <font color="#00ff00">private</font>&nbsp;<font color="orange">set</font>; }&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Read</font><br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;b { <font color="#00ff00">private</font>&nbsp;<font color="orange">get</font>; <font color="orange">set</font>; }&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Write</font><br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;c { <font color="orange">get</font>; <font color="orange">set</font>; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Read / Write</font><br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;d { <font color="orange">get</font>; <font color="orange">set</font>&nbsp;<font color="orange">construct</font>; }&nbsp;&nbsp;<font color="#8080ff">// Read / Write / Construct</font><br>
+<font color="#00ff00">public</font>&nbsp;<font color="#00ff00">int</font>&nbsp;e { <font color="orange">get</font>; <font color="orange">construct</font>; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8080ff">// Read / Write-Construct-Only</font>
+            </div>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">問題</h1>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+          <h1 class="x-large">謝謝</h1>
+          </section>
+        </div>
+
+      </div> <!-- slides -->
+
+    </div> <!-- presentation -->
+
+    <script>
+      (function() {
+        var doc = document;
+        var disableBuilds = true;
+
+        var ctr = 0;
+        var spaces = /\s+/, a1 = [''];
+
+        var toArray = function(list) {
+          return Array.prototype.slice.call(list || [], 0);
+        };
+
+        var byId = function(id) {
+          if (typeof id == 'string') { return doc.getElementById(id); }
+          return id;
+        };
+
+        var query = function(query, root) {
+          if (!query) { return []; }
+          if (typeof query != 'string') { return toArray(query); }
+          if (typeof root == 'string') {
+            root = byId(root);
+            if(!root){ return []; }
+          }
+
+          root = root || document;
+          var rootIsDoc = (root.nodeType == 9);
+          var doc = rootIsDoc ? root : (root.ownerDocument || document);
+
+          // rewrite the query to be ID rooted
+          if (!rootIsDoc || ('>~+'.indexOf(query.charAt(0)) >= 0)) {
+            root.id = root.id || ('qUnique' + (ctr++));
+            query = '#' + root.id + ' ' + query;
+          }
+          // don't choke on something like ".yada.yada >"
+          if ('>~+'.indexOf(query.slice(-1)) >= 0) { query += ' *'; }
+
+          return toArray(doc.querySelectorAll(query));
+        };
+
+        var strToArray = function(s) {
+          if (typeof s == 'string' || s instanceof String) {
+            if (s.indexOf(' ') < 0) {
+              a1[0] = s;
+              return a1;
+            } else {
+              return s.split(spaces);
+            }
+          }
+          return s;
+        };
+
+        var addClass = function(node, classStr) {
+          classStr = strToArray(classStr);
+          var cls = ' ' + node.className + ' ';
+          for (var i = 0, len = classStr.length, c; i < len; ++i) {
+            c = classStr[i];
+            if (c && cls.indexOf(' ' + c + ' ') < 0) {
+              cls += c + ' ';
+            }
+          }
+          node.className = cls.trim();
+        };
+
+        var removeClass = function(node, classStr) {
+          var cls;
+          if (classStr !== undefined) {
+            classStr = strToArray(classStr);
+            cls = ' ' + node.className + ' ';
+            for (var i = 0, len = classStr.length; i < len; ++i) {
+              cls = cls.replace(' ' + classStr[i] + ' ', ' ');
+            }
+            cls = cls.trim();
+          } else {
+            cls = '';
+          }
+          if (node.className != cls) {
+            node.className = cls;
+          }
+        };
+
+        var toggleClass = function(node, classStr) {
+          var cls = ' ' + node.className + ' ';
+          if (cls.indexOf(' ' + classStr.trim() + ' ') >= 0) {
+            removeClass(node, classStr);
+          } else {
+            addClass(node, classStr);
+          }
+        };
+
+        var ua = navigator.userAgent;
+        var isFF = parseFloat(ua.split('Firefox/')[1]) || undefined;
+        var isWK = parseFloat(ua.split('WebKit/')[1]) || undefined;
+        var isOpera = parseFloat(ua.split('Opera/')[1]) || undefined;
+
+        var canTransition = (function() {
+          var ver = parseFloat(ua.split('Version/')[1]) || undefined;
+          // test to determine if this browser can handle CSS transitions.
+          var cachedCanTransition =
+            (isWK || (isFF && isFF > 3.6 ) || (isOpera && ver >= 10.5));
+          return function() { return cachedCanTransition; }
+        })();
+
+        //
+        // Slide class
+        //
+        var Slide = function(node, idx) {
+          this._node = node;
+          if (idx >= 0) {
+            this._count = idx + 1;
+          }
+          if (this._node) {
+            addClass(this._node, 'slide distant-slide');
+          }
+          this._makeCounter();
+          this._makeBuildList();
+        };
+
+        Slide.prototype = {
+          _node: null,
+          _count: 0,
+          _buildList: [],
+          _visited: false,
+          _currentState: '',
+          _states: [ 'distant-slide', 'far-past',
+                     'past', 'current', 'future',
+                     'far-future', 'distant-slide' ],
+          setState: function(state) {
+            if (typeof state != 'string') {
+              state = this._states[state];
+            }
+            if (state == 'current' && !this._visited) {
+              this._visited = true;
+              this._makeBuildList();
+            }
+            removeClass(this._node, this._states);
+            addClass(this._node, state);
+            this._currentState = state;
+
+            // delay first auto run. Really wish this were in CSS.
+            /*
+            this._runAutos();
+            */
+            var _t = this;
+            setTimeout(function(){ _t._runAutos(); } , 400);
+          },
+          _makeCounter: function() {
+            if(!this._count || !this._node) { return; }
+            var c = doc.createElement('span');
+            c.innerHTML = this._count;
+            c.className = 'counter';
+            this._node.appendChild(c);
+          },
+          _makeBuildList: function() {
+            this._buildList = [];
+            if (disableBuilds) { return; }
+            if (this._node) {
+              this._buildList = query('[data-build] > *', this._node);
+            }
+            this._buildList.forEach(function(el) {
+              addClass(el, 'to-build');
+            });
+          },
+          _runAutos: function() {
+            if (this._currentState != 'current') {
+              return;
+            }
+            // find the next auto, slice it out of the list, and run it
+            var idx = -1;
+            this._buildList.some(function(n, i) {
+              if (n.hasAttribute('data-auto')) {
+                idx = i;
+                return true;
+              }
+              return false;
+            });
+            if (idx >= 0) {
+              var elem = this._buildList.splice(idx, 1)[0];
+              var transitionEnd = isWK ? 'webkitTransitionEnd' : (isFF ? 'mozTransitionEnd' : 'oTransitionEnd');
+              var _t = this;
+              if (canTransition()) {
+                var l = function(evt) {
+                  elem.parentNode.removeEventListener(transitionEnd, l, false);
+                  _t._runAutos();
+                };
+                elem.parentNode.addEventListener(transitionEnd, l, false);
+                removeClass(elem, 'to-build');
+              } else {
+                setTimeout(function() {
+                  removeClass(elem, 'to-build');
+                  _t._runAutos();
+                }, 400);
+              }
+            }
+          },
+          buildNext: function() {
+            if (!this._buildList.length) {
+              return false;
+            }
+            removeClass(this._buildList.shift(), 'to-build');
+            return true;
+          },
+        };
+
+        //
+        // SlideShow class
+        //
+        var SlideShow = function(slides) {
+          this._slides = (slides || []).map(function(el, idx) {
+            return new Slide(el, idx);
+          });
+
+          var h = window.location.hash;
+          try {
+            this.current = parseInt(h.split('#slide')[1], 10);
+          }catch (e) { /* squeltch */ }
+          this.current = isNaN(this.current) ? 1 : this.current;
+          var _t = this;
+          doc.addEventListener('keydown',
+              function(e) { _t.handleKeys(e); }, false);
+          doc.addEventListener('mousewheel',
+              function(e) { _t.handleWheel(e); }, false);
+          doc.addEventListener('DOMMouseScroll',
+              function(e) { _t.handleWheel(e); }, false);
+          doc.addEventListener('touchstart',
+              function(e) { _t.handleTouchStart(e); }, false);
+          doc.addEventListener('touchend',
+              function(e) { _t.handleTouchEnd(e); }, false);
+          window.addEventListener('popstate',
+              function(e) { _t.go(e.state); }, false);
+          this._update();
+        };
+
+        SlideShow.prototype = {
+          _slides: [],
+          _update: function(dontPush) {
+
+            // catch to set things right on the initial load. popstate fires on pageload.
+            if (this.current === null) return;
+
+            document.querySelector('#presentation-counter').innerText = this.current;
+            if (history.pushState) {
+              if (!dontPush) {
+                history.pushState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+              }
+            } else {
+              window.location.hash = 'slide' + this.current;
+            }
+            for (var x = this.current-1; x < this.current + 7; x++) {
+              if (this._slides[x-4]) {
+                this._slides[x-4].setState(Math.max(0, x-this.current));
+              }
+            }
+          },
+
+          current: 0,
+          next: function() {
+            if (!this._slides[this.current-1].buildNext()) {
+              this.current = Math.min(this.current + 1, this._slides.length);
+              this._update();
+            }
+          },
+          prev: function() {
+            this.current = Math.max(this.current-1, 1);
+            this._update();
+          },
+          go: function(num) {
+            if (history.pushState && this.current != num) {
+              history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+            }
+            this.current = num;
+            this._update(true);
+          },
+
+          _notesOn: false,
+          showNotes: function() {
+            var isOn = this._notesOn = !this._notesOn;
+            query('.notes').forEach(function(el) {
+              el.style.display = (notesOn) ? 'block' : 'none';
+            });
+          },
+          switch3D: function() {
+            toggleClass(document.body, 'three-d');
+          },
+          handleWheel: function(e) {
+            var delta = 0;
+            if (e.wheelDelta) {
+              delta = e.wheelDelta/120;
+              if (isOpera) {
+                delta = -delta;
+              }
+            } else if (e.detail) {
+              delta = -e.detail/3;
+            }
+
+            if (delta > 0 ) {
+              this.prev();
+              return;
+            }
+            if (delta < 0 ) {
+              this.next();
+              return;
+            }
+          },
+          handleKeys: function(e) {
+            if (/^(input|textarea)$/i.test(e.target.nodeName) ||
+                e.target.isContentEditable) {
+              return;
+            }
+            switch (e.keyCode) {
+              case 37: // left arrow
+                this.prev(); break;
+              case 39: // right arrow
+              case 32: // space
+                this.next(); break;
+              case 50: // 2
+                this.showNotes(); break;
+              case 51: // 3
+                this.switch3D(); break;
+            }
+          },
+          _touchStartX: 0,
+          handleTouchStart: function(e) {
+            this._touchStartX = e.touches[0].pageX;
+          },
+          handleTouchEnd: function(e) {
+            var delta = this._touchStartX - e.changedTouches[0].pageX;
+            var SWIPE_SIZE = 150;
+            if (delta > SWIPE_SIZE) {
+              this.next();
+            } else if (delta< -SWIPE_SIZE) {
+              this.prev();
+            }
+          },
+        };
+
+        // Initialize
+        var slideshow = new SlideShow(query('.slide'));
+
+        document.querySelector('#toggle-counter').addEventListener('click', toggleCounter, false);
+        document.querySelector('#toggle-size').addEventListener('click', toggleSize, false);
+        document.querySelector('#toggle-transitions').addEventListener('click', toggleTransitions, false);
+        document.querySelector('#toggle-gradients').addEventListener('click', toggleGradients, false);
+
+        var counters = document.querySelectorAll('.counter');
+        var slides = document.querySelectorAll('.slide');
+
+        function toggleCounter() {
+          toArray(counters).forEach(function(el) {
+            el.style.display = (el.offsetHeight) ? 'none' : 'block';
+          });
+        }
+
+        function toggleSize() {
+          toArray(slides).forEach(function(el) {
+            if (!/reduced/.test(el.className)) {
+              addClass(el, 'reduced');
+            }
+            else {
+              removeClass(el, 'reduced');
+            }
+          });
+        }
+
+        function toggleTransitions() {
+          toArray(slides).forEach(function(el) {
+            if (!/no-transitions/.test(el.className)) {
+              addClass(el, 'no-transitions');
+            }
+            else {
+              removeClass(el, 'no-transitions');
+            }
+          });
+        }
+
+        function toggleGradients() {
+          toArray(slides).forEach(function(el) {
+            if (!/no-gradients/.test(el.className)) {
+              addClass(el, 'no-gradients');
+            }
+            else {
+              removeClass(el, 'no-gradients');
+            }
+          });
+        }
+      })();
+    </script>
+
+    <!--[if lt IE 9]>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+
+  </body>
+</html>
