@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/"><title>Plone Installation</title>
+
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style></head><body>
+<div class="document" id="plone-installation">
+<h1 class="title">Plone Installation</h1>
+<p>By marr, Last updated Mar 13, 2008</p>
+<p>本文件介紹 Plone 系統的安裝與啟動技巧，協助讀者快速建立一個穩健而具擴充彈性的 CMS 系統。</p>
+<!-- 關於 Plone 的基本資訊，可參考 Plone Introduction 文件說明。 -->
+<!-- 未來再介紹一個 project hosting 網站的需求及開發方法 -->
+<p>開發大型 Plone 系統時，可以同時執行多個 Zope instance 並設定成「線上系統」(production server)
+與「開發環境」(development server)
+兩種模式，前者可以在系統線上運作，同時進行備份或小規模的測試，後者可以即時反應程式修改的結果，加速開發流程。</p>
+<!-- http://svn.geophysik.uni-muenchen.de/trac/plone/wiki/WikiRestructuredText -->
+<!-- http://code.google.com/api -->
+<div class="section">
+<h1><a id="id1" name="id1">佈署開發環境</a></h1>
+<p>完整的開發環境，應盡量滿足程式員的需求，包括跨平台的合作環境，豐富的開發介面選擇，程式碼測試除錯流程的自動化，效能調校的便利性等。想要快速獲得 Plone 開發環境，最具效益的方式，在 Linux 環境是下載 Plone 的 <a class="reference" href="http://plone.org/products/plone">Unified Installer</a> 來編譯系統，在 Windows 環境是下載 Windows Installer 來安裝。</p>
+<div class="section">
+<h2><a id="linux" name="linux">Linux 環境的編譯</a></h2>
+<p>編譯時需要的基本工具包括：</p>
+<ul class="simple">
+<li>gcc : GNU C Compiler</li>
+<li>gcc-c++ : GNU C++ Compiler</li>
+<li>make : GNU make</li>
+<li>tar : GNU tar</li>
+<li>bash : GNU bash</li>
+</ul>
+<p>其他建議的函式庫，及其相對應的 Linux <a class="footnote-reference" href="#id5" id="id2" name="id2">[1]</a> 包裝檔案慣例名稱，包括：</p>
+<ul class="simple">
+<li>zlib :</li>
+<li>jpeglib :</li>
+<li>libxml2 : libxml2, libxml2-devel, libxml2-python, libxml2-utils</li>
+<li>readline : libreadline5, libreadline5-devel, libncurses-devel <a class="footnote-reference" href="#id6" id="id3" name="id3">[2]</a></li>
+<li>libssl : openssl, libopenssl, libopenssl-devel</li>
+<li>wv : wv, libwv, libwv-devel</li>
+<li>xpdf : xpdf</li>
+<li>odbc : libunixODBC1-devel, pyodbc, ZPyODBCDA</li>
+</ul>
+<p>引入 libxml2 目的是讓 Plone 結合 marshall <a class="footnote-reference" href="#id7" id="id4" name="id4">[3]</a>
+功能，可用 XML 格式來存取內容資料。引入 readline 是讓 Python 直譯器提供命令列歷史及指令補齊 (completion)
+的功能，執行 dir() 指令後，如果有發現 'readline' 與 'rlcompleter' 兩個內建模組，即表示安裝成功。引入
+libssl 是提供 SSL 加密傳輸能力，而 wv 與 xpdf 則是提供 Microsoft Word 與 Adobe PDF
+檔案的索引功能。</p>
+<table class="docutils footnote" id="id5" frame="void" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2" name="id5">[1]</a></td><td>Linux rpm 操作可參考 <a class="reference" href="http://www.iis.sinica.edu.tw/%7Emarr/rpm/">http://www.iis.sinica.edu.tw/~marr/rpm/</a> 文件。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" id="id6" frame="void" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3" name="id6">[2]</a></td><td>如果缺少 ncurses 函式庫，執行 Python 會發現 ImportError: /lib/libreadline.so.5: undefined symbol: PC 的訊息。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" id="id7" frame="void" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4" name="id7">[3]</a></td><td><a class="reference" href="http://plone.org/documentation/tutorial/xml-in-plone-with-marshall">http://plone.org/documentation/tutorial/xml-in-plone-with-marshall</a></td></tr>
+</tbody>
+</table>
+<p>編譯時可使用管理員權限 (Root Install) 或一般使用者權限 (Root-less Install)，不論哪一種，都建議優先選擇 ZEO Cluster 方式，它能發揮多處理器的效益，適於開發環境或大型線上系統的場合，其執行的指令與參數如下：</p>
+<pre class="literal-block">./install.sh zeo
+</pre>
+<p>另一種 standalone 方式，則適於個人桌面環境的場合，其執行的指令與參數如下：</p>
+<pre class="literal-block">./install.sh standalone
+</pre>
+<p>關於編譯時的使用者權限，可考慮在開發初期 (alpha development) 採用 Root-less Install，在開發末期
+(beta development) 採用 Root Install，主要差別在於 Root Install 會建立 plone
+使用者帳號及目錄，這在開發初期通常是項沒必要的系統成本。</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p>編譯工作的最後階段，會產生一組管理員的帳號密碼，除了在螢幕上提示外，也可以事後在 zeocluster/adminPassword.txt 檔案裡找到，類似下列內容所示：</p>
+<pre class="last literal-block">Use the account information below to log into the Zope Management Interface
+The account has full 'Manager' privileges.
+
+  Username: admin
+  Password: ooxx!123
+
+Before you start Plone, you should review the settings in:
+
+  /opt/Plone-3.0.6/zeocluster/server/etc/zeo.conf
+ and
+  /opt/Plone-3.0.6/zeocluster/client1/etc/zope.conf
+ and
+  /opt/Plone-3.0.6/zeocluster/client2/etc/zope.conf
+
+Adjust the ports Plone uses before starting the site, if necessary
+
+To start Plone, issue the following command in a Terminal window:
+
+  sudo /opt/Plone-3.0.6/zeocluster/bin/startcluster.sh
+
+To stop Plone, issue the following command in a Terminal window:
+
+  sudo /opt/Plone-3.0.6/zeocluster/bin/shutdowncluster.sh
+
+
+Plone successfully installed at /opt/Plone-3.0.6
+See /opt/Plone-3.0.6/zeocluster/adminPassword.txt
+for password and startup instructions
+</pre>
+</div>
+</div>
+<div class="section">
+<h2><a id="windows" name="windows">Windows 環境的安裝</a></h2>
+<p>下載 Plone 的 Windows Installer 檔案，選個安裝目錄，例如 C:Plone-3.0.6
+資料夾，安裝程序很容易，但預設不會將 Python 安裝資訊註冊到 Windows registry 裡，想要設定 registry
+的話，可參考 http://effbot.org/zone/python-register.htm 的說明。</p>
+</div>
+<div class="section">
+<h2><a id="id8" name="id8">目錄架構概況</a></h2>
+<p>在 Root-less Install 成功後，會在 $HOME/Plone-3.x.y 目錄裡建立 Plone 系統，採用 Root
+Install 則在 /opt/Plone-3.x.y 目錄裡建立系統。以 Plone 3.0.6 為例，它的第一層目錄項目如下所示：</p>
+<pre class="literal-block">Top-level Directory Outline for Plone 3.0.6
+
+Plone-3.0.6
+|-- Python-2.4.4
+|-- bin
+|-- doc
+|-- lib
+|-- receipts
+|-- skel
+`-- zeocluster
+</pre>
+<p>作業系統裡如果存在多個 Python 版本，複雜的相依問題可能會干擾使用者，Unified Installer
+為了避免這項困擾，使用獨立自有的 Python 版本，以 Plone 3.0.6 為例，搭配的是 Python 2.4.4，如果想要新增模組
+(例如 Python 對 MySQL 函式庫 3rd party package) 的支援，預設應安裝到
+Python-2.4.4/lib/site-packages 目錄裡，而預設已安裝的 3rd party package 有 <a class="reference" href="http://www.pythonware.com/products/pil/">PIL</a> 、 <a class="reference" href="http://peak.telecommunity.com/DevCenter/setuptools">setuptools</a> 、 <a class="reference" href="http://openid.net/">openid</a> 等。</p>
+<p>除了 Python-2.x.y 目錄之外，其他目錄屬於 Zope 系統的架構，簡介如下：</p>
+<ul class="simple">
+<li>bin : 內含 Zope 的工具程式，例如遺忘管理員帳號密碼時，可使用 bin/zpasswd.py 來建立緊急管理員帳號密碼。</li>
+<li>doc : Zope 系統管理及開發的說明文件。</li>
+<li>lib : Zope 的核心模組所在。</li>
+<li>receipts : 記錄整個 Plone 系統編譯成功的時間。</li>
+<li>skel : 內含 Zope instance home 的建立樣版。</li>
+<li>zeocluster : Zope instance 的運作環境，包括 CMF 與 Plone 的模組。</li>
+</ul>
+<p>更詳細的目錄架構概況整理如下：</p>
+<pre class="literal-block">Directory Outline for Plone 3.0.6
+
+Plone-3.0.6
+|-- Python-2.4.4
+|   |-- bin
+|   |   |-- easy_install
+|   |   |-- ...
+|   |   |-- pydoc
+|   |   |-- python
+|   |   `-- python2.4
+|   |-- include
+|   |   `-- python2.4
+|   |       |-- Python-ast.h
+|   |       |-- Python.h
+|   |       `-- ...
+|   |-- lib
+|   |   `-- python2.4
+|   |       |-- BaseHTTPServer.py
+|   |       |-- BaseHTTPServer.pyc
+|   |       |-- BaseHTTPServer.pyo
+|   |       |-- ...
+|   |       |-- site-packages
+|   |       |   |-- PIL
+|   |       |   |   `-- ...
+|   |       |   |-- PIL.pth
+|   |       |   |-- ...
+|   |       |   |-- setuptools.pth
+|   |       |   `-- zope.pth
+|   |       `-- ...
+|   `-- man
+|-- bin
+|   |-- mkzeoinstance.py
+|   |-- mkzopeinstance.py
+|   |-- zpasswd.py
+|   `-- ...
+|-- doc
+|-- lib
+|   `-- python
+|       |-- AccessControl
+|       |-- Acquisition
+|       |-- App
+|       |-- Interface
+|       |-- Persistence
+|       |-- Products
+|       |   |-- BTreeFolder2
+|       |   |-- ExternalMethod
+|       |   |-- Five
+|       |   |-- MailHost
+|       |   |-- PageTemplates
+|       |   |-- PythonScripts
+|       |   |-- Sessions
+|       |   |-- ZCatalog
+|       |   |-- ...
+|       |   `-- ZSQLMethods
+|       |-- RestrictedPython
+|       |-- TAL
+|       |-- Testing
+|       |-- ZEO
+|       |-- ZODB
+|       |-- ZPublisher
+|       |-- ZServer
+|       |-- ZTUtils
+|       |-- Zope2
+|       |-- ZopeUndo
+|       |-- docutils
+|       |-- persistent
+|       |-- reStructuredText
+|       |-- transaction
+|       |-- webdav
+|       |-- zope
+|       `-- ...
+|-- receipts
+|   `-- installReceipt-3-0.txt
+|-- skel
+`-- zeocluster
+    |-- Extensions
+    |-- Products
+    |   |-- ATContentTypes
+    |   |-- Archetypes
+    |   |-- CMFCalendar
+    |   |-- CMFCore
+    |   |-- CMFDefault
+    |   |-- CMFPlacefulWorkflow
+    |   |-- CMFPlone
+    |   |-- CMFQuickInstallerTool
+    |   |-- CMFTestCase
+    |   |-- CMFTopic
+    |   |-- CMFUid
+    |   |-- Marshall
+    |   |-- NuPlone
+    |   |-- PlacelessTranslationService
+    |   |-- PloneLanguageTool
+    |   |-- PlonePAS
+    |   |-- PloneTranslations
+    |   `-- ...
+    |-- adminPassword.txt
+    |-- bin
+    |   |-- clusterstatus.sh
+    |   |-- empty.py
+    |   |-- mkPloneSite.py
+    |   |-- restartcluster.sh
+    |   |-- shutdowncluster.sh
+    |   `-- startcluster.sh
+    |-- client1
+    |   |-- Extensions -&gt; /home/marr/Plone-3.0.6/zeocluster/Extensions
+    |   |-- Products -&gt; /home/marr/Plone-3.0.6/zeocluster/Products
+    |   |-- README.txt
+    |   |-- bin
+    |   |   |-- runzope
+    |   |   |-- runzope.bat
+    |   |   |-- zopectl
+    |   |   `-- zopeservice.py
+    |   |-- etc
+    |   |   |-- package-includes
+    |   |   |-- site.zcml
+    |   |   `-- zope.conf
+    |   |-- import
+    |   |-- inituser
+    |   |-- lib -&gt; /home/marr/Plone-3.0.6/zeocluster/lib
+    |   |-- log
+    |   `-- var
+    |-- client2
+    |   |-- Extensions -&gt; /home/marr/Plone-3.0.6/zeocluster/Extensions
+    |   |-- Products -&gt; /home/marr/Plone-3.0.6/zeocluster/Products
+    |   |-- README.txt
+    |   |-- bin
+    |   |   |-- runzope
+    |   |   |-- runzope.bat
+    |   |   |-- zopectl
+    |   |   `-- zopeservice.py
+    |   |-- etc
+    |   |   |-- package-includes
+    |   |   |-- site.zcml
+    |   |   `-- zope.conf
+    |   |-- import
+    |   |-- inituser
+    |   |-- lib -&gt; /home/marr/Plone-3.0.6/zeocluster/lib
+    |   |-- log
+    |   `-- var
+    |-- lib
+    |   `-- python
+    |       |-- archetypes
+    |       |-- five
+    |       |-- kss
+    |       |-- plone
+    |       `-- wicked
+    `-- server
+        |-- bin
+        |   |-- runzeo
+        |   `-- zeoctl
+        |-- etc
+        |   `-- zeo.conf
+        |-- log
+        |   `-- zeo.log
+        `-- var
+
+1578 directories, 19414 files
+</pre>
+</div>
+<div class="section">
+<h2><a id="plone" name="plone">啟動 Plone 的注意事項</a></h2>
+<ul class="simple">
+<li>首次執行 bin/startcluster.sh 時，在啟動 ZEO server 後，會在
+zeocluster/server/var 目錄建立 Data.fs 檔案，並在 ZODB 裡新增名為 /Plone 的 Plone site
+物件，最後再啟動 ZEO client2。</li>
+<li>啟動 Plone 時會載入 po 檔，把不必要的檔案刪除，能夠節省啟動時間。主要的 po 檔位於
+zeocluster/Products/PloneTranslations/i18n 目錄裡，可用 find Plone-3.0.6
+-name "*.po" 找到完整檔案清單。</li>
+<li>採用 Root Install 情況時，若遇有 root restaring too frequently: quit 訊息，請檢查
+zeocluster/server/var 目錄裡檔案的權限，如果 Data.fs 相關的檔案擁有人是 root，試著 chown 為
+plone 後重新啟動。</li>
+<li>登入 ZMI 後，想要更改管理者的密碼，請至 /acl_users/users</li>
+<li>若有系統錯誤訊息，請優先查詢 zeocluster/client1/log/event.log 內容，其他的訊息記錄位置在 zeocluster/server/log 及 zeocluster/client2/log 目錄。</li>
+</ul>
+<!-- drakfirewall -->
+<!-- 8080/tcp -->
+</div>
+<div class="section">
+<h2><a id="id9" name="id9">停止 Plone 的注意事項</a></h2>
+<ul class="simple">
+<li>在 ZMI 裡的 Control_Panel 執行 shutdown 指令，會把 ZEO client1 停掉，但 ZEO
+server 與 ZEO client2 似乎繼續運行，執行 bin/shutdowncluster.sh 才會依序把 ZEO server
+client1 client2 都停掉。</li>
+</ul>
+</div>
+</div>
+<div class="section">
+<h1><a id="id10" name="id10">參考資料</a></h1>
+<ul class="simple">
+<li><a class="reference" href="http://efod.se/writings/plonedev/">Plone Development Explained</a></li>
+<li><a class="reference" href="http://plone.org/documentation/tutorial/robust-installation">Create, configure, and maintain a robust Plone and Zope installation</a></li>
+<li><a class="reference" href="http://michaelthornhill.blogspot.com/2005/08/team-development-with-plone-zope-zeo.html">Getting Started with Plone Development</a></li>
+<li><a class="reference" href="http://michaelthornhill.blogspot.com/2005/08/team-development-with-plone-zope-zeo.html">Team Development with Plone/ Zope/ ZEO/ Subversion/ ipython</a></li>
+<li><a class="reference" href="http://plone.org/documentation/tutorial/debugging-plone-products-with-pida">Developing and Debugging Plone Products with PIDA</a></li>
+<li><a class="reference" href="http://vanrees.org/weblog/archive/2006/05/11/handy-zope-instance-manager">InstanceManager</a></li>
+</ul>
+</div>
+</div>
+</body></html>

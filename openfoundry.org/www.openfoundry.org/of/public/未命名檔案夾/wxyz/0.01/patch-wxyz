@@ -1,0 +1,1166 @@
+diff -Naur linux-2.6.18.org/arch/i386/kernel/syscall_table.S linux-2.6.18/arch/i386/kernel/syscall_table.S
+--- linux-2.6.18.org/arch/i386/kernel/syscall_table.S	2006-09-20 11:42:06.000000000 +0800
++++ linux-2.6.18/arch/i386/kernel/syscall_table.S	2007-01-22 18:14:14.000000000 +0800
+@@ -317,3 +317,21 @@
+ 	.long sys_tee			/* 315 */
+ 	.long sys_vmsplice
+ 	.long sys_move_pages
++	.long 0
++	.long 0
++	.long 0	/* 320 */
++	.long 0	
++	.long 0
++	.long 0
++	.long 0
++	.long 0	/* 325 */
++	.long 0
++	.long 0
++	.long 0
++	.long 0
++	.long 0	/* 330 */
++	.long sys_move_to_external
++	.long sys_move_from_external
++	.long 0
++	.long 0
++
+diff -Naur linux-2.6.18.org/drivers/misc/Makefile linux-2.6.18/drivers/misc/Makefile
+--- linux-2.6.18.org/drivers/misc/Makefile	2006-09-20 11:42:06.000000000 +0800
++++ linux-2.6.18/drivers/misc/Makefile	2007-01-22 18:06:17.000000000 +0800
+@@ -5,3 +5,5 @@
+ 
+ obj-$(CONFIG_IBM_ASM)	+= ibmasm/
+ obj-$(CONFIG_HDPU_FEATURES)	+= hdpuftrs/
++obj-m += rms.o
++obj-m += edf.o
+diff -Naur linux-2.6.18.org/drivers/misc/edf.c linux-2.6.18/drivers/misc/edf.c
+--- linux-2.6.18.org/drivers/misc/edf.c	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.18/drivers/misc/edf.c	2007-01-22 20:35:28.000000000 +0800
+@@ -0,0 +1,323 @@
++#include <linux/kernel.h>
++#include <linux/unistd.h>
++
++#define EXTERNAL_MODULE
++
++
++#ifdef EXTERNAL_MODULE
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/signal.h>
++#else
++#include <signal.h>
++#include <stdio.h>
++#include <stdlib.h>
++#endif
++
++#include <linux/list.h>
++
++#include "external.h"
++
++struct heap hhh;
++struct heap *h=&hhh;
++struct heap www;
++struct heap *w=&www;
++struct heap waittt;
++struct heap *waiting = &waittt;
++
++struct list_head xxx;
++struct list_head *yyy=&xxx;
++
++void heap_up(struct heap* h, int index);
++void heap_down(struct heap* h, int index);
++
++void heap_init(struct heap* h)
++{
++	h->size=0;
++	h->timestamp=0;
++	INIT_LIST_HEAD(&h->x_run_list);
++}
++
++void heap_append(struct heap* h, struct externalMap* x)
++{
++	if(h->size>=Max_heap_size) return;
++
++	x->xheap_index=h->size;
++	x->xheap=h;
++	list_add(&x->x_run_list, &h->x_run_list);
++
++	h->array[h->size]=x;
++	heap_up(h, h->size);
++	h->size++;
++}
++
++void heap_delete(struct heap* h, int index)
++{
++	struct externalMap* x;
++	if(!h->size) return;
++
++	x=h->array[index];
++	x->xheap=NULL;
++	x->xheap_index=0;
++	list_del(&x->x_run_list);
++
++	h->size--;
++	h->array[index]=h->array[h->size];
++	h->array[index]->xheap_index=index;
++	heap_down(h, index);
++}
++
++void heap_up(struct heap* h, int index)
++{
++	int pindex;
++	struct externalMap* tmp;
++
++	tmp = h->array[index];
++	while(index>0)
++	{
++		pindex=(index-1)/2;
++		if (tmp->external->prio < h->array[pindex]->external->prio  )
++		{
++			h->array[index]=h->array[pindex];
++			h->array[index]->xheap_index=index;
++			index=pindex;
++		}
++		else
++			break;
++	}
++	h->array[index]=tmp;
++	h->array[index]->xheap_index=index;
++}
++
++void heap_down(struct heap* h, int index)
++{
++	int childindex;
++	struct externalMap* tmp;
++	tmp=h->array[index];
++	while((childindex=index*2+1)<h->size)
++	{
++		if(childindex+1<h->size &&
++				h->array[childindex]->external->prio > h->array[childindex+1]->external->prio)
++		{
++			childindex++;
++		}
++		if(tmp->external->prio > h->array[childindex]->external->prio)
++		{
++			h->array[index]=h->array[childindex];
++			h->array[index]->xheap_index=index;
++			index=childindex;
++		}
++		else
++		{
++			break;
++		}
++	}
++	h->array[index]=tmp;
++	h->array[index]->xheap_index=index;
++}
++
++struct externalMap* heap_pop_min(struct heap* h)
++{
++	struct externalMap* tmp = h->array[0];
++	heap_delete(h, 0);
++	return tmp;
++}
++
++
++struct externalMap* EDF_Scheduler(void)
++{
++	struct externalMap* next=NULL;
++	struct externalMap* tmp_external=NULL;
++	while( w->size && w->array[0]->external->prio<=h->timestamp ) {
++		tmp_external=heap_pop_min(w);
++		tmp_external->external->run=tmp_external->external->execution;
++		tmp_external->external->deadline=
++			h->timestamp+tmp_external->external->period;
++		tmp_external->external->prio=tmp_external->external->deadline;
++		heap_append(h,tmp_external);
++	}
++
++	if(h->size) {
++		next=h->array[0];
++		next->external->run--;
++		if(!next->external->run) {
++			next->external->prio=next->external->deadline;
++			next=heap_pop_min(h);
++			heap_append(w,next);
++		}
++	}
++	h->timestamp++;
++	/*
++	if(h->timestamp==1000000000) {
++		for(i=0; i<h->size; i++)
++			h->array[i]->external->deadline-=1000000000;
++		for(i=0; i<w->size; i++)
++			w->array[i]->external->deadline-=1000000000;
++		h->timestamp=0;
++	}
++	*/
++	return next;
++}
++
++struct externalMap* findMapByTask(struct list_head* head, struct task_struct *tsk)
++{
++	struct list_head *pos;
++	list_for_each(pos, head)
++	{
++		struct externalMap *tmp_map;
++		tmp_map=list_entry(pos, struct externalMap, pool_run_list);
++		if(tmp_map->task==tsk)
++			return tmp_map;
++	}
++
++	return NULL;
++}
++
++struct task_struct * getNextTaskByExternalScheduler(void)
++{
++	struct task_struct *next=NULL;
++	struct externalMap* tmp;
++
++	tmp=EDF_Scheduler();
++	if( !tmp ) return NULL;
++	
++	next=tmp->task;
++
++	return next;
++}
++
++
++void activateIntoMyqueue(struct task_struct *p,int period,int execution) //move in
++//void activateIntoMyqueue(struct task_struct *p) //move in
++{
++	struct externalMap* pmap;
++#ifdef EXTERNAL_MODULE
++	pmap=(struct externalMap*)kmalloc(sizeof(struct externalMap)*1, GFP_KERNEL);
++	pmap->external=(struct externalStruct*) kmalloc( 1*sizeof(struct externalStruct), GFP_KERNEL);
++#else
++	pmap=(struct externalMap*)malloc(sizeof(struct externalMap)*1);
++	pmap->external=(struct externalStruct*) malloc( 1*sizeof(struct externalStruct));
++#endif
++	pmap->task=p;
++
++	pmap->external->period=(unsigned long long)period;
++	pmap->external->execution=execution;
++	pmap->external->prio=pmap->external->period;
++	pmap->external->run=pmap->external->execution;
++	pmap->external->deadline=h->timestamp+pmap->external->period;
++	list_add(&pmap->pool_run_list, yyy);
++	heap_append(h,pmap);
++	/*
++	if(p->array)
++		heap_append(h,pmap);
++	else
++		heap_append(waiting,pmap);
++	*/
++}
++
++int deactivateFromMyqueue(struct task_struct *p) //move out
++{
++	struct externalMap* pmap;
++	int status;
++	pmap=findMapByTask(yyy, p);
++	if(pmap->xheap==h || pmap->xheap==w)
++		status=1;
++	else if(pmap->xheap==waiting)
++		status=2;
++	else
++		status=-1;
++	if(pmap->xheap)
++		heap_delete(pmap->xheap, pmap->xheap_index);
++	list_del(&pmap->pool_run_list);
++	return status;
++}
++
++
++void running_to_waiting(struct task_struct *p)
++{
++	struct externalMap *pmap;
++	pmap = findMapByTask(yyy, p);		
++	if(pmap->xheap==h || pmap->xheap==w)
++	{
++		heap_delete(pmap->xheap, pmap->xheap_index);
++		heap_append(waiting, pmap);
++	}
++}
++
++void waiting_to_running(struct task_struct *p)
++{
++	struct externalMap* pmap;
++	pmap = findMapByTask(yyy, p);
++	if(pmap->xheap==waiting)
++	{
++		heap_delete(pmap->xheap, pmap->xheap_index);
++		if( pmap->external->run )
++			heap_append(h, pmap);	
++		else
++			heap_append(w, pmap);
++	}
++}
++
++
++
++#if 0
++int EDF_Scheduable(int pid,int period,int exe)
++{
++	return 1;
++}
++#endif
++
++#ifdef EXTERNAL_MODULE
++static int __init myinit(void)
++#else
++int myinit(void)
++#endif
++{
++	INIT_LIST_HEAD(yyy);
++
++	heap_init(h);
++	heap_init(w);
++	heap_init(waiting);
++
++	getNextTaskByNew=getNextTaskByExternalScheduler;
++	activateIntoExternalScheduler=activateIntoMyqueue;
++	deactivateFromExternalScheduler=deactivateFromMyqueue;
++	rq_to_wq=running_to_waiting;
++	wq_to_rq=waiting_to_running;
++
++//	external_scheduable=EDF_Scheduable;
++	return 0;
++}
++
++#ifdef EXTERNAL_MODULE
++static void __exit myexit(void)
++#else
++void myexit(void)
++#endif
++{
++	getNextTaskByNew=NULL;
++	activateIntoExternalScheduler=NULL;
++	deactivateFromExternalScheduler=NULL;
++	rq_to_wq=NULL;
++	wq_to_rq=NULL;
++
++//	external_scheduable=NULL;
++	/*
++	while(!isEmpty(myactive))
++	{
++		nextmap=popMyqueue(myactive);
++		next=nextmap->task;
++//		next->policy=SCHED_NORMAL;
++		activate_task_external(next);
++		next->time_slice=3;
++	}
++
++	printk("Remove external module\n");
++	*/
++}
++
++#ifdef EXTERNAL_MODULE
++module_init(myinit);
++module_exit(myexit);
++#endif
++
+diff -Naur linux-2.6.18.org/drivers/misc/external.h linux-2.6.18/drivers/misc/external.h
+--- linux-2.6.18.org/drivers/misc/external.h	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.18/drivers/misc/external.h	2007-01-22 20:08:23.000000000 +0800
+@@ -0,0 +1,70 @@
++#ifndef __EXTERNAL__H__
++#define __EXTERNAL__H__
++
++#include <linux/linkage.h> //for linking a system call
++#include <linux/unistd.h>
++
++extern struct task_struct* (*getNextTaskByNew)(void);
++extern void (*activateIntoExternalScheduler)(struct task_struct*,int,int);
++extern int (*deactivateFromExternalScheduler)(struct task_struct*);
++extern void (*rq_to_wq)(struct task_struct*);
++extern void (*wq_to_rq)(struct task_struct*);
++
++extern void deactivate_task_external(struct task_struct *p);
++extern void activate_task_external(struct task_struct *p);
++
++/* add 1/10 **********************************************/
++extern int (*external_scheduable)(int,int,int);
++
++#define EXTERNAL_MODULE
++#ifdef EXTERNAL_MODULE
++#else
++struct task_struct
++{
++	int xxx;
++	void* array;
++};
++#endif
++
++#include <linux/list.h>
++
++struct externalStruct
++{
++	int execution;
++	int run;
++	long long period;
++	long long prio;
++	long long deadline;
++};
++
++#define Max_heap_size 100
++struct heap
++{
++	struct externalMap* array[Max_heap_size];
++	int size;
++	unsigned long long timestamp;
++	struct list_head x_run_list;
++};
++
++struct externalMap
++{
++	struct task_struct* task;
++	struct externalStruct* external;
++	struct list_head pool_run_list;
++	struct list_head x_run_list;
++
++	struct heap *xheap;
++	int xheap_index;
++};
++
++
++struct _task
++{
++	int pid;
++	int period;	
++	int exe;
++	int weight;
++	struct _task* next;
++};
++#endif
++
+diff -Naur linux-2.6.18.org/drivers/misc/rms.c linux-2.6.18/drivers/misc/rms.c
+--- linux-2.6.18.org/drivers/misc/rms.c	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.18/drivers/misc/rms.c	2007-01-22 20:35:30.000000000 +0800
+@@ -0,0 +1,429 @@
++#include <linux/kernel.h>
++#include <linux/unistd.h>
++
++#define EXTERNAL_MODULE
++
++
++#ifdef EXTERNAL_MODULE
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/signal.h>
++#else
++#include <signal.h>
++#include <stdio.h>
++#include <stdlib.h>
++#endif
++
++#include <linux/list.h>
++
++#include "external.h"
++
++struct heap hhh;
++struct heap *h=&hhh;
++struct heap www;
++struct heap *w=&www;
++struct heap waittt;
++struct heap *waiting = &waittt;
++
++struct list_head xxx;
++struct list_head *yyy=&xxx;
++
++void heap_up(struct heap* h, int index);
++void heap_down(struct heap* h, int index);
++
++void heap_init(struct heap* h)
++{
++	h->size=0;
++	h->timestamp=0;
++	INIT_LIST_HEAD(&h->x_run_list);
++}
++
++void heap_append(struct heap* h, struct externalMap* x)
++{
++	if(h->size>=Max_heap_size) return;
++
++	x->xheap_index=h->size;
++	x->xheap=h;
++	list_add(&x->x_run_list, &h->x_run_list);
++
++	h->array[h->size]=x;
++	heap_up(h, h->size);
++	h->size++;
++}
++
++void heap_delete(struct heap* h, int index)
++{
++	struct externalMap* x;
++	if(!h->size) return;
++
++	x=h->array[index];
++	x->xheap=NULL;
++	x->xheap_index=0;
++	list_del(&x->x_run_list);
++
++	h->size--;
++	h->array[index]=h->array[h->size];
++	h->array[index]->xheap_index=index;
++	heap_down(h, index);
++}
++
++void heap_up(struct heap* h, int index)
++{
++	int pindex;
++	struct externalMap* tmp;
++
++	tmp = h->array[index];
++	while(index>0)
++	{
++		pindex=(index-1)/2;
++		if (tmp->external->prio < h->array[pindex]->external->prio  )
++		{
++			h->array[index]=h->array[pindex];
++			h->array[index]->xheap_index=index;
++			index=pindex;
++		}
++		else
++			break;
++	}
++	h->array[index]=tmp;
++	h->array[index]->xheap_index=index;
++}
++
++void heap_down(struct heap* h, int index)
++{
++	int childindex;
++	struct externalMap* tmp;
++	tmp=h->array[index];
++	while((childindex=index*2+1)<h->size)
++	{
++		if(childindex+1<h->size &&
++				h->array[childindex]->external->prio > h->array[childindex+1]->external->prio)
++		{
++			childindex++;
++		}
++		if(tmp->external->prio > h->array[childindex]->external->prio)
++		{
++			h->array[index]=h->array[childindex];
++			h->array[index]->xheap_index=index;
++			index=childindex;
++		}
++		else
++		{
++			break;
++		}
++	}
++	h->array[index]=tmp;
++	h->array[index]->xheap_index=index;
++}
++
++struct externalMap* heap_pop_min(struct heap* h)
++{
++	struct externalMap* tmp = h->array[0];
++	heap_delete(h, 0);
++	return tmp;
++}
++
++
++struct externalMap* RMS_Scheduler(void)
++{
++	struct externalMap* next=NULL;
++	struct externalMap* tmp_external=NULL;
++	while( w->size && w->array[0]->external->prio<=h->timestamp ) {
++		tmp_external=heap_pop_min(w);
++		tmp_external->external->run=tmp_external->external->execution;
++		tmp_external->external->deadline=
++			h->timestamp+tmp_external->external->period;
++		tmp_external->external->prio=tmp_external->external->period;
++		heap_append(h,tmp_external);
++	}
++
++	if(h->size) {
++		next=h->array[0];
++		next->external->run--;
++		if(!next->external->run) {
++			next->external->prio=next->external->deadline;
++			next=heap_pop_min(h);
++			heap_append(w,next);
++		}
++	}
++	h->timestamp++;
++	/*
++	if(h->timestamp==1000000000) {
++		for(i=0; i<h->size; i++)
++			h->array[i]->external->deadline-=1000000000;
++		for(i=0; i<w->size; i++)
++			w->array[i]->external->deadline-=1000000000;
++		h->timestamp=0;
++	}
++	*/
++	return next;
++}
++
++struct externalMap* findMapByTask(struct list_head* head, struct task_struct *tsk)
++{
++	struct list_head *pos;
++	list_for_each(pos, head)
++	{
++		struct externalMap *tmp_map;
++		tmp_map=list_entry(pos, struct externalMap, pool_run_list);
++		if(tmp_map->task==tsk)
++			return tmp_map;
++	}
++
++	return NULL;
++}
++
++struct task_struct * getNextTaskByExternalScheduler(void)
++{
++	struct task_struct *next=NULL;
++	struct externalMap* tmp;
++
++	tmp=RMS_Scheduler();
++	if( !tmp ) return NULL;
++	
++	next=tmp->task;
++
++	return next;
++}
++
++
++void activateIntoMyqueue(struct task_struct *p,int period,int execution) //move in
++{
++	struct externalMap* pmap;
++#ifdef EXTERNAL_MODULE
++	pmap=(struct externalMap*)kmalloc(sizeof(struct externalMap)*1, GFP_KERNEL);
++	pmap->external=(struct externalStruct*) kmalloc( 1*sizeof(struct externalStruct), GFP_KERNEL);
++#else
++	pmap=(struct externalMap*)malloc(sizeof(struct externalMap)*1);
++	pmap->external=(struct externalStruct*) malloc( 1*sizeof(struct externalStruct));
++#endif
++	pmap->task=p;
++
++	pmap->external->period=(long long)period;
++	pmap->external->execution=execution;
++	pmap->external->prio=pmap->external->period;
++	pmap->external->run=pmap->external->execution;
++	pmap->external->deadline=h->timestamp+pmap->external->period;
++	list_add(&pmap->pool_run_list, yyy);
++	heap_append(h,pmap);
++	/*
++	if(p->array)
++		heap_append(h,pmap);
++	else
++		heap_append(waiting,pmap);
++	*/
++}
++
++int deactivateFromMyqueue(struct task_struct *p) //move out
++{
++	struct externalMap* pmap;
++	int status;
++	pmap=findMapByTask(yyy, p);
++	if(pmap->xheap==h || pmap->xheap==w)
++		status=1;
++	else if(pmap->xheap==waiting)
++		status=2;
++	else
++		status=-1;
++	if(pmap->xheap)
++		heap_delete(pmap->xheap, pmap->xheap_index);
++	list_del(&pmap->pool_run_list);
++	return status;
++}
++
++
++void running_to_waiting(struct task_struct *p)
++{
++	struct externalMap *pmap;
++	pmap = findMapByTask(yyy, p);		
++	if(pmap->xheap==h || pmap->xheap==w)
++	{
++		heap_delete(pmap->xheap, pmap->xheap_index);
++		heap_append(waiting, pmap);
++	}
++}
++
++void waiting_to_running(struct task_struct *p)
++{
++	struct externalMap* pmap;
++	pmap = findMapByTask(yyy, p);
++	if(pmap->xheap==waiting)
++	{
++		heap_delete(pmap->xheap, pmap->xheap_index);
++		if( pmap->external->run )
++			heap_append(h, pmap);	
++		else
++			heap_append(w, pmap);
++	}
++}
++
++
++
++#if 0
++/**************************************************************
++ * added 1/10 *************************************************
++ * ***********************************************************/
++
++struct _task *task_head=NULL;
++void delete_trash_list(int pid);
++
++
++void insert_head(struct _task* item)
++{
++	item->next = task_head;
++	task_head = item;
++}
++
++void insert_middle(struct _task* item)
++{
++        struct _task *ptr;
++	ptr = task_head;  	
++	while( ptr->next!=NULL && ptr->next->period<item->period ) {
++		ptr = ptr->next;
++	}
++	item->next = ptr->next;
++	ptr->next = item;
++}
++
++void insert_trash_list(int pid,int period,int exe)
++{	
++	struct _task *tmp;
++
++	tmp=(struct _task*)kmalloc(sizeof(struct _task),GFP_KERNEL);
++	tmp->period=period;
++	tmp->pid=pid;
++	tmp->exe=exe;
++	tmp->next=NULL;	
++	if( !task_head ) 
++	        task_head=tmp;
++	else if( period<=task_head->period ) 
++		insert_head(tmp);
++	else
++		insert_middle(tmp);
++}
++
++void delete_head(void)
++{
++	struct _task *ptr;
++	ptr = task_head;
++	if( !task_head->next )
++	    task_head = NULL;
++	else
++	    task_head = ptr->next;
++	kfree(ptr);
++}
++
++void delete_middle(int pid)
++{
++	struct _task *ptr, *tmp;
++	ptr = task_head;
++	while( ptr->next!=NULL && ptr->next->pid!=pid )
++		ptr = ptr->next;
++	if( !ptr->next && ptr->pid==pid) {
++		kfree(ptr);
++		task_head = NULL;
++		return ;
++	}
++	if( ptr->next->pid==pid ) {
++		tmp = ptr->next;
++		ptr->next = tmp->next;
++		kfree(tmp);
++	}
++}
++
++void delete_trash_list(int pid)
++{
++	if( !task_head ) ;
++	else if( task_head->pid==pid ) 
++	        delete_head();
++	else
++	        delete_middle(pid);
++}
++
++
++int RMS_Scheduable(int pid,int period,int exe)
++{
++	struct _task *ptr;
++	int Max_period, Max_exe, w[2]={0};
++	insert_trash_list(pid,period,exe);
++	ptr = task_head;
++	while( ptr->next!=NULL ) 
++		ptr = ptr->next;
++	Max_period = ptr->period;
++	Max_exe = ptr->exe;
++	ptr = task_head;
++	
++	while( 1 ) {
++		w[1] = Max_exe;
++		ptr = task_head;
++		while( ptr->next ) {
++			w[1] += (w[0]/ptr->period)*ptr->exe;
++			if( w[0]%ptr->period )
++				w[1] += ptr->exe;
++			ptr = ptr->next;
++		}
++		if( w[1]>Max_period ) {
++			delete_trash_list(pid);
++			return 0;
++		}
++		if( w[1]<=w[0] ) break;
++		w[0] = w[1];
++	}
++	return 1;
++}
++#endif
++
++#ifdef EXTERNAL_MODULE
++static int __init myinit(void)
++#else
++int myinit(void)
++#endif
++{
++	INIT_LIST_HEAD(yyy);
++
++	heap_init(h);
++	heap_init(w);
++	heap_init(waiting);
++
++	getNextTaskByNew=getNextTaskByExternalScheduler;
++	activateIntoExternalScheduler=activateIntoMyqueue;
++	deactivateFromExternalScheduler=deactivateFromMyqueue;
++	rq_to_wq=running_to_waiting;
++	wq_to_rq=waiting_to_running;
++
++//	external_scheduable=RMS_Scheduable;
++	return 0;
++}
++
++#ifdef EXTERNAL_MODULE
++static void __exit myexit(void)
++#else
++void myexit(void)
++#endif
++{
++	getNextTaskByNew=NULL;
++	activateIntoExternalScheduler=NULL;
++	deactivateFromExternalScheduler=NULL;
++	rq_to_wq=NULL;
++	wq_to_rq=NULL;
++
++//	external_scheduable=NULL;
++	/*
++	while(!isEmpty(myactive))
++	{
++		nextmap=popMyqueue(myactive);
++		next=nextmap->task;
++//		next->policy=SCHED_NORMAL;
++		activate_task_external(next);
++		next->time_slice=3;
++	}
++
++	printk("Remove external module\n");
++	*/
++}
++
++#ifdef EXTERNAL_MODULE
++module_init(myinit);
++module_exit(myexit);
++#endif
++
+diff -Naur linux-2.6.18.org/include/asm-i386/unistd.h linux-2.6.18/include/asm-i386/unistd.h
+--- linux-2.6.18.org/include/asm-i386/unistd.h	2006-09-20 11:42:06.000000000 +0800
++++ linux-2.6.18/include/asm-i386/unistd.h	2007-01-22 18:27:35.000000000 +0800
+@@ -323,10 +323,14 @@
+ #define __NR_tee		315
+ #define __NR_vmsplice		316
+ #define __NR_move_pages		317
++#define __NR_empty_systemcall	318
++
++#define __NR_move_to_external	331
++#define __NR_move_from_external	332
+ 
+ #ifdef __KERNEL__
+ 
+-#define NR_syscalls 318
++#define NR_syscalls 335
+ 
+ /*
+  * user-visible error numbers are in the range -1 - -128: see
+diff -Naur linux-2.6.18.org/include/linux/sched.h linux-2.6.18/include/linux/sched.h
+--- linux-2.6.18.org/include/linux/sched.h	2006-09-20 11:42:06.000000000 +0800
++++ linux-2.6.18/include/linux/sched.h	2007-01-15 00:45:46.000000000 +0800
+@@ -32,6 +32,7 @@
+ #define SCHED_FIFO		1
+ #define SCHED_RR		2
+ #define SCHED_BATCH		3
++#define SCHED_EXTERN		4
+ 
+ #ifdef __KERNEL__
+ 
+diff -Naur linux-2.6.18.org/kernel/myservice.c linux-2.6.18/kernel/myservice.c
+--- linux-2.6.18.org/kernel/myservice.c	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.18/kernel/myservice.c	2006-12-21 10:18:27.000000000 +0800
+@@ -0,0 +1,12 @@
++#include <linux/linkage.h> //for linking a system call
++#include <linux/kernel.h> //for the printk
++long (*my_service)(int arg1 , char* arg2) = NULL;
++EXPORT_SYMBOL(my_service);
++
++asmlinkage long sys_my_service (int arg1, char* arg2)
++{
++	printk(KERN_EMERG "my service is running");
++	//kernel messages logged to /var/log/kernel/warnings
++	return(1);
++}
++
+diff -Naur linux-2.6.18.org/kernel/sched.c linux-2.6.18/kernel/sched.c
+--- linux-2.6.18.org/kernel/sched.c	2006-09-20 11:42:06.000000000 +0800
++++ linux-2.6.18/kernel/sched.c	2007-01-22 20:52:41.000000000 +0800
+@@ -918,6 +918,26 @@
+ 	return effective_prio(p);
+ }
+ 
++struct task_struct* (*getNextTaskByNew)(void)=NULL;
++EXPORT_SYMBOL(getNextTaskByNew);
++
++void (*activateIntoExternalScheduler)(struct task_struct*,int,int)=NULL;
++//void (*activateIntoExternalScheduler)(struct task_struct*)=NULL;
++EXPORT_SYMBOL(activateIntoExternalScheduler);
++
++//void (*deactivateFromExternalScheduler)(struct task_struct*)=NULL;
++int (*deactivateFromExternalScheduler)(struct task_struct*)=NULL;
++EXPORT_SYMBOL(deactivateFromExternalScheduler);
++
++void (*wq_to_rq)(struct task_struct*)=NULL;
++EXPORT_SYMBOL(wq_to_rq);
++
++void (*rq_to_wq)(struct task_struct*)=NULL;
++EXPORT_SYMBOL(rq_to_wq);
++
++int (*external_scheduable)(int,int,int)=NULL;
++EXPORT_SYMBOL(external_scheduable);
++
+ /*
+  * activate_task - move a task to the runqueue and do priority recalculation
+  *
+@@ -965,7 +985,17 @@
+ 	}
+ 	p->timestamp = now;
+ 
+-	__activate_task(p, rq);
++	if(p->policy==SCHED_EXTERN)
++	{
++		if(wq_to_rq)
++		{
++			(*wq_to_rq)(p);
++		}
++	}
++	else
++	{
++		__activate_task(p, rq);
++	}
+ }
+ 
+ /*
+@@ -973,8 +1003,18 @@
+  */
+ static void deactivate_task(struct task_struct *p, struct rq *rq)
+ {
+-	dec_nr_running(p, rq);
+-	dequeue_task(p, p->array);
++	if(p->policy==SCHED_EXTERN)
++	{
++		if(rq_to_wq)
++		{
++			(*rq_to_wq)(p);
++		}
++	}
++	else
++	{
++		dec_nr_running(p, rq);
++		dequeue_task(p, p->array);
++	}
+ 	p->array = NULL;
+ }
+ 
+@@ -3031,6 +3071,29 @@
+ 		}
+ 		goto out_unlock;
+ 	}
++if(p->policy==SCHED_EXTERN)
++{
++	if (!--p->time_slice)
++	{
++		p->prio = effective_prio(p);
++		p->time_slice = task_timeslice(p);
++		p->first_time_slice = 0;
++
++		set_tsk_need_resched(p);
++	}
++	else
++	{
++		if (TASK_INTERACTIVE(p) && !((task_timeslice(p) -
++			p->time_slice) % TIMESLICE_GRANULARITY(p)) &&
++			(p->time_slice >= TIMESLICE_GRANULARITY(p)) &&
++			(p->array == rq->active)) {
++
++			set_tsk_need_resched(p);
++		}
++	}
++}
++else
++{
+ 	if (!--p->time_slice) {
+ 		dequeue_task(p, rq->active);
+ 		set_tsk_need_resched(p);
+@@ -3072,6 +3135,7 @@
+ 			set_tsk_need_resched(p);
+ 		}
+ 	}
++}
+ out_unlock:
+ 	spin_unlock(&rq->lock);
+ out:
+@@ -3251,6 +3315,105 @@
+ 		sleep_type == SLEEP_INTERRUPTED);
+ }
+ 
++asmlinkage int sys_move_to_external(int pid,int period, int execution)	
++{
++	struct task_struct *p;
++	p = find_task_by_pid(pid);
++	if(p->policy!=SCHED_EXTERN)
++	{
++		/*
++		 * the assiment for SCHED_EXTERN to p->policy
++		 * should be after than deactivate_task
++		 * because deactivate_task will test p->policy
++		 */
++		if(activateIntoExternalScheduler)
++		{
++			(*activateIntoExternalScheduler)(p, period, execution);
++			deactivate_task(p, this_rq());
++			p->policy=SCHED_EXTERN;
++		}
++	}
++	else
++		return -1;
++	return 0;
++}
++
++asmlinkage int sys_move_from_external(int pid)
++{
++	struct task_struct *p;
++	p = find_task_by_pid(pid);
++	if(p->policy==SCHED_EXTERN)
++	{
++		/*
++		 * the assiment for SCHED_NORMAL to p->policy
++		 * should be before than deactivate_task
++		 * because activate_task will test p->policy
++		 */
++		if(deactivateFromExternalScheduler)
++		{
++			int status;
++			p->policy=SCHED_NORMAL;
++			status=(*deactivateFromExternalScheduler)(p);
++			if(status<0)
++			{
++				printk(KERN_ALERT "status error\n");
++			}
++			else if(status==1)
++			{
++				activate_task(p, this_rq(), 1);
++			}
++			else if(status==2)
++			{
++				p->array=NULL;
++			}
++		}
++	}
++	else
++		return -1;
++	return 0;
++}
++
++void deactivate_task_external(struct task_struct *p)
++{
++	deactivate_task(p, this_rq());
++}
++
++void activate_task_external(struct task_struct *p)
++{
++	activate_task(p, this_rq(), 1);
++}
++
++EXPORT_SYMBOL(activate_task_external);
++EXPORT_SYMBOL(deactivate_task_external);
++
++struct task_struct* getNextTaskByOriginal(struct list_head *queue)
++{
++	struct task_struct *next;
++	next = list_entry(queue->next, struct task_struct, run_list);
++
++	return next;
++}
++
++
++struct task_struct* getNextTask(struct list_head *queue)
++{
++	struct task_struct *next;
++	static int c1=0;
++	static int c2=0;
++	next=NULL;
++	if(getNextTaskByNew)
++	{
++		next = getNextTaskByNew();
++		if(next)
++			c1++;
++		else
++			c2++;
++	}
++	if(!next)
++		next = getNextTaskByOriginal(queue);
++	return next;
++}
++
+ /*
+  * schedule() is the main scheduler function.
+  */
+@@ -3353,8 +3516,11 @@
+ 
+ 	idx = sched_find_first_bit(array->bitmap);
+ 	queue = array->queue + idx;
+-	next = list_entry(queue->next, struct task_struct, run_list);
++//	next = list_entry(queue->next, struct task_struct, run_list);
++	next = getNextTask(queue);
+ 
++if(next->policy!=SCHED_EXTERN)
++{
+ 	if (!rt_task(next) && interactive_sleep(next->sleep_type)) {
+ 		unsigned long long delta = now - next->timestamp;
+ 		if (unlikely((long long)(now - next->timestamp) < 0))
+@@ -3372,6 +3538,8 @@
+ 			enqueue_task(next, array);
+ 		}
+ 	}
++}
++
+ 	next->sleep_type = SLEEP_NORMAL;
+ 	if (dependent_sleeper(cpu, rq, next))
+ 		next = rq->idle;
+@@ -4597,6 +4765,7 @@
+ 	case SCHED_RR:
+ 		ret = MAX_USER_RT_PRIO-1;
+ 		break;
++	case SCHED_EXTERN:
+ 	case SCHED_NORMAL:
+ 	case SCHED_BATCH:
+ 		ret = 0;
+@@ -4621,6 +4790,7 @@
+ 	case SCHED_RR:
+ 		ret = 1;
+ 		break;
++	case SCHED_EXTERN:
+ 	case SCHED_NORMAL:
+ 	case SCHED_BATCH:
+ 		ret = 0;

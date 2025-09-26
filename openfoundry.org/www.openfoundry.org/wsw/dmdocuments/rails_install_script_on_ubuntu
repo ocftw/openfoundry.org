@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Install Guide:
+# 1. Use http://www.virtualbox.org if you use Windows or OS X
+# 2. Download http://www.ubuntu.com 9.04 Desktop Edition and install into VM.
+# 3. In your ubuntu console:
+# $ wget http://gist.github.com/raw/180820/333b288a1b5df8df09842bfcfa248fa252f0cf3b/rails_install_script_on_ubuntu
+# $ chmod 555 rails_install_script_on_ubuntu
+# $ ./rails_install_script_on_ubuntu
+
+# echo "Update&Upgrade ubuntu packages (optional)"
+# sudo apt-get update
+# sudo apt-get upgrade -y
+
+echo "Install building tools..."
+sudo apt-get install -y build-essential
+echo "Install Ruby 1.8..."
+sudo apt-get install -y ruby ruby-dev irb rdoc libopenssl-ruby
+echo "Install Git..."
+sudo apt-get install -y git-core
+
+echo "Install Rubygems..."
+wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
+tar zxvf rubygems-1.3.5.tgz
+cd rubygems-1.3.5
+sudo ruby setup.rb
+cd ..
+
+echo "Install Rails..."
+sudo gem1.8 install rails --no-ri --no-rdoc
+sudo gem1.8 install mongrel --no-ri --no-rdoc
+
+echo "Install sqlite3..."
+sudo apt-get install -y sqlite3 libsqlite3-dev libsqlite3-ruby
+sudo gem1.8 install sqlite3-ruby --no-ri --no-rdoc
+
+echo "Generate a rails demo site..."
+rails demo
+cd demo
+script/generate scaffold person name:string birthday:date
+rake db:migrate
+echo "open firefox at http://localhost:3000/people, then you should see a CRUD application"
+script/server
+
+# echo "Install MySQL... (optional)"
+# sudo apt-get install mysql-server mysql-common mysql-client libmysqlclient15-dev libmysqlclient15off
+# sudo gem1.8 install mysql

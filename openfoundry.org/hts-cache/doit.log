@@ -1,0 +1,8 @@
+https://www.openfoundry.org -O openfoundry.org -v -%v -s0 -R3 -r10 -iC1 -iC2 -c4 -%A no -* +*.openfoundry.org/* -*openfoundry.org/sso/user* -*of.openfoundry.org* -*whoswho.openfoundry.org* -*.pdf -*.zip -*.webm -*.mp4 -*.odp -*.ppt -*web.archive.org*
+File generated automatically on Tue, 23 Sep 2025 21:48:28, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+

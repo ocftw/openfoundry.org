@@ -1,0 +1,457 @@
+diff -ruN linux-2.6.21-AIM.org/include/linux/if_link.h linux-2.6.21-AIM/include/linux/if_link.h
+--- linux-2.6.21-AIM.org/include/linux/if_link.h	2007-04-26 11:08:32.000000000 +0800
++++ linux-2.6.21-AIM/include/linux/if_link.h	2010-04-10 15:29:06.000000000 +0800
+@@ -76,6 +76,9 @@
+ #define IFLA_WEIGHT IFLA_WEIGHT
+ 	IFLA_OPERSTATE,
+ 	IFLA_LINKMODE,
++/* win kchsu */
++        IFLA_WIN_EVENT,
++/* -- kchsu -- */
+ 	__IFLA_MAX
+ };
+ 
+diff -ruN linux-2.6.21-AIM.org/include/linux/notifier.h linux-2.6.21-AIM/include/linux/notifier.h
+--- linux-2.6.21-AIM.org/include/linux/notifier.h	2007-04-26 11:08:32.000000000 +0800
++++ linux-2.6.21-AIM/include/linux/notifier.h	2010-04-10 15:27:33.000000000 +0800
+@@ -172,6 +172,10 @@
+ #define NETDEV_GOING_DOWN	0x0009
+ #define NETDEV_CHANGENAME	0x000A
+ #define NETDEV_FEAT_CHANGE	0x000B
++/* win kchsu */
++#define NETDEV_LINKUP    	0x000C
++#define NETDEV_LINKDOWN	        0x000D
++/* -- kchsu -- */
+ 
+ #define SYS_DOWN	0x0001	/* Notify of system down */
+ #define SYS_RESTART	SYS_DOWN
+diff -ruN linux-2.6.21-AIM.org/include/linux/rtnetlink.h linux-2.6.21-AIM/include/linux/rtnetlink.h
+--- linux-2.6.21-AIM.org/include/linux/rtnetlink.h	2007-04-26 11:08:32.000000000 +0800
++++ linux-2.6.21-AIM/include/linux/rtnetlink.h	2010-04-10 15:28:44.000000000 +0800
+@@ -96,6 +96,10 @@
+ #define RTM_GETNEIGHTBL	RTM_GETNEIGHTBL
+ 	RTM_SETNEIGHTBL,
+ #define RTM_SETNEIGHTBL	RTM_SETNEIGHTBL
++/* win kchsu */
++	RTM_SYSTEM_EVENT,
++	RTM_DRIVER_EVENT,
++/* --- kcshu ---  */
+ 
+ 	__RTM_MAX,
+ #define RTM_MAX		(((__RTM_MAX + 3) & ~3) - 1)
+@@ -696,6 +700,10 @@
+    	__rta_reserve(skb, attrtype, attrlen); })
+ 
+ extern void rtmsg_ifinfo(int type, struct net_device *dev, unsigned change);
++/* win kchsu */
++extern void win_rtmsg_ifinfo(unsigned long event, int type, struct net_device *dev, unsigned change);
++/* -- kchsu -- */
++
+ 
+ /* RTNL is used as a global lock for all changes to network configuration  */
+ extern void rtnl_lock(void);
+diff -ruN linux-2.6.21-AIM.org/include/win_common.h linux-2.6.21-AIM/include/win_common.h
+--- linux-2.6.21-AIM.org/include/win_common.h	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.21-AIM/include/win_common.h	2010-04-10 15:26:42.000000000 +0800
+@@ -0,0 +1,52 @@
++#ifndef WIN_COMMON_H_
++#define WIN_COMMON_H_
++
++#define MAX(a, b)    (a > b ? a : b)
++#define MIN(a, b)    (a < b ? a : b)
++
++typedef unsigned char  UCHAR;
++typedef unsigned char  UINT8;
++typedef unsigned short  UINT16;
++typedef unsigned long  UINT32;
++typedef unsigned long long  UINT64;
++typedef char  CHAR;
++typedef signed char  INT8;
++typedef signed short  INT16;
++typedef signed long  INT32;
++typedef signed long long  INT64;
++typedef size_t  SIZE_T;
++typedef unsigned short  UTF16_T;
++typedef unsigned long  UTF32_T;
++typedef float  FLOAT;
++typedef double  DOUBLE;
++#undef  VOID
++#define VOID  void
++typedef UINT8  BOOL;
++
++#ifdef TRUE
++#undef TRUE
++#endif
++
++#ifdef FALSE
++#undef FALSE
++#endif
++
++#define TRUE ((BOOL) 1)
++#define FALSE ((BOOL) 0)
++
++#ifdef   R_OK
++#undef   R_OK
++#endif
++#define  R_OK            (0)
++#define  R_FAIL          (-1)
++#define  R_INV_PARAM     (-2)
++#define  R_NOT_SUPPORT   (-3)
++
++/* The following macros are useful to create bit masks. */
++#define MAKE_BIT_MASK_8(_val)  (((UINT8)  1) << _val)
++#define MAKE_BIT_MASK_16(_val) (((UINT16) 1) << _val)
++#define MAKE_BIT_MASK_32(_val) (((UINT32) 1) << _val)
++#define MAKE_BIT_MASK_64(_val) (((UINT64) 1) << _val)
++
++#define MAX_IFNAME_SIZE        (8)
++#endif
+diff -ruN linux-2.6.21-AIM.org/include/win_event.h linux-2.6.21-AIM/include/win_event.h
+--- linux-2.6.21-AIM.org/include/win_event.h	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.21-AIM/include/win_event.h	2010-04-10 15:26:42.000000000 +0800
+@@ -0,0 +1,138 @@
++#ifndef WIN_EVENT_H
++#define WIN_EVENT_H
++#include "win_common.h"
++#include "win_type.h"
++
++#define  R_NO_EVENT      (0)
++#define  R_HAVE_EVENT    (1)
++
++/*System Event*/
++#define    NETDEV_REGISTER_EV        (INT32)(TYPE_SYSTEM | 0x0001)
++#define    NETDEV_UNREGISTER_EV      (INT32)(TYPE_SYSTEM | 0x0002)
++#define    NETDEV_CHANGENAME_EV      (INT32)(TYPE_SYSTEM | 0x0003)
++
++/* Driver Event */
++#define    NETDEV_UP_EV                    (INT32)(TYPE_DRIVER | 0x0001)
++#define    NETDEV_DOWN_EV                  (INT32)(TYPE_DRIVER | 0x0002)
++#define    NETDEV_REBOOT_EV                (INT32)(TYPE_DRIVER | 0x0003)
++#define    NETDEV_CHANGEMTU_EV             (INT32)(TYPE_DRIVER | 0x0004)
++#define    NETDEV_CHANGEADDR_EV            (INT32)(TYPE_DRIVER | 0x0005)
++#define    LINK_UP_EV                      (INT32)(TYPE_DRIVER | 0x0006)
++#define    LINK_DOWN_EV                    (INT32)(TYPE_DRIVER | 0x0007)
++#define    POA_SCAN_COMPLETE_EV            (INT32)(TYPE_DRIVER | 0x0008)
++#define    SIGNAL_STRENGTH_THRESHOLD_EV    (INT32)(TYPE_DRIVER | 0x0009)
++
++/* Network Event */
++#define    IP_CHANGE_EV                    (INT32)(TYPE_NETWORK | 0x0001)
++#define    DEFAULT_GATEWAY_CHANGE_EV       (INT32)(TYPE_NETWORK | 0x0002)
++#define    ROUTING_TABLE_CHANGE_EV         (INT32)(TYPE_NETWORK | 0x0003)
++
++/* Transport Event */
++#define    TCP_TX_STATE_CHANGE_EV          (INT32)(TYPE_TRANSPORT | 0x0001)
++
++struct win_event {
++    INT32    i8_event;
++    CHAR     pv_value[1];
++};
++
++struct netdev_register_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_unregister_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_changename_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_up_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_down_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_reboot_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct netdev_changemtu_val
++{
++    UINT8    link_id;
++    UINT16   mtu;
++};
++
++struct netdev_changeaddr_val
++{
++    UINT8    link_id;
++    CHAR     mac[6];
++};
++
++struct link_up_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct link_down_val
++{
++    UINT8    link_id;
++    CHAR     link_name[9];
++};
++
++struct routing_table_change_val
++{
++    UINT8    act;
++    UINT32   destination;
++    UINT32   gateway;
++    UINT32   netmask;
++    UINT8    link_id;
++};
++
++struct default_gateway_change_val
++{
++    UINT8    act;
++    UINT32   gateway;
++    UINT8    link_id;
++};
++
++struct ip_change_val
++{
++    UINT8    link_id;
++    UINT32   ip;
++    UINT32   netmask;
++    UINT32   broadcast;
++};
++
++INT32 win_event_init(
++          VOID (*event_handler)(struct win_event*)
++      );
++
++INT32 win_event_register(
++          INT32 event_descriptor,
++          INT32 event
++      );
++
++INT32 win_check_event(
++          INT32   event_descriptor,
++          struct  win_event* t_event,
++          INT32   size,
++          BOOL    block
++      );
++
++#endif
+diff -ruN linux-2.6.21-AIM.org/include/win_type.h linux-2.6.21-AIM/include/win_type.h
+--- linux-2.6.21-AIM.org/include/win_type.h	1970-01-01 08:00:00.000000000 +0800
++++ linux-2.6.21-AIM/include/win_type.h	2010-04-10 15:26:42.000000000 +0800
+@@ -0,0 +1,10 @@
++#ifndef WIN_TYPE_H
++#define WIN_TYPE_H
++
++#define  TYPE_SYSTEM       ((INT32)0x1 << 16)
++#define  TYPE_DRIVER       ((INT32)0x2 << 16)
++#define  TYPE_NETWORK      ((INT32)0x4 << 16)
++#define  TYPE_TRANSPORT    ((INT32)0x8 << 16)
++#define  TYPE_PRIVATE      ((INT32)0x16 << 16)
++
++#endif
+diff -ruN linux-2.6.21-AIM.org/net/core/link_watch.c linux-2.6.21-AIM/net/core/link_watch.c
+--- linux-2.6.21-AIM.org/net/core/link_watch.c	2010-06-01 00:13:22.000000000 +0800
++++ linux-2.6.21-AIM/net/core/link_watch.c	2010-04-10 15:29:35.000000000 +0800
+@@ -159,6 +159,14 @@
+ 		/* We are about to handle this device,
+ 		 * so new events can be accepted
+ 		 */
++/*win kchsu*/
++		if(test_bit(__LINK_STATE_NOCARRIER, &dev->state)) {
++			win_rtmsg_ifinfo(NETDEV_LINKDOWN, RTM_DRIVER_EVENT, dev, ~0U);
++		}
++		else {
++			win_rtmsg_ifinfo(NETDEV_LINKUP, RTM_DRIVER_EVENT, dev, ~0U);
++		}
++/*kchsu*/
+ 		clear_bit(__LINK_STATE_LINKWATCH_PENDING, &dev->state);
+ 
+ 		rfc2863_policy(dev);
+diff -ruN linux-2.6.21-AIM.org/net/core/rtnetlink.c linux-2.6.21-AIM/net/core/rtnetlink.c
+--- linux-2.6.21-AIM.org/net/core/rtnetlink.c	2010-06-01 00:13:49.000000000 +0800
++++ linux-2.6.21-AIM/net/core/rtnetlink.c	2010-04-10 15:25:33.000000000 +0800
+@@ -55,6 +55,9 @@
+ #include <linux/wireless.h>
+ #include <net/iw_handler.h>
+ #endif	/* CONFIG_NET_WIRELESS_RTNETLINK */
++/* win kchsu */
++#include <win_event.h>
++/* -- kcshu -- */
+ 
+ static DEFINE_MUTEX(rtnl_mutex);
+ static struct sock *rtnl;
+@@ -452,6 +455,50 @@
+ 	       + nla_total_size(1) /* IFLA_LINKMODE */
+ 	       + nla_total_size(iwbuflen);
+ }
++/* win kchsu */
++static int win_rtnetlink_fill_ifinfo(struct sk_buff *skb, struct net_device *dev,
++				 int type, u32 pid, u32 seq, u32 change, UINT32 win_ev)
++{
++	struct ifinfomsg *r;
++	struct nlmsghdr  *nlh;
++	unsigned char	 *b = skb->tail;
++
++	nlh = NLMSG_PUT(skb, pid, seq, type, sizeof(*r));
++	if (pid) nlh->nlmsg_flags |= NLM_F_MULTI;
++	r = NLMSG_DATA(nlh);
++	r->ifi_family = AF_UNSPEC;
++	r->ifi_type = dev->type;
++	r->ifi_index = dev->ifindex;
++	r->ifi_flags = dev->flags;
++	r->ifi_change = change;
++
++	if (!netif_running(dev) || !netif_carrier_ok(dev))
++		r->ifi_flags &= ~IFF_RUNNING;
++	else
++		r->ifi_flags |= IFF_RUNNING;
++
++	RTA_PUT(skb, IFLA_IFNAME, strlen(dev->name)+1, dev->name);
++	if (dev->addr_len) {
++		RTA_PUT(skb, IFLA_ADDRESS, dev->addr_len, dev->dev_addr);
++		RTA_PUT(skb, IFLA_BROADCAST, dev->addr_len, dev->broadcast);
++	}
++	if (1) {
++		unsigned mtu = dev->mtu;
++		RTA_PUT(skb, IFLA_MTU, sizeof(mtu), &mtu);
++	}
++
++	RTA_PUT(skb, IFLA_WIN_EVENT, sizeof(UINT32), &win_ev);
++
++	nlh->nlmsg_len = skb->tail - b;
++	return skb->len;
++
++nlmsg_failure:
++rtattr_failure:
++	skb_trim(skb, b - skb->data);
++	return -1;
++}
++/* -- kchsu -- */
++
+ /*WINLAB_AIM_PROBED_START*/
+ 
+ void (*rtnetlink_rtnl_fill_ifinfo_Func_Entry)(int type, int count, ...) = NULL;
+@@ -938,6 +985,64 @@
+ 
+ }
+ /*WINLAB_AIM_PROBED_END*/
++/* win kchsu */
++void win_rtmsg_ifinfo(unsigned long event, int type, struct net_device *dev, unsigned change)
++{
++	struct sk_buff *skb;
++	int size = NLMSG_GOODSIZE;
++	UINT32 win_ev = 0;
++
++	skb = alloc_skb(size, GFP_KERNEL);
++	if (!skb)
++		return;
++
++        switch(event) {
++		case NETDEV_UNREGISTER:
++                        win_ev = NETDEV_UNREGISTER_EV;
++			break;
++		case NETDEV_REGISTER:
++                        win_ev = NETDEV_REGISTER_EV;
++			break;
++		case NETDEV_UP:
++                        win_ev = NETDEV_UP_EV;
++                        break;
++		case NETDEV_DOWN:
++                        win_ev = NETDEV_DOWN_EV;
++			break;
++		case NETDEV_CHANGENAME:
++                        win_ev = NETDEV_CHANGENAME_EV;
++			break;
++		case NETDEV_REBOOT:
++                        win_ev = NETDEV_REBOOT_EV;
++			break;
++		case NETDEV_CHANGEMTU:
++                        win_ev = NETDEV_CHANGEMTU_EV;
++			break;
++		case NETDEV_CHANGEADDR:
++                        win_ev = NETDEV_CHANGEADDR_EV;
++			break;
++                case NETDEV_LINKUP:
++                        win_ev = LINK_UP_EV;
++			break;
++                case NETDEV_LINKDOWN:
++                        win_ev = LINK_DOWN_EV;
++			break;
++		default:
++			break;
++        }
++
++	if (win_rtnetlink_fill_ifinfo(skb, dev, type, 0, 0, change, win_ev) < 0) {
++		kfree_skb(skb);
++		return;
++	}
++	NETLINK_CB(skb).dst_group = RTNLGRP_LINK;
++	//NETLINK_CB(skb).dst_groups = RTMGRP_LINK;
++	printk(KERN_INFO "driver or system win_event %ld\n", win_ev);
++	netlink_broadcast(rtnl, skb, 0, RTNLGRP_LINK, GFP_KERNEL);
++	//netlink_broadcast(rtnl, skb, 0, RTMGRP_LINK, GFP_KERNEL);
++}
++/* -- kcshu -- */
++
+ 
+ /*WINLAB_AIM_PROBED_START*/
+ 
+@@ -1204,14 +1309,38 @@
+ 	switch (event) {
+ 	case NETDEV_UNREGISTER:
+ 		rtmsg_ifinfo(RTM_DELLINK, dev, ~0U);
++	/* win kchsu */
++		win_rtmsg_ifinfo(event, RTM_SYSTEM_EVENT, dev, ~0U);
++	/* -- kchsu -- */		
+ 		break;
+ 	case NETDEV_REGISTER:
+ 		rtmsg_ifinfo(RTM_NEWLINK, dev, ~0U);
++	/* win kchsu */
++		win_rtmsg_ifinfo(event, RTM_SYSTEM_EVENT, dev, ~0U);
++	/* -- kchsu -- */	
+ 		break;
+ 	case NETDEV_UP:
+ 	case NETDEV_DOWN:
+ 		rtmsg_ifinfo(RTM_NEWLINK, dev, IFF_UP|IFF_RUNNING);
++		/* win kchsu */
++		win_rtmsg_ifinfo(event, RTM_DRIVER_EVENT, dev, ~0U);
++		/* -- kchsu -- */
+ 		break;
++/* win kchsu */
++	case NETDEV_CHANGENAME:
++		rtmsg_ifinfo(RTM_NEWLINK, dev, 0);
++		win_rtmsg_ifinfo(event, RTM_SYSTEM_EVENT, dev, ~0U);
++                break;
++        case NETDEV_REBOOT:
++        case NETDEV_CHANGEMTU:
++        case NETDEV_CHANGEADDR:
++        case NETDEV_LINKUP:
++        case NETDEV_LINKDOWN:
++		rtmsg_ifinfo(RTM_NEWLINK, dev, 0);
++		win_rtmsg_ifinfo(event, RTM_DRIVER_EVENT, dev, ~0U);
++                break;
++/* -- kchsu -- */
++
+ 	case NETDEV_CHANGE:
+ 	case NETDEV_GOING_DOWN:
+ 		break;
+@@ -1259,3 +1388,6 @@
+ EXPORT_SYMBOL(rtnl_unicast);
+ EXPORT_SYMBOL(rtnl_notify);
+ EXPORT_SYMBOL(rtnl_set_sk_err);
++/* win kchsu */
++EXPORT_SYMBOL(win_rtmsg_ifinfo);
++/* kchsu */

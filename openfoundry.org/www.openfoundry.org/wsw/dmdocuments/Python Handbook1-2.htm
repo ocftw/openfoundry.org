@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<title>Python Handbook</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="python-handbook">
+<h1 class="title">Python Handbook</h1>
+<!-- 簡介電腦專家的養成方式，程式語言的重要性，選擇程式語言工具的注意事項。接著介紹 Python 語言的發展背景、特色優點、應用場合，並完成 Python 直譯器的安裝與啟動。 -->
+<div class="section">
+<h1><a id="id1" name="id1">前言</a></h1>
+<div class="section">
+<h2><a id="id2" name="id2">學習目標</a></h2>
+<ol class="arabic simple">
+<li>學員對象設定為高一至大二的學生。</li>
+<li>簡介電腦專家的養成方式及程式語言的重要性。</li>
+<li>簡介選擇程式語言工具的注意事項。</li>
+<li>簡介 Python 語言的發展背景、應用場合。</li>
+</ol>
+<p>講解時間約 10 分鐘，不包含學員練習時間。</p>
+</div>
+<div class="section">
+<h2><a id="id3" name="id3">學習成為電腦專家</a></h2>
+<p>&quot;<em>Programs are in effect giant descriptions of how things work -- Paul Graham</em>&quot;</p>
+<p>在 How to Think Like a Computer Scientist <a class="footnote-reference" href="#id5" id="id4" name="id4">[1]</a>
+這本書裡提到，電腦專家的養成過程中，學習化解問題 (Problem Solving) 是重要的能力之一，它包括下列的步驟：</p>
+<ol class="arabic simple">
+<li>具體地描述問題</li>
+<li>發揮創意地尋找解決方法</li>
+<li>清楚明確地表達解決方法</li>
+</ol>
+<p>學習程式語言正是練習化解問題的絕佳機會，程式語言是化解問題的工具，也為更深層的電腦歷險打開了窗。不過，程式語言是怎樣的面貌呢?</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4" name="id5">[1]</a></td><td><a class="reference" href="http://www.ibiblio.org/obp/thinkCSpy/">http://www.ibiblio.org/obp/thinkCSpy/</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h2><a id="id6" name="id6">程式語言是人機溝通的方式</a></h2>
+<p>&quot; <em>A programming language is an artificial language that can be used to control the behavior of a machine, particularly a computer. -- Wikipedia</em>&quot;</p>
+<p>程式語言有高階與低階之分，高階語言 (high level language) 因接近人類語法表達而得名，低階語言 (low level language) 則指接近電腦能直接執行的語法狀態。舉例，機器語言 (machine language) 是一種低階語言，全部以 0 與 1 兩個符號所組成，電腦能直接辨識執行，除機器語言之外，其他的語言都需要花時間「事先翻譯」成機器語言後，電腦才能執行。</p>
+<!-- 想閱讀更多資訊的朋友可參考
+http://en.wikipedia.org/wiki/Computer_language -->
+</div>
+<div class="section">
+<h2><a id="id7" name="id7">程式語言的入門考量</a></h2>
+<p>為了更有效率地化解問題，通常需要一組技術團隊共同討論解題方式，由於高階語言容易被人類理解與撰寫，有助進行團隊的分工合作，加上電腦運算設備的效能日益提昇，越來越多人都同意，入門學習程式語言使用高階語言是最有效的方式。</p>
+<p>電腦好手 Peter Norvig <a class="footnote-reference" href="#id9" id="id8" name="id8">[2]</a> 這樣建議，入門程式語言時，值得考慮的要點是：</p>
+<ul class="simple">
+<li>跟著朋友學。</li>
+<li>選擇易學易用的語言。</li>
+<li>從遊戲中學習，互動式環境能提供較多樂趣。</li>
+</ul>
+<p>最重要的是，自己做個選擇，就動手學啦。</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8" name="id9">[2]</a></td><td><a class="reference" href="http://norvig.com/21-days.html">http://norvig.com/21-days.html</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h2><a id="id10" name="id10">好工具助你快速上路</a></h2>
+<p>工欲善其事，必先利其器，想快速入門學好程式語言，當然也要選個好工具。
+推薦學習 Python 程式語言，因為它具備下列的特色優點：</p>
+<ul class="simple">
+<li>安裝容易，提供交談式環境，適於入門學習。語法簡易而直覺，接近自然語言。學員可在最短時間內了解 Python 的基本功能，專注於解題的核心部份。入門後又可輕鬆地接續 C、Java 等語言的學習。</li>
+<li>利用內建資料型別及函式庫，就能滿足常見的開發需求。例如處理資料時，就需要 Regular Expression 及 Unicode 等模組的支援，此外，也可援用網路上豐富的工具軟體與應用程式。</li>
+<li>語法結構清晰，利於快速完成軟體模型架構，也適於大型專案開發。從設計哲學及語法結構開始，Python 語言就要求程式員撰寫清晰可讀的原始碼，促使其維護性大幅提昇。</li>
+<li>開放源碼軟體，多數工具可免費下載，在各式環境上執行。能夠結合其他語言及工具，例如 C、Java、.Net 等語言及環境，還有 Eclipse、wxPython、SPE IDE 等圖形化開發工具。</li>
+<li>生產力及執行效率能有最好平衡。採用 bytecode 格式及 virtual machine 運作機制，另外可用 C 語言等系統語言，將效率瓶頸的程式區段改寫。</li>
+</ul>
+<p>軟體評論家 Bruce Eckel <a class="footnote-reference" href="#id12" id="id11" name="id11">[3]</a> 比較多種程式語言後，認為 Python 的設計能讓程式人員有效發揮生產力，並透過簡潔一致的語法架構，快速進行溝通與分工合作。</p>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11" name="id12">[3]</a></td><td><a class="reference" href="http://www.artima.com/intv/aboutme.html">http://www.artima.com/intv/aboutme.html</a></td></tr>
+</tbody>
+</table>
+<!-- http://www.ferg.org/projects/python_java_side-by-side.html -->
+</div>
+<div class="section">
+<h2><a id="id13" name="id13">直譯器是你的好朋友</a></h2>
+<p>常見的程式語言分成編譯式與直譯式兩種，其搭配的工具分別是編譯器 (compiler) 與直譯器 (interpreter)。直譯器提供一個交談式環境，使用者可以輸入指令，直譯器則會在螢幕上顯示執行結果，包括錯誤時的訊息，就像面對一位有問必答的朋友，讓使用者在互動式的學習環境中，即時體驗程式語言的工作方式。</p>
+<p>Python 是直譯式的程式語言，提供文字與圖形模式的直譯器，能讓使用者輕鬆入門。</p>
+</div>
+<div class="section">
+<h2><a id="python" name="python">Python 歷史延革</a></h2>
+<img alt="img/Guido2006.jpg" src="img/Guido2006.jpg" />
+<ul class="simple">
+<li>1991 年由 Guido van Rossum 在荷蘭阿姆斯特丹 CWI 研究中心工作時所創作及發展。</li>
+<li>1995 年到 2000 年之間，作者 Guido 先後在美國 CNRI 研究中心及 BeOpen.com 工作，並發展 Python 1.5 及 1.6 版本。</li>
+<li>經由 Zope 公司的主要協助，2001 年之後 Python Software Foundation 成立，軟體開發的領導人仍為 Guido。</li>
+<li>早期 Python 以 C 語言為基底撰寫而成，目前則有以 Java 語言為基底的 Jython 及架構在 .NET 的 IronPython 版本。</li>
+<li>Guido van Rossum 在 2005 年底成為 Google 公司雇員，該公司將 Python 程式語言列為程式員的三大官方語言之一。</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="id14" name="id14">Python 應用實例</a></h2>
+<ul class="simple">
+<li>教學環境: 美國 MIT 新生程式入門及 OLPC 計畫選用 Python 為預設語言。</li>
+<li>入口網站服務: Google, YouTube, Yahoo! 網站的關鍵服務以 Python 語言開發。</li>
+<li>動畫軟體: <a class="reference" href="http://www.autodesk.com/">Maya</a>, <a class="reference" href="http://www.blender.org/">Blender</a> 語言擴充介面支援 Python 語言。</li>
+<li>圖形介面及動畫遊戲: <a class="reference" href="http://www.wxpython.org/">wxPython</a>, <a class="reference" href="http://www.pygame.org/">PyGame</a> 是協助創作的好工具。</li>
+<li>郵遞論壇: mailman 程式以 Python 語言寫成。</li>
+<li>網頁應用伺服與開發框架: Zope, Django, TurboGears 是主要的範例。</li>
+<li>安裝程式: Red Hat Linux 開機安裝程式及 Gentoo 套件管理。</li>
+<li>檔案點對點分享工具: BitTorrent 工具程式以 Python 語言開發。</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="id15" name="id15">學習 Python 的參考資料</a></h2>
+<p>學習 Python 本身並不要求其他先備知識，但同步閱讀電腦概論的參考資料，能讓學習過程更加有效。例如，程式語言的發展歷史與背景，程式的流程控制，物件觀念，shell 環境的操作，以及檔案系統結構，這些內容，則有助於掌握程式語言的全貌，值得一併認識。</p>
+<p>如果之前已入門學習其他程式語言，例如 BASIC 或 Perl 等，許多概念或技巧能馬上沿用，另外，C 語言的基本觀念與技巧，也有助於 Python 的學習，比如說，使用 “C tutorial” 為關鍵字詞到搜尋引擎找資料，能發現一些相關的參考知識。</p>
+<p>Python 正體中文書籍數量不足，而且內容偏舊，英文版本書籍的質量都不錯，推薦優先閱讀 Magnus Lie Hetland 的 Practical Python <a class="footnote-reference" href="#id20" id="id16" name="id16">[4]</a> 和 John Zelle 寫的 Python Programming: An Introduction To Computer Science <a class="footnote-reference" href="#id21" id="id17" name="id17">[5]</a> 這兩本書，另外 David Mertz 的 Text Processing In Python <a class="footnote-reference" href="#id22" id="id18" name="id18">[6]</a> 是不錯的工具書，想進階學習視窗介面程式的朋友，則可閱讀 wxPython In Action <a class="footnote-reference" href="#id23" id="id19" name="id19">[7]</a> 這本書。</p>
+<p>程式語言的學習方法，其原則與日常語言極其相似。
+「應用於日常生活」及「依樣畫葫蘆」，是兩條值得採用的好原則。
+在生活裡尋找程式語言的應用機會，能讓語言學習增添動機與樂趣，模仿前人的程式範例，可省茫然摸索的時間浪費，日久自然能有舉一反三之效。</p>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id16" name="id20">[4]</a></td><td><a class="reference" href="http://hetland.org/writing/practical-python/">http://hetland.org/writing/practical-python/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17" name="id21">[5]</a></td><td><a class="reference" href="http://www.fbeedle.com/99-6.html">http://www.fbeedle.com/99-6.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id18" name="id22">[6]</a></td><td><a class="reference" href="http://gnosis.cx/TPiP/">http://gnosis.cx/TPiP/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id19" name="id23">[7]</a></td><td><a class="reference" href="http://www.manning.com/rappin/">http://www.manning.com/rappin/</a></td></tr>
+</tbody>
+</table>
+<!-- 想閱讀更多資訊的朋友可參考
+http://en.wikipedia.org/wiki/Control_flow -->
+</div>
+</div>
+<div class="section">
+<h1><a id="id24" name="id24">入門體驗 Python 環境</a></h1>
+<div class="section">
+<h2><a id="id25" name="id25">學習目標</a></h2>
+<ol class="arabic simple">
+<li>完成 Python 直譯器的安裝與啟動。</li>
+<li>認識直譯器與命令稿兩種執行模式。</li>
+<li>認識內建的基本功能及迴圈技巧。</li>
+</ol>
+<p>講解時間約 30 分鐘，不包含學員練習時間。</p>
+</div>
+<div class="section">
+<h2><a id="id26" name="id26">安裝 Python</a></h2>
+<p>從 Python 的下載網址 <a class="reference" href="http://www.python.org/download/">http://www.python.org/download/</a> 可以找到所有版本的檔案，包括各式平台的執行檔及原始碼檔案。
+Windows 環境的使用者，可下載 installer 檔案直接安裝，以 python-2.5.1.msi 為例，大約有 10MB 檔案大小，完整安裝需耗用 18MB 硬碟空間。</p>
+<img alt="img/installCustomize.png" src="img/installCustomize.png" />
+<!-- 想閱讀更多資訊的朋友可參考
+http://www.sthurlow.com/python/lesson01/ -->
+</div>
+<div class="section">
+<h2><a id="id27" name="id27">啟動直譯器</a></h2>
+<p>在 Windows 環境中，選取執行 IDLE (Python GUI) 或 Python (command line) 可進入 Python 交談式操作介面。「&gt;&gt;&gt;」是提示符號，代表 Python 已經就緒，使用者可以輸入指令。</p>
+<img alt="img/StartMenu.png" src="img/StartMenu.png" />
+<!-- 待補充 Linux 環境操作方式 -->
+<!-- 待補充 MacOS 環境操作方式 -->
+<p>想要結束交談式操作介面，在 Windows 環境中，可按 Ctrl + Z 或 Ctrl + D 代表送出 EOF 字元，在 Linux 環境中，可按 Ctrl + D 代表送出 EOF 字元。</p>
+<p>想要在 DOS 環境輸入 python 可以直接啟動 Python (command line) 程式，請確認環境變數 PATH 裡包括 python.exe 執行檔的路徑。 <a class="footnote-reference" href="#id29" id="id28" name="id28">[8]</a></p>
+<table class="docutils footnote" frame="void" id="id29" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id28" name="id29">[8]</a></td><td>設定方式可參考 <a class="reference" href="http://www.imladris.com/Scripts/PythonForWindows.html">http://www.imladris.com/Scripts/PythonForWindows.html</a> 說明。</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h2><a id="id30" name="id30">計算機功能</a></h2>
+<p>Python 直譯器可當作計算機，執行四則運算，分別以「+ - * /」來代表「加減乘除」。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 10 + 9 - 3 * 4 / 2
+</pre>
+<p>四則運算的規則之一是「先乘除後加減」，想要先處理部份的加減運算，可使用 () 左右括號符號，把想要優先運算的部份括起來。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 10 + (9 - 3) * 4 / 2
+</pre>
+<p>值得注意的是，除法的規則是「整數相除傳回整數」。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 7 / 2
+</pre>
+<p>想要得到更精準的結果，被除數或除數之一要使用浮點數，例如以 7.0 來取代 7。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 7.0 / 2
+</pre>
+<!-- 想了解更多細節可參考 7.0 // 2 -->
+</div>
+<div class="section">
+<h2><a id="id31" name="id31">其他有用的運算式</a></h2>
+<p>次方運算、餘數運算、邏輯運算，這些運算式的表示法也很簡單，在此一併介紹。</p>
+<p>以「**」來代表次方 (exponentiation) 運算子，例如 5 的 3 次方表示為：</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 5 ** 3
+</pre>
+<p>以「%」來代表餘數 (modulus) 運算子，例如 13 被 5 除的餘數表示為：</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 13 % 5
+</pre>
+<p>大於、小於、等於、不等於，這些布林運算式 (boolean operation) 的範例為：</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; 5 &gt; 3
+True
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; 5 &lt; 3
+False
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; 5 == 3
+False
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; 5 != 3
+True
+</pre>
+<p>上述最後一例代表「5 不等於 3 嗎」，回覆值為 True 代表「這是真的」。而 5 != 3 也可以用 5 &lt;&gt; 3 來表示。</p>
+</div>
+<div class="section">
+<h2><a id="hello-world" name="hello-world">hello world</a></h2>
+<p>想在螢幕顯示字串或訊息，可使用 print 指令。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print &quot;hello world&quot;
+</pre>
+<p>「a b c」是字元的例子，「1 2 3」是數字 (也是一種字元) 的例子，以「&quot;」符號將一組字元或數字包夾起來，就成為一個字串。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print &quot;hello&quot;, &quot;world&quot;
+</pre>
+<p>「,」符號對 print 指令有特別意義，可以讓兩個字串相隔一個「空白」。
+想讓兩個字串緊連顯示，可用「+」符號。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print &quot;hello&quot; + &quot;world&quot;
+</pre>
+<p>還可用緊連「空白字串」的方式，來控制字串顯示。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print &quot;hello&quot; + &quot; &quot; + &quot;world&quot;
+</pre>
+<p>顯示字串與計算結果的範例如下：</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print &quot;2 ^ 10 =&quot;, 2**10
+</pre>
+<p>利用 print 指令，搭配「,」符號和四則運算功能，我們已經學到最基本的計算及顯示技巧。</p>
+</div>
+<div class="section">
+<h2><a id="id32" name="id32">內建函式</a></h2>
+<p>前面提過 5 ** 3 是指 5 的 3 次方，我們也可以使用 pow 內建函式，獲得完全一致的結果，其表示法為 pow(5,3)。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; pow(5,3)
+125
+</pre>
+<p>pow 函式的用法，是在「()」符號裡輸入兩個數字，第一個數字是「底數」，第二個數字是「指數」，兩者間以「逗號」相隔。因此，我們可知 pow(5,3) 與 pow(3,5) 的意義不同，實際操作後可得到驗證。</p>
+<p>這是我們學到的第一個內建函式，在後面將會介紹更多 Python 內建函式。</p>
+</div>
+<div class="section">
+<h2><a id="id33" name="id33">變數的設定</a></h2>
+<p>變數設定 (assignment) 方式很直覺，下列是一個基本範例，當中的 price 就是變數名稱：</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; price = 250
+</pre>
+<p>最簡化的設定方式，是在變數之後接一個「=」符號，再接數值或字串作為變數值。別把「=」與「==」兩者搞混，前者用在變數設定，後者用在布林運算式。</p>
+<p>變數名稱有其命名規則，通常要以英文字母開頭，接著可以包含英文字母或數字，例如 MyVar 或 Variable101 都是合法的變數名稱，但名稱的第一個字元不能是數字，例如 101Variable 或 3pigs 都不能作為變數名稱。另外，也不能用「保留字」(也稱為「關鍵字」或 keyword)作為變數名稱，例如前面介紹過的 print 就是保留字，像 if、while、for 這些也是保留字，都不能作為變數名稱。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; price = 250
+&gt;&gt;&gt; tax = 6.5/100
+&gt;&gt;&gt; price * tax
+16.25
+&gt;&gt;&gt; price + _
+266.25
+</pre>
+<p>特別注意到上例的「_」(底線) 符號，它代表的是前一個計算值的結果。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; x = y = z = 1
+</pre>
+<p>如果幾個變數值都相同，可享受 Python 的貼心照顧，例如想要快速指定 x, y, z 三個變數同時為 1，只用一行，而不必分三行來個別指定。</p>
+</div>
+<div class="section">
+<h2><a id="id34" name="id34">命令稿模式</a></h2>
+<p>交談式環境僅適合於簡單的操作練習，超過三行以上的程式碼撰寫，應該要採用命令稿 (script) 模式，才便於程式碼的修改及再利用。在 Windows 環境 IDLE 工具直接提供撰寫 script 的功能，請在 File 選單裡選擇 New Window 開啟新 script 的編輯。</p>
+<img alt="img/myScript-open.png" src="img/myScript-open.png" />
+<p>新 script 編輯畫面和記事本 (notepad) 程式類似，空白處可輸入程式碼內容，遇有指令或內建函式的文字，還會以不同顏色來標明。</p>
+<img alt="img/myScript-edit.png" src="img/myScript-edit.png" />
+<p>編輯程式碼如下：</p>
+<pre class="literal-block">
+# show the total value of price and its tax
+price = 250
+tax = 6.5/100
+total = price + price * tax
+print &quot;The total value is&quot;, total
+</pre>
+<img alt="img/myScript-save.png" src="img/myScript-save.png" />
+<p>編輯完成後，需要存檔才能執行，在 File 選單裡選擇 Save 以 MyScript.py 為檔名存檔。</p>
+<img alt="img/myScript-run.png" src="img/myScript-run.png" />
+<p>在 Run 選單裡選擇 Run Module 以執行。</p>
+<p>請留意，上述的「#」符號代表註解，表示之後的字串都是註解文字，將不會被執行。</p>
+</div>
+<div class="section">
+<h2><a id="id35" name="id35">流程控制</a></h2>
+<p>一般而言，程式碼都是逐行往下循序執行，想要控制程式碼執行的流程，例如，依照條件狀況來選擇執行內容，或是重覆執行某段程式碼，就需要使用判斷式、迴圈這類技巧。像 if, while, for 就是三種流程控制的常見指令，屬於撰寫程式的基本功夫。</p>
+</div>
+<div class="section">
+<h2><a id="id36" name="id36">判斷式</a></h2>
+<p>if 指令，它可以依據表示式 (expression) 的真假，接續適當的處理，這樣的式子又被稱為布林表示式 (boolean expression)，相當於一個是非題。if 的用法是接著一個表示式，再接著一個「:」符號，下一行必須縮排，再接一個或數個敘述式 (statement)。</p>
+<pre class="literal-block">
+age = 20
+if age &gt; 18:
+    print &quot;You are old enough.&quot;
+</pre>
+<p>上述例子的 age 變數大於 18，表示式為真 (True)，所以下一行的 print 敘述式會被執行；如果表示式為假 (False)，那麼 if 之後的敘述式不會被執行。不妨試著調整 age 變數，親自驗證一番。</p>
+</div>
+<div class="section">
+<h2><a id="id37" name="id37">縮排慣例</a></h2>
+<p>進行縮排時，至少要使用「兩個空白鍵」，慣例上是使用「四個空白鍵」。利用縮排來控制程式邏輯區塊，是 Python 的語法特色，不當的縮排方式會導致錯誤或降低程式碼可讀性，值得初學者留意。</p>
+<pre class="literal-block">
+age = 95
+if age &gt; 18:
+    print &quot;You are old enough.&quot;
+    if age &gt; 90:
+        print &quot;And your age is above 90.&quot;
+</pre>
+<p>上述例子有兩個 if 判斷式，而且使用了兩階層的縮排，因此，會先評估 age &gt; 18 判斷式的真假，如果為真，才會再評估 age &gt; 90 判斷式。</p>
+<pre class="literal-block">
+age = 15
+if age &gt; 18:
+    print &quot;You are old enough.&quot;
+    if age == 15:
+        print &quot;You are 15 years old.&quot;
+</pre>
+<p>特別注意，上述是語法正確但語意不適的程式片段，因為，當 age 變數為 15 之際，if age &gt; 18 判斷式為假，將導致 if age == 15 判斷式不會被執行到；需要改為下列的程式邏輯區塊，才能呈現合適的語意：</p>
+<pre class="literal-block">
+age = 15
+if age &gt; 18:
+    print &quot;You are old enough.&quot;
+if age == 15:
+    print &quot;You are 15 years old.&quot;
+</pre>
+<p>由於 if age == 15 判斷式並未縮排，與 if age &gt; 18 判斷式屬於同一階層，兩個判斷式都會獨立地被執行。不同的縮排結果，會造成不同的程式語意，足見縮排正確的重要性。</p>
+<!-- 想閱讀更多資訊的朋友可參考
+http://www.python.org/doc/essays/styleguide.html -->
+</div>
+<div class="section">
+<h2><a id="id38" name="id38">迴圈的表示方式</a></h2>
+<p>迴圈 (loop) 是程式語言裡流程控制的方式之一，利用合適的條件控制，可以重複執行某一段程式碼。
+最常見的 loop 有兩種，一種是條件式 (condition controlled) 迴圈，以 while 迴圈為代表，一種是計數式 (count controlled) 迴圈，以 for 迴圈為代表。</p>
+</div>
+<div class="section">
+<h2><a id="while" name="while">while 迴圈</a></h2>
+<p>while 的用法是接著一個表示式，再緊接著一個「:」符號，並在下一行進行縮排，開始一段敘述式。當表示式為真，就會執行敘述式的內容。</p>
+<pre class="literal-block">
+a = 0
+b = 1
+while b &lt; 30:
+    print b
+    c = a
+    a = b
+    b = a + c
+</pre>
+<p>上述程式會印出一串小於 30 的費式數列 (Fibonacci series)，也就是 1, 1, 2, 3, 5, 8 ... 這樣的數列，從第三項開始，每一項都等於前兩項之和。</p>
+<pre class="literal-block">
+a = 3
+b = 4
+c = 1
+while a**2+b**2 &gt;= c**2:
+    print &quot;(a,b,c) =&quot;, a,b,c
+    c = c+1
+</pre>
+<p>上述例子的表示式是，當 a 與 b 的平方和，大於或等於 c 的平方時，就會執行 print 及 c = c+1 的指令行。</p>
+</div>
+<div class="section">
+<h2><a id="for" name="for">for 迴圈</a></h2>
+<p>for 的用法裡是搭配一個 in 關鍵字，最後再接「:」符號，並換行縮排，最簡化的範例如下：</p>
+<pre class="literal-block">
+for i in 1, 2, 3:
+    print i, &quot;x&quot;, i, &quot;=&quot;, i*i
+</pre>
+<p>上例的「1, 2, 3」是一個「序列物件」，此物件內含三個數字，依序是 1、2、3，因此 for 迴圈會執行三遍，第一次將 i 變數設定為 1 來執行，第二次則是 2，第三次則是 3。</p>
+</div>
+<div class="section">
+<h2><a id="range" name="range">range() 函式</a></h2>
+<p>仿照前面的例子，想要執行迴圈一百遍，我們需要比 for in in 1, 2, ..., 100 更好的做法，此時 range() 函式就幫上忙。</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; range(3)
+[0, 1, 2]
+</pre>
+<p>range() 最簡單的用法是在「()」符號裡填想要的數字，它會回傳一個「從 0 開始的串列」，串列的項目個數就是填入的數字。串列 (list) 在稍後的章節裡會進一步介紹。</p>
+<p>利用 range() 就可以改寫前面的例子：</p>
+<pre class="literal-block">
+for i in range(3):
+    print (i+1), &quot;x&quot;, (i+1), &quot;=&quot;, (i+1)*(i+1)
+</pre>
+<p>上例中 range(3) 回傳的數字由 0 開始，若想要從 1 開始，在運算式中加 1 是變通方法之一。而變通方法之二，是從 range() 的進階用法下手，我們可以指定起始數字為 1：</p>
+<pre class="literal-block">
+for i in range(1,4):
+    print i, &quot;x&quot;, i, &quot;=&quot;, i*i
+</pre>
+<p>上述例子的 range(1,4) 會回傳從 1 到 (4-1) 的串列物件，例如 range(2,4) 則會回傳 [2, 3] 的結果。</p>
+<!-- range(x, i) == [x, x+1, ... i-1] -->
+</div>
+</div>
+<div class="section">
+<h1><a id="id39" name="id39">習題</a></h1>
+<div class="section">
+<h2><a id="id40" name="id40">2.1 列印奇數</a></h2>
+<p>利用已學習到的技巧，在螢幕上列印小於 30 的奇數。</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="id41" name="id41">本章學習成果</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="15%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">指令或函式名稱</th>
+<th class="head">類別</th>
+<th class="head">說明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>if</td>
+<td>關鍵字</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>print</td>
+<td>關鍵字</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>pow(x,y)</td>
+<td>函式</td>
+<td>等同於 x**y</td>
+</tr>
+<tr><td>range(x)</td>
+<td>函式</td>
+<td>傳回 [0,1,...,x-1]</td>
+</tr>
+<tr><td>range(x,i)</td>
+<td>函式</td>
+<td>傳回 [x,x+1,...,i-1]</td>
+</tr>
+<tr><td>while</td>
+<td>關鍵字</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!-- http://rgruet.free.fr/PQR25/PQR2.5.html -->
+</div>
+<div class="section">
+<h1><a id="id42" name="id42">關於本文件</a></h1>
+<p>本文件以 <a class="reference" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> 格式編撰，並可使用 <a class="reference" href="http://docutils.sourceforge.net/">docutils</a> 工具轉換成 HTML 或 LaTeX 各類格式。</p>
+<!-- 想閱讀更多資訊的朋友可參考
+http://edt1023.sayya.org/vim/vst/index.html -->
+<div class="section">
+<h2><a id="id43" name="id43">著作聲明</a></h2>
+<p>作者為 胡崇偉 marr &#64; iis.sinica.edu.tw
+以 Creative Commons 授權</p>
+</div>
+</div>
+</div>
+</body>
+</html>

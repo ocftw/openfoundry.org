@@ -1,0 +1,3145 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress 1.2\n"
+"POT-Creation-Date: 2004-05-22 18:59-0500\n"
+"PO-Revision-Date: 2004-05-28 01:19+0800\n"
+"Last-Translator: Mike Lu <sixy@pchome.com.tw>\n"
+"Language-Team: Mike Lu <sixy@pchome.com.tw>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:40
+#: wp-admin/post.php:243
+msgid "Filed under:"
+msgstr "類別"
+
+#: index.php:48
+msgid "Comments (0)"
+msgstr "留言回應 (0)"
+
+#: index.php:48
+msgid "Comments (1)"
+msgstr "留言回應 (1)"
+
+#: index.php:48
+msgid "Comments (%)"
+msgstr "留言回應 (%)"
+
+#: index.php:59
+msgid "Sorry, no posts matched your criteria."
+msgstr "抱歉，沒有符合條件的文章。"
+
+#: index.php:69
+msgid "Categories:"
+msgstr "文章分類"
+
+#: index.php:75
+msgid "Search:"
+msgstr "搜尋網誌"
+
+#: index.php:79
+#: wp-admin/edit-comments.php:35
+#: wp-admin/edit.php:73
+msgid "Search"
+msgstr "搜尋"
+
+#: index.php:83
+msgid "Archives:"
+msgstr "文章彙整"
+
+#: index.php:91
+msgid "Other:"
+msgstr "管理介面"
+
+#: index.php:93
+#: wp-register.php:124
+#: wp-admin/profile.php:144
+msgid "Login"
+msgstr "登入"
+
+#: index.php:94
+msgid "Register"
+msgstr "註冊"
+
+#: index.php:97
+msgid "Meta:"
+msgstr "額外資訊"
+
+#: index.php:99
+msgid "Syndicate this site using RSS"
+msgstr "使用 RSS 訂閱本站內容"
+
+#: index.php:99
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> 2.0"
+msgstr "<abbr title=\"Really Simple Syndication\">RSS</abbr> 2.0"
+
+#: index.php:100
+msgid "The latest comments to all posts in RSS"
+msgstr "使用 RSS 訂閱本站文章的最新留言回應"
+
+#: index.php:100
+msgid "Comments <abbr title=\"Really Simple Syndication\">RSS</abbr> 2.0"
+msgstr "留言回應 <abbr title=\"Really Simple Syndication\">RSS</abbr> 2.0"
+
+#: index.php:101
+msgid "This page validates as XHTML 1.0 Transitional"
+msgstr "此網頁符合 XHTML 1.0 過渡版規格標準"
+
+#: index.php:101
+msgid "Valid <abbr title=\"eXtensible HyperText Markup Language\">XHTML</abbr>"
+msgstr "符合 <abbr title=\"eXtensible HyperText Markup Language\">XHTML</abbr> 標準"
+
+#: index.php:102
+#: wp-comments-popup.php:103
+msgid "Powered by WordPress; state-of-the-art semantic personal publishing platform."
+msgstr "由 WordPress&#8212;最先進的個人語義出版平台&#8212;構成"
+
+#: index.php:112
+#, php-format
+msgid "Powered by <a href='http://wordpress.org' title='%s'><strong>WordPress</strong></a>"
+msgstr "Powered by <a href='http://wordpress.org' title='%s'><strong>WordPress</strong></a>"
+
+#: index.php:112
+msgid "Powered by WordPress, state-of-the-art semantic personal publishing platform"
+msgstr "由 WordPress&#8212;最先進的個人語義出版平台&#8212;構成"
+
+#: wp-comments.php:10
+msgid "Enter your password to view comments."
+msgstr "輸入密碼方能觀看留言回應。"
+
+#: wp-comments.php:25
+#: wp-comments-popup.php:24
+#: wp-admin/edit-comments.php:12
+#: wp-admin/edit.php:10
+#: wp-admin/edit.php:85
+#: wp-admin/edit.php:131
+#: wp-admin/moderation.php:102
+msgid "Comments"
+msgstr "留言回應"
+
+#: wp-comments.php:25
+msgid "1 Comment"
+msgstr "1 則留言"
+
+#: wp-comments.php:25
+msgid "% Comments"
+msgstr "% 則留言"
+
+#: wp-comments.php:27
+#: wp-comments.php:49
+#: wp-comments-popup.php:58
+msgid "Leave a comment"
+msgstr "發表留言"
+
+#: wp-comments.php:31
+#: wp-comments-popup.php:29
+msgid "The <acronym title=\"Uniform Resource Identifier\">URI</acronym> to TrackBack this entry is:"
+msgstr "本文的引用網址(TrackBack <acronym title=\"Uniform Resource Identifier\">URI</acronym>)："
+
+#: wp-comments.php:40
+#: wp-comments-popup.php:48
+msgid "by"
+msgstr "由"
+
+#: wp-comments.php:40
+msgid "Edit This"
+msgstr "編輯"
+
+#: wp-comments.php:46
+#: wp-comments-popup.php:54
+msgid "No comments yet."
+msgstr "目前沒有留言，你來留一篇吧。"
+
+#: wp-comments.php:48
+#: wp-comments-popup.php:26
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> feed for comments on this post."
+msgstr "使用 <abbr title=\"Really Simple Syndication\">RSS</abbr> 訂閱本文留言回應"
+
+#: wp-comments.php:51
+#: wp-comments-popup.php:59
+msgid "Line and paragraph breaks automatic, e-mail address never displayed, <acronym title=\"Hypertext Markup Language\">HTML</acronym> allowed:"
+msgstr "系統會自動為你設定分行，且不會顯示你留下的郵件地址。你發表留言可以使用的 <acronym title=\"Hypertext Markup Language\">HTML</acronym> 標籤包括: "
+
+#: wp-comments.php:56
+#: wp-comments-popup.php:64
+#: wp-admin/categories.php:158
+#: wp-admin/edit-comments.php:115
+#: wp-admin/link-categories.php:159
+#: wp-admin/link-categories.php:305
+#: wp-admin/link-categories.php:394
+#: wp-admin/link-manager.php:641
+#: wp-admin/link-manager.php:667
+#: wp-admin/users.php:191
+#: wp-admin/users.php:245
+msgid "Name"
+msgstr "名稱"
+
+#: wp-comments.php:56
+#: wp-comments.php:63
+msgid "(required)"
+msgstr "(必)"
+
+#: wp-comments.php:63
+#: wp-comments-popup.php:71
+#: wp-register.php:180
+#: wp-admin/users.php:192
+#: wp-admin/users.php:246
+#: wp-admin/users.php:304
+msgid "E-mail"
+msgstr "電子郵件"
+
+#: wp-comments.php:68
+#: wp-comments-popup.php:76
+msgid "<acronym title=\"Uniform Resource Identifier\">URI</acronym>"
+msgstr "個人網址"
+
+#: wp-comments.php:72
+#: wp-comments-popup.php:80
+msgid "Your Comment"
+msgstr "留言內容"
+
+#: wp-comments.php:78
+#: wp-comments-popup.php:86
+msgid "Say It!"
+msgstr "發表!"
+
+#: wp-comments.php:82
+#: wp-comments-popup.php:90
+msgid "Sorry, the comment form is closed at this time."
+msgstr "抱歉，留言功能目前關閉中。"
+
+#: wp-comments-popup.php:11
+#, php-format
+msgid "Comments on %s"
+msgstr "%s 的相關留言回應"
+
+#: wp-comments-popup.php:95
+msgid "Close this window."
+msgstr "關閉視窗"
+
+#: wp-comments-popup.php:103
+#, php-format
+msgid "<cite>Powered by <a href=\"http://wordpress.org\" title=\"%s\"><strong>Wordpress</strong></a></cite>"
+msgstr "<cite>Powered by <a href=\"http://wordpress.org\" title=\"%s\"><strong>Wordpress</strong></a></cite>"
+
+#: wp-comments-post.php:36
+msgid "Sorry, comments are closed for this item."
+msgstr "抱歉，此項目的留言功能已關閉。"
+
+#: wp-comments-post.php:39
+msgid "Error: please fill the required fields (name, email)."
+msgstr "錯誤：請填寫必要欄位 (姓名，電子郵件)。"
+
+#: wp-comments-post.php:42
+msgid "Error: please type a comment."
+msgstr "錯誤：請填寫留言內容。"
+
+#: wp-comments-post.php:59
+msgid "Sorry, you can only post a new comment once every 10 seconds. Slow down cowboy."
+msgstr "抱歉，你得間隔十秒才能發表新留言。別急，慢慢來。"
+
+#: wp-login.php:80
+msgid "<strong>Error</strong>: the login field is empty."
+msgstr "<strong>錯誤</strong>: 空白的登入欄位。"
+
+#: wp-login.php:85
+msgid "<strong>Error</strong>: the password field is empty."
+msgstr "<strong>錯誤</strong>: 空白的密碼欄。"
+
+#: wp-login.php:94
+#: wp-login.php:102
+#: wp-admin/auth.php:42
+msgid "<strong>Error</strong>: wrong login or password."
+msgstr "<strong>錯誤</strong>: 錯誤的帳號或密碼。"
+
+#: wp-login.php:162
+msgid "WordPress &raquo; Lost password ?"
+msgstr "WordPress &raquo;  遺失密碼？"
+
+#: wp-login.php:177
+msgid "Please enter your information here. We will send you a new password."
+msgstr "請輸入你的資料，我們會寄新密碼給你。"
+
+#: wp-login.php:184
+#: wp-login.php:307
+#: wp-register.php:119
+#: wp-register.php:176
+#: wp-admin/profile.php:246
+msgid "Login:"
+msgstr "登入帳號"
+
+#: wp-login.php:185
+#: wp-admin/edit-comments.php:82
+#: wp-admin/moderation.php:154
+#: wp-admin/profile.php:159
+#: wp-admin/profile.php:277
+msgid "Email:"
+msgstr "電子郵件"
+
+#: wp-login.php:207
+#, php-format
+msgid "Sorry, that user does not seem to exist in our database. Perhaps you have the wrong username or email address? <a href=\"%s\">Try again</a>."
+msgstr "抱歉，此使用者的資訊似乎不在資料庫中。或許你填寫了錯誤的使用者名稱或電子郵件地址？<a href=\"%s\">再試一次</a>！"
+
+#: wp-login.php:268
+#, php-format
+msgid "WordPress > %s > Login form"
+msgstr "WordPress > %s > 登入表單"
+
+#: wp-login.php:283
+msgid "Are you lost?"
+msgstr "迷路了？"
+
+#: wp-login.php:283
+msgid "Back to blog?"
+msgstr "回網誌嗎？"
+
+#: wp-login.php:285
+msgid "Register to be an author"
+msgstr "註冊成為作者"
+
+#: wp-login.php:285
+msgid "Register?"
+msgstr "註冊帳號？"
+
+#: wp-login.php:287
+msgid "Password Lost and Found"
+msgstr "密碼招領"
+
+#: wp-login.php:287
+msgid "Lost your password?"
+msgstr "遺失密碼？"
+
+#: wp-login.php:308
+#: wp-register.php:120
+#: wp-register.php:177
+#: wp-includes/template-functions-post.php:20
+#: wp-admin/options-writing.php:101
+msgid "Password:"
+msgstr "登入密碼"
+
+#: wp-mail.php:18
+msgid "There doesn&#8217;t seem to be any new mail."
+msgstr "系統中似乎沒有新郵件。"
+
+#: wp-register.php:52
+#: wp-admin/users.php:43
+msgid "<strong>ERROR</strong>: Please enter a login."
+msgstr "<strong>錯誤</strong>: 請填寫帳號。"
+
+#: wp-register.php:57
+#: wp-admin/users.php:48
+msgid "<strong>ERROR</strong>: Please enter your password twice."
+msgstr "<strong>錯誤</strong>: 請輸入密碼兩次。"
+
+#: wp-register.php:62
+#: wp-admin/users.php:53
+msgid "<strong>ERROR</strong>: Please type the same password in the two password fields."
+msgstr "<strong>錯誤</strong>: 請在兩密碼欄中輸入相同密碼。"
+
+#: wp-register.php:68
+msgid "<strong>ERROR</strong>: Please type your e-mail address."
+msgstr "<strong>錯誤</strong>: 請填寫你的電子郵件地址。"
+
+#: wp-register.php:70
+msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
+msgstr "<strong>錯誤</strong>: 不正確的電子郵件地址。"
+
+#: wp-register.php:76
+#: wp-admin/users.php:60
+msgid "<strong>ERROR</strong>: This login is already registered, please choose another one."
+msgstr "<strong>錯誤</strong>: 此登入帳號已註冊使用，請另外選擇一個。"
+
+#: wp-register.php:95
+#, php-format
+msgid "<strong>ERROR</strong>: Couldn&#8217;t register you... please contact the <a href=\"mailto:%s\">webmaster</a> !"
+msgstr "<strong>錯誤</strong>: 無法為你註冊，請聯絡<a href=\"mailto:%s\">網站管理員</a>！"
+
+#: wp-register.php:103
+#, php-format
+msgid ""
+"New user registration on your blog %1$s:\n"
+"\n"
+"Login: %2$s \n"
+"\n"
+"E-mail: %3$s"
+msgstr ""
+"你的網誌有新使用者註冊 %1$s:\n"
+"\n"
+"註冊帳號: %2$s \n"
+"\n"
+"電子郵件: %3$s"
+
+#: wp-register.php:105
+#, php-format
+msgid "[%s] New User Registration"
+msgstr "[%s] 使用者註冊"
+
+#: wp-register.php:111
+#: wp-register.php:118
+msgid "Registration Complete"
+msgstr "完成註冊"
+
+#: wp-register.php:121
+#: wp-admin/edit-form-comment.php:30
+msgid "E-mail:"
+msgstr "電子郵件"
+
+#: wp-register.php:139
+msgid "Registration Currently Disabled"
+msgstr "註冊功能目前關閉中"
+
+#: wp-register.php:147
+msgid "Registration Disabled"
+msgstr "註冊功能已關閉"
+
+#: wp-register.php:148
+msgid "User registration is currently not allowed."
+msgstr "目前不允許註冊新帳號"
+
+#: wp-register.php:149
+msgid "Go back to the blog"
+msgstr "回網誌首頁"
+
+#: wp-register.php:149
+msgid "Home"
+msgstr "首頁"
+
+#: wp-register.php:165
+msgid "Registration Form"
+msgstr "註冊表單"
+
+#: wp-register.php:172
+msgid "Registration"
+msgstr "註冊"
+
+#: wp-register.php:181
+msgid "OK"
+msgstr "確定"
+
+#: wp-includes/locale.php:5
+#: wp-includes/locale.php:15
+#: wp-includes/locale.php:24
+msgid "Sunday"
+msgstr ""
+
+#: wp-includes/locale.php:6
+#: wp-includes/locale.php:16
+#: wp-includes/locale.php:25
+msgid "Monday"
+msgstr ""
+
+#: wp-includes/locale.php:7
+#: wp-includes/locale.php:17
+#: wp-includes/locale.php:26
+msgid "Tuesday"
+msgstr ""
+
+#: wp-includes/locale.php:8
+#: wp-includes/locale.php:18
+#: wp-includes/locale.php:27
+msgid "Wednesday"
+msgstr ""
+
+#: wp-includes/locale.php:9
+#: wp-includes/locale.php:19
+#: wp-includes/locale.php:28
+msgid "Thursday"
+msgstr ""
+
+#: wp-includes/locale.php:10
+#: wp-includes/locale.php:20
+#: wp-includes/locale.php:29
+msgid "Friday"
+msgstr ""
+
+#: wp-includes/locale.php:11
+#: wp-includes/locale.php:21
+#: wp-includes/locale.php:30
+msgid "Saturday"
+msgstr ""
+
+#: wp-includes/locale.php:15
+#: wp-includes/locale.php:21
+msgid "S"
+msgstr ""
+
+#: wp-includes/locale.php:16
+msgid "M"
+msgstr ""
+
+#: wp-includes/locale.php:17
+#: wp-includes/locale.php:19
+msgid "T"
+msgstr ""
+
+#: wp-includes/locale.php:18
+msgid "W"
+msgstr ""
+
+#: wp-includes/locale.php:20
+msgid "F"
+msgstr ""
+
+#: wp-includes/locale.php:24
+msgid "Sun"
+msgstr "日"
+
+#: wp-includes/locale.php:25
+msgid "Mon"
+msgstr "一"
+
+#: wp-includes/locale.php:26
+msgid "Tue"
+msgstr "二"
+
+#: wp-includes/locale.php:27
+msgid "Wed"
+msgstr "三"
+
+#: wp-includes/locale.php:28
+msgid "Thu"
+msgstr "四"
+
+#: wp-includes/locale.php:29
+msgid "Fri"
+msgstr "五"
+
+#: wp-includes/locale.php:30
+msgid "Sat"
+msgstr "六"
+
+#: wp-includes/locale.php:33
+#: wp-includes/locale.php:47
+msgid "January"
+msgstr "一月"
+
+#: wp-includes/locale.php:34
+#: wp-includes/locale.php:48
+msgid "February"
+msgstr "二月"
+
+#: wp-includes/locale.php:35
+#: wp-includes/locale.php:49
+msgid "March"
+msgstr "三月"
+
+#: wp-includes/locale.php:36
+#: wp-includes/locale.php:50
+msgid "April"
+msgstr "四月"
+
+#: wp-includes/locale.php:37
+#: wp-includes/locale.php:51
+msgid "May"
+msgstr "五月"
+
+#: wp-includes/locale.php:38
+#: wp-includes/locale.php:52
+msgid "June"
+msgstr "六月"
+
+#: wp-includes/locale.php:39
+#: wp-includes/locale.php:53
+msgid "July"
+msgstr "七月"
+
+#: wp-includes/locale.php:40
+#: wp-includes/locale.php:54
+msgid "August"
+msgstr "八月"
+
+#: wp-includes/locale.php:41
+#: wp-includes/locale.php:55
+msgid "September"
+msgstr "九月"
+
+#: wp-includes/locale.php:42
+#: wp-includes/locale.php:56
+msgid "October"
+msgstr "十月"
+
+#: wp-includes/locale.php:43
+#: wp-includes/locale.php:57
+msgid "November"
+msgstr "十一月"
+
+#: wp-includes/locale.php:44
+#: wp-includes/locale.php:58
+msgid "December"
+msgstr "十二月"
+
+#: wp-includes/locale.php:47
+msgid "Jan"
+msgstr ""
+
+#: wp-includes/locale.php:48
+msgid "Feb"
+msgstr ""
+
+#: wp-includes/locale.php:49
+msgid "Mar"
+msgstr ""
+
+#: wp-includes/locale.php:50
+msgid "Apr"
+msgstr ""
+
+#: wp-includes/locale.php:52
+msgid "Jun"
+msgstr ""
+
+#: wp-includes/locale.php:53
+msgid "Jul"
+msgstr ""
+
+#: wp-includes/locale.php:54
+msgid "Aug"
+msgstr ""
+
+#: wp-includes/locale.php:55
+msgid "Sep"
+msgstr ""
+
+#: wp-includes/locale.php:56
+msgid "Oct"
+msgstr ""
+
+#: wp-includes/locale.php:57
+msgid "Nov"
+msgstr ""
+
+#: wp-includes/locale.php:58
+msgid "Dec"
+msgstr ""
+
+#: wp-includes/template-functions-author.php:75
+#: wp-includes/template-functions-author.php:146
+#, php-format
+msgid "Posts by %s"
+msgstr "%s 發表"
+
+#: wp-includes/template-functions-category.php:73
+#: wp-includes/template-functions-category.php:76
+#: wp-includes/template-functions-category.php:84
+#: wp-includes/template-functions-category.php:96
+#: wp-includes/template-functions-category.php:98
+#: wp-includes/template-functions-category.php:103
+#: wp-includes/template-functions-category.php:147
+#, php-format
+msgid "View all posts in %s"
+msgstr "觀看類別「%s」的所有文章"
+
+#: wp-includes/template-functions-category.php:343
+#, php-format
+msgid "View all posts filed under %s"
+msgstr "觀看所有分類為「%s」的文章"
+
+#: wp-includes/template-functions-category.php:402
+msgid "No categories"
+msgstr "沒有分類"
+
+#: wp-includes/template-functions-general.php:388
+#, php-format
+msgid "View posts for %1$s %2$s"
+msgstr "觀看 %1$s %2$s 的文章"
+
+#: wp-includes/template-functions-geo.php:66
+msgid "Acme Mapper"
+msgstr "Acme Mapper"
+
+#: wp-includes/template-functions-geo.php:68
+msgid "GeoURLs near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:70
+msgid "Geocaches near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:72
+msgid "Mapquest map of this spot"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:74
+msgid "SideBit URL Map of this spot"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:76
+msgid "Confluence.org near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:78
+msgid "Topozone near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:80
+msgid "FindU near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:82
+msgid "Maptech near here"
+msgstr ""
+
+#: wp-includes/template-functions-geo.php:86
+#, php-format
+msgid "Sites referencing %s x %s"
+msgstr ""
+
+#: wp-includes/template-functions-post.php:19
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr "本文受密碼保護，須填寫你的密碼才能閱讀。"
+
+#: wp-includes/template-functions-post.php:184
+msgid "There is no excerpt because this is a protected post."
+msgstr "受保護的文章不會產生摘要。"
+
+#: wp-includes/template-functions-post.php:214
+msgid "Pages:"
+msgstr "頁次："
+
+#: wp-admin/admin-footer.php:2
+msgid "Support Forums"
+msgstr "官方論壇"
+
+#: wp-admin/admin-footer.php:4
+#, php-format
+msgid "%s seconds"
+msgstr "%s 秒"
+
+#: wp-admin/admin-functions.php:83
+#: wp-admin/edit-comments.php:133
+#: wp-admin/edit.php:87
+#: wp-admin/edit.php:111
+#: wp-admin/edit.php:144
+#: wp-admin/link-categories.php:349
+#: wp-admin/menu.php:11
+#: wp-admin/moderation.php:157
+#: wp-admin/post.php:209
+msgid "Edit"
+msgstr "編輯"
+
+#: wp-admin/admin-functions.php:83
+#, php-format
+msgid ""
+"You are about to delete the category \\'%s\\'.  All of its posts will go to the default category.\\n"
+"  \\'OK\\' to delete, \\'Cancel\\' to stop."
+msgstr ""
+"你打算刪除類別「%s」，此類別所屬文章將會重新分類為預設類別。\\n"
+"  確認請按「確定」，否則請按「取消」。"
+
+#: wp-admin/admin-functions.php:83
+#: wp-admin/admin-functions.php:232
+#: wp-admin/edit-comments.php:135
+#: wp-admin/edit.php:88
+#: wp-admin/edit.php:112
+#: wp-admin/edit.php:145
+#: wp-admin/link-categories.php:350
+#: wp-admin/moderation.php:160
+msgid "Delete"
+msgstr "刪除"
+
+#: wp-admin/admin-functions.php:124
+#: wp-admin/admin-functions.php:126
+#: wp-admin/admin-functions.php:128
+msgid "Filetype not supported. Thumbnail not created."
+msgstr "不支援的檔案類型，無法產生縮圖。"
+
+#: wp-admin/admin-functions.php:175
+#: wp-admin/admin-functions.php:179
+#: wp-admin/admin-functions.php:183
+msgid "Thumbnail path invalid"
+msgstr "縮圖路徑不正確"
+
+#: wp-admin/admin-functions.php:219
+#: wp-admin/admin-functions.php:266
+msgid "Key"
+msgstr "欄位名稱"
+
+#: wp-admin/admin-functions.php:220
+#: wp-admin/admin-functions.php:267
+msgid "Value"
+msgstr "欄位內容"
+
+#: wp-admin/admin-functions.php:221
+#: wp-admin/categories.php:161
+#: wp-admin/link-manager.php:673
+#: wp-admin/plugins.php:88
+msgid "Action"
+msgstr "管理項目"
+
+#: wp-admin/admin-functions.php:231
+msgid "Update"
+msgstr "更新"
+
+#: wp-admin/admin-functions.php:263
+msgid "Add a new custom field to this post:"
+msgstr "新增本文的自訂資料欄位:"
+
+#: wp-admin/admin-functions.php:287
+msgid "Add Custom Field &raquo;"
+msgstr "新增自訂欄位 &raquo;"
+
+#: wp-admin/admin-functions.php:338
+msgid "Edit timestamp"
+msgstr "修改發表時間"
+
+#: wp-admin/admin-functions.php:338
+msgid "Help on changing the timestamp"
+msgstr "修改發表時間相關說明"
+
+#: wp-admin/admin-header.php:9
+msgid "Click here for help"
+msgstr "按此取得相關說明"
+
+#: wp-admin/admin-header.php:137
+msgid "Visit WordPress.org"
+msgstr "前往 WordPress.org 網站"
+
+#: wp-admin/admin-header.php:137
+msgid "WordPress"
+msgstr "WordPress"
+
+#: wp-admin/categories.php:4
+#: wp-admin/edit-form-advanced.php:74
+#: wp-admin/edit-form.php:61
+#: wp-admin/edit.php:84
+#: wp-admin/menu.php:12
+msgid "Categories"
+msgstr "分類"
+
+#: wp-admin/categories.php:47
+#: wp-admin/categories.php:77
+#: wp-admin/categories.php:125
+#: wp-admin/link-import.php:21
+#: wp-admin/post.php:83
+#: wp-admin/post.php:269
+#: wp-admin/post.php:487
+#: wp-admin/post.php:505
+#: wp-admin/post.php:542
+#: wp-admin/post.php:579
+#: wp-admin/post.php:607
+#: wp-admin/post.php:636
+#: wp-admin/post.php:667
+msgid "Cheatin&#8217; uh?"
+msgstr "喂！你想幹麼？"
+
+#: wp-admin/categories.php:74
+#, php-format
+msgid "Can't delete the <strong>%s</strong> category: this is the default one"
+msgstr "你不能刪除預設文章類別「<strong>%s</strong>」"
+
+#: wp-admin/categories.php:96
+msgid "Edit Category"
+msgstr "編輯分類"
+
+#: wp-admin/categories.php:100
+msgid "Category name:"
+msgstr "分類名稱"
+
+#: wp-admin/categories.php:102
+#: wp-admin/categories.php:183
+msgid "Category parent:"
+msgstr "上層分類:"
+
+#: wp-admin/categories.php:109
+#: wp-admin/upload.php:50
+#: wp-admin/upload.php:155
+msgid "Description:"
+msgstr "說明"
+
+#: wp-admin/categories.php:111
+msgid "Edit category &raquo;"
+msgstr "編輯分類 &raquo;"
+
+#: wp-admin/categories.php:143
+#, php-format
+msgid "You have no right to edit the categories for this blog.<br />Ask for a promotion to your <a href='mailto:%s'>blog admin</a>. :)"
+msgstr "你沒有編輯此網誌文章分類的權限。<br />請洽<a href='mailto: %s'>網誌管理員</a>提高權限。"
+
+#: wp-admin/categories.php:145
+msgid "Category added."
+msgstr "類別已新增。"
+
+#: wp-admin/categories.php:146
+msgid "Category deleted."
+msgstr "類別已刪除。"
+
+#: wp-admin/categories.php:147
+msgid "Category updated."
+msgstr "類別已更新。"
+
+#: wp-admin/categories.php:154
+#, php-format
+msgid "Current Categories (<a href=\"%s\">add new</a>)"
+msgstr "目前文章類別 (<a href=\"%s\">新增</a>)"
+
+#: wp-admin/categories.php:157
+#: wp-admin/edit.php:81
+#: wp-admin/link-categories.php:306
+#: wp-admin/users.php:189
+#: wp-admin/users.php:243
+msgid "ID"
+msgstr "ID"
+
+#: wp-admin/categories.php:159
+#: wp-admin/link-categories.php:145
+#: wp-admin/link-categories.php:380
+#: wp-admin/link-manager.php:643
+#: wp-admin/plugins.php:87
+msgid "Description"
+msgstr "說明"
+
+#: wp-admin/categories.php:160
+msgid "# Posts"
+msgstr "文章數"
+
+#: wp-admin/categories.php:171
+#, php-format
+msgid ""
+"<strong>Note:</strong><br />\n"
+"Deleting a category does not delete posts from that category, it will just\n"
+"set them back to the default category <strong>%s</strong>."
+msgstr ""
+"<strong>附註 : </strong><br />\n"
+"將分類刪除後，並不會刪除該類別的所屬文章。\n"
+"而是將原本分類下的文章重新歸類到預設類別「<strong>%s</strong> 」下。"
+
+#: wp-admin/categories.php:178
+msgid "Add New Category"
+msgstr "新增分類"
+
+#: wp-admin/categories.php:181
+#: wp-admin/edit-comments.php:82
+#: wp-admin/edit-form-comment.php:24
+#: wp-admin/link-categories.php:134
+#: wp-admin/link-categories.php:369
+#: wp-admin/moderation.php:154
+msgid "Name:"
+msgstr "名稱: "
+
+#: wp-admin/categories.php:185
+msgid "None"
+msgstr "無"
+
+#: wp-admin/categories.php:188
+msgid "Description: (optional)"
+msgstr "說明(可不填): "
+
+#: wp-admin/categories.php:190
+#: wp-admin/link-categories.php:438
+msgid "Add Category &raquo;"
+msgstr "新增分類 &raquo;"
+
+#: wp-admin/edit-comments.php:4
+msgid "Edit Comments"
+msgstr "編輯留言回應"
+
+#: wp-admin/edit-comments.php:11
+#: wp-admin/edit.php:4
+#: wp-admin/edit.php:9
+#: wp-admin/moderation.php:101
+#: wp-admin/profile.php:146
+#: wp-admin/users.php:195
+msgid "Posts"
+msgstr "文章"
+
+#: wp-admin/edit-comments.php:13
+#: wp-admin/edit.php:11
+#: wp-admin/moderation.php:103
+msgid "Awaiting Moderation"
+msgstr "待審核的留言回應"
+
+#: wp-admin/edit-comments.php:33
+msgid "Show Comments That Contain..."
+msgstr "顯示包含以下內容的留言回應"
+
+#: wp-admin/edit-comments.php:37
+msgid "(Searches within comment text, email, URI, and IP address.)"
+msgstr "(搜尋功能會搜尋留言內容、電子郵件、個人網址及IP位置等資訊)"
+
+#: wp-admin/edit-comments.php:40
+msgid "View Mode"
+msgstr "一般查看模式"
+
+#: wp-admin/edit-comments.php:40
+msgid "Mass Edit Mode"
+msgstr "大量編輯模式"
+
+#: wp-admin/edit-comments.php:55
+#, php-format
+msgid "%s comments deleted."
+msgstr "刪除了 %s 則留言回應"
+
+#: wp-admin/edit-comments.php:82
+#: wp-admin/edit-form-comment.php:36
+#: wp-admin/link-add.php:85
+#: wp-admin/link-manager.php:345
+#: wp-admin/moderation.php:154
+msgid "URI:"
+msgstr "個人網址"
+
+#: wp-admin/edit-comments.php:82
+#: wp-admin/moderation.php:154
+msgid "IP:"
+msgstr "IP"
+
+#: wp-admin/edit-comments.php:86
+msgid "Posted"
+msgstr "發表於"
+
+#: wp-admin/edit-comments.php:88
+#: wp-admin/post.php:479
+msgid "Edit Comment"
+msgstr "編輯留言"
+
+#: wp-admin/edit-comments.php:89
+#: wp-admin/edit-comments.php:135
+#: wp-admin/moderation.php:158
+#, php-format
+msgid ""
+"You are about to delete this comment by \\'%s\\'\\n"
+"  \\'Cancel\\' to stop, \\'OK\\' to delete."
+msgstr ""
+"你打算刪除「%s」的留言回應。\\n"
+" 按下「取消」停止，按下「確定」便會執行刪除。"
+
+#: wp-admin/edit-comments.php:89
+msgid "Delete Comment"
+msgstr "刪除留言"
+
+#: wp-admin/edit-comments.php:94
+#, php-format
+msgid "Edit Post &#8220;%s&#8221;"
+msgstr "編輯「%s」"
+
+#: wp-admin/edit-comments.php:94
+msgid "View Post"
+msgstr "查看文章"
+
+#: wp-admin/edit-comments.php:104
+msgid "No comments found."
+msgstr "沒有符合條件的留言回應。"
+
+#: wp-admin/edit-comments.php:116
+msgid "Email"
+msgstr "電子郵件"
+
+#: wp-admin/edit-comments.php:117
+msgid "IP"
+msgstr "IP"
+
+#: wp-admin/edit-comments.php:118
+msgid "Comment Excerpt"
+msgstr "留言摘要"
+
+#: wp-admin/edit-comments.php:119
+msgid "Actions"
+msgstr "管理項目"
+
+#: wp-admin/edit-comments.php:131
+msgid "View"
+msgstr "查看"
+
+#: wp-admin/edit-comments.php:140
+msgid "Invert Checkbox Selection"
+msgstr "反向選取"
+
+#: wp-admin/edit-comments.php:141
+msgid "Delete Checked Comments"
+msgstr "刪除選取的留言回應"
+
+#: wp-admin/edit-comments.php:141
+msgid ""
+"You are about to delete these comments permanently \\n"
+"  \\'Cancel\\' to stop, \\'OK\\' to delete."
+msgstr ""
+"你打算永遠刪除這些留言\\n"
+"按下「取消」便會停止，按下「確定」便會執行刪除。"
+
+#: wp-admin/edit-comments.php:147
+msgid "No results found."
+msgstr "沒有符合條件的留言回應。"
+
+#: wp-admin/edit-form-advanced.php:2
+msgid "Post updated"
+msgstr "文章已更新"
+
+#: wp-admin/edit-form-advanced.php:3
+msgid "Custom field updated"
+msgstr "自訂欄位已更新"
+
+#: wp-admin/edit-form-advanced.php:4
+msgid "Custom field deleted."
+msgstr "自訂欄位已刪除"
+
+#: wp-admin/edit-form-advanced.php:14
+#: wp-admin/edit-form-advanced.php:155
+msgid "Save"
+msgstr "儲存"
+
+#: wp-admin/edit-form-advanced.php:15
+#, php-format
+msgid "Editing Post #%s"
+msgstr "編輯文章 #%s "
+
+#: wp-admin/edit-form-advanced.php:25
+msgid "<strong>PingBack</strong> the <abbr title=\"Universal Resource Identifier\">URI</abbr>s in this post"
+msgstr "向文章中提到的網址 (<acronym title=\"Uniform Resource Identifier\">URI</acronym>) 發送 <strong>PingBack</strong> 引用通告"
+
+#: wp-admin/edit-form-advanced.php:25
+msgid "Help on Pingbacks"
+msgstr "Pingbacks 引用通告相關說明"
+
+#: wp-admin/edit-form-advanced.php:33
+msgid "Help on trackbacks"
+msgstr "trackbacks 引用通告相關說明"
+
+#: wp-admin/edit-form-advanced.php:33
+msgid "<strong>TrackBack</strong> an <abbr title=\"Universal Resource Identifier\">URI</abbr></a>"
+msgstr "向 <acronym title=\"Uniform Resource Locator\">URI</acronym> 網址發送 <strong>TrackBack</strong> 通告</a>"
+
+#: wp-admin/edit-form-advanced.php:33
+msgid "(Separate multiple <abbr title=\"Universal Resource Identifier\">URI</abbr>s with spaces.)"
+msgstr "(請使用半型空白隔開你所要通告的 <acronym title=\"Uniform Resource Locator\">URI</acronym> 網址) "
+
+#: wp-admin/edit-form-advanced.php:36
+msgid "Already pinged:"
+msgstr "已發送通告:"
+
+#: wp-admin/edit-form-advanced.php:46
+msgid "Save and Continue Editing"
+msgstr "儲存並繼續編輯"
+
+#: wp-admin/edit-form-advanced.php:69
+#: wp-admin/edit-form.php:56
+msgid "Help on titles"
+msgstr "文章標題相關說明"
+
+#: wp-admin/edit-form-advanced.php:69
+#: wp-admin/edit-form.php:56
+#: wp-admin/edit.php:83
+msgid "Title"
+msgstr "文章標題"
+
+#: wp-admin/edit-form-advanced.php:74
+#: wp-admin/edit-form.php:61
+msgid "Help on categories"
+msgstr "文章分類相關說明"
+
+#: wp-admin/edit-form-advanced.php:79
+msgid "Help on post status"
+msgstr "文章狀態相關說明"
+
+#: wp-admin/edit-form-advanced.php:79
+msgid "Post Status"
+msgstr "文章狀態"
+
+#: wp-admin/edit-form-advanced.php:80
+#: wp-admin/edit-form-advanced.php:159
+#: wp-admin/edit-form.php:96
+msgid "Publish"
+msgstr "發表"
+
+#: wp-admin/edit-form-advanced.php:81
+msgid "Draft"
+msgstr "草稿"
+
+#: wp-admin/edit-form-advanced.php:82
+msgid "Private"
+msgstr "私人"
+
+#: wp-admin/edit-form-advanced.php:85
+msgid "Help on comment status"
+msgstr "留言狀態相關說明"
+
+#: wp-admin/edit-form-advanced.php:85
+#: wp-admin/options-head.php:25
+msgid "Discussion"
+msgstr "討論"
+
+#: wp-admin/edit-form-advanced.php:88
+msgid "Allow Comments"
+msgstr "允許留言"
+
+#: wp-admin/edit-form-advanced.php:89
+msgid "Allow Pings"
+msgstr "允許通告"
+
+#: wp-admin/edit-form-advanced.php:93
+msgid "Post Slug"
+msgstr "文章代稱"
+
+#: wp-admin/edit-form-advanced.php:97
+msgid "Help on post password"
+msgstr "文章密碼相關說明"
+
+#: wp-admin/edit-form-advanced.php:97
+msgid "Post Password"
+msgstr "文章密碼"
+
+#: wp-admin/edit-form-advanced.php:103
+msgid "Help with excerpts"
+msgstr "文章摘要相關說明"
+
+#: wp-admin/edit-form-advanced.php:103
+msgid "Excerpt"
+msgstr "文章摘要"
+
+#: wp-admin/edit-form-advanced.php:108
+#: wp-admin/edit-form.php:67
+msgid "Help with post field"
+msgstr "內文編輯區相關說明"
+
+#: wp-admin/edit-form-advanced.php:108
+#: wp-admin/edit-form.php:67
+msgid "Post"
+msgstr "內文"
+
+#: wp-admin/edit-form-advanced.php:111
+#: wp-admin/edit-form-comment.php:46
+#: wp-admin/edit-form.php:71
+msgid "Help with quicktags"
+msgstr "快捷標籤列相關說明"
+
+#: wp-admin/edit-form-advanced.php:111
+#: wp-admin/edit-form-comment.php:46
+#: wp-admin/edit-form.php:71
+msgid "Quicktags"
+msgstr "快捷標籤"
+
+#: wp-admin/edit-form-advanced.php:141
+msgid "Latitude:"
+msgstr "緯度 : "
+
+#: wp-admin/edit-form-advanced.php:142
+msgid "Longitude:"
+msgstr "經度 : "
+
+#: wp-admin/edit-form-advanced.php:142
+msgid "click for Geo Info"
+msgstr "取得 GeoURL 地理資訊"
+
+#: wp-admin/edit-form-advanced.php:177
+msgid "Custom Fields"
+msgstr "自訂欄位"
+
+#: wp-admin/edit-form-advanced.php:192
+#, php-format
+msgid ""
+"You are about to delete this post \\'%s\\'\\n"
+"  \\'Cancel\\' to stop, \\'OK\\' to delete."
+msgstr ""
+"你打算刪除「%s」這篇文章。\\n"
+"按下「取消」停止，按下「確定」便會執行刪除。"
+
+#: wp-admin/edit-form-advanced.php:192
+msgid "Delete this post"
+msgstr "刪除本文"
+
+#: wp-admin/edit-form-comment.php:5
+msgid "Edit Comment &raquo;"
+msgstr "編輯留言回應 &raquo;"
+
+#: wp-admin/edit-form-comment.php:6
+#, php-format
+msgid "Editing Comment # %s"
+msgstr "編輯留言回應 # %s"
+
+#: wp-admin/edit-form-comment.php:43
+msgid "Comment"
+msgstr "留言內容"
+
+#: wp-admin/edit-form-comment.php:81
+msgid "Delete comment"
+msgstr "刪除留言回應"
+
+#: wp-admin/edit-form.php:7
+msgid "Blog this!"
+msgstr "Blog this!"
+
+#: wp-admin/edit-form.php:8
+msgid "New Post"
+msgstr "發表新文章"
+
+#: wp-admin/edit-form.php:14
+#, php-format
+msgid "<strong>PingBack</strong> the <abbr title=\"Universal Resource Identifier\">URI</abbr>s in this post</label> <a href=\"%s\" title=\"Help on Pingbacks\">?</a><br />"
+msgstr "文章中提到的網址 (<acronym title=\"Universal Resource Identifier\">URI</acronym>) 發送 <strong>PingBack</strong> 引用通告</label><a href=\"%s\" title=\"Pingbacks 通告相關說明\">？</a><br />"
+
+#: wp-admin/edit-form.php:19
+#, php-format
+msgid "<a href=\"%s\" title=\"Help on trackbacks\"><strong>TrackBack</strong> an <acronym title=\"Uniform Resource Locator\">URL</acronym></a>:</label> (Separate multiple <abbr title=\"Universal Resource Identifier\">URI</abbr>s with spaces.)<br />"
+msgstr "<a href=\"%s\" title=\"Trackbacks通告相關說明\">向 <acronym title=\"Uniform Resource Identifier\">URI</acronym> 網址發送 <strong>TrackBack</strong> 引用通告</a> : </label> (每個 <acronym title=\"Uniform Resource Locator\">URI</acronym> 間使用空白分開)<br />"
+
+#: wp-admin/edit-form.php:94
+msgid "Save as Draft"
+msgstr "儲存為草稿"
+
+#: wp-admin/edit-form.php:95
+msgid "Save as Private"
+msgstr "儲存為私人文件"
+
+#: wp-admin/edit-form.php:98
+msgid "Advanced Editing &raquo;"
+msgstr "進階編輯 &raquo;"
+
+#: wp-admin/edit.php:19
+#: wp-admin/post.php:723
+msgid "Your Drafts:"
+msgstr "草稿一覽 : "
+
+#: wp-admin/edit.php:27
+#, php-format
+msgid "Post #%s"
+msgstr "文章 # %s"
+
+#: wp-admin/edit.php:28
+#: wp-admin/post.php:732
+msgid "Edit this draft"
+msgstr "編輯這篇草稿"
+
+#: wp-admin/edit.php:47
+msgid "Show Posts From Month of..."
+msgstr "顯示某月的文章"
+
+#: wp-admin/edit.php:66
+msgid "Show Month"
+msgstr "月顯示"
+
+#: wp-admin/edit.php:71
+msgid "Show Posts That Contain..."
+msgstr "以關鍵字搜尋文章"
+
+#: wp-admin/edit.php:82
+msgid "When"
+msgstr "發表日期"
+
+#: wp-admin/edit.php:86
+#: wp-admin/plugins.php:86
+msgid "Author"
+msgstr "作者"
+
+#: wp-admin/edit.php:105
+msgid " - <strong>Private</strong>"
+msgstr " - <strong>私人</strong>"
+
+#: wp-admin/edit.php:108
+msgid "no comments"
+msgstr "沒有留言"
+
+#: wp-admin/edit.php:108
+msgid "1 comment"
+msgstr "1 則留言"
+
+#: wp-admin/edit.php:108
+#, php-format
+msgid "% comments"
+msgstr ""
+
+#: wp-admin/edit.php:112
+#, php-format
+msgid ""
+"You are about to delete this post \\'%s\\'\\n"
+"  \\'OK\\' to delete, \\'Cancel\\' to stop."
+msgstr ""
+"你打算刪除「%s」這篇文章。\\n"
+"按下「確定」就會執行刪除，按下「取消」停止。"
+
+#: wp-admin/edit.php:119
+msgid "No posts found."
+msgstr "沒有符合條件的文章。"
+
+#: wp-admin/edit.php:145
+#, php-format
+msgid ""
+"You are about to delete this comment by \\'%s\\'\\n"
+"  \\'OK\\' to delete, \\'Cancel\\' to stop."
+msgstr ""
+"你打算刪除「%s」的留言回應。\\n"
+"按下「確定」就會執行刪除，按下「取消」停止。"
+
+#: wp-admin/edit.php:148
+msgid "Unapprove"
+msgstr "未准"
+
+#: wp-admin/edit.php:150
+#: wp-admin/moderation.php:159
+msgid "Approve"
+msgstr "核准"
+
+#: wp-admin/import-mt.php:102
+msgid "To make it easier for you to edit and save the imported posts and drafts, you may want to change the name of the author of the posts. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr "為了讓你更輕鬆的編輯與儲存匯入的文章及草稿，你可能想變改文章的作者名稱。比如說，你可能想匯入全部文章為 <code>admin</code> 所有。"
+
+#: wp-admin/import-mt.php:103
+msgid "Below, you can see the names of the authors of the MovableType posts in <i>italics</i>. For each of these names, you can either pick an author in your WordPress installation from the menu, or enter a name for the author in the textbox."
+msgstr "以下你會看到 MovableType 文章的作者名稱以<i>斜體</i>表示。你可以為每個名字在選單中挑選 WordPress 現有的作者對應，或者直接在 textbox 中輸入。"
+
+#: wp-admin/import-mt.php:104
+msgid "If a new user is created by WordPress, the password will be set, by default, to \"changeme\". Quite suggestive, eh? ;)"
+msgstr "如果有新使用者是由 WordPress 產生，其密碼將預設成 \"changeme\" ，有創意吧 ;)"
+
+#: wp-admin/install.php:54
+msgid "<p>You appear to already have WordPress installed. If you would like to reinstall please clear your old database files first.</p></body></html>"
+msgstr "<p>你似乎已經裝過 WordPress 了。如果你想重新安裝，請先清除之前的資料庫檔。</p></body></html>"
+
+#: wp-admin/link-add.php:67
+#: wp-admin/link-categories.php:118
+#: wp-admin/link-categories.php:296
+#: wp-admin/link-import.php:27
+#: wp-admin/link-manager.php:7
+#: wp-admin/link-manager.php:330
+#: wp-admin/link-manager.php:600
+msgid "Manage Links"
+msgstr "管理連結"
+
+#: wp-admin/link-add.php:68
+#: wp-admin/link-categories.php:119
+#: wp-admin/link-categories.php:297
+#: wp-admin/link-import.php:28
+#: wp-admin/link-manager.php:331
+#: wp-admin/link-manager.php:601
+msgid "Add Link"
+msgstr "新增連結"
+
+#: wp-admin/link-add.php:69
+#: wp-admin/link-categories.php:5
+#: wp-admin/link-categories.php:120
+#: wp-admin/link-categories.php:298
+#: wp-admin/link-import.php:29
+#: wp-admin/link-manager.php:332
+#: wp-admin/link-manager.php:602
+msgid "Link Categories"
+msgstr "連結分類"
+
+#: wp-admin/link-add.php:70
+#: wp-admin/link-categories.php:121
+#: wp-admin/link-categories.php:299
+#: wp-admin/link-import.php:8
+#: wp-admin/link-import.php:30
+#: wp-admin/link-manager.php:333
+#: wp-admin/link-manager.php:603
+msgid "Import Blogroll"
+msgstr "匯入 Blogroll"
+
+#: wp-admin/link-add.php:79
+msgid "<strong>Add</strong> a link:"
+msgstr "<strong>新增</strong>連結"
+
+#: wp-admin/link-add.php:82
+#: wp-admin/link-manager.php:342
+msgid "Basics"
+msgstr "基本資料"
+
+#: wp-admin/link-add.php:89
+#: wp-admin/link-manager.php:349
+msgid "Link Name:"
+msgstr "連結名稱"
+
+#: wp-admin/link-add.php:93
+#: wp-admin/link-manager.php:353
+msgid "Short description:"
+msgstr "簡短說明"
+
+#: wp-admin/link-add.php:97
+#: wp-admin/link-import.php:59
+#: wp-admin/link-manager.php:357
+msgid "Category:"
+msgstr "分類"
+
+#: wp-admin/link-add.php:103
+#: wp-admin/link-add.php:198
+#: wp-admin/link-add.php:251
+msgid "Add Link &raquo;"
+msgstr "新增連結 &raquo;"
+
+#: wp-admin/link-add.php:106
+#: wp-admin/link-manager.php:366
+msgid "Link Relationship (XFN)"
+msgstr "連結交互關係 (XFN)"
+
+#: wp-admin/link-add.php:109
+#: wp-admin/link-manager.php:369
+msgid "rel:"
+msgstr "關係: "
+
+#: wp-admin/link-add.php:113
+#: wp-admin/link-manager.php:373
+msgid "<a href=\"http://gmpg.org/xfn/\">XFN</a> Creator:"
+msgstr "<a href=\"http://gmpg.org/xfn/\">XFN</a> 產生器: "
+
+#: wp-admin/link-add.php:116
+#: wp-admin/link-manager.php:376
+msgid "friendship"
+msgstr "友誼關係"
+
+#: wp-admin/link-add.php:119
+#: wp-admin/link-manager.php:379
+msgid "acquaintance"
+msgstr "熟人"
+
+#: wp-admin/link-add.php:122
+#: wp-admin/link-manager.php:381
+msgid "friend"
+msgstr "朋友"
+
+#: wp-admin/link-add.php:125
+#: wp-admin/link-add.php:155
+#: wp-admin/link-add.php:174
+#: wp-admin/link-add.php:236
+#: wp-admin/link-manager.php:384
+#: wp-admin/link-manager.php:417
+#: wp-admin/link-manager.php:437
+#: wp-admin/link-manager.php:503
+msgid "none"
+msgstr "無"
+
+#: wp-admin/link-add.php:129
+#: wp-admin/link-manager.php:388
+msgid "physical"
+msgstr "實際關係"
+
+#: wp-admin/link-add.php:132
+#: wp-admin/link-manager.php:392
+msgid "met"
+msgstr "認識"
+
+#: wp-admin/link-add.php:136
+#: wp-admin/link-manager.php:396
+msgid "professional"
+msgstr "職場關係"
+
+#: wp-admin/link-add.php:139
+#: wp-admin/link-manager.php:400
+msgid "co-worker"
+msgstr "同僚"
+
+#: wp-admin/link-add.php:142
+#: wp-admin/link-manager.php:403
+msgid "colleague"
+msgstr "同事"
+
+#: wp-admin/link-add.php:146
+#: wp-admin/link-manager.php:407
+msgid "geographical"
+msgstr "地理關係"
+
+#: wp-admin/link-add.php:149
+#: wp-admin/link-manager.php:411
+msgid "co-resident"
+msgstr "同居"
+
+#: wp-admin/link-add.php:152
+#: wp-admin/link-manager.php:414
+msgid "neighbor"
+msgstr "鄰居"
+
+#: wp-admin/link-add.php:159
+msgid "family"
+msgstr "家庭關係"
+
+#: wp-admin/link-add.php:162
+#: wp-admin/link-manager.php:425
+msgid "child"
+msgstr "子女"
+
+#: wp-admin/link-add.php:165
+#: wp-admin/link-manager.php:428
+msgid "parent"
+msgstr "父母"
+
+#: wp-admin/link-add.php:168
+#: wp-admin/link-manager.php:431
+msgid "sibling"
+msgstr "兄弟姊妹"
+
+#: wp-admin/link-add.php:171
+#: wp-admin/link-manager.php:434
+msgid "spouse"
+msgstr "配偶"
+
+#: wp-admin/link-add.php:178
+#: wp-admin/link-manager.php:441
+msgid "romantic"
+msgstr "親密關係"
+
+#: wp-admin/link-add.php:181
+#: wp-admin/link-manager.php:445
+msgid "muse"
+msgstr "單戀"
+
+#: wp-admin/link-add.php:184
+#: wp-admin/link-manager.php:448
+msgid "crush"
+msgstr "失戀"
+
+#: wp-admin/link-add.php:187
+#: wp-admin/link-manager.php:451
+msgid "date"
+msgstr "交往中"
+
+#: wp-admin/link-add.php:190
+#: wp-admin/link-manager.php:454
+msgid "sweetheart"
+msgstr "熱戀中"
+
+#: wp-admin/link-add.php:201
+#: wp-admin/link-manager.php:465
+msgid "Advanced"
+msgstr "進階設定"
+
+#: wp-admin/link-add.php:204
+#: wp-admin/link-manager.php:468
+msgid "Image URI:"
+msgstr "影像網址"
+
+#: wp-admin/link-add.php:208
+#: wp-admin/link-manager.php:472
+msgid "RSS URI:"
+msgstr "RSS網址"
+
+#: wp-admin/link-add.php:212
+#: wp-admin/link-manager.php:476
+msgid "Notes:"
+msgstr "附註"
+
+#: wp-admin/link-add.php:216
+#: wp-admin/link-manager.php:480
+msgid "Rating:"
+msgstr "評分"
+
+#: wp-admin/link-add.php:224
+#: wp-admin/link-manager.php:491
+msgid "(Leave at 0 for no rating.)"
+msgstr "(設定為0代表不評分)"
+
+#: wp-admin/link-add.php:227
+#: wp-admin/link-manager.php:494
+msgid "Target"
+msgstr "視窗開啟目標"
+
+#: wp-admin/link-add.php:237
+#: wp-admin/link-manager.php:504
+msgid "(Note that the <code>target</code> attribute is illegal in XHTML 1.1 and 1.0 Strict.)"
+msgstr "(附註: 在「XHTML 1.1」以及「1.0 Strict」規格中，已經沒有<code>target</code> 語法了)"
+
+#: wp-admin/link-add.php:240
+#: wp-admin/link-manager.php:507
+msgid "Visible:"
+msgstr "是否顯示"
+
+#: wp-admin/link-add.php:243
+#: wp-admin/link-manager.php:510
+#: wp-admin/link-manager.php:704
+#: wp-admin/link-manager.php:705
+#: wp-admin/post.php:526
+msgid "Yes"
+msgstr "是"
+
+#: wp-admin/link-add.php:245
+#: wp-admin/link-manager.php:512
+#: wp-admin/link-manager.php:704
+#: wp-admin/link-manager.php:705
+#: wp-admin/post.php:528
+msgid "No"
+msgstr "否"
+
+#: wp-admin/link-add.php:257
+#, php-format
+msgid "<p>You can drag <a href=\"%s\" title=\"Link add bookmarklet\">Link This</a> to your toolbar and when you click it a window will pop up that will allow you to add whatever site you&#8217;re on to your links! Right now this only works on Mozilla or Netscape, but we&#8217;re working on it.</p>"
+msgstr "<p>你可以將「<a href=\"%s\" title=\"加入網站連結小書籤\">加入連結</a> 」這個連結加到你的書籤工具列中，在你按下這個小書籤時，就會自動跳出視窗，直接將你目前所在瀏覽的網頁，加到你的網站連結列表中。目前這個程式僅供 Mozilla 以及 Netscape 使用。</p>"
+
+#: wp-admin/link-categories.php:32
+#: wp-admin/link-categories.php:96
+#: wp-admin/link-categories.php:219
+#: wp-admin/link-import.php:85
+#: wp-admin/link-manager.php:92
+#: wp-admin/link-manager.php:125
+#: wp-admin/link-manager.php:165
+#: wp-admin/link-manager.php:201
+#: wp-admin/link-manager.php:251
+#: wp-admin/link-manager.php:284
+#: wp-admin/upload.php:9
+msgid "Cheatin' uh ?"
+msgstr "喂！你想幹麼？"
+
+#: wp-admin/link-categories.php:93
+#, php-format
+msgid "Can't delete the <strong>%s</strong> link category: this is the default one"
+msgstr "你不能刪除預設連結類別「<strong>%s</strong>」。"
+
+#: wp-admin/link-categories.php:131
+#: wp-admin/link-categories.php:366
+msgid "Category Options"
+msgstr "類別選項"
+
+#: wp-admin/link-categories.php:138
+#: wp-admin/link-categories.php:373
+msgid "Show:"
+msgstr "顯示"
+
+#: wp-admin/link-categories.php:142
+#: wp-admin/link-categories.php:377
+#: wp-admin/link-manager.php:671
+msgid "Image"
+msgstr "影像"
+
+#: wp-admin/link-categories.php:146
+#: wp-admin/link-categories.php:153
+#: wp-admin/link-categories.php:381
+#: wp-admin/link-categories.php:388
+msgid "(shown in <code>title</code> regardless)"
+msgstr "(只會顯示在連結語法中的<code>title</code>部份)"
+
+#: wp-admin/link-categories.php:149
+#: wp-admin/link-categories.php:162
+#: wp-admin/link-categories.php:318
+#: wp-admin/link-categories.php:384
+#: wp-admin/link-categories.php:397
+#: wp-admin/link-manager.php:645
+msgid "Rating"
+msgstr "評分"
+
+#: wp-admin/link-categories.php:152
+#: wp-admin/link-categories.php:163
+#: wp-admin/link-categories.php:319
+#: wp-admin/link-categories.php:387
+#: wp-admin/link-categories.php:398
+msgid "Updated"
+msgstr "近期更新"
+
+#: wp-admin/link-categories.php:156
+#: wp-admin/link-categories.php:391
+msgid "Sort order:"
+msgstr "排序方式"
+
+#: wp-admin/link-categories.php:160
+#: wp-admin/link-categories.php:395
+msgid "Id"
+msgstr "連結ID"
+
+#: wp-admin/link-categories.php:161
+#: wp-admin/link-categories.php:396
+msgid "URL"
+msgstr "連結網址"
+
+#: wp-admin/link-categories.php:164
+#: wp-admin/link-categories.php:399
+msgid "Random"
+msgstr "隨機"
+
+#: wp-admin/link-categories.php:165
+msgid "Name Length"
+msgstr "名稱長度"
+
+#: wp-admin/link-categories.php:169
+#: wp-admin/link-categories.php:403
+msgid "Descending"
+msgstr "反向"
+
+#: wp-admin/link-categories.php:173
+#: wp-admin/link-categories.php:407
+msgid "Limit:"
+msgstr "限制"
+
+#: wp-admin/link-categories.php:176
+#: wp-admin/link-categories.php:409
+msgid "(Leave empty for no limit to number of links shown)"
+msgstr "(留白代表不對連結數目做限制)"
+
+#: wp-admin/link-categories.php:180
+#: wp-admin/link-categories.php:413
+msgid "Toggle:"
+msgstr "自動"
+
+#: wp-admin/link-categories.php:183
+#: wp-admin/link-categories.php:416
+msgid "When new link is added toggle all others to be invisible"
+msgstr "在新增連結的時候會自動將其他連結設定為不可見"
+
+#: wp-admin/link-categories.php:189
+#: wp-admin/link-categories.php:311
+#: wp-admin/link-categories.php:422
+msgid "Formatting"
+msgstr "格式"
+
+#: wp-admin/link-categories.php:192
+#: wp-admin/link-categories.php:425
+msgid "Before Link:"
+msgstr "在連結前方插入"
+
+#: wp-admin/link-categories.php:196
+#: wp-admin/link-categories.php:429
+msgid "Between Link and Description:"
+msgstr "在連結與敘述之間插入"
+
+#: wp-admin/link-categories.php:200
+#: wp-admin/link-categories.php:433
+msgid "After Link:"
+msgstr "在連結後方插入"
+
+#: wp-admin/link-categories.php:205
+msgid "Save Category Settings &raquo;"
+msgstr "儲存分類設定 &raquo;"
+
+#: wp-admin/link-categories.php:292
+msgid "You have do not have sufficient permissions to edit the link categories for this blog. :)"
+msgstr "你沒有足夠的權限編輯此網誌的連結分類。"
+
+#: wp-admin/link-categories.php:302
+msgid "Link Categories:"
+msgstr "連結分類"
+
+#: wp-admin/link-categories.php:307
+msgid "Toggle?"
+msgstr "自動"
+
+#: wp-admin/link-categories.php:308
+#: wp-admin/link-manager.php:526
+#: wp-admin/link-manager.php:649
+msgid "Show"
+msgstr "顯示"
+
+#: wp-admin/link-categories.php:309
+msgid "Sort Order"
+msgstr "排序方式"
+
+#: wp-admin/link-categories.php:310
+msgid "Desc?"
+msgstr "反向"
+
+#: wp-admin/link-categories.php:312
+msgid "Limit"
+msgstr "限制"
+
+#: wp-admin/link-categories.php:316
+msgid "Images"
+msgstr "影像"
+
+#: wp-admin/link-categories.php:317
+msgid "Desc."
+msgstr "反向"
+
+#: wp-admin/link-categories.php:320
+msgid "Before"
+msgstr "前"
+
+#: wp-admin/link-categories.php:321
+msgid "Between"
+msgstr "中"
+
+#: wp-admin/link-categories.php:322
+msgid "After"
+msgstr "後"
+
+#: wp-admin/link-categories.php:350
+msgid ""
+"You are about to delete this category.\\n"
+"  \\'Cancel\\' to stop, \\'OK\\' to delete."
+msgstr ""
+"你打算刪除此類別。\\n"
+"  按下「取消」停止，按下「確定」便會執行刪除。"
+
+#: wp-admin/link-categories.php:357
+msgid "These are the defaults for when you call a link category with no additional arguments. All of these settings may be overwritten."
+msgstr "以上是你在沒有做任何其他額外參數下，叫出連結分類時所用的預設值。而當中所有的設定，都是可以用外部參數覆蓋的。"
+
+#: wp-admin/link-categories.php:364
+msgid "Add a Link Category:"
+msgstr "新增連結分類"
+
+#: wp-admin/link-categories.php:442
+msgid "Note:"
+msgstr "附註"
+
+#: wp-admin/link-categories.php:443
+#, php-format
+msgid ""
+"<p>Deleting a link category does not delete links from that category.<br />\n"
+"    It will just set them back to the default category <b>%s</b>."
+msgstr "p>刪除連結分類後，不會同時刪除該分類底下的連結。<br />而是將該分類下的連結移動到預設分類「<strong>%s</strong>」下。"
+
+#: wp-admin/link-import.php:35
+msgid "Import your blogroll from another system"
+msgstr "從其他系統匯入blogroll"
+
+#: wp-admin/link-import.php:40
+msgid ""
+"Go to <a href=\"http://www.blogrolling.com\">Blogrolling.com</a>\n"
+"    and sign in. Once you&#8217;ve done that, click on <strong>Get Code</strong>, and then\n"
+"    look for the <strong><abbr title=\"Outline Processor Markup Language\">OPML</abbr>\n"
+"    code</strong>"
+msgstr "登入<a href=\"http://www.blogrolling.com\">Blogrolling.com</a>網站。然後，點選<strong>Get Code</strong>選項，然後選擇使用<strong><abbr title=\"Outline Processor Markup Language\">OPML</abbr></strong>"
+
+#: wp-admin/link-import.php:44
+msgid ""
+"Or go to <a href=\"http://blo.gs\">Blo.gs</a> and sign in. Once you&#8217;ve done\n"
+"    that in the 'Welcome Back' box on the right, click on <strong>share</strong>, and then\n"
+"    look for the <strong><abbr title=\"Outline Processor Markup Language\">OPML</abbr>\n"
+"    link</strong> (favorites.opml)."
+msgstr "或是登入 <a href=\"http://blo.gs\">Blo.gs</a> 網站。然後，在「Welcome Back」右側，點選 <strong>share</strong> 按鈕，然後找一下<strong><abbr title=\"Outline Processor Markup Language\">OPML</abbr>連結</strong> (favorites.opml)。 "
+
+#: wp-admin/link-import.php:48
+msgid "Select that text and copy it or copy the link/shortcut into the box below."
+msgstr "將這些網址剪下，然後貼到下方的文字輸入方塊中。"
+
+#: wp-admin/link-import.php:50
+msgid "Your OPML URL:"
+msgstr "你的 OPML 網址:"
+
+#: wp-admin/link-import.php:53
+msgid "<strong>or</strong> you can upload an OPML file from your desktop aggregator:"
+msgstr "<strong>或者</strong>，你也可以從桌面新聞匯集閱讀器中，匯出 OPML 檔案上傳:"
+
+#: wp-admin/link-import.php:55
+msgid "Upload this file:"
+msgstr "上傳檔案"
+
+#: wp-admin/link-import.php:58
+msgid "Now select a category you want to put these links in."
+msgstr "請選擇你要將匯入的連結放置到那個分類。"
+
+#: wp-admin/link-import.php:72
+msgid "Import!"
+msgstr "匯入!"
+
+#: wp-admin/link-import.php:89
+msgid "Importing..."
+msgstr "匯入中..."
+
+#: wp-admin/link-import.php:111
+msgid "Upload error"
+msgstr "上傳錯誤"
+
+#: wp-admin/link-import.php:128
+#, php-format
+msgid "<p>Inserted <strong>%s</strong></p>"
+msgstr "<p>已輸入 <strong>%s</strong> </p>"
+
+#: wp-admin/link-import.php:131
+#, php-format
+msgid "Inserted %1$d links into category %2$s. All done! Go <a href=\"%3$s\">manage those links</a>."
+msgstr "已經將 %1$d 個連結插入到「%2$s」分類中。匯入完成！去<a href=\"%3$s\">管理這些連結</a>吧！"
+
+#: wp-admin/link-import.php:136
+msgid "You need to supply your OPML url. Press back on your browser and try again"
+msgstr "你得提供 OPML 網址。請回到你瀏覽器的上一頁再重試一次。"
+
+#: wp-admin/link-manager.php:307
+#: wp-admin/link-manager.php:568
+msgid "You do not have sufficient permissions to edit the links for this blog."
+msgstr "你沒有足夠的權限編輯此網誌的連結。"
+
+#: wp-admin/link-manager.php:340
+msgid "Edit a link:"
+msgstr "編輯連結"
+
+#: wp-admin/link-manager.php:363
+#: wp-admin/link-manager.php:462
+#: wp-admin/link-manager.php:516
+msgid "Save Changes &raquo;"
+msgstr "儲存變更 &raquo;"
+
+#: wp-admin/link-manager.php:640
+msgid "Link ID"
+msgstr "連結ID"
+
+#: wp-admin/link-manager.php:642
+#: wp-admin/link-manager.php:668
+msgid "URI"
+msgstr "連結網址"
+
+#: wp-admin/link-manager.php:644
+msgid "Owner"
+msgstr "擁有人"
+
+#: wp-admin/link-manager.php:669
+msgid "Category"
+msgstr "類別"
+
+#: wp-admin/link-manager.php:670
+msgid "rel"
+msgstr "關係"
+
+#: wp-admin/link-manager.php:672
+msgid "Visible"
+msgstr "是否顯示"
+
+#: wp-admin/link-manager.php:745
+msgid "Manage Multiple Links:"
+msgstr "管理多重連結"
+
+#: wp-admin/link-manager.php:746
+msgid "Use the checkboxes on the right to select multiple links and choose an action below:"
+msgstr "請使用列表中右方的選擇方塊勾選項目，然後選擇下面的各種指令"
+
+#: wp-admin/link-manager.php:749
+msgid "Assign ownership to:"
+msgstr "分配所有權給"
+
+#: wp-admin/link-manager.php:760
+#: wp-admin/link-manager.php:766
+msgid "Go"
+msgstr "執行"
+
+#: wp-admin/link-manager.php:763
+msgid "Toggle Visibility"
+msgstr "顯示狀態"
+
+#: wp-admin/link-manager.php:766
+msgid "Move to category:"
+msgstr "移至分類"
+
+#: wp-admin/link-manager.php:769
+msgid "Toggle Checkboxes"
+msgstr "反向選擇"
+
+#: wp-admin/menu.php:10
+msgid "Write"
+msgstr "發表"
+
+#: wp-admin/menu.php:13
+msgid "Links"
+msgstr "連結"
+
+#: wp-admin/menu.php:14
+#: wp-admin/users.php:4
+#: wp-admin/users.php:240
+msgid "Users"
+msgstr "成員"
+
+#: wp-admin/menu.php:15
+msgid "Options"
+msgstr "選項"
+
+#: wp-admin/menu.php:16
+msgid "Plugins"
+msgstr "外掛程式"
+
+#: wp-admin/menu.php:17
+msgid "Templates"
+msgstr "模版"
+
+#: wp-admin/menu.php:18
+msgid "Upload"
+msgstr "上傳"
+
+#: wp-admin/menu.php:19
+#: wp-admin/profile.php:234
+msgid "Profile"
+msgstr "個人資訊"
+
+#: wp-admin/menu.php:41
+msgid "View your site"
+msgstr "檢閱你的網站"
+
+#: wp-admin/menu.php:41
+msgid "View site"
+msgstr "檢閱網誌"
+
+#: wp-admin/menu.php:43
+msgid "Log out of this account"
+msgstr "登出此帳號"
+
+#: wp-admin/menu.php:43
+#, php-format
+msgid "Logout (%s)"
+msgstr "登出(%s)"
+
+#: wp-admin/moderation.php:4
+msgid "Moderate comments"
+msgstr "審核留言回應"
+
+#: wp-admin/moderation.php:56
+#: wp-admin/moderation.php:97
+msgid "<p>Your level is not high enough to moderate comments.</p>"
+msgstr "<p>你的等級還不足以審核留言回應。</p>"
+
+#: wp-admin/moderation.php:111
+msgid "1 comment approved <br />"
+msgstr "審核通過 1 則留言回應 <br />"
+
+#: wp-admin/moderation.php:113
+#, php-format
+msgid "%s comments approved <br />"
+msgstr "審核通過 %s 則留言回應 <br />"
+
+#: wp-admin/moderation.php:118
+msgid "1 comment deleted <br />"
+msgstr "刪除 1 則留言回應 <br />"
+
+#: wp-admin/moderation.php:120
+#, php-format
+msgid "%s comments deleted <br />"
+msgstr "刪除 %s 則留言回應 <br />"
+
+#: wp-admin/moderation.php:125
+msgid "1 comment unchanged <br />"
+msgstr "保留 1 則留言回應 <br />"
+
+#: wp-admin/moderation.php:127
+#, php-format
+msgid "%s comments unchanged <br />"
+msgstr "保留 %s 則留言回應 <br />"
+
+#: wp-admin/moderation.php:143
+msgid "<p>The following comments are in the moderation queue:</p>"
+msgstr "<p>目前正在等候審核的留言回應表列如下</p>"
+
+#: wp-admin/moderation.php:158
+msgid "Delete just this comment"
+msgstr "只刪除這則留言回應"
+
+#: wp-admin/moderation.php:158
+msgid "Bulk action:"
+msgstr "群組管理"
+
+#: wp-admin/moderation.php:161
+msgid "Do nothing"
+msgstr "保留"
+
+#: wp-admin/moderation.php:168
+msgid "Moderate Comments &raquo;"
+msgstr "審核留言回應 &raquo;"
+
+#: wp-admin/moderation.php:173
+msgid "<p>Currently there are no comments to be approved.</p>"
+msgstr "<p>目前沒有待審留言回應。</p>"
+
+#: wp-admin/options-discussion.php:46
+msgid "Discussion Options"
+msgstr "討論設定"
+
+#: wp-admin/options-discussion.php:51
+msgid "Usual settings for an article: <em>(These settings may be overridden for individual articles.)</em>"
+msgstr "一般文章選項: <em>(這些選項可以在發表文章時做個別調整。)</em>"
+
+#: wp-admin/options-discussion.php:56
+msgid "Attempt to notify any Weblogs linked to from the article (slows down posting.)"
+msgstr "對文章中提到的其他網站的網頁連結發送通告(會降低儲存文章的速度)"
+
+#: wp-admin/options-discussion.php:61
+msgid "Allow link notifications from other Weblogs (pingbacks and trackbacks.)"
+msgstr "允許其他網誌站台對文章發送引用通告(Pingback 及 Trackback)"
+
+#: wp-admin/options-discussion.php:66
+msgid "Allow people to post comments on the article"
+msgstr "允許他人針對文章發表留言"
+
+#: wp-admin/options-discussion.php:71
+msgid "Email me whenever:"
+msgstr "在以下狀況使用電子郵件通知"
+
+#: wp-admin/options-discussion.php:76
+msgid "Anyone posts a comment"
+msgstr "有人發表留言的時候"
+
+#: wp-admin/options-discussion.php:81
+msgid "A comment is approved or declined"
+msgstr "核准或拒絕某則留言回應的時候"
+
+#: wp-admin/options-discussion.php:86
+msgid "Before a comment appears:"
+msgstr "在留言回應出現在版面之前"
+
+#: wp-admin/options-discussion.php:91
+msgid "An administrator must approve the comment (regardless of any matches below)"
+msgstr "留言回應必須通過系統管理員審核(在你所設定的過濾列表中則除外)"
+
+#: wp-admin/options-discussion.php:96
+msgid "User must fill out name and email"
+msgstr "使用者必須輸入姓名及電子郵件"
+
+#: wp-admin/options-discussion.php:101
+msgid "Comment Moderation"
+msgstr "審核留言回應"
+
+#: wp-admin/options-discussion.php:102
+#, php-format
+msgid "Hold a comment in the queue if it contains more than %s links. (A common characteristic of comment spam is a large number of hyperlinks.)"
+msgstr "如果一則留言回應中超過 %s 個超連結，即判斷為垃圾廣告留言，必須審核通過才可以發表。(垃圾廣告留言的特色就是通常會有很多的超連結。)"
+
+#: wp-admin/options-discussion.php:104
+msgid "When a comment contains any of these words in its content, name, URI,  email, or IP, hold it in the moderation queue: (Separate multiple words with new lines.) <a href=\"http://wiki.wordpress.org/index.php/SpamWords\">Common spam words</a>."
+msgstr "如果在留言的內容、網址、IP位置中出現以下所設定的文字，就判斷為是垃圾廣告留言，必須審核通過才可以發表: (一行輸入一個關鍵字) 。常見關鍵字<a href=\"http://wiki.wordpress.org/index.php/SpamWords\">見此</a>"
+
+#: wp-admin/options-discussion.php:110
+#: wp-admin/options-general.php:116
+#: wp-admin/options-misc.php:128
+#: wp-admin/options-reading.php:98
+#: wp-admin/options-writing.php:122
+msgid "Update Options"
+msgstr "更新選項"
+
+#: wp-admin/options-general.php:4
+#: wp-admin/options-general.php:46
+msgid "General Options"
+msgstr "一般設定"
+
+#: wp-admin/options-general.php:52
+msgid "Weblog title:"
+msgstr "網誌標題"
+
+#: wp-admin/options-general.php:56
+msgid "Tagline:"
+msgstr "網誌描述"
+
+#: wp-admin/options-general.php:59
+msgid "In a few words, explain what this weblog is about."
+msgstr "用簡單幾字描述此網誌性質。"
+
+#: wp-admin/options-general.php:62
+msgid "WordPress address (URI):"
+msgstr "WordPress 網址 (URI)"
+
+#: wp-admin/options-general.php:66
+msgid "Blog address (URI):"
+msgstr "網誌網址 (URI)"
+
+#: wp-admin/options-general.php:67
+msgid "If you want your blog homepage to be different than the directory you installed WordPress in, enter that address here. "
+msgstr "如果你希望網誌首頁與 WordPress 的安裝目錄不同，請填寫於此。"
+
+#: wp-admin/options-general.php:70
+msgid "E-mail address:"
+msgstr "電子郵件地址"
+
+#: wp-admin/options-general.php:73
+msgid "This address is used only for admin purposes."
+msgstr "此信箱僅作為管理用途。"
+
+#: wp-admin/options-general.php:76
+msgid "Membership:"
+msgstr "成員資格"
+
+#: wp-admin/options-general.php:79
+msgid "Anyone can register"
+msgstr "任何人皆可註冊"
+
+#: wp-admin/options-general.php:83
+msgid "Any registered member can publish articles"
+msgstr "使用者一經註冊即可發表文章"
+
+#: wp-admin/options-general.php:87
+msgid "Date and Time"
+msgstr "日期與時間"
+
+#: wp-admin/options-general.php:90
+msgid "<acronym title=\"Greenwich Meridian Time\">GMT</acronym> time is:"
+msgstr "現在<acronym title=\"Greenwich Meridian Time\">GMT</acronym>(格林威治標準時間)為"
+
+#: wp-admin/options-general.php:94
+msgid "Times in the weblog should differ by:"
+msgstr "時差(GMT+)"
+
+#: wp-admin/options-general.php:96
+msgid "hours"
+msgstr "小時"
+
+#: wp-admin/options-general.php:100
+msgid "The following use the same syntax as the <a href=\"http://php.net/date\">PHP <code>date()</code> function</a>. Save option to update sample output."
+msgstr "以下日期格式的語法與 <a href=\"http://php.net/date\">PHP <code>date()</code> 函數</a>相同。儲存設定即可更新範例顯示。"
+
+#: wp-admin/options-general.php:103
+msgid "Default date format:"
+msgstr "預設日期格式"
+
+#: wp-admin/options-general.php:105
+#: wp-admin/options-general.php:110
+msgid "Output:"
+msgstr "呈現方式"
+
+#: wp-admin/options-general.php:108
+msgid "Default time format:"
+msgstr "預設時間格式"
+
+#: wp-admin/options-head.php:4
+#: wp-admin/options-permalink.php:40
+#: wp-admin/options.php:122
+msgid "You have do not have sufficient permissions to edit the options for this blog."
+msgstr "你沒有足夠的權限設定此網誌。"
+
+#: wp-admin/options-head.php:22
+msgid "General"
+msgstr "一般"
+
+#: wp-admin/options-head.php:23
+msgid "Writing"
+msgstr "寫作"
+
+#: wp-admin/options-head.php:24
+msgid "Reading"
+msgstr "閱讀"
+
+#: wp-admin/options-head.php:26
+msgid "Miscellaneous"
+msgstr "雜項"
+
+#: wp-admin/options-head.php:27
+#: wp-admin/options.php:143
+msgid "Permalinks"
+msgstr "固定網址"
+
+#: wp-admin/options-head.php:50
+msgid "Options saved."
+msgstr "設定已儲存。"
+
+#: wp-admin/options-misc.php:47
+msgid "Miscellaneous Options"
+msgstr "雜項設定"
+
+#: wp-admin/options-misc.php:54
+msgid "Allow File Uploads"
+msgstr "允許上傳檔案"
+
+#: wp-admin/options-misc.php:57
+msgid "Destination directory:"
+msgstr "上傳目錄"
+
+#: wp-admin/options-misc.php:60
+#: wp-admin/options-misc.php:68
+#, php-format
+msgid "Recommended: <code>%s</code>"
+msgstr "建議使用: <code>%s</code>"
+
+#: wp-admin/options-misc.php:65
+msgid "URI of this directory:"
+msgstr "上傳目錄的網址"
+
+#: wp-admin/options-misc.php:72
+msgid "Maximum size:"
+msgstr "檔案大小上限"
+
+#: wp-admin/options-misc.php:74
+msgid "Kilobytes (KB)"
+msgstr "KB"
+
+#: wp-admin/options-misc.php:77
+msgid "Allowed file extensions:"
+msgstr "允許上傳的副檔名類型"
+
+#: wp-admin/options-misc.php:80
+msgid "Recommended: <code>jpg jpeg png gif </code>"
+msgstr "建議使用: <code> jpg jpeg png gif </code>"
+
+#: wp-admin/options-misc.php:83
+msgid "Minimum level to upload:"
+msgstr "上傳檔案所需之最低等級"
+
+#: wp-admin/options-misc.php:99
+msgid "Use Geographic Tracking Features"
+msgstr "使用地理追蹤功能"
+
+#: wp-admin/options-misc.php:102
+msgid "Default latitude:"
+msgstr "預設緯度"
+
+#: wp-admin/options-misc.php:108
+msgid "Default longitude:"
+msgstr "預設經度"
+
+#: wp-admin/options-misc.php:117
+msgid "Use default location values if none specified."
+msgstr "如果沒有輸入數值，使用預設的地理位置設定"
+
+#: wp-admin/options-misc.php:125
+msgid "Use legacy <code>my-hacks.php</code> file support"
+msgstr "啟用 <code>my-hacks.php</code> 檔案"
+
+#: wp-admin/options-permalink.php:4
+msgid "Permalink Options"
+msgstr "固定網址設定"
+
+#: wp-admin/options-permalink.php:45
+msgid "Permalink structure updated."
+msgstr "固定網址結構已更新。"
+
+#: wp-admin/options-permalink.php:48
+msgid "Edit Permalink Structure"
+msgstr "編輯固定網址結構"
+
+#: wp-admin/options-permalink.php:49
+msgid "<p>WordPress offers you the ability to create a custom URI structure for your permalinks and archives. The following &#8220;tags&#8221; are available:</p>"
+msgstr "<p>WordPress 可以讓你自訂每篇文章的網址、以及各種彙整頁面網址的呈現方式。你可以使用以下標籤，設計你的網址結構。</p>"
+
+#: wp-admin/options-permalink.php:54
+msgid "The year of the post, 4 digits, for example <code>2004</code>"
+msgstr "文章發表年份，為四位數字，例如「<code>2004</code>」。"
+
+#: wp-admin/options-permalink.php:58
+msgid "Month of the year, for example <code>05</code>"
+msgstr "文章發表月份，為二位數字，例如「<code>05</code>」。"
+
+#: wp-admin/options-permalink.php:62
+msgid "Day of the month, for example <code>28</code>"
+msgstr "文章發表日期，為二位數字，例如「<code>28</code>」。"
+
+#: wp-admin/options-permalink.php:66
+msgid "Hour of the day, for example <code>15</code>"
+msgstr "文章發表鐘點，為二位數字，例如「<code>15</code>」。"
+
+#: wp-admin/options-permalink.php:70
+msgid "Minute of the hour, for example <code>43</code>"
+msgstr "文章發表分鐘，為二位數字，例如「<code>43</code>」。"
+
+#: wp-admin/options-permalink.php:74
+msgid "Second of the minute, for example <code>33</code>"
+msgstr "文章發表秒鐘，為二位數字，例如「<code>33</code>」。"
+
+#: wp-admin/options-permalink.php:78
+msgid "A sanitized version of the title of the post. So &#8220;This Is A Great Post!&#8221; becomes &#8220;<code>this-is-a-great-post</code>&#8221; in the URI"
+msgstr "重整過的文章標題，比方說「This Is A Great Post!」在重整過後，會變成「this-is-a-great-post」。"
+
+#: wp-admin/options-permalink.php:82
+msgid "The unique ID # of the post, for example <code>423</code>"
+msgstr "每篇文章的專屬ID，例如「<code>423</code>」"
+
+#: wp-admin/options-permalink.php:86
+msgid ""
+"<p>So for example a value like:</p>\n"
+"  <p><code>/archives/%year%/%monthnum%/%day%/%postname%/</code> </p>\n"
+"  <p>would give you a permalink like:</p>\n"
+"  <p><code>/archives/2003/05/23/my-cheese-sandwich/</code></p>\n"
+"  <p> In general for this you must use mod_rewrite, however if you put a filename at the beginning WordPress will attempt to use that to pass the arguments, for example:</p>\n"
+"  <p><code>/index.php/archives/%year%/%monthnum%/%day%/%postname%/</code> </p>\n"
+"  <p>If you use this option you can ignore the mod_rewrite rules. </p>"
+msgstr ""
+"<p>比方說，如果你輸入了: </p>\n"
+"  <p><code>/archives/%year%/%monthnum%/%day%/%postname%/</code> </p>\n"
+"  <p>你的網站就會使用這樣的網址: </p>\n"
+"  <p><code>/archives/2003/05/23/my-cheese-sandwich/</code></p>\n"
+"  <p>一般來說，你會使用 Apache 的 mod_rewrite 模組，而如果你在固定網址的語法規則前，加上了一個PHP檔案的檔名，例如:</p>\n"
+"  <p><code>/index.php/archives/%year%/%monthnum%/%day%/%postname%/</code> </p>\n"
+"  <p>如果是這樣的話，你就可以不用理會 mod_rewrite 模組的規則了。</p>"
+
+#: wp-admin/options-permalink.php:94
+msgid "Use the template tags above to create a virtual site structure:"
+msgstr "請使用上述模板標籤建立你的虛擬網站結構"
+
+#: wp-admin/options-permalink.php:98
+msgid "If you like, you may enter a custom prefix for your category URIs here. For example, <code>/taxonomy/categorias</code> would make your category links like <code>http://example.org/taxonomy/categorias/general/</code>. If you leave this blank the default will be used."
+msgstr "你也可以自訂給類別使用的網址前置詞。例如，「<code>/taxonomy/categories</code>」會讓你的類別鍊結變成「<code>http://example.org/taxonomy/categories/general/</code>」。若不填寫則使用系統預設值。"
+
+#: wp-admin/options-permalink.php:103
+msgid "Update Permalink Structure &raquo;"
+msgstr "更新鍊結結構 &raquo;"
+
+#: wp-admin/options-permalink.php:109
+#, php-format
+msgid "Using the permalink structure value you currently have, <code>%s</code>, these are the mod_rewrite rules you should have in your <code>.htaccess</code> file. Click in the field and press <kbd>CTRL + a</kbd> to select all."
+msgstr "你目前所設定的固定網址語法規則為 <code>%s</code> ，依此所產生的 mod_rewrite 規格如下，請在點選後用 <kbd>CTRL + a</kbd> 全選並且複製，然後貼到你的 <code>.htaccess</code> 檔案中。"
+
+#: wp-admin/options-permalink.php:133
+#, php-format
+msgid "<p>If your <code>.htaccess</code> file is writable by WordPress, you can <a href=\"%s\">edit it through your template interface</a>.</p>"
+msgstr "<p>如果你可以從WordPress寫入<code>.htaccess</code> 的話，你也可以直接在線上用模版功能<a href=\"%s\">編輯檔案</a>。</p>"
+
+#: wp-admin/options-permalink.php:140
+msgid "You are not currently using customized permalinks. No special mod_rewrite rules are needed."
+msgstr "你目前沒有使用自訂的固定網址。所以不需要使用特別的 mod_rewrite 規則"
+
+#: wp-admin/options.php:90
+#, php-format
+msgid " SQL error while saving %s. "
+msgstr "儲存「%s」時發生 SQL 錯誤。"
+
+#: wp-admin/options.php:102
+#, php-format
+msgid "%d setting(s) saved... "
+msgstr "%d 項設定已儲存…"
+
+#: wp-admin/options.php:138
+msgid "No help for this group of options."
+msgstr "此設定群組沒有相關說明。"
+
+#: wp-admin/options.php:144
+msgid "Permanent link configuration"
+msgstr "固定網址設定"
+
+#: wp-admin/options.php:180
+msgid "Update Settings &raquo;"
+msgstr "更新選項 &raquo;"
+
+#: wp-admin/options-reading.php:46
+msgid "Reading Options"
+msgstr "閱讀設定"
+
+#: wp-admin/options-reading.php:51
+msgid "Front Page"
+msgstr "首頁"
+
+#: wp-admin/options-reading.php:54
+#: wp-admin/options-reading.php:69
+msgid "Show the most recent:"
+msgstr "顯示近期文章"
+
+#: wp-admin/options-reading.php:66
+msgid "Syndication Feeds"
+msgstr "同步訂閱項目"
+
+#: wp-admin/options-reading.php:74
+msgid "For each article, show:"
+msgstr "顯示方式"
+
+#: wp-admin/options-reading.php:86
+msgid "Encoding for pages and feeds:"
+msgstr "文字編碼方式"
+
+#: wp-admin/options-reading.php:89
+msgid "The character encoding you write your blog in (UTF-8 <a href=\"http://developer.apple.com/documentation/macos8/TextIntlSvcs/TextEncodingConversionManager/TEC1.5/TEC.b0.html\">recommended</a>)"
+msgstr "你的網誌站台所使用文字編碼方式 (建議使用 <a href=\"http://developer.apple.com/documentation/macos8/TextIntlSvcs/TextEncodingConversionManager/TEC1.5/TEC.b0.html\">UTF-8 編碼</a>)"
+
+#: wp-admin/options-reading.php:95
+msgid "WordPress should compress articles (gzip) if browsers ask for them"
+msgstr "WordPress 應使用壓縮格式 (gzip) 傳送文章"
+
+#: wp-admin/options-writing.php:4
+msgid "Writing Options"
+msgstr "寫作設定"
+
+#: wp-admin/options-writing.php:54
+msgid "When starting a post, show:"
+msgstr "在寫作新文章時，顯示"
+
+#: wp-admin/options-writing.php:57
+msgid "Simple controls"
+msgstr "簡易模式"
+
+#: wp-admin/options-writing.php:61
+msgid "Advanced controls"
+msgstr "進階模式"
+
+#: wp-admin/options-writing.php:70
+msgid "Formatting:"
+msgstr "格式化"
+
+#: wp-admin/options-writing.php:73
+msgid "Convert emoticons like <code>:-)</code> and <code>:-P</code> to graphics on display"
+msgstr "自動將<code>:-)</code> 以及 <code>:-P</code> 等心情符號轉換成圖片"
+
+#: wp-admin/options-writing.php:75
+msgid "WordPress should correct invalidly nested XHTML automatically"
+msgstr "自動修正錯誤的巢狀 XHTML 語法"
+
+#: wp-admin/options-writing.php:79
+msgid "Update Services"
+msgstr "更新服務"
+
+#: wp-admin/options-writing.php:80
+#, php-format
+msgid "Enter the sites that you would like to notify when you publish a new post. For a list of some recommended sites to ping please see <a href=\"%s\">Update Services</a> on the wiki. Separate multiple URIs by line breaks."
+msgstr "請輸入在網誌內容更新時，你想通知的站台。如果你想要可接受通知的站台的建議列表，你可以上 Wiki 的 <a href=\"%s\">Update Services</a> 查看。請一行輸入一個網址。"
+
+#: wp-admin/options-writing.php:85
+msgid "Writing by Email"
+msgstr "使用電子郵件發表網誌"
+
+#: wp-admin/options-writing.php:86
+#, php-format
+msgid "To post to WordPress by email you must set up a secret email account with POP3 access. Any mail received at this address will be posted, so it&#8217;s a good idea to keep this address very secret. Here are three random strings you could use: <code>%s</code>, <code>%s</code>, <code>%s</code>."
+msgstr "要使用 WordPress 的電子郵件發表功能的話，你必須要有一個秘密的 POP3 郵件帳號。因為所有寄到這個信箱的信件，都會發表在網站上，所以這個帳號務必保密。以下是三組你可以使用的隨機字串: <code>%s</code>, <code>%s</code>, <code>%s</code>。"
+
+#: wp-admin/options-writing.php:90
+msgid "Mail server:"
+msgstr "郵件伺服器"
+
+#: wp-admin/options-writing.php:92
+msgid "Port:"
+msgstr "連接埠"
+
+#: wp-admin/options-writing.php:97
+msgid "Login name:"
+msgstr "登入帳號"
+
+#: wp-admin/options-writing.php:107
+msgid "Usual category:"
+msgstr "自動將文章分類為"
+
+#: wp-admin/plugins.php:29
+msgid "Manage Plugins"
+msgstr "管理外掛程式"
+
+#: wp-admin/plugins.php:33
+msgid "Sorry, you must be at least a level 8 user to modify plugins."
+msgstr "抱歉，你至少得等級八以上才能設定外掛程式。"
+
+#: wp-admin/plugins.php:53
+msgid "Plugin <strong>activated</strong>."
+msgstr "<strong>啟用</strong>外掛程式。"
+
+#: wp-admin/plugins.php:57
+msgid "Plugin <strong>deactivated</strong>."
+msgstr "<strong>停用</strong>外掛程式"
+
+#: wp-admin/plugins.php:62
+msgid "Plugin Management"
+msgstr "外掛程式管理"
+
+#: wp-admin/plugins.php:63
+msgid "Plugins are files you usually download seperately from WordPress that add functionality. To install a plugin you generally just need to put the plugin file into your <code>wp-content/plugins</code> directory. Once a plugin is installed, you may activate it or deactivate it here."
+msgstr "外掛程式通常就是你下載來增強WordPress功能的其他檔案。要安裝外掛程式的方法，通常就是將外掛程式檔案放在 <code>wp-content/plugins</code> 目錄底下。在你安裝了外掛程式後，你可以在這裡決定要啟用或是停用外掛程式。"
+
+#: wp-admin/plugins.php:79
+msgid "<p>Couldn't open plugins directory or there are no plugins available.</p>"
+msgstr "<p>無法開啟外掛程式目錄，或是系統中沒有外掛程式檔案。</p>"
+
+#: wp-admin/plugins.php:84
+msgid "Plugin"
+msgstr "外掛程式"
+
+#: wp-admin/plugins.php:85
+msgid "Version"
+msgstr "版本"
+
+#: wp-admin/post.php:241
+msgid "Post Preview (updated when post is saved)"
+msgstr "預覽文章 (在你儲存文章後，也會隨即更新預覽畫面)"
+
+#: wp-admin/post.php:242
+#, php-format
+msgid "Permanent Link: %s"
+msgstr "固定網址: %s"
+
+#: wp-admin/post.php:255
+#, php-format
+msgid ""
+"Since you&#8217;re a newcomer, you&#8217;ll have to wait for an admin to raise your level to 1, in order to be authorized to post.<br />\n"
+"You can also <a href=\"mailto:%s?subject=Promotion?\">e-mail the admin</a> to ask for a promotion.<br />\n"
+"When you&#8217;re promoted, just reload this page and you&#8217;ll be able to blog. :)"
+msgstr ""
+"因為你才剛註冊，所以你必須等待系統管理員將你的等級提昇到 1，你才獲得授權可以發表文章。<br />\n"
+"你也可以寫信給<a href=\"mailto:%s?subject=Promotion?\">系統管理員</a> 要求授權。"
+
+#: wp-admin/post.php:445
+#: wp-admin/post.php:553
+#, php-format
+msgid "Oops, no post with this ID. <a href=\"%s\">Go back</a>!"
+msgstr "唔！沒有符合這個ID的文章。請<a href=\"%s\">回到上一頁</a>！"
+
+#: wp-admin/post.php:449
+#, php-format
+msgid "You don&#8217;t have the right to delete <strong>%s</strong>&#8217;s posts."
+msgstr "你的權限不足以刪除「<strong>%s</strong>」所發表的文章。"
+
+#: wp-admin/post.php:462
+msgid "Error in deleting..."
+msgstr "刪除發表錯誤…"
+
+#: wp-admin/post.php:491
+#: wp-admin/post.php:509
+#: wp-admin/post.php:554
+#: wp-admin/post.php:589
+#: wp-admin/post.php:611
+#: wp-admin/post.php:645
+#, php-format
+msgid "Oops, no comment with this ID. <a href=\"%s\">Go back</a>!"
+msgstr "唔！沒有符合這個ID的留言回應。請<a href=\"%s\">回到上一頁</a>！"
+
+#: wp-admin/post.php:514
+msgid "Author:"
+msgstr "作者"
+
+#: wp-admin/post.php:515
+msgid "E-Mail:"
+msgstr "電子郵件"
+
+#: wp-admin/post.php:516
+msgid "URL:"
+msgstr "個人網址"
+
+#: wp-admin/post.php:517
+msgid "Comment:"
+msgstr "留言回應"
+
+#: wp-admin/post.php:519
+msgid "Are you sure you want to do that?"
+msgstr "你確定要執行嗎？"
+
+#: wp-admin/post.php:558
+#, php-format
+msgid "You don&#8217;t have the right to delete <strong>%1$s</strong>&#8217;s post comments. <a href=\"%2$s\">Go back</a>!"
+msgstr "你的權限不足以刪除「%1$s」這篇文章所屬的留言回應。請<a href=\"%2$s\">回到上一頁</a>！"
+
+#: wp-admin/post.php:619
+msgid "Comment has been approved."
+msgstr "留言已通過審核。"
+
+#: wp-admin/post.php:624
+msgid "Ok"
+msgstr "確定"
+
+#: wp-admin/post.php:713
+msgid "Create New Post"
+msgstr "發表新文章"
+
+#: wp-admin/post.php:731
+#, php-format
+msgid "Post # %s"
+msgstr "文章 # %s"
+
+#: wp-admin/post.php:753
+msgid ""
+"<h3>WordPress bookmarklet</h3>\n"
+"<p>You can drag the following link to your links bar or add it to your bookmarks and when you \"Press it\" it will open up a popup window with information and a link to the site you&#8217re currently browsing so you can make a quick post about it. Try it out:</p>"
+msgstr ""
+"<h3>WordPress 書籤小程式</h3>\n"
+"<p>你可以將「Press it」這個連結加到你的書籤或連結工具列中，然後當你以後按下這個連結，就會跳出一個發表視窗，發表視窗中就是你目前所在網站的相關資訊，這個功能可以讓你快速將你目前所瀏覽頁面的資訊，貼到你的網誌站台上。試試看吧: </p>"
+
+#: wp-admin/post.php:762
+msgid "WordPress bookmarklet"
+msgstr "WordPress 小書籤"
+
+#: wp-admin/post.php:762
+#, php-format
+msgid "Press It - %s"
+msgstr "Press It - %s"
+
+#: wp-admin/post.php:766
+#: wp-admin/post.php:781
+#: wp-admin/post.php:785
+#, php-format
+msgid "Press it - %s"
+msgstr "Press it - %s"
+
+#: wp-admin/post.php:797
+#, php-format
+msgid ""
+"<p>Since you&#8217;re a newcomer, you&#8217;ll have to wait for an admin to raise your level to 1, in order to be authorized to post blog items.<br />\n"
+"You can also <a href=\"mailto:%s?subject=Blog posting permission\">e-mail the admin</a> to ask for a promotion.<br />\n"
+"When you&#8217;re promoted, just reload this page and you&#8217;ll be able to blog. :)</p>"
+msgstr ""
+"<p>因為你才剛註冊，你必須等待系統管理員提昇你的等級到 1，你才獲得可以發表文章的授權。<br />\n"
+"你也可以寫信給<a href=\"mailto:%s?subject=站台發表權限\">系統管理員</a>，要求提昇等級。<br />\n"
+"如果你獲得授權，只要重新載入這個頁面，就可以發表文章了。 :) </p>"
+
+#: wp-admin/profile.php:50
+msgid "<strong>ERROR</strong>: please enter your nickname (can be the same as your login)"
+msgstr "<strong>錯誤</strong> : 請輸入你的暱稱 (可以與登入帳號相同)"
+
+#: wp-admin/profile.php:57
+msgid "<strong>ERROR</strong>: your ICQ UIN can only be a number, no letters allowed"
+msgstr "<strong>錯誤</strong> : ICQ UIN 必須是數字，不能使用字母"
+
+#: wp-admin/profile.php:64
+msgid "<strong>ERROR</strong>: please type your e-mail address"
+msgstr "<strong>錯誤</strong> : 請輸入你的電子郵件信箱"
+
+#: wp-admin/profile.php:67
+#: wp-admin/users.php:68
+msgid "<strong>ERROR</strong>: the email address isn't correct"
+msgstr "<strong>錯誤</strong> : 電子郵件信箱格式不正確"
+
+#: wp-admin/profile.php:73
+#: wp-admin/profile.php:77
+msgid "<strong>ERROR</strong>: you typed your new password only once. Go back to type it twice."
+msgstr "<strong>錯誤</strong> : 你必須要輸入兩次密碼以確認。"
+
+#: wp-admin/profile.php:79
+msgid "<strong>ERROR</strong>: you typed two different passwords. Go back to correct that."
+msgstr "<strong>錯誤</strong> : 你輸入了兩個不同的密碼，請更正之。"
+
+#: wp-admin/profile.php:101
+msgid "<strong>ERROR</strong>: couldn't update your profile..."
+msgstr "<strong>錯誤</strong> : 無法更新你的個人資訊…"
+
+#: wp-admin/profile.php:116
+msgid "View Profile"
+msgstr "查看個人資訊"
+
+#: wp-admin/profile.php:145
+msgid "User #"
+msgstr "成員 #"
+
+#: wp-admin/profile.php:145
+#: wp-admin/users.php:194
+#: wp-admin/users.php:248
+msgid "Level"
+msgstr "等級"
+
+#: wp-admin/profile.php:153
+#: wp-admin/profile.php:261
+msgid "First name:"
+msgstr "名字"
+
+#: wp-admin/profile.php:155
+#: wp-admin/profile.php:265
+msgid "Last name:"
+msgstr "姓氏"
+
+#: wp-admin/profile.php:157
+#: wp-admin/profile.php:273
+msgid "Nickname:"
+msgstr "暱稱"
+
+#: wp-admin/profile.php:162
+#: wp-admin/profile.php:281
+msgid "Website:"
+msgstr "個人網站"
+
+#: wp-admin/profile.php:164
+#: wp-admin/profile.php:285
+msgid "ICQ:"
+msgstr "ICQ:"
+
+#: wp-admin/profile.php:168
+#: wp-admin/profile.php:289
+msgid "AIM:"
+msgstr "AIM:"
+
+#: wp-admin/profile.php:171
+#: wp-admin/profile.php:293
+msgid "MSN IM:"
+msgstr "MSN IM:"
+
+#: wp-admin/profile.php:173
+#: wp-admin/profile.php:297
+msgid "Yahoo IM:"
+msgstr "Yahoo IM:"
+
+#: wp-admin/profile.php:230
+msgid "Profile updated."
+msgstr "個人資訊已更新。"
+
+#: wp-admin/profile.php:250
+msgid "Level:"
+msgstr "等級"
+
+#: wp-admin/profile.php:254
+msgid "Posts:"
+msgstr "文章數"
+
+#: wp-admin/profile.php:269
+msgid "Profile:"
+msgstr "個人簡歷"
+
+#: wp-admin/profile.php:301
+msgid "Identity on blog:"
+msgstr "網誌上的身份"
+
+#: wp-admin/profile.php:324
+msgid "New <strong>Password</strong> (Leave blank to stay the same.)"
+msgstr "<strong>新密碼</strong> (必須兩次輸入的密碼都相同)"
+
+#: wp-admin/profile.php:331
+msgid "Update Profile &raquo;"
+msgstr "更新個人資訊 &raquo;"
+
+#: wp-admin/profile.php:344
+msgid "'No Sidebar found!  You must use Mozilla 0.9.4 or later!'"
+msgstr "'無法使用邊欄工具列功能，你必須使用Mozilla 0.9.4以後版本的瀏覽器!'"
+
+#: wp-admin/templates.php:4
+msgid "Template &amp; file editing"
+msgstr "模版與檔案編輯"
+
+#: wp-admin/templates.php:19
+msgid "Sorry, can&#8217;t edit files with \"..\" in the name. If you are trying to edit a file in your WordPress home directory, you can just type the name of the file in."
+msgstr "抱歉，無法編輯 WordPress 目錄之外 (../) 的檔案。如果你是要編輯 WordPress 所在目錄中的檔案，直接輸入檔名即可。"
+
+#: wp-admin/templates.php:22
+msgid "Sorry, can&#8217;t call files with their real path."
+msgstr "抱歉，無法以真實目錄的方式開啟檔案。"
+
+#: wp-admin/templates.php:63
+#: wp-admin/templates.php:88
+msgid "<p>You have do not have sufficient permissions to edit templates for this blog.</p>"
+msgstr "<p>你沒有足夠的權限編輯此網誌的模版。</p>"
+
+#: wp-admin/templates.php:106
+msgid " &#8212; this is a WordPress file, be careful when editing it!"
+msgstr " &#8212; 此為 WordPress 核心檔案，請小心編輯！"
+
+#: wp-admin/templates.php:117
+msgid "File edited successfully."
+msgstr "檔案編輯成功。"
+
+#: wp-admin/templates.php:121
+#, php-format
+msgid "Editing <strong>%s</strong>"
+msgstr "編輯 <strong>%s</strong>"
+
+#: wp-admin/templates.php:134
+msgid "(You cannot update that file/template: must make it writable, e.g. CHMOD 666)"
+msgstr "(你無去更新此檔案/模版：你得先將其變更為可寫入，比如說， CHMOD 666)"
+
+#: wp-admin/templates.php:141
+msgid "Oops, no such file exists! Double check the name and try again, merci."
+msgstr "唔，此檔案不存在！請確認檔名後再試一次，謝謝。"
+
+#: wp-admin/templates.php:146
+msgid "To edit a file, type its name here. You can edit any file <a href=\"http://wiki.wordpress.org/index.php/MakeWritable\" title=\"Read more about making files writable\">writable by the server</a>, e.g. CHMOD 666."
+msgstr "要編輯檔案，在此輸入檔名即可。只要該檔案是系統<a href=\"http://wiki.wordpress.org/index.php/MakeWritable\" title=\"更多關於變更檔案為可寫入的說明\">可寫入</a>的，比如說， CHMOD 666。"
+
+#: wp-admin/templates.php:149
+msgid "Edit file &raquo;"
+msgstr "編輯檔案 &raquo;"
+
+#: wp-admin/templates.php:151
+msgid "Common files: (click to edit)"
+msgstr "一般檔案: (點選編輯)"
+
+#: wp-admin/templates.php:153
+msgid "Main Index"
+msgstr "主索引檔"
+
+#: wp-admin/templates.php:155
+msgid "Popup comments"
+msgstr "彈出式留言視窗"
+
+#: wp-admin/templates.php:156
+msgid ".htaccess (for rewrite rules)"
+msgstr ".htaccess (for rewrite rules)"
+
+#: wp-admin/templates.php:157
+msgid "my-hacks.php (legacy hacks support)"
+msgstr "my-hacks.php (舊式 hack 支援)"
+
+#: wp-admin/templates.php:176
+msgid "Note: of course, you can also edit the files/templates in your text editor of choice and upload them. This online editor is only meant to be used when you don&#8217;t have access to a text editor or FTP client."
+msgstr "附註: 當然，你也可以使用文字編輯器編輯檔案/模版，然後再上傳。這個線上編輯器只是讓你在沒有文字編輯器或 FTP 程式的情況下仍可編輯模版的替代方案。"
+
+#: wp-admin/upload.php:12
+msgid "The admin disabled this function"
+msgstr "系統管理員關閉了這項功能"
+
+#: wp-admin/upload.php:32
+#, php-format
+msgid "It doesn't look like you can use the file upload feature at this time because the directory you have specified (<code>%s</code>) doesn't appear to be writable by WordPress. Check the permissions on the directory and for typos."
+msgstr "你目前無法使用檔案上傳功能，原因是WordPress 無法讀取你所指定的 (<code>%s</code>) 目錄，或是目錄不存在。請檢查目錄權限，或者你有無輸入錯誤。"
+
+#: wp-admin/upload.php:42
+#, php-format
+msgid "You can upload files with the extension %1$s as long as they are no larger than %2$s <abbr title=\"Kilobytes\">KB</abbr>. If you&#8217;re an admin you can configure these values under <a href=\"%3$s\">options</a>."
+msgstr "你不可以上傳副檔名 %1$s 的檔案，也不可以上傳大小超過 %2$s <abbr title=\"Kilobytes\">KB</abbr> 的檔案。<br />如果你是系統管理員的話，你可以在<a href=\"%3$s\">選項設置</a>中調整副檔名以及檔案大小的限制。"
+
+#: wp-admin/upload.php:45
+msgid "File:"
+msgstr "檔案"
+
+#: wp-admin/upload.php:54
+msgid "Create a thumbnail?"
+msgstr "要建立縮圖嗎？"
+
+#: wp-admin/upload.php:58
+msgid "No thanks"
+msgstr "不建立"
+
+#: wp-admin/upload.php:62
+msgid "Small (200px largest side)"
+msgstr "小 (長邊為 200px)"
+
+#: wp-admin/upload.php:66
+msgid "Large (400px largest side)"
+msgstr "大 (長邊為 400px)"
+
+#: wp-admin/upload.php:70
+msgid "Custom size"
+msgstr "自訂尺寸"
+
+#: wp-admin/upload.php:73
+msgid "px (largest side)"
+msgstr "px (長邊)"
+
+#: wp-admin/upload.php:74
+msgid "Upload File"
+msgstr "上傳檔案"
+
+#: wp-admin/upload.php:97
+#, php-format
+msgid "File %1$s of type %2$s is not allowed."
+msgstr "系統不允許「%1$s」檔案所使用的副檔名「%2$s」。"
+
+#: wp-admin/upload.php:131
+#: wp-admin/upload.php:175
+#: wp-admin/upload.php:183
+#, php-format
+msgid "Couldn't upload your file to %s."
+msgstr "無法將你的檔案上傳到 %s"
+
+#: wp-admin/upload.php:141
+msgid "Duplicate File?"
+msgstr "已經有了檔名相同的檔案？"
+
+#: wp-admin/upload.php:142
+#, php-format
+msgid "The filename '%s' already exists!"
+msgstr "系統中已經有叫做「%s」的檔案 "
+
+#: wp-admin/upload.php:143
+#, php-format
+msgid "Filename '%1$s' moved to '%2$s'"
+msgstr "檔名 '%1$s' 已經改成了 '%2$s' "
+
+#: wp-admin/upload.php:144
+msgid "Confirm or rename:"
+msgstr "確認或更名"
+
+#: wp-admin/upload.php:153
+msgid "Alternate name:"
+msgstr "替代檔名"
+
+#: wp-admin/upload.php:157
+msgid "Rename"
+msgstr "更名"
+
+#: wp-admin/upload.php:213
+msgid "File uploaded!"
+msgstr "檔案上傳成功！"
+
+#: wp-admin/upload.php:214
+#, php-format
+msgid "Your file <code>%s</code> was uploaded successfully!"
+msgstr "<code>%s</code> 檔案上傳成功"
+
+#: wp-admin/upload.php:215
+msgid "Here&#8217;s the code to display it:"
+msgstr "以下是用來顯示這個檔案所用的程式碼"
+
+#: wp-admin/upload.php:218
+msgid "Image Details"
+msgstr "影像詳細資料"
+
+#: wp-admin/upload.php:222
+msgid "Size:"
+msgstr "原始大小"
+
+#: wp-admin/upload.php:223
+msgid "<abbr title=\"Kilobyte\">KB</abbr>"
+msgstr "<abbr title=\"Kilobyte\">KB</abbr>"
+
+#: wp-admin/upload.php:224
+msgid "Type:"
+msgstr "檔案類型"
+
+#: wp-admin/upload.php:228
+msgid "Upload another"
+msgstr "上傳其他檔案"
+
+#: wp-admin/users.php:65
+msgid "<strong>ERROR</strong>: please type an e-mail address"
+msgstr "<strong>錯誤</strong>: 請輸入電子郵件地址"
+
+#: wp-admin/users.php:87
+msgid "<strong>ERROR</strong>: Couldn&#8217;t register you!"
+msgstr "<strong>錯誤</strong>: 無法處理你的註冊！"
+
+#: wp-admin/users.php:120
+msgid "Can&#8217;t change the level of a user whose level is higher than yours."
+msgstr "無法變更等級比你高的使用者等級。"
+
+#: wp-admin/users.php:153
+msgid "Can&#8217;t delete a user whose level is higher than yours."
+msgstr "無法刪除等級比你高的使用者。"
+
+#: wp-admin/users.php:183
+msgid "User deleted."
+msgstr "使用者已刪除。"
+
+#: wp-admin/users.php:186
+msgid "Authors"
+msgstr "作者群"
+
+#: wp-admin/users.php:190
+#: wp-admin/users.php:244
+#: wp-admin/users.php:291
+msgid "Nickname"
+msgstr "暱稱"
+
+#: wp-admin/users.php:193
+#: wp-admin/users.php:247
+#: wp-admin/users.php:308
+msgid "Website"
+msgstr "個人網站"
+
+#: wp-admin/users.php:212
+msgid "View posts"
+msgstr "觀看文章"
+
+#: wp-admin/users.php:218
+#: wp-admin/users.php:266
+#, php-format
+msgid "e-mail: %s"
+msgstr "電子郵件: %s"
+
+#: wp-admin/users.php:279
+msgid ""
+"<p>To delete a user, bring his level to zero, then click on the red X.<br />\n"
+"    <strong>Warning:</strong> deleting a user also deletes all posts made by this user.</p>"
+msgstr ""
+"<p>要刪除使用者的話，請將權限設定成零，然後按下紅色的 X。<br />\n"
+"<strong>警告: </strong>刪除使用者的同時，也會刪除該使用者所發表的全部文章。</p>"
+
+#: wp-admin/users.php:286
+#: wp-admin/users.php:319
+msgid "Add User"
+msgstr "新增使用者"
+
+#: wp-admin/users.php:287
+#, php-format
+msgid "<p>Users can <a href=\"%s/wp-register.php\">register themselves</a> or you can manually create users here.</p>"
+msgstr "<p>雖然使用者可以<a href=\"%s/wp-register.php\">自行註冊帳號</a>，你也可以在這裡手動新增。</p>"
+
+#: wp-admin/users.php:296
+msgid "First Name"
+msgstr "名字"
+
+#: wp-admin/users.php:300
+msgid "Last Name"
+msgstr "姓氏"
+
+#: wp-admin/users.php:312
+msgid "Password (twice)"
+msgstr "密碼 (請輸入兩次)"
+
+# The following are new added entries
+#: wp-comments.php:3
+#: wp-comments-review.php:11
+msgid "Please do not load this page directly. Thanks!"
+msgstr "請不要直接載入此頁，謝謝！"
+
+#: wp-comments.php:97
+#: wp-comments-review.php:119
+msgid "Preview"
+msgstr "預覽!"
+
+#: upload.php:4
+msgid "Upload Image or File"
+msgstr "上傳影像或檔案"
+
+#: upload.php:55
+msgid "Save to other directory:"
+msgstr "上傳至其他目錄"
+
+#: templates.php:132
+msgid "Update File &raquo;"
+msgstr "更新檔案 &raquo;"
+
+#: templates.php:169
+msgid "Plugin files:"
+msgstr "外掛程式檔案:"
+
+#: link-manager.php:610
+msgid "<strong>Show</strong> links in category: %s"
+msgstr "<strong>顯示</strong>某類別的連結: %s"
+
+#: link-manager.php:613
+msgid "<strong>Order</strong> by: %s"
+msgstr "<strong>排序</strong>: %s"
+
+#: link-manager.php:713
+msgid "Description: %s"
+msgstr "說明: %s"
+
+#: options-writing.php:65
+msgid "Size of the writing box:"
+msgstr "文字編輯區大小:"
+
+#: options-writing.php:67
+msgid "lines"
+msgstr "行"
+
