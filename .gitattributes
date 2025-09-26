@@ -19,3 +19,4 @@
 openfoundry.org/hts-cache/new.txt filter=lfs diff=lfs merge=lfs -text
 openfoundry.org/hts-cache/new.zip filter=lfs diff=lfs merge=lfs -text
 openfoundry.org/hts-cache/old.zip filter=lfs diff=lfs merge=lfs -text
+openfoundry.org/www.openfoundry.org/archived/mshow.zip.part.* filter=lfs diff=lfs merge=lfs -text
