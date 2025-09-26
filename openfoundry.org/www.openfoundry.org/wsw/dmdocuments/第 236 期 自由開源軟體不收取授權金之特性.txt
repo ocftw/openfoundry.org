@@ -1,0 +1,1064 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 236 期 | 2014/02/25 □■□
+________________________________________________________________
+
+◎ 本期主題︰自由開源軟體不收取授權金之特性
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2014/03/11
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] 自由開源軟體不收取授權金之特性
+
+■ [技術專欄] Python 程式碼風格指引
+
+■ [自由專欄] 公開觀點：如何挽救廢棄的開源專案
+
+■ [自由專欄] 關上 Windows 之門：更換作業系統指南
+
+■ [源碼新聞] Red Hat 與 CentOS 合作打造開放源碼新局
+
+■ [源碼新聞] Linux 作業系統讓小朋友也能快樂的使用！
+
+■ [源碼新聞] 開放源碼專案 CodeCombat 讓你邊玩遊戲邊學寫程式！
+
+■ [源碼新聞] 更適合在 Windows 上使用的 Libreoffice 4.2 版正式釋出並提供免費下載！
+
+■ [源碼新聞] Microsoft 向中國尋求開源協作
+
+■ [源碼新聞] 2014 年三月份社群活動列表
+
+■ [接案工作] 2014 台灣創用CC計畫 技術工讀生徵才 
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 自由開源軟體不收取授權金之特性
+
+葛冬梅／文
+
+不收取授權金是自由開源軟體的一大特性，這其中牽涉到的智慧財產權種類包括了著作與專利兩類，雖然法律專欄在過去發表過許多相關的文章，不過都是屬於細部的分析，並未有統合性的介紹，也沒有對於這個特性形成的緣由加以說明，因此本文將針對這些過去所未說明過的部份進行統合性的介紹，同時針對常被併同提起的商標權加以說明，供想要深入了解自由開源授權特性與成因之讀者參考，。
+
+【不收取著作權授權金的鐵律】
+
+一般介紹自由開源軟體的文章，開宗明義都會說明使用者可以直接自由使用、修改、重製與散布軟體，而這些使用者被允許利用軟體的行為，其實就是著作權法所付與軟體著作權人所專有的權利，只是自由開源軟體的著作權人事先透過授權條款的宣示，允許使用者可以直接利用軟體，並且承諾不會對使用者的這些行為收取權利金。若是使用者只能透過支付著作權授權金才能換取使用、修改、重製與散布軟體的權利，那麼這個軟體就不是自由開源軟體（註一）。
+
+不過不支付授權金而直接利用軟體，並非是近代才有的現象，在資訊科學發展初期的年代裡，軟體並沒有被納入到任何的法律制度中被規範，因此在當時，自由且免費地利用、修改、重製與散布軟體是普遍的現象。但是美國在 1980 年的時候，將電腦程式 (computer program) 的定義增修進著作權法中，這項修法讓軟體正式成為美國著作權法適用的客體（註二），確立了軟體著作權人所擁有的著作權利，進而讓擁有大量軟體的商業公司得以正式利用著作權法上的優勢來營利：使用者必須支付授權金才可以利用軟體，但是利用軟體的期間、地點、功能、版本與目的等等條件，仍然會受到商業授權條款的限制。自由開源軟體就是源自於對這種現象的反動，希望軟體的利用方式可以擺脫商業軟體授權金的桎梏，回歸到被納入著作權體制以前的時代。因此當自由軟體 (Free Software) 概念首次被提出時，就隱含著不會收取著作權授權金的精神在內，後來開放源碼促進會 (Open Source Initiative, OSI) 提出了「開源定義 (Open Source Definition, OSD)」時，定義的第一項就明白表示，開源授權條款不得為了重製與散布程式的行為而要求支付授權金或類似的費用，自此，自由開源授權條款不收取著作權授權金的特性被明確地行諸文字（註三），成為鐵律，因此其他再發展出來的授權條款，也都遵循著這一個不收取著作權授權金的基本特性。
+
+要注意的是，雖然自由開源軟體本身在散布的同時不收取著作權授權金，但若是使用者修改軟體產生衍生程式，這個衍生程式不見得會繼續保有這個特性：若一個自由開源軟體所適用的條款具有授權拘束性，也就是衍生程式必須繼續採用相同條款來授權散布，那麼這將使得衍生程式也繼續適用原軟體條款中不收取著作權授權金的規定，衍生程式因而繼續保有跟原軟體相同的特性，GPL、LGPL 等條款授權的軟體就是典型的例子；但若軟體是透過 BSD、MIT 這類完全不具有授權拘束性的條款來散布的話，由於衍生程式可以改採其他條款授權散布，此時衍生程式自然可能依照所採用的新授權條款內容而收取著作權授權金，進而喪失不收取著作權授權金的特性。 
+
+【並非所有自由開源授權條款均有專利授權條款】
+
+許多自由開源軟體並不收取專利授權金，但是與不收著作權授權金對照來看，不收專利授權金並非是鐵律，因為並非所有自由開源授權條款均有專利授權規定，因此當利用到可能包含他人專利技術的自由開源軟體時，使用者應該要確認授權內容，是否有將軟體中所應用到的專利技術也無償授權出來。
+
+專利授權之所以會與著作權授權有如此的差異，是因為在自由開源授權條款剛開始出現的時期，均是以電腦程式著作所造成的衝擊為思考中心，少有人考慮到軟體專利所可能帶來的影響。以 GPL 這個系列條款為例，1989 年所制定的 GPL-1.0，其中完全沒有任何與專利相關的規定或文字，因此若是今日有人採用 GPL-1.0 作為軟體的授權條款，該軟體中也包含有開發者貢獻進去的專利技術，那麼這個專利技術是不會透過授權條款而事先授權出來的，若有使用者想要利用該軟體，可能就必須要另外跟該位開發者或者另外的專利權人洽談授權金與使用條件。而到 1991 年改版發布 GPL-2.0 時，雖然加入了專利相關的文字，不過由於當時軟體專利的討論不多，因此 GPL-2.0 的專利相關文字也相當含糊、不易解讀。隨著專利相關議題的討論愈來愈多，為了事先防止專利對於自由開源軟體發展所可能產生的阻礙，因此開始有條款正式將專利授權規定也納入成為自由開源授權內容的一部份，而在 2007 年改版發布的 GPL-3.0 中，我們也因此看到了明確的專利授權文字在這個第三版中出現（註四）。
+
+因此較早期制定出來的授權條款，例如 GPL-1.0、GPL-2.0、LGPL-2.1、BSD、MIT 等，要不是完全沒有專利授權規定，再不然就是雖然有專利相關文字，但是文字內容非常模糊、不易解讀，因此在實務上被解釋為等同於無專利授權規定的機率相當高；而晚近改版或新制定的授權條款，例如：GPL-3.0、LGPL-3.0、AGPL-3.0、MPL-1.1、MPL-2.0、CDDL-1.0、EPL-1.0 與 Apache-2.0 等，則都有著明確的專利授權文字（註五）。
+
+另外，由於專利議題在自由開源領域中近年來逐漸受到重視，其所可能造成的問題也被廣泛地討論，因此一些商業公司在支持 BSD 或 MIT 授權專案的同時，會特別處理專利所可能帶來問題，其中一個處理的方式（註六），就是透過獨立的條款將專案中所應用到的專利技術另外公眾授權出來，如此使用者只要在利用專案軟體的範圍內應用專利技術的話，一樣不需要支付專利授權金，同時也不會有侵權糾紛的產生。以 Google 所支持的網路影音播放專案 WebM 為例，這個專案採用 BSD-3-clause 來授權散布程式碼，其中所應用到的專利技術 VP8 則透過另外一份獨立的條款公眾授權出來，因此當使用者利用到 WebM 的時候，也因此可以直接利用 VP8 專利技術，並不需要另外與 Google 洽詢專利授權金等事宜（註七）。因此若使用者所要應用的 BSD、MIT 軟體類型可能包括到他人專利技術的話，建議應該要進一步查閱，確認是否有獨立的專利授權條款存在，以釐清是否需要另外支付專利授權金。
+
+【商標權不在不收取授權金的範圍之內】
+
+除了著作權與專利之外，由於軟體可能會有代表 logo，甚至是經過註冊的商標，因此商標權也是在此需要一併說明的智慧財產權種類。不過與著作權跟專利不同的是，現行所見到的自由開源授權條款，均沒有將軟體商標權納入事先授權的範圍，因此使用者若要利用自由開源軟體的 logo 或商標的話，仍然有可能必須要支付商標授權金（註八）。
+
+商標權之所以沒有被納入自由開源授權條款中事先公眾授權出來，是因為商標是一種具有識別與廣告作用的標誌，並不會涉及到軟體程式的運作，使用者只需要將軟體中的 logo、商標與相關標識去除，一樣可以依照授權條款的內容來利用程式碼。因此現行的自由開源授權條款中，均沒有商標權授權的規定，而即使有些條款中存在著與商標相關的文字內容，這些文字的目的也僅是在於將商標未公眾授權出來的事實加以明確地陳述出來，作用在於避免未來糾紛的發生。
+
+因此若是使用者想要利用自由開源軟體的 logo 或商標的話，請先查詢該軟體的官方網站或相關文件中，是否有商標政策，因為有些大型自由開源軟體專案會制定商標政策，例如 Mozilla 基金會以及 Ubuntu 作業系統（註九）。這些商標政策的說明文字大多非常易懂，通常也會將使用者可以與不可以直接進行的行為都說明的很清楚，因此在有商標政策的情況下，只需要依照說明來使用即不會違反這些自由開源軟體的商標權，而若是使用的行為又是落在可以直接進行的範圍內，那麼使用者就可以不需要支付商標授權金，而直接利用 logo 或商標。而在沒有查閱到商標政策的情況下，除非利用行為是落在商標合理使用的範圍之內，否則應該與該軟體社群或商標權人連繫、洽詢授權內容，尤其若是利用行為具有商業營利的目的在內，筆者強烈建議一定要與商標權人連繫，因為商標的本質就是一種商用權利，具有商業上的應用價值，因此當使用者利用商標的行為具有營利目的的話，表示會與原商標權人的利益有所衝突，因此法律預設這樣的利用情況是必須取得商標權人的授權之後，才得為之，而在這種情況下，使用者也通常必須支付商標權的授權金，以作為取得授權的交換代價。
+
+【不收取授權金的特性與商業應用並行不悖】
+
+如同本文在前面所說明過的，授權金是與智慧財權利有所掛勾，為了不想受制於這些權利的束縛，因此自由開源授權條款採用不收取授權金的授權內容，因此不收授權金的特性並不是在於反對商業應用，所以只要應用的方式合於授權規定，自由開源軟體一樣可以用於商業利用。這從 Google、IBM 等公司大量利用自由開源軟體來做為其服務或產品基礎的事實來看，就可以很容易地印證。因此在不收取著作權與專利技術授權金的前提下，若使用者的商業營利模式乃是收取商業系統客製化費用、後續技術維護與系統定期升級費用、內部人員教育訓練費用、將自由開源軟體作為提供雲端服務的基礎等等，均是合於授權規定的方式。而也因為自由開源軟體特殊的授權模式，促使在商業上發展出許多新興的應用模式，這個對於軟體著作權與商業軟體授權金的反動，最後卻發展擴張回到商業應用的領域，進而開花結果，相信是當初自由軟體概念被提出時，眾人所始料未及的（註十）。
+
+----
+
+註一：有些自由開源軟體會兼採商業條款授權，也就透過雙重授權的模式來散布，此時自由開源軟體仍然具有不收取著作權授權金的特性，因為這樣的雙重授權模式僅代表使用者除了自由開源授權的選項之外，還多了一個商業授權的選項可以選擇，在這種情況下，雖然商業授權條款是以收取授權金為對價的方式來讓使用者利用軟體，但這並不妨礙使用者選擇不收取授權金的自由開源授權規則來利用軟體。
+
+註二：請參閱 Mark H. Webbink, J.D. 為 "The International Free and Open Source Software Law Book" 一書所撰寫的美國專章 (United States of America)，該專章在「軟體保護 (COPYRIGHT PROTECTION OF SOFTWARE)」一節的開頭，簡要說明了美國著作權法對於軟體保護的緣由與歷史。該書全文採用「創用CC 姓名標示-禁止改作 3.0 未本地化版本」授權，美國專章部份可於右列網址中閱讀到全文：http://ifosslawbook.org/united-states-of-america/。
+
+註三：關於自由軟體及其內涵，請參閱：四大自由與自由軟體，http://www.openfoundry.org/tw/basic-concepts/1448-2010-07-13-09-56-17。關於開放源碼定義的介紹請參閱：開放源碼定義與開放源碼促進會，http://www.openfoundry.org/tw/basic-concepts/1447-2010-07-13-09-57-12。而關於自由軟體與開源軟體這兩名詞間的關係與歷史成因，請參閱：自由軟體？開放源碼軟體？還是開放原始碼軟體？，http://www.openfoundry.org/tw/legal-column-list/508-2010-07-15-10-50-34。
+
+註四：適用 GPL-1.0 授權的軟體已經相當罕見，該授權條款全文可見：http://opensource.org/licenses/GPL-1.0。GPL-2.0 中與專利相關的文字在第7、8條中，有論者以為 GPL-2.0 第 7 條屬於默示的專利授權規定，相關討論內容與說明請見：葛冬梅、林誠夏，GPL-2.0 第 7 條淺評，http://www.openfoundry.org/tw/legal-column-list/894-gpl2-7-。GPL-3.0中的專利授權與相關規定則是在第 11 條中。
+
+註五：關於這些授權條款中專利授權規定的說明，請參閱：葛冬梅，條文解析自由開源軟體的專利授權條款，http://www.openfoundry.org/tw/legal-column-list/8914-patent-clause-in-foss-licenses。
+
+註六：由於專利與著作權制度的並不相同，因此在面對問題的時候，實務上所採取的措施也不同，關於這部份的進一步說明請參閱：林誠夏，備位啟動的自由開源專案軟體專利，http://www.openfoundry.org/tw/legal-column-list/8498-standby-software-patent-free-and-open-source。
+
+註七：關於 WebM 的授權策略，請參閱：林誠夏、葛冬梅，談影音編碼的開放專利與商業應用：從 WebM 與 H.264 格式的比較觀點出發，http://www.openfoundry.org/tw/legal-column-list/8306--webm-h264-。而採用 BSD 附帶獨立專利授權條款的專案還有 Opus 音訊播放軟體，可以參見：葛冬梅，條文解析自由開源軟體的專利授權條款，http://www.openfoundry.org/tw/legal-column-list/8914-patent-clause-in-foss-licenses。
+
+註八：關於商標權在自由開源軟體中的發展與概況介紹，可以參閱：黃雪雁，淺談使用自由軟體時所應注意的商標授權問題，http://www.openfoundry.org/tw/legal-column-list/2095-2010-07-15-10-21-46。此外關於商業利用自由開源軟體商標的說明，可以參閱：林旅強，商業利用自由開源軟體之商標須知，http://www.openfoundry.org/tw/legal-column-list/9008-the-notice-of-the-use-of-foss-trademark。
+
+註九：Mozilla 基金會針對旗下所維護的軟體，制定有統一的商標政策，請參見：http://www.mozilla.org/en-US/foundation/trademarks/policy/。而 Ubuntu 的商標政策是融合在整體的智財權政策中，請見又列網頁中商標權相關章節：http://www.canonical.com/intellectual-property-rights-policy。
+
+註十：關於自由開源軟體的商業應用模式，請參閱：林誠夏，自由軟體的商業應用模式（上）－概念篇，http://www.openfoundry.org/tw/legal-column-list/991-2010-07-15-10-36-25；自由軟體的商業應用模式（下）－雙重授權篇，http://www.openfoundry.org/tw/legal-column-list/1056-2010-07-15-10-36-02。
+_______________________________________________________________
+
+■ [技術專欄] Python 程式碼風格指引
+
+JiaYun／翻譯  
+
+
+簡介
+
+本文件提供 Python 主要發行版本標準程式庫中的 Python 程式碼所用的撰寫慣例。關於 Python 的 C 實作中所用的 C 語言風格指引，請參考相關的 PEP[1]。
+
+本文件改寫自 Guido 所寫的 Python 風格指引文章 [2]，並增添一些 Barry 的風格指引 [5] 的內容。當兩者有衝突時，本 PEP 以 Guido 風格為準。本 PEP 可能仍未完成（事實上，可能永遠不會完工＜眨眼＞）。
+
+
+愚蠢的一致性是小心眼中的妖怪
+
+Guido 的重要見解之一是：程式碼被閱讀的次數，遠大於被撰寫的次數。提供本指引的目的，是為了增進程式碼的可讀性，並使 Python 程式碼在各方面保持一致性。如同 PEP 20 (http://www.python.org/dev/peps/pep-0020) [6] 所說的「可讀性至關重要」。
+
+風格指引關注的是一致性。和本指引一致很重要，在專案中保持一致性又更重要，但在 module 或 function 中保持一致性則最重要。
+
+但更更重要的是：知道何時該不一致 －－ 有時候風格指引就是無法適用。有疑惑時，運用你的最佳判斷力。看看其他例子，並決定何者最好看。需要的時候，儘管發問。
+
+打破特定規則的兩個好理由：
+＊使用該規則會造成程式碼可讀性變差，特別是對習慣該規則的人來說，可讀性也變差的時候。
+＊為了和前後（可能是因為歷史性因素）打破該規則的程式碼保持一致性時 －－ 雖然這也是清理他人雜亂程式碼的時機（在真正的 Extreme Programming 開發中）。
+
+
+程式碼編排
+
+縮排
+
+每個縮排層級使用 4 個空白。
+
+在相當舊的程式碼中，為了一致可以繼續使用 tab。
+
+tab 或空白？
+
+絕對不要混用 tab 和空白。
+
+縮排 Python 最常用的方式是只用空白。第二常用的方式是只用 tab。混用 tab 和空白來縮排的程式碼，應該轉成只用空白。在呼叫 Python 直譯器時加上 -t 選項，它會對混用 tab 和空白的程式發出警告。若使用 -tt 選項，則發出的會是錯誤。非常推薦使用這些選項！
+
+對於新專案來說，只用空白比用 tab 更受推薦。大多數編輯器都有相關設定，可以很容易做到這點。
+
+每行最大長度
+
+將每一行限制在最多 79 個字元之內。
+
+仍然有很多裝置受限於每行 80 個字元；而且視窗寬度限制在 80 個字元內，可以方便讓多個視窗並排。這些裝置的預設斷行機制會破壞程式碼的顯示結構，而使程式碼更難理解。所以，請將每一行限制在最多 79 個字元之內。對於大區段的文字（docstring 或註解），建議每行限制在 72 個字元內。
+
+建議的斷行方式是運用圓括號、方括號、大括號在 Python 中隱含的行接續作用。若需要，也可以對 expression 增加額外的圓括號，但有時只用反斜線看起來會更好。確保接續的行有妥善縮排。一些例子：
+
+class Rectangle(Blob):
+ 
+    def __init__(self, width, height,
+                 color='black', emphasis=None, highlight=0):
+        if width == 0 and height == 0 and \
+           color == 'red' and emphasis == 'strong' or \
+           highlight > 100:
+            raise ValueError("sorry, you lose")
+        if width == 0 and height == 0 and (color == 'red' or
+                                           emphasis is None):
+            raise ValueError("I don't think so")
+        Blob.__init__(self, width, height,
+                      color, emphasis, highlight)
+
+空白行
+
+將最高層級的 function 和 class 定義以兩個空白行分隔。
+
+class 內的 method 定義之間以一個空白行分隔。
+
+額外的空白行可以（謹慎地）用於分隔不同群組的相關 function。在一群相關的單行程式碼中（例如一組空的實作），空白行可以省略。
+
+在 function 中，小心地使用空白行來表示邏輯上的分段。
+
+Python 將 control-L（也就是 ^L）換頁字元視為空白。很多工具將這字元用於表示換頁，所以在你的檔案中，可以用它來為各相關區段作分頁。
+
+編碼 (PEP 263) (http://www.python.org/dev/peps/pep-0263)
+
+Python 核心發行版本中的程式碼應該都使用 ASCII 或 Latin-1（即 ISO-8859-1）編碼。對於 Python 3.0 或以上版本，UTF-8 比 Latin-1 更建議使用，參考 PEP 3120。
+
+使用 ASCII（或 UTF-8，在 Python 3.0 時）的程式檔案不該使用編碼指示（像是 "coding: utf-8"）。Latin-1（或 UTF-8）應該只用在註解或 docstring 提到作者的名字需要時；否則建議在字串常量中，使用 \x、\u 或 \U 等轉義字符來表示非 ASCII 資料。
+
+對於 Python 3.0 或以上版本，標準程式庫規定使用以下方針（參考 PEP 3131 (http://www.python.org/dev/peps/pep-3131) ）：所有 Python 標準程式庫中的識別字「必須」使用僅含 ASCII 的識別字，而且「應該」在可能的時候都用英文的單字（很多情況下所用的縮寫或技術術語並不是英語）。另外，字串常量或註解也都必須是 ASCII 編碼。例外情況只能是 (a) 測試非 ASCII 功能的測試案例，和 (b) 作者的名字。名字不是拉丁字母組成的作者，「必須」提供名字的拉丁音譯。
+
+對於擁有全球性使用者的開放原始碼專案，也鼓勵採用類似的方針。
+
+
+＊import
+
+    * import 通常應該分成不同行，例如：
+
+    這樣寫：
+
+    import os
+    import sys
+
+    不要寫：
+
+    import sys, os
+
+    * 但這種情況是可以的：
+
+    from subprocess import Popen, PIPE
+
+    * import 應該永遠放在檔案頂端，也就是在 module 的註解和 docstring 之後，而在 module 的全域變數和常數之前。
+
+    import 應該以以下順序分組：
+
+    ＊標準程式庫的 import
+    ＊相關第三方程式庫的 import
+    ＊己方應用程式/程式庫特定的 import
+    每組 import 之間應該以一個空白行分隔。 將任何相關的 __all__ 細述放在 import 之下。
+
+    * 極不鼓勵在 package 之間使用相對 import。
+    所有 import 都要永遠用 package 的絕對路徑。雖然現在 PEP 328 [7] 已經在 Python 2.5 中完全實作，但它明確表明相對 import 的方式仍不鼓勵使用；絕對 import 更有可攜性，通常也更有可讀    性。
+    * 從含有 class 定義的 module 中 import class 時，這樣寫通常是可以的
+
+    from myclass import MyClass
+    from foo.bar.yourclass import YourClass
+
+    如果會造成命名衝突，可以改成
+
+    import myclass
+    import foo.bar.yourclass
+
+    然後使用 "myclass.MyClass" 和 "foo.bar.yourclass.YourClass"
+
+
+expression 和 statement 中的空白
+
+惱人瑣事
+
+在以下情況避免使用額外的空白：
+
+    * 緊連在圓括號、方括號、大括號之內。
+
+    這樣寫：
+
+    spam(ham[1], {eggs: 2})
+
+    不要寫：
+
+    spam( ham[ 1 ], { eggs: 2 } )
+
+    * 逗號、分號、冒號前：
+
+    這樣寫：
+
+        if x == 4: print x, y; x, y = y, x
+
+    不要寫：
+
+        if x == 4 : print x , y ; x , y = y , x
+
+    * 函式呼叫的參數傳遞左括號前：
+
+    這樣寫：
+
+        spam(1)
+
+    不要寫：
+
+    spam (1)
+
+    * 索引和 slice 的左括號前：
+
+    這樣寫：
+
+        dict['key'] = list[index]
+
+    不要寫：
+
+        dict ['key'] = list [index]
+
+    * 在賦值（或其他）運算子前後用了一個以上的空白，只為了和另一個對齊。
+
+    這樣寫：
+
+        x = 1
+        y = 2
+        long_variable = 3
+
+    不要寫：
+
+        x             = 1
+        y             = 2
+        long_variable = 3
+
+
+其他建議
+
+    * 永遠在這些二元運算子前後加上一個空白：賦值（=）、增量賦值（+=, -= 之類）、比較（==, ＜, ＞, !=, ＜＞, ＜=, ＞=, in, not in, is, is not）、邏輯（and, or, not）。
+    * 算術運算子前後使用空白：
+
+    這樣寫：
+
+    i = i + 1
+    submitted += 1
+    x = x * 2 - 1
+    hypot2 = x * x + y * y
+    c = (a + b) * (a - b)
+
+    不要寫：
+
+    i=i+1
+    submitted +=1
+    x = x*2 - 1
+    hypot2 = x*x + y*y
+    c = (a+b) * (a-b)
+
+　 * 當 '=' 符號是用在關鍵字參數或預設參數值時，不要加空白。
+
+    這樣寫：
+
+        def complex(real, imag=0.0):
+            return magic(r=real, i=imag)
+
+    不要寫：
+
+        def complex(real, imag = 0.0):
+            return magic(r = real, i = imag)
+
+    * 複合 statement（一行有多個 statement）通常不鼓勵使用。
+
+    這樣寫：
+
+        if foo == 'blah':
+            do_blah_thing()
+        do_one()
+        do_two()
+        do_three()
+
+    盡量不要寫：
+
+        if foo == 'blah': do_blah_thing()
+        do_one(); do_two(); do_three()
+
+    雖然有時 if/for/while 的主體短，可以整個放在同一行，但絕對不要在多子句時這麼做。也要避免摺疊這類長行！
+
+    盡量不要寫：
+
+        if foo == 'blah': do_blah_thing()
+        for x in lst: total += x
+        while t ＜ 10: t = delay()
+
+    更是別寫：
+
+        if foo == 'blah': do_blah_thing()
+        else: do_non_blah_thing()
+         
+        try: something()
+        finally: cleanup()
+         
+        do_one(); do_two(); do_three(long, argument,
+                                     list, like, this)
+         
+        if foo == 'blah': one(); two(); three()
+
+
+
+註解
+
+註解和程式碼牴觸比沒有註解還糟。更改程式碼之後，永遠將更新註解列為優先事項。
+
+註解應該是完整的句子。當註解是片語或句子時，第一個單字應該大寫，除非它是一個小寫開頭的識別字（絕對不要改變識別字的大小寫！）。
+
+果註解很短，結尾的句點可以省略。區塊註解通常包含由完整句子組成的一或多個段落，其中每個句子都該以句點作結尾。
+
+每個句子的句點後應該加兩個空白。
+
+寫英文時，Strunk 和 White 的 "The Elements of Style" 值得參考。
+
+非英語系國家的 Python 程式設計師：請用英文寫註解，除非 120% 確定不會有不懂你語言的人閱讀你的程式碼。
+
+區塊註解
+
+區塊註解通常用來註解下方的一段（或全部）程式碼，並和程式碼使用相同縮排層級。區塊註解的每一行開頭都是 # 和一個空白（除非該行在註解中需要縮排）。
+
+區塊註解中的段落之間，以只有一個 # 的行分隔。
+
+行內註解
+
+有節制地使用行內註解。
+
+行內註解是和 statement 在同一行的註解。行內註解和 statement 之間應該至少用兩個空白分隔。行內註解的開頭應該是 # 和一個空白。
+
+行內註解若只陳述明顯事實，則是不必要且實際上是造成干擾的。不要這樣寫：
+
+　x = x + 1                 # Increment x
+
+但有時，這樣是有用的
+
+　x = x + 1                 # Compensate for border
+
+
+文件字串
+
+好的文件字串（即 docstring）撰寫慣例載於 PEP 257 [3]。
+
+    * 所有 public 的 module、function、class、method 都該寫文件字串。非 public 的 method 不需要寫文件字串，但應該用註解描述該 method 的作用。這註解應該放在 "def" 行之下。
+    * PEP 257 敘述了好的文件字串慣例。注意最重要的是，多行文件字串結尾的 """ 應該自己獨立一行，而且前面最好加一個空白行，例如：
+
+        """Return a foobang
+         
+        Optional plotz says to frobnicate the bizbaz first.
+         
+        """
+
+    * 對於只有一行的 docstring，結尾的 """ 可以放在同一行。
+
+
+版本紀錄
+
+如果需要在原始檔中加進 Subversion、CVS 或 RCS 的資料，可以這樣做：
+
+　__version__ = "$Revision: 60919 $"
+　# $Source$
+
+這幾行應該放在 module 的 docstring 之下，而在其他程式碼之前，並在上下各以一個空白行分隔。（譯註：Subversion 的話，第二行應該可以改用 "# $Id$"）
+
+
+命名慣例
+
+Python 程式庫的命名慣例有點混亂，所以不太可能讓它完全一致 －－ 不過這裡提供的是目前建議的命名標準。新的 module 和 package（包括第三方 framework）都應該依此標準撰寫，不過當現存的程式庫用的是不同風格時，保持內部的一致性比較重要。
+
+命名風格敘述
+
+有許多不同的命名風格，不論用在何處，能夠將它們辨認出來會很有幫助。
+
+以下命名風格通常可以分辨出來：
+＊b （單個小寫字母）
+＊B （單個大寫字母）
+＊lowercase （小寫）
+＊lower_case_with_underscores （含底線的小寫）
+＊UPPERCASE （大寫）
+＊UPPER_CASE_WITH_UNDERSCORES （含底線的大寫）
+＊CapitalizedWords （字首大寫，又稱 CapWords 或 CamelCase －－ 如此稱呼是因為字母看起來崎嶇不平[4])，有時也稱為 StudlyCaps。
+
+注意：如果有縮寫字，將縮寫字的每個字母大寫。也就是寫 HTTPServerError 比 HttpServerError 好。
+
+＊mixedCase （類似字首大寫，只差開頭單字的第一個字母是小寫）
+＊Capitalized_Words_With_Underscores （字首大寫加底線，很醜！）
+也有一種風格是用一個獨特的短字首將相關的名稱歸類在一起。這方法在 Python 中用得不多，但為了完整還是需要一提。例如 os.stat() function 回傳一個 tuple，其中各項的名稱習慣上都類似 st_mode，st_size，st_mtime 之類。（這是為了強調這些欄位和 POSIX system call struct 的對應關係，幫助程式設計師熟悉。）
+
+X11 程式庫的所有 public function 都以 X 開頭。在 Python 中，這種風格通常是不需要的，因為 attribute 和 method 名稱前面都會接物件名稱，而 function 名稱前面則會接 module 名稱。
+
+另外，以下是幾種開頭或結尾加底線的特殊格式（這些通常可以和任何大小寫慣例合用）：
+＊_single_leading_underscore 開頭單一底線：不具強制力的「內部用」標示。在 "from M import *" 時不會 import 名稱是單一底線開頭的項目。
+＊single_trailing_underscore_ 結尾單一底線：慣例上用於避免和 Python 關鍵字衝突，例
+
+    Tkinter.Toplevel(master, class_='ClassName')
+
+＊__double_leading_underscore 開頭雙底線：用來命名 class 的 attribute 時，會造成 name mangling（class FooBar 中，__boo 會變成 _FooBar__boo；參考下方相關處）。
+＊__double_leading_and_trailing_underscore__ 開頭和結尾雙底線：存在於使用者控制的命名空間中的「魔術」物件。例如 __init__、__import__、__file__。不要自創這類的名稱，只照文件說明去使用它們就好。
+
+
+命名慣例規範
+
+避免使用的名稱
+
+不要用單個 `l'（小寫 L）、`O'（大寫 o）、`I'（大寫 i）當變數名稱。
+
+在某些字型，這些字元和數字的一和零難以分辨。需要暫時用 `l' 時，改用 `L'。
+
+package 和 module 名稱
+
+module 應該用全小寫的簡短名稱。若能增加可讀性，可以在其中加入底線。Python 的 package 也該用全小寫的簡短名稱，但底線不鼓勵使用。
+
+因為 module 名稱對應到檔案名稱，而有些檔案系統不會區分大小寫且會將長名稱縮短，所以選擇相當簡短的 module 名稱很重要 －－ 雖然這在 Unix 上不是問題，但會在需要將程式移植到舊的 Mac 或 Windows 版本以及 DOS 時產生問題。
+
+當 C 或 C++ 寫的擴充 module 有對應的 Python module 提供高階介面（比較物件導向）時，C/C++ 的 module 開頭會有一個底線（像是 _socket）。
+
+class 名稱
+
+幾乎沒有例外，class 名稱使用字首大寫慣例。僅供內部用的 class，名稱前會加一個底線。
+
+exception 名稱
+
+因為 exception 必須是 class，class 的命名慣例在此適用。不過 exception 實際是代表錯誤時，名稱必須用 "Error" 當字尾。
+
+全域變數名稱
+
+（希望這些變數只是為了在一個 module 內部使用。）全域變數命名慣例幾乎和 function 一樣。
+
+設計以 "from M import *" 使用的 module 應該用 __all__ 機制避免將全域變數匯出，或者按照較舊的慣例將這些全域變數字首都加一個底線（你可能也想藉此來將這些全域變數標示為「module 內部用」）。
+
+function 名稱
+
+function 名稱應該全部小寫，為了可讀性，單字間可用底線分隔。
+
+mixedCase 只能用在這種風格已佔多數的程式碼中（例如 threading.py），或者為了保持相容性時。
+
+function 和 method 參數
+
+instance method 的第一個參數永遠用 'self'。
+
+class method 的第一個參數永遠用 'cls'。
+
+當 function 參數名稱和保留的關鍵字衝突時，在字尾加一個底線比用縮寫或拼寫省略好。因此 "print_" 比 "prnt" 好。（可能更好的是用同義字避免這類衝突。）
+
+method 名稱和 instance 變數
+
+使用 function 的命名規則：小寫並在需要時用底線分隔單字增加可讀性。
+
+只有非 public 的 method 和 instance 變數才在開頭加一個底線。
+
+為了避免和 subclass 衝突，可在開頭加雙底線以利用 Python 的 name mangling 機制。
+
+Python 會用 class 名稱 mangle 這些雙底線開頭的名稱：如果 class Foo 有個叫做 __a 的 attribute，它無法以 Foo.__a 存取。（執意存取的使用者可以透過 Foo._Foo__a 存取。）一般而言，雙底線開頭只應該用在避免為繼承設計的 class 的 attribute 名稱衝突。
+
+注意：雙底線開頭的名稱有一些爭議（見下方）。
+
+
+為繼承而設計
+
+永遠決定好 class 的 method 和 instance 變數（全部統稱為：attribute）是該 public 或非 public。不確定時，選擇非 public；在之後將它改成 public 比將 public attribute 改成非 public 容易。
+
+public attribute 是在保證不會有不相容變動下，預計供 class 的不相關用戶使用的。非 public attribute 則是不打算供第三方使用；不需要保證非 public 的 attribute 不會變動或甚至移除。
+
+這裡不用 "private" 這個詞，是因為 Python 中沒有任何 attribute 可以真正是 private（若不費一番不必要的苦工）。
+
+另一類 attribute 是那些屬於 "subclass API" 的一部分的（在其他語言通常叫做 "protected"）。有些 class 是專門設計成要被繼承，以擴展或修改 class 的功能。設計這種 class 時，注意明確地決定哪些 attribute 是 public，哪些是 subclass API 的一部分，哪些則是只供 class 本身使用。
+
+謹記這些 Pythonic 指導原則：
+
+＊public 的 attribute 開頭不該有底線。
+＊如果 public 的 attribute 名稱和保留的關鍵字衝突，在名稱後加一個底線。這樣做比用縮寫或省略拼寫好。（不過雖然有這項規則，'cls' 還是建議用在變數或參數是一個 class 的時候，特別是 class method 的第一個參數。）
+
+    注意：參考上面有關 class method 參數名稱的建議。
+
+＊對於簡單的資料型 public attribute，最好只提供 attribute 名稱，不要有複雜的 accessor/mutator method。要記得 Python 為以後的改進提供容易的辦法，以便你發現簡單的資料型 attribute 需要發展成函式型的功能時利用。在那種情況下，用 property 將函式性的實作隱藏在簡單資料型 attribute 的存取語法後面。
+    * 注意一：property 只在 new-style class 中有作用。（譯註：new-style class 表示至少繼承了一個 class；classic class 則完全沒繼承別的 class）
+    * 注意二：試著讓函式型功能沒有副作用，雖然像暫存之類的副作用通常是好的。
+    * 注意三：避免將 property 用在需要大量運算的處理上；attribute 表示法會讓呼叫端相信它存取起來是（較）不費工的。
+＊如果 class 打算被繼承，但有些 attribute 不想讓 subclass 使用，考慮將它們命名成開頭有雙底線而結尾沒有底線。這會啟動 Python 的 name mangling 機制，讓 class 名稱被 mangle 到 attribute 的名稱。如此有助於避免 subclass 的 attribute 不小心用了相同名稱時造成的衝突。
+    * 注意一：只有單單 class 名稱（不含 module 和 package）會用於 mangle 之後的名稱，所以如果 subclass 選擇了相同的 class 名稱和 attribute 名稱，還是會導致名稱衝突。
+    * 注意二：name mangling 可能會使得某些用途上較不方便（像是 debug 和 __getattr__()）。不過 name mangling 機制有完善的文件說明，很容易可以手動處理。
+     *注意三：不是每個人都喜歡 name mangling。試著在避免意外名稱衝突的需要，和使用者可能是進階使用者之間取得平衡。
+
+
+
+程式撰寫建議
+
+＊程式應該以不會在特定 Python 實作（PyPy, Jython, IronPython, Pyrex, Psyco 之類）上不利的方式撰寫。
+
+舉例來說，不要依賴 CPython 對像 a+=b 或 a=a+b 這類形式的 statement 的高效能就地字串串接實作。這些 statement 在 Jython 中執行比較慢。在程式庫效能要求高的部分，應該使用 ''.join() 形式。這樣可以確保串接在各種實作中，都只耗費線性時間。
+
+＊和像 None 這樣的 singleton 比較時，應該永遠使用 'is' 或 'is not'，絕對不要用相等運算子。
+
+也要注意寫了 "if x" 但其實是想表達 "if x is not None" 的情況 －－ 例如，測試預設值是 None 的變數或參數是否設了新值時。新值可能是在邏輯判斷中有機會被當作 false 的型別（例如容器）！
+
+＊使用 class 型 exception
+
+字串型 exception 在新程式碼中禁止使用，因為這功能將在 Python 2.6 移除。 module 和 package 應該定義它們自己特定的基礎 exception class，這些 class 應該是內建 Exception class 的 subclass。永遠寫上 class 的文件字串。例如：
+
+　class MessageError(Exception):
+    　"""Base class for errors in the email package."""
+
+class 命名慣例適用於此，只是如果 exception 是代表錯誤時，exception class 名稱字尾要加上 'Error'。非錯誤類的 exception 不需要加特定字尾。　　
+
+＊發出 exception 時，寫成 "raise ValueError('message')" 而不要用舊格式 "raise ValueError, 'message'"。
+
+推薦括號格式是因為，exception 參數很長或包含格式化字串時，由於有括號，可以不必用行接續字元。舊的格式將在 Python 3000 （譯註：3.0）中移除。
+
+＊捕捉 exception 時，盡可能註明特定的 exception 而不要只用空的 'except:' 子句。
+
+例如：
+
+　try:
+    　import platform_specific_module
+　except ImportError:
+　    platform_specific_module = None
+
+空的 'except:' 子句會捕捉 SystemExit 和 KeyboardInterrupt 這兩個 exception，造成 Control-C 無法中止程式，而且可能掩蓋住其他問題。如果想捕捉所有代表程式錯誤的 exception，可以用 'except Exception:'。
+
+有個好的法則是限制空的 'except' 子句只能用在兩種情況：
+＊exception 會被印出或記錄，至少使用者能注意到有錯誤發生。
+＊程式需要做些清理工作，但之後就用 'raise' 將 exception 往上發。'try ...finally' 是處理此情況較好的方式。
+
+＊此外，對於所有 try/except 子句，將 'try' 子句的程式碼數量限制在所需的最少數量。如此也能避免掩飾住 bug。
+
+這麼寫：
+
+　try:
+    　value = collection[key]
+　except KeyError:
+　    return key_not_found(key)
+　else:
+　    return handle_value(value)
+
+不要寫：
+
+　try:
+    　# Too broad! （太廣！）
+    　return handle_value(collection[key])
+　except KeyError:
+　    # Will also catch KeyError raised by handle_value()
+　    # （也會捕捉到 handle_value() 發出的 KeyError）
+　    return key_not_found(key)
+
+＊用字串的 method 而不要用 string module 的 function。
+
+字串的 method 總是快得多，而且和 unicode 字串共用同樣的 API。需要相容於比 Python 2.0 舊的版本時，可以打破此規則。
+
+＊用 ''.startswith() 和 ''.endswith() 比對字串的字首和字尾，而不要用字串 slice。
+
+startswith() 和 endswith() 更清楚明白且不容易出錯。例如：
+
+這麼寫：
+
+　if foo.startswith('bar'):
+
+不要寫：
+
+　if foo[:3] == 'bar':
+
+唯一例外是你的程式碼必須在 Python 1.5.2 運行（希望不要）。
+
+＊比較物件型別應該永遠用 isinstance() 而不要直接比較型別。
+
+這麼寫：
+
+　if isinstance(obj, int):
+
+不要寫：
+
+　if type(obj) is type(1):
+
+檢查物件是不是字串的時候，別忘了它也可能是 unicode 字串！Python 2.3 中，str 和 unicode 有共同的 base class －－ basestring，所以可以這樣寫：
+
+　if isinstance(obj, basestring):
+
+Python 2.2 中，types module 裡為此用途定義了 StringTypes 型別：
+
+　from types import StringTypes
+　if isinstance(obj, StringTypes):
+
+Python 2.0 和 2.1 中，應該這麼寫：
+
+　from types import StringType, UnicodeType
+　if isinstance(obj, StringType) or \
+　   isinstance(obj, UnicodeType) :
+
+＊對於序列（string, list, tuple），利用空序列代表 false 的特性
+
+這麼寫：
+
+　if not seq:
+　if seq:
+
+不要寫：
+
+　if len(seq)
+　if not len(seq)
+
+＊不要寫出尾端需要有大量空白的字串常量。這些尾端的空白視覺上不易辨別，而且有些編輯器（或者像是 reindent.py）會將它們刪除。
+＊不要將邏輯值用 == 去和 True 或 False 比較
+
+這麼寫：
+
+　if greeting:
+
+不要寫：
+
+　if greeting == True:
+
+更不要：
+
+　if greeting is True:
+
+
+References
+
+    [1] PEP 7 (http://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
+
+    [2] http://www.python.org/doc/essays/styleguide.html
+
+    [3] PEP 257 (http://www.python.org/dev/peps/pep-0257), Docstring Conventions, Goodger, van Rossum
+
+    [4] http://www.wikipedia.com/wiki/CamelCase
+
+    [5] Barry's GNU Mailman style guide http://barry.warsaw.us/software/STYLEGUIDE.txt
+
+    [6] PEP 20 (http://www.python.org/dev/peps/pep-0020), The Zen of Python
+
+    [7] PEP 328 (http://www.python.org/dev/peps/pep-0328), Imports: Multi-Line and Absolute/Relative
+
+_______________________________________________________________
+
+■ [自由專欄] 公開觀點：如何挽救廢棄的開源專案
+
+作者是 謝良奇／編譯
+
+◎本文翻譯自 WIRED，原作者為 Klint Finley：
+http://www.wired.com/wiredenterprise/2013/12/forked/
+
+Forked？那是什麼？這是一個讓廢棄開源專案死而復生的網站。而且這是值得高興的一件事。
+
+看看 Jonathan Gillette 的例子，他更廣為人知的稱號是 “why the lucky stiff”。2009 年，他做了資訊自裁 (infosuicide)，他刪去自己的部落格、Twitter 帳號，以及在程式碼協作網站 GitHub 上所發佈過的所有開源軟體。
+
+Gillette 開發過若干知名應用程式，包括 Shoes，這是用 Ruby 程式語言建立圖形化應用軟體的工具套件，也是一套教導孩童寫程式的互動式教材。對社群來說，遺失這些專案是一大損失，好險，因為許多開發者都有 Gillette 的程式碼副本，他們得以救回這些專案。
+
+這就是開放源碼的美妙之處。由於開源授權允許所有人修改並重新散佈專案程式碼，任何開發者都可以接續創造者遺留下來的成果。許多知名開源應用軟體都是這樣開發出來的。WordPress，這套 WIRED 與許多網站使用的知名部落格平台，事實上也是一個稱為 b2 的中止專案的延續。
+
+問題是找出專案的後繼者並不總是那麼簡單。而這正是比利時開發者 Schutz Yannick 決定建立 Forked 的原因。這是一個用來針對中止開源專案，找出替代且受到積極維護版本的網站。
+
+Forked 靠的是 GitHub。GitHub 讓開發者能輕易複製感興趣專案的程式碼。只要用滑鼠一點，開發者馬上就能建立專案的本地副本。這些副本，在開放源碼用語中則稱之為分支 (forks)，可以讓開發者做出修改試驗，通常是為了向原專案提交臭蟲修改或新的功能。不過當專案創始者停止更新程式碼，甚至加以刪除時，這些副本也可以派上用場。
+
+雖然你可以在 GitHub 上觀看專案的分支清單，不過 Yannick 覺得預設的分支頁面不太理想。Yannick 說，他想，是不是能做一個更好的頁面？這就是 Forked 的開始。
+
+沒錯，Yannick 把 Forked 本身也開源了。是的，開源在 GitHub 上，而且有一些人已經開設了分支。
+_______________________________________________________________
+
+■ [自由專欄] 關上 Windows 之門：更換作業系統指南
+
+謝良奇／編譯
+
+◎本文翻譯自 PC World，原作者為 Tony Bradley：
+http://www.pc1world.com/article/2080301/closing-the-door-on-windows-a-guide-to-changing-operating-systems.html
+
+是時候丟掉 Windows XP，或者乾脆放棄 Windows 了嗎？ Windows 8 在 8.1 升級後有了大幅度的改善。然而，對於大多數用戶來說，Windows 8 納入動態磚 (Live Tiles) 且移除了開始功能表的現代風格介面，依然不受歡迎。此外，與其他平台相較之下，安全性一直是 Windows 較為人詬病之處。
+
+如果你還在用 Windows XP，升級到 Windows 8.1 或 Windows 7 （如果你還找的到的話），可能不僅是更換作業系統這麼簡單。你現有的硬體設備可能跑不動新版 Windows 作業系統，就算可以，你也很可能必須更換軟體與週邊設備。
+
+如果你計劃投入時間與金錢，準備更換到新作業系統，你可以把所有選擇都納入考慮。Microsoft 對桌面市場的箝制，近幾年來已不如以往，Mac OS X、Linux、甚至 Chrome OS，都是先進的作業系統，主流接受度也正不斷成長中。以下是你選擇其中之一所要面臨的考量。
+
+
+Mac OS X
+
+人們（不只是 Apple 行銷人員）有種說法是，一旦你用了 Mac，你就回不去了。Apple 定義了我們今日所知的圖形使用者介面 ，並且成為了用戶親和力運算上的標竿。Mac 給人昂貴的印象，但這一點現在並非完全正確。你當然可以找到更便宜的 Windows 桌機與筆電，但是從價格與功能比看來，Mac 和類似配備的 Windows 電腦可說不相上下，而且有時候價格更便宜。
+
+優點
+
+和 Windows 相比之下安全性問題較少，是 OS X 最明顯的優勢。作為主流作業系統，免不了會成為攻擊目標。Mac 並非對惡意軟體攻擊免疫，但可以大幅地減少你的安全風險。
+
+OS X 也具有價格優勢。Windows 8.1 完整版要價 120 美元。在過去幾年，OS X 升級價格約 20 到 30 美元不等，最新版 Mavericks 更是直接免費。OS X 也有自己的生產力套件 iWorks，並以強大電郵、記事、日曆、媒體播放、相片編輯、即時通訊應用軟體而自詡。
+
+在 Mac OS X 系統上，你可以繼續使用 Windows，不論是透過雙重開機設定，或是使用像 Parallels 這類的虛擬機器軟體。不過你還是需要一份合法授權的 Windows，你也需要對所使用的 Windows 版本做修補和更新。這套系統也和獨立的 Windows PC 有同樣的安全弱點，但是你可以藉此使用那些你無法捨棄的舊 Windows 應用軟體。
+
+缺點
+
+除非你使用虛擬化的 Windows，否則換到 OS X 表示你得更換所有軟體。知名產品像是 Microsoft Office （如果你不想用 iWorks 的話）或 Adobe Creative Suite，都有 Mac 版本，不過對於其他軟體，你就得找尋替代方案。不論如何，兩者都會提高轉換成本，並延緩熟悉新軟體的學習曲線。當然，如果你從 Windows XP 升級到 Windows 8.1，也會碰到類似難題。
+
+
+Linux
+
+如果你希望在現有硬體上安裝新的作業系統，Linux 是顯而易見的選擇。這套開放源碼的作業系統分為許多不同種類，其中最常見的是 Ubuntu Linux。一般而言，Linux 對硬體的要求較少，較能夠運作在舊電腦上。Acer、Asus、Dell 都有使用 Linux 的筆電。
+
+優點
+
+使用 Linux 的最大好處就是成本。大多數 Linux 散佈套件是免費的，在上面跑的應用軟體也是一樣。
+
+和其他平台比起來，Linux 比較不像是硬體資源怪獸，相較 Windows 或 OS X，Linux 可以順暢地跑在記憶體與硬碟空間較少的老舊處理器上。你可以在 KDE 與 GNOME 等各種使用者介面桌面環境中做選擇，如果你想要的話，你還可以安裝或製作和 Windows XP 視覺上相同的桌面環境。
+
+和 Mac OS X 一樣，Linux 可以在雙重開機或虛擬機器上跑 Windows。像 WINE 這種工具可以在 Linux 中原生運行 Windows 軟體。
+
+缺點
+
+你必須更換所有使用的應用軟體，你也得找到你印表機、無線網卡與其他週邊設備的驅動程式，或者更換為 Linux 相容設備。
+
+開放源碼這一點，對於 Linux 在支援和故障排除方面，可說是把雙面刃。在大多數情況下，你只會從開放源碼專案下載軟體，並沒有背後的公司提供支援。某些 Linux 散佈套件有可供購買的支援選項。好處是所有你需要了解的一切，在線上都找的到，而且有豐富的討論區，其中多的是樂意提供幫助的 Linux 專家。
+
+
+Chrome OS
+
+由 Google 開發的 Chrome OS，是這個領域的新成員。這是一套以 Web 為中心的平台，基本上是把瀏覽器本身當成作業系統。
+
+優點
+
+在 Chrome OS 機器上，你遇到的安全問題會比 Windows PC 少很多，部分是因為 Chrome OS 相對較不普及，部分是因為大多數情況下，該作業系統並不是用來執行本地安裝的軟體，也不會把資料存在本地電腦上，因此可以攻擊的漏洞要少得多。
+
+如果你已經投資在 Google 生態體系，Chrome OS 會是不錯的產品。它圍繞著 Google 服務，並漂亮地整合了 Android 智慧型手機與平板，讓你存取同樣的電子郵件、資料與其他資訊。
+
+缺點
+
+反過來說，如果你不使用 Google 的服務，Chrome OS 對你就派不上用場。你當然可以在 Chrome OS 上使用 Office 365、SkyDrive 和其他雲端服務，不過何必自討苦吃呢。
+
+因為 Chrome OS 的大多數功能綁定在雲端服務與資源，如果沒有網際網路連線，它的功能會嚴重受限。Google 最近推出了可離線使用的 Chrome Apps，不過它們並不是你在 Windows、Mac OS X、Linux 上使用的全功能軟體。
+
+就像酒吧打烊時說的「你不一定得回家，但你得離開這裡」一樣，你不一定要升級到 Windows 8.1 或 Windows 7，但你必須丟掉 Windows XP，換到下個平台。改變是痛苦的，但是如果無論如何要改，最好把所有選項都納入考慮。
+_______________________________________________________________
+
+■ [源碼新聞] Red Hat 與 CentOS 合作打造開放源碼新局
+
+黃郁文／編譯
+
+Red Hat 與 CentOS 專案 (Community Enterprise Operating System Project, CentOS Project)，近日宣布要攜手打造，便於自由開放源碼社群進行創新的園地，以讓開發者能於雲端、虛擬環境及軟體定義網路 (Software-defined networking, SDN) 上的開發更易於發揮，其打的算盤是，一旦 CentOS 成為 Red Hat 家族的成員之一，將有助於 CentOS 原有的社群成員，參與 OpenStack、RDO、Gluster、OpenShift Origin 以及 oVir 這些 Red Hat 戮力參與推動的開放源碼專案；也就是說，透過與 CentOS 成員合作的方式，來更加提升相關開源專案的開發效益。然而，令人尋味的是，CentOS 之於 Red Hat 主推的商用 Linux 系統 RHEL (Red Hat Enterprise Linux)，本就是一個社群自主發展式的孿生專案，也就是說，CentOS Project 的主要架構是依照 RHEL 釋出的程式源碼來編譯而成，移除掉 RHEL 內不能自由使用的商標與閉源元件之後，另行衍生但亦具高度穩定性的開源分流。那麼，此一 RHEL 與衍生版本 CentOS 的合作宣示，未來將於自由開源軟體的生態系中帶來如何的影響，確實已引起了眾人的注目。
+
+對照 Red Hat 官方推出的 RHEL，自由開源軟體世界裡本就有一個主力由 Red Hat 贊助運作的 RHEL 社群版本–Fedora Linux，Fedora 被視為 Red Hat 對許多新技術的測試平台，經試用後被認可的技術，最終也會加入到 RHEL 支援的商業套件庫中。既然如此，為何 Red Hat 會決定於此時展開與 CentOS Project 的合作呢？概括的說，以 RHEL 程式碼為基礎的 CentOS，其更新速度雖不如 Fedora，但卻擁有不亞於 Fedora 的社群支持度，並且也受到很多企業級使用者的青睞和採用。CentOS 可說是 Red Hat 最重要產品 RHEL 的社群發展孿生版，既然如此，當 CentOS Project 發展到更大的規模，此一成果亦有可能會將 RHEL 版本的付費客戶帶走。然而，依照 Red Hat 表示，其打算未來能與 CentOS Project 開發團隊，共同開創新的 CentOS。此一作法對於 Red Hat 帶來的好處是，藉由這樣的合作案，讓 CentOS Project 現有的開發團隊與社群參與者，能直接接觸 Red Hat 主推的 OpenStack 專案，及相關的巨量資料等新創科技，以加速此一領域的技術發展，而 OpenStack 亦將有機會，藉由這些開發者的參與，開拓出一個讓其他專案可簡易存取的軟體活用體系，未來不論透過 Red Hat 官版的 RHEL，或是與 Red Hat 合作建置的 CentOS，都可以在相通平台上進行資料與程式插件的交互運作，這是因為，在自由開源的世界裡，程式平台的價值並不僅僅在於授權金費用的估算，很多時刻其實程式平台的使用率與擴散率，才是真正能夠證明軟體價值，並建立可靠商業營收模式的保障，而事實上，多數的自由開源軟體專案若沒有奉行雙重授權模式 (Dual-licensing model)，亦很難直接透過商業授權金的方式來收取費用。
+
+所以，Red Hat 目前與 CentOS Project 的合作方式，就是透過資金浥注、分享系統細部建置文件的方式，來一起將共享的系統架構與軟體標準的延展市場做大！
+
+這樣的合作方案，形式上似乎與 RHEL 和 Fedora 專案的互動模式沒有太大的差異，然而，透過與 CentOS Project 的合作案，Red Hat 期待這是一個擴散其在自由開源軟體世界影響力的新嘗試，一方面有助於 RHEL 客戶層的拓展，另一方面也得以確保 Red Hat 在自由開放源碼技術創新與社群合作上的領導地位。與此相對的，CentOS Project 參與成員亦表示，由社群與群眾參與的 CentOS Linux distribution 並不會在此合作案展開之後便消失不見，雖然專案未來在開發執行上，會由 CentOS Project 核心團隊與 Red Hat 指派成員，一起組成的管理委員會 (CentOS Governing Board) 來共同監督照看，不過此一管理主要是針對技術開發統一標準的立場來運作，除此之外，RHEL 與 CentOS Project 之間的防火牆與區隔性仍在那裡，那就是 CentOS Project 將堅持以自由開放源碼的方式來開發相關的程式元件，而其專案的運作，亦將獨立於 RHEL 部門以外，有獨立發展的社群自由度，將改變的，僅是此一專案未來所依循的開發程序與方法將更加的透明化與具有 RHEL 系統的融通性，稍後，CentOS Project 的核心參與者，亦將舉辦幾場 Google Hangouts，來向所有感興趣的社群朋友們說明未來將發生的改變。
+
+
+參考網址：
+
+1、Red Hat 與 CentOS 合作推動 Linux 及 Openstack
+http://www.theinquirer.net/inquirer/news/2321948/red-hat-and-centos-team-up-to-push-linux-and-openstack
+
+2、Red Hat 與 CentOS 合作加速開放源碼創新
+http://www.businesswire.com/news/home/20140107006759/en/Red-Hat-CentOS-Project-Join-Forces-Speed#.UtUC59U09FI
+
+3、Red Hat 吸納其在開源世界裡的孿生兄弟–CentOS
+http://www.zdnet.com/red-hat-incorporates-free-red-hat-clone-centos-7000024907/
+_______________________________________________________________
+
+■ [源碼新聞] Linux 作業系統讓小朋友也能快樂的使用！
+
+黃郁文／編譯
+
+想讓小孩學電腦，卻又擔心作業系統的複雜性讓小孩難以操作及學習？或是小朋友的狀況是沉迷於電玩遊戲與上網閒晃，對電腦作業系統的軟硬體架構毫無概念？試試自由開放源碼的 Linux 吧！因為採用自由開源的方式釋出，Linux 其實有多種經過有心志工朋友客製化，相當適合小朋友使用的作業系統，這些作業系統，不但能夠讓小朋友易於上手，同時還可以紮紮實實的，協助他們學習到電腦操作相關的知識。
+
+十年以前，全球約 97％ 的個人電腦作業系統，都是採用微軟的 Windows 系列，但時至今日，Linux 已經超越微軟作業系統的擴散率，而充斥於我們的日常生活的每一環裡！不管是家用電腦、智慧型手機、平板裝置，支撐 Google、Facebook、Twitter 等網路服務的伺服器，或是上至太空中心、航空交通控制，下至車用科技、車載裝置、超級電腦等，都已經大量使用了 Linux 作業系統，所以若是希望小朋友未來，能夠擁有創造環境、與時俱進的學習能力，而不只是單單操作軟體程式的介面，而不懂得背後的開發原理，那麼 Linux 與自由開放源碼系統相關知識的學習，已經是一個必備能力！舉例來說，知名的「每童一機 (One Laptop per Child, OLPC)」計畫，就是以 Linux 作業系統來發展的專案，以讓開發中國家偏遠地區的學童，不但可以透過 OLPC 來學習資訊系統的操作，同時亦有機會學習到其背後運作的基礎知識。此外，Linux 作業系統的多元化與多樣性，也非常適合用來為孩童量身訂作合適的數位學習–e-learning 環境，不會落入傳統商用軟體，一套系統服務所有用戶的窘境。
+
+在上述的理念與推動下，Linux 在教育領域的志工社群，提供了多樣專為小朋友設計的作業環境，以下擇要為各位介紹：
+
+1、Qimo (http://www.qimo4kids.com/)
+
+Qimo for kids 是一套專為小朋友設計的 Ubuntu Linux 作業系統，其使用 XFCE 等輕簡型的桌面環境，所以即使在硬體資源不足的設備上，也能順暢的運作與被使用。Qimo 還能指定電腦原有的網域伺服器 (DNS servers)，以達到線上防護的機制，此外，Qimo 預載多種適合 3 歲以上幼童使用的教學應用程式，搭配 Gcompris 與其他應用程式，能用來運作教導小朋友基礎電腦概念、閱讀、歷史及畫圖等等技能的遊戲，其卡通桌面設計也很吸引小朋友。
+
+2、Sugar (https://www.sugarlabs.org/)
+
+Sugar 是針對 OLPC 計畫所設計的系統，提供 25 種語言的操作介面，其簡易使用度，就連不懂得讀寫的小朋友也能快速上手，Sugar 的開發目的，著重於激發孩子的認知與社會建構能力，讓小朋友能透過親自探索與合作的模式，來學習新知識。
+
+3、Ubermix (http://www.ubermix.org/)
+
+Ubermix 目前廣泛應用於學校的教學體系中，原本是設計用來在不同硬碟分割區 (partitions) 內儲存使用者檔案與軟體，好在電腦當機時，可以在最快的時間內，重新安裝與重建系統。此套系統經過演變之後，也可以用來預載許多適合學童操作的學習軟體，Ubermix 創始人 Jim Klein 表示，Ubermix 目前已預載了許多教育應用程式，像是 Celestia、Stellarium、Scratch、VirtualLab Microscope、Geogebra、iGNUit 與 Klavaro；以及教學遊戲，如 TuxMath、TuxTyping、gMult 與 Numpty Physics。可說麻雀雖小、但五臟具全的教學用作業環境。
+
+4、Edubuntu (http://www.edubuntu.org/)
+Edubuntu 就是 Ubuntu Linux 在教育方面特有的發行版本 (Education Edition)，是與教育家及老師共同合作開發的學習版本，除了搭載多種學習程式外，還可存取 Ubuntu 官方的軟體套件庫，故其硬體驅動上的支援程度，遠比其他類型的 Linux 作業環境為高，目前也被許多教育機構廣泛地使用，是比 Qimo 及 Sugar 更適合大朋友使用的 Linux 系統環境。
+
+5、DoudouLinux (http://www.doudoulinux.org/web/english/)
+
+是為 2-12 歲的小朋友所設計的作業系統，只要下載 CD 影像檔並燒錄後執行，就可使用，此種 LiveCD 的運作方式，不會更改原本電腦的預設作業系統，且有網頁內容過濾機制，父母可以安心放手地讓小朋友使用。
+
+6、ezgo (http://ezgo.westart.tw/ezgo11/)
+
+ezgo 是國內教育部校園自由軟體數位資源推廣服務中心，為校園自由開源軟體推動所製作的推廣系統，目前為部份國民電腦選定的作業系統，定期會推出更新版本，提供給各縣市的教育單位與學校機構進行使用。其不但採用自由開源的 Linux 作業系統為開發基礎，並且內嵌許多豐富且具多元教育意涵的數位教材，非常適合有心接觸自由開源軟體應用與學習的大朋友、小朋友，下載安裝來使用。
+
+其他為小朋友設計的作業環境還有 Debian-Edu (http://wiki.debian.org/DebianEdu)、Fedora Education Spin (http://spins.fedoraproject.org/edu/)、Guadalinux-Edu (http://www.guadalinexedu.org)、OpenSuse-Edu (http://en.opensuse.org/Portal:Education) 與 Uberstudent (http://uberstudent.org)，有興趣的家長老師可多方嘗試，為自家小朋友找到最適合的電腦學習作業環境！
+
+
+參考網址:
+
+1、四套適合小朋友使用的 Linux 作業系統
+http://opensource.com/education/14/1/teaching-kids-linux
+
+2、適合小朋友的教育作業系統 
+http://edubuntu.org/other-educational-systems
+
+3、教育性質的 Linux 作業系統幫助小朋友認識科技
+http://opensource.com/education/13/3/ubermix-linux
+
+4、對小朋友最棒的免費作業系統
+http://www.techsupportalert.com/content/best-free-operating-system-kids.htm
+
+5、ezgo–校園自由開源軟體應用在台灣
+http://dot.kde.org/2013/10/02/ezgo-free-and-open-source-software-taiwans-schools
+_______________________________________________________________
+
+■ [源碼新聞] 開放源碼專案 CodeCombat 讓你邊玩遊戲邊學寫程式！
+
+黃郁文／編譯
+
+CodeCombat (http://codecombat.com/) 是一個教導小朋友及學生如何撰寫程式的多人參與遊戲軟體，玩家若想要提升所操控角色的力量，來打敗遊戲中的怪獸，就必須要自行撰寫 JavaScript 來達成這個目標！也正是透過這樣的方式，讓入門者，甚至小朋友，都能透過參與式的學習方式，在遊戲潛移默化與渴望破關的動力下，學會怎麼寫電腦程式！而在今年 (2014) 1 月 8 日，CodeCombat 正式加入自由開放源碼專案的行列，程式碼的部份採用最輕鬆且不帶拘束性的 MIT License，而在圖示、畫作，與音樂方面，則採用「創用CC-4.0 姓名標示 (Creative Commons Attribution 4.0 International License)」的方式來向外釋出，可以說，CodeCombat 是一個不折不扣、紮紮實實符合開源共工與創用共享理念的公眾授權專案，其開發團隊預期讓 CodeCombat，能透過開放社群共工合作的模式變得更好，進而嘉惠更多人能在入門時，不被程式開發繁複的相關知識嚇到，而更可以透過遊戲參與的方式，逐步了解並一窺程式開發的堂奧。
+
+CodeCombat 初期是由一家名為 YCombinator 的新創公司所開發。YCombinator 認為最佳的程式撰寫教學方法，最初雖是以授課形式開始，但當使用者上手之後，就應該轉以開放源碼專案的共工模式進行，「從做中學 (Learning by doing)」，這才是實際學習程式碼寫作的最佳模式。
+
+所以 CodeCombat 這個專案在發想時，已經計畫未來將要開放所有的程式源碼，以深化其教學的功效。CodeCombat 的實際玩法，是讓入門玩家一開始時，先透過遊戲內的小老師循循教導程式碼編寫的基礎知識，一旦玩家跨過基礎知識的學習門檻後，就可以加入專案實際運作的套件庫，來和世界級的開發者共同合作開發產品，並參與自己感興趣的專案。自從 CodeCombat 以開源的方式釋出後，立即獲得廣大迴響，其除了蟬聯 GitHub 前十大趨勢專案 (trending repos) 排行榜多時，並已成為指標性以 CoffeeScript 為開發基礎的軟體專案。
+
+CodeCombat 在宣布開放源碼時所發文稿表示，CodeCombat 不採用多數新創公司所選擇的封閉源碼模式，此舉除了規劃跳脫傳統窠臼外，更重要的原因是，CodeCombat 這個專案從創立以來，一直就是透過上百位玩家自願協力開發、撰寫文件、測試而成的共工專案，經由這些社群朋友的協助，目前甚至已經有 17 種語言版本問世。CodeCombat 表示，其目標是要教會參與遊戲者如何寫好程式，而其所設計不同關卡的玩法，更可讓初學者循序漸進，從軟體寫作的新手變大師，並使所有人都能夠輕鬆地對開放源碼社群的運作做出貢獻。
+
+CodeCombat 的中期目標，是希望打造 CodeCombat 專案的開發者社群，同時提供豐富多樣的互動方式，讓學生與入門者能不間斷透過遊戲的方法，學習到電腦科學方面的知識，並進一步透過持續的努力，成為未來所有想要學會程式寫作的朋友，覺得最好玩與最感興趣的啟蒙老師！
+
+
+參考網址：
+
+1、CodeCombat 讓你邊玩 game 邊學寫程式
+http://opensource.com/education/14/1/open-source-game-codecombat
+
+2、CodeCombat 於 GitHub 上的託管頁面
+https://github.com/codecombat/codecombat
+
+3、CodeCombat 官方部落格
+http://sett.com/codecombat
+
+4、CodeCombat：透過玩遊戲學習 JavaScript 程式設計
+http://sealmemory.blogspot.tw/2014/01/codecombat-coding-strategy-game.html
+_______________________________________________________________
+
+■ [源碼新聞] 更適合在 Windows 上使用的 Libreoffice 4.2 版正式釋出並提供免費下載！
+
+黃郁文／編譯
+
+自由開源且可提供免費下載的辦公室文書處理軟體 Libreoffice 4.2 版出爐了！此一版本的最大特色，可說就是大幅度深化其在 Windows 作業平台的易用性，以及和 Windows Office 檔案格式之間的相容性！
+
+從此佈局可以看出，Libreoffice 4.2 的更新版本，想要吸引 Microsoft Office 企業用戶的企圖。在此之前，LibreOffice 與 Microsoft Office 在相容性上的問題，主要是雙方解讀 OOXML 格式檔案的作法不同，導致兩者在檔案流通方面，常因此無法相互開啟或會造成資料損壞，此次 4.2 版的改良，大大增加 LibreOffice 與私有應用程式 (proprietary software) 之間的相容性，除了提升 Microsoft Office 之間的檔案相容性外，並一併擴大了其與 Visio 與 Publisher 這些常見程式的檔案相容性，讓 LibreOffice 能更為 Microsoft Office 的傳統使用者所接受。
+
+其他改良還有像是讓匯入匯出 Microsoft RTF 檔案更為容易，以及新增過濾 AbiWord 文件的功能。此外，Libreoffice 4.2 大舉增加了試算表 (spreadsheet) 的計算方程式，此外 LibreOffice 的試算表軟體 Calc 在搭配 OpenCL 之後，現已可進行 GPU 加速 (GPU-accelerated)，並可將此功能延伸至大型試算。除此之外，Libreoffice 4.2 逐步停用需要 Java 的元件，而改採 IBM IAccessibility 2 套件，其他更新還有讓 iOS 使用者，能夠直接透過預設的簡報遠端遙控功能 (Impress Remote Control)，以透過手機操控 LibreOffice 來遠距離播放簡報，這個功能已經在 Android 手機上實踐已久且大受好評，目前也能進一步嘉惠到 Apple 系統的愛用者。
+
+總體而言，Libreoffice 此次的更新升級，是有史以來對該辦公室文書處理軟體最大規模的重新編碼 (recoding)，重新編碼的主要目的，就是要提升其與 Windows 7 及 Windows 8 系統下應用程式更好的整合性，讓檔案不但能夠跨應用程式被交互編輯，而文件更可以集結顯示於 Windows 作業系統預設的工具列與快顯列，以提高使用者操作上的便利性。
+
+可以說，近日英國內閣部長 Francis Maude 才宣布，英國政府與相關公部門，將朝使用自由開放源碼文件軟體的方向發展，而是否能夠達到這個目標，關鍵點便是有賴自由開源軟體與民間常用私有閉源軟體間的互相操作性，能否得到合理的強化與補足，而這一點，正是 Libreoffice 目前戮力進行的改造重點。對於此次 LibreOffice 所釋出的新功能，想深入瞭解的使用者可參考 LibreOffice 官方網頁的介紹與說明：https://www.libreoffice.org/download/4-2-new-features-and-fixes，至於更新版本的 4.3 版，則預計會在 2014 年 7 月接續推出！
+
+
+參考網址：
+
+1、與 Windows 系統整合性更佳的 Libreoffice 4.2 要來挑戰 Microsoft Office 
+http://www.theinquirer.net/inquirer/news/2326295/libreoffice-42-challenges-microsoft-office-with-improved-windows-integration
+
+2、LibreOffice 4.2 在格式相容上搭起與 Microsoft Office 之間的橋梁
+http://www.infoworld.com/t/open-source-software/libreoffice-42-better-bridges-the-gap-microsoft-office-235381
+
+3、更快更好的 LibreOffice 4.2 版釋出了！
+http://www.zdnet.com/bigger-better-faster-libreoffice-4-2-7000025807/
+_______________________________________________________________
+
+■ [源碼新聞] Microsoft 向中國尋求開源協作
+
+謝良奇／編譯
+
+◎ 本文翻譯自 Visual Studio Magazine，原作者為 Kurt Mackie：http://visualstudiomagazine.com/articles/2014/01/17/microsoft-collaborates-with-china-on-open-source.aspx
+
+Microsoft 正向海外擴展其開放源碼合作，其中特別著重雲端技術。Microsoft 開放技術 (Microsoft Open Technologies) 公司已經在中國上海設立辦公室。
+
+中國官方針對 Microsoft 日前的宣布，發表了支持聲明。這個新據點的設立，顯示 Microsoft 將投資並對中國本地開源社群提供支援。新成立的辦公室名為 Microsoft 開放技術上海有限公司 (Microsoft Open Technologies Shanghai Co. Ltd.)，將雇用工程師與標準專家，其焦點放在私有 Microsoft 產品與中國開發之開源軟體間的互通。
+
+Microsoft 開放技術總裁 Jean Paoli 在聲明中提到，對中國開發之開源軟體的更替與釋出，我們新的子公司將提供更多彈性，並且將參與現有開源和開放標準計劃，以及與中國的開源開發者進行合作。
+
+該中國子公司特別引起關注的一項焦點，是促進開源軟體與 Windows Azure 間的互通。Microsoft 去年 5 月曾宣布，將 Windows Azure 擴展到中國與該地區的其他國家。Microsoft 正與上海當地的 21Vianet 合作推出 Windows Azure 服務。
+
+在此同時，根據 CNET 報導，中國政府正迅速地推展以 Linux 為基礎的自有中國作業系統 (China Operating System，COS)，以對抗來自 Microsoft、Apple、Google 的作業系統。COS 的開發計劃來自於中國早先與 Canonical 共同開發中國 Ubuntu 作業系統的合作。
+
+約兩年前成立的 Microsoft 開放技術，是 Microsoft 獨資的子公司。在成立該子公司前，Microsoft 已經有多年與開源軟體專案的合作經驗。然而，該子公司的設立顯然是為了協助加速這些合作。
+
+Microsoft 開放技術目前與若干 Apache 開源專案合作，包括 Apache Cordoba、Apache Qpid，也和 JQuery、Node.js、WebKit 等開源社群合作。該公司將其互通性成果貢獻給 DMTF、ECMA、IETF、OASIS、W3C、ISO/IEC 在內的標準組織。對於過去恰恰因為使 Windows 不具產品互通性，而被若干公司控告的 Microsoft 而言，這樣的合作嘗試也顯示出 Microsoft 新近的風貌。
+_______________________________________________________________
+
+■ [源碼新聞] 2014 年三月份社群活動列表
+
+OSSF 電子報團隊／整理
+
+三月份的活動謝表出爐囉！有興趣的朋友們請多多邀請您的朋友們一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+
+[新竹] MozTW + Arch Linux Lab（每週一，3/3、3/10、3/17、3/24、3/31）
+時間：19:30~22:00
+地點：新竹市北區勝利路 195 號（新橋 b3）
+活動資訊：https://etherpad.mozilla.org/moztw-lab-hc
+
+
+TOSSUG BoF（每週二，3/4、3/11、3/18、3/25）
+時間：18:00~22:30
+地點：台北市中正區羅斯福路三段 284 巷 5 號 2 樓（Ville Cafe）
+活動資訊：http://www.tossug.org/
+
+
+MozTW Lab @ 基隆（每週三，3/5、3/12、3/19、3/26） 
+時間：19:00~21:00
+地點：基隆市仁愛區港西街 4 號 1 樓（1915 海洋咖啡館）
+社群網址：https://groups.google.com/group/moztw-general
+
+
+KSDG 高雄開發者社群 (Kaohsiung Software Developer Group) meetup（3/6）
+時間：19:00~21:00
+地點：高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+社群網址：https://www.facebook.com/groups/KSDGroup
+
+
+Hacking Thursday（每週四，3/6、3/13、3/20、3/27）
+時間：19:30~22:30
+地點：台北市大安區建國南路一段 166 號 2 樓 (伯朗咖啡館建國店)
+活動資訊：http://www.hackingthursday.org/
+ 
+
+MozTW Lab @ TP（每週五，3/7、3/14、3/21、3/28）
+時間：19:00~23:00
+地點：台北市中正區新生南路一段 6 號 2 樓（Thé6 6 号茶）
+活動資訊：https://groups.google.com/group/moztw-general
+ 
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚—社群經營工作雙週聚（每週五，3/7、3/14、3/21、3/28）
+時間：19:00~21:00
+地點：台北市中正區新生南路一段 6 號 2 樓（Thé6 6 号茶）
+活動資訊：http://zh.wikipedia.org/zh-tw/WP:WPTP-S
+
+
+台中自由軟體愛好者固定聚會（雙週一，3/10、3/24）
+時間：19:00~21:00
+地點：台中市中港路二段 60-3 號（默契咖啡）
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+
+Cocoaheads - Kaohsiung（3/13）
+時間：19:00~21:00
+地點：高雄市前鎮區復興四路 2 號 7 樓之 5（高雄軟體園區 B 棟 708 室）
+社群網址：https://www.facebook.com/groups/cocoaheads.kaohsiung/
+ 
+
+WoFOSS 第 43 次聚會（3/13）
+時間：19:30~22:00
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+活動資訊：https://kktix.com/events/wofoss040-201401
+
+
+CTLUG (Central Taiwan Linux User Group) meetup（3/14）
+時間：18:30~22:00
+地點：台中市西區台灣大道二段 505 號（伯朗咖啡中港店）
+活動資訊：https://ctlug.hackpad.com/
+
+
+KSDG web course（3/15）
+地點：高雄軟體園區 B 棟 708 室（高雄市前鎮區復興四路 2 號 7 樓之 5）
+社群網址：https://www.facebook.com/groups/KSDGroup
+
+
+SITCON 2014
+地點：台北市南港區研究院路2段128號（中央研究院 人文社會科學館）
+時間：8:00~18:00
+活動資訊：http://sitcon.org/
+_______________________________________________________________
+
+■ [接案工作] 2014 台灣創用CC計畫 技術工讀生徵才 
+
+＊名額：1名。
+＊薪資：依學歷日薪給付（1000元/日上下）。
+＊工作時間：依工作量調整，每週間安排約 1 - 2 個工作天 (09:30-17:30)。
+＊聘用期間：2014 年 4 - 12 月
+＊工作地點：南港中研院資創中心。
+＊性別、學歷：不拘。
+＊技能需求：
+1、資訊相關科系背景，需會HTML、CSS、Windows系統基本操作技能。
+PS.具Linux 系統基本概念，以及對開放授權議題有興趣者尤佳。
+
+＊工作內容：
+網站文章上稿、資料搬遷、電子報編輯、電腦重整等計畫相關之交付執行工作。
+
+＊應徵方式：視情形擇優通知面試，不合者恕不退件及函復。
+--請將履歷及代表作品於 2014/03/20 前寄至：allywang@iis.sinica.edu.tw，王小姐。
+--郵件主旨撰寫格式：【應徵計畫技術工讀生】-中文姓名。
+--附加包含自傳、基本資料（學經歷、聯絡方式、最快工作日期）等文件。
+--自傳、基本資料電子檔文件請用 ODT 或 PDF 格式寄送。
+_______________________________________________________________
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 執行編輯︰陳蕙蓁
+◎ 外稿編譯︰林誠夏、黃郁文、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰(1) 不得為商業目的之利用；(2) 必須標明本電子報智慧財產權屬於中央研究院；(3) 完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群(ossfepaper at openfoundry.org) 聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群 (ossfepaper at openfoundry.org) 來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

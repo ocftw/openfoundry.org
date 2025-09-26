@@ -1,0 +1,993 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 222 期 | 2013/07/16 □■□
+________________________________________________________________
+
+◎ 本期主題︰Sphinx - 用 reStructuredText 寫網站與書
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/07/30
+
+□ 本期標題 □__________________________________________________
+
+■ [源碼秘技] Sphinx - 用 reStructuredText 寫網站與書
+
+■ [源碼秘技] 如何在 Linux 與 GnuCash 上使用 Awk 進行文字搜尋與排序
+
+■ [源碼專案] 認識 Mozilla：Firefox 成長實錄
+
+■ [自由專欄] U-Boot 創造者 Wolfgang Denk 談嵌入式 Linux 的偉大成就
+
+■ [源碼新聞] 自由開源軟體德國訴訟再一例 - Welte vs FANTEC
+
+■ [源碼新聞] 軟體專利大反動 - 德國議會與美國白宮各展因應之道！
+
+■ [源碼新聞] 有史以來第一遭 - 法國國會立法通過自由開源軟體在高等教育領域裡應被優先採用！
+
+■ [源碼新聞] Netflix 釋出 Genie for Hadoop 源碼
+
+■ [源碼新聞] Stallman、Swartz 等 32 人入選網際網路名人堂
+
+■ [源碼新聞] 美國總統歐巴馬發布行政命令支持開放資料
+ 
+□ 本期內容 □__________________________________________________
+
+■ [源碼秘技] Sphinx - 用 reStructuredText 寫網站與書
+
+林雪凡／文
+
+軟體名稱：Sphinx
+介紹版本：1.1.3
+官網：http://sphinx-doc.org/
+授權：BSD license
+
+
+簡介
+
+您想要寫點東西嗎？
+
+您是否曾經期望，自己精心寫出的東西可被放在網路上公開？是否想過，要將寫出的作品放在 pdf 或 epub 閱讀器內帶著閱讀？有沒有考慮過「僅僅只寫一次，就能自動衍生出多種格式」這回事？是否希望能將很多不同的次主題寫在不同的檔案中，直到最後匯出時才自動組織，被一起發佈？
+
+對於這些問題，Sphinx 可以幫上您的忙。
+
+Sphinx 是款特別的出版軟體，以強大而又容易上手的輕型置標語言 reStructuredText 為核心，可以組織起大量獨立檔案，從而構成您整份文件。
+
+您撰寫的文件可透過不同的格式匯出出版，如匯出成一個完整的網站、一本 PDF 或 epub 電子書、單頁 HTML 文件、linux man file 等等，格式相當豐富。其中有些格式還能自行定義匯出時要採用的模版與外觀為何。
+
+不過 Sphinx 是一款命令行軟體，上手曲線略顯陡峭。而在想親手定製匯出外觀方面，那也需對目標的格式有一定程度的瞭解才行。不過請放心，本文的目標難度是「猴子也能學會」等級，太過複雜的東西不會細談，但會說到讓您能排版寫書，也能匯出為 pdf 與 html 網站。
+
+本文假設大家的平台是 fedora 18 + sphinx 1.1.3 版，過程中如果沒有特別提及，就表示環境為此。其他平台也可用力參考。
+
+
+安裝說明
+
+關於 sphinx，fedora 18 的套件庫中就有，那就裝吧：
+
+sudo yum install python-sphinx
+
+此處裝的是 python2 版本，您也可以裝 python3 版本。如下：
+
+sudo yum install python3-sphinx
+
+請擇一使用，兩種版本都各有一些問題需要調整，之後會儘可能提到。此外，也請儘量不要同時安裝以免意外混淆。
+
+其他 Linux、Windows、Mac OS X 的安裝說明還請看此頁。
+
+Windows 的安裝要透過 python 原碼包和 easy_install 包管理系統進行，而 Mac 系統上則是得透過 MacPorts 來安裝。
+
+
+初次使用
+
+想透過 sphinx 寫作，您必須先建立一個專案。
+
+此處所說的「專案」，可以是一本書或是一本書的不同版本，也可以是一個網站如「我的網誌」之類的。
+
+建立方式就是透過 sphinx-quickstart 程式。這是一個終端機程式，所以請打開您的終端機輸入以下指令：
+
+sphinx-quickstart
+
+如果使用 fedora 下的 python3 版本則是： 
+
+sphinx-quickstart-3.3
+
+底下會出現一堆的選項，差不多所有的選項都能事後手動修改，所以不用太緊張。
+
+有些基本注意事項，包括......
+
+
+＊專案根目錄 (root path) 如果沒有填（使用預設值），就會將當前的目錄視為根目錄，所以通常要填個名字進去。名稱不重要隨意即可。
+＊專案名稱 (project name)：對於書來說，這個專案名稱就是書名；對網站來說就是網站名。如果您在此處輸入中文請注意以下一些問題......
+    。專案名在某些匯出格式中（已知包括 pdf、epub、man、texinfo 格式），會被視為產生輸出檔案檔名的參考，而麻煩的是 sphinx 預設使用的檔名會排除非英文字元，所以中文專案名可能會將某些輸出格式（如 pdf）的輸出檔案檔名設為空白，導致明明一切正常但檔案就是輸不出來。
+    。不過您可以去 conf.py 檔案中手動設定輸出檔名。問題不大，只是要記得去設定一下。
+＊專案會有一個版本號，還會有一個釋出號。不知道設什麼就都填 1.0 吧。
+＊"Do you want to use the epub builder?" 這項建議選 y (預設為 N)，方便日後產生 epub。
+＊其他可以用預設值的就用預設值，一路 enter 按下去。這樣就完成了。
+
+
+設定檔案：conf.py
+
+包括用 sphinx-quickstart 設定的東西在內，絕大多數的設定項目都必須在 conf.py 檔案中才能調節。
+
+可設定的項目大約介紹如下：
+
+＊專案資料夾的結構：包括「模板路徑」或「副檔名」之類的瑣碎東西，通常沒必要去改。
+＊基本通用參數：像是作者名、版本號、版權聲明、使用語系等等。
+＊外掛功能 (extension)：可以啟動一些 sphinx 預設沒有啟動的額外功能。
+＊各種匯出格式的細部設定：這是設定中數量最多的部份。好比說：html 網站可以設定額外的 favicon；而 epub 可以設定額外的封面圖片與 metadata；pdf 可以設定紙張大小......諸如此類。匯出用的外觀模板也是各有不同，都可在此調整。
+
+本檔案非常非常重要，您之後是鐵定會想將它打開來改的，當然現在暫時不理倒無所謂。因此草草帶過，晚點要用時再擇重點來講。
+
+關於 conf.py 檔案的詳細說明可見此處 (http://sphinx-doc.org/config.html)。
+
+
+撰寫文章
+
+好了，切換到專案目錄下方，您會看到一個名為 index.rst 的檔案，這個檔案就是您這份專案文件的「進入點」，或說「首頁」。
+
+請先用文字編輯器將這個檔案打開，然後您就可以用 reStructuredText 格式來寫您的文件了。
+
+reStructuredText（簡稱 rst 或 reST）是一種輕型置標語言，換句話說，他寫起來和 Markdown 十分相似，不過格式比 Markdown 稍微複雜了些，而功能當然也更強。
+
+
+提示此處提醒您：除了首頁以外，您還可以在專案的目錄或子目錄下加入更多 .rst 檔案並撰寫他們。這些分散的檔案都可以被集成到您的文件中，一起發佈出去。
+要如何將多個不同的 .rst 檔案，依照正確的順序與結構聚合起來，請看之後的 toctree 章節。
+
+
+
+reStructuredText 的標準語法
+
+reStructuredText 的官方標準規格是由 docutils (http://sourceforge.net/projects/docutils/) 專案在維護；而本回的主題 sphinx 專案又在其上擴展出了一些額外命令。此處我們先不管 sphinx 自訂的東西，先看看標準 reStructuredText 格式。
+
+＊docutils 官方快速開始手冊 (http://docutils.sourceforge.net/docs/user/rst/quickstart.html) - 這份文件介紹 reStructuredText 的基本概念與基本格式寫法
+＊docutils 官方語法範例表 (http://docutils.sourceforge.net/docs/user/rst/quickref.html) - 這份文件是速查表，包含用表格呈現的大量範例。很好用。
+＊docutils 官方指令 (directives) 介紹 (http://docutils.sourceforge.net/docs/ref/rst/directives.html) - 此處的「指令」是一種有著特定格式的語法，可以幫您貼圖或自動產生目錄之類的。
+
+以上教學文件都是官方的正港貨，不過也都是英文的，未必好讀。如果您覺得中文比較順眼，網路上有佛心來著的好心人提供教學：
+
+＊VST（Vim reStructured Text）簡介 (http://cle.linux.org.tw/~edt1023/vim/vst/index.html) - 介紹一款支援 reST 格式的 Vim 外掛元件，雖然是在介紹 Vim 外掛元件，不過大多數內容都是 reST 語言通用的。行文也很容易閱讀。
+＊reStructuredText 簡易入門 (http://www.openfoundry.org/index.php?option=com_docman&task=doc_details&gid=418&Itemid=1) - 基本功能都有提到，而且很清晰，還有提示一些容易誤解的小細節。
+＊reStructuredText 簡明教程 (http://wstudio.web.fc2.com/others/restructuredtext.html) - 簡體中文的說明，寫得非常相當詳細。
+
+關於想要快速試玩的人，可以用這個線上編輯器 (http://rst.ninjs.org/) 來快速體會一下 reStructuredText。不過這個編輯器實作出來的版本比較舊，像是 code 指令與 math 指令等較新的指令都沒有做出來……但稍微玩一下還是沒問題啦。
+
+
+注意語法中的空白分隔
+
+在標準 reStructuredText 格式中，您需要注意一下空白分隔的問題。
+
+這是什麼意思？
+
+舉例來說，像是 對文字施加 *強調* 的語法 這種語法，其語法邊緣都必須要用空白分隔。
+
+＊「這樣 *能展現為* 強調的效果」 －－「這樣 能展現為 強調的效果」
+＊「這樣*不能展現為*強調的效果」 －－「這樣*不能展現為*強調的效果」
+
+如果您想要展現為「這樣能展現為強調的效果」的話，則需要用反斜線 \ 將空白取消掉。如「這樣\ *能展現為*\ 強調的效果」。
+
+這種設計，對於那些習慣用空白分隔文字的英語系國家來說是理所當然的，但是對於 CJK 語系國家就相當地冏rz。幸好已經有好野人針對本問題向官方提出 patch (http://sourceforge.net/p/docutils/patches/103/) 並被官方接受，這種麻煩事很可能會在未來的版本 (docutils > 0.10) 被消除，先等著吧。
+
+
+擴展格式
+
+在 reStructuredText 中除了基本語法外，sphinx 還額外提供了一些語法格式。這些語法格式被列在這一頁 (http://sphinx-doc.org/markup/index.html)
+
+此處列出的語法格式一大堆，不過只有一項是各位非知道不可的，那就是 toctree 指令。
+
+
+toctree
+
+toctree 指令有兩個層面的作用，第一個就是告訴 sphinx 您的檔案是如何被排列組織的；其次就是在當前的頁面位置中嵌入目錄。
+
+舉例來說......
+
+一本實驗書
+==========
+
+歡迎看本書，以下是目錄：
+
+.. toctree::
+    intro
+    help
+    about
+
+正文
+~~~~
+
+八啦叭啦～♬
+
+以上簡單的 toctree 範例只包含五行，意思是說，當前這一頁會將 intro.rst、help.rst、about.rst 三個檔案視為次級項目，並依照順序放在當前頁面之下。
+
+另一方面，toctree 也會在「以下是目錄：」這串文字下方，自動產生一份目錄列表。
+
+頁面上的目錄列表截圖如下......
+
+(http://www.openfoundry.org/images/130709/sphinx_01_toctree.png)
+▲ 圖1：toctree 產生的目錄
+
+請看，目錄內容會依照我們指定的順序，正確地顯示出來。而且「在目錄中顯示的名字」並非像是 intro 那樣簡單的檔案名稱，而是「該檔案內部最高層級的段落標題」；甚至被引用的檔案內部，所有標題也會被往下依序列出。
+
+還有一件事不知各位注意到了沒有：在「help 頁中的第二級標題 1」這個標題下方，赫然出現了「contact 頁中的頂級標題」項目。
+
+我們上述沒有指定什麼見鬼的「contact 頁」，那這條額外訊息是怎麼跑進來的？
+
+說來其實很簡單，那是因為在「help.rst」檔案內部的二級標題下，被加入了另一個 toctree，而這個 toctree 中就含括了 contact 項目，所以才會變成這樣。
+
+很明顯地，toctree 可以橫跨眾多檔案，層層遞進，將您整份文件全部串接起來。這就是 sphinx 中文件的組織方式了。
+
+toctree 中還有些別的花樣可供設定，以下是個一口氣展現出 toctree 所有特徵的範例：
+
+.. toctree::
+    :maxdepth: 2
+    :numbered:
+    :titlesonly:
+    :glob:
+    :hidden:
+
+    intro
+    content/chapter1
+    content/chapter2
+    question/*
+    幫助 ＜help＞
+    about
+
+其中用兩個冒號引住的部份是參數旗標，粗略解釋如下：
+
+＊ maxdepth：定義最深深度。
+＊numbered：標題前方會出現數字編號。
+    。注意：取消 :numbered: 旗標時，得手動刪掉 _build/doctrees 資料夾再重建，才會完全套用新值。這是 1.1.3 版的 bug。
+＊titlesonly：只有單獨的檔案才會列在目錄中，而「檔案內的子標題」不會被列入。
+＊glob：可以在下方的檔案列表中使用萬用字元（如本例中的 question/* 那行），方便一次性載入大量檔案。這些自動載入的檔案，載入順序會依照字母順序。
+＊hidden：不直接把目錄顯示在正文中，但結構依然會記錄在程式內部。目錄依然會被用在側邊欄等其他需要目錄的地方。
+
+檔名模式也有些可看的：
+
+＊不需要寫副檔名。
+＊以第 2、3 行為例，如果用資料夾作分類，則需要將資料夾名字也列入。副檔名同樣不用寫。
+＊第四行示範了萬用字元的用法，記得要搭配 :glob: 旗標使用。
+＊第五行會對應到 help.rst 檔案，不過在目錄中的顯示名稱則由 toctree 強制指定為「幫助」。
+
+ 大約就是這樣囉。
+
+
+匯出 HTML 網站
+
+依照上述格式，將文件稍微寫一寫，就可以試著匯出了！
+
+首先就先從 HTML 網站開始吧！
+
+匯出操作很簡單，只要在專案資料夾下開終端機，輸入：
+
+make html
+
+一行就搞定了。
+
+您的匯出成果，預設會被放在專案資料夾下的 _build/html 資料夾下面，請去找找。
+
+
+注意！ 如果您使用了 python3 版本，此時可能無法直接匯出。因為 sphinx-build 指令不存在。
+您可以透過修改 Makefile，將該檔案中的 sphinx-build 替換成 sphinx-build-3.3 來解決這個問題。 
+
+
+注意！ 如果您使用了 python2 版本，此時也可能無法直接匯出。這多半是遇到 UnicodeError 的緣故。對此，請確保您的專案路徑中沒有出現非英文字元。
+關於 python2 中的 Unicode 問題，本文後面也有一個更粗魯但直接的解決方案，您可以參考。 
+
+
+各種美化與調整
+
+雖然能匯出 html 了，不過美觀度讓人不甚滿意，於是進入美化階段......總之請打開 conf.py 檔案。
+
+
+提示 並不是所有可用的設定參數，都會老實以註解的型式被預先寫在 conf.py 檔案中。
+要取得完整的可設定項目清單，還請參看官網的說明頁面 (http://sphinx-doc.org/config.html)。 
+
+
+介面語言
+
+第一個該修改的應該是通用變數 language，建議將其改設為 zh_TW，之後大部份固定的介面用文字，如「search」，就會自動被轉譯成中文字。
+
+
+HTML 佈景主題 (Theme) 與網站標題
+
+其他與 HTML 相關的變數，主要集中在 Options for HTML output 這行下面。其中，html_theme 是最重要的。
+
+簡單說來，就是將 html_theme 指定為某個 theme 的名字（可用名字見這一頁 (http://sphinx-doc.org/theming.html#builtin-themes) ），之後，還可選擇用 html_theme_options 對您的佈景進行微調，不同的 theme 可接受的變數也有所不同。
+
+sphinx 還支援使用者從頭自訂一個 theme，但此處不講，請自行參看官網。
+
+另外，html_title 表示網站名稱。預設的值只適用於寫程式說明書，所以通常也要重新設定，建議自行試看看。
+
+
+增添或修改 CSS
+
+如果您要修改 CSS，請在專案資料夾下方加入以下兩個檔案（資料夾不存在請自行建立）：
+
+    _templates/page.html
+    _static/style.css
+
+然後將 page.html 檔案內容設定為：
+
+{% extends "!page.html" %}
+
+{% set css_files = css_files + ["_static/style.css"] %}
+
+透過這兩個步驟，您就可以在 style.css 檔案中隨意增添您網頁的 CSS 內容了。
+
+
+註釋 這部份資料源自 Tinkerer 專案 (http://tinkerer.me/) 的這一頁 (http://tinkerer.me/doc/theming.html)。Tinkerer 是一個用 sphinx 來架靜態 blog 的專案，各位有興趣也可試試。 
+
+
+提示 如果想進一步瞭解 page.html 檔案是在搞什麼鬼，或是想繼續深入 sphinx 的 theme 自訂功能，這一頁 (http://sphinx-doc.org/templating.html) 值得您參考看看。 
+
+
+
+變更搜尋系統分詞算法
+
+sphinx 的 html 輸出會同時包含一個搜尋介面，讓讀者能在整個網站中找資料，不過問題是 sphinx 預設的分詞算法並不適用於中文......嗯，這是個讓人頭疼的老問題了，中文分詞算法一直以來都非常地不好做。
+
+總之沒有中文分詞算法，建議用日文分詞算法暫時替代，效果會略好一點（英文分詞算法主要是用半形空白作為分隔，而日文好歹把全形逗點與句號之類的都算進去了）。
+
+要這麼做，請額外在 conf.py 中加入一行設定如下：
+
+html_search_language = 'ja'
+
+這樣在建立索引時就會套用日文模式了。
+
+
+注意！ 如果您想要拯救蒼生，請去看 site-packages/sphinx/search 資料夾，裡面端正放著英文索引與日文索引的程式碼。請參考服用。我草草翻了一下，日文分詞用程式碼應該可以透過插換詞庫讓其支援中文，有心人可以試著從此處入手。 
+
+
+
+匯出 PDF
+
+sphinx 生成 PDF 不難，但生成中文 PDF 就非常麻煩，如果要讓這生成的動作快捷、方便、不麻煩......那就更麻煩了！
+
+嗯，典型的不折騰會死行為，有病得治這我也知道......不管怎麼說，總之來折騰一下。
+
+
+事前準備
+
+先說預備知識：
+
+sphinx 預設是用 LaTeX 來渲染 pdf 的，而 LaTeX 方案很遺憾地引擎不支援 unicode，所以無法渲染中文字元，一碰上中文就報錯，這當然不能用。因此必須改用能支援 unicode 的 XeLaTeX 方案。
+
+
+提示 其實 sphinx 也支援用 rst2pdf 製作 pdf，就某種意義上來說可能比此處用 XeLaTeX 手續更簡單一點。不過因為 tex 相關資源眾多而我打算西瓜靠大邊，故此處就跳過。 
+
+
+有了預備知識，就勇敢開始吧！
+
+在 Fedora 18 下需要以下的包，直接抓來裝：
+
+sudo yum install texlive-collection-xetex texlive-collection-latexextra
+
+依賴包份量超多，有上千個之多，需要空間約為 350 MB。慢慢裝唄......
+
+
+
+設定中文相關參數與字型
+
+本章資料參考微風夕語網站的一篇文章 (http://bone.twbbs.org.tw/blog/2012-03-23-SphinxXeTex.html)。
+
+在 conf.py 檔案中，找到 latex_elements 字典中的 preamble 變數，將其代換為......
+
+'preamble': r'''
+\usepackage{fontspec}     % 引入 fontsepc，這樣才可以用下面的設定字型的指令
+\setmainfont{AR PL UMing TW}  % 預設字型
+\setsansfont{AR PL UMing TW}  % sans family 字型
+\setromanfont{AR PL UMing TW} % roman 字型
+\setmonofont{AR PL UMing TW}  % 等寬字型
+
+\XeTeXlinebreaklocale "zh"          % 設定斷行演算法為中文
+\XeTeXlinebreakskip = 0pt plus 1pt  % 設定中文字距與英文字距
+''',
+
+
+注意字串前面要加個 "r"，免得將字串中的 \u 解釋成 unicode 碼點。至於上述字型，當然可以調成系統中有的任意字型。不知道系統字型名稱的，可以用 fc-list 指令來抓取（限 Linux 使用）。
+
+
+註釋 我估計用 xeCJK 來設定字體可能會更好，不過基於某些不知名原因，我一直無法成功渲染出 PDF，會報錯失敗。
+tex 技術非我所長，歡迎各位有心人嚐試與留言。 
+
+
+另外，參考網站中有提到預設的 inputenc 是衝突套件，不過我測試時沒有發生任何問題，故此處不多費工夫去處理它。
+
+
+生成 PDF
+
+準備了那麼多，那就來具體產生看看吧。
+
+
+提示 對於生成 PDF 來說，sphinx 內部只負責產生 .tex 與相關檔案。
+當 .tex 產生好之後就沒 sphinx 的事了。sphinx 只會去呼叫外部程式 pdflatex，來將 .tex 檔處理成 pdf 檔。
+
+以上是預設工序無誤，但是還請注意，外部程式 pdflatex 不能處理中文。我們得想方設法用 xelatex 將其取代才行。
+
+手工生成 PDF
+
+先說明手工作法：
+
+＊請在專案資料夾下執行 make latex。這會在 _build/latex 資料夾下生成相應的「檔名.tex」檔案
+＊切換到 _build/latex 資料夾，接著執行 xelatex 檔名.tex。注意 xelatex 要連續執行兩次，否則目錄無法正確產生！
+
+生成的過程中可能有些問題，以下就來將其排除。
+
+
+無法產生 .tex 檔案？
+
+如果您在當初建立專案時用了純中文，則您的 .tex 檔案檔名可能會被設為空檔名。導致明明沒有任何錯誤訊息，關鍵的 .tex 檔案就是產生不出來......
+
+要解決這個問題，請打開 conf.py 並尋找 latex_documents 變數。以下是個例子：
+
+latex_documents = [
+  ('index', 'filename.tex', u'作品名',
+   u'作者名', 'manual'),
+]
+
+請檢查第二個變數（上例中的 filename.tex），確定它是一個正常的檔名。如此一來就沒問題了。
+
+
+language 與 babel 問題
+
+如果您有將 conf.py 中 language 的值設為 zh_CN 或 zh_TW，則在 pdf 生成過程中會出現錯誤。關於這個問題，您可以參考此處 (https://bitbucket.org/birkenfeld/sphinx/issue/1119/no-babel-option-known-for-language-zh_cn) 的說明。總而言之是 reStructuredText 的 babel 模組還不支援中文所造成的。
+
+我個人追蹤了一下程式碼，發現這問題似乎源自於 docutils 上游，看起來也無法被三兩下快速解決掉。
+
+不過繞過的方法還是有的：請在 conf.py 檔案的 latex_elements 中加入額外一行：
+
+latex_elements = {
+    ...
+
+    "babel" = "", # 加入這行
+
+    ...
+}
+
+如此一來就能避免 xelatex 啟用 babel 翻譯功能，暫時避開問題。
+
+關於 babel = "" 的設定詳情與理由，可參看這個網頁 (http://sphinx-doc.org/config.html#confval-latex_elements)。
+
+
+python2 下的 Unicode 問題
+
+如果您使用 python2 版本的 sphinx，則可能會在生成各種輸出格式的過程中，碰到 Unicode Error，這通常是因為輸出路徑中含有中文字所造成的（但我也遇過其他亂七八糟的原因），總之，此時請到您的 conf.py 檔案中，在 import sys, os 下方加入四行，變成如下這般......
+
+import sys, os
+# Avoid unicode problem for python2
+if sys.version_info.major == 2:
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+
+此問題就能被加以躲開。
+
+
+單步生成 PDF
+
+解決所有問題，能夠順利產生檔案後，來看看能不能把之前手工產生 PDF 的步驟弄得簡單一點。
+
+想將手工步驟合併進行，可以修改某個 sphinx 系統檔案：
+
+/usr/lib/python2.7/site-packages/sphinx/texinputs/Makefile
+
+我找到的預設位置如上所示，您的位置可能略有差異。
+
+將這個檔案打開修改，並將內部的 pdflatex 關鍵字全部改成 xelatex。
+
+回到您的專案目錄下，執行以下一句：
+
+make pdflatex
+
+如此一來，就能一個指令產生 pdf 檔案了。
+
+
+註釋 當然，此處修改系統檔來達成自動化未必是個好方案。取而代之，您也可以試著新增一個 shell script 或修改專案資料夾內的 Makefile 檔案來解決問題。
+比方說將 Makefile 檔案中的 latexpdf 段落改成像下面這樣（留意縮進是 tab 不是空白）： 
+
+
+latexpdf:
+        $(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+        @echo "Running LaTeX files through xelatex..."
+        #$(MAKE) -C $(BUILDDIR)/latex all-pdf
+        cd $(BUILDDIR)/latex ; xelatex *.tex ; xelatex *.tex
+        @echo "xelatex finished; the PDF files are in $(BUILDDIR)/latex."
+
+
+PDF 的美化與校調
+
+PDF 的自訂比 HTML 的自訂麻煩多了。
+
+您可以先看看 conf.py 檔案中的 latex_documents：
+
+latex_documents = [
+  ('index', 'filename.tex', u'作品名',
+   u'作者名', 'manual'),
+]
+
+上例中 manual 位置，可以被設為 manual 與 howto 的其中之一。這兩種就是 sphinx 僅有的兩種 pdf 佈局。其中，manual 比較重量級，而 howto 則要輕得多，試試看就知。
+
+除此之外，您還可以在 conf.py 檔案中的 latex_elements 變數中進行字體、字型、紙張規格等設定。
+
+關於可用變數的詳情還請參看這一頁 (http://sphinx-doc.org/config.html#options-for-latex-output)。但不管怎麼說，預設曝露在外可被簡單套用的設定數量實在很有限。如果您打算更進一步地設計您的頁面，請注意以下資料夾：
+
+/usr/lib/python2.7/site-packages/sphinx/texinputs
+
+本資料夾有兩個檔案，分別為 sphinxmanual.cls 與 sphinxhowto.cls，此兩檔案正好應對著前述的 manual 佈局與 howto 佈局。您可以修改他們，或者索性依樣畫瓢設計出您自己的佈局。
+
+
+關於 Epub 的補充
+
+您可以透過 make epub 快速建立 epub。不過如果您的標題名稱使用了全中文，則 epub 檔案的檔名就會被留空，因此做不出來。
+
+您可以在 conf.py 中加入以下一行來解決問題。
+
+epub_basename = u'不含副檔名的檔名'
+
+sphinx 官方公開表示 epub 匯出格式目前尚處於實驗階段，因此畫面效果相當欠佳。還有另外提醒一點：epub 固然有許多獨立專屬的設定，不過另一方面，它也有許多資料會直接抓 html 的設定來用。當設定結果不盡如人意時，也該嚐試同時調整 html 的設定才是。
+
+
+公開您的文件
+
+如果您想在網路上公開您的文件，這邊推薦 Read the Docs (https://readthedocs.org/) 網站，該站支援任何 sphinx 專案作為資料來源。
+
+運用方法是：將您的 sphinx 專案上傳到 bitbucket 或 github 等版本控制網站，然後去 Read the Docs 上做一些連結與授權，對方就會開始自動抓取您的文件，並隨時依據您內容變化而自動更新內容。
+
+因為這中間涉及版本控制系統如何使用等問題，故本文不細講。Read The Docs 的線上使用說明在此 (https://read-the-docs.readthedocs.org/en/latest/index.html)，請各位自行參考。
+
+講了這許多，本篇文章就到此先告一段落，祝各位寫文快樂！
+
+至於我嘛，也終於可以把鍵盤掰爛扔垃圾筒，快樂地看電視去了。
+_______________________________________________________________
+
+■ [源碼秘技] 如何在 Linux 與 GnuCash 上使用 Awk 進行文字搜尋與排序
+
+謝良奇／編譯 
+
+awk 是一套用以處理文字檔案的優秀 Unix 腳本語言，在多數 Linux 散佈套件中的版本是簡稱為 gawk 的 GNU awk。awk 將檔案中的每一行視為個別的記錄，一行中的每一個項目則是個別的欄位。如此一來就可以用各種彈性的方式處理你的檔案。經典的方式是以 /etc/passwd 來作說明，以下範例會輸出該檔案所有內容：
+
+$ awk '{ print $0 }' /etc/passwd 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+
+不帶參數的 print 指令表示輸出一整行，$0 意思也是一整行，所以忽略 $0 同樣會得到一樣結果。假設你現在只想要用戶名稱與 UID 列表：由於 /etc/passwd 的資料欄位是以冒號分隔，因此很適合用 awk 來解析。你只需要從左邊從 1 開始數到你想輸出的欄位，然後像這樣截取出用戶名稱與 UID：
+
+$ awk -F":" '{ print $1 " " $3 }' /etc/passwd 
+root 0
+daemon 1
+bin 2
+sys 3
+
+-F 用來定義欄位分隔字元，" " 則插入空白。想要先列出 UID？簡單，交換變數順序即可：
+
+$ awk -F":" '{ print $3 " " $1 }' /etc/passwd
+
+現在讓我們看看運用 awk 把一大堆財務數據匯入 GnuCash 的實際例子。
+
+GnuCash 是自由與開放源碼軟體中的瑰寶之一，是一套執行於 Linux、Mac、Windows 的強大會計軟體。你可以匯入 QIF 與 OFX 檔案，不過說來可惜，儘管 CSV 是財務資料匯出匯入的通用格式，許多財務應用軟體都支援 CSV 匯出入，GnuCash 對 CSV 匯入卻僅提供部份支援。
+
+假設你有一個包含歷年財務資料的龐大試算表，你希望將資料放進適當的會計軟體中，或是你想要把資料從某個會計軟體，匯入到 GnuCash 之中，但該軟體僅支援 CSV 匯出。你可以選擇重新鍵入所有資料，或是讓你的 Linux 腳本語言技術派上用場。流程是先產生 CSV 檔案，然後轉成 QIF 格式，再將 QIF 檔案匯入 GnuCash。GnuCash 對於 QIF 檔案正確性相當挑剔，因此得確保檔案內容無誤。
+
+先確定複製一份你的原始檔案，不要破壞了原始檔案。
+
+我會讓例子盡量簡單，僅使用以下的 QIF 欄位：
+
+D - date
+P - payee
+M - memo
+T - amount
+N - check number, or any notation in the check number field
+L - category, which corresponds to GnuCash accounts
+^ - end of record
+
+我們還需要在 QIF 檔頭中指定會計形態，如：
+
+!Type:Bank  
+!Type:Cash  
+!Type:CCard  
+!Type:Invst
+
+QIF 規格支援更多項目，你可在 http://www.respmech.com/mym2qifw/qif_new.htm 找到完整列表。或者用 qif spec 作為關鍵字去查詢相關資料。
+
+轉成 QIF 格式前，先確認你的 CSV 檔案格式是否正確。確認你的提款前有減號，例如 -33.72，而且不要使用錢字符號，存款前的加號可有可無，隨你喜歡。你的存提款必須在同一欄位。最後的 CSV 匯出檔案像這樣：
+
+11/03/2008  Copy Junction  Copy of building codes	-33.72	8732  Supplies	
+11/03/2008  Home Depot	Trowel	-17.05	8734  Tools	
+11/03/2008  Dewalt Service Center	Charger for Drill  -75.85  8735	Tools	
+11/04/2008  Building Supply  Margin trowel  -13.23  8736  Tools	
+11/05/2008  Jane Smith   invoice #5843	8,500.00	   dep   income:contracting
+
+如果 QIF 檔案中有任何錯誤，GnuCash 就無法成功匯入。我碰過的問題有，用了多個減號如 --33.72，額外的小數點，日期格式錯誤。awk 不會理會這些問題，但 GnuCash 會。準備好之後，將 CSV 檔案轉成 QIF 格式：
+
+$ ( echo '!Type:Bank'; cat exportfile.csv | awk -F $'\t' '{ print "D" $1; print "P" $2; print "M" $3; print "T" $4; print "N" $5; print "L" $6; print "^"; }' ) ＞ importfile.qif
+
+結果像這樣，提款以減號表示，存款則無符號：
+
+!Type:Bank
+D03/25/2008
+PJane Smith
+M invoice #4657
+T4000.00
+Ndep
+Lincome:contracting
+^
+D04/02/2008
+PFirst Bank of Money
+MCheck Order
+T-21.44
+NACH
+Lbank fees
+^
+D05/15/2008
+PPretty Designs
+MDesign Services
+T-500.00
+N8922
+LContract Services
+^
+
+注意到如何使用針對水平製表 \t 的 ASCII 跳脫序列，來指定以 tab 鍵作為欄位分隔符號。如果一切無誤，你會得到可匯入 GnuCash 的 QIF 檔案。
+
+awk 在搜尋文字區塊上有著優秀能力，當 grep 沒辦法得到你想要的結果時，你可以試試 awk。例如，你想要從完整 lspci 輸出中找出特定設備：
+
+$ lspci -v | awk '/VGA/,/^$/'
+01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Micro-Star International Co., Ltd. Device 1162
+        Flags: bus master, fast devsel, latency 0, IRQ 18
+        Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+        I/O ports at dc00 [size=128]
+        [virtual] Expansion ROM at fe9e0000 [disabled] [size=128K]
+        Capabilities: 
+        Kernel driver in use: nvidia
+        Kernel modules: nvidia_current, nouveau, nvidiafb
+
+插入符號 ^ 正規表示式的定位符，用來對應字串起始處，$ 則對應終止處。所以上例中 /^$/ 會找出文字區塊起始與終止處的斷行。這是從以空白區隔各個段落的大型設定檔案中，截取特定區塊的漂亮技巧，例如 sshd_config：
+
+$ awk '/X11Forwarding/, /^$/' /etc/ssh/sshd_config 
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+#UseLogin no
+
+我們經常使用 sort 與 uniq 指令，從檔案中找出並移除重複項目。不過如果你不希望你的原始檔被排序或更動，這時正是 awk 派上用場的時候，我們可以用 awk 截取不重複記錄並儲存在新的檔案中：
+
+$ awk '!x[$0]++' filewithdupes ＞ newfile
+
+你的原始檔案原封不動，新檔案僅包含依序排列的不重複項目。
+
+man awk 可以查到完整的選項說明，要發揮 awk 或任何 Unix/Linux 指令的大部份功能，你需要對正規表示式有不錯的理解。對此我推薦 Mastering Regular Expressions 這本書。如果你想挑最有用的東西來學，就學正規表示式吧，因為多數程式語言和 Linux/Unix 指令都用得到正規表示式。
+
+
+原文網址：
+
+1.如何在 Linux 與 GnuCash 上使用 Awk 進行文字搜尋與排序 
+   http://www.linux.com/learn/tutorials/724060-amazing-awk-fu-gnucash-import-find-blocks-of-text-remove-dupes-without-sorting/
+_______________________________________________________________
+
+■ [源碼專案] 認識 Mozilla：Firefox 成長實錄
+
+Mozilla Links 正體中文版／文
+
+◎本文原載 Mozilla Links 正體中文版，原文章連結 (http://mozlinks-zh.blogspot.com/2013/06/mozillafirefox.html)。
+
+「Mozilla」的歷史，最早可以追溯至 1994 年。當時，這個名字首次作為 Netscape Navigator 的品牌名稱出現，取其「Mosaic 殺手 (Mosaic Killer) 」之意。 1998 年，Netscape 決定向開放原始碼社群公開他們瀕死瀏覽器的原始碼，成就今日我們所認識的 Mozilla 組織。Firefox 的前身的 Mozilla 瀏覽器， 直至 2002 年才誕生。在某種意義上來說，Firefox 總共經歷了 10 年奠定基礎，才在 2004 年釋出了 1.0 版。
+
+
+沿革
+
+Firefox 的起源可以直接追溯至 Netscape 公司的網頁瀏覽器 Netscape Navigator。在微軟發展出 Internet Explorer 前，Netscape 曾經獨霸全球，當時公司內部就稱呼此瀏覽器為 Mozilla。在 1998 年，Netscape 以開放原始碼授權公開 Navigator 的原始碼，讓任何人都能夠觀看、使用。他們設立了一個非營利小組，運用這些程式碼作為基礎開發瀏覽器。這個小組在 2003 年成為 Mozilla 基金會。
+
+然而，Firefox 並不是 Mozilla 小組計畫中的成果。當時 Mozilla 小組所開發的 Mozilla 瀏覽器，就像先前的 Netscape Navigator 一樣，隨著新增的功能越來越多，變得越來越大 ── 在軟體工程中，我們稱呼這種問題為「功能蔓延 (Feature creep) 」或「軟體膨脹 (Bloat) 」，而且日益嚴重。
+
+大約此時，14 歲就開始貢獻 Mozilla 計畫的電腦狂熱份子 Blake Ross，與 Dave Hyatt、Joe Hewitt 及 Chanial 開始了一個 Mozilla 瀏覽器的實驗性分支計畫。他們相信 Mozilla 瀏覽器因為需要迎合 Netscape 的贊助商及開發者們的商業需求，因此產生功能氾濫、效能大打折扣。為了解決 Mozilla Suite（註 1）的軟體膨脹（註 2）問題，他們希望以 Mozilla 為基礎，開發一個精簡樸實的瀏覽器，希望能以此取代 Mozilla Suite。
+
+Ben Goodger 在 2003 年加入了 Ross 的實驗計劃，從那時候開始有了大幅進展。Mozilla 組織在 2003 年 4 月 3 號宣佈，他們計劃把發展重心從 Mozilla Suite 轉向 Firefox 和 Thunderbird。
+
+盡管 Mozilla 基金會一直希望能讓 Mozilla Suite 走入歷史，用 Firefox 來取代它，但由於還有許多企業用戶使用，也被一些第三方軟體包裹在內，因此 Mozilla 基金會仍然持續維持更新，直至 2006 年 4 月 12 號。在那之後，Mozilla 社群改以 SeaMonkey 為產品名稱，繼續發行新版的 Mozilla Suite。
+
+
+命名
+
+Firefox 計畫起源於名為 m/b（或稱 mozilla/browser）的 Mozilla Suite 實驗性分支，在 2002 年 9 月，以 Phoenix 為名，釋出測試用執行檔而正式問世。其後並歷經多次改名：
+
+Manticore
+
+Phoenix 朝著和其上游的 Mozilla 完全不同的開發方向進行。相較於 Mozilla Suite 是以資深工程師為首，組織大型開發團隊的大型應用軟體，Phoenix 的開發成員，則是特別專注於網頁瀏覽功能的小型核心式團隊。這種小型志願專案的形式源自於更早期，David Hyatt 與 Ben Goodger 以 Netscape 和 Internet Explorer 為基礎，使用 C# 和 .NET 語言撰寫的 Manticore 瀏覽器。
+
+Phoenix
+
+Manticore 意在以精幹的軟件型態，提供基本瀏覽功能；而 Blake Ross 和 David Hyatt 的 Phoenix 計畫，則著眼於瀏覽體驗的創新。致力於將安全及效能作為支柱，且不被 Netscape 的商業心態的約束，才能開發出一個「完全替終端使用者量身訂造」的瀏覽器。Phoenix 這個名字一直使用至 2003 年 4 月 14 日，因為與 BIOS 製造商 Phoenix Technologies（開發了以 BIOS 為基礎的 Phoenix FirstWare Connect 瀏覽器）的商標糾紛而更名。
+
+Firebird
+
+在 2003 年 4 月，Mozilla 宣佈他們的新瀏覽器將命名為 Firebird，以避開與 Phoenix 的爭議。Firebird 是個通過自焚重生的神話生物不死鳥，有時也被認為是鳳凰的別稱。這個新名字引起了許多不同的反應，特別是激起了早以 Firebird 為名的自由軟體資料庫專案強烈反彈。因應於此，Mozilla 基金會亦表示他們將會永遠使用「Mozilla Firebird」的名稱，以避免和 Firebird 資料庫混淆。
+
+更令人困惑的是，贊助 Firebird 資料庫開發團隊的公司，名為 IBPhoenix（和先前與 Mozilla 產生商標爭議的 Phoenix Technologies 無關）。IBPhoenix 由 InterBase Software 於 1984 年成立，在 1991 年被 Borland Software 收購，在 2000 年推出開放原始碼的 Firebird 自由資料庫軟體專案。
+
+Firefox
+
+來自 Firebird 社群的持續壓力，迫使 2004 年 2 月 9 號的另一次改變，Mozilla Phoenix 計劃再次更名成 Mozilla Firefox（簡稱 Firefox）。「Firefox」是「小熊貓」的暱稱（註 3），因為它和「Firebird」的相似性、以及它在資訊產業中的獨特性而雀屏中選。
+
+為了確保不會再有變更名稱的問題，Mozilla 基金會在 2003 年 12 月向美國專利與商標局申請註冊 Firefox 商標。不幸的是此時發現，在英國 Firefox 已是 Charlton Company 軟體公司的註冊商標。這個問題導致 Firefox 0.8 延遲了幾個月釋出，在基金會取得 Charlton 的歐洲商標使用權後順利解決。
+
+
+版本
+
+Firefox 1.0 在 2004 年 11 月 9 號正式釋出。在那之前，Firefox 計畫已經公開過許多個開發中測試版。
+
+經過一系列穩定性及安全性更新後，Mozilla 基金會在 2005 年 11 月 29 日發布第一個主要更新版本 Firefox 1.5。Firefox 2.0 在 2006 年 10 月 24 日釋出。Firefox 3.0 在 2008 年 6 月 17 號發布，Fx 3.5 及 3.6 則分別在 2009 年 6 月 30 號及 2010 年 1 月 21 日釋出。Firefox 4.0 在 2011 年 5 月 22 日公開。
+
+Firefox 在 4.0 版之後，為了追求新功能的快速上線與軟體的穩定更新，Mozilla 開始執行快速釋出週期的開發模式，即是在每六週的星期二定期發布新的主要版本。在此之後，版本號碼即不像過去般重要，而主要是作為開發者的參考之用。Firefox 5 在 2011 年 6 月 21 日發布，最新的 Firefox 22，則在 2013 年 6 月 24 日釋出。
+
+
+註解
+
+1. Mozilla Suite：Mozilla 是 Netscape Navigator 瀏覽器的產品開發代號及內部的簡稱；Mozilla Suite 則是一個軟體集，包含瀏覽器、IRC、電子郵件、新聞群組等通訊軟體，以及所見即所得的 HTML 編輯器。目前 Mozilla Suite 由社群以 SeaMonkey 之名持續釋出中。
+2. 軟體膨脹 (Software bloat)：電腦程式的後續版本，包含越來越多終端用戶未使用到的功能。新版耗用了更高的系統資源，卻只提供多一點點的效能，甚至沒有增進。
+3. Firefox：小熊貓 (Red Panda) 的暱稱。小熊貓是一種紅色軟毛，與浣熊科和鼬科相近，瀕臨絕種的哺乳動物，在喜馬拉雅山、中國和緬甸都可以發現牠的蹤跡。
+
+
+原文 / En:NeMo-Firefox (https://wiki.mozilla.org/En:NeMo-Firefox)
+授權 / 創用 CC 姓名標示-相同方式分享 -3.0 (http://creativecommons.org/licenses/by-sa/3.0/) 或更新版本 
+
+φ 無銘氏 翻譯 / Irvin 編輯 / 感謝所有貢獻本文翻譯的社群成員 (https://docs.google.com/document/d/1hsMKaWiatztbtedR2NfO-4Mb7vdsO2aRoVtcdKh3_cg/edit?usp=sharing)
+_______________________________________________________________
+
+■ [自由專欄] U-Boot 創造者 Wolfgang Denk 談嵌入式 Linux 的偉大成就
+
+謝良奇／編譯 
+
+Wolfgang Denk 身為 DENX 軟體工程經理，同時也是嵌入式裝置開放源碼通用開機載入程式 U-Boot 的創造者，他認為，過去幾年之中，嵌入式 Linux 至少可說在標準化上達成了兩項重要成就。首先，開發者因為 ARM 系統的出現所受到的衝擊並不大。Denk 表示，多虧了 Linux，低階的硬體細節經過妥善的抽象化，在應用軟體層上所使用的確切架構或 SoC 幾乎無關緊要。其次，開放源碼建構系統 Yocto 專案的迅速普及，可說是目前所見，嵌入式系統標準 Linux 散佈套件的最佳近似品。
+
+在問答中，Denk 討論到 U-Boot 即將到來的釋出、U-Boot 的未來、嵌入式 Linux 與 Android 目前的狀態與未來、Yocto 專案在嵌入式開發標準化的角色，以及嵌入式開發者的最佳工具。
+
+問：U-Boot v2013.04 是在兩個月前釋出的，你預計在 7 月有另一次釋出，這次有哪些新功能？
+
+Wolfgang Denk：我樂見此專案以平穩可預測的方式向前邁進，去年秋季我因為個人因素辭去 U-Boot 管理者一職時，對此我並不抱有確定感，幸運的是 Tom Rini 同意接手，自此他做出相當優秀的成績。他和其他管理人，當然還有社群中的開發群眾，持續地推動著該專案。看到該專案成長到這個地步實在令人欣慰。
+
+近來最有趣的功能是對加密簽章映像的支援改善，以及大幅縮短開機時間，同時維持完整 U-Boot 工具彈性的 Falcon 開機模式。
+
+問：未來 U-Boot 有何重要的開發活動？
+
+Wolfgang Denk：目前兩項處於初期原型階段的重要工作，包括針對組態設定改寫 Linux 核心的 Kconfig 方式，以及新設備驅動程式模式的開發。
+
+問：嵌入式 Linux 目前狀態為何，特別是在 Android 與行動設備興起之後？
+
+Wolfgang Denk：Linux 在多年以來，一直是所有類型應用軟體的首要作業系統，其中包括且特別是嵌入式應用軟體。然而最戲劇化的轉變並不在 Linux，而是在硬體上。考慮到近 2、3 年中從 Power 架構到 ARM 系統的劇烈轉變，在開發者與使用者身上並沒有造成多大不安與困惑，這一點實在是值得令人注意。多虧了 Linux，低階的硬體細節經過妥善的抽象化，在應用軟體層上所使用的確切架構或 SoC 幾乎無關緊要。
+
+在要求安全性與可靠性的環境中，例如熱力與水力發電廠，我們看到 Linux 的使用逐漸增加。透過 Xenomai 即時延伸架構，Linux 同樣也運用在有著嚴苛即時需求的系統中，該架構允許模擬私有即時作業系統如 pSOS+ 或 VxWorks，讓現有程式碼得以重複運用。
+
+由於我們專注於工業級嵌入式市場，在此 Android 尚無太多著力之處。當然我們支持它，也有若干客戶提出詢問，但至少目前為止 Android 在 DENX 業務中並沒有發揮什麼作用。嵌入式市場中多數客戶知道 Android 是個不錯的手機與平板作業系統和軟體堆疊，但是並不適合傳統嵌入式專案。
+
+問：你對 Yocto 專案有何參與？
+
+Wolfgang Denk：一直以來我們很期待像 Yocto 這樣的專案，一套社群推動的開放源碼專案，又有 Linux 基金會充分的承諾。我們樂於放棄發展自己的嵌入式散佈套件，轉而從頭開始基於 Yocto 之上進行相關工作。
+
+問：Yocto 專案的未來走向為何？你認為它在嵌入式 Linux 開發的角色是什麼？
+
+Wolfgang Denk：Yocto 可說是目前所見，嵌入式系統標準 Linux 散佈套件的最佳近似品。我們看到越來越多客戶、專案、廠商採用此一途徑，這是重要的成果。
+
+問：Denx 嵌入式 Linux 開發套件 (Denx Embedded Linux Development Kit，ELDK) 對嵌入式開發者的優勢為何？
+
+Wolfgang Denk：ELDK 的目標是作為 Yocto 的快速啓用套件。要在定制電路板上使用 Yocto，你必須建立自己的電路板組態，並建構工具鏈 (tool chain) 和目標套件。過程包括下載數 GB 的資料且需要可觀的 CPU 處理能力與儲存空間。簡單地說，在實際執行你的範例程式前，得花上很長時間。
+
+ELDK 可以讓你下載並安裝預先編譯的二進位軟體，該軟體並不針對特定電路板，而可用於以所支持 CPU 架構為基礎的所有系統上。只要幾分鐘，就可以開始開發並測試你的程式，不需為了交叉工具鏈 (cross tool chain) 或目標程式庫與工具，歷經冗長的軟體建構過程。但 ELDK 也允許針對特定硬體進行客制化，客戶可以用它作為特定專案的軟體產品環境。
+
+問：對嵌入式開發者來說，有哪些其他的必要工具？
+
+Wolfgang Denk：首先是 git，沒有 git 的話，Linux、U-Boot 等專案無法以今日的效率來運作。Yocto 與底層的 bitbake 建構工具對於建構自有目標映像，或是自有專案或產品特定散佈套件，是不可或缺的。
+
+Linux 核心提供許多少有人知的強大追蹤工具，這一點很可惜。最後，如果開發者確實了解並使用標準 Unix 工具，像是 bash、find、grep、sed，更不用提 awk、perl、python、gcc、gdb，許多工作將可因此妥善完成。
+
+
+原文網址：
+
+1.U-Boot 創造者 Wolfgang Denk 談嵌入式 Linux 的偉大成就
+http://www.linux.com/news/featured-blogs/200-libby-clark/723487-qaa-u-boot-creator-wolfgang-denk-on-the-state-of-embedded-linux/
+_______________________________________________________________
+
+■ [源碼新聞] 自由開源軟體德國訴訟再一例 - Welte vs FANTEC
+
+黃郁文／編譯
+
+德國漢堡地方法院日前以判決，認定 FANTEC 公司網路多媒體機上盒產品 FANTEC 3DFHDL 的商用模式，涉及 GPL 侵權利用的事證屬實，從而就其與被侵權使用元件 netfilter/iptables 著作人 Harald Welte 之間的訴訟案，必須償付懲罰性償金 (penalty fee)，以及支付原告在訴訟過程中所花費的律師費用，並且在最快時間內，就其怠於提供 netfilter/iptables 元件程式源碼的侵權事態進行修正。
+
+此一訴訟案肇始於 FANTEC 在 3DFHD 使用的一款韌體中包含了 netfilter/iptables，這是一個在 GNU/Linux 作業系統下運作的網路防火牆程式。然而在散布過程中，FANTEC 卻沒有依照 netfilter/iptables 採用的授權條款 - GNU General Public License v2.0 (GPL-2.0) 的要求，一併讓此韌體的使用者有取得 netfilter/iptables 程式源碼的配套。此一怠於提供 GPL-2.0 授權程式源碼的作為，已然違反了 GPL-2.0 授權程式的使用規則，從而 Harald Welte 在向 FANTEC 告知侵權狀態並與他們協商失敗之後，轉而將此爭議訴諸到正式的司法訴訟程序上。
+
+本案最大的爭議點在於，FANTEC 堅稱內嵌 netfilter/iptables 程式碼之韌體是由其上游廠商所提供，且此上游廠商已向 FANTEC 確保相關軟體的應用狀態無侵犯他人著作權的疑慮，故 FANTEC 主張其已盡相當注意，而不能被認定有侵害他人著作權利的故意或過失。然而依多數關心本案件法界人士的見解，雖然以上下游商務契約的方式來轉嫁侵權行為的主觀責任不能說法無所據，然而能否成功主張仍需就個案來判定，在此案中 FANTEC 在 Welte 向其提出侵權警告並提供基礎事證之後，仍不願就其所散布韌體的授權狀態自行進行檢視，而僅憑依上下游商務保證契約，便主張自己不具侵權故意或過失，究其整體因應態度來看，並不能說是已善盡注意義務，從而最後承審法官也認同這樣的見解，判定 FANTEC 必須就散布者的立場，自負因過失而侵犯他人著作權利的責任。
+
+兼具本案原告與 gpl-violations.org 發起人身份的 Welte 表達：「很欣慰看到承審法院同意商務產品的販售者，需自負相當的授權妥適檢審責任。尤其就 FANTEC 而言，這家公司在紀錄上，已經不是第一次發生對 GPL 授權程式侵權利用的狀況，所以他們應該要比他人更加了解使用 GPL 授權程式的相關義務，而不能主張自己毫無過失。」
+
+
+
+相關網址：
+
+1、FSFE 開源授權妥善工程工作坊發現 FANTEC 對 GPL 程式的侵權利用 - Harald Welte 勝訴
+http://fsfe.org/news/2013/news-20130626-01.en.html
+
+2、德國法院認定 FANTEC GPL 侵權責任成立
+http://lwn.net/Articles/556317/
+
+3、Welte vs FANTEC 德文判決書電子全文
+http://www.ifross.org/sites/default/files/130618%20Urteil%20Fantec.pdf
+_______________________________________________________________
+
+■ [源碼新聞] 軟體專利大反動 - 德國議會與美國白宮各展因應之道！
+
+黃郁文、林誠夏／編譯
+
+當前的專利制度在全球各地，迭有發生惡意堆聚、濫訴取財，以及壓抑真正創新的狀況。為此，在本年度 (2013) 六月份，德國議會與美國白宮，不約而同的在自己國家內，展開了相對的因應之道，在群聚共識與公開訴求之後，此兩國家機關決定開始以推動正式修法的方式，進行其對專利濫用現況的改正，若然真的達成目標，未來對於全球專利制度，尤其是軟體專利於自由開源軟體方面的拘束與束縛，將會產生由裡而外急遽程度的翻轉與改變！
+
+首先在德國，這是一個由國家議會的小組團體聯合發動，轉而要求聯邦眾議院 (Bundestag) 配合修訂法案的大事件。於本年度 6 月 7 日時，德國議會裡的法律委員會、經濟與科技委員會、教育委員會、研究委員會、工程評估委員會，以及文化與媒體委員會，在歷經約三個月的討論後取得了共識，其以正式聯合聲明的形式，正式發文敦促德國聯邦眾議院，應正視軟體專利核發泛濫之後可能造成的社會弊病與經濟傷害，並重申專利技術於軟體領域的核可，應僅限於相應機械裝置與電磁配件的操作與設計技術方才適宜，且應注意不可任由專利權濫用而影響到自由開源軟體專案於未來的穩定發展。於德國議會各委員會 5 月 13 日召開的專家討論會議中，許多中小企業聯盟的出席代表也指出，將專利制度不加調整的直接適用在軟體應用上是一個巨大災難，這是因為專利技術在軟體領域的難以查找與未可知性，讓許多起步中、或集中資源加強軟體服務內容的中小企業，鎮日處於擔心自己事業是否已涉及專利侵權的懷疑與恐懼中。代表歐洲自由軟體基金會 (Free Software Foundation Europe) 與會的德國代表 Matthias Kirschner 補充說明到，該次專家會議的討論結果，是要透過二個方式來調整專利制度在軟體領域的不當拘束與控制地位，其一是修改德國專利法，在其中增修一條抑制條款，直接正本清源的於專利法中，宣示其權利適用範圍在軟體領域應有限度；其二則是修改德國著作權法，在軟體著作權領域中樹立一道防護牆 (protective shield)，明定在軟體領域裡不應有專利權利的適用。而據與會者 Johannes Sommer 的看法，過去歐盟幾次處理軟體專利的爭議均被視為政策搖擺，德國議會此一舉動不啻為向歐盟布魯塞爾總部發出一個強而堅定的改革信號。
+
+再來於美國，美國白宮於 6 月 4 號宣布，將透過行政管制與立法推動雙管齊下之策，來處理境內愈來愈趨嚴重的專利權利濫用與專利蟑螂猖獗的問題。首先於行政管制方面，其將：(1) 要求專利申請人與專利權人定期更新其專利權歸屬狀態；(2) 對美國專利標準局 (US Patent and Trademark Office, USPTO) 內專利審核業務相關人員加設新訓練課程，特別是軟體領域的審核教案；(3) 建置專職網站，教育一般終端使用者在面對專利蟑螂提出訴求時應如何因應；(4) 拓展政府對如何改正專利制度與防止專利濫訴議題的研究與資訊；(5) 對關稅與國境防護局與國際貿易委員會 (International Trade Commission, ITC) 的侵權貨物查緝與封鎖流程，進行跨機構的審視，重新研議該流程的透明度與效率性，以避免相關流程遭到有心人士濫用，而造成經貿活動上實質的不公平競爭。其次於立法推動方面，美國白宮向國會提出來的修法建議包括：(1) 直接透過立法方式要求專利申請人與專利權人在行使其專利權利時，必須明示其專利權利真正的歸屬狀態，以阻斷專利蟑螂以藏鏡人方式操弄專利打手的模式持續發生；(2) 提高承審法院有更高的處理權限，來提高勝訴方律師費用轉嫁敗訴方償付的額度，如此一來專利蟑螂如濫訴之後敗訴，其將承受鉅額律師資費代償的苦果；(3) 擴展 USPTO 審核程序的可用方案，例如在商業模式相關專利或是軟體程式應用相關等，較具爭議性與模糊性的專利，在審核程序裡審核機構將可擴展其審核細項與供公眾提出異議的期間，並透過此一方式來提高專利審核的縝密度；(4) 對單純使用專利侵權爭議產品的消費者或商業模式提高保護，目前專利侵權訴訟一經發動的效果可能阻斷該產品各環結的商業模式與使用合法性，然而，終端的產品消費者對於專利侵權鏈上可被責付的責任極小，應該要被法律加以保護，故如果同一專利已向該產品的販售者、中盤商，或是製造商提出訴訟，則在審判過程結束之前，不應對其下的產品消費者展開全面的濫訴恐嚇動作；(5) 改變 ITC 核發專利侵權禁制令的審議標準，讓更多案件能夠與 eBay Inc. v. MercExchange 案闡釋的必要四元素標準看齊，以避免禁制令核發標準不一的情況一再發生；(6) 要求專利權人應以公開透明的形式，寄發與公告其專利侵權警告文件的內容與訴求，一方面以昭公信，另一方面則讓相關資訊可以便利查找與流通，以抵制過往專利蟑螂對侵權嫌疑人慣常採行的個別擊破策略；(7) 確保 ITC 在聘用程序上具有可因應專利變化的彈性徵才標準，因為專利技術的範圍遍及各領域，在必要時 ITC 在專利的審查體系，必須納入各領域的專家才可適度因應。
+
+從以上德國議會與美國白宮這兩大舉措可以看到，專利制度並非一成不變，也絕非永久屹立不搖，因為任何的法律制度，都必須因應時代的局勢，在考量多數人的需求與利益的立場上來做適度的改變，此點專利制度也不能有所例外。然而，專利法歸屬於整體智慧財產權利 (Intellectual Property Right) 的一環，而在智財領域，向來有很深的國際互惠化特性，因為這些權利的運用，本質上很容易被跨國跨界進行流通，以致於智財相關舉措的改變，並不能僅憑各國權責機構自行因應國情修改，而需要一併考量到全球共通性甚深的發展趨勢。然而從德國議會與美國白宮的具體作為可以看到，專利制度改變的風向已然吹起，這些改變的動向將會在接下來的幾年產生重大影響，而我國向來在全球資通訊產業裡，位居整體鍵結裡重要的一環，故也必須時時追索更新相關資訊，才能適時適當的呼應這股改變的趨勢。
+
+
+
+相關網址：
+
+1、德國議會各委員會透過聯合活動要求聯邦眾議院嚴正管控與限縮專利於軟體領域的應用
+https://fsfe.org/news/2013/news-20130612-01.en.html
+
+2、德國議會聯合聲明英文譯文
+http://l.fsfe.org/bikt-swpat-en.pdf
+
+3、美國白宮展開大動作力抗專利蟑螂
+http://www.ip-watch.org/2013/06/04/white-house-takes-major-action-against-patent-trolls/?utm_source=post
+_______________________________________________________________
+
+■ [源碼新聞] 有史以來第一遭 - 法國國會立法通過自由開源軟體在高等教育領域裡應被優先採用！
+
+黃郁文、林誠夏／編譯
+
+經歷了三十多年的力量積聚，自由開源軟體的定位終於在法國被推上了立法的舞台！在本年度 (2013) 7 月 3 日，法國參眾兩院合意通過了該國「高等教育與研究基準法 (Bill on Higher Education and Research)」的修正案，史無前例且令人鼓舞的是，在該法案第 9 條 (原第 6 條) 的修正條文裡，明定「在高等教育領域裡提供數位服務與教育資源予公眾時，自由開源軟體授權方案應該要被優先採用！」此一修正方向，讓過往被許多國家視為例外方案的自由開源軟體，打破既定框架與格局，在法國的高等教育領域裡，翻轉局勢一躍而被扶正為優先方案！
+
+該法案的修正過程並非無風無浪，事實上據報導在過去數月，此一修正方向在法國國會裡引發了不少的爭辯與討論，然而，最後參眾兩院多數參與討論的議員，確立了公平、公開、公正的參與地位，是民主國家在公眾服務與公共教育上的基石，而自由開源軟體的授權方式與建構理念，恰恰與這樣的基礎原則相輔相成，故雖然在修法過程中遭遇了不少資訊教育領域既得利益組織的反對，最後法國參眾兩院議員還是在全國多數人福址的立場下，投票通過了此一法律修正案。法國自由開源軟體重要推動組織 - April 的執行長 Frédéric Couchet 更表示：「自由開源軟體儼然就是法國共和體的無上格言『自由、平等、博愛 (Liberty, Equality, Fraternity)』，在數位時代的理想分身與具體展現，因為透過對自由開源軟體的妥善運用與扶持，可以協助每一個社會份子在沒有歧視與阻礙的前提下獲得知識與技能，這也正是國家應包含在整體教育體系裡的重要元素！」
+
+April 主席 Lionel Allorge 說：「此次在高等教育與研究基準法的勝利只是第一步，未來還有很多需要努力的工作要做。」確實是如此，該組織目前亦同步透過支持的議員，向法國參議院提出「學校改革基準法 (Bill on School Reorganisation)」的修正案，希望一併將自由開源軟體的採用優先性一併透過修法的方式，置入法國學校的法定組織架構中。然而此一推動方案目前仍受阻於參議院的協商流程，參與協商的法國教育部長 Vincent Peillon 以「於法有所困難 (legal difficulties)」的理由，表示教育軟體採購受限於公平採購的法律原則，不應偏袒於任何一種型態的軟體專案，而希望將對自由開源軟體的優先採用建議先移除在此次修正案裡，然而，April 目前已就此爭議，整理出相應的法律分析意見書，呈予國會議員請其進行第二階段的重新審議。質言之，April 組織表達的立場為教育領域乃為公眾權益優先發揮的場域，而受教的學生也並非單純數位服務的購買者，確保每一個受教育的參與者都可以藉由公平、公開、公正的參與地位來接觸到知識，此點原則應高於一般政府商務採購的公平採購原則，而不應被少數商業公司與利益團體取之操弄來凌駕於整體公共利益之上。
+
+無論前述學校改革基準法的修正案能不能好事成雙的亦獲通過，目前法國高等教育與研究基準法的修正案，已經參眾兩院共同投票通過，一待總統簽署同意並發布之後，便會正式生效。此無疑已是自由開源軟體領域裡值得特書說明的重要成就，其未來會對法國整體教育體系，以及其他國家產生哪些連鎖效應，也非常讓人期待。
+
+
+
+相關網址：
+
+1、法國國會投票確認自由開源軟體的優先採用性
+http://www.april.org/en/first-time-france-parliament-votes-legislation-gives-priority-free-software
+
+2、法國高等教育與研究法案法文原文
+http://www.assemblee-nationale.fr/14/ta/ta0180.asp
+
+3、April - 法國自由開源軟體與開放標準推動組織
+http://www.april.org/
+
+4、維基百科對於高等教育的定義
+https://zh.wikipedia.org/wiki/%E9%AB%98%E7%AD%89%E6%95%99%E8%82%B2
+_______________________________________________________________
+
+■ [源碼新聞] Netflix 釋出 Genie for Hadoop 源碼
+
+謝良奇／編譯
+
+電影串流公司 Netflix 釋出了 Hadoop 工作與資源管理系統 Genie 的源碼。Genie 的開發是為了協助 Netflix 管理，該公司在 Amazon Web Services 雲端上採用多種不同組態的 Hadoop 叢集。終端用戶能夠使用 Genie 向執行服務提交工作，讓 Genie 將該工作匹配到適合的 Hadoop 叢集，管理者則透過 Genie 瀏覽已註冊的 Hadoop 叢集，並檢視各叢集對應的組態設定。除此之外，Genie 並不處理工作流排程、工作排程，或是配置與延展 Hadoop 叢集等資源管理工作。
+
+典型的使用案例是以儲存在 Amazon S3 服務的組態，來設定 Hadoop 叢集。管理者可以使用 Genie 用戶端，將有關該叢集的 ID、名稱與其他屬性告知 Genie 服務，一旦註冊之後，終端用戶即可指定工作類型、命令列參數、檔案相依性，將工作要求送至 Genie。他們也可以透過 ID、名稱或屬性，指定使用何種 Hadoop 叢集，Genie 將依此選擇適合的叢集。
+
+這套新的管理系統是以 Netflix 開發且釋出的一系列 Hadoop 工具為基礎。其中 Karyon 負責網路服務的啓動與生命週期管理，Eureka 為 Genie 提供了服務註冊與查找，同時也運用到動態屬性系統 Archaius，以及監管介面 Servo。最後則靠 Ribbon 將這些中介服務整合在一起。
+
+Netflix 將其開發釋出作為開放源碼，視為一項原則要點，並以 Apache 2.0 授權，透過 Netflix 開放源碼中心 (Netflix Open Source Center) 來提供。Genie 的源碼可在 Netflix 的 GitHub 源碼庫取得。儘管已經在 Netflix 生產環境中運行數月之久，其開發者表示開發仍在進行中，目前還處於版本 0 的階段。
+
+
+原文網址：
+
+1. Netflix 釋出 Genie for Hadoop 源碼
+http://www.h-online.com/open/news/item/Netflix-releases-open-source-Genie-for-Hadoop-1896158.html
+_______________________________________________________________
+
+■ [源碼新聞] Stallman、Swartz 等 32 人入選網際網路名人堂
+
+謝良奇／編譯
+
+自由軟體基金會創辦人 Richard Stallman、Mosaic 共同創辦人 Marc Andreessen、電子前鋒基金會 (Electronic Frontier Foundation) 共同創辦人 John Perry Barlow 等 32 人，今年獲選進入網際網路名人堂 (Internet Hall of Fame)。於 2012 年瑞士日內瓦舉行的網際網路協會 (Internet Society) Global INET 會議上所成立，網際網路名人堂每年頒發獎項，以公開褒揚那些對全球網際網路發展和進步有卓越貢獻的個人。
+
+入選者分為三大類，包括先鋒者、連結者、創新者。除了 Stallman、Andreessen、Barlow，創新者也追贈榮譽給 Reddit 共同創辦人與 RSS 開發者 Aaron Swartz。Jimmy Wales 也因為創辦 Wikipedia 而入選。先鋒者包括了早期的網際網路協定開發者 David Clark，將網際網路帶到泰國的 Kanchana Kanchanasut，以及 Ethernet 共同創造者 Robert Metcalfe。Werner Zorn 則被公認為帶領團隊建構了德國連接全球網路的基礎架構。
+
+連結者包括幫助拉丁美洲網際網路發展的 Ida Holz，創始歐洲 Unix 用戶群組 (European Unix User Group) 並成立 EUnet 的 Teus Hagen，以及帶領團隊將網際網路帶到中國大陸的 Qiheng Hu。
+
+網際網路名人堂編輯群宣布，在接下來的一年內，將以採訪與人物側寫等專文，紀錄這些入選者的歷史貢獻。這一系列文章將刊載於網際網路名人堂部落格。
+
+
+原文網址：
+
+1.Stallman、Swartz 等 32 人入選網際網路名人堂
+http://www.h-online.com/open/news/item/Stallman-Swartz-among-32-inductees-to-the-Internet-Hall-of-Fame-1897705.html
+_______________________________________________________________
+
+■ [源碼新聞] 美國總統歐巴馬發布行政命令支持開放資料
+
+台灣創用 CC 計畫／文
+
+◎ 本文原載台灣創用 CC 計畫，原文章連結 (http://creativecommons.tw/blog/20130701-1)。
+
+日前美國總統歐巴馬發布了一則行政命令，要求聯邦政府的資訊應公開且是可供機器閱讀的，這項命令是自 2009 年開始一系列關於支持增加政府資訊的可接近性及透明度的最新行動。除了此一行政命令外，白宮也發布了一則備忘錄 (Memorandum) 解釋聯邦政府將如何作為以符合這項開放資料 (open data) 的新政策。
+
+此備忘錄要求政府機關收集或創建資料的方式包括對於所有新資料收集、創造的工作應使用機器可讀的、開放的格式、數據標準以及相同核心而可擴展的後設資料。它亦包括政府機關應該確保在資料管理的方面，透過使用開放授權以及審查資料的隱密性、機密性、安全性或其他相關限制來做釋出的動作。
+
+它在開放資料方面也提供了一套具遠見的指引。根據該備忘錄的目的，所謂的開放資料一詞，指涉的是公開可用的數據結構使終端使用者能完全發現並使用之。一般而言，開放資料會和下述原則一致：
+
+則一致：
+
+| 公開 (Public)
+
+為符合美國政府預算及管理局 (OMB) 的開放政府指令 (Open Government Directive)，各機關必須採取在法律允許的推定範圍內，有利於開放的程度，以及服從隱私、安全、機密性等等限制。
+
+| 可近用性 (Accessible)
+
+開放資料提供了方便、修改、開放的格式，使其能夠被檢索、下載、指引及搜尋。該格式必須是可供機器閱讀者 (例如：具合理數據結構能夠允許自動處理)。開放資料的數據結構不歧視任何人或任何族群的人，而且應該提供予最廣泛的使用者為了最廣泛的用途。此外，在法律允許的範圍內，這些格式必須是非私人的、公開的且在使用上沒有限制的。
+
+| 充分說明 (Described)
+
+開放資料應被充分的說明，使這些資料的消費者有充足的資訊了解他們的優勢、劣勢、安全性的要以及如何運行、處理他們。這包括使用健全的、粒狀的後設資料 (例如：描述資料的元素)，經由完整的資料元素文件、資料字典以及在可行範圍下增加描述收集的目的、人民的興趣度、樣本的特色以及資料收集的方法。
+
+| 再使用性 (Reusable)
+
+開放資料應基於公開授權之下使其使用沒有限制。
+
+| 完整性 (Complete)
+
+開放資料應公布主要的的型態，包含法律及他規定所允許以及可以實行的最好的粒度 (granularity) 水平。衍生或總和的公開資料亦應參照主資料而為公布。
+
+| 即時性 (Timely)
+
+開放資料需盡可能的快速去保存資料的價值，而其釋出的頻率則應考量關鍵使用群及下游的需求。
+
+| 管理點設置 (Managed Post-Release)
+
+應指定一個聯絡點用以協助資料的使用以及對於相關投訴的回應。
+
+此外，這個備忘錄也提供了關於美國政府資訊可被再使用的說明，敘述如下：
+
+
+「應確保在資訊管理方面使用開放授權 (open licenses) 的方式，詳言之，各政府機關須使用開放授權，以在開放資料的計畫中尋得最好的實踐方法，使資料公開後，就這些資料不論是非商業性或商業性目的，在複製、出版、分發、傳輸或其他方式的使用上不會有所限制。」
+
+
+根據這些確切的實施細節，這是一個非常好的行動，可以釐清在使用聯邦政府資料上面任何的法律困惑。藉由使用公開授權，聯邦政府將提供再使用者一項絕好的服務。且，若美國是真的希望使聯邦政府的資訊能夠沒有限制的使用，它能考慮使用公眾領域貢獻宣告 (CC0 Public Domain Dedication，簡稱 CCO) 的方式，現在，有許多的資料提供者使用 CC0 以使開放資料能直接放置於公眾領域的範圍內。我們亦已建議使 CC0 成為分享聯邦政府資訊的其中一個選項。
+
+而對於白宮在確保美國政府資料於法律、技術上面的可近用、再使用上面所採取的一個正面、積極的做法，是非常值得我們肯定的！
+
+資料來源：http://creativecommons.org/weblog/entry/38269。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、陳蕙蓁
+◎ 外稿編譯︰林誠夏、黃郁文、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

@@ -1,0 +1,924 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 194 期 | 2012/04/24 □■□
+________________________________________________________________
+
+◎ 本期主題︰初探 RequireJS
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/05/15
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 初探 RequireJS
+
+■ [技術專欄] 新創網站這樣開發才夠快
+
+■ [技術專欄] 網站程式上線前需要準備的事（一）
+
+■ [法律專欄] 新版 MPL-2.0 與 MPL-1.1 簡要差異比較
+
+■ [企業應用] 授權流言終結者#3: jQuery 授權的分析與探討
+
+■ [源碼新聞] Google 將推出平價 Android 平板電腦
+
+■ [源碼新聞] Ubuntu 對於 Linux 的貢獻
+
+■ [源碼新聞] 桌面環境 Unity 與 Gnome 的比較
+
+■ [源碼新聞] VMware 雲端鑄造計畫
+
+■ [源碼新聞] 微軟成立開放技術公司
+
+■ [源碼新聞] 開放原始碼辦公室軟體 Calligra
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 初探 RequireJS
+
+jaceju / 文
+
+◎ 本文轉載自網站製作學習誌 (http://www.jaceju.net/blog/archives/beginning-requirejs/)。
+
+一直以來，我們都習慣使用 script 這個 HTML 標籤來載入 JavaScript 檔案。這種方式有兩種缺點：
+
+1. 無法在 JavaScript 程式中直接管理相依性，必須在 HTML 中處理。
+2. 雖然目前新式瀏覽器已經能夠以非同步的方式來載入 js 檔案，但是舊型瀏覽器還是會有阻塞 (blocking) 問題。
+
+終於 CommonJS(http://www.commonjs.org/) 提出了 AMD(http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) 這個 API 規範，用以讓我們的 JavaScript 程式可以模組化，並同時解決 js 檔案載入時的阻塞問題。
+
+目前已經有許多實作 AMD 規範的 JavaScript Library 了，而 RequireJS(http://requirejs.org/) 則是目前討論最多，應用最廣的其中一個實作。
+
+以下是我在研究 RequireJS 時的筆記，若有謬誤還請大家指正。
+
+起手式
+
+先來看看我們的程式目錄架構：
+
+<project>
+├── index.html
+├── js
+│   ├── app.js
+│   └── main.js
+└── lib
+    ├── backbone
+    │   ├── backbone-min.js
+    │   └── wrapper.js
+    ├── jquery
+    │   ├── jquery-min.js
+    │   └── wrapper.js
+    ├── underscore
+    │   ├── underscore-min.js
+    │   └── wrapper.js
+    └── requirejs
+        ├── order.js
+        └── require.js
+
+其中 index.html 的內容如下：
+
+index.html
+1  <!doctype html>
+2  <html lang="en">
+3  <head>
+4    <meta charset="utf-8" />
+5    <title>Beginning Require.JS</title>
+6    <script data-main="js/main" src="lib/requirejs/require.js"></script>
+7  </head>
+8  <body>
+9  </body>
+10 </html>
+
+你會發現，我們只需要用一個 script 標籤來載入 lib/requirejs/require.js 即可，剩下的 js 檔案都可以讓 RequireJS 來幫我們載入。
+
+可是 RequireJS 怎麼知道要載入哪些檔案呢？注意 script 標籤上的 data-main 屬性，它指向了 js/main.js (可以將 js 副檔名省略)。在 js/main.js 中，我們就可以指定我們要載入的模組：
+
+js/main.js
+1  require([
+2    '../lib/jquery/jquery-min'
+3  ], function () {
+4    console.log($);
+5  });
+
+所以一切都是從 js/main.js 開始執行。
+
+在 js/main.js 裡，我們用到了 require 這個 RequireJS 中最主要的 API ，它的基本用法如下：
+
+1  require(dependencies, callback);
+
+其中 dependencies 的格式必須為陣列，callback 則為函式。
+
+dependencies 表示我們要載入的 js，而其路徑則是相對於 js/main.js，而且一樣不需要寫副檔名。
+
+因此在 dependencies 中，我們就可以將所有會用到的 js 載入，然後在 callback 中撰寫我們真正要處理的程式邏輯。
+
+模組化
+
+當然把所有的程式邏輯都寫在 js/main.js 的 callback 裡面是沒問題的，但那就沒辦法達到我們想要的模組化了。
+
+而 RequireJS 也實作 AMD 所定義的 define API 方法，所以我們就可以用它來實現程式的模組化。 define 的 API 如下：
+
+1  define(id?, dependencies?, factory);
+
+其中 id 格式為字串，代表模組的名稱，可以不寫。如果要寫的話，就必須是相對於 js/main.js 的檔案路徑，但不用加上 js 副檔名，例如 ../lib/foo 或 ./js/bar。
+
+而 dependencies 格式為陣列，作用與 require 中的 dependencies 相同。一般來說如果我們在 js/main.js 中定義好相依性後，這裡可以不需要特別指定。
+
+最後的 factory 則為一個工廠方法，它必須回傳一個物件，也就是我們的模組。
+
+接著我們把原來 require API 中的 callback 改成模組，並將它放到 js/app.js 中：
+
+js/app.js
+1  define(function () {
+2    return {
+3      initialize: function () {
+4        console.log($);
+5      }
+6    }
+7  });
+
+js/app.js 會回傳一個包含 initialize 方法的物件模組，而這個方法就是我們前面的 callback 。注意這個例子裡並沒有設定模組的 id 。
+
+接下來我們把 js/app.js 加到 require 的第一個參數中，特別注意這裡的 app 是指 js/app.js ，而不是模組名稱。
+
+js/main.js
+1  require([
+2    'app',
+3    '../lib/jquery/jquery-min'
+4  ], function (App) {
+5    App.initialize();
+6  });
+
+在 callback 的第一個參數 App 會對應到 js/app.js 中所回傳的物件，這意謂著我們可以為該物件指定新的 namespace。
+
+到這裡其實可以應付很多基本的應用了，不過如果當 library 間有相依性問題時，這樣的寫法就可能會出錯了。
+
+順序問題
+
+因為使用非同步的載入方式，所以用 require 載入套件時，是有可能會造成相依性上的問題。 所幸 RequireJS 提供了一個 order plugin，讓我們可以依序載入正確的套件。
+
+以 Backbone 為例，我們需要依序載入 jQuery 、 underscore 及 Backbone 等三個套件，方法如下：
+
+js/main.js
+
+1  require([
+2    'app',
+3    '../lib/requirejs/order!../lib/jquery/jquery-min',
+4    '../lib/requirejs/order!../lib/underscore/underscore-min',
+5    '../lib/requirejs/order!../lib/backbone/backbone-min'
+6  ], function (App) {
+7    App.initialize();
+8  });
+
+如上面的範例所示，在每一行載入 js 的字串中，我們先載入 plugin，然後利用 ! 符號來將 library 的位置傳給 plugin。
+
+其他有用的 plugin ，可以在官方網站的 Plugins(http://requirejs.org/docs/download.html#plugins) 頁找到。
+
+路徑別名
+
+不過每次都要輸入這麼長的路徑實在是很麻煩，還好 RequireJS 也提供了 paths 讓我們設定路徑的別名，就不需要輸入這麼多字：
+
+js/main.js
+
+1  require({
+2    paths: {
+3      "order": "../lib/requirejs/order",
+4      "lib": "../lib"
+5    }
+6  });
+7
+8  require([
+9    'app',
+10    'order!lib/jquery/jquery-min',
+11    'order!lib/underscore/underscore-min',
+12    'order!lib/backbone/backbone-min'
+13  ], function (App) {
+14    App.initialize();
+15  });
+
+要特別注意的是，這裡設定的別名，也會影響到其他模組裡所使用的 define API 。
+
+require 還有其他設定，請參考官方文件的 Configuration Options 。(http://requirejs.org/docs/api.html#config)
+
+Namespace
+
+前面提到 require API 可以讓我們對載入的 js 檔案所回傳的模組物件做 namespace 對應，也就是上述例子的 App。事實上我們可以針對每個模組都設定一個 namespace，例如：
+
+js/main.js
+1  require([
+2    '../lib/a',
+3    '../lib/b',
+4    '../lib/c',
+5    '../lib/d'
+6  ], function (moduleA, moduleB, moduleC) {
+7    moduleA.doSomething();
+8    moduleB.doSomething();
+9    moduleC.doSomething();
+10    namespaceD.doSomething();
+11  });
+
+可以看到 '../lib/a' 這個模組對應到 moduleA 這個 namespace，'../lib/b' 則對應到 moduleB，以此類推。
+
+但是 namespaceD 並沒有在 require 方法的 callback 參數中，那為什麼我們可以取用呢？
+
+回到一開始我們用 require 載入第三方套件的方式，其實可以看到我們是直接利用該套件定義好的 namespace，例如 jQuery 的 $ 符號，或是 underscore.js 的 _ 符號。
+
+而我們並沒有再為這些套件指定新的 namespace，是因為這些 namespace 已經被綁在 global 變數裡了 (在瀏覽器環境下是指 window 變數)，所以我們可以直接取用。
+
+所以 namespaceD 其實就是 lib/d.js 裡已經定義好的，例如：
+
+lib/d.js
+
+1  define(function () {
+2    var namespaceD = window.namespaceD = {
+3      doSomething: function () {
+4        console.log('namespaceD.doSomething()');
+5      }
+6    };
+7    return namespaceD;
+8  });
+
+瞭解這個回到我們前面所提到的 Backbone.js 範例，有些文章的例子會教大家這麼用：
+
+js/main.js
+1  require([
+2    'order!lib/jquery/jquery-min',
+3    'order!lib/underscore/underscore-min',
+4    'order!lib/backbone/backbone-min',
+5    'order!app'
+6  ], function ($, _, Backbone, App) {
+7    console.log($);
+8    console.log(_);
+9    console.log(Backbone);
+10    console.log(App);
+11  });
+
+如果各位是使用 Underscore.js 及 Backbone.js 的官方版本時，這樣做是錯誤的，你會發現 callback 裡的 _,Backbone 都會是 null 值。為什麼呢？主要是因為這兩個套件目前不支援 AMD 架構，所以無法正確回傳對應的 Underscore.js 及 Backbone.js 物件回來。所以很多人在透過 RequireJS 使用這兩個套件時，就會在這裡卡關。
+
+最簡單的方式就是不要再為這些第三方套件設定一個 namespace ，也就是一開始為大家介紹的用法。
+
+另一種方式就是直接使用 RequireJS 所 fork 出來的 Underscore.js(https://github.com/amdjs/underscore) 及 Backbone.js(https://github.com/amdjs/backbone) 的 AMD 版本。
+
+還有一種方法是為這些套件的官方版本定義一個 wrapper ，以 Underscore.js 為例：
+
+lib/underscore/wrapper.js
+1  define([
+2    'lib/underscore/underscore-min'
+3  ], function(){
+4    return _.noConflict();
+5  });
+
+這樣在 js/main.js 裡就可以重新使用 Underscore.js 的 namespace 了，例如：
+js/main.js
+
+1  require([
+2    'order!lib/underscore/wrapper'
+3  ], function (_) {
+4    console.log(_);
+5  });
+
+不過因為非同步載入的關係，要使用 wrapper 方法處理套件相依性時，其流程就稍微複雜些了，大家可以參考 Organizing your application using Modules (require.js)(http://backbonetutorials.com/organizing-backbone-using-modules/)一文的介紹。
+
+編譯
+
+當我們把 JavaScript 拆成這麼多模組檔案後，那麼不就會讓 HTTP Request 變多了嗎？有沒有什麼方法可以幫我們把這些檔案再組合成為一支檔案呢？
+
+RequireJS 就提供了一個好用的工具，叫做 r.js 。它必須透過 node.js 的套件管理系統來安裝，也就是 npm ；安裝方法如下：
+
+npm -g install requirejs
+
+若無錯誤的話，應該會出現以下畫面：
+
+npm http GET https://registry.npmjs.org/requirejs
+npm http 200 https://registry.npmjs.org/requirejs
+npm http GET https://registry.npmjs.org/requirejs/-/requirejs-1.0.7.tgz
+npm http 200 https://registry.npmjs.org/requirejs/-/requirejs-1.0.7.tgz
+/usr/local/bin/r.js -> /usr/local/lib/node_modules/requirejs/bin/r.js
+requirejs@1.0.7 /usr/local/lib/node_modules/requirejs
+
+r.js 會幫我們處理以 require 或 define 所定義的模組，再參照其相依性把所有檔案合併為單一的 JavaScript 檔案。用法如下：
+
+r.js -o name=js/main out=js/main-built.js baseUrl=. paths.order="lib/requirejs/order"
+
+其中 -o 為最佳化； name 則為要處理的 JavaScript 檔案； out 則是輸出的檔案名稱； baseUrl 為指定 r.js 在處理相依性時所要參考的相對路徑； paths.order 是路徑別名，但不相對於 js/main.js ，而是相對於 baseUrl 。
+
+處理完成後，我們就可以直接改用以下方式載入：
+
+index.html
+1  <script data-main="js/main-built" src="lib/requirejs/require.js"></script>
+
+當然聰明如你，應該想到該怎麼讓開發和上線環境使用不同的 JavaScript 檔案了吧？
+
+心得
+
+以往在寫 JavaScript 時，雖然都會儘可能模組化，但變數的管理還有程式拆解不易的狀況，都是自己在維護 JavaScript 程式時很大的痛處。
+
+在瞭解 RequireJS 的強大後，我相信以這樣的模組化方式再搭配 Backbone.js 的架構，一定可以讓系統在開發與維護上更為有組織性。
+
+參考
+Organizing your application using Modules (require.js)(http://backbonetutorials.com/organizing-backbone-using-modules/)
+AMD 規範：簡單而優雅的動態載入 JavaScript 代碼 (http://blog.csdn.net/dojotoolkit/article/details/6076668)
+Javascript 文件加載： LABjs 和 RequireJS (http://www.ruanyifeng.com/blog/2011/10/javascript_loading.html)
+_______________________________________________________________
+
+■ [技術專欄] 新創網站這樣開發才夠快
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net (http://blog.xdite.net/posts/2012/04/07/startup-rapid-development/)。
+
+借用新創網站這樣開發才夠快 (http://www.kuobrothers.com/article-124.htm) 這篇格式，希望不要介意。我主要是想闡述以前在 T 客邦 (http://www.techbang.com/) 的經驗方法。
+
+T 客邦在一年半裡面，就從台灣 Alexa 400 名以外，衝進台灣 Alexa 100 名內。這一年半時間技術團隊開發出了四個大網站，數十個子網站，和背後一群深厚的基礎建設 (HA, backup, PV stat, advertising system, etc.)。T17 實際開發的工時在 2.5 個月以內。
+
+我是一個軟體工程師，過去六年我都在開發網站。在新創公司裡，速度節省時間、時間就是金錢、金錢就可以再去請更多工程師讓整個開發速度更快。學校並沒有教很多「軟體工程」的方法，或是怎樣才算是一個好的 Programmer。這些東西在台灣業界其實不存在的，大家都是邊做邊摸，從經驗中學習。我從書籍上和網路上學了很多能讓團隊更有效率的做事方法，因為我相信我在新創團隊裡我必須先這樣，用業界公認覺得快，且快得有道理的方式。底下是幾點可以和大家分享的。
+
+1. 讓全團隊都用一個成熟的開發框架和環境：
+
+我的專長是 Ruby on Rails。我並沒有偏好推薦別人如果現在是用 PHP 或 .NET 或 JAVA，就要不計成本的導入新框架。就像我其實也沒有很喜歡硬導入 Scala 或 Node.js 一樣。它們可以在它們派得上用途的地方加分，但是絕對不能是主體。道理很簡單，我不認為他們成熟到夠讓所有成員快速上手，不重造輪子。
+
+一般團隊喜歡用 PHP。因為 PHP 工程師好找，Rails 工程師不好找。但在我一路走下來的經驗，我認為這是一個「假命題」。因為在人力市場和公司實際運作的狀況裡面，你會發現這個命題不怎麼牢靠。沒錯，你是找的到 PHP 工程師，但很抱歉，很多人寫的 code 是不能用（更精確的說是 write only）的居多。（我沒有冒犯 PHP 開發者的意思）
+
+原因是 PHP 開發並沒有太多一致性的規範，基本上就是愛怎麼寫就怎麼寫。這導致了即使你團隊裡面就算裡面有一個很厲害的開發者，也是沒有多大的用處。因為大家 coding style 不一樣，甚至連網站結構也不一樣。補人幾乎是沒有辦法發揮到加成作用，大家只能各寫各的，就算爆炸了也幾乎只有當初的作者可以修。
+
+這在我眼中是極度浪費團隊戰力的元兇。
+
+Rails 沒有這樣的狀況嗎？這是我覺得 Rails 優勢的地方，它是一個非常熱門的 Framework（只有在台灣你可能沒有感覺到他很熱門）。因為這是一套 Framework，也就是它本身有很強的約束性，至少 MVC 和 routing 規則，一般就算新手也不會亂放的太離譜。寫 code 有一定的潛規則存在。
+
+開發中遇到任何東西發生錯誤了以後，開發者幾乎可以用 Google 找到任何可能發生的原因，修復完畢。而這幾乎不是一般自建 Framework 可以比的上的地方，如果你在公司自建一套 Framework，基本上發生任何問題，最後幾乎都得去煩當初設計的 Architect 才行。（這也是很浪費錢的地方，因為 Architect 的薪水都很貴）。
+
+學習曲線過高，我也不覺得這件事真的存在。Rails 高手是難尋沒有錯，但是 Rails 中低手只要訓練得當，生產力也是非常驚人。因此只要把重心放在如何協助一般想入門者，可以快速克服入門幾大門檻（搞定開發環境，RESTful，Plugin，Debug，Deploy），剩下的部分就可以靠網路教材和實戰訓練出來。這也是我發明 Rails 101 (http://rails-101.logdown.com/) 的原因。
+
+我設計這一套教材的目的是要讓所有新進的開發者，在最長兩週時間內要學完基本 Linux 指令、Git、Rails 所有基礎的知識、佈署、SCSS 撰寫等等，一個月之內就能上戰場跟我們一起開發功能開發新網站。這樣的進度很誇張嗎？不，不誇張。這裡的每一個開發者都有這樣的程度，他們有些人應徵時是連 Rails 都不會寫的。你能相信連T客邦的 PM 和 ART 他們也會寫 Rails 嗎？ (no kidding)
+
+寫 Code 規則怎麼規範？同事和我從社群中吸收了很多 Best Practices，我們把這些東西整理出來變成新手指南、最佳實踐，甚至是包裝成 Gem 和 Generator，越後進的開發者能花越少的時間追上前輩，在短時間他們的作品也能跟前輩一樣預先搭載 Best Practices。我最近也開始在撰寫另外一本書 Essential Rails Pattern for Beginners (http://rails-101.logdown.com/books/3-essential-rails-pattern)。
+
+Rails 本身還有豐富的 Ecosystem，和預設的架構最佳實踐就更不用說了。
+
+新創團隊資源很少，人事預算沒有這麼夠，反而要巧妙的運用天然資源並讓團體戰力*3才行。
+
+2. 功能設計給當下使用，考慮一定程度的擴充性：
+
+我也不相信在新創團隊有人可以預知未來，即使很多東西看起來未來往那個方向擴充很合理。對我來說，我在設計功能時並不會 overthinking，甚至我也禁止同事 overthinking。因為專案中最高的原則是 get things done，not over design。
+
+但這不代表在設計上不需要留一定程度的擴充性，在內部的工作流程通常最後一道是有 refactor 整理空間的。在這時候同事會把雜亂的 code，整理回當初規範中必須寫的樣子。如果這是常見功能，一再出現，就必須整理成 Library，或架構 Pattern。一但是 Pattern，擴充性就留出來了。
+
+在之後新的專案中，就可以拿上一個案子打下來的基礎一再重複利用再利用。甚至最後竟然還有 Event Generator 這種東西……(Authenication, Rails Admin, SEO, etc.)。
+
+3. 程式本身即註解
+
+一般軟體實踐上本身也不贊成寫註解。而是鼓勵程式本身即要可以表達自己的行為。如果寫的程式亂七八糟讓人看不懂，進 review 時是會被回退的。我們團隊能夠被接受的程式是可以寫得很笨拙，但每個同事都看得懂。因為笨拙但能理解，其他前輩有時間可以去 refactor。但亂寫，之後就沒人動得了了。
+
+4. 盡力寫下所有的 documentation
+
+世界上沒有人能夠寫出一份完整的系統架構書可以詳盡的描述現在系統上真實的狀況。但是一個好的 issue tracking system 和寫的 commit log，可以能夠很好的協助你了解為什麼現在系統會是這樣設計的，為什麼當時會做出這樣的決策，導致程式必須要這樣設計。
+
+在新人訓練期時，我通常會訓練新人要有將任何實作上遇到任何的 detail 和狀況詳細 document 在票上的習慣。而在完成整個專案時或者是技術架構稍具規模雛形時，要把這些 ticket 上的筆記梳理紀錄下來。
+
+這樣會對整個團隊程度的躍升會有非常強大的正面效益。同時在人員流動（新進或離職）時，衝擊會非常非常的小。
+
+因為至少很多的 “basic” 的教育成本，在這部分會幾近於 0。一路都在 startup 的歷練，讓我很早就理解到一件事，人員流動幾乎是無可避免的，所以重要的是要怎樣讓人員流動造成的衝擊更小。
+
+在新創事業讓同事投資一項新技術，也是很昂貴的。所以要學的話，大家一定也都全都要會，否則就會一直很貴。
+
+這是 documentation 可以帶來的價值。
+
+5. 要有測試環境和 policy
+
+從昂貴的教訓裡面我學到的就是一定要有測試環境和 policy。在 Rails 中將環境切分成好幾份，並沒有超困難。而且一定要有測試環境 (staging)，是因為每個人開發的環境不一樣，在當下 focus 在自己電腦前，很多設計並不會考慮那麼多。丟上 remote server 你才會知道炸掉一大片，或者是 performance 極度不好。這都是會傷害商業 credit 或者搞砸交易的（比如說你跟客戶談好明天 on 檔一支幾十萬的廣告，但明天因為人為疏失倒站一天，請問你要去挪誰的 queue 給他，一天到晚發生這樣的事。誰要跟你做生意？）。
+
+至於 policy 就更重要了。
+
+很多加班的狀況其實都是不必要發生的。比如說在頭腦不清醒的時候寫了爛 code commit 上去。導致自己清醒時要去清理這攤爛泥。在吃飯前或下班前 deploy 了最新版的 code，結果中午倒站數小時；原本可以準時下班，十點都走不了。
+
+但寫了好東西不直接 commit master 和不馬上 deploy，會讓 RD 非常癢。這種病連我都不能倖免。
+
+但是商業網站是不能一天到晚失火的，團隊還是有人要去捍衛這種大局。所以最後也只好執行了這樣的規範：
+
+寫功能一律上 feature branch
+上線前必須使用 staging server, apply feature branch 測過一輪
+絕對不在中午 11 點 - 12:00 deploy，絕對不在 17:00 後 deploy。
+deploy 流程必須使用工具自動化，出事要能 rollback。
+執行了這樣的 rule 之後，幾乎就沒有人需要餓著肚子修 bug，半夜因為軟體的問題跳起來加班修理了。
+
+因為我深信：長期處在失火／救火的環境下，會快速減低一個團隊的戰力。
+
+熱血的投入通常會讓人有假象，我投入的工時越高，成果會越好。事實上這是一個徹底的偽命題。而創業初期的不穩定，忙碌，失火，更讓你會有只要我努力加班，一切就改善的錯覺。腎上腺素最多只能讓你撐三個月，接下來一切都會破滅的。做一個網站要到可以出場，大家比的是命長，而不是 Startup weekend 冠軍。
+
+6. PM 的話聽聽當參考就好，但要好好溝通
+
+在很多情形下，PM 也許規劃出來的方案 A，需要 10 小時。但你知道可以把它改變成方案 B，只需要 3 小時。但前提是，你要好好的去追問出來，為什麼他會做出 A 設計案這樣。不可否認台灣具備專業素養的 PM 極度稀少，能遇到一個就是燒香了。所以很大的程度遇到的可能是一個只會照抄其他網站畫架構圖的人，或者是負責賣廣告的 Sales 自己兼，但這都不要緊。要緊的是你要問出為何這樣設計，因為他的外行程度可能會讓他估出一個讓公司嚴重虧本的實作案，你卻沒阻止他。或者是這個案子架構是合理的公司方向，但你卻誤解背後的設計原理擅自修改而失效：
+
+一個設計方案會這樣設計的背後原因有很多個，有可能是：
+
+PM 路上隨便抄
+PM 自己喜歡這麼做
+ART 要求
+客戶要求
+這是 key feature，一定得這樣作，否則失去此系統意義
+所以不能是自己喜歡 B 就 B。開發一個系統一定有「成本」、「預計收益」，而實作的方案必須要去找出這兩者的平衡點。這就是靠溝通溝通溝通……。
+
+7. 要寫出一定程度的程式碼
+
+要使用 HTML/CSS 架構設計網頁，不要濫用 ORM，不要重造輪子，不要寫出會被人公幹的 code，這些都是基本的開發常識。很多新創網站寫出第一版很快，但之後就陷入開發泥淖，無法配合業務模型快速調整，幾乎 90% 的原因以上都是因為第一版 code 爛到當初的開發者自己也改不太動，結果光是後續調整架構做小改版就耗掉超多時間，變成超大致命傷。
+
+8. 要追求一定以上的網頁效能，tune 在刀口上
+
+不追求效能實在是一句非常不可思議的話。
+
+不可否認有些開發者效能和 Fancy 技術實在追求過頭，比如說甚至一開始就用 Backbone (http://documentcloud.github.com/backbone/) 寫整個網站，或者是從頭到尾使用 Node.js 寫網站。這都是一開始就打算寫 mobile 版 web service 給 mobile phone 使用才需要做的事。因為 3G 的 Latency 實在太大，要盡力的壓縮頻寬使用量和追求頁面 response time。
+
+但實作一個 Desktop 版網站完全沒必要。而在 website performance tuning 的時候，優先調整的也是 Frontend Performance，因為 C/P 值高很多，壓縮一下 CSS 也許就可以省 3 秒。db 或程式語言 tune 的要死可能才省 0.1 秒。
+
+而網站的指標和 User Experinece 並不是說打的開就好。比如說網站開的速度會直接影響 Search Engine 和 Alexa 排名，不知道這到底有多少人曉得？還有一般使用者對於 Blog / Album 和 Video 各自能夠忍受的 response time 根本是不同的，Video 大家可以忍個 5 秒還沒打開都能接受，但是相簿和網誌開一頁要 5 秒這大概就沒人要用了吧……。
+
+效能調校這件事，過與不及都是不好的事。
+
+9. 少用 Fancy 的東西，實作前先估算成本與效益
+
+身為開發者，世界上每天會冒出很多新的好東西，這些不去玩玩看手實在會手癢。但是其實每引入一項都會有一定的成本存在，而且效益／成本比不見得是你當初想的那樣。
+
+比如說一直追 Rails 新版，換上效能很好的 Ruby 1.9.2，改用 SCSS 去寫 CSS，改用 CoffeeScript 寫 JavaScript。Apply 新發明的 Asset Pipeline 架構。這些都是很新很棒的東西。（T客邦都有，架構從最早的 2.3.2 一直 upgrade 到 3.1.3，內行人才知道這樣工程有多大）
+
+但跟其他事物的道理其實是一樣的，新的東西就有新風險。而且通常引入這些東西，不是自己一個人爽就好，是大家都要用的東西。
+
+所以通常我是這樣做的：先 branch 一個版本，我自己或是請資深 RD 自己下去把整個實作方法都做出來或者是進行評估，確定可行後整理成可行的 SOP。才大大幅推行。
+
+如果是新想法，則是在一個 event 或是小版面先行製作嘗試效果。
+
+好的東西是不錯。但不要孤注一擲。
+
+綜合以上，我想說的是：在開發初期，任何一點戰力都是相當寶貴的，所以沒有什麼理由把程式碼亂扔，不實行一定的規則而導致到處都失火。永遠都在做重複的白工。
+
+任何舉措，最好都要是能以盡量把成本壓到差不多低，但效益都非常高。
+
+以上我上面所說的這些東西都不是我的創舉，事實上幾乎所有 Rapid Development、Agile Development，還有很多 Engineering Blog 常常都在聊這樣的話題。
+
+我發現很多工程師朋友常常有自幹且認為自己的東西最好的傾向。認為外界的方法「絕對」不適用在自己的團隊上，美國的常態並不適合在台灣使用。但事實上這世界真的非常大，說實在真的沒什麼理由把自己的成長速度綁在自己的眼界裡面，很多的 principle 在不同產業不同國家都是適用的。多看看別人怎麼做，你會驚訝這些方法的引入，對自己事業加成的幅度是多麼驚人的。
+
+P.S.貢獻一個不是八卦的八卦：T 客邦從來就不是一間網路公司，這是一支傳統出版社裡面的數位團隊。技術團隊大概永遠只有五個人：1 Leader, 1 PM, 3 RD, 1 ART。兩年以來幾乎都是這樣的狀況……。
+_______________________________________________________________
+
+■ [技術專欄] 網站程式上線前需要準備的事（一）
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net (http://blog.xdite.net/posts/2012/03/18/website-online-todo-1/)。
+
+很多人知道如何實作網站功能。但是卻不知道如何將網站成功的完工，並且如期上線。往往明明專案開始之初有不少的工期，有不錯結果的卻很少。上線前後總是一團慌亂。
+
+其實「上線」這件事情完全是可以被掌控的。這當中有不少眉角，只是多半被疏於控制，導致風險橫生。
+
+在回答別人幾次這樣的問題之後，我決定把我的經驗分享整理出來：
+
+第 1 件事：界定時程
+
+這是我認為在專案管理過程中，最重要的一件事。累積參與過幾十個專案下來的經驗之後，我發現上線前手忙腳亂的原因，幾乎都是時程的安排不當。時程混亂冒出的很多風險又沒有被妥善的管理，最後才大失火……。
+
+傳統瀑布式專案進行法：寶貴的時間被大量的浪費
+
+一般的專案進行方式，雖然都會有確切的完工期，但專案進行的方式往往會形成相當的浪費而最後造成大量的風險。
+
+比如說一個需要 6 個月工期的案子進度通常是這樣的：
+
+花了 3 - 4 個月無盡的訪談需求
+花了 1 個月請美術設計視覺與介面，以及反覆修改
+最後剩下不到 1 個月請 RD 寫程式
+=> 完全來不及寫完程式 => 半成品上線
+
+上線後一個月：
+
+到處都是 Bug
+發包方抱怨
+使用者抱怨
+
+上線後第二個月：
+終於寫完當初規劃的程式
+終於修完大部分的 Bug
+使用者早已認定這是個未完工的網站，不再來訪
+
+上限後第三個月：
+因為網站規劃不良，使用者對這個網站不感興趣
+因為網站規劃不良，預計的成效沒有出來
+還有資源 => 繼續籌畫下六個月的改版
+已無資源 => 死城
+
+「規劃」從來不是最重要的事
+
+「規劃」其實絕對不是開發一個網站的最重頭項目。「施工」和「調整」才是。
+
+傳統的專案進行方式往往會掉進一個陷阱：六個月看似非常長，於是就大膽的將大部分的時間都丟入「規劃」這個一階段，因為沒有時間壓力，於是會議也通常沒有結論，或者是 feature 發散。等到驚覺時間已大幅燃燒殆盡，再不進行開發絕對完蛋，才匆匆結束。
+
+「規劃」畢竟是個空想產物，等到實際請美術設計頁面，又會發現很多畫面以及 UI 實際上不可能完成。
+
+於是在這一個月，團隊又會大幅的來回修改刪除功能：直到一個勉強接受的範圍，等到視覺完工再轉交給程式設計師「套版」。
+
+在上一個階段，粗估的一個月往往是不夠用的。因為還牽扯到往來的修改時間。而這時交出的產品 scope，也僅只限於「UI」部分有辦法被完成。
+
+「UI」部分有辦法被完成不等於「功能」有辦法被完成。有時候畫面上一個小小的按鍵功能，背後的基礎開發工時可能要花上三個月。
+
+最終的上線版本，因為不夠時間了，通常最後只有寫完當初規劃出的功能的 10 - 30% 。而且 Bug 還很多。（因為時間關係，只有辦法完成勉強達到 UI 操作的目的，細部細節根本來不及實作）
+
+最後成效不彰，檢討會議上大家互相指責。但無論如何怎麼檢討來檢討去，完全沒有人會把最根本的問題朝向「規劃時間太長」，只會輕描淡寫的用「必要之惡」一筆帶過。
+
+我的方法：從後面倒回來推算時程
+
+我的作法完全相反。如果一個工期是六個月。我會這樣分：
+
+什麼時候要上線：上線前 1 個月前要 Feature Complete，留足夠的時間進行各樣測試和修復 bug。（剩下 5 個月可以用）
+寫程式要花多久時間：寫程式要花多久時間是不一定的事，但是可以粗估不出包的時間大概是 2 - 3 個月，可以粗抓 2.5 個月。（剩下 2.5 個月）
+視覺設計要花多久時間：畫面設計要花多久的時間也是不一定的事，但是可以粗估不出包的時間大概是 1 - 2 個月，可以粗抓 1.5 個月。（剩下 1 個月）
+是的。只剩下 1 個月時間可以開會、規劃、畫草圖。請不要浪費時間。
+只有 1 個月，是否不夠時間詳細規劃功能？
+
+完全不會。
+
+我會在以後其他的專案管理文章解釋為什麼。
+_______________________________________________________________
+
+■ [法律專欄] 新版 MPL-2.0 與 MPL-1.1 簡要差異比較
+
+林懿萱 / 文
+
+歷經近二年的公開討論，過程中收納了包含 MPL 使用者、律師及開放源碼社群的意見，Mozilla Public License 2.0（簡稱 MPL-2.0，註一）於 2012 年 1 月正式推出了！MPL-2.0 較之先前的 MPL-1.1，有以下幾點主要差異：(1)  MPL-2.0 更為精簡，讓使用者更易於閱讀及遵守，(2) MPL-2.0 加強了授權條款的相容性，一方面將專利保護條款修改成和其他開放源碼授權條款的規定更為一致，另一方面也設計若干新的機制，讓 MPL-2.0 不但能夠與 Apache license 在同一個軟體專案下和諧運作而不產生衝突，透過「備位條款」的新機制，也能夠在需要的時候與 GPL、LGPL、AGPL 相容，使程式碼更易於再次被利用及散布（註二）。本文以下將針對此次改版的 MPL-2.0 與之前 1.1 版的主要差異點作要點分析。
+
+差異要點分析
+
+一、定義條款
+
+1. 將「適用程式」(Covered Code) 修改為「適用軟體」(Covered Software)：1.1 版適用程式的定義只包含原授權碼 (Original Code)、其「修改部分 」(Modifications) 或前述兩者的結合；2.0 版則是將原始碼的執行格式 (Executable Form) 也納入適用軟體的定義中，使得適用軟體的範圍，明確包含原貢獻者貢獻的原始碼、其執行格式及原始碼的修改部分。
+
+2. 新增「備位條款 (Secondary License)」的定義：備位條款係指 GNU GPL-2.0、LGPL-2.1、AGPL-3.0（以下概稱 GNU 授權條款）或前述條款的任何後續版本。備位條款這個名詞的新增，是為了減輕 MPL-1.1 的多重授權機制所導致的授權狀態複雜化（註三），關於此部份，將在說明散布集合著作的義務規定與附錄內容時，一併說明之。
+
+3. 修訂「修改部分」的定義：1.1 版的修改部分是指，任何對原授權碼 (Original Code) 或舊有修改部分實質或結構性的增刪；2.0 版則修訂為，修改部分指以原始碼格式呈現的檔案，其來自對適用軟體的增刪、修改，或者是以原始碼格式呈現的新檔案，其內含適用軟體。
+
+二、簡化授權內容 (License Grants) 及新增授權限制
+
+1. MPL-1.1 第二條「授權」分為原始開發者授權 (the Initial Developer Grant) 及貢獻者授權 (Contributor Grant) 來分別規範，2.0 版將這兩部份合併，統以每位貢獻者授權 (each Contributor grants) 為主體展開規範內容，授權的範圍則大致維持不變，同樣是全球、免權利金、非專屬的授權：
+
+(1) 專利權、商標權以外的智慧財產權授權：允許被授權人不論改作與否，或作為集合著作 (Larger Work) 的一部，得以使用、重製、播放、展示、修改、散布等方式利用授權軟體 (Contribution)。
+
+(2) 專利權授權：被授權人得製造、使用、販賣、為販賣邀約、代工、進口及以其他方式轉讓授權軟體（註四）。
+
+2. 在授權限制部份，MPL-2.0 新增商標權保留規定，明示除該授權條款所要求的授權聲明之必要外，貢獻者保留任何關於商標、服務標章、商品名稱的授權。除此之外，配合備位條款的運用，2.0 版亦新增一項授權限制，即若被授權人選擇依 MPL 後續更新版本或備位條款來散布適用軟體，貢獻者不會配合該等授權條款的規定，而再額外授與被授權人其他授權。另外，在關於合理使用的部份，2.0 版也明確地申明「本授權條款無意限制被授權人依可適用著作權法的合理使用原則所被賦予的任何權利」。
+
+三、義務規定
+
+1. 散布適用軟體原始碼：MPL-1.1 規定當被授權人散布適用軟體原始碼時，必須附上 MPL-1.1 授權條款副本，而隨著網際網路傳輸技術的進步，2.0 版放寬要求，規定被授權人告知程式接受者 (recipient) 適用軟體原始碼係受 MPL-2.0 所規範，及如何取得 MPL-2.0 授權條款內文即可，而不硬性要求必須同時散布授權條款全文。
+
+2. 散布適用軟體可執行格式 (Executable Form)
+
+(1) 2.0 版要求當被授權人散布適用軟體可執行格式時，必須使該部份適用軟體的原始碼也可供取得，且必須即時、以合理方式告知程式可執行格式的接受者如何取得該部份適用軟體原始碼的副本。
+
+(2) 被授權人可依 MPL-2.0 來散布適用軟體可執行格式，或以其他授權條款對該適用軟體可執行格式再為授權，只要此授權條款不會限制或影響程式接受者依 MPL-2.0 對適用軟體原始碼可行使的權利即可。1.1 版中也有類似的規定，不過由於文字並不明確，因此 2.0 版新增明確規定，以降低條款解讀的困擾。
+
+3. 散布集合著作：2.0 版新增一段，當集合著作是由適用軟體與受備位條款規範的其他著作結合而成，且該適用軟體可與備位條款相容時，被授權人需使該適用軟體除 MPL-2.0 外，亦可依循備位條款來散布；換句話說，該被授權人的後手，可選擇依 MPL-2.0、或是該備位條款來散布該適用軟體。
+
+4. 授權聲明：1.1 版要求必須在每份原始碼檔案中複製附錄 A 的範本授權聲明；2.0 版則改為規定被授權人不得移除或修改包含於適用軟體原始碼格式中的授權聲明的實質內容，但若授權聲明內容有顯知的錯誤則不在此限。
+
+四、準據法及管轄法院
+
+1.1 版準據法是依據美國加州法，管轄法院則為北加州地方法院；2.0 版考量到 MPL 的國際適用性，規定改為必須向被告營業所在地的法院提起訴訟，且以該地的法律為訴訟進行時的準據法。
+
+五、授權條款版本
+
+1.1 版規定網景 (Netscape) 公司得發佈 MPL 更新版本，2.0 版則修改為，Mozilla Foundation 係 MPL 授權條款的維護者，也是唯一有權利修改或發佈後續 MPL 更新版本者。
+
+六、附錄 (Exhibit)
+
+2.0 版的附錄不若 1.1 版提供詳細授權聲明的標示範本文字，而是簡要寫明適用軟體的原始碼係依循 MPL-2.0 釋出，且當以特定檔案放置授權聲明不可行，或授權人不想這麼做時，可將授權聲明放在如「授權 (License)」檔案中，供接受程式者依此路徑自行瀏覽。此外，由於 1.1 與更早的 MPL 版本也規定使用者可以自行決定是否將授權條款升級到後續新版，若是使用者選擇不升級，那麼軟體將保持在採用 MPL-1.1 或更早版本的狀態下。由於舊版的 MPL 授權內容並沒有備位條款的規定，所以配合 2.0 版備位條款的規定，當被授權人選擇與 GNU 授權條款不相容的 MPL-1.1 或更早的版本，來散布適用軟體原始碼時，另需附上附錄 B 的「與備位條款不相容的聲明 (Incompatible With Secondary License)」，以讓人了解該元件是以舊版 MPL 授權條款來進行散布，而並不適用新版 MPL 備位轉換為 GNU 授權條款的機制。
+
+結語
+
+MPL-1.1 自 1998 年推出至今，已被使用十來年，而近年軟體應用的方式日新月異，在實務上難免產生若干的問題。此次 2.0 改版的要點如本文以上所述，可以觀察出來，改版的核心是在處理 MPL-1.1 與 GNU 授權條款在本質上不相容的問題。由於 GNU 授權條款被大量的開放源碼軟體專案所使用，但是 MPL-1.1 卻與 GNU 授權條款不相容，雖然 MPL-1.1 有多重授權的規定，但是卻會產生軟體授權狀態複雜化的問題，長遠觀之，並無法順暢 MPL-1.1 軟體的多元發展與應用，所以這次的改版，透過備位條款、集合著作以及附錄 B 的「與備位條款不相容的聲明」構成一套新的機制，可望減輕 MPL-1.1 的多重授權所導致的授權狀態複雜化現象。在此同時，MPL 的重要特質仍然被保留下來，即其不若 GNU 授權條款有那麼強烈的授權拘束性，但亦不像 Apache 授權條款允許衍生著作毌須得依相同的條款內容釋出，而是落在前述兩種授權條款中間，只有當個別檔案內含了 MPL 授權程式碼時，才需依 MPL 釋出，此點授權拘束性方面的最大區隔特色，並未因此次改版而有所變動。簡化授權文字的 2.0 版，能否真能在保持原有特色的前提下，順暢 MPL-2.0 軟體的多元發展與應用，就待各界使用者來給予後續評斷了！
+
+註一：MPL-2.0 原文請見：http://www.opensource.org/licenses/mpl-2.0（最後瀏覽日期：04／20／2012）
+
+註二：http://www.mozilla.org/MPL/2.0/Revision-FAQ.html#what-has-changed（最後瀏覽日：04／20／2012）
+
+註三：MPL-1.1 第 13 條："Initial Developer may designate portions of the Covered Code as "Multiple-Licensed". "Multiple-Licensed" means that the Initial Developer permits you to utilize portions of the Covered Code under Your choice of the MPL or the alternative licenses, if any, specified by the Initial Developer in the file described in Exhibit A. ."
+
+註四：本段英文原文艱澀難懂，本文在說明時為了讓讀者容易了解，因此採用簡化的說明文字。原文在 MPL-2.0 的第 2.1 條第 b 項，內容如下："Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license ... under Patent Claims of such Contributor to make, use, sell, offer for sale, have made, import, and otherwise transfer either its Contributions or its Contributor Version."
+_______________________________________________________________
+
+■ [企業應用] 授權流言終結者#3: jQuery 授權的分析與探討
+
+曾義峰 / 文
+
+1. 前言
+
+"The Write Less, Do More, JavaScript Library" 是 jQuery (http://jquery.com/) 專案的口號，是一個能夠提供既簡潔又快速的 JavaScript 函式庫。它簡化了 HTML 文件格式的解析、事件驅動與動畫的處理、以及提供網頁快速開發的 Ajax 互動功能。jQuery 旨在改變我們編寫 JavaScript 的方式，是目前最受歡迎的 JavaScript 函式庫之一。
+
+jQuery 專案始於 2006 年 1 月 John Resig 在 BarCamp NYC 上所釋出第一版本，並於 2009 年 1 月 14 日的 1.3 版中，將著名的跨瀏覽器選取引擎 Sizzle (http://sizzlejs.com/) 納入核心的功能中。
+
+隨著國內外 jQuery 專案的興起，愈來愈多相關的著作權議題也開始浮現。本篇文章將以 jQuery 專案為實例，蒐集並探討常見的問題及誤解。
+
+2. jQuery 的授權分析
+
+根據 jQuery 官方網站的著作權授權專頁 (http://jquery.org/license/) 的說明。
+
+http://www.openfoundry.org/images/120424/jQuery03/2012-04-10_jquery_license_page.png
+▲ 圖1：jQuery 官方網站的著作權授權專頁
+
+其中我們可以發現 4 項需要特別注意的地方。
+
+2-1. 著作權網頁標頭處的「雙重授權聲明」
+
+在 jQuery 官方網站的著作權授權專頁的標頭處顯示著下列文字內容：
+
+    You may use any jQuery project under the terms of either the MIT License
+    or the GNU General Public License (GPL) Version 2.
+
+意謂著 jQuery 專案使用的是 MIT (http://www.spdx.org/licenses/MIT#licenseText) 及 GPL-2.0 (http://www.spdx.org/licenses/GPL-2.0#licenseText) 雙重授權模式。表示任何人使用 jQuery 時，可以遵循 MIT 授權條款或者 GPL-2.0 授權條款，而選擇的權利由使用人來決定即可。
+
+2-2. 許可的例外範圍聲明
+
+在 jQuery 官方網站的著作權授權專頁 (http://jquery.org/license/) 的第三段前句指出：
+
+    You don't have to do anything special to choose one license or the other
+    and you don’t have to notify anyone which license you are using. (...)
+
+該段表示，使用 jQuery 專案時使用者不需特別聲明是使用何種授權條款。因此，雖然 jQuery 使用的是 MIT 及 GPL-2.0 雙重授權模式，但使用者在使用時可以不需聲明採行何種，但倘若有特別的原因，例如為解決授權相容性的問題時，仍然建議要選定其中一種為其授權來散布。
+
+2-3. 進行商業應用時規定
+
+在 jQuery 官方網站的著作權授權專頁 (http://jquery.org/license/) 的第三段後句指出：
+
+    (...) You are free to use a jQuery project in commercial projects as long
+    as the copyright header is left intact.
+
+如果使用者所進行的活動為商業應用時，jQuery 仍然允許自由／免費的使用，只要在專案中保留適當的著作權聲明 (Copyright header) 即可。
+
+2-4. 相依的第三方專案
+
+在 jQuery 官方網站的著作權授權專頁 (http://jquery.org/license/) 內文後面指出：
+
+    The Sizzle selector engine (which is included inside the jQuery library)
+    is held by the Dojo Foundation and is licensed under the MIT, GPL, and
+    BSD licenses.
+
+自從 jQuery 釋出 1.3 版後，已將著名的跨瀏覽器選取引擎 Sizzle 納入核心的功能中。
+
+不管根據 jQuery 網站上的說明，或者是 Sizzle 著作權的聲明 (https://github.com/jquery/sizzle/blob/master/LICENSE)，都顯示 Sizzle 使用的是「三重授權模式」。表示任何人使用 Sizzle 時，可以遵循 MIT 授權條款，或 BSD-3-Clause (http://www.spdx.org/licenses/BSD-3-Clause#licenseText) 授權條款，或者 GPL-2.0 授權條款，而選擇的權利由使用人來決定即可。
+
+3. jQuery 授權常見的誤解及探討
+
+3-1. jQuery 是否可以進行商業應用？
+
+根據本篇文章第 2-3 部分『進行商業應用的遵守規定』所述，jQuery 進行商業應用時，只要在專案中保留適當的著作權聲明 (Copyright header) 即可自由／免費的使用。
+
+再根據第 2-1 部分『著作權網頁標頭處的「雙重授權聲明」』所述，jQuery 專案使用的是 MIT 及 GPL-2.0 雙重授權模式。此時無論是使用 MIT 授權條款或者 GPL-2.0 授權條款，在商業應用或非商業應用上都是可行的，並不需要額外支付著作權費用。
+
+但需要注意的是，無論最終是採行何種授權條款，仍然需要符合該條款的要求，例如若是 GPL-2.0 則必須提供相關程式的原始碼。
+
+3-2. jQuery 與其它授權條款相容性的問題
+
+根據本篇文章第 2-1 部分『著作權網頁標頭處的「雙重授權聲明」』所述，jQuery 專案可以使用的授權是 MIT 或 GPL-2.0。
+
+其中 MIT 授權條款是個非常友善的授權，幾乎可以與其它授權條款相結合，例如包含但不限於 MIT，BSD-2-Clause (http://www.spdx.org/licenses/BSD-2-Clause#licenseText)，BSD-3-Clause (http://www.spdx.org/licenses/BSD-3-Clause#licenseText)，BSD-4-Clause (http://www.spdx.org/licenses/BSD-4-Clause#licenseText)、GPL-2.0、GPL-3.0 (http://www.spdx.org/licenses/GPL-3.0#licenseText)，或甚至是商業授權條款等。唯如果與互惠性更強烈的授權條款互動時，則 jQuery 的 MIT 授權需要以再授權的方式轉換為該授權。例如當採行 MIT 授權的 jQuery 與其它 GPL-3.0 授權之程式互動時，則 jQuery 需要由 MIT 再授權為 GPL-3.0 授權條款來散布。
+
+反之，若使用 GPL-2.0 授權條款時，因本身是個互惠性較強的條款，所以後續與其它專案使用時受限較多。例如，不得與其它 BSD-4-Clause (http://www.spdx.org/licenses/BSD-4-Clause#licenseText)、GPL-3.0 或 AGPL-3.0 (http://www.spdx.org/licenses/AGPL-3.0#licenseText) 授權之程式互動。以前例而言，此時的 jQuery 因相容性關係是無法與其它 GPL-3.0 授權之程式互動的。
+
+因此，無論是商業用途之利用，或者是相容性之考量，jQuery 選擇 MIT 授權會是個比較好的方式。
+
+3-3. jQuery 延伸的應用及外掛 (Plugin) 是否需要公開程式原始碼？
+
+一般而言，jQuery 實務上的應用範例會以下圖的結構來呈現，
+
+http://www.openfoundry.org/images/120424/jQuery03/jquery_license_example.png
+▲ 圖2：jQuery 範例結構圖
+
+上述「自行開發的程式」可以是單純呼叫 jQuery 的函式，或者是經由 jQuery 外掛來使用的程式。
+
+根據本篇文章第 2-1 部分『著作權網頁標頭處的「雙重授權聲明」』所述，jQuery 專案可以使用的授權是 MIT 或 GPL-2.0。
+
+如果 jQuery 使用的是 GPL-2.0 授權時，此時 jQuery 外掛程式在授權的選用上，除了該授權條款需要與 GPL-2.0 相容外，最終整個 jQuery 外掛程式也都需要改以 GPL-2.0 授權公開程式原始碼。而「自行開發的程式」也因具備與 GPL-2.0 程式互動的關係，同樣也需要使用 GPL-2.0 授權公開程式原始碼。
+
+反之，如果 jQuery 使用的是 MIT 授權時，此時 jQuery 外掛程式的選用就非常彈性。同時「自行開發的程式」除了可以使用相容的自由／開放源碼授權條款外，也可以使用商業授權的條款來保護程式的後續應用。
+
+3-4. 可否將 jQuery 等相關的程式進行壓縮或混淆處理？
+
+需要視各別的授權條款而定。
+
+根據 GPL-2.0，GPL-3.0 及 AGPL-3.0 授權條款對於程式原始碼 (source code) 的定義皆為，「The "source code" for a work means the preferred form of the work for making modifications to it.」。一般對於其中要求的「preferred form」解釋，是不得進行程式碼壓縮或是混淆的處理。
+
+因此，只要是 GPL-2.0 或其它需要提供類似「preferred form」的授權條款，這些程式無論是 jQuery 本身，jQuery 外掛程式或者「自行開發的程式」，理論上都需要提供未壓縮或混淆前的原始碼。反之，若使用的是 MIT 授權條款時，則不需要，因為 MIT 並無類似的要求。
+
+但為了節省網路頻寬的傳輸，實務上許多人會採行 JavaScript 壓縮後的版本。例如 jQuery 官方網站上提供的 1.7.2 壓縮過的版本，如下，
+
+http://www.openfoundry.org/images/120424/jQuery03/jquery_1.7.2min_source_code.png
+▲ 圖3：jQuery 1.7.2 壓縮版本的程式 (http://code.jquery.com/jquery-1.7.2.min.js)
+
+但是否所有依據 GPL-2.0，GPL-3.0 或 AGPL-3.0 之 JavaScript 都無法使用壓縮或混淆呢？其實也不是如此，因為這些授權條款要求的不是「只能」提供原始碼型式，而是要「同時」提供原始碼。
+
+我們可以另行參考 Richard Stallman (http://en.wikipedia.org/wiki/Richard_Stallman) 於 GNU 官方網站上所發表的「The JavaScript Trap (http://www.gnu.org/philosophy/javascript-trap.html)」一文，於該附錄「Appendix A: a convention for releasing free JavaScript programs」的部分中，有提出對於壓縮後之 JavaScript 如何提供原始碼之見解，從中可以整理出一套標準作法。
+
+舉例而言，假如使用他人的專案或「自行開發的程式」為 GPL-2.0 授權，並以壓縮或混淆的方式散布時，則需要在該壓縮檔案版本的標頭處，明顯地增加原始碼的下載來源，如下：
+
+    // @source: http://where_your_can_download_the_javascript_source_code
+
+以 jQuery 的案例而言，若是使用 GPL-2.0 散布時，建議是在該壓縮版本中，加註相對應的原始碼來源，會是個比較妥善的方法。如下為指向原官方網站提供的原始版本：
+
+    /*! jQuery v1.7.2 jquery.com | jquery.org/license */
+    // @source: http://code.jquery.com/jquery-1.7.2.js
+
+3-5. 別遺漏了著作權的授權聲明
+
+目前最常見的錯誤是，在散布時缺少了原著作權的授權聲明。無論是何種自由／開放源碼授權條款，通常都會要求註明該著作權的聲明，即使是 MIT 授權條款亦是如此。例如 jQuery 的 MIT 授權全文，
+
+http://www.openfoundry.org/images/120424/jQuery03/jquery_mit_license.png
+▲ 圖4：jQuery 的 MIT 授權全文 (https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt)
+
+在該內容的第 3 段中，指出了著作的顯名要求：
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+因此無論如何，若未經原著作權人的同意，我們是不得將其著作權聲明擅自變更或移除。此外，我們可以發現即使是壓縮過的 jQuery 1.7.2 版本，該檔頭部分仍然留著下列的敘述：
+
+    /*! jQuery v1.7.2 jquery.com | jquery.org/license */
+
+其中的「jquery.org/license」即為授權聲明的連結，千萬別自作聰明的為了節省網路頻寬，而刪除了這段聲明。因此，無論是 jQuery 或甚至是使用他人的 JavaScript 時，都需要特別注意著作權聲明的內容與顯名要求。
+
+4. 結語
+
+簡單的 jQuery 專案也藏有著許多授權議題的探討，只是在處理相關問題的過程中，更能夠體會到大家覺得愈簡單的應用，反而愈容易讓人忘了應當遵循的要求。
+_______________________________________________________________
+
+■ [源碼新聞] Google 將推出平價 Android 平板電腦
+
+黃湘婷 / 編譯
+
+從 Google 在 2005 年收購 Android 至今，越來越多人使用 Android 系統的手機，近年來甚至拓展到平板電腦上，由 Nielsen (http://tw.cn.nielsen.com/site/index.shtml/) 2011 年第四季的市場統計結果顯示，Android 的市占率為 46.3 %，超過了 Apple iOS 的 30 %，為智慧型手機系統的第一名，但 Android 在平板電腦的市場上就沒有那麼成功了。
+
+Gartner (http://www.gartner.com/technology/home.jsp) 公司的研究會副總裁 Carolina Milanesi 表示，儘管有越來越多的電腦廠商與手機製造商希望能投入平板電腦的市場，但我們可以看到除了蘋果的 iPad 外，其他的廠商並沒有特別突出的表現。同時 Gartner 也預測 2012 年 iPad 的銷售量將可達到約 7300 萬台，而 Android 則為 3800 萬台，雖然相差甚多，但再與 2011 年的實際銷售量相比，可看出平板電腦有逐漸普及的趨勢。
+
+面對平板電腦的普及，在智慧型手機市佔率第一名的 Android 勢必要更積極投入，想出能在平板電腦市場佔有一席之地的方法。在日前 Google 第一季財務報告中，有記者問到關於平價 Android 平板電腦傳聞的真實性，執行長 Larry Page 表示，目前已有許多價格較低的平板電腦能運作 Android 系統，也許不完全是 Google 版本的 Android，但我們相信未來將有越來越多能在低價市場上成功運行的例子。雖然 Larry Page 並沒有正面回答這個問題，但從答案中可看出 Google 對於這個平板電腦的低價市場是重視的。
+
+相關網址︰
+
+Larry Page：Android 低價平板電腦有許多成功的例子
+http://www.androidcentral.com/larry-page-android-tablets-lot-success-low-end/
+
+Larry Page：Google 專注於低價平板電腦市場
+http://androidcommunity.com/larry-page-google-focused-on-cheap-tablet-market-20120412/
+
+蘋果的 iPad 於 2012 年平板電腦的市佔率預計將達 61 %
+http://www.appleinsider.com/articles/12/04/10/apples_ipad_projected_to_control_61_of_tablet_market_in_2012.html/
+_______________________________________________________________
+
+■ [源碼新聞] Ubuntu 對於 Linux 的貢獻
+
+黃湘婷 / 編譯
+
+根據日前 Linux 基金會 (http://www.linuxfoundation.org/) 發布的發展報告顯示，有許多著名的公司都對 Linux 內核作出了貢獻，貢獻名單中可發現許多熟悉的公司，例如 Red Hat、Novell，甚至是微軟也首次進入了貢獻榜單，但你可能找不到 Ubuntu Linux 的母公司 Canonical (http://www.canonical.com/)。
+
+有些人可能會有疑問：為什麼微軟能夠提供比 Canonical 更多的貢獻？Ubuntu 的創始人 Mark Shuttleworth 表示，「我們聚焦於使用者體驗，讓它保持運轉順利。」他認為對 Ubuntu 來說穩定與維持內核是重要的。在 Canonical 公司，有超過 25 個內核工程師專注於從 ARM 到 Xeon 的設備啟用與品質保證。內核團隊讓 Ubuntu 能夠簡單的使用於筆記型電腦、伺服器與雲端，同時他們也維持 Ubuntu 定期的發佈，可說是最廣泛使用的內核。
+
+Shuttleworth 也承認內核是 Ubuntu 使用者體驗的一小部分，並不會將內核的發展視為特定的目標，他們致力於 Unity 環境、MAAS (Mewal as a Service) 雲端伺服器的簡易存取與管理工具、管理軟體套件的工具 juju，以及其他能讓 Linux 成為夢幻環境的工具。
+
+當然，Linux 內核是非常重要的，若沒有內核將不能運作，Shuttleworth 指出，Canonical 對廣大的 Linux 社群已做出了相當多的貢獻，此外，Ubuntu 也有助於擴大 Linux 的使用者，是熱門 Linux 系統 Linux Mint、Peppermint OS 及 Turnkey Linux 的基礎，也許 Ubuntu 在 Linux 內核的代碼行數上並沒有顯著的貢獻，但就廣泛的意義而言，其貢獻是非常多的。
+
+相關網址︰
+
+Shuttleworth 為 Ubuntu 的 Linux 貢獻解釋
+http://www.zdnet.com/blog/open-source/shuttleworth-defends-ubuntus-linux-contributions/10726
+
+自從 Linux 2.6.32 開始，微軟提供比 Canonical 更多的貢獻
+http://www.theinquirer.net/inquirer/news/2166123/microsoft-contributed-code-canonical-linux-2632
+
+為什麼 Ubuntu 對於 Linux 沒有貢獻？
+http://bsd.jirigrohmann.cz/why-ubuntu-is-not-contributing-to-linux-or-is-it/
+_______________________________________________________________
+
+■ [源碼新聞] 桌面環境 Unity 與 Gnome 的比較
+
+黃湘婷 / 編譯
+
+Unity 與 Gnome 同樣為桌面環境介面，若將兩者相比較，哪個比較好用呢？這就如同 Windows XP 升級至 Windows 7 後介面上的差異，沒有好不好用，只有使用者習不習慣而已。有些已習慣 Gnome 介面的使用者不願離開舊有的環境，也有些嘗鮮的使用者願意接受更新後的 Unity 介面，體驗不同的視覺效果。
+
+Unity 介面以 Gnome 為基礎，由 Canonical 公司為 Ubuntu 作業系統開發，雖然使用的技術相似，但呈現出的介面是完全不同的。Unity 左邊側欄的 Launcher 可自行加入常用的應用程式，其他應用程式則是點選左上方的 Ubuntu 圖示來尋找。但比較特別的是，Unity 是直接列出所有的應用程式，如同智慧型手機的介面，並非以往 Ubuntu 以及 Windows 一層一層來尋找的方式，令許多使用者在進入 Unity 介面時需要一些時間來適應。
+
+Ubuntu 從 11.04 開始採用 Unity 為預設的桌面環境，若是不習慣新介面的使用者還是可以在登入時選擇以「傳統 Ubuntu 桌面」登入，但從 11.10 後，就沒有內建在系統中，必須自行安裝 GNOME Shell 才能使用。
+
+Ubuntu 的創始人 Mark Shuttleworth 表示，開發 Unity 並非要放棄舊有的 Gnome，而是希望透過這樣的競爭關係，讓 Ubuntu 可以越來越好，對於 Gnome 的發展也是有好處的。
+
+為了比較 Unity 與 Gnome，Ubuntu 的開發者之一 Jo-Erlend Schinstad 日前發布了他自行製作的影片並表示：我知道 Unity 是比 Gnome 更有效的環境，但我想看看他們到底相差了多少，所以我在兩個環境中實際測試了一些工作，當然這並沒有作弊，顯示出的結果非常有趣。
+
+影片網址：http://youtu.be/lSkXgXZL7G4/
+
+相關網址：
+
+Ubuntu Unity 的速度比 Gnome 快嗎？
+http://www.muktware.com/articles/3524/ubuntu-unity-faster-gnome-panel
+
+Unity vs. Gnome 面板
+http://it-diary.com/linux/ubuntu-linux/unity-gnome-panel-classic-video/
+
+Gnome vs. Ubuntu Unity
+http://www.ssdstorage24.com/?p=2201/
+_______________________________________________________________
+
+■ [源碼新聞] VMware 雲端鑄造計畫
+
+黃湘婷 / 編譯
+
+VMware 為虛擬機軟體公司，主要提供企業虛擬化的技術與產品，簡化 IT 基礎架構，提升能源效率以降低成本。在最近，VMware 希望能在 Linux 系統上開發雲端鑄造技術。VMware 的技術總監 Stephen Herrod 表示，正如同 Linux 在不同硬體上提供了高度的應用程式可移植性，雲端鑄造可被部屬到大部分以雲端為基礎的設備，如 VMware 的 vCloud 和 vSphere。
+
+透過雲端應用程式平台，程式開發人員能夠在 VMware 的數據中心建構與運行應用程式，以及建立與部屬應用程式於多種框架的開放原始碼軟體專案。支援的語言及框架包含 PHP、Python、NET、Spring Java 及 Rails 等，雖然此項服務是建立於 VMware 自己的 vSphere 虛擬化技術，但 VMware 表示，雲端鑄造開放原始碼軟體也可運行於其它廠商的虛擬化平台。
+
+VMware 以他在 x86 處理器上的虛擬化技術聞名，藉由虛擬化技術，可形成一個大型的數據中心，透過這個數據中心，便能實現雲端運算，所以虛擬化技術可說是雲端運算的底層技術。VMware 為虛擬化技術的領導者，在擁有良好技術的基礎下，便能提供更健全有效率的雲端運算，協助企業提升其競爭力。
+
+相關網址︰
+
+VMware 尋找 Linux 化的雲端應用平台
+http://arstechnica.com/business/news/2012/04/vmware-wants-to-be-linux-of-the-cloud-touts-open-source-projects.ars/
+
+VMware：雲端鑄造 PaaS 將 Linux 化
+http://www.zdnet.com/blog/open-source/vmware-cloud-foundry-paas-will-be-the-linux-of-the-cloud/10754/
+
+VMware 雲端運算
+http://www.vmware.com/solutions/cloud-computing/index.html
+_______________________________________________________________
+
+■ [源碼新聞] 微軟成立開放技術公司
+
+黃湘婷 / 編譯
+
+由微軟最近著力於對 Linux 的貢獻，可看出此公司正慢慢適應 Linux，甚至在前幾天，微軟宣布成立了一個新的子公司名為 Microsoft Open Technologies，專門從事開放原始碼專案。
+
+子公司的總裁由微軟執行董事 Jean Paoli 擔任，Jean Paoli 表示，新公司的成立對原先微軟已存在的專案並沒有影響，他們相信這個子公司將提供一個從事開放原始碼社群更明確界定的新方式。
+
+其實早在 2009 年，微軟就成立了 CodePlex (http://www.codeplex.com/) 開放原始碼基金會（現改稱 Outercurve，http://www.outercurve.org/），在此網站中的所有程式都可以藉由下載原始碼使用，成為微軟軟體的周邊元件或擴充套件的發布管道，除了微軟外也接受其他企業的贊助。
+
+Jean Paoli 指出，開放原始碼能夠更容易及更快速的發佈更新，除了設計師自行努力外，同時也接受來自社會的貢獻。隨著時間的推移，社會將看到開放原始碼對世界所帶來的良好互動。
+
+新成立的微軟開放技術公司提供一個理想的防火牆，功能為保護微軟曾被指控在開放原始碼以及開放標準存在的安全性風險，正因為如此，能讓程式設計人員減少開發時間，更容易且快速的更新。
+
+相關網址︰
+
+為什麼微軟要成立新的開放原始碼公司？
+http://blogs.computerworlduk.com/simon-says/2012/04/why-microsofts-new-open-source-division/index.htm/
+
+微軟在 13 號星期五成立開放原始碼子公司
+http://www.linuxuser.co.uk/news/microsoft-forms-open-source-subsidiary-on-friday-the-13th/
+
+微軟新成立的子公司微軟開放科技，致力於自由軟體
+http://en.wikinoticia.com/Technology/Software/114365/
+_______________________________________________________________
+
+■ [源碼新聞] 開放原始碼辦公室軟體 Calligra
+
+黃湘婷 / 編譯
+
+對一般使用者與企業用戶來說，開放原始碼的辦公室軟體讓他們在 Linux 系統上的文書處理方便了許多，一個可靠的辦公室軟體是大多數人使用電腦的重要組成部分之一。除了常見的 OpenOffice.org 與 LibreOffice 外，由 KOffice 延續而成的 Calligra Suite 最近也發布了 2.4 穩定版，提供 Linux 環境使用者新的選擇。
+
+Calligra Suite 提供了哪些辦公室應用軟體呢？首先為最常見的文書處理 Words，就如同 LibreOffice 的 Writer，提供使用者拼字檢查、自動校正、格式調整等功能，但可惜的是目前並不支援儲存成 doc 或 docx 的格式。試算表軟體 Tables，除了介面的不同外，其他功能與 LibreOffice 的 Cala 大致相同，因此使用上並不會遇到太大的困難。其他還有簡報軟體 Stage，流程圖軟體 Flow，資料庫軟體 Kexi，筆記工具 Braindump。
+
+繪圖軟體的部分提供 Krita 繪圖應用及 Karbon 向量繪圖，同時 Calligra 也有發佈適用於移動裝置版本 Calligra Mobile，可在 Nokia N900 上使用，支援文件檔、試算表及簡報軟體。
+
+相較於原先的 KOffice，更新的功能有新的文字佈局引擎，簡化的用戶介面，可支援大部分開放文件格式標準，許多的錯誤也被修正與改善，在技術方面的處理也提高了許多。
+
+相關網址︰
+
+Calligra 2.4 發布
+http://www.calligra.org/news/calligra-2-4-released/
+
+試試一個能替代 Microsoft Office 的軟體 Calligra 2.4
+Try Calligra 2.4 for a New Microsoft Office Alternative
+http://www.pcworld.com/businesscenter/article/253738/try_calligra_24_for_a_new_microsoft_office_alternative.html
+
+開放原始碼的辦公室軟體：Calligra Suite vs. LibreOffice
+http://www.datamation.com/open-source/open-source-office-apps-calligra-suite-vs-libreoffice-1.html
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、粘卉慈
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群 (ossfepaper at openfoundry.org) 聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群 (ossfepaper at openfoundry.org) 轉發聯絡訊息。
+
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-nc-nd/3.0/tw
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-nc-nd/3.0/tw/legalcode
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news/
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news/
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。
+
+
+

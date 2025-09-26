@@ -1,0 +1,773 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 212 期 | 2013/1/29 □■□
+________________________________________________________________
+
+◎ 本期主題︰條文解析自由開源軟體的專利授權條款
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2013/2/26
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] 條文解析自由開源軟體的專利授權條款
+
+■ [源碼秘技] 行事曆 (Calendar) on Drupal 7
+
+■ [自由專欄] 2012 年程式語言的興衰
+
+■ [源碼新聞] 2012 NODE.JS KO 台灣黑客頌：48 小時挑戰開發者的極限
+
+■ [源碼新聞] 網路運動者 Aaron Swartz 自殺身亡，各方紛紛表達哀悼紀念
+
+■ [源碼新聞] 功能豐富、操作簡便的自由開源校園行政管理系統
+
+■ [源碼新聞] Ubuntu Linux 近期將可試裝於 Samsung Galaxy Nexus 進行運作！ 
+
+■ [源碼新聞] Mozilla 正式發布 Firefox OS 開發用手機
+
+■ [源碼新聞] Web 界的盛會：WebConf 2013 會後報導
+
+■ [源碼新聞] 2013 年二月份社群活動列表
+_______________________________________________________________
+
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 條文解析自由開源軟體的專利授權條款
+
+葛冬梅／文
+
+軟體專利與自由開源軟體的本質有所不同（註一），因此如何將軟體專利對於自由開源軟體開發模式的衝擊降到最低，一直是自由開源領域中一個重要的議題。目前實務上所採取的應對措施有許多種，包括鼓勵重要技術的先前揭露、成立交戶授權如 Open Invention Network 這樣的組織等等，而新近修訂的自由開源軟體授權條款，也大多加入了專利授權與規劃的相關規定，因此本文選擇了數份常見且具重要影響力的自由開源軟體授權條款（註二），包括 BSD-2-Clause、BSD-3-Clause（以下統稱這兩份授權條款為 BSD）、MIT、Apache-2.0、EPL-1.0、MPL-2.0、CDDL-1.0、GPL-2.0、GPL-3.0、LGPL-2.1、LGPL-3.0 與 AGPL-3.0 等，摘要式說明這些條款中與專利相關的規定，希望可以幫助有需要的朋友，能得到進一步掌握自由開源專利議題的參考資訊。 
+
+【未有任何專利相關明示規定的授權條款】 
+
+首先要了解的是，並非所有自由開源軟體授權條款都有與專利授權相關的文字規定，像 BSD、MIT 這些被廣泛採用的授權條款，其實並沒有任何與專利有關的描述（註三）。從嚴格的文意解釋來說，這種未明文規定的狀況，可以解釋為條款並未將專利權授予給使用者，但是由於這些條款的著作權授權範圍非常廣，程度之大甚至直追不受到著作權保護的公眾領域 (Public Domain)，因此這樣的特性讓 BSD 與 MIT 有著被解釋為蘊含專利授權的可能性，以符合這類條款授予使用者一個幾乎可以採用任何方式來利用軟體的一貫態度。但由於在解釋上仍然有前述爭議，所以若使用者利用到 BSD 與 MIT 授權的自由開源軟體時，筆者的建議是從嚴解釋，將這些條款認定為不具專利授權的效力來加以處理，會是一個比較簡單而不易引發後續爭議的方式。
+
+由於 BSD 與 MIT 在解釋專利授權方面有著範圍不清的爭議，因此部份的自由開源軟體專案，也採取了相對應的措施，以釐清使用者心中的疑慮。最著名的例子應該要屬 Google 收購的網路影音格式專案 WebM 與相關專利技術 VP8，此一專案採用 BSD-3-Clause 授權釋出，但在專利技術規格部份，Google 另外以獨立的授權文字，將其自身所擁有、同時也實作到 WebM 中的專利技術 VP8 授權出去，讓使用者在取得 WebM 專案的程式碼之時，也可以合法地來應用 VP8 這個專利技術（註四）。Opus 音訊播放軟體與相關的編碼格式，也是另外一個很好的例子，其採用與 WebM 一樣的授權模式，實作出來的程式碼採用 BSD-3-clause 授權，專利技術部份亦有另外的獨立文字進行授權，比較特別的是，Opus 中有實作到第三方的專利技術，包括了 Microsoft 與 Broadcom 等商業公司的專利技術，但這些第三方專利技術也透過 IETF 組織 (The Internet Engineering Task Force) 採用公眾授權的方式授予出來，因此使用者在利用 Opus 的同時幾乎可以完全不需要擔心任何的專利授權問題，而可以安心地使用（註五）。 
+
+http://www.openfoundry.org/images/130129/patentclause/lc_201301_p1.png
+▲ 圖1：Opus 的授權說明專頁清楚地說明了使用者可以如何利用 Opus 的程式碼與其中的專利技術
+
+【一般常見的專利授權內容】 
+
+右列幾款常見的自由開源授權條款，如 Apache-2.0、EPL-1.0、MPL-2.0、CDDL-1.0、GPL-3.0、LGPL-3.0 與 AGPL-3.0，均有著明確的專利授權文字，這幾份條款之所以有專利授權規定，是希望開發者與後續協同開發的貢獻者，將其所擁有或者其所合法支配的專利技術授權出來給使用者利用，進而降低自由開源軟體在未來商品化時，產生專利侵權的風險。這些條款中的實際專利授權內容與用語並不完全相同，不過可以歸納出以下幾項重點：
+
+1、授權軟體使用者可以透過這些程式碼利用相關的專利技術 
+
+這些專利授權內容通常讓使用者可以合法地進行製造、使用、販賣、為販賣而提出要約 (offer for sale)、代工，進口以及移轉軟體等各種行為，此外這些授權也都同時具有免授權金、非專屬與不限制地域及於全球的特性。因此簡單來說，一般常見對軟體進行修改與散布等利用行為，以及販賣、運送或進出口軟體等商業化行為，都是在這些條款的專利授權範圍之內。 
+
+2、授權主體包括了所有的開發者與貢獻者
+
+將專利授權出來的主體包括了軟體最初的原始開發者，以及後續協同開發的任何一位貢獻者。因此若是一位貢獻者本身擁有可申請專利的技術，並參與開發本段所提及這幾份條款所授權的專案時，一旦將這些技術方法寫入到軟體中，原則上就表示自己同意將這個技術方法授予給軟體的後手使用者來利用。 
+
+3、授權客體僅包括合法、可被授權的專利在內
+
+開發者與貢獻者可以針對自己所擁有的技術方法來進行授權，又或者其本身雖然並非專利權人，但是經過權利人同意的話，開發者與貢獻者一樣可以將第三方擁有的專利合法地寫入到軟體專案中，並且依照條款的相關規定授權給程式的後手進行利用。
+
+4、授權利用範圍限於利用原軟體及其衍生作品的行為
+
+由於這些專利技術的授權，是跟隨著當初技術方法被寫入並進行展現的程式碼而存在，解釋上若是將專利技術抽離原來的程式碼，而應用到其他的軟體或產品中，則是超出原先授權範圍的行為，這時候使用者必須另外向專利權人取得授權許可，才可以將這些技術，應用在其他與原專案不具衍生關係的軟體或產品中。 
+
+【新式條款為降低專利負面影響的轉化機制】 
+
+除了透過開發者與貢獻者來進行專利授權外，為了進一步避免專利制度弱化了自由開源軟體可被自由修改與散布的特性，所以這幾份條款均設計有抑制專利侵權主張（註六），或降低專利制度影響的轉化機制。這樣的轉化機制主要有下列三種型態。
+
+1、專利反制條款：若是軟體的使用者對任何一個人提出專利侵權的主張或訴訟，表達這個軟體侵害其所擁有的專利權，此時該專案權利人對於這位使用者的相關授權將會反制性地被終止。被終止的授權範圍隨條款的規定而有所不同，有些條款可能僅終止專利授權，但是有些條款也可能終止整份條款所授予的權利，在後者的狀況，也就是說著作權方面的授權都會一併連帶被終止，從而該名提出專利侵權主張的使用者，將自此無法再使用、執行、修改與散布該專案的程式碼。具有這類規定的條款有 Apache-2.0、EPL-1.0、MPL-2.0、GPL-3.0、LGPL-3.0，與 AGPL-3.0（註七）。
+
+2、專利追索條款：CDDL-1.0 有著與前述略不相同的專利侵權轉化機制，是額外界定了一個折衷的緩衝期限。也就是當個別使用者針對專案的貢獻者提出專利侵權的聲明時，若該名貢獻者向此提出侵權的聲明者提出抗議後，則該名聲明者在收到貢獻者所表達的抗議通知後，必須在 60 天的期限內撤回這些專利侵權的聲明，或者與提出抗議的貢獻者達成書面協議，此一書面文件也許便會包括貢獻者追索其原貢獻權利的協議內容，若能如此，這位聲明者就可以繼續擁有其依 CDDL-1.0 所取得的權利，否則貢獻者依 CDDL-1.0 所授予這位使用者的著作權與專利權，都將會隨著 60 天期限的過去而自動終止。 
+
+3、專利抑制條款：GPL-3.0、LGPL-3.0 與 AGPL-3.0 這三份主體文字相同的授權條款，另外還有著獨特降低專利制度影響的轉化規定，規定在這三份條款主文的第 11 條第 4-7 項。此條款的整體目的，是在於保護軟體自由不受到軟體專利的蠶食鯨吞，所以保護軟體使用者不受到專利侵權訴訟的威脅與影響，自然屬於此項條文內容其中的一環，也因此這部份規定的行為態樣較為多樣，也造就了第 11 條第 4-7 項抽象複雜、不易理解的文字規定。不過簡單來說，第 11 條第 4-7 項特別針對使用者散布軟體的行為來規範，但是並不採用上述兩類反制專利與追索權利的手段，其採行的乃是明示的專利抑制條款，也就是說，散布者如果自主性的將專利技術導入 GPL-3.0、LGPL-3.0，與 AGPL-3.0 授權的軟體程式碼裡，那麼其必須確保這些專利技術不會影響這些軟體，日後依照授權條款被自由修改、自由散布的態樣。舉例來說，若一位使用者因為信賴第三方所提供的專利不侵權承諾，而將該第三方的專利技術寫入軟體專案中，如果這樣的專利不侵權承諾僅第一手散布者適用的話，那麼後續該技術就會對整個軟體的日後開發，產生限制後手使用、散布或修改軟體的效果，這樣的狀態是不受到 GPL-3.0、LGPL-3.0，與 AGPL-3.0 授權條款的允許的，故其在第 11 條第 4-7 項中，提供有不同的方案供寫入專利技術的散布者來選擇，可選擇的方案包括有，A、繼續履行提供程式源碼的義務，或者B、讓後手使用者也納入到專利不侵權承諾的保護範圍內，又或者C、放棄附隨於專利不侵權承諾所帶來的利益，最後的選項就是D、自始不要散布這樣軟體，來杜絕日後的爭議（註八）。 
+ 
+【GPL 類軟體在授權條款升級時的專利疑義】 
+
+GPL-2.0、GPL-3.0、LGPL-2.1、LGPL-3.0 與 AGPL-3.0 等條款，均是由自由軟體基金會 (Free Software Foundation) 所制定，因此可以統稱為 GPL 類別的授權條款。自由軟體基金會於 2007 年制定第三版的 GPL 類別條款，其中一個主因便是希望可以補充舊版授權條款在新時代議題上因應面不足的問題，其中重要的補充要點，就是缺少明確的專利授權文字。GPL 類別舊版條款於「缺少明確專利授權文字」的議題上，與 BSD 類完全不具專利相關文字，是二個截然不同的爭議議題。因為 GPL-2.0、LGPL-2.1 中的確有著專利相關的規定，但是其中的文字並沒有明確指出專利授權與其應如何被利用的方式，看上去似乎只是建議使用者可以如何面對專利問題，卻沒有明確點出 GPL-2.0、LGPL-2.1 具有專利授權的特性，或是具有相關強制性的義務規定，這讓 GPL-2.0、LGPL-2.1 在專利授權的解釋上，非常容易產生爭議（註九）。 
+
+自由軟體基金會在草擬三版的 GPL 類授權條款時，加入了明確的專利授權文字，因此若原 GPL-2.0 授權的專案，在原權利人與貢獻者的同意後升級以 GPL-3.0 來授權，則舊版時期的專利授權爭議，在三版時已經能被解釋，但要注意的是，舊版 GPL 類條款的軟體若升級採用三版條款授權時，此時原專案所包含的專利技術，並不一定會理所當然地透過三版也授予給使用者，而要視專案的開發者與貢獻者是否同意。以採用「GPL-2.0 及其後版本」授權的專案為例，若是專案成員在徵得開發者與貢獻者同意之後，在釋出新版專案軟體的同時也將授權條款變更、升級到 GPL-3.0，這時候使用者可以合法地透過 GPL-3.0 取得軟體中的專利技術授權；但若使用者依照「GPL-2.0 及其後版本」的方式來自行宣告軟體升級為 GPL-3.0 的話，此時由於當初原專案在以 GPL-2.0 釋出時，其授權範疇包不包含專利技術是有疑義的，如直接解釋專案一經自動升級為 GPL-3.0 授權就一併處理了專利授權的問題，那在法律論理上，仍然是有自動升級機制逾越原授權範圍的爭議存在。
+
+而之所以會產生這樣的現象，主要是因為當初在設計使用者自動升級授權條款機制的時候，並沒有考慮到升級前後條款的內容會有如此重大的差異。對於這樣的現象，自由軟體基金會在網頁上的 FAQ 中明確表示，開發者與貢獻者所需要遵守的義務，基本上限於 GPL-2.0 所規定的內容，使用者自動升級授權條款的結果，雖然讓使用者取得 GPL-3.0 所額外規定的許可，但是並沒有強制開發者與貢獻者一定要實踐 GPL-3.0 新界定的專利授權規定機制（註十）。也因此當利用到三版 GPL 類條款授權的自由開源軟體，而這個軟體的屬性又可能涉及有專利技術在內的話，在此建議應該要確認一下軟體的授權狀態，是否從舊版直接升級上來，或是其中的專利技術，是經過開發者與貢獻者的明示同意而授予出來的。
+
+【結語】 
+
+自由開源授權條款最初是在著作權的架構上來規劃授權內容，後來隨著軟體專利概念的發展，專利相關規定才逐步增修到條款內容裡。也因此，專利相關的規定較為零散與瑣碎，不少規定的用語也顯得艱澀難懂，再加上 BSD 與 MIT 這類沒有任何專利相關文字的條款，一直以來仍然是非常普及，因此整體來說，一般開發者的確較難了解自由開源軟體在專利方面的遊戲規則。筆者嘗試將這些錯綜複雜的關係，透過本文以重點條列的方式呈現出來，希望可以提供需要了解這方面資訊的朋友，一個入門後據以參照的研究資訊，不過每一份授權條款的細部規定皆有所差異，因此使用者在實際個案裡，若涉及大規模的商業利用行為，建議還是要去了解個別的專案是否有涉及專利議題、該開發社群如何處理專利議題，以及軟體授權條款中的專利細部規定如何，這樣才可以知道該如何善加面對與處理，以降低未來因為專利衍生法律糾紛的風險。
+
+----
+
+註一：請參閱，林誠夏，備位啟動的自由開源專案軟體專利，http://www.openfoundry.org/tw/legal-column-list/8498。 
+
+註二：本文所提到的授權條款縮寫、全稱、全文內容網址以及所提及專利相關規定的條號如下： 
+
+■ BSD-2-Clause，BSD 2-clause "Simplified" License，http://opensource.org/licenses/BSD-2-Clause。 
+■ BSD-3-Clause，BSD 3-clause "New" or "Revised" License，http://opensource.org/licenses/BSD-3-Clause。 
+■ MIT：The MIT License，http://opensource.org/licenses/MIT。 
+■ Apache-2.0：Apache License, Version 2.0，http://opensource.org/licenses/Apache-2.0。第 3 條。 
+■ EPL-1.0：Eclipse Public License, Version 1.0，http://opensource.org/licenses/EPL-1.0。第 2 條第 b) 款、第 7 條第 2 項。 
+■ MPL-2.0：Mozilla Public License, version 2.0，http://opensource.org/licenses/MPL-2.0。第 2.1 條第 b 款、第 5.2 條。 
+■ CDDL-1.0: Common Development and Distribution License Version 1.0, http://opensource.org/licenses/CDDL-1.0。第 2.1 條第 (b) 款、第 6.2 條。 
+■ GPL-2.0: GNU General Public License, version 2, http://opensource.org/licenses/GPL-2.0。第 7、8 條。 
+■ GPL-3.0: GNU General Public License, version 3, http://opensource.org/licenses/GPL-3.0 。第 8 條第 1 項、第 10 條第 3 項、第 11 條。 
+■ LGPL-2.1: GNU Lesser General Public License, version 2.1, http://opensource.org/licenses/LGPL-2.1。第 11、12 條。 
+■ LGPL-3.0: GNU Lesser General Public License, version 3.0, http://opensource.org/licenses/LGPL-3.0。與 GPL-3.0 同。 
+■ AGPL-3.0: GNU Affero General Public License, version 3.0, http://opensource.org/licenses/AGPL-3.0。與 GPL-3.0 同。 
+
+註三：並非所有 BSD 家族的授權條款均未設有專利說明，例如 The Clear BSD License (BSD-3-Clause-Clear) 在最後一段免責聲明的第一句，就明示此份條款沒有任何明示或暗示的專利授權，因此本文的說明內容限縮在 BSD-2-Clause 以及 BSD-3-Clause 這兩份經過開放源碼促進會 (Open Source Initiative, OSI) 核准的常見授權條款，並不及於所有其他 BSD 家族授權條款。關於 BSD-3-Clause-Clear 的授權說明與全文內容，請見：The Clear BSD: Introduction，http://labs.metacarta.com/license-explanation.html。
+ 
+註四：WebM 專案程式碼的授權條款全文：http://www.webmproject.org/license/software/；VP8 的專利授權條款全文：http://www.webmproject.org/license/additional/。 
+
+註五：IETF 是一個致力於網頁技術標準化的組織，其透過與參與夥伴合作的社群網絡進行相關工作：https://ietf.org/。Oups有一個專門的授權說明網頁，上面清楚地說明了程式碼與專利技術的授權內容：http://www.opus-codec.org/license/。
+
+註六：部份的英文文獻會直稱這些專利調和機制為「專利報復條款 (Patent Retaliation Clause)」，但細究其運作方式，其實有不同的反制、追索，與抑制的效果，故本文此處採用中性的辭彙「轉化機制」，來指稱這類條款所實踐的運作機制。 
+
+註七：GPL-3.0、LGPL-3.0 與 AGPL-3.0 這幾份授權條款的相關規定是在第 10 條第 3 項，這一個條項主要是規定使用者在利用軟體的過程中，不得對於軟體附加任何限制以阻礙後手運用條款所授予的權利，同一條項中並沒有伴隨著明確文字，說明提出專利侵權訴訟會導致授權終止的效果，不過這三份條款的制定組織自由軟體基金會，在說明資料中表示，違反這項規定即會產生第 8 條第 1 項權利終止的效果。參閱：GPLv3 Third Discussion Draft Rationale，p. 16-17，available at：http://gplv3.fsf.org/gpl3-dd3-rationale.pdf；Frequently Asked Questions about the GNU Licenses，"Does GPLv3 have a “patent retaliation clause”?"，http://www.gnu.org/licenses/gpl-faq.html#v3PatentRetaliation。
+
+註八：若想要進一步了解這部份的詳細規定，建議可以參考自由軟體基金會所發布的 GPL-3.0 第三次草稿說明書：GPLv3 Third Discussion Draft Rationale，p. 15-27 ，available at：http://gplv3.fsf.org/gpl3-dd3-rationale.pdf。這份說明書雖然是針對第三次草稿所做的，但是由於第三次草稿大致與 GPL-3.0 定稿相同，所以在自由軟體基金會的網站上，這份說明書也被當作定稿的說明資料來被散布。
+
+註九：相關規定在 GPL-2.0 第 7、8 條與 LGPL-2.1 第 11、12 條中，而關於這部份爭議文字的進一步討論，請參閱：葛冬梅、林誠夏，GPL-2.0 第 7 條淺評，http://www.openfoundry.org/en/legal-column-list/894。 
+
+註十：自由軟體基金會的說明請參見：Frequently Asked Questions about the GNU Licenses，"My company owns a lot of patents. Over the years we've contributed code to projects under “GPL version 2 or any later version”......"，http://www.gnu.org/licenses/gpl-faq.html#v2OrLaterPatentLicense。
+_______________________________________________________________
+
+■ [源碼秘技] 行事曆 (Calendar) on Drupal 7
+
+凍仁翔／文
+
+先前在建置某網站時曾提過要有行事曆，也想過直接嵌入 Google Calendar (http://www.google.com/calendar/) 的方案，但對某些使用者而言並不友善，所幸該網站凍仁是建置在 Drupal 上的，只需將 Calendar (http://drupal.org/project/calendar) 模組設定好即可，毋需再重新造輪子了。
+
+(http://www.openfoundry.org/images/130129/drupal7/min-calendar_with_corolla.jpg)
+
+套用 Corolla 主題的迷你行事曆 (min-calendar)。
+
+# 若要使用 Calendar 模組記得要連相依的 Date (http://drupal.org/project/date) 及 Views (http://drupal.org/project/views) 兩模組也一同補上。
+
+
+1. 安裝相關模組
+
+
+1. 安裝 Calendar 模組。
+
+[ jonny@squeeze ~ ] 
+$ sudo drush dl calendar [Enter] 
+Project calendar (7.x-3.4) downloaded to /var/www/drupal/sites/all/modules/calendar.
+
+2. 安裝 Date 模組。
+
+[ jonny@squeeze ~ ] 
+$ sudo drush dl date [Enter]
+Project date (7.x-2.6) downloaded to /var/www/drupal/sites/all/modules/date. [success]
+Project date contains 11 modules: date_migrate_example, date_migrate, date_views, date_repeat_field, date_repeat, date_popup, date_api,
+date_tools, date_context, date_all_day, date.
+
+3. 安裝 Date Popup Authored 模組。
+
+[ jonny@squeeze ~ ] $ sudo drush dl date_popup_authored [Enter]
+Project date_popup_authored (7.x-1.1) downloaded to /var/www/drupal/sites/all/modules/date_popup_authored.
+
+4. 啟用 Calendar 模組。
+
+[ jonny@squeeze ~ ] $ sudo drush en calendar [Enter]
+
+5. 啟用 Date Popup Authored 模組。
+
+[ jonny@squeeze ~ ] $ sudo drush en date_popup_authored [Enter]
+The following extensions will be enabled: date_popup_authored, date_popup
+Do you really want to continue? (y/n): y
+date_popup was enabled successfully.
+date_popup_authored was enabled successfully.
+
+
+2. Calendar 應用
+
+
+2.1. 新增「以建立日期為基準」的 Calendar View
+
+若今天是想讓所有的文章 (node) 依造建立的時間點顯示在行事曆上，可以使用「A calendar view of the 'created' field in the 'node' base table.」，完成後會如 2.1.6 一般，此方案適合只需紀錄單一時間點的網站，例如：部落格、新聞、雜誌... 等等。
+
+
+2.1.1. 新增 Calendar
+
+1. 進入Views 介面：首頁 ? 管理 ? 架構 ? Views (http://example.tw/admin/structure/views)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-01_view.jpg)
+
+2. 點選 Add view from template (http://example.tw/admin/structure/views/add-template)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-02_add_view_from_template.jpg)
+
+3. 點選「A calendar view of the 'created' field in the 'node' base table.」一項的 add 。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-03_view_name.jpg)
+
+4. 設定 Calendar 名稱。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-04_need_save.jpg)
+
+5. 點選 儲存 寫入後，再點選 view month 檢視成果。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-04_Calendar_origin_01.jpg)
+
+6. View: Calendar 新增完成。
+
+2.1.2. 新增迷你行事曆 (mini-Calendar) 區塊 (block)
+
+1. 進入區塊介面：首頁 ? 管理 ? 架構 (http://example.tw/admin/structure/block)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-05_block.jpg)
+
+2. 將「View Calendar: Block」設定至首側欄。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-04_Calendar_origin_02_block.jpg)
+
+3. View: Calendar: Block 設定完成。
+
+
+2.1.3. 修改星期翻譯
+
+相信不少伙伴都發現上方的範例都有些小缺陷，那就是週日、一、五及六的日期怪怪的，這時只需自行改翻譯就可解決此問題。
+
+    週曰 → 日
+    週一 → 一
+    週五 → 五
+    週六 → 六
+
+1. 進入翻譯介面：首頁 ? 管理 ? 設定 ? 地區與語言 ? 介面翻譯 (http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-06_translate.jpg)。
+
+2. 搜尋週五並編輯 Fri。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-04_Calendar_origin_03_translate.jpg)
+
+3. 手動更換為五。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-04_Calendar_modified_01.jpg)
+
+4. 修改後的 View: Calendar。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-04_Calendar_modified_02_block.jpg)
+
+5. 修改後的 View: Calendar: Block。
+
+
+2.2. 新增「有事件起迄為基準」的 Calendar View
+
+若今天是想表示某個事件 (Event) 且擁有某範圍的時間點，則可以使用「A calendar view of the 'field_event_date' field in the 'node' base table.」 ...
+
+
+2.2.1. 新增內容類型 Event
+
+1. 進入內容類型介面：首頁 ? 管理 ? 架構 ? 內容類型 (http://example.tw/admin/structure/types)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-07_add_types.jpg)
+
+2. 點選 新增內容類型。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-08_add_types_title.jpg)
+
+3. 設定 Event 內容類型的名稱 (Title)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-09_event_types_field.jpg)
+
+4. 管理 Event 欄位。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-10_event_types_add_field.jpg)
+
+5. 新增 Event Date 欄位，切忌 機器可讀名稱 (Machine Name) 不可重復。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-11_event_types_collect_end_date.jpg)
+
+6. 進入 Event Date 欄位設定，並將「Collect an end date」一項打勾 。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-11_field_sort.jpg)
+
+7. 更改欄位順序並點選 儲存。
+
+
+2.2.2. 新增 Event 內容類型
+
+1. 進入內容介面：首頁 ? 管理 (http://example.tw/admin/content)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-18_types.jpg)
+
+2. 新增內容。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-15_add_event.jpg)
+
+3. 內容類型選擇 Event。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-16_testing_rang.jpg)
+
+4. 新增有範圍的 Event。
+
+
+2.2.3. 新增 Calendar Event
+
+1. 進入 Views 介面：首頁 ? 管理 ? 架構 ? Views (http://example.tw/admin/structure/views)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-01_view.jpg)
+
+2. 點選 Add view from template (http://example.tw/admin/structure/views/add-template)。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-12_field_event_date.jpg)
+
+3. 點選「A calendar view of the 'field_event_date_test' field in the 'node' base table.」一項的 add 。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-13_view_call_name.jpg)
+
+4. 設定 Calendar Event 名稱。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-14_need_save.jpg)
+
+5. 點選 儲存 寫入後，再點選 view month 檢視成果。
+
+(http://www.openfoundry.org/images/130129/drupal7/2012-12-07-Calendar-17_calendar_rang.jpg)
+
+6. View: Calendar Event 新增完成。
+
+
+相關連結：
+
+★Calendar Block | drupal.org (http://drupal.org/project/calendar_block)
+★Pretty Calendar | drupal.org (http://drupal.org/project/pretty_calendar)
+★Drupal Calendar Setup on Vimeo (http://vimeo.com/6544779)
+★How to Create a Mini Calendar in Drupal | eHow.com (http://www.ehow.com/how_8677207_create-mini-calendar-drupal.html)
+
+資料來源：
+
+★Drupal + Calendar 讓網站擁有行事曆功能 - 玩物尚誌 by lyhcode (http://blog.lyhdev.com/2011/11/drupal-calendar.html)
+★Build an Event Calendar in Drupal - slideshare (http://www.slideshare.net/AcquiaInc/build-an-event-calendar-in-drupal)
+_______________________________________________________________
+
+■ [源碼新聞] 2012 年程式語言的興衰
+
+謝良奇／編譯
+
+程式語言是有生命的，它們出生之後，幸運的一群存活下來，享有豐富的生活，然後不可避免地進入衰退。和現實生物不同的是，程式語言的衰退能夠持續許多許多年。由於大量舊有程式碼需要人手持續維護，曾經越風行的程式語言，衰退期就越長。
+
+新程式語言的出現，幾乎總是與特定領域的需求相關。例如，Ruby on Rails 的出現讓 Ruby 突然間熱門起來，Objective-C 的興起則是起自 2007 年 iPhone 的首次推出。因此，了解這些波動與趨勢，通常能夠為現今的編程問題提出有價值的洞見。
+
+最近的處理器趨勢，也就是從多核到多核心的轉向，預料會為適合並行化程式設計的函數式語言構築崛起的舞台。然而 2012 年的多數調查並未見到重大突破。要說哪種函數式語言表現最好的話，Scala 與 Clojure 是其中的佼佼者，從 Ohloh 的語言數據、Google 搜尋趨勢 (Google trends)、Tiobe 指數 ( Tiobe index) 看來，尤以 Scala 目前最為熱門。
+
+語言熱門度經常讓特定語言支持者或反對者難以捉摸。例如，多年來 Java 一直被預期會沒落，然而前面提過的三項數據卻與此相左。年復一年，Java 的地位始終沒有動搖，在所有主要語言調查中排名不是第一就是第二。這似乎顯示對該語言的不滿，以及許多 JVM 上的替代語言，都沒有削減 Java 的普及度。然而，正確的來說，應是該語言在其傳統應用中沒落，但 Android 的普及卻彌補了其間的差額。
+
+另外一個主要的行動程式語言 Objective-C 表現也不錯，其 Tiobe 指數大幅上升，在 Google 搜尋趨勢上也維持一樣的高水準。然而，假如 Android 持續吞食 Apple 的全球市佔率，預料將看到 Java 持續成長與 Objective-C 穩定持平。
+
+在一般用途的腳本語言上，Python 持續緩慢成長，JavaScript 和 Ruby 則是原地踏步，而 Perl 持續其衰退。根據 Google 搜尋趨勢，Perl 的搜尋數量只有 2004 年的 19%。它在開放源碼社群中發揮的作用減弱，進一步鞏固了該語言正處於無法挽回處境的看法。但是，宣告某某語言陣亡或垂死時，需要格外小心，因為也可能出現罕見的復活現象，JavaScript 和 Objective-C 就是兩個最好例子。儘管由於更為普及的 Python 的直接競爭，Perl 不太可能見到這種新的生機。
+
+主要的原生語言 C 與 C++，大致保持相同水準，許多調查中的數據粉碎了微軟 Herb Sutter 所提出，將見到 C++ 復興運動的希望。Sutter 提出的復興希望部分應是出自於 C++11 標準底定，以及結合 Windows 8 推出之勢，該語言可提高普及率的預期，然而從各項數據中並未看出 C++ 打入新利基市場的跡象。要做到這一點，C++ 必須在行動、雲端、海量資料 (big data) 等當前重要領域成為主要語言。但目前看來，C++ 最有可能仍維持在其傳統利基市場中成長。
+
+Lua 與 Tcl 這兩個主要嵌入於 C 和 C++ 中的語言，則持續往不同方向前進。Lua 被廣泛用於遊戲中，飛快的全新 LuaJIT 更增加了該語言吸引力。Tcl 則因為核心設計問題、釋出緩慢、糟糕的行銷決策而持續衰退。
+
+在 2012 年，我們看到若干新興語言具有潛力躍升為主流，像是 D、Go、Dart。儘管尚未能夠擠進第一線語言之列，它們仍正緩慢的向前邁進並吸引愛好者。今年我們將看到更多新的有趣的語言，並報導它們角逐開發者青睞的進度。
+
+
+相關網址：
+
+1. 2012 年程式語言的興衰
+http://www.drdobbs.com/jvm/the-rise-and-fall-of-languages-in-2012/240145800
+_______________________________________________________________
+
+■ [源碼新聞] 2012 NODE.JS KO 台灣黑客頌：48 小時挑戰開發者的極限
+
+
+羅棋駿／文
+
+不論你是否理解程式語言，當一群人願意投注兩天的熱情，將一週中最寶貴的兩天假日，投入新程式碼的開發，他們的精神都值得尊敬！
+
+(http://www.openfoundry.org/images/130129/js/pic_01.png)
+
+
+新技術的自我突破　全世界的異地競逐
+
+2012年11月10日早上八點，來自台灣各方程式開發者，帶著簡單的行李，聚集於中央研究院，參加「2012 Node.js Knockout 台灣黑客頌活動」。
+
+這一次活動是台灣與紐約、舊金山、巴黎、波蘭等地，以程式開發者知名組織 Node.js 為核心，邀請全世界的程式開發者參加 Node.js Knockout 活動，共計有 417 組報名（每組上限 4 人）。其中，台灣也有在 Node.js 技術各領域專研者、KVM 虛擬化研究者、學生團體報名組隊參加。另外，台灣地區的黑客頌是由 Node.js 台灣社群 (http://nodejs.tw/) 、JSDC (http://jsdc.tw/2013/) 、中研院資創中心的自由軟體鑄造場 (http://www.openfoundry.org/) 及 MiCloud (http://micloud.tw/) 共同主辦，推廣 Node.js 這項技術，並且在為期兩天之中，舉辦工作坊及講座。
+
+黑客頌 (hackathon)，又叫做「駭客馬拉松」，是一群程式開發者，與程式編碼日夜纏鬥。必須在短時間內，從無到有地生能運作的程式。從想法激盪，到最後的成果展示，在有限時間創造無限創意就是黑客頌想要達成的目標。
+
+＊全世界異地競逐，各國好手的成果，將會共同進行票選。
+＊參賽者全程皆須以 Node.js 的技術進行開發。
+＊台灣少數以 48 小時為單位的黑客頌。（一般都是一天制的比賽）
+＊台灣第一個以技術開發社群為號召，所推行的黑客頌活動。
+＊比賽進行時，同時舉辦研討會與講座，讓有興趣的參賽者能參與。
+＊全世界的參賽者皆須將所有程式碼開源，成為世界知識的共同結晶。
+
+「2012 Node.js Knockout 台灣黑客頌活動」負責人，亦為 JSDC 2012 的總召的戚務漢 (Caesar Chi) 表示：「這一次的活動，真的很難得，台灣之前從來沒有以社群為號召，辦過類似的活動。」對於網路程式開發技術來說，JavaScript 已經扮演著舉足輕重的角色，而 Node.js 做為一個高效能、易擴充的網站應用程式開發框架 (Web Application Framework)，推廣給更多的開發者，讓大家了解這項技術的好處，是十分有意義的！
+
+此次活動的講座，邀請到社群網站 Plurk（噗浪）的創辦人雲惟彬 (Alvin Woon)，分享他使用 Node.js 進行開發的經驗，主題為「Building Mapchats with Firebase (http://www.slideshare.net/alvinwoon/building-mapchats-with-firebase) 」。他示範了 Node.js 加上 firebase 即時數據同步的應用，只需要20行程式碼即可寫出一個即時聊天室。Alvin 秀出了程式碼，也將他今年在 Yahoo! 的 Open Hack Day 黑客頌的成果－ Map Chat 展示出來，Map Chat 運用的正是 Node.js，並且與 Google Map 做結合，讓使用者們能在 Google Map 上聊天。而在他講解的過程當中，也不時提到，「這個東西真的很厲害！」
+
+對於這次的參賽者來說，也是十分特別的經驗。大多數的程式開發者都表示，平時有碰過 Node.js，不過由於平時工作之中，沒有太多用到的機會。所以次需要完全使用 Node.js 的技術，開發完整的程式，對於大多數的參賽者來說，是很新鮮的經驗。比賽正式開始之前，有好幾位參賽者也談到，透過這一次的黑客頌，正好能做為自我挑戰與新突破的機會！
+
+
+成果展示
+
+第一名：Fighter on Google Map (http://nodeknockout.com/teams/top-gan)
+團隊名稱：Top Gan
+
+(http://www.openfoundry.org/images/130129/js/pic_02.png)
+
+當黑客頌開始進行之後，Top Gan 團隊在第一天接受訪問時，就已經把成品的藍圖勾勒出來，想要打造一個戰鬥機的多人即時對戰遊戲，並且能夠在 Google Map 上的衛星圖上自由的追逐。由於與 Google Map 的整合，使得遊戲背景更逼真！
+
+當談到這次開發時，他們談到，除了必須使用規定的 Node.js 之外，也使用了 socket.io 這個套件，socket.io 是一項跨平台即時溝通的套件，專用於即時互動的功能。對於多人即時對戰這項功能的開發當中，相當重要。
+
+
+並列第二名：Beauty Book (http://nodeknockout.com/teams/never-say-free)
+團隊名稱：Never Say Free
+
+(http://www.openfoundry.org/images/130129/js/pic_03.png)
+
+Never Say Free 的概念相當易懂，他們做了一個「正妹牆」的網路社群，採用 Facebook 的登入機制，做為會員登入的機制，而社群的運作，在於所有使用者的推薦漂亮女生的 Facebook 帳號，並舉行投票。當推薦的女生受大家喜愛時，推薦者即可獲得積分，當積分夠多時，就可以使用積分值，瀏覽其他想認識的漂亮女生的 Facebook 帳號。
+
+
+列第二名：Capturer (http://nodeknockout.com/teams/hahahaha)
+團隊名稱：hahahaha
+
+(http://www.openfoundry.org/images/130129/js/pic_04.png)
+
+因為 hahahaha 團隊中，有人對於「使用者介面」的體驗研究相當有感觸，所以決定開發一個可以追蹤使用者瀏覽網頁時的游標軌跡，並支援同步在監控端播放。
+
+面對第一次認真以 Node.js 做為開發工具的 hahahaha 團隊表示，利用 socket.io 對於多端同步的資料處理上，有相當大的幫助。
+
+
+最佳完成度獎：Dlurk Chat (http://nodeknockout.com/teams/isdmd)
+團隊名稱：isDMD
+
+(http://www.openfoundry.org/images/130129/js/pic_05.png)
+
+isDMD 的團隊組成相當特殊，是由三位數位媒體設計領域的成員，與一位程式開發者組成。他們做了一個橫向卷軸聊天室，不過聊天室的場景切換、小互動以及圖案的呈現，都相當的完整，是一組美術能力非常強的隊伍與成果。
+
+
+最高人氣獎：▁▂▃▄▅▆▇█ Node.Way (http://nodeknockout.com/teams/node-way)
+團隊名稱：▁▂▃▄▅▆▇█ Node.Way
+
+Node.Way 開發的是一款回合制的網頁遊戲，透過玩家們選擇各種技能，進行攻防戰，移動方式則是採格子狀的移動步數限制，並採用 2.5D 的視角，在短短的兩天之中，提出這麼多功能的遊戲架構，讓大家都相當驚訝，在成果展示時，仍不斷地修正與嘗試，無疑的表達了開發者的熱忱，感動許多在場的人，也因此獲得了最高人氣獎。
+
+
+最佳創意獎：Tainan style (http://nodeknockout.com/teams/tainan-style)
+團隊名稱：Tainan style
+
+Tainan Style 做的是朋友打賭的社群網站，除了接串 Facebook 的登入機制以外；也串接 Justin.tv 的線上即時播放功能，提供朋友們在打賭時，能夠即時的轉播。再加上籌碼的機制，是個很有創意的作品。
+
+
+評審講評：評斷的標準不外乎服務力、潛力、商業價值與技術力
+
+「2012 Node.js Knockout 台灣黑客頌活動」的評審分別由iT邦幫忙產品經理黃柏諺 (Brecht)、業界知名的馮旭平（費大公；Fillano）、MiCloud 發起人趙元瀚 (Jeese) 以及 TMI 台灣創意工場創辦人首席執行官王仁中 (Lucas) 擔任。
+
+Jeese 表示，總括來說，一個好的作品，不外乎就是提供優良的服務、具有發展潛力、擁有商業價值以及強大的技術能力。而這次未得獎的作品，幾乎都是其中的幾項關鍵，可以有更好的空間。像是未得名的 Node Monitor Your Database，其實是個很棒的概念，不過還缺了一些完整度，以致於服務性未能突顯出來，相當可惜。
+
+另外，評審也點出 Mr. TVBs 團隊所開發出的 Servent-Any，雖然沒得獎；卻是個有趣的「女僕人」服務，若不要做成網站，而是做成 Plug-in，必定會成為更加吸引人的作品。
+
+最後，評審也勉勵各位參賽者，能夠繼續開發更多的作品。
+
+
+後記：Node.js 之應用
+
+Node.js 做為一個網站應用程式開發框架，從此次黑客頌的作品當中，就能了解到它的其中一個特色，搭配上 socket.io 的應用，在「即時系統 (Real-Time) 」的開發上具有優勢。另外，Node.js 有著非阻塞的特性，並能承受高連線數量，高性能低耗能的優秀性能表現，雖然這次的黑客頌，不太有機會嘗試到高連線數量的挑戰，不過不可否認 Node.js 在這方面的表現可圈可點。未來，如果想要開發新的程式，也可以嘗試 Node.js。
+_______________________________________________________________
+
+■ [源碼新聞] 網路運動者 Aaron Swartz 自殺身亡，各方紛紛表達哀悼紀念
+
+謝良奇／編譯
+
+(http://www.openfoundry.org/images/130129/Aaron%20Swartz-635x357.jpg)
+Aaron Swartz in 2009 (photo credit: CC BY-SA Sage Ross, Wikipedia)
+
+網路與軟體自由先驅 Aaron H. Swartz 日前在紐約自殺身亡，享年 26 歲。
+
+才華洋溢的 Aaron Swartz 於 14 歲時參與共同制定了如今廣泛運用的 RSS 1.0 規格，成立後來與知名社群新聞網站 Reddit 合併的 Infogami，並於哈佛大學倫理中心實驗室 (Ethics Center Lab) 進行研究。2010 年時，他成立了 DemandProgress.org，反對網際網路審查法案 SOPA / PIPA。Aaron Swartz 終其一生都是著名的網際網路運動者，從今日的網際網路上不難看到他的影響，也由於這些事蹟，他的死訊傳開後，知名網站 Hacker News 上湧現許許多多對其表示支持的評論。
+
+Aaron Swartz 自殺的原因普遍被認為是起於從 JSTOR 下載大量文件，結果引來美國司法單位的多項罪名起訴。以下為 JSTOR 事件的始末：
+
+2010 年 9 月 24 日左右，Swartz 透過 MIT 網路大量下載 JSTOR 的文件。JSTOR 於 9 月 26 日首次阻擋 Swartz 的存取。隨後於 10 月 2 日、12 月 26 日、1 月 4 日又發生同樣事件。Swartz 於 2011 年 1 月 6 日被捕。7 月 Swartz 被聯邦地方法院以四項罪名起訴，包括電信詐欺 (wire fraud)、電腦詐欺 (computer fraud)、從受保護電腦非法取得資訊、故意毀壞受保護電腦。
+
+8 月 3 日，在 MIT 的 The Tech 雜誌上第一篇報導關於 Swartz 的起訴與逮捕的文章裡，描述了有關事件，包括 Swartz 用來下載 480 萬份 JSTOR 文件的筆電，MIT 校園 16 號大樓地下室裡 Swartz 用來存取網際網路的配線櫃、逮捕過程與法律後果。儘管 JSTOR 並無意追究，Swartz 仍然被起訴。
+
+JSTOR 的聲明指出，有關 Swartz 的刑事調查與起訴書直接來自美國聯邦檢察官辦公室，起訴與否是政府的決定而非 JSTOR。正如先前所提，他們關心的是這些文件的內容有無被散布出去，除此之外他們無意讓這件事成為持續的法律問題。
+
+11 月 17 日，Swartz 第二次被起訴，罪名是非法闖入、超過 250 美元的竊盜罪，以及未經授權存取電腦網路。他這次是在 Middlesex 高等法院被起訴。12 月 2 日 Swartz 被傳訊，他表示不認罪。
+
+2012 年 3 月 8 日，Middlesex 高等法院放棄了針對 Swartz 的 6 項罪名，包括 2 項非法闖入、1 項超過 250 美元的竊盜罪、3 項未經授權存取電腦網路。然而，針對 Swartz 的 4 項聯邦指控罪名仍維持不變。9 月 12 日，這包含了 4 項罪名的聯邦起訴書被修訂為包含 13 項罪名的起訴書。9 月 24 日 Swartz 在提審時對 13 項罪名仍表示不認罪。
+
+根據 Swartz 與其法律團隊於 2012 年 10 月 5 日提交的一份法庭文件，MIT 在沒有搜查令或傳票的情況下，提供情報單位 MIT 網路上有關 Swartz 活動的詳情與紀錄。Swartz 聲稱這違反了 MIT 的政策。MIT 表示這是保護其網路的必要行動，然而卻無法提供進一步解釋。
+
+11 月 2 日 Swartz 僱用了新的法律代表 Keker and Van Nest，這是舊金山頂級的律師事務所，由 Elliot R. Peters 率領 Swartz 的法律團隊。12 月 3 日 Swartz 的律師要求聯邦地方法院，將其案件審判從 2 月延至 6 月，並且對政府就 Swartz 聲請排除證據的回覆，提交回應。在 12 月 14 日舉行的進度討論會議中，法官決定於 2013 年 1 月 25 日舉行聽證會，並於 4 月 1 日進行審判。
+
+2013 年 1 月 12 日 The Tech 從 Swartz 的叔叔 Michael Wolf 得知 Swartz 於 11 日自殺身亡，並獲得律師 Elliot Peters 的證實後，刊出短文披露這個消息。Swartz 過世的消息傳開後，許多人紛紛在 Hacker News、Reddit 與紐約時報相關報導上留言追悼，Swartz 的朋友也是一名作家的 Cory Doctorow 在 BoingBoing 上發表了題為 "安息吧，Aaron Swartz" 的紀念文。哈佛大學教授也是 Swartz 友人的 Larry Lessig，在部落格上以 "檢察官霸凌" 為題發文，批評美國政府對 Swartz 的起訴。
+
+作為對 Aaron Swartz 追悼以及對他推行資訊自由的精神表示致敬，一位認知神經科學的研究者 Micah Allen，在 Reddit 上呼籲學者上傳有著作權保護的研究論文，並公開網路連接。結果許多學者在網路上紛紛響應，吸引超過 1500 個研究與學術論文的連接。
+
+Swartz 在 5 年前寫下了游擊隊開放存取宣言 (Guerrilla Open Access Manifesto)，其中批評研究期刊封鎖有價值的科學知識與歷史，呼籲人們參與公民不服從運動，讓這些著作的取用能更為公開。他寫道，數百年來，全球以書籍與期刊的形式出版的科學與文化遺產，正逐漸地數位化，並且被少數私人企業所封鎖。想要閱讀科學界最偉大的研究成果嗎？你必須先支付可觀的費用給 Reed Elsevier 這類出版商。
+
+JSTOR 也發出聲明，公開對 Swartz 辭世表達哀悼：我們對 Aaron Swartz 的死訊深感難過。我們要向 Aaron 家屬、朋友，以及每個愛他、認識他、尊敬他的人，表示衷心的慰問。他是一位對網際網路發展有著重要貢獻，真正的天才，我們都因而受惠。鑒於針對 Aaron 的起訴罪名與預計於 4 月舉行的審判，各方陸續詢問 JSTOR 對此一不幸事件的看法。由於JSTOR 的任務只是促進全球學術知識的廣泛普及，我們對於從一開始就被捲入此一案件中而感到遺憾。在此同時，作為全球最大學術文獻檔案庫之一，對於這些由其擁有者與創作者托付給我們的資訊，我們必須小心的管理。為此，Aaron 歸還了他所取得的資料，JSTOR 隨之也就在 2011 年 6 月，停止了針對他的所有民事索賠。就讓我們為此不幸的痛失而一同哀悼。
+
+就在 Aaron Swartz 死訊傳開後，駭客組織 Anonymous 的成員攻陷 MIT 網站，貼上呼籲司法改革的聲明。CNET News 的 Steven Musil 寫道，該聲明字裡行間沒有該組織一貫的怒氣，而駭進 MIT 網站張貼在該網站上的文字，則是用來紀念已逝網路運動者 Swartz 的改革呼籲。
+
+Anonymous 在聲明中列出以下呼籲：
+
+＊我們呼籲基於此一悲劇，能夠為電腦犯罪法以及過分熱切運用這些法律的檢察官，帶來改革。
+
+＊我們呼籲基於此一悲劇，能為著作權與智財權法帶來改革，從少數私人利益，轉向以多數共同利益為主的正確原則。
+
+＊我們呼籲以此悲劇為基礎，針對某些個人與權威機構，向膽敢為自身信念挺身而出的人，所施加的壓迫與不公，能夠有更多的體認、更大的團結與互助的回應。
+
+＊我們呼籲以此悲劇作為基礎，能夠對一個自由與不受約束的網際網路，重申堅定承諾，使其免於審查且所有人皆享有同等存取與公民權利。
+
+Swartz 家人與夥伴在其聲明中寫道，Aaron 的逝去不是個人的悲劇，而是刑事司法體系充斥恐嚇與檢查過度擴張的結果。麻省美國聯邦檢察官辦公室和 MIT 的決定，導致了他的自殺。美國聯邦檢察官辦公室提出極為嚴苛的一連串罪名，可能超過 30 年的刑期，受指控而要被懲罰的犯罪事實裡卻沒有一個受害者。期間，和 JSTOR 不同，MIT 拒絕為 Aaron 以及其社群最為珍視的原則挺身而出。今日，我們為這位已經失去的，非凡且不可取代的友人，深感悲痛。
+
+
+相關網址：
+
+1. The Tech 對 Aaron Swartz 的相關報導
+http://techblogs.mit.edu/news/2013/01/the-techs-coverage-of-aaron-swartz/
+
+2. Anonymous 駭客攻擊 MIT
+http://www.esecurityplanet.com/hackers/anonymous-hackers-hit-mit-following-aaron-swartzs-suicide.html
+
+3. JSTOR 對於 Swartz 辭世表達哀悼
+http://about.jstor.org/statement-swartz
+
+4. Swartz 家人發起的紀念網站
+http://www.rememberaaronsw.com/
+
+5. 對 Aaron Swartz 的論文致敬行動吸引約 1500 個論文連接
+http://techcrunch.com/2013/01/13/pdf-tribute/
+_______________________________________________________________
+
+■ [源碼新聞] 功能豐富、操作簡便的自由開源校園行政管理系統
+
+黃郁文／編譯
+ 
+過往教育界由於怕接觸到不熟悉的事務而影響到教學上的效率，以致對自由開源軟體多抱持著觀望並保持距離的態度，但近年隨著各類自由開源軟體使用者的顯著增加，教育人員漸漸了解到，自由開源軟體確實對於教育界能夠帶來多方面的助益，故對於自由開源軟體的接受度也大為提高。其實，目前國內外已有許多老師或教育單位加入 Open Source Schools 與 SchoolForge 這類的自由開源組織，透過這些組織活動的參與，教育界的使用者也體會到，採用自由開源軟體方案，在費用簡省以及選擇多樣上的好處。以下介紹三套用在輔助教學或啟發學習的自由開源校園行政管理系統，帶大家一探自由開源軟體於校園行政管理系統面向的發展概況。
+
+一、openSIS
+
+openSIS 的英文全稱為 "Open Source Student Information System"，是一個適用於校園行政管理的應用程式，其操作主要透過網際網路來進行資料傳遞，為一完全的網路應用程式，該專案由 Open Solutions for Education 組織進行持續的開發與維護，程式本身以 PHP 語言進行撰寫，資料庫方面使用自由開源版本的 MySQL 來儲存資料。整體而言，openSIS 的社群版本也是以 GPL-2.0 (GNU General Public License version 2) 來進行釋出，使用者可自由地從 Sourceforge 網站進行下載。依照評估，OpenSIS 與商用同類型軟體相較，可降低校園行政管理系統的維運成本達到 75% 之譜，其專案功能包括：
+
+＊出席狀況記載 (Attendance)：只需按滑鼠右鍵就可建立客製化的出席記錄，內建報告系統也讓管理者更容易掌握學生的出缺席狀況；
+＊聯絡簿：簡易增刪聯絡資訊，此一功能還能讓取得授權的父母或相關人士，直接透過 openSIS 取得個別群組裡的各項聯絡資訊；
+＊學生檔案 (Student demographics)：openSIS 內置的資料目錄與分類系統，能便利管理者建置與管理學生檔案；
+＊成績記錄：內建成績管理系統，便於老師記錄所有學生活動成果，自動化的成績整理系統，也讓老師可以透過這套工具，協助偵測是否有資料輸入錯誤的問題；
+＊行程表：openSIS 可讓教學者安排活動時間，並針對不同班級同時處理數項行程表，以及安排值日生；
+＊健康記錄：學生與學員的疫苗注射記錄、過敏記錄等管理功能；
+＊成果卡：可將上列各項資料製作成標準規格式的學生記錄卡，以進行線上瀏覽或是紙本列印，同時計算學業成績平均點數 (grade point average, GPA) 與各項排名。
+
+二、Epoptes
+
+Epoptes 的字義在希臘語是「事務監工」的意思，它是一個自由開源的伺服器管理與監控工具，可用於螢幕直播 (screen broadcasting) 與監看、遠端輸入指令列、傳送簡訊，或執行螢幕鎖定與靜音控制等。Epoptes 可安裝於 Ubuntu、Debian 及 openSUSE 等 Linux 系統，並可彈性的被安裝在 LTSP 伺服器 (Linux Terminal Server Project)、非 LTSP 伺服器、獨立工作站，來與各式的客戶端系統進行互動。Epoptes 其實是將既有專案 sch-scripts 開源化加以重新撰寫，此一專案之前已經被用在約 250 間希臘學校，故具有極高的運作穩定性與執行效率。Epoptes 承襲 sch-scripts 進行開發，故一開始已有極佳的基礎，但在開源化的過程中仍在持續增加更多新的功能，目前主要是由希臘一地資訊領域的教師與學生共同維護，其未來的發展非常令人期待。
+
+三、Fedena
+
+Fedena 是以 Rails (Ruby on Rails framework) 進行開發，亦為一套自由開源的校園事務管理軟體，Fedena 的功能強大，能夠同時管理學生、老師、雇員，課程等等相關的各項行政事務。基本上，採用一套 Fedena 即能完整涵蓋整個學校行政事務的管理需求，可說是進階的學生資訊系統 (Student Infromation System, SIS)，加上校園式企業資源規劃 (Enterprise Resource Planning, ERP) 的組合體。所以如果教育機構能善用 Fedena，那便毋須再行額外支出校務資源系統在技術維護上的成本，只要透過一台可連接網路的電腦服務系統，就可以完成整個學校資源在人力與物資上的管理。Fedena 官網表示該專案的介面，盡量做到讓電腦的一般初級使用者也能簡易上手，不過、使用者若需要額外支援的話，仍可以在 http://www.fedena.com 官方網站上取得支援。目前印度喀拉拉邦教育部門 (Education Department of Government of Kerala) 大力使用的教育資源管理系統就是奠基於 Fedena，其用來管理該省超過 15,000 間學校，當地稱此系統為 Sampoorna。
+
+從上面這些例子看來，有了各式教育類自由開源軟體專案的協助，只要透過認識與了解，並適時進行規劃與導入，未來教學者與教務機構將能夠省下大量資訊系統建置與管理的成本，並能根據自我所需選擇適合的軟體專案，那麼不論在行政效率的提升與成本簡省方面，對於老師或學生都是多有助益。其實，國內亦有針對教育領域推動自由開源軟體教學與應用的專職團隊，由教育部委辨的「校園自由軟體數位資源推廣服務中心 (Open Source Software Application Consulting Centre, OSSACC)」，經年承辦國內與自由開源軟體校園推動相關的各式輔導計畫，其所建置與維護的自由開源 ezgo 作業系統，其上匯整有各類好用的自由開源軟體，並且一併收錄國際間具教育實用性的自由教材，有興趣的朋友亦可登錄其網站，定期更新相關的最新訊息！
+
+
+相關網址：
+
+1、校園行政管理開放源碼應用程式簡介
+http://opensource.com/life/13/1/three-open-source-school-management-software-programs-teachers-and-student/
+
+2、印度 Sampoorna 專案官方網站
+http://projectfedena.org/pages/sampoorna/
+
+3、ezgo 自由軟體應用推廣光碟專案頁面
+http://ezgo.westart.tw/
+_______________________________________________________________
+
+■ [源碼新聞] Ubuntu Linux 近期將可試裝於 Samsung Galaxy Nexus 進行運作！ 
+
+黃郁文／編譯
+
+在今年美國拉斯維加斯消費電子大展中 (Consumer Electronics Show) 中，著名的 Linux 系統商 Canonical 透露，將於今年二月啟動 Ubuntu 在行動裝置上的改裝計畫 (Ubuntu for Phones)！屆時使用者首波將可於 Samsung Galaxy Nexus 手機上，改裝或直接使用 Ubuntu 作業系統來享用該系統豐富的各項功能與彈性的操作介面。
+
+在此宣言之下，某一個程度來說 Ubuntu 系統顯然將成為 Google Android 系統的競爭者，Canonical 表示 Ubuntu Linux 行動作業系統將於數週內在 Google 最新一代 Nexus 機型現身，使用者將可免費從網站下載該作業系統，安裝至手機上使用，目前的規劃是初期將以 Samsung Galaxy Nexus 為首要的支援對象，其他機種，包括 Google 的 Nexus 4 則還要等上一段時間。Canonical 指出，未來的 Ubuntu 手機作業系統，將可用於高階與低階的智慧型手機，並且支援 HTML5 的行動式應用程式 Apps，包含 Google 軟體市集彙整的各類應用程式。此外，該系統可與外接螢幕、鍵盤與滑鼠連接，可將智慧手機轉換為近似全功能的桌上型作業環境，使用者將可藉由這樣的方式，充份使用 Ubuntu 作業系統裡所有的軟體程式，而並不僅僅將智慧型手機侷限在手機式的使用範疇。
+
+Canonical 及 Ubuntu 創辦人 Mark Shuttleworth 表示，大部分的 Android 開發者都有使用 Ubuntu 作業系統的經驗，可以預見這些開發者在支援 Ubuntu 行動作業系統上應該也不會遭遇太大的難題。不過，在消費電子展場中，Canonical 並還沒有能以實機展示此一方案，其表示這是因為新系統目前尚未完全齊備，還需一段時間完善其功能與表現。不過，透過網路影帶的驚鴻一瞥，Ubuntu 行動作業系統的豐富功能，以及操作上的流暢度確實讓人印象深刻，其實，Android 系統雖然使用 Linux 核心 (Linux Kernel) 做為其運作基架，但中隔函式庫是否造成效能的降低與運作的迂迴，網路論壇上一直都有這樣的討論，過往 INTEL 與 Nokia 提出的 Meego 方案，或是 HP 提出的 webOS 方案，在在都有擁護者提出支援完整開源框架行動系統的呼聲，但之前這類的方案，都還並未達到普及與完整商轉的階段，而 Ubuntu 作業系統挾其在 Linux 桌面端豐沛的使用人數，於此時切入行動式裝置的市場，估計 Ubuntu for Phones 這個方案，較之過往的專案，將能更加吸引 Linux 使用者的觀注與喜好，其是否能甩開 Android 並趕上 Apple 的市場佔有率，便就還有待觀察，不過目前看來前景非常令人期待。 
+
+
+相關網址：
+
+1、Ubuntu 手機要來了
+http://www.theinquirer.net/inquirer/news/2235310/ces-ubuntu-coming-to-the-samsung-galaxy-nexus-next-month
+
+2、今年二月將可於 Samsung Galaxy Nexus 手機上體驗 Ubuntu 新式的行動作業系統
+http://www.expertreviews.co.uk/smartphones/1297030/samsung-galaxy-nexus-to-get-ubuntu-for-phones-in-february
+
+3、Mark Shuttleworth 親自展示 Ubunut 行動式作業系統
+http://www.youtube.com/watch?v=HUr0p9x3zjI
+_______________________________________________________________
+
+■ [源碼新聞] Mozilla 正式發布 Firefox OS 開發用手機
+
+Kenneth Mak／文
+
+◎本文原載 Linux Pilot ，原文章連結 (http://www.linuxpilot.com/industry/news/201301230101Firefox-OS)。
+
+Mozilla 基金會表示在 2013 年內將會有預載 Firefox OS 的手機出現，但一直以來都只聞樓梯響，日前 Mozilla 終於宣布與 Geeksphone 和 Telefonica 合作，提供首款開發預覽用的手機，將在 2013 年 2 月出貨。
+
+(http://www.openfoundry.org/images/130129/Mozilla.jpg)
+
+開發預覽用手機主要針對入門用戶，因此配置上比較平民化，兩個型號分別是 Keon 和 Peak，前者採用 Qualcomm Snapdragon S1 1Ghz 處理器、3G 支援 UMTS 2100/1900/900 (3G HSPA)，2G 支援 GSM 850/900/1800/1900 (2G EDGE)，屏幕為 3.5 吋 HVGA Multitouch，配備 3 百萬像素照相機、4GB ROM 和 512 MB RAM 及 MicroSD，Wifi 支援 802.11N、光學、重力感應器和 GPS。後者採用 Qualcomm Snapdragon S4 1.2Ghz x2 處理器、4.3 吋 qHD IPS Multitouch 屏幕、8 百萬 (後) 和 2 百萬像 (前) 照相機，其他配置與前者相同。
+
+開發者可透過在 Android 平台安裝 Firefox Aurora Marketplace 進行下載安裝程式的測試，或者透過瀏覽器版本的 Firefox OS 模擬器、選擇在 Android 硬體平台直接安裝 Firefox OS 作業系統等均可用於測試，條件是手機必須已經升級至 Android 4.0 或以上版本。Keon 和 Peak 手機將在在 Geeksphone (http://www.geeksphone.com/) 網站發售，預計在 2013 年 2 月出貨。
+_______________________________________________________________
+
+■ [源碼新聞] Web 界的盛會：WebConf 2013 會後報導
+
+羅棋駿、林珈宏／文
+
+今年 (2013) 1 月 12 日，飄著陰雨的週六早晨，將近 700 人聚首於中央研究院人文社會科學館，參加週末一連舉辦兩天的 WebConf Taiwan 2013 (Web Conference, Taiwan)。不同於以往眾多研討會聚焦在特定語言或技術，WebConf 是台灣第一個由社群所發起，以「網站開發及設計」為主題的大型研討會，並邀請各方領域的講者來分享；同時，國內幾個技術開發社群如 JSDC、PHPConf、PyCon；設計師社群 IXDA 以及自由軟體社群 MozTW、Ubuntu.tw 等，也都進駐擺攤，內容相當豐富。
+
+(http://www.openfoundry.org/images/130129/web/pic_01.png)
+《圖一》WebConf 2013 的 logo 及吉祥物「蜘蛛」。
+
+
+從 PHPConf 到 WebConf
+
+WebConf 的發起人－與Daniel (pct) 與高見龍（龍哥）－最初是在 PHP 讀書會時認識的。龍哥與PCT原本都只是單純的工程師，工作幾年後，意識到自身專業也必須與時俱進。於是，利用業餘時間參與讀書會，並且也開始投身技術開發社群中，交流分享彼此的所學與想法。2011 年，兩位更發起了 PHPConf Taiwan 2011 (PHP Conference Taiwan)，並與中研院資創中心的自由軟體鑄造場 (Open Source Software Foundry, OSSF) 共同合作，籌辦了一場超過百人、中型規模的社群研討會，並且在開放報名的短短八分鐘內，即告額滿。
+
+WebConf 依始於 PHPConf 2011 成功落幕，pct、龍哥與社群朋友在閒聊時，一句無意間脫口而出的話：「如果我們辦 WebConf，感覺人數一定會爆滿。現在很多人都對Web很好奇。」網路的普及與便利使其蓬勃發展，不只是擁護各項技術的工程師人才，也需要法律、企劃、美術領域的相關人才投入。藉由一個以 Web 為號召的議題，相信能同時讓更多領域的人彼此有所交流。
+
+因此，首次的 WebConf 逐漸醞釀，在以「網路」為主題集合裡，兼容不同的開發技術、網頁設計師、行銷人員。知名的台灣互動設計社群 IXDA，在 pct 及龍哥的邀約下，也答應投入 WebConf 2013，成為工作人員。
+
+為了 Web 設計的整體性，並希望能達到跨界的溝通及交流，除了工程師以外，WebConf 更在票種上規劃了「設計師保留票」，並在議程中新開闢網頁設計與美術前端工程的議題，讓講師及與會者可以共同討論未來網路世界中每一片扉頁，將美感與良好的體驗融入到網路世界；顯見主辦單位的用心。
+
+
+WebConf 的開展：Ruddy 的大會演講
+
+龍哥與 pct 十分重視的大會演講 (Keynote Speech)，也讓他們卯足全力，前去拜訪未曾蒙面的李智樺 (Ruddy) 老師。全台灣很難找出開發經驗超過 30 年，仍醉心於 R&D 領域的工程師；走過早期 Apple、PC XT/AT 組合語言、BASIC、C、C++ 語言，到近期的 JavaScript、PHP 等，他都仍有在持續涉獵。
+
+龍哥與 pct 前往拜訪時，並不敢懷抱太大的希望。一方面調整期待，以防免遭拒的失落感，一方面也希望能降低與前輩會面的緊張情緒。喜出望外的是，在了解龍哥與 pct 的想法後，Ruddy 一口答應擔任 WebConf 2013 的大會演講講師，並且大力相挺，表示這是台灣很需要的一股力量。這使得 WebConf 跨出了最重要的一步，也讓兩位發起人頓時放下心中的石頭，大步向前邁進。
+
+(http://www.openfoundry.org/images/130129/web/pic_02.jpg)
+《圖二》Ruddy（中）與 pct（左）及龍哥（右）的合影。
+
+
+「寫程式是一種興趣，而且永遠滿懷熱忱，能對社會有貢獻。」
+
+WebConf 2013 的序章，由 Ruddy 寫下。全場人數近 600 人，以「Making it Big in Web（開發 Web 的遠大前程）」的宏觀主題，談論現在與未來；並以工程師的角度闡述，面對未來更多隨時可能變動的領域時，如何才算是一位成功的工程師。「寫程式是一種興趣，而且永遠滿懷熱忱，能對社會有貢獻。」Ruddy 給了這個結論。
+
+此外，還直指工程師的心態，Ruddy 說了一段印象深刻的話：「如果有人賞識你寫的 code，應該要開心；人的一生寫不出幾支真的很有原創性，或是震撼人的，如果有人有興趣，當然可以分享給他，有人使用你的程式是多麼喜悅的一件事。讓自己成為真正有價值的人，並不只是收入，更多的是分享與付出。」從他的身上，能清楚看到他仍維持高度興趣，持續關注著資訊科技；此外，當天的簡報也是自己用 Windows 8 所寫的，不忘記終身學習。勉勵台下的聽眾，不論是否為工程師，Ruddy 所講的，都是值得網路產業的人才們所學習的。
+
+(http://www.openfoundry.org/images/130129/web/pic_03.JPG)
+《圖三》座無虛席的國際會議廳。
+
+
+網站開發所需的概念：「Curation Web」及「兜兜哲學」
+
+而 Ruddy 在最後，提出「Curation Web」的概念，並指出與其說是「策展」，不如說是一種「兜兜哲學」來得更易懂。而且這樣的概念早已經存在，像是 CoffeeScript 或是 TypeScript 都是希望增加程式碼的簡潔性與易讀性，以及製作大型軟體而存在。以整個 IT 技術的歷程來講解：我們從最早的「元件」的概念，發展出「物件」的概念；再發展出了「設計模式」，像是將電腦技術用於工程繪圖上，發展出 AutoCAD 的軟體；又發展出「開發框架」能夠導入 libraries 或是 classes 的集合系統；到了現在，開始有更多「服務」也能「兜」一起，像是許多電子商務網站的後端金流系統，多是使用銀行直接提供的程式。而工程師想盡辦法，讓一切完善的方法，透過各種組合、截取各處優點來突破的方式，就是所謂的「兜兜哲學」。
+
+面對網路產業的各項應用，需要更多領域的人才投入。此次的議程即包含兩個主要脈絡：網站設計與工程開發。除了 Ruddy 的大會演講，第一天下午的大會演講，邀請到 HPX（Happy Planner；網站企劃輕鬆聚）的共同創辦人蔡明哲 (Richard Tsai) 主講網站企劃，第二天上午的大會演講則由微網誌暨社群網站 Plurk（噗浪）的創辦人雲惟彬 (Alvin Woon) 擔任。Richard 在網站企劃有多年專長，點出許多網站從業人員的盲點，也分享從企劃面建立起網站工作的一體性；Alvin 以身為工程師所看到的社會，以及身為一個網路創業家，向與會者分享經驗、心得及建議。大會演講的安排，貫穿了工程師、設計師、創業家的內容，在在可看出 WebConf 2013 的整體規畫也緊扣住「Curation Web」的核心概念。
+
+在 WebConf 2013 兩天的各個議程當中，在開發者脈絡下的議程安排，包含介紹了許多各式不同的開發框架，以及各種技術的應用，例如 WebGL 功能、Node.js 相關觀念、PHP 的使用、Heartbeat 搭配 DRDB 的運作、JavaScript 與 HTML5 的應用、Media Query 的嵌入、網站效能調校技術、Drupal 版型引擎、Python 開發 Web 的工具……等諸多精彩內容，可以在「WebConf 2013 懶人包 (http://goo.gl/7pdEe) 」這個由社群成員自發建立的公開文件中，找到各個議程投影片的連結。
+
+(http://www.openfoundry.org/images/130129/web/pic_04.jpg)
+《圖四》熱門的設計脈絡議程及熱情的與會者。
+
+
+跨界交流、溝通藝術
+
+設計師脈絡的議程每場都爆滿，有許多人直接坐在前面聆聽，內容包含 Wordpress 的應用、Mockup 的細節、CSS 語法在 Sass 及 Compass 的運用、WebFont、網頁設計技術的專業、Flash的現形、使用者體驗設計、使用者介面設計等議題，亦是相當豐富多元。
+
+從這次WebConf中能發現到一個現象，不論是大會演講、以工程師為主脈絡或設計師為主脈絡的議程中，許多講者都不約而同地提及「溝通」的重要性。
+
+「溝通藝術：設計與開發如何真心合作？」的講師楊喆淇 (Hitomi) 談到，尊重各自的專業、試圖理解工程師的想法、用對方能聽懂的語言溝通，並建議可以多善用「圖表」做為溝通的工具。Ruddy 提及 SCRUM 敏捷開發方法時也提到，帶領一個團隊，需要更多在一起溝通的會議，以確保彼此的共識，雖然看似很浪費時間，卻是必要的做法。
+
+(http://www.openfoundry.org/images/130129/web/pic_05.JPG)
+《圖五》講師 Hitomi 談溝通的藝術
+
+
+WebConf 結束後，正在就讀大學的與會者 Dylandy 表示：「我們不只侷限在學校所學、書本所教的僵硬知識。從一個資訊菜鳥的角度來看，這次的活動讓我學習到非常多、非常充實的知識和觀念，因為各式議程主題，我們可以根據自己的能力，挑選適合的方向來學習，這些議程給了我一種在學習上的啟發，新的方向。」筆者也相當肯定主辦單位在議程的安排及票種的設計上，也兼顧了初學者及學生的需求。
+
+共同打造一個更好的 Web！
+
+2012 年起，行動裝置開始將 Web 應用帶到另一個全新的領域，2013 年則是全面的普及，使得 Web 在人們的生活中已全然地不可或缺。WebConf 2013 的內容讓我們認知到，網路是一個集合，需要不同領域的人才，也需要彼此充分溝通。網站設計及開發的成果終將共同展現，每一個環節都有許多學問，可以集結更多的專長來分享交流。
+
+首屆舉辦的 WebConf 的一般票，開放售票不到五分鐘就全數售罄，可謂是從 2012 年以來諸多社群主導的研討會中，開創新的紀錄，也顯見眾人對於 Web 領域知識的興趣及渴望。接下來 2013 年，陸陸續續還有各個相關的研討會可以學習新知，包括 5 月 18 – 19 日的 JavaScript Developer Conference Taiwan (JSDC.tw)、5 月 25 – 26 日的 Python Conference Taiwan (PyCon Taiwan) 以及 10 月 5 日的 PHPConf Taiwan 在內，都能讓對 Web 技術有興趣的朋友持續學習進修。
+
+至於 WebConf 2014 的主題是什麼？將安排什麼內容？或許就連主辦的龍哥及 pct 都無法立即一語道出。不過，在網站設計及工程技術日新月異的年代中，肯定又有許多新的知識及內容可以分享。期待 WebConf 2014，也期待個人的努力、社群的投入、產業的經營，讓我們可以共同打造一個更好的 Web！
+_______________________________________________________________
+
+■ [源碼新聞] 2013 年二月份社群活動列表
+
+OSSF 電子報團隊／整理
+
+農曆春節即將到來，先預祝各位朋友蛇年吉祥，事事順心如意！二月份的活動列表出爐囉！有興趣的朋友們請多多邀請您的朋友一同前往參與！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信告訴我們喔！信箱： ossfepaper@openfoundry.org 。
+
+ 
+MozTW Lab @ TP（每週五，2/1、2/8、2/15、2/22）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（雙週一，2/4、2/18）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zhwp.org/zh-tw/WP:WPTP-S
+
+TOSSUG BoF（每週二，2/5、2/12、2/19、2/26）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+Hackathon in Taichung (HTC) meetup（2/7、2/21）
+地點：台中市中港路二段 60-3 號 （默契咖啡）
+時間：19:00~22:00
+活動資訊：https://groups.google.com/forum/?fromgroups#!forum/hackathonintaichung
+
+KuLUG 大高雄 Linux 使用者協會固定聚會（每週四，2/7、2/14、2/21、2/28）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~22:00
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（每週四，2/7、2/14、2/21、2/28）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:30
+活動資訊：http://www.hackingthursday.org/
+
+Taipei Wikipedia Moonthly Meetup: Writing Day 維基台北定期聚—假日寫作月聚（2/9）
+地點：台北市大安區泰順街 60 巷 11 號（小哲食堂）
+時間：14:00~16:00
+活動資訊：https://zh.wikipedia.org/wiki/Wikipedia:WPTP-W
+
+台中自由軟體愛好者固定聚會（單週一，2/11、2/25）
+地點：台中市中港路二段 60-3 號（默契咖啡）
+時間：19:00~22:00
+活動資訊：https://groups.google.com/forum/#!forum/taichung-foss-fans-meeting
+
+給 FLOSS 志工社群網站管理員的網站分析（2/16）
+地點：暢。Changee Coke（台北市南京西路18巷8-2號3樓）
+時間：09:00~17:00
+活動資訊：http://www.openfoundry.org/tw/activities/details/365-for-FLOSS-admin-website-analysis
+
+WoFOSS 好自由小組聚會（2/20）
+地點：伯朗咖啡-北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.tw/ 
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰王怡凱、林誠夏、林珈宏、陳蕙蓁、彭冠雯
+◎ 外稿編譯︰黃湘婷、黃郁文、蕭惟杰、謝良奇
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

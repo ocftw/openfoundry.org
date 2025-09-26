@@ -1,0 +1,36 @@
+
+系統安全
+
+Red Hat Enterprise Linux 4
+http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-sg-zh_tw-4/
+
+SecureDebian - DebianWiki
+http://wiki.debian.org.tw/index.php/SecureDebian
+
+UbuntuServerTips
+http://wiki.ubuntu.org.tw/index.php/UbuntuServerTips
+
+
+系統虛擬化
+
+Xen on Debian etch 安裝分享
+http://news.kdais.gov.tw/read.php?server=news.kdais.gov.tw&group=tw.bbs.comp.linux&artnum=1625
+
+Xen 初學者指南
+http://www.linuxsir.org/main/?q=node/188
+
+Xen v3.0 用戶手冊
+http://www.linuxsir.org/main/doc/Xen3man/
+
+Xen Debian Quick Start
+http://www.option-c.com/xwiki/Xen_Debian_Quick_Start
+
+Xen - Debian Wiki
+http://wiki.debian.org/Xen
+
+[分享] 使用 debootstrap 來建立 CHROOT 環境
+http://moto.debian.org.tw/viewtopic.php?t=6578&
+
+debootstrap 相關的安裝方式
+http://moto.debian.org.tw/viewtopic.php?p=45437
+

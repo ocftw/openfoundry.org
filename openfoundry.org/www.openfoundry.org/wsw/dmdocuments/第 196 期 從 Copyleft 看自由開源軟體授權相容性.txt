@@ -1,0 +1,1083 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 196 期 | 2012/05/29 □■□
+________________________________________________________________
+
+◎ 本期主題︰從 Copyleft 看自由開源軟體授權相容性
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/06/12
+
+□ 本期標題 □__________________________________________________
+
+■ [法律專欄] 從 Copyleft 看自由開源軟體授權相容性  
+
+■ [技術專欄] 網站程式上線前需要準備的事（三）
+
+﻿■ [源碼秘技] 由 Python 實現的靜態網頁產生工具－ jemdoc
+
+﻿■ [自由專欄] 使用 OpenTeacher 學習外國語言
+
+﻿■ [自由專欄] Firefox 10～12 的網頁開發相容性資訊
+
+﻿■ [源碼新聞] Blender 2.63a 發布
+
+■ [源碼新聞] Oracle 僅能收到 Google 15 萬的賠償金
+
+■ [源碼新聞] Ubuntu 12.10 版將有 Gnome 桌面環境
+
+﻿■ [源碼新聞] 再生龍展現台灣軟實力─國網中心與日本 Miracle Linux 簽署合作備忘錄
+
+■ [源碼新聞] 歡迎參加 6/2（六）OpenOffice 3.4 Release Party！
+
+■ [源碼新聞] 2012 年 6 月份社群活動列表
+
+■ [接案工作] 自由軟體鑄造場 - 誠徵「授權分析系統開發兼任助理」
+
+■ [接案工作] 自由軟體鑄造場 - 誠徵「工讀生」
+
+□ 本期內容 □__________________________________________________
+
+■ [法律專欄] 從 Copyleft 看自由開源軟體授權相容性  
+
+林珈宏／文 
+
+◎  泛談授權相容性的基本概念
+
+所謂「授權相容性 (license compatibility)」是指，針對以不同的授權條款所釋出的程式碼，在連結 (link)、取用或合併 (merge) 的利用方式下，能合法為之而不致違反任一條款的權利義務關係規定；初階的授權相容性，談的是自由開源軟體授權條款在義務性規定 (obligation) 上彼此是否相容，而進階的授權相容性，則是指集合式的軟體專案裡，授權元件基於其授權方式的互動關係是否相容。本文因為篇幅所限，所以行文上將併以條款相容與應用相容的角度，來討論自由開源軟體授權元件的相容關係。著眼點在於，自由開源軟體授權條款具有不必個別磋商之特性，使用者只要了解並遵守該條款內容即可自由利用，但因各個自由開源軟體條款種類繁多（註一），權利義務內涵各異，導致在多款自由開源軟體之間或是專屬軟體 (proprietary software) 與自由開源軟體間的連結、取用或合併之後續利用，皆可能產生授權狀態不相容的情形。授權相容性又以 Copyleft 的相容與相斥為核心；因此，本文將先略談 Copyleft 機制，進而針對各種條款相容性的態樣說明其內涵。
+
+◎ Copyleft 的定義與授權拘束性的關係
+
+Copyleft 的機制要求使用者重製原作或於嗣後產出衍生著作並再行散布時，亦須採用相同的方式進行授權（註二），並且這樣的要求也不會隨著作品的改作與再散布而受到影響，否則即逾越原授權範圍而造成侵權之結果。而具有強烈外擴性的 Copyleft 又被稱為授權拘束性 (License Inheritance)，也就是說該程式的授權方式不但不會因程式碼的向後散布而受到更改，有時拘束特性更會進一步擴散到後手對原程式修改、添附的衍生部份，以維護相同之授權方式得於衍生著作中存續。並非所有自由開源軟體條款皆具有授權拘束性，不同條款具有授權拘束性之權利義務內涵也不盡相同。倘若兩種條款皆有授權拘束性，其中權利義務內涵卻有牴觸，則將造成授權不相容。
+
+GPL為授權拘束性條款的典型。它要求 GPL 程式碼的衍生著作在散布時，包括其衍生程式之整體皆須以 GPL 來散布；亦即，其授權拘束性的適用範圍涵蓋整個程式，衍生著作中全部之程式碼以 GPL 向後授權。此外，有部分同樣具有授權拘束性之開源條款之適用範疇較 GPL 為窄，下文以 LGPL、MPL、CDDL 及 EPL 為例。
+
+LGPL 專以「函式庫或具有函式庫性質的程式」作為授權標的。若單純的呼叫、以動態連結的方式使用該函式庫時，其他程式並不會被視為其衍生作品而受到 LGPL 的授權拘束；亦即，其係以函式庫作為其授權拘束性的範圍，因此，修改該函式庫後的衍生著作或將該函式庫作為靜態連結的主程式仍應以 LGPL 釋出。
+
+MPL 及 CDDL 是以「檔案」為其授權拘束性的範圍，若使用者取用該程式時有對其中之檔案進行修改，或將它與其他檔案合併成新檔案，此時即需依 MPL 將修改後的檔案釋出。反之，倘未對該檔案進行修改或與其他檔案合併時，例如單純外加一個修補程式／補丁檔 (patch) 進入原程式以增進或修補其功能，此時即無須依 MPL 來授權該補丁檔。
+
+EPL 及 CPL 是以「模組」作為其授權拘束性的範圍；與前段邏輯相同，若使用者之修改或合併行為已涉入該模組的範疇，即對模組內程式碼有所變更，則須依 EPL 或 CPL 繼續授權，若在模組之外，則可任意以其他方式授權。
+
+上述各條款皆有一定程度之授權拘束性，惟亦有許多開源條款並不具有授權拘束性， 例如 MIT、BSD 及 Apache 等條款即屬之。這些條款雖然也有少量的授權義務規定（註三），但其並未要求使用者就其開發出的衍生著作採用原來的授權，因此，再行釋出衍生著作時即可另採其他任何授權條款，包含具有授權拘束性的開源條款或是專屬軟體授權在內。 
+
+以上簡略說明各類條款的授權拘束性，接下來將介紹條款相容性。
+
+◎ 自由開源軟體條款相容性之態樣
+
+本文將條款相容性的態樣分為四類：（一）水火不容；（二）蛇吞象；（三）獅虎合；以及（四）牛鷺居。以下將針對此四類相容態樣各別介紹及舉例說明： 
+
+【水火不容】：條款之間的全然互斥
+
+水火不容係指，不同的授權條款之間不能直接相容，就像水火之間本性相斥、不能共存一般。以下筆者將以數學邏輯符號來表示條款間之關係，因為授權條款中的權利義務關係是以許多要素所構成，因此以集合的方式呈現說明，可能較容易理解。
+
+假設現在有集合 A 與集合 B，其中 A = {a, b, c, d}，B = {a, b, e, f}，可以了解到 A、B 兩個集合間有一部分交集，但並不存在「包含／包含於」的關係。若將 A、B 視為兩個授權條款，亦即 A 條款與 B 條款除了一部分的條件相同之外，尚有一部分條件是 A 所有的元素但 B 卻所無，並且反之亦然。在這種情況下，如果將 A、B 兩個專案的程式碼合併為一個程式，在嗣後釋出時就可能面臨到擇一違反授權條款、授權不相容的問題，因為，若以 A 條款釋出，則無法顧及 B 條款中的 {e, f} 兩個元素；反之，以 B 條款釋出時，亦將無法滿足 A 條款的 {c, d}。 
+
+倘若這只是單純的數學邏輯，較容易想出的解套方式，就是取 A、B 交集的部分，亦即以一個 C = {a, b, c, d, e, f} 來釋出即可。但是，就自由開源軟體授權來看，如果 A、B 其中任一條款屬於 Copyleft 條款，這個解套方式即可能變得窒礙難行，因為上文即已說明，Copyleft 機制使衍生著作在散布時，亦須採用相同方式為之。 
+
+以 GPL-2.0 為例，若使用者將它與另一個無法包含其所有元素的 GPL-3.0 所授權的程式碼合併為一個衍生著作，則將形成授權不相容的僵局，因為 GPL-2.0 要求衍生作品整體必須以 GPL-2.0 為散布時的授權條款，而  GPL-3.0 同樣要求該衍生著作的一部或全部須以 GPL-3.0 為散布時的授權條款，因此造成了授權不相容的僵局。（註四） 
+
+若被授權人已面臨授權不相容的僵局，又未能另行取得著作權人的授權（例如支付授權金之商業授權），解套的方法之一是將這樣的衍生著作僅作為個人使用，而不再散布給予第三人，因為授權拘束性的啟動條件在於散布行為，一旦散布即須依授權條款之規定履行各項授權義務，若不散布，授權條款中的義務規定不啟動，也因此不會有違反授權義務規定與否的問題產生。
+
+【蛇吞象】：條款之間的吸收關係
+
+蛇吞象意指，較強勢的授權條款直接吞噬掉較弱勢的授權條款，就像蟒蛇吞食整隻大象，最後在外觀方面只看得到蟒蛇。相較於弱勢的授權條款而言，強勢的條款要求使用者負有更多的義務，亦即弱勢的條款義務性規定較少、較為寬鬆。以集合表示，給定集合 A 與集合 D，其中 A = {a, b, c, d}，D = {a, b}，即可了解到 A、D 兩個集合間是包含關係（D ⊂ A）。將其視為授權條款時，當一個程式同時包含了 A、D 二個條款的程式碼時，如以 D 條款釋出，則將不顧 A 條款中 {c, d} 兩個條件；若以 A 條款釋出，對於 D 條款來說，由於 D 本身規定寬鬆，可以容得下原本所無的 {c, d} 兩條件，因此通常只要嗣後釋出的條款中，並未將 {a, b} 的條件去除即不會違反 D 條款的規定。這種情況下，只要以 A 條款釋出程式即可。因此，在條款之間亦可能會出現蛇吞象的相容方式，即弱勢的條款將被強勢條款所吸收，後續則以強勢條款釋出程式碼。 
+
+條款間存在蛇吞象的吸收關係，以 Copyleft 機制來看，最常見的情況就是一個較強勢的 Copyleft 條款與另一個與之相容的開源條款所授權的程式碼連結或合併時，即應以該較強勢的 Copyleft 條款作為整個衍生著作嗣後的授權方式。例如，典型 Copyleft 條款 GPL-3.0 若與不具有授權拘束性之 MIT 或 BSD 合併，或是與亦有授權拘束性但與之相容的 LGPL-3.0 或 MPL-2.0 之程式碼（同註四）合併後，皆應以 GPL-3.0 再行釋出（註五）。 
+
+蛇吞象相容模式中的蛇，除了指較強勢的 Copyleft 條款外，傳統商業模式常見的專屬軟體授權亦為所指。例如，在微軟的 Windows 7 作業系統或蘋果的 iOS 中，雖然多數都是專屬軟體，但一樣可包含 BSD 或 MIT 等不具有授權拘束性的條款所授權的專案或其衍生著作，只要該衍生著作在散布時有符合此等條款所要求的義務規定，如此即足。
+
+【獅虎合】：衍生著作的新創授權
+
+獅虎合指的是，二個分屬不同開源條款的程式碼在合併後改採另一個新的授權方式進行散布的情況。本文將此種情況稱為獅虎合，是因為獅與虎在交配後雖可生下獅虎，惟此新物種既非獅、亦非虎，然又兼有二者的共通特性。以集合表示，給定集合 A = {a, b, c, d}，集合 E = {a, b, g, h}，若取 A、E 交集的部分，亦即以一個既不等於 A、亦不等於 E 的 F = {a, b, c, d, g, h} 來釋出，即可既相容於 A，又相容於 E。 
+
+上開做法在 A、E 其一條款屬於 Copyleft 條款時可能變得窒礙難行，惟若此二開源條款皆不具有授權拘束性時，在邏輯上即可以第三種新的授權方式，即 F 條款進行授權。例如，BSD + MIT 後，新創一個相容的「甲授權」釋出，或是 MIT + Apache 後新創「乙授權」等等。然而，本文不建議讀者採行此方式為之。 
+
+會將這種相容的態樣取名為獅虎合，除了生下的獅虎既非獅、亦非虎之外，在生理上，這個獅虎往往也不具生殖能力，甚或有畸形、病變及早夭的情況。從授權面來看，雖然此新創的授權內容，基於私法自治、契約自由的原則，並不會遽認其為無效，惟若一個授權契約的名稱及內容皆為新創，將增加潛在的交易成本，而使該專案在嗣後發展上會有更多的阻礙，而難以成為一個健全、成熟的自由開源軟體專案。因為，開發者面對諸如 GPL、LGPL、MIT、BSD 或 Apache 等有名的條款時，不必重新研讀便能知其內涵，因而可降低交易成本、進而更有效率地促成開發、取用及維護的良性循環。除此之外，新創條款亦可能產生與其他開源條款間不相容的可能性。因此，以新創條款釋出的專案就必須承擔他人因不熟悉，或擔心授權不相容，而不敢冒然取用或參與共同開發的風險。
+
+因此，雖然上述的「甲授權」能夠相容於 BSD 及 MIT、「乙授權」亦相容於 MIT 及 Apache，但甲授權或乙授權能否相容於 GPL 或其他授權條款，並不清楚。甚至，這些新創的授權是否符合 FSF (Free Software Foundation) 的四大自由以及 OSI (Open Source Initiative) 的開放源碼定義，亦不得而知。以這類新創、又未經 FSF 或 OSI 認同或核可的條款作為其專案的授權內容，從專案發展的延續性及能見度來說，都是相當不利的；不僅可能因為與其他專案的授權不相容而無法站在巨人的肩膀上繼續發展茁壯，又因其本身的授權方式無法讓人一目瞭然而難以吸引到開發者的投入，因此，本文不建議在沒有特別考量及強烈益處的情況下自創授權。 
+
+【牛鷺居】：併存同在的授權條款
+
+牛鷺居指的是，不同的自由開源軟體相互合併後，其間的授權方式並不會互相干擾，而可併存同在，如同大自然中的牛背鷺與水牛之間和平共處的共生關係－牛背鷺會為水牛啄走寄生蟲，水牛則用牠龐大的體型保護牛背鷺不受天敵侵擾。牛鷺居尚可細分為二種：（一）授權條款之間本來即預設不互相干擾；（二）授權條款規定模糊，但以技術方法進行區隔並透過法律解釋而達到相容性的個案狀況。 
+
+第一種牛鷺居，在授權條款之間預設本來就互相不會干擾的情況下，例如一個專案中同時含有 BSD 及 MIT 的不同的檔案，因為在授權上互不影響，所以在釋出時並不需要特別修改其授權方式。這並非只是因為 BSD 及 MIT 皆屬無授權拘束性之條款才能達到牛鷺居的相容，而須視實際情況而定。以 LGPL-2.1 + MPL-1.1 的情況為例，只要該 LGPL 的函式庫與其他 MPL 的檔案在實作上並未跨過彼此授權拘束性的適用界限，在嗣後釋出該專案時，各以其原來的授權條款為之即可。同理，在 CDDL-1.0 + EPL-1.0 的情況，該 CDDL 授權的檔案與該 EPL 授權的模組間，其授權拘束性在實作上並沒有跨過界線，則同樣仍以其原來的授權條款釋出即可。 
+
+至於第二種牛鷺居，是利用授權條款中規定模糊的部分加以著墨而成。利用人首先透過技術方法區隔不同條款的程式碼，將其實作成在技術面上較具有分隔而獨立之特性，再透過法律解釋，使不同條款的程式碼可在不變更各該授權內容的前提下，達到相容於同一個軟體中的結果。因此，此類型的相容性，往往需要經過預先的規劃及設計，必須個案判斷，例如要考量該社群及著作權人對於其使用條款的解釋、亦需考量實作方式是否合乎社群所認同者，故難以通則貫穿之。若要舉例，目前最著名的是 Android 以中介層區隔機制，搭配 Linus Torvalds 對於 Linux Kernel 在授權上的解釋，使屬於 GPL-2.0 的 Linux Kernel 例外地不會發揮其強勢 Copyleft 的授權拘束性，而要求其上所有的函式庫、應用程式，皆須以 GPL 授權。（註六） 
+
+【圖示說明】 
+
+本段以 David A. Wheeler 所創作之圖示（註七）進行說明，使讀者以簡易之方式判斷條款之間的授權相容性。本圖僅列出較廣泛使用之開源條款；未列出者仍需個別判斷相容性。
+
+LC_201205_license_compatibility_01.png
+▲ 圖1 自由開源軟體授權條款相容圖
+
+圖中的箭頭具有方向性，若兩個授權可透過一個或多個順向的箭頭從此端連至彼端，則此二授權為蛇吞象式的相容關係，釋出時須以終點的條款或其後箭頭可及之條款進行授權。例如，Public Domain 透過箭頭，可直接或間接連結指向圖中的所有其他授權，即代表不論開發者是以何種授權的程式碼，皆可與 Public Domain 的程式碼相互合併。
+
+◎ 結語
+
+自由開源軟體的開發者利用公眾授權條款將其專案貢獻給世人，實踐其追求軟體自由的理想；同時也因為自由與開放的特性，使其專案可集結開發社群，與諸多專屬軟體並駕齊驅、分庭抗禮，帶來許多商業機會。不論從理想面或商業面以觀，創造出一個可以自由取用程式碼的生態系是這些開發者一致的目標，一個開源的公眾授權條款則是達到此目標的必要條件之一。然而，開源條款的種類數量已讓人眼花繚亂，其所造成的授權不相容使得開源專案間無法自由地相互取用，更背離了開發者所希冀的目標。因此，建議開發者在新創開源專案時，以目前較常見之條款進行授權；若取用諸多開源專案的程式碼時，不僅須評估技術上的可用性，亦須了解各條款間之差異，以避免產品即告完成才發現授權條件不相容之窘境。
+
+註一：目前由 OSI (Open Source Initiative) 認證的自由開源授權條款已將近有 70 份之多，其中較常被使用的條款少說也有十幾種；參見：http://www.opensource.org/licenses/alphabetical。 
+
+註二：Copyleft 機制的特性有下述四項：（一）為了實現四大自由；（二）以著作權為基礎；（三）著作權權利預先授與出去；（四）修改著作之人也必須採用相同方式再授權修改出來衍生著作。申言之，Copyleft 機制並非要求後手一定要採用與前手完全相同的授權條款，而是僅須採相同方式為之，亦即，只要後手所採用的授權條款符合上述特性，就算條款內容不同，仍符合 Copyleft 機制所描述的特性。惟此處須說明的是，GPL 確實是要求後手必須採用相同條款，換言之，它是在 Copyleft 機制的框架下，採用更嚴格的方式來拘束 GPL 程式的後手。參見：OSSF 法律小辭典，Copyleft〈公共版權〉，http://www.openfoundry.org/tw/glossary/736。葛冬梅，泛談 Copyleft 機制與創用 CC 的「相同方式分享」授權要素，http://www.openfoundry.org/tw/legal-column-list/2051。 
+
+註三：例如，要求衍生著作必須標明著作權聲明，或是不負擔保責任的聲明等。詳情請見各該條款的介紹：BSD，http://www.openfoundry.org/tw/licenses/31；MIT，http://www.openfoundry.org/tw/licenses/34；Apache-2.0，http://www.openfoundry.org/tw/licenses/29。 
+
+註四：並非所有 Copyleft 條款間皆不能相容。例如，GPL-2.0 與 LGPL-2.0 為相容；GPL-3.0 與 LGPL 3.0 亦為相容，因為 LGPL 在設計之初即有考慮相容性問題。在起初只有 GPL-2.0  的情況下，若以 GPL-2.0 授權某函式庫，依其規定，一旦任何主程式連結該函式庫，該主程式即須以 GPL-2.0 釋出，如此強烈的授權拘束性阻卻了許多對於該函式庫的利用機會；因此設計出 LGPL-2.0，讓更多人能利用到該函式庫而不致受到 GPL-2.0 的拘束。惟 LGPL 之設計亦存在一個單向的轉換機制，使 LGPL 的專案可在改版時轉換為 GPL 授權，一旦轉換後，即不得再轉回 LGPL。因此，必然會將 LGPL 設計為與 GPL 相容、包含於 GPL，始得保留其嗣後得轉換為 GPL 的空間。 此外，在 MPL 之部分，過往之 MPL-1.0 及 MPL 1.1 與 GPL-2.0 及 GPL 3.0 並不相容，導致同為自由開源軟體卻無法相互利用，因此，新版之 MPL-2.0 新增了「備位條款 (Secondary License)」機制，也就是說，當軟體專案是由 MPL-2.0 授權元件，與其他 GPL-2.0、LGPL-2.1、AGPL-3.0  及後續版本授權元件所集合的著作，為了達到授權相容，那麼 MPL-2.0 授權元件可引用「備位條款」而轉以  GPL-2.0、LGPL-2.1、AGPL-3.0  及後續版本的方式進行散布，以避免此弊。
+
+註五：FSF 有在其網站中羅列出與 GPL 相容的自由軟體條款，參見：GPL-Compatible Free Software Licenses (#GPLCompatibleLicenses)，http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses。 
+
+註六：參見，葛冬梅，Android 的區隔 GPL 感染機制，http://www.openfoundry.org/tw/legal-column-list/1788-android-gpl-；林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（下），http://www.openfoundry.org/tw/legal-column-list/8447。 
+
+註七：參見，David A. Wheeler (2007), "The Free-Libre / Open Source Software (FLOSS) License Slide", http://www.dwheeler.com/essays/floss-license-slide.html. This figure is licensed under the Creative Commons “Attribution-Share Alike 3.0 License.”。
+_______________________________________________________________
+
+■ [技術專欄] 網站程式上線前需要準備的事（三）
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net。(http://blog.xdite.net/)
+
+第 3 件事：制定 Art／RD 都遵守的開發 convention
+
+在傳統的開發過程中，作法多半都是：規劃 => UI／畫面設計 => 程式設計。
+
+其實若專案規劃階段結束的早（也就是實作類似最低可行產品的概念），並非需要等待 UI／畫面設計完工，才可以進行到「套版」（程式設計）的階段。
+
+一直以來，我都認為「套版」是一個非常不好的說法，造成了偏差的印象。因為一個網站實際上是「一整套」的「軟體」，並非是「畫面」設計的出來，程式就配合寫的出來。雙方必須都要是可以執行實作的部分才行。
+
+程式一定要實際的「美術畫面」被設計出來才能夠被接著實作嗎？其實不是這樣的：只要有 wireframe，RD 往往就可以先行動工。
+
+但問題來了：若雙方各自進行自己的部分，那最後要怎麼組起來？
+
+這其實還不是最大的問題。
+
+最大的問題，其實是 Art 切出來的「版」，多半是不能夠被「套」的。
+
+
+畫面不是切得出來就能「套」
+
+這個問題其實不能夠怪 Art，它們有的是藝術細胞，並非邏輯細胞。而：
+
+1.能夠熟練 Photoshop，並不代表能夠寫出良好結構的 HTML 與 CSS code。
+* 這需要一定的經驗以及技術實力。
+2.能夠切出 HTML 與 CSS，並不代表這一份原始碼，可以被實際使用。
+* 有一些 Art 只懂得 PSD to table，整個畫面毫無結構可言，讓人頭痛萬分。
+* 有一些 Art 專精製作單頁的活動頁面，但 application 需要整套的 DOM 能夠重複利用，CSS 一旦被重疊使用時大爆炸。
+
+在傳統的專案進行到「套版」階段，程式開發進度會難以掌控的其中一個原因。也是因為：RD 面對著一套爛 HTML，完全不知從何下手「套」進去。不改結構無法讓程式運作，或者程式運作效率會很低；但一改結構，就別肖想 Art 再幫你調整細部 style 和追加細節了。（東西被改的不爽情緒或原始結構被改變）
+
+「套版」這個過程中無端被追加浪費了大量時間，這也是一個上線前的隱藏變因。
+
+
+解決方法：製作一套 HTML／CSS 設計準則
+
+多數的 application 有固定結構的 DOM。差異在於〈div id="content"〉〈/div〉內的不同。至於
+
+* header
+* sidebar
+* warning
+* form
+* footer
+* etc…
+其實多半是相同的。
+
+與其抱怨 Art 切出來的東西不能被套，不如設計一套 general 的實際準則可以被大家遵守學習。
+
+不僅僅是 HTML 設計規則，其實開發當中會花掉很多時間的，還包含一些常見的 CSS hack／IE hack。這些也可以被整理起來，節省開發時間（當然，現在你只要學 compass (http://compass-style.org/) 就好）。
+
+
+平行開發互動：解決多人團隊的偏好歧異問題
+
+剛剛有一個問題我們沒有回答到：就是個人偏好如何「組合」？
+
+比如說美術的版裡面有這樣的 DOM〈div class="article"〉〈/div〉，class 是 article。
+
+但是 RD 實際的程式碼卻是 post 這樣的物件名稱。
+
+〈% @posts.each do |post| %〉
+  〈%= post.title %〉
+〈% end %〉
+
+這樣「套」起來不是很有問題嗎？如何實現所謂我說的「平行開發」？
+
+其實 Art／RD 雙軌平行開發，才可以有效的為專案爭取到時間。
+
+其實之前的所謂「套」，因為有完工的時間壓力，DOM 往往不能夠被更改。但是不改 DOM 又不能讓專案繼續被執行下去。
+
+若是雙方平行開發，又有一個 deployable 的 application 讓進度透明，所有的修改和溝通調整，只是一下子的功夫（article 與 post 的不同，可以在很早期就被抓出來修掉），不但不會打亂開發節奏，反而會加速專案的進行。 
+_______________________________________________________________
+
+﻿■ [源碼秘技] 由 Python 實現的靜態網頁產生工具－ jemdoc
+
+Kent / 文
+
+簡介
+
+繼上次介紹 nanoc (http://www.openfoundry.org/tw/resourcecatalog/Program-Development/Programming-Languages/ruby/Web-framework/nanoc) 以後，筆者接續比較了多款靜態的頁面生成工具。本次將介紹一款由 Python 實現的靜態網頁產生工具－ jemdoc。jemdoc 是一個輕量的標記語言，專門用於表現網站的內容與排版。jemdoc 能讀取設定檔跟選單來作更豐富的調整以符合使用者需求。因而讓管理靜態網頁變得非常的方便跟簡易。而相較於 nanoc，jemdoc 並不是那麼的複雜，支援的功能或許也不是那麼的多，但是 jemdoc 讓學習曲線不那麼的陡峭，它的設計非常直觀，只要適應 jemdoc 的語言跟熟悉 HTML 跟 CSS，jemdoc 並不是一個需要花很多時間學習的工具。jemdoc 雖然很簡單，但由於有著內建支援 LaTeX 方程式表格的功能，這讓 jemdoc 的表現力大大地提升了。jemdoc 的設計哲學就是要讓網頁生成更容易，因此 jemdoc 產生出來的內容，可以非常輕易的發佈到伺服器上，而無需多安裝套件或煩惱相容性的問題。
+
+本文將介紹 jemdoc 的入門知識，接續帶領讀者實作一個簡易的個人網頁（就如同上次用 nanoc 實作），透過實例輕鬆學習使用 jemdoc 的方式，協助讀者在未來可以很輕易的使用這個工具產生編輯自己的靜態網站。
+
+安裝說明
+
+以下的篇幅將說明 jemdoc 的用法跟實作。
+
+首先，建議讀者創建一個新的資料夾來存放本次實作的相關檔案。我們的目標是創建一個個人的網頁。在實際進入實作前，我們先來介紹 jemdoc 的語法。就如同先前的 markdown，jemdoc 試著利用直觀的方式來標記使用者想要的文章格式。
+
+jemdoc 的標記語法非常的簡單，如果想要標示斜體，可以用 `/text/`。若是要有粗體的字，則用 `*text*`。jemdoc 還有一個很特別的內建格式：monospace。這種格式讓每一個字的橫軸距離都一樣。jemdoc 還有一些好用的標記，以下是一個簡單的整理：
+
+--	會產生兩個字元長的分節號
+---	會產生三個字元長的分節號
+~	是一個空格
+＃	是註解的開始
+''  及  “”	就如螢幕上顯示的被產生
+\n	就像是 C 跟相關語言裡面一樣會換行
+$LaTeX equation$	在金錢符號裡輸入公式即可產生一個透過 LaTeX 生成的圖檔接著，我們再介紹一些標題與文章段落的標記。
+
+在 jemdoc 中，標題跟列表有被很好的支援。標題的層級可以透過 `=` 的數量來決定。譬如：
+
+= header1 title
+== header 2 title
+=== header 3 title
+
+如上面所示，jemdoc 會分別產生三個不同層級的標題。
+
+列表的層級也可以透過類似的方式實現，如果是簡易的列表，則是用 `-` 來表示。如果需要標示數字順序的話，則是用 `.`。此外，jemdoc 還有一個很方便的內建標記 `:`，我們可以用此的格式來表現，例如︰｛term｝ definition`
+
+以下是綜合剛剛的幾個標記一起的實作：
+- Bullet level one
+    -- Bullet level two
+
+. Number level one
+    .. Number level two
+    .. Number level two (again)
+
+:  light markup
+:  a great alternative, but more complicated
+此範例產生出來的格式如下：
+
+http://www.openfoundry.org/images/120529/jemdoc/img1.png
+▲ 圖1
+
+最後，再介紹一個標記語法用來標記文字區塊。以下是語法的使用方式：
+
+~~~
+｛Block Title｝｛mode｝
+text block section: you can type whatever you want here.
+~~~
+
+其中兩個用大括弧，涵括的文字並不是一定需要的。如果沒有提供內容，這個文字區塊就不會有標題。而 mode 提供一些額外的樣式，但也可以直接使用預設。
+
+實例研究
+
+接下來此部份，將會帶讀者製作一個簡易的個人網頁，並藉此熟悉一下 jemdoc 的運作方式。
+
+先前有提到 jemdoc 非常簡單，不需要額外去學習開發架構，就可以快速上手。現在我們假設你已經有一個叫 index.jemdoc 的文檔，輸入指令：
+
+python jemdoc.py index.jemdoc
+
+完成後，就會有一個 index.html 的檔案被生成。建立一個叫 index.jemdoc 的新檔案，然後加入以下內容：
+
+# jemdoc: menu
+
+= Kent Chen -- my web page 
+
+[http://example.com/ Kent Chen]
+([k@example.com])
+
+Hi this is my home page
+
+== second level
+This is an example:
+
+~~~
+Look at this block!
+~~~
+
+
+=== next level
+level 3 now!
+
+首先介紹一下，剛剛所沒有觸及到的部分。jemdoc 有一種叫做 modeline 的機制，熟悉 Vim 的朋友或許可以比較容易理解，不過基本上這讓 jemdoc 可以很精簡的作出一些設定。這裡 `# jemdoc: menu` 就是 modeline。包含這行的文檔會自動處於運用 menu 的 modeline 機制。jemdoc 會在編譯的時候查找一個叫做 MENU 的文檔並依據 MENU 編譯相對應的格式。`index.html` 是指定當下的檔案。
+
+以下是一個 MENU 的範例：
+
+Personal
+  bio [bio.html]
+  contact [contact.html]
+
+Projects
+  jemdoc tutorial [tutorial.html]
+
+簡單的說，此格式就是母選單跟子選單的分類。這讓初學 jemdoc 的新手很輕易的就能夠上手。接下來，我們編輯一個叫做 contact.jemdoc 的文檔，這裡的內容會連結到選單的 contact 選項（編譯候選單會在左邊）。輸入以下的內容到文件內：
+
+# jemdoc: menu
+
+Shoot me an email! [k@example.com]
+
++monospace+
+
+這樣我們就很輕易地完成我們的個人網站的分頁面了。編譯之前編輯過的檔案，然後點選 index.html。你應該會看到以下的頁面：
+
+http://www.openfoundry.org/images/120529/jemdoc/img2.png
+▲ 圖2
+ 
+再來，我們點入contact。你應該可以看到以下的頁面： 
+
+http://www.openfoundry.org/images/120529/jemdoc/img3.png
+▲ 圖3
+ 
+就這樣，筆者帶領讀者做出了一個簡單的網站。
+
+結論
+
+相較於 nanoc，jemdoc 是款相對輕量的網頁生成工具。然而，對於一般簡易的靜態網頁，jemdoc 的內建功能已經完全可以滿足一般需求。jemdoc 由於簡單的架構加上直觀的標記語言，這對需要簡易操作的使用者而言，不失為一種選擇。 
+
+參考資料
+
+jemdoc 官方網站，http://jemdoc.jaboc.net/index.html
+_______________________________________________________________
+
+﻿■ [自由專欄] 使用 OpenTeacher 學習外國語言
+
+Louie Chen / 文
+
+OpenTeacher 是一個開放原始碼的單字訓練程式，主要功能用來學習外國語言。
+運作方式為輸入本國及外國語言對照，OpenTeacher 則會用這些資料來對你做測驗。
+
+支援平台：Linux, Mac OS X, Windows
+官方網站︰http://openteacher.org
+軟體授權︰GNU General Public License version 3
+
+第一步先裝好 OpenTeacher，在 OpenTeacher 網站中 (http://openteacher.org/) 有提供各平台的下載檔案。
+
+直接以例子來說明，假設你已經會中文，而現在要學英文。
+
+
+輸入列表
+
+首先執行 OpenTeacher 後，會出現如圖1 的輸入列表視窗。
+
+http://www.openfoundry.org/images/120529/OpenTeacher/openteacher_01.png
+▲ 圖1 輸入列表視窗
+
+一開始單字列表是空白的（最下方長條空白區域），於上方「標題」欄位輸入單字列表名稱，如「學英文」，於「問題的語言」輸入「中文」，於「回答的語言」填入「英文」，而中間有 3 行範例，按下右方「輸入!」按鈕即可加入下方單字列表中，可持續重覆動作加入新單字。若有錯誤或不想要的單字，於單字列表中選起來，按右方「刪除所選擇的行」即可，最後按「儲存」將單字列表存成檔案，下次開 OpenTeacher 時再將之讀入（由於 OpenTeacher 並不會自動讀入單字列表）。
+
+另外可將 OpenTeacher 的單字列表儲存起來，拿到別台電腦去用，或和朋友分享，甚至可配合 WRTS (http://www.wrts.nl/)，將單字列表放在 Internet 上，匯出匯入，方便給自己多台電腦使用。由於 WRTS 不是英文，完全看不懂，不知如何註冊。不過同樣這個網站有另一個頁面，WRDS (http://www.wrds.eu/) 是英文的，可以到這裡註冊免費的帳號來存放線上單字列表。每匯出一次到 WRTS，在網站上就產生一個新的以「標題」為名稱的單字列表，並不會覆蓋舊的，所以會越來越多，可以登入網站去刪除不要的列表。
+
+
+測驗
+
+在單字列表內有單字後，我們就可以按「教我！」分頁來進入如圖2的教我視窗。
+
+http://www.openfoundry.org/images/120529/OpenTeacher/openteacher_02.png
+▲ 圖2 教我視窗
+
+上方會出現中文題目，將答案輸入下方「輸入答案」分頁的「翻譯」空格中再按空格右方「檢查!」即可。答對會直接切換到下一個單字繼續測驗；若是答錯，下方會顯示正確答案持續 2 秒鐘，然後進入下一題。 OpenTeacher 非常聰明的，若一直答錯某題，則會針對這題多問你幾次。
+
+視窗右下角有目前的全部題數、答對題數和評分。而整個測驗結束後， OpenTeacher 也會幫你打分數。
+
+在一開始測驗時，若對單字非常不熟，則要在下方「輸入答案」分頁裡要打出正確答案並不容易，可先切換其他分頁來輔助學習。
+  1.輸入答案：預設方式。每個單字都有印象，可以完整打出單字時用。
+  2.思考答案：單字有點模糊，似是而非階段。心裡想答案，然後按「顯示答案」來對照對錯，再配合按下答對或答錯按鈕。
+  3.打亂答案的順序：單字還不熟，拼不出完整單字。顯示字母順序亂跳的單字，然後聯想出答案。
+  4.重覆答案：剛開始學單字，完全沒概念時。會先提示 3 秒，再請你輸入答案。
+
+至於分頁底下的「無論如何都算對」，好像是用在某題一直無法答對，用來跳過這題的。
+
+所以最好的學習方式是由順序 4、3、2、1 來做學習，循序漸進，必能達到事半功倍的效果。
+
+
+更改課程設定
+
+在「教我！」視窗的右上方有一個「更改課程設定」，按下後可調整一些測驗參數，如圖3。
+
+http://www.openfoundry.org/images/120529/OpenTeacher/openteacher_03.png
+▲ 圖3 更改課程設定
+
+  1.問題的順序：
+	a.已知的語言－外國的語言：預設的出題方式，問題為中文，回答英文。
+	b.外國的語言－已知的語言：出題為英文，回答中文。
+  2.課程類型：
+	a.精明的詢問（用來練習最理想）：預設的類型，常錯的會多問幾次吧。
+	b.Interval training: 這是一個特殊模式，假設你正在學一小組單字，已學會的單字會自動從列表中移除，然後加入另一個新單字，到最後結果就是學會所有單字。
+	c.持續詢問直到所有問題都正確：一直出題，直到全部都正確才停止。
+	d.所有問題都問一遍：若單字列表有 10 個，就只會出 10 題，不管答題對或錯。
+  3.課程順序：
+	a.隨機：預設值，亂數自動出題。
+	b.正常：依照單字列表裡的順序出題。
+	c.反向：依照單字列表裡的順序由後往前出題。
+	d.排序（升冪）：由小至大出題。（不知道是用什麼排序）
+	e.排序（降冪）：由大至小出題。（不知道是用什麼排序）
+  4.詢問單字：
+	a.全部：預設值，全部單字都可出題。
+	b.從來沒回答正確的單字：只針對從未答對的單字出題。
+	c.較難的單字（>50% 錯誤）：只出經常錯誤的單字。
+
+這樣基本的 OpenTeacher 就會用，當然功能不只如此，能微調的部份非常多，像剛才測驗回答錯誤的話，答案停留的秒數（預設為 2 秒），課程的順序（隨機、順向、反向），都可以在設定裡面調整。
+
+
+設定
+
+http://www.openfoundry.org/images/120529/OpenTeacher/openteacher_04.png
+▲ 圖4 一般設定
+
+  1.一般設定：
+	a.語言：通常不需要更動，使用「系統預設值」就好，可強制設成另一種語言。
+	b.顯示「覆寫」－會話視窗：打勾後，在儲存單字列表檔名若已存在，會提示要不要覆寫。
+	c.顯示「你想要存檔嗎？」－會話視窗：在未存檔而要新建、開啟或離開時，要不要詢問。
+  2.課程：
+	a.顯示「停止課程」－會話視窗：在進入測驗後，還沒結束前就按「輸入列表」分頁，是否詢問停止課程嗎？不勾則直接結束課程，回到「輸入列表」分頁。
+	b.顯示「課程完成」－會話視窗：在課程結束後，是否顯示完成視窗，不勾會直接跳回「輸入列表」分頁。
+	c.當錯誤時，消失的時間：預設為 2000 毫秒（2秒）。答錯時，顯示正確答案的時間。
+	d.重覆模式提示的持續時間：預設為 3000 毫秒（3秒）。選擇「重覆答案」時，提示答案的時間。
+	e.評論的表示法：評分的表示方法。預設為美國人的評分法。
+		1）百分比（100－0）
+		2）荷蘭人（10－1）
+		3）美國人（A－F）
+		4）德國人（1－6)
+		5）法國人（20－0）
+		6）ECTS（A－F）
+  3.WRTS：
+	填入在 WRDS 網站上註冊的帳號及密碼，填好後按「嘗試連線到 WRTS」，若連線成功會彈出「連線到 WRTS 成功」視窗。
+
+
+基本上，OpenTeacher 是個非常強大且實用的自由軟體，不管是個人使用或在學校教學用都是很棒的，而且開發者很活躍，若有問題，可到 irc 上有很多人可以幫忙回答使用上或翻譯上的問題。
+
+
+參考連結:
+Using OpenTeacher: A Quick Start
+http://www.openteacher.org/documentation/using-openteacher.html
+
+WRTS
+http://www.wrts.nl/
+
+WRDS
+http://www.wrds.eu/
+
+irc
+irc.freenode.org  #openteacher
+_______________________________________________________________
+
+﻿■ [自由專欄] Firefox 10～12 的網頁開發相容性資訊
+
+蕭惟杰(RJ Hsiao) / 編譯
+
+從 2012 年一開始到 4 月底為止，Firefox 陸續推出了 10、11、12 三個版本，這些版本之間有了一些瀏覽器 bug 的修正、對應標準的更動、安全性上的調整，特別是 HTML5 本身仍是屬於正在發展，尚未正式定案的階段，Mozilla 必須變更 Firefox 在相關功能的實作以符合草案的變動。再加上，Firefox 12 除了是第一個兩位數版本號的版本，更是 Mozilla 為了企業實務上不一定能配合 Firefox 4 開始的高速釋出週期 (http://zh.wikipedia.org/wiki/Firefox#.E9.AB.98.E9.80.9F.E9.87.8B.E5.87.BA.E9.80.B1.E6.9C.9F) 政策來更新所提供的第一個長期支援版本 (http://zh.wikipedia.org/wiki/Mozilla_Firefox#.E9.95.B7.E6.9C.9F.E6.94.AF.E6.8C.81.E7.89.88.E6.9C.AC)（Extended Support Release，簡稱「ESR」），開發者除了要注意網頁在新版本上是否能正確運作及顯示之外，兼顧向下相容，特別是對 ESR 的相容性變得更加重要了。有鑑於 Mozilla Japan (http://mozilla.jp/) 會對這些資訊加以整理 (http://mozilla.jp/business/resources/)，而台灣似乎沒有把相關資訊中文化並整理起來，因此小弟斗膽將 Firefox 10 11 12 的相容性資訊翻譯並加以彙整，希望讓以中文為母語的開發者能省去搜尋及閱讀的時間，在開發及維護時能提早預知可能的問題並加以避免。以下以版本號分別列出該版本與上一版本之間的差異。
+
+Firefox 10
+
+UserAgent 字串的版本編號變成兩位數
+
+Firefox 10 是第一個主要版本編號為兩位數的版本。UserAgent 字串用來分辨瀏覽器，如果 Script 中用來判斷版本的代碼是有問題的，可能造成分辨瀏覽器失敗。請利用 Firefox 10 來檢查有利用到 UserAgent 字串的 Script 是否能正確運作。
+
+Firefox 正式版及 Beta 版的 UserAgent 是長這個樣子的：
+
+    Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0) Gecko/20100101 Firefox/10.0
+    Mozilla/5.0 (Windows NT 6.2; rv:10.0.1) Gecko/20100101 Firefox/10.0.1
+
+除了主要版本編號會有兩位元以上之外，還要特別注意的是，如果有安全性更新的話，版本編號不是像「10.0」這樣子區分為兩個部份，而是像「10.0.1」這樣子區分為三個部份。
+
+Firefox 的 Beta 版使用與正式版相同的 UserAgent 字串，但是 Nightly 版及 Aurora 版則不同，是長這樣子的：
+
+    Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:12.0a1) Gecko/20120122 Firefox/12.0a1
+    Mozilla/5.0 (Windows NT 6.2; rv:12.0a2) Gecko/20120122 Firefox/12.0a2
+
+請注意，「Gecko/yyyymmdd」的部份並非固定在「20100101」，而且版本編號最後面則是跟著「a1」或「a2」之類的字樣。其他關於 Firefox UserAgent 字串的細節，請參照Mozilla Developer Network的文件 (https://developer.mozilla.org/en/Gecko%20user%20agent%20string%20reference)。
+
+<table> 元件的邊 (Margin) 現在能正確的被抵消
+
+在新的 CSS 規範當中，兩個垂直排列元件之間的邊距將會被「折疊 (https://developer.mozilla.org/en/CSS/margin_collapsing) 」。也就是說，垂直排列的元件之間的邊距將會被抵銷，而以最大的邊距作為上下元件之間的間隔距離。
+
+但是，直到 Firefox 9 為止都沒有針對 <table> 元件的部份做上下元素間邊距相抵銷的處理，使得 <table> 元件的部份仍然以與其垂直排列的元件之間上下邊距的總和作為之間的間隔距離。Firefox 10 開始修正了這個問題 (https://bugzilla.mozilla.org/show_bug.cgi?id=87277)，使得 <table> 與其他元件相同，會正確的對上下邊距做折疊。
+
+這將導致 <table> 與上下的元件兩邊都有設定上下邊距的情況下邊距會變小。
+
+如果您依據垂直高度來決定頁面佈局，並且有指定 <table> 的邊距，那麼請特別注意這點。
+
+像是下面那樣的代碼，直到 Firefox 9 為止，<table> 與上下元件之間的間距各自為 1+2=3em 與 2+3=5em，而從 Firefox 10 開始，則是 Max(1,2) = 2em 與 Max(2,3) = 3em（從這裡觀看結果 (http://jsfiddle.net/dddyF/)）：
+
+    <p style="margin: 1em;">有設置 margin-bottom 的元件</p>
+    <table style="margin: 2em;"><tr><td>table 元件</td></tr></table>
+    <p style="margin: 3em;">有設置 margin-top 的元件</p>
+
+在不是設定為一般配置的 <table> 中設定為絕對配置時的基準位置之修正
+
+在 CSS 的規範中，被設定為絕對配置 (position: absolute) 的元件，其位置是以被設定為一般配置 (position: static) 以外之配置方式 (position: relative / absolute / fixed) 的所有祖先元件之中層級最接近者為基準，並配合所指定的位移量 (top, bottom, left, right) 來加以決定的。
+
+但是，直到 Firefox 9 為止，就算在祖先元件中的 <table> 元件被設定為一般配置以外之配置方式的情況下，被設定為絕對配置的子孫元件在決定基準點時，卻跳過 <table> 而以更上層中被設定為一般配置以外之配置方式的祖先元件為基準。
+在對設置為絕對配置、相對配置及固定配置之 <table> 内的元件指定絕對位置的情況下，頁面佈局將有所變動。
+
+像是下面那樣的代碼，直到 Firefox 9 為止，<table> 内的 <div> 元件以外面的 <div> 元件作為基準的原因，從內容區域的上面算起 0+50 = 50px，左邊算起 100+50 = 150px 的地方開始繪製。而從 Firefox 10 開始，則是以 <table> 元件作為基準，從內容區域的上面算起 100+50 = 150px，左邊算起 100+50 = 150px 的地方開始繪製。（從這裡觀看結果 (http://jsfiddle.net/NyCrf/)）
+
+    <div style="position: absolute; left: 100px;">設定為絕對配置的祖先元件
+    <table style="position: absolute; top: 100px;"><tr><td>
+      table 内的一般配置元件
+      <div style="position: absolute; top: 50px; left: 50px;">table 内的絕對配置元件</div>
+    </td></tr></table>
+    </div>
+
+絕對配置的問題與邊距抵銷的問題最終總會依據 CSS 規範做出修正。如果為了修改成與其他瀏覽器相同的頁面佈局，直到現在不是選擇做出 Firefox 專用的頁面佈局，而是做成能對應多個瀏覽器的話，我想應該是不會產生出多大的問題的。詳細情形請看這篇文章 (http://ehsanakhgari.org/blog/2011-10-04/upcoming-changes-absolute-positioning-tables-and-table-margin-collapsing-firefox-10 "Upcoming changes to absolute positioning in tables and table margin collapsing in Firefox 10")。
+
+另外，雖然為了方便起見只寫了 <table> 元件的部份，但其實也對設定成 display: table 的任意元件做出修正。
+
+在 Strict 模式下無法使用 E4X
+
+雖然 Firefox 的 JavaScript 引擎有支援被稱為 「E4X (https://developer.mozilla.org/en/E4X) 」這個為了能簡單處理 XML 而產生的語法，在從 ECMAScript 5th 開始導入的 Strict 模式已啟用的情況下 E4X 語法將會無法使用。
+
+如果有 E4X 和 Strict 模式同時使用之情況的話，請選擇不要使用 Strict 模式，或是將以 E4X 撰寫的代碼改掉。
+
+移除在 DOM4 中成為不建議使用的特性 (Property)
+
+在 DOM4 中以下的屬性 (Attribute) 及特性變成了「不建議使用」，從 Firefox 10 開始被移除。
+
+*   `document.xmlVersion`(https://developer.mozilla.org/en/DOM/document.xmlVersion) 屬性
+*   `document.xmlStandalone` 屬性
+*   `document.xmlEncoding` 屬性
+*   `text.isElementContentWhiteSpace` 屬性
+*   `text.replaceWholeText()` 方法
+*   `node.isSameNode()` 方法
+
+由於「document.xmlVersion」每次都會傳回「1.0」的原因，無法用來判斷取得的 document 究竟是 XML 還是是 HTML。我們可以用以下的方法來加以判別：
+
+    if (document.createElement("foo").tagName == "FOO") {
+      /* HTML 模式的話，呼叫 tagName 屬性將會取得被轉為大寫的元件名 */
+    }
+[`node.isSameNode()`](https://developer.mozilla.org/en/DOM/node.isSameNode) 請改用同値運算子 (`===`) 進行比較。
+
+遇到以「setAttribute()」指定一個整數值屬性時將末端的非數字文字無視來進行解釋
+
+HTML 的規範當中，存在著「在指定一個整數值的屬性時，若用來指定的字串末端存在不是數字的文字則予以無視」
+這樣的定義 (http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#rules-for-parsing-integers)。也就是說，「100fox」必須被解釋成「100」。
+
+直到 Firefox 9 為止，在包含不是數字的文字的情況下當作錯誤來處理，而從 Firefox 10 開始則修正為 (https://bugzilla.mozilla.org/show_bug.cgi?id=673820) 依照規範將以用來指定之字串前面的整數值部份來指定。
+
+像是下面那樣的代碼，直到 Firefox 9 為止，<canvas> 的寬度將不會被指定而是保留初始值「300」，而從 Firefox 10 開始，則將會被指定為「100」。
+
+    document.getElementById("canvasid").setAttribute("width", "100em");
+
+ESC 鍵不會觸發 oninput 事件
+雖然 HTML 已經有規定 (http://www.whatwg.org/specs/web-apps/current-work/multipage/common-input-element-attributes.html#common-event-behaviors) 只有在元件的值被改變時才會觸發「oninput」事件，但是從 Firefox 4 到 Firefox 9 為止，按下 ESC 鍵也能觸發「oninput」事件。
+
+從 Firefox 10 開始依照規範做出修正 (https://bugzilla.mozilla.org/show_bug.cgi?id=651956)，ESC 鍵不會再觸發事件了。
+
+IndexedDB 的實作依據最新規範進行更新
+
+從 Firefox 4 開始支援仍然在制定規範中的 IndexedDB 的一部分 API，之後也持續的添加對應的 API 及配合規範的變更進行變更。
+在 Firefox 10 中「IndexedDB」已經做出了大幅度的改變 (https://developer.mozilla.org/en/Firefox_10_for_developers)，其中請注意設定版本的方法已經改變了。
+
+以前的作法是在開啟資料庫連接的地方以「setVersion()」方法 (https://developer.mozilla.org/en/IndexedDB/IDBDatabase#setVersion%28%29) 進行設定，不過「setVersion()」方法 (https://bugzilla.mozilla.org/show_bug.cgi?id=687361)將被移除，改成在連接資料庫時以參數來指定版本編號。先前使用「setVersion()」方法的代碼必須全部變更。
+
+如需要關於這次 IndexedDB 之改變的日文解說，可以參考 mzsm 先生所寫的「關於 IndexedDB 的備忘錄（2011年12月版）(http://mzsm.me/2011/12/16/indexeddb-201112/)」。
+
+Firefox 11
+
+MozBeforePaint 事件被廢除，mozRequestAnimationFrame 函數改成必須提供回傳參數
+
+Bug 704171 – Remove the no-argument form of requestAnimationFrame (https://bugzilla.mozilla.org/show_bug.cgi?id=704171)
+
+在此以前透過呼叫「mozRequestAnimationFrame」之際觸發「MozBeforePaint」事件的機制將被廢止。還有、在此之前能夠不提供引數直接呼叫「mozRequestAnimationFrame」，從此必須依照標準提供引數（callback 參數）。
+
+從今以後，請利用提供 callback 參數給「mozRequestAnimationFrame」來取得時間戳記，以取代透過「MozBeforePaint」事件觸發。從 Firefox 11 開始，不提供參數或是提供一個 null 值作為參數呼叫「mozRequestAnimationFrame」將會得出例外狀況，將會在錯誤主控台中看到錯誤訊息。
+
+Android 版 Firefox 的 UA 字串被改變
+
+Bug 671634 – Useragent should be different between phones and tablets (https://bugzilla.mozilla.org/show_bug.cgi?id=704171)
+
+Android 版 Firefox 的 UserAgent (UA) 字串 (https://developer.mozilla.org/en/Gecko_user_agent_string_reference) 被改變了。首先、追加了表示手持裝置種類的 token，像平板電腦則表示為「Tablet」，智慧手機等其他手持裝置則表示為「Mobile」。其次，移除掉代表開發代號「Fennec」的 token 被移除了。然後，「Gecko/」後面的數字，所表示的不再是凍結日期而是 Gecko 的版本號。
+
+    Mozilla/5.0 (Android; Mobile; rv:11.0) Gecko/11.0 Firefox/11.0
+    Mozilla/5.0 (Android; Tablet; rv:11.0) Gecko/11.0 Firefox/11.0
+
+修正網站内 navigator 的特性 (Property) 被保留的這樣無法理解的行為
+
+Bug 690952 – Remove the crazy navigator preservation behavior (https://bugzilla.mozilla.org/show_bug.cgi?id=690952)
+
+Firefox 在此之前，對 navigator (https://developer.mozilla.org/en/DOM/window.navigator) 物件設定擴充特性 (Property) 的話，在網站（同一網域）的頁面切換之間瀏覽器仍可能會保留住這些資料。為了這樣意料之外，無法理解的行為，而修正為資料不會被保留住了。如果想要在客戶端留下資料的話，請使用 Cookie (https://developer.mozilla.org/en/DOM/document.cookie)、DOM Storage (https://developer.mozilla.org/en/DOM/Storage)、IndexedDB (https://developer.mozilla.org/en/IndexedDB) 等其他一般的方法。
+
+HTTP Content-Type 標頭的文字編碼用引號包起來指定將不被接受
+
+Bug 700589 – HTTP content type charset parameter accepts single quotes (https://bugzilla.mozilla.org/show_bug.cgi?id=700589)
+
+在此之前，Firefox 接受「Content-Type: text/plain; charset='UTF-8'」這樣用單引號來指定文件編碼的作法，但是這樣違反了 RFC 的規範，所以這樣不正確的指定作法將會被無視。使用 HTTP Content-Type 標頭指定文件編碼的情況下，請不要再用引號包起來。
+
+能透過 Geolocation API 取得的「countryCode」被拿掉了
+
+Bug 704056 – remove 'countryCode' from nsIDOMGeoPositionAddress.idl (https://bugzilla.mozilla.org/show_bug.cgi?id=704056 "Bug 704056)
+
+在 Firefox 中，能透過 Geolocation API (https://developer.mozilla.org/en/Using_geolocation) 取得的資訊包含了國家代碼、但是標準規範中並沒有這樣的定義所以把它拿掉了。如果遇到類似下面的程式碼，請使用「county」取代「countryCode」。
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      do_something(position.address.countryCode);
+    });
+
+WebSockets API 的前綴拿掉了
+
+Bug 695635 – tracking bug: unprefix WebSockets (https://bugzilla.mozilla.org/show_bug.cgi?id=695635)
+
+配合最新版標準規範草案中對 Protocol、API 的更新，「MozWebSocket」被換成「WebSockets」了。有調用 WebSockets API (https://developer.mozilla.org/en/WebSockets) 的情況下，請務必確保有無前綴都要能正確運作。為了向下相容，請用以下的方法確保有前綴的 API 也能被對應到。
+
+    var ws;
+    if (WebSocket) {
+      ws = new WebSocket(url); // 標準
+    } else if (MozWebSocket) {
+      ws = new MozWebSocket(url); // Firefox 10 及以前版本
+    } else {
+      // WebSockets 未對應
+    }
+
+使用百分比值指定 SVG 根要素大小將不被認可
+
+Bug 611099 – remove handling of percentages as intrinsic widths/heights (SVG height="100%" width="100%" defaults) (https://bugzilla.mozilla.org/show_bug.cgi?id=611099)
+
+在此之前， Firefox 容許對 SVG 的根要素以「width="100%"」這樣以百分比值設定該要素的固有尺寸 (intrinsic dimensions)，為了配合標準，這樣的指定將不被接受。
+
+使用者可設定提示文字的顯示前延遲時間
+
+Bug 204786 – Add setting to change delay before tooltip shows (https://bugzilla.mozilla.org/show_bug.cgi?id=204786)
+
+在網頁及 Firefox 的 UI 要素上，作為提供補充資訊的提示文字在顯示前的延遲時間，可以透過瀏覽器的隱藏設定「ui.tooltipDelay」加以變更。預設值跟以前一樣為 500（0.5 秒），設為 0 的話，當滑鼠指標指到時將直接顯示。
+
+網頁這方面，透過 JavaScript 實作自己的提示文字的情況下、根據使用者的設定、可能會導致與瀏覽器所顯示的原生提示文字（title 屬性的值）重疊，請務必要注意。
+
+Firefox 12
+
+input 事件將被 compositionupdate 事件觸發
+Bug 713502 - input event should be fired after compositionupdate (https://bugzilla.mozilla.org/show_bug.cgi?id=713502)
+
+在 editor (Form) 上面透過 IME 輸入文字的情況下，本來是等到輸入完後才觸發 input 事件、Firefox 12 開始，仍在 IME 編輯中的文字經過變動而觸發 compositionupdate 事件後直接觸發 input 事件。從此之後，透過使用 input 事件的 handler，將能取得包含仍在輸入法編輯區中，尚未完成文字編輯的表單輸入內容。
+
+在 editor 上被不實觸發的 keypress 事件將被無視
+
+Bug 698949 – Refuse untrusted keypress events in editor (https://bugzilla.mozilla.org/show_bug.cgi?id=698949)
+
+使用 dispatchEvent(https://developer.mozilla.org/en/DOM/element.dispatchEvent) 的話 keypress 事件將有機會被不實觸發的情況下、在 Firefox 的 editor（Form）上面仍會被接受。可是，關於在 editor 上面遇到「無法信賴」的事件處理規範尚未被制定，其他的瀏覽器都將其無視的情況下，Firefox 也決定跟進。
+
+更新 border-image 的實做
+
+Bug 497995 – Implement border-image revisions in latest css3-background (https://bugzilla.mozilla.org/show_bug.cgi?id=497995)
+
+為了配合 CSS3 的最新規範，border-image（現在仍是加上表示測試用前綴字串的 -moz-border-image） 的實做跟著更新了。對應舊版本（特別是 Firefox 10 ESR）的指定及併記的方法請參考 Piro 先生的部落格文章 (http://mozilla.jp/business/resources/site-compatibility/firefox-12/)。
+
+提示文字將接受多行的文字
+
+Bug 358452 – Firefox: Let authors put line breaks (newlines) in tooltips (title attribute)(https://bugzilla.mozilla.org/show_bug.cgi?id=358452)
+
+以前 Firefox 會無視 title 屬性值裡面的換行文字，而為了遵守 HTML5 的規範，將呈現出換行的效果，使得現在能做到顯示多行的提示文字。因此，在 title 屬性的值中包含換行文字的情況下新舊版本的呈現會有所不同。
+
+刪除 UniversalXPConnect 以外的特權管理機制
+
+Bug 713747 – Rip out non-UniversalXPConnect privilege manager functionality (https://bugzilla.mozilla.org/show_bug.cgi?id=713747)
+
+在 Firefox 之中，透過 JavaScript 的擴充規格 netscape.security.PrivilegeManager.enablePrivilege 取得極高的權力，能做到一般 Web 應用不被許可的操作（像是讀取本機檔案、改變設定等等）。這個特權管理機制 (http://www.mozilla.org/projects/security/components/signed-scripts.html) 必須修改 Firefox 的設定才能使用，而且只能在區域網路等極有限的範圍內使用。
+
+在 Firefox 12 之中、除了一般用途的 UniversalXPConnect 之外的五種特權，UniversalBrowserRead、UniversalBrowserWrite、UniversalPreferencesRead、UniversalPreferencesWrite、UniversalFileRead 皆被刪除了。
+
+在將來，Web 應用中能夠使用的特權管理機制（enablePrivilege 參數）預計將被廢除，建議使用擴充套件取代。
+
+停止支援 JavaScript 的 sharp 變數
+
+Bug 566700 – remove sharp variables (https://bugzilla.mozilla.org/show_bug.cgi?id=566700)
+
+Sharp 變數(https://developer.mozilla.org/en/JavaScript/Sharp_variables_in_JavaScript) 是從 Netscape 時代流傳下來，至今 Mozilla 的 JavaScript 引擎仍然實作的非標準擴充規範。Firefox 12 開始將不再支援。
+
+相關連結：
+* Firefox 10 のサイト互換性情報 http://mozilla.jp/business/resources/site-compatibility/firefox-10/
+* Firefox 11 のサイト互換性情報 http://mozilla.jp/business/resources/site-compatibility/firefox-11/
+* Firefox 12 のサイト互換性情報 http://mozilla.jp/business/resources/site-compatibility/firefox-12/
+_______________________________________________________________
+
+﻿■ [源碼新聞] Blender 2.63a 發布
+
+黃湘婷 / 編譯
+
+Blender 為一套 3D 繪圖建模的自由軟體，具有跨平台的特性，支持不同的幾何圖元，多用途的內部渲染及整合 YafaRay（http://www.yafaray.org/）的射線追蹤套件，並提供多種動畫工具如︰反向動作組件、頂點量重及柔化動量組件等，以及基本的非線性影像編輯及製作功能，完善的程度已和商業軟體不相上下。
+
+Blender 於日前釋出了 2.63a 版，修復了 100 多個關鍵錯誤，此版本使用 BMesh 多邊形建模，而非以往只支援三角形與四邊形，其他重大更新還有修復 BMesh 渲染與合成的錯誤、多種建模與繪圖模式的錯誤、動畫運動路徑的改進 r46158（http://projects.blender.org/scm/viewvc.php?view=rev&root=bf-blender&revision=46158）、改進 OpenCollada（http://opencollada.org/）支援，以及音訊器與影片剪輯的修復。
+
+除了修復錯誤外，新的功能包括 Cycles：支援全景的相機、鏡球環境紋理、新的渲染圖層、陰影渲染通道。Motion Tracker：提高 2D 運動路徑追蹤的穩定性與小工具的新增。Sculpt Hiding：能夠隱藏雕刻的網格，以提高性能。More Features：其他新功能如影片剪輯提供了更多的功能選項、連結及分離節點的新工具，以及支援 Linux 從外部程式拖曳檔案的功能。
+
+
+相關網址︰
+
+Blender 2.63a 發布
+http://wiki.blender.org/index.php/Dev:Ref/Release_Notes/2.63
+
+Blender 2.63a 發布，在 Ubuntu 及 OpenSUSE 的安裝
+http://www.muktware.com/3599/blender-263a-released-install-ubuntu-opesuse
+
+Blender 2.63a 可供下載
+http://news.softpedia.com/news/Blender-2-63a-Available-for-Download-269363.shtml
+_______________________________________________________________
+
+■ [源碼新聞] Oracle 僅能收到 Google 15 萬的賠償金
+
+黃湘婷 / 編譯
+
+Oracle 與 Google 的專利之爭開始於 2010 年，由於 Oracle 於 2009 年收購  Sun，而 Sun 為 Java 技術的原創者，因此 Java 在 Sun 被收購的同時也成為了 Oracle 的專利。
+
+Oracle 表示，Google 開發的 Android 作業系統侵犯了 Java 軟體平台的版權，包含兩個 Java 相關的專利以及非法使用至少 37 個應用程序介面，試圖向 Google 索取高達 10 億的賠償金。
+
+經過了長時間的審議，加州地方法院於 5 月 7 日達成裁定：Google 確實侵犯了與 Java 程式語言相關的版權，並竊取了一些使用於 Android 作業系統的應用程序介面。但這並不代表 Oracle 獲得勝利，目前陪審團對於 Google 是否「公平合理使用」Java 程式碼仍有爭議。
+
+負責此案的聯邦法官 William Alsup 表示，在 Android 幾百萬行的程式碼中，僅有 9 行 Java 程式碼，因此侵犯版權的法定損害賠償金額最高只能為 15 萬美元。若 Google 被發現為有意的侵權，Oracle 將能獲得 3 倍的賠償金，總額為 45 萬美元，但與一開始要求的 10 億相比，仍然為小數目。
+
+
+相關網址︰
+
+Oracle 能收到 15 萬的賠償金
+http://www.muktware.com/3591/oracles-can-hope-150000-damages
+
+Oracle 僅能收到 Google 15 萬的賠償金
+http://www.zdnet.com/blog/btl/oracle-might-only-receive-150000-in-damages-from-google/76611
+
+在 Java 的專利訴訟中，Oracle 僅能得到 15 萬
+http://www.techweekeurope.co.uk/news/oracle-to-receive-just-150000-in-java-patent-lawsuit-77662
+_______________________________________________________________
+
+■ [源碼新聞] Ubuntu 12.10 版將有 Gnome 桌面環境
+
+黃湘婷 / 編譯
+
+Ubuntu 從 11.04 開始採用以 Unity 為預設的桌面環境，但根據日前美國 Ubuntu 研發高峰會的會議內容指出，Ubuntu 於 12.10 版開始將有一種新的桌面預設環境，目前尚未正式命名，以 "Gnome Flavor" 為代稱，對於在 Ubuntu 上使用 Gnome Shell 的使用者將是個好消息。
+
+"Gnome Flavor" 有許多可能的名稱，如 GNObuntu、GNOME OS、GNOME Ubuntu、Ubuntu GNOME、UbuGNOME 等等，但直接將 Gnome 的首字母加在 Ubuntu 前方而成的 Gubuntu 就不能被使用，因為 Google 已有他們自行以 Ubuntu 為基礎開發出的作業系統 Goobuntu（僅供公司內部使用），開發商認為此兩者的名稱太過相似。
+
+"Gnome Flavor" 將辦公室軟體分開為文書處理軟體 Abiword 及試算表軟體 Gnumeric，而非以往的 LibreOffice，開發商也仍在討論其他應用程式如：該使用 Evolution 或 Thunderbird 作為郵件收發軟體，以及 Firefox 與 Epiphany 何者較適合作為預設瀏覽器。
+
+有了這個新的桌面環境 "Gnome Flavor"，原先的 Unity 2D 將從 Ubuntu 12.10 版被移除。
+
+
+相關網址︰
+
+Canonical 公司正開發 Ubuntu 的 Gnome Flavor
+http://news.softpedia.com/news/Canonical-Prepares-a-GNOME-Flavor-of-Ubuntu-269229.shtml
+
+Ubuntu 的 Gnome 桌面環境 "GNOME-buntu"
+http://www.phoronix.com/scan.php?page=news_item&px=MTEwMTU
+
+Ubuntu 12.10 版將有 Gnome 桌面環境
+http://www.ubuntuvibes.com/2012/05/ubuntu-1210-will-have-gnome-shell.html
+_______________________________________________________________
+
+﻿■ [源碼新聞] 再生龍展現台灣軟實力─國網中心與日本 Miracle Linux 簽署合作備忘錄
+
+◎ 本文轉載自國家高速網路與計算中心（http://www.nchc.org.tw/tw/news/index.php?NEWS_ID=207）。
+
+國研院國家高速網路與計算中心（國網中心）於 5 月 15 日與日本 MIRACLE LINUX 公司簽署合作備忘錄並正式展開再生龍 Clonezilla 軟體合作。此一跨國之產研合作成功案例，不僅彰顯國網中心之軟實力獲得國際高度肯定，更為台日交流共譜科技新樂章。
+
+再生龍為國網中心自行研發的自由軟體，自 2003 年開放下載後，受到國內外使用者高度矚目與廣大使用，至今全球累積下載人次超過 550 萬，遍佈 60 多個國家。許多熱心使用者更主動將再生龍軟體翻譯成各國語言，因此除了正體中文之外，還有英文、西班牙文、法文、義大利文、日文、俄文、葡萄牙文、簡體中文及德文等多國語言版本，世界各國有眾多使用者熱烈迴響。
+
+國內各界對於再生龍軟體亦不陌生，目前為止全台已超過 500 個以上的單位使用。再生龍具有實用性高、應用廣泛、節省成本等特性，對國內教育民生有重大貢獻，於 2008 年榮獲行政院傑出科技貢獻獎，並連續於 2010 年及 2011 年獲國際知名雜誌 PC Magazine 票選為年度最佳備份軟體，2011 年獲得英國 Linux Format 雜誌讀者票選為 Linux 前 50 大應用軟體，以及 2012 年獲得美國知名軟體情報網站 Lifehacker 評選為「Linux 上最佳磁碟備份還原應用程式」等多項殊榮，深獲海內外高度肯定。
+
+再生龍是一套具有高度部署彈性的軟體，有再生龍 Live 與再生龍伺服器兩種版本。再生龍 Live 版本非常適合個人使用，不受網路設備環境限制，也不需要安裝，就能備份還原一台電腦。而再生龍伺服器版本則搭配網路環境使用，可以在很短的時間內，同時還原大量的電腦，適合企業界或擁有大量電腦的機關團體使用，也是受到 MIRACLE LINUX 公司青睞主因。
+
+本次國網中心跨國與該公司結盟合作，將共同推升企業級再生龍之服務品質，並建立專屬服務社群，以嘉惠更多產業用戶。此一國際合作實質將國網中心研發成果產業化並推向國際，未來更希望與國內各界展開合作，積極促進產業轉型升級，提升台灣整體軟實力。
+_______________________________________________________________
+
+■ [源碼新聞] 歡迎參加 6/2（六）OpenOffice 3.4 Release Party！
+
+依瑪貓 / 文
+
+期待了整整一年，Apache OpenOffice 3.4 終於誕生了 (http://www.openoffice.org/zh-tw/news/aoo34.html)！這是 OpenOffice 由 Oracle 捐給 Apache 基金會後，由企業主導轉為社群主導後，由 LGPLv3 轉為 Apache v2 License 後，台灣社群接手正體中文翻譯後，台灣社群進入開發團隊後，發表的第一個版本。同時，也是 OpenOffice 1.0 發表 (http://www.openoffice.org/about_us/ooo_release.html) 後，正好十年的十年慶。所以，怎麼能夠不 Party 一下呢？
+
+OpenOffice 3.4 Release Party，訂於 2012/6/2（六）下午兩點半於果子咖啡 (http://www.gozcafe.com/)（台北市松山區民生東路三段 140 巷 11 號 (http://maps.google.com.tw/maps/place?cid=4449401095405794119)，TEL: 02-87705330，提供 Wi-Fi 無線上網）。
+
+聚會中，會介紹 OpenOffice 3.4 的新功能，及 OpenOffice 的未來展望。OpenOffice 轉移給 Apache 基金會後，這一年來，發生了什麼事？未來又會怎麼走？大家一定有很多疑問，也有很多話想說。歡迎大家一起來七嘴八舌吧！
+
+製作 OpenOffice 3.4 Portable (http://xdriftdoll.blogspot.com/2012/05/apache-openoffice-portable-340-zhtw.html) 的亞甜莎 (http://xdriftdoll.blogspot.com/)，將盛裝上台分享「Portable OpenOffice 製作經驗分享」。亞甜莎同時也是 LibreOffice Portable (http://xdriftdoll.blogspot.com/search/label/LibreOffice) 版本的製作者，對於製作 Portable 軟體，有非常豐富的經驗。Portable 版本不用安裝，可以存在隨身碟上，走到哪裏用到哪裏。妳也有用過隨身碟版本的 OpenOffice/LibreOffice 嗎？想一睹作者的盧山真面目嗎？那一定不可以錯過！
+
+OpenOffice 授權由 LGPLv3 (http://www.gnu.org/licenses/lgpl.html) 轉變為 Apache v2 (http://www.apache.org/licenses/LICENSE-2.0.html)，會有什麼影響，是大家最關心的話題之一。自由軟體鑄造場 (http://www.openfoundry.org/) 的 Lucien 林誠夏 (http://www.openfoundry.org/community/userprofile/lucien)，將為大家分享「From Star to Apache－從 OpenOffice 看自由開源軟體的授權轉換 (http://registrano.com/events/aoo34#aoolicense)」，不論是 Apache v2 授權的特色，和 LibreOffice LGPLv3、MPL 授權的相容性等，你想問的問題，都將一一為大家解答。
+
+活動本身不收費。果子咖啡場地費純飲料 150 元，含套餐 250 元，有好吃的小點心。請事先報名，以便主辦者估計人數。謝謝！ ^_*'
+
+
+議程簡介︰
+
+From Star to Apache－從 OpenOffice 看自由開源軟體的授權轉換
+
+OpenOffice 的前身是德國公司 StarDivision 所研發的 StarOffice，這家公司在 1999 年被 Sun Microsystems 收購，從 2000 年開始、Sun 同時以自己編撰的 SISSL 與 LGPL-2.1，併行釋出改版後的 OpenOffice.org 原始碼，目的是透過自由開源軟體的散布與開發模式，來打破辦公室軟體中 Microsoft Office 接近獨家壟斷的狀態。2005 年後、Sun 再將 OpenOffice.org 的授權方式簡化為單一的 LGPL-2.1，其後於 2009 年時、Sun 為 Oracle 併購、因一定期間內 OpenOffice.org 專案的後續開發動向不明，故在 2010 年末、由幾個 OpenOffice.org 的主力開發成員另行成立了 The Document Foundation，並催生出 OpenOffice 歷史上最具規模的開源分支專案－LibreOffice，隨後、於 2011 年 Oracle 宣布將 OpenOffice.org 捐贈給 Apache Software Foundation，ASF 並於 2012 年 5 月 8 號，以新的名稱 Apache OpenOffice 發佈了由 ASF 主導下的第一個 3.4 版本。
+
+從 StarOffice 到 Apache OpenOffice，OpenOffice 專案歷經了數次重大的授權轉換與變更，其不啻為自由開源軟體專案在授權轉換上活生生的歷史教材！透過這個講場、講者將會分享 OpenOffice 的授權演化與其轉變策略，並接受聽眾的提問、例如 BSD License 與 Apache-2.0 的不同處、Apache-2.0 與 GPL-2.0/3.0 的拒與合，以及 LibreOffice 與 Apache OpenOffice 未來的相容性與應用配置等等，提出授權分析方面的看法與解答。
+
+
+講者簡介：
+
+林誠夏 (Lucien Lin)，網路暱稱為“Lucien”或“lucien.cc”，知識背景為科技法律，但是也喜歡學習任何新奇有趣的事物。自 2005 年開始任職於中央研究院自由軟體鑄造場，踏入自由開源軟體授權條款的研究領域，並專職於自由開源軟體授權條款的解說分析，以及自由開源軟體商業運用模式的觀察記錄。2008 年開始擔任自由軟體鑄造場的專案經理，2010 年兼任電子報主編，目前已卸下這二份職務，改戮力於個人的書籍寫作並轉任計畫維運發展的諮詢顧問。
+_______________________________________________________________
+
+■ [源碼新聞] 2012 年 6 月份社群活動列表
+
+OSSF 電子報團隊／整理
+
+六月份的活動列表出爐囉！本月份有熱血的台南朋友，發起了新的社群 - MOSUT (Meeting of Open Source Users in Tainan)，讓南部的自由軟體夥伴們可以有更多的機會互相交流，有興趣的朋友們不妨到他們的聚會參與看看喔！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信： ossfepaper@openfoundry.org 。
+
+
+MozTW Lab @ TP（6/1）
+地點：台北市中山區民生東路二段 114 號（咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+OpenOffice 3.4 Release Party（6/2）
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：14:30~18:00
+活動資訊：http://registrano.com/events/aoo34
+
+MOSUT @ Tainan（6/2）
+地點：國立臺南大學府城校區思誠樓 F302
+時間：14:00~17:00
+活動資訊：http://mosut.org/
+
+Fedora 17 發行派對 @ 臺中（6/3）
+地點：台中市西屯區大墩二十街 111 號（黑貓月亮咖啡館）
+時間：14:00~17:00
+活動資訊：http://www.tossug.org/
+
+TOSSUG 社群聚會（6/5）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+Rails Tuesday（6/5）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+Taipei GTUG（6/6）
+地點：台北市中山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：19:30-21:30
+活動資訊：http://www.taipei-gtug.org/
+
+RGBA 網路設計師聚會（6/6）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（6/7）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MiniDebConf 2012（6/8~6/10）
+地點：花蓮市中山路一段386-6號(Taluan No Niyam 藝文展演空間)
+活動資訊：http://wiki.debian.org/DebianTaiwan/MiniDebConf2012#Day1_Saturday_2012-06-09
+
+PyCon Taiwan 2012（6/9~6/10）
+地點：中央研究院人文社會科學館 國際會議廳
+活動資訊：http://tw.pycon.org/2012/about/
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚—社群經營工作雙週聚（6/11）
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（6/12）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+Rails Tuesday（6/12）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+FreedomHEC Taipei 2012 （6/12~6/13）
+地點：台北市和平東路二段 106 號（國科會科技大樓）
+活動資訊：http://taipei.freedomhec.org/tw/%E8%AD%B0%E7%A8%8B
+
+RGBA 網路設計師聚會（6/13）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（6/14）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（6/15）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+MOSUT @ Tainan（6/16）
+地點：國立臺南大學府城校區思誠樓 F302
+時間：14:00~17:00
+活動資訊：http://mosut.org/
+
+Rails Tuesday（6/19）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（6/19）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+Taipei GTUG（6/20）
+地點：台北市中山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：19:30-21:30
+活動資訊：http://www.taipei-gtug.org/
+
+RGBA 網路設計師聚會（6/20）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+WoFOSS 好自由小組聚會（6/20）
+地點：台北市忠孝東路三段 52 號 1 樓（伯朗咖啡-北科大店）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.com/2012/04/wofosswofoss.html
+
+Hacking Thursday（6/21）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（6/22）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚—社群經營工作雙週聚（6/25）
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+Rails Tuesday（6/26）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+RGBA 網路設計師聚會（6/27）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（6/28）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（6/29）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+MOSUT @ Tainan（6/30）
+地點：國立臺南大學府城校區思誠樓 F302
+時間：14:00~17:00
+活動資訊：http://mosut.org/
+_______________________________________________________________
+
+■ [接案工作] 自由軟體鑄造場 - 誠徵「授權分析系統開發兼任助理」
+
+葛冬梅 / 文
+
+【公司名稱】中央研究院　資訊科技創新研究中心　自由軟體鑄造場
+【職　　稱】自由軟體鑄造場兼任助理
+【需求人數】1 名
+【工作地點】臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）。
+【工作經驗】不拘。
+【工作時間】每週二至三日，日數及時間可於面談時再議。
+
+【工作內容】
+
+協助開發維護軟體程式碼授權資訊的分析比對系統。
+
+【工作待遇】
+依資訊科技創新研究中心規定，採每月上班日數計算薪資。
+範例 (1)：每週工作 2 日，月薪 8,000 元，有相關工作經驗者另議。
+範例 (2)：每週工作 3 日，月薪 12,000 元，有相關工作經驗者另議。
+
+【必備條件】
+
+大學/專科以上。
+對於自由開源軟體有興趣。
+基本程式開發能力。
+良好的英文閱讀與日常溝通能力。
+負責任的工作態度。
+團隊合作的互助能力。
+積極主動的學習能力。
+
+【加分條件】
+
+對於自由軟體授權相關內容已有認知。
+熟悉 Python 程式語言。
+熟悉 Unix-like 作業系統的管理。
+優異的程式開發能力。
+優異的英文能力。
+具備中文文章寫作能力。
+樂於吸收新知與研究新事物。
+熟悉網站內容管理平台的操作。
+學經歷為法律、智財管理或資訊等相關領域。
+任何您覺得適合本件工作的個人資訊，都歡迎您提供給我們。
+
+【補充說明】
+
+若錄取者為在學研究生，本計畫鼓勵以自由開源軟體作為其論文之研究主題。
+
+【應徵方式】
+
+請準備個人資料與履歷，內容包括照片、學歷、經歷與聯絡方式。若有發表文章、外語能力檢測證明、網站或程式作品以及自由開源軟體社群活動參與經驗等，亦建議一併附上。資料電子檔請提供 ODT 或 PDF 格式以利後續作業。
+請將上述資料 email 給葛冬梅小姐，標題請註明：[應徵自由軟體鑄造場兼任助理-授權分析系統開發]。葛冬梅小姐 email： tmk2005@citi.sinica.edu.tw ，聯絡電話：02-27883799 # 1474。
+將於收到應徵 email 後一週內擇優通知面試，未通知面試者恕不退件及函覆。
+_______________________________________________________________
+
+■ [接案工作] 自由軟體鑄造場 - 誠徵「工讀生」
+
+洪華超 / 文
+
+【職　　務】工讀生
+【需求人數】1名
+【工作內容】交辦事務處理，例如︰影像處理、網頁編輯、資料整理...等等
+【學歷要求】專科以上（夜間部佳）
+【工作經驗】不拘
+【工作地點】11529 臺北市南港區研究院路 2 段 128 號 402 室（中央研究院 資訊科學研究所）
+【必備條件】
+
+具電腦基本操作能力
+需具備HTML語法編輯能力
+英語能力具一定的基礎
+負責任的工作態度，以及有學習意願者佳
+
+【工作待遇】時薪 110 起
+【工作時段】每週安排約 2~3 個工作天（09:30～17:30）
+【應徵方式】
+
+請檢附履歷、基本資料（學經歷、照片、可安排之工作時間、聯絡方式等），寄至 rockhung@citi.sinica.edu.tw ，洪先生收，標題請註明：應徵工讀生。將擇優通知面試，不適任者恕不退件及函覆。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、彭冠雯、王怡凱
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

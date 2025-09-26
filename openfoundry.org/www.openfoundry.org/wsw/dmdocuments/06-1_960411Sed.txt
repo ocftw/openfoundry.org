@@ -1,0 +1,142 @@
+#!/bin/bash
+
+echo -e "\n"
+read -p "請輸入查詢網址 ：" urls
+read -p "請輸入查詢 Keyword ：" key
+echo -e "\n"
+
+echo -e "網頁正在下載與分析當中.........\n\n"
+wget -r -l 1 -p -q $urls
+
+# 記錄整個搜尋以及 index 所需要的時間
+echo "Starting at $(uptime |sed 's/ \+/ /g'|cut -d" " -f1) " > stamp
+
+# 記錄下載的網頁目錄名稱，事後要清除
+tmpDIR=`ls -l|grep drwx|sed 's/ \+/ /g'|cut -d" " -f9`
+
+# 計算全部的總文件數量有多少 DocN
+DocN=`find . -name *.htm -or -name *.html|wc -l|sed 's/ \+//g'|cut -d" " -f1|tr -d '\n' ` 
+
+# Use Vector Model
+# 開始程式的核心部份，計算 Weight=TF*IDF (FreqN/MaxFreqN * log DocN/DocNi)
+# 利用 Term-Weight 來 Ranking
+
+list1=`find .`
+for i in $list1
+do
+	# 去除HTML TAG，grep keyword，計算包含 keyword 的文件有幾個 DocNi
+	cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+//g'|grep -q $key && if [ "$?" -eq "0" ]; then echo "0" >> DocNi ;fi 
+done 
+
+# 計算 Keyword 出現在這篇文件中，有多少頻率 FreqN
+list2=`find .`
+for i in $list2
+do
+        # 去除HTML TAG，grep keyword，計算這份文件中，包含了幾個 Keywords
+	cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+//g'|grep -q $key && cat $i 2> /dev/null |tr -d '\n'| sed 's/ \+//g'|sed "s/$key/$key\n/g" 2> /dev/null |wc -l|sed 's/ \+//g'|cut -d" " -f1 >> FreqN
+done 
+
+# 將符合查詢字串的文件檔案路徑名稱紀錄於 tmpPAGE
+list3=`find .`
+for i in $list3
+do
+	cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+//g'|grep -q $key && echo $i >> tmpPAGE
+done
+
+# 計算 MaxFreqN，提取出該篇文件的關鍵字索引
+# 對符合 Keyword 的文件做 stopwords 過濾，並計算共有多少字元。
+# 將過濾完成的純文字檔案存為 tmp_4
+# 以方便事後提取 tmp_4 的關鍵字索引，並計算出 MaxFreqN 的值。
+for i in $(cat tmpPAGE)
+do
+	# 將 stopwords 檔案存入陣列
+	A=(`cat stopwords|tr '\n' " "`)
+
+	# 開始過濾 stopwords
+	cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+//g'|tr -d '\n'|sed 's/ \+//g'| sed "s/${A[0]}//g"|sed "s/${A[1]}//g"|sed "s/${A[2]}//g"|sed "s/${A[3]}//g"|sed "s/${A[4]}//g"|sed "s/${A[5]}//g"|sed "s/${A[6]}//g"|sed "s/${A[7]}//g"|sed "s/${A[8]}//g"|sed "s/${A[9]}//g"|sed "s/${A[10]}//g"|sed "s/${A[11]}//g"|sed "s/${A[12]}//g"|sed "s/${A[13]}//g"|sed "s/${A[14]}//g"|sed "s/${A[15]}//g"|sed "s/${A[16]}//g"|sed "s/${A[17]}//g"|sed "s/${A[18]}//g"|sed "s/${A[19]}//g"|sed "s/${A[20]}//g" > tmp_1 && cat tmp_1 |sed "s/${A[21]}//g"|sed "s/${A[22]}//g"|sed "s/${A[23]}//g"|sed "s/${A[24]}//g"|sed "s/${A[25]}//g"|sed "s/${A[26]}//g"|sed "s/${A[27]}//g"|sed "s/${A[28]}//g"|sed "s/${A[29]}//g"|sed "s/${A[30]}//g"|sed "s/${A[31]}//g"|sed "s/${A[32]}//g"|sed "s/${A[33]}//g"|sed "s/${A[34]}//g"|sed "s/${A[35]}//g"|sed "s/${A[36]}//g"|sed "s/${A[37]}//g"|sed "s/${A[38]}//g"|sed "s/${A[39]}//g"|sed "s/${A[40]}//g" > tmp_2 && cat tmp_2 |sed "s/${A[41]}//g"|sed "s/${A[42]}//g"|sed "s/${A[43]}//g"|sed "s/${A[44]}//g"|sed "s/${A[45]}//g"|sed "s/${A[46]}//g"|sed "s/${A[47]}//g"|sed "s/${A[48]}//g"|sed "s/${A[49]}//g"|sed "s/${A[50]}//g"|sed "s/${A[51]}//g"|sed "s/${A[52]}//g"|sed "s/${A[53]}//g"|sed "s/${A[54]}//g"|sed "s/${A[55]}//g"|sed "s/${A[56]}//g"|sed "s/${A[57]}//g"|sed "s/${A[58]}//g"|sed "s/${A[59]}//g"|sed "s/${A[60]}//g"|sed "s/${A[61]}//g" > tmp_3 && cat tmp_3 |sed "s/${A[62]}//g"|sed "s/${A[63]}//g"|sed "s/${A[64]}//g"|sed "s/${A[65]}//g"|sed "s/${A[66]}//g"|sed "s/${A[67]}//g"|sed "s/${A[68]}//g"|sed "s/${A[69]}//g"|sed "s/${A[70]}//g"|sed "s/${A[71]}//g"|sed "s/${A[72]}//g"|sed "s/${A[73]}//g"|sed "s/${A[74]}//g"|sed "s/${A[75]}//g"|sed "s/${A[76]}//g"|sed "s/${A[77]}//g"|sed "s/${A[78]}//g"|sed "s/${A[79]}//g" >> tmp_4 
+done
+
+# 去除 tmp_4 的 ^M 字元
+mv tmp_4 tmp_4_tmp
+cat tmp_4_tmp|tr -d '^M' > tmp_4 && rm tmp_4_tmp
+
+# 計算tmp_4 有多少字元
+tmp_4_N=`cat tmp_4|wc -c|sed 's/ \+//g'|cut -d" " -f1 `
+
+# 對 tmp_4 做關鍵字的提取，以 2'4' 來作為字串分析比對處理。
+newwd2=`for((i=1;i<=$tmp_4_N;i=i+2));do declare -i num=$i+3 ; cat tmp_4 |cut -c$i-$num ;done `
+newwd4=`for((i=1;i<=$tmp_4_N;i=i+2));do declare -i num=$i+7 ; cat tmp_4 |cut -c$i-$num ;done `
+
+# 將 index-term and freq 存入 keyindex 檔
+for i in $newwd2
+do
+        declare -i num2=$(cat tmp_4|sed "s/$i/$i\n/g" 2> /dev/null |wc -l)
+        if [ $num2 -gt 60 ]
+        then
+                echo "$i 出現的頻率為 $num2" >> keyindex
+        fi
+done
+
+# 將 index-term and freq 存入 keyindex 檔
+for i in $newwd4
+do
+        declare -i num2=$(cat tmp_4|sed "s/$i/$i\n/g" 2> /dev/null |wc -l)
+        if [ $num2 -gt 25 ]
+        then
+                echo "$i 出現的頻率為 $num2" >> keyindex
+        fi
+done 
+
+# count DocNi 總文件數當中，有多少數量是符合關鍵字搜尋的數量
+DocNi=`cat DocNi|wc -l|sed 's/ \+//g' |cut -d" " -f1 `
+
+# count FreqN 擷取出數量 (每份文件當中包含keywords的數量)
+FreqN_Num=`cat FreqN |wc -l|sed 's/ \+//g' |cut -d" " -f1 `
+
+# 將每一份文件的關鍵字出現頻率 FreqN 存入陣列
+FreqN=(`cat FreqN | tr '\n' " " |sed 's/ \+/ /g' `)
+
+# count MaxFreqN 擷取出數量
+MaxFreqN=`cat keyindex |sort|uniq|wc -l|sed 's/ \+//g'|cut -d" " -f1 `
+
+# 刪除舊有的暫存資料檔案
+rm DocNi FreqN tmp*
+rm -rf $tmpDIR
+
+# 執行查詢後的結果顯示
+# 將符合的結果的檔案名稱顯示出來，並用紅標方式標出關鍵字
+listEND=`find .`
+for i in $listEND
+do
+        i2=`echo $i|cut -c2-`
+	cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+/ /g'|grep -q $key && echo -e "\n 查詢結果顯示 : \n============================================================= \n" && cat $i 2> /dev/null |sed -e 's/<[^>]*>//g'|sed 's/ \+/ /g'|grep --color $key && echo -e "\n=============================================================" && echo -e "此連結為 http:/$i2" && echo -e "\n\n\n"
+done 
+
+# 記錄整個搜尋以及 index 結束的時間
+echo "Ending at   $(uptime |sed 's/ \+/ /g'|cut -d" " -f1) " >> stamp
+
+# 執行查詢結果顯示後的分析資料，比如：權重分析，關鍵字數量等等。
+echo -e "查詢結果資料分析 : \n============================================================= "
+echo "所有的文件數量為 : $DocN "
+echo "包含 Keyword 的文件數量為 : $DocNi "
+
+echo -e "\n查詢出相關頁面的 Keyword 出現頻率與權重分析 : "
+for((i=0;i<$FreqN_Num;i++))
+do
+	declare -i i2=$i+1
+	# W=tf*idf 利用 Term-Weight 來做 Ranking
+	Weight=`echo "scale=5; ${FreqN[$i]}/$MaxFreqN*l($DocN/$DocNi)" | bc -l`
+	echo "第 $i2 筆 : Keyword Freq : ${FreqN[$i]}  Term-Weight : $Weight (數值越高準確度越高)"
+done 
+
+echo -e "\n在此次搜尋頁面當中 index term 數量為 : $MaxFreqN"
+echo "略整理出 Index Term 與出現的頻率 : "
+cat keyindex|sort|uniq
+echo -e "\n此次搜尋與 index 所花費時間 :"
+cat stamp
+echo -e "\n\n\n"
+
+# 刪除舊有的暫存檔案資料
+rm stamp
+rm keyindex
+

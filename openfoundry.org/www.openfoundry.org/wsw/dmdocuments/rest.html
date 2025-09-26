@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+:Authors: Ian Bicking, Michael Foord
+:Contact: fuzzyman@voidspace.org.uk
+:Date: 2005/08/26 
+:Version: 0.1.0
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for Docutils.
+Based on ``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+/* body {
+  font-family: Arial, sans-serif;
+}
+
+em, i {
+  font-family: Times New Roman, Times, serif;
+} 
+*/
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  border: thin solid black;
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  -moz-border-radius: 8px;
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffffff;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #eeeeee;
+  border: thick solid black;
+  -moz-border-radius: 20px;
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin black solid;
+  padding: 5px;
+  background-color: #EEF;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 100%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="restructuredtext">
+<h1>reStructuredText簡易入門</h1>
+<div class="admonition-docutils admonition">
+<p class="first admonition-title">應用Docutils的標記語法和分析元件</p>
+<p class="last">reStructuredText是個不受平台限制、任何文字編輯器都可編寫、而且容易閱讀的純文字標記語法和分析系統。reStructuredText利用Python中的Docutils元件將純文字轉換成各式檔案，再利用性高。</p>
+</div>
+<p id="id1">reStructuredText（reST）是Python文件的標準語法，適合用來編寫簡單的HTML、文件和程式中的文稿。你只要在一份純文字文件中，加上簡單的標記，再利用Python中的Docutils處理，即可得到多種格式的文件，包括：HTML、PDF、OpenOffice 格式和LaTex格式。</p>
+<p>reST的學習速度非常快速，你只要懂得數個常用的標記語法即可，每個人都可在十分鐘內開始編寫reST文件，即使你完全不懂得如何使用Python也沒關係，因為我們只有在編寫完成，開始轉換文件時，才需用到Python指令，其他時間則可以使用任何純文字編輯器來撰寫reST文件。</p>
+<p>reST的應用範圍非常廣泛，你可以用它撰寫簡單的HTML文件、報告、日記甚至是電子書，只要是文稿都難不倒它，不過由於reST專注於文稿撰寫，排版能力不強，但這可以用reST靈活的檔案轉換特性，先將reST轉換成LaTeX後，再進行後續排版來解決，因為你想拿它來寫書也不是完全做不到。</p>
+<p>雖然reST的學習簡單而且應用容易，不過它的功能可不含糊，不論是Header、Footer、插入圖片、圖說或是Foot Note、Citation等都完全支援，如果熟悉Python也能夠做進一步的編寫和轉檔設定。</p>
+<p>不過reST也不是完全沒有缺點，一是用來撰寫亟需分頁的文件會有問題，因為reST並沒有分頁的功能；二是目前reST並不支援LaTeX中的數學式，雖然一般人很少會需要這個功能，但還是會讓心中有點小小的缺憾，畢竟它的對手AsciiDoc（另一個標記語言）做得到。</p>
+<p>除此之外，reST還可以和Zwiki搭配，應用在Zope或是Plone中，提供易用的內容編寫介面，讓你不需任何進階功能，也可以編寫複雜的內容。而許多Blog程式也提供reST格式的支援，如：Wordpress和Movable Type等，都可以利用外掛支援reST格式，讓Blog編寫更為方便、簡易。</p>
+<div class="section" id="rest">
+<h2>常用reST語法</h2>
+<p>之前已經說過reST文稿的撰寫非常簡單，我們就先來看看有哪些標記是撰寫reST文件時，一定會用到的標記。</p>
+<div class="section" id="id2">
+<h3>標題標記</h3>
+<p>在reST中的「標題」標記非常簡單，只要在標題（上）下使用非字母和數字的七位元ASCII記錄畫上底線（或上標線）即可，你不需擔心標題要使用何種格式，只要在相同位階的標題上使用相同的標記即可。可用的字符有：! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? &#64; [ ] ^ _ ` { | } ~。</p>
+<p>例如：</p>
+<div class="line-block">
+<div class="line">========================</div>
+<div class="line">標題</div>
+<div class="line">========================</div>
+<div class="line">小標題</div>
+<div class="line">------------------------</div>
+</div>
+<p>會顯示成：</p>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h1>標題</h1>
+<div class="section" id="id4">
+<h2>小標題</h2>
+</div>
+<div class="section" id="id5">
+<h2>段落標記</h2>
+<p>在reST中，段落只要在中間隔一行即可，Docutils會自動判別各個段落，例如：</p>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">這是一段。</span></tt></div>
+<div class="line"><br /></div>
+<div class="line"><tt class="docutils literal"><span class="pre">這是另一段。</span></tt></div>
+</div>
+<p>會顯示成：</p>
+<p>這是一段。</p>
+<p>這是另一段。</p>
+</div>
+<div class="section" id="id6">
+<h2>字體格式標記</h2>
+<p>如果想在reST中使用粗體，只要在字詞前後加上兩個*：</p>
+<p>**粗體**</p>
+<p>會顯示成：</p>
+<p><strong>粗體</strong></p>
+<p>如果要使用斜體，只要在字詞前後加上一個*</p>
+<p>*斜體*</p>
+<p>會顯示成：</p>
+<p><em>斜體</em></p>
+<div class="sidebar">
+<p class="first sidebar-title">逸位字元\</p>
+<p class="sidebar-subtitle">中文reST中不可或缺的好幫手</p>
+<p class="last">由於reST非常重視英文中的空格判斷，因此有時你在中文裡面直接使用reST標記無法產生效用，這是由於中文不像英語字間有空格，因此我們必須加個空格讓reST標記得以作用，這時我們就可以在空格前加上一個逸位字元\，將這個空格隱藏起來，經過Docutils處理後，你的文稿上就不會出現一個個空格了。逸位字元還可用於取消下一個標記的功能，讓它被Docutils判別為文字而非標記。</p>
+</div>
+</div>
+<div class="section" id="inline-literal">
+<h2>字面文字標記（inline literal）</h2>
+<p>字面文字標記`` ``可以讓文字以原有的形態出現，而非經過Docutils處理後的文字，通常以等寬字體出現。</p>
+<p>例如：</p>
+<p>``reStructuredText is great!``</p>
+<p>會顯示成</p>
+<p><tt class="docutils literal"><span class="pre">reStructuredText</span> <span class="pre">is</span> <span class="pre">great!</span></tt></p>
+<p>而非</p>
+<p>reStructuredText is great!</p>
+</div>
+<div class="section" id="interpreted-text">
+<h2>文字解譯標記（interpreted text）</h2>
+<p>除了粗、斜體之外，你還可以利用文字解譯標記` `為字體加上更多的變化。` `可以加上各種「role」讓字體呈現不同的變化，包含連結、上標、下標</p>
+<p>例如：</p>
+<ol class="arabic">
+<li><p class="first">在文字解譯標記後加上一個底線會形成連結。這時只要指定連結目標就可以形成超連結：</p>
+<p>`自由軟體鑄造場`_</p>
+<p>.. _自由軟體鑄造場: http://www.openfoundry.org/</p>
+<p>會顯示成</p>
+<p><a class="reference external" href="http://www.openfoundry.org/">自由軟體鑄造場</a></p>
+</li>
+<li><p class="first">在文字解譯標記前加上:sub:和:sup:標記，可形成下標和上標字：</p>
+<p>:sub:`下標字`正常字</p>
+<p>會顯示成</p>
+<p><sub>下標字</sub>正常字</p>
+<p>2:sup:`12`</p>
+<p>會顯示成</p>
+<p>2<sup>12</sup></p>
+</li>
+<li><p class="first">在<span class="target" id="id8">文字解譯標記</span>前加上一個底線，可以讓標記中的文字形成一個超連結目標。</p>
+<p>例如：</p>
+<p>_`政治大學`</p>
+<p>會顯示為</p>
+<p><span class="target" id="id9">政治大學</span></p>
+<p>表面上看起來完全沒變，但只要你指定一個名為「政治大學」的超連結，就可以將該超連結的目的地指向為上方的文字解譯標記，這在同一文件中作交叉查詢時非常好用。</p>
+<p>例如：</p>
+<p>利用文字解譯標記建立一個名為「政治大學」的超連結如下：</p>
+<p>`政治大學`_</p>
+<p>會顯示成</p>
+<p><a class="reference internal" href="#id9">政治大學</a></p>
+<p>這個連結的目的就是上方使用文字解譯標記形成的超連結目的。</p>
+</li>
+</ol>
+</div>
+<div class="section" id="id11">
+<span id="id10"></span><h2>超連結</h2>
+<p>之前我們已經看到幾個使用超連結的方式，現在我們再詳加研究一下超連結的使用方式。</p>
+<ol class="arabic">
+<li><p class="first">第一種方式非常簡單，只要直接打上網址即可。Docutils會自動幫你把網址轉成指向該網址的超連結，例如：</p>
+<p>打上：</p>
+<p>http://www.google.com.tw</p>
+<p>會顯示成</p>
+<p><a class="reference external" href="http://www.google.com.tw">http://www.google.com.tw</a></p>
+</li>
+<li><p class="first">第二種方式是為文字指定一個超連結目標，這時必須使用上面說到的文字解譯標記，首先我們將要形成超連結的文字利用文字解譯標記包起來，並在其後加上一個底線，然後再為它指定一個目的網址，指定目的網址的語法為「..+ 空格（space）+底線（_）+超連結文字+冒號+空格+網址」例如：</p>
+<p>`估狗大神`_</p>
+<p>.. _估狗大神: http://www.google.com.tw</p>
+<p>會顯示成</p>
+<p><a class="reference external" href="http://www.google.com.tw">估狗大神</a></p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">這個用法應用在中文上有時會遇到一些問題，就是當你想連結的文字是處在一段文字之中時，由於reStructuredText必須依賴英文間的空格來判斷標記的作用點，如果你直接使用此用法會造成判斷失誤，我們可以用以下方式解決：利用逸位字元\，逸位字元除了可取消下一個標記的作用外，也可以用來取消空格，因此，將上述語法更改為「\ `估狗大神`_\ 」（逸位字元+空格+原超連結語法+逸位字元+空格）即可。</p>
+</div>
+</li>
+<li><p class="first">除了上方兩種方式外，我們還可以使用內嵌網址超連結，語法為「`超連結文字+空格+&lt;網址&gt;+`+_」，例如：</p>
+</li>
+</ol>
+<blockquote>
+<p>`不離不棄 被當白七 &lt;http://blog.xdite.net/?p=228&gt;`_</p>
+<p>會顯示為</p>
+<p><a class="reference external" href="http://blog.xdite.net/?p=228">不離不棄 被當白七</a></p>
+</blockquote>
+<ol class="arabic" start="4">
+<li><p class="first">如果你要製作成超連結的文字很長，我們也可以使用無名稱超連結，這可以省去輸入超連結名稱的時間，標記格式為「`+超連結文字+`+兩個底線」，例如：</p>
+<p>Python is `one of the best scripting language`__ in the world.</p>
+<p>.. __: http://www.python.org</p>
+<p>會顯示為</p>
+<p>Python is <a class="reference external" href="http://www.python.org">one of the best scripting language</a> in the world.</p>
+<p>無名稱超連結也可以寫成下列更簡單的形式，適合喜歡偷吃步的人使用：</p>
+<p>`Apple Mac OS X is the most beautiful Operation System`__ in the Universe.</p>
+<p>__ http://www.apple.com</p>
+<p>這會顯示為</p>
+<p><a class="reference external" href="http://www.apple.com">Apple Mac OS X is the most beautiful Operation System</a> in the Universe.</p>
+</li>
+<li><p class="first">以上是外部網址的連結語法，現在我們來看看內部文件的超連結語法，首先我們必須知道所有的標題都可以當成超連結目標，因此我們只要將超連結文字取為和標題一樣即可快速製作內部文件的交互參照超連結，例如：</p>
+<p>`字面文字標記（inline literal）`_</p>
+<p>會顯示為</p>
+<p><a class="reference internal" href="#inline-literal">字面文字標記（inline literal）</a></p>
+</li>
+<li><p class="first">第二種交互參照的語法，只要利用指定超連結目標的語法指定一個字詞為超連結目標後，就可以利用超連結語法指向到設定好的超連結目標，請參照<a class="reference internal" href="#id8">文字解譯標記</a>.</p>
+</li>
+<li><p class="first">間接超連結，間接超連結可以指向與其他超連結相同的網站，如此一下就不需重新輸入，例如：</p>
+<p>`Google`_</p>
+<p>.. _Google: 估狗大神_</p>
+</li>
+</ol>
+<p>會顯示為</p>
+<blockquote>
+<a class="reference external" href="http://www.google.com.tw">Google</a></blockquote>
+<ol class="arabic" start="8">
+<li><p class="first">此外，利用無內容的超連結語法，我們也可以達成交互參照的功能，例如：</p>
+<p>我們先在文章首段中插入一個空的超連結目標語法如下：</p>
+<p>.. _回頁首:</p>
+<p>然後再利用超連結語法「`+超連結文字+`+_」建立一個超連結，那麼只要按一下這個超連結，就可以回到剛剛插入目標語法的下一段。</p>
+<p><a class="reference internal" href="#id1">回頁首</a></p>
+</li>
+</ol>
+</div>
+<div class="section" id="id16">
+<h2>插入圖片</h2>
+<p>插入圖片可分為直接插入圖片和插入帶有圖說的圖片，分別解說如下：</p>
+<ol class="arabic simple">
+<li><strong>插入圖片</strong>：我們可以利用「.. image:: 圖片名稱」這個語法來插入圖片，而且還可以設定文字對齊方式、大小、縮放百分比和超連結等。例如：</li>
+</ol>
+<pre class="literal-block">
+.. image:: http://lh3.google.com/Mischa.crave/RJDrBmWoABI/AAAAAAAAAAs/iXHMzjR7_1Y/s800/14195714_2816efe47d_o.jpg
+   :scale: 100
+</pre>
+<p>會顯示為</p>
+<img alt="http://lh3.google.com/Mischa.crave/RJDrBmWoABI/AAAAAAAAAAs/iXHMzjR7_1Y/s800/14195714_2816efe47d_o.jpg" src="http://lh3.google.com/Mischa.crave/RJDrBmWoABI/AAAAAAAAAAs/iXHMzjR7_1Y/s800/14195714_2816efe47d_o.jpg" />
+<pre class="literal-block">
+.. image:: http://lh3.google.com/Mischa.crave/RJDrBmWoABI/AAAAAAAAAAs/iXHMzjR7_1Y/s800/14195714_2816efe47d_o.jpg
+   :scale: 100
+   :height: 120
+   :width: 160
+   :align: left
+   :alt: I'm a cat.
+   :target: http://picasaweb.google.com/Mischa.crave/MyCat
+</pre>
+<p>會顯示為</p>
+<a class="reference external image-reference" href="http://picasaweb.google.com/Mischa.crave/MyCat"><img align="right" alt="I'm a cat." class="align-right" src="http://lh3.google.com/Mischa.crave/RJDrBmWoABI/AAAAAAAAAAs/iXHMzjR7_1Y/s800/14195714_2816efe47d_o.jpg" style="width: 320.0px; height: 240.0px;" /></a>
+<p>「.. image::」這個標記的參數有「:align:」（對齊）、「:height:」（長）、「:width:」（寬）、「:scale:」（縮放百分比）、「:alt:」（代替文字）和「:target:」（超連結目標）等。</p>
+<blockquote>
+<ul class="simple">
+<li>「:align:」可以指定圖片在文字中的對齊方式，可用的值有「top」、「middle」、「bottom」、「left」、「center」和「right」。</li>
+<li>「:height:」可以指定圖片的長，值必須為整數。</li>
+<li>「:width:」可以指定圖片的寬，值必須為整數。</li>
+<li>「:scale:」可以指定圖片縮放的百分比，值必須為整數，但後面不需加百分比符號<a class="footnote-reference" href="#id18" id="id17">[1]</a>。</li>
+<li>「:alt:」可以指定圖片無法載入時的代替文字，值必須為文字。</li>
+<li>「:target:」可以指定圖片的超連結目標，值必須為一個網址。</li>
+</ul>
+</blockquote>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[1]</a></td><td>此功能必須安裝 <a class="reference external" href="http://www.pythonware.com/products/pil/">PIL</a>（Python Image Library）才看得出效果。</td></tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li>我們還可以利用「.. figure::」這個指令<strong>插入帶有圖說的圖片</strong>，這個標記的用法和「.. image::」相似，參可設定的參數也大致相同。例如：</li>
+</ol>
+<pre class="literal-block">
+.. figure:: http://tinyurl.com/2ggpvs
+   :height: 300
+   :width: 400
+   :figwidth: 400
+
+   這是我家的肥笨貓，名叫 Lev Tolstoy ，愛吃又愛睡。我喜歡在他睡覺時拿檯燈猛照他，讓他只能遮著眼睛睡。
+</pre>
+<p>會顯示為</p>
+<div align="right" class="figure" style="width: 400px">
+<img alt="http://tinyurl.com/2ggpvs" src="http://tinyurl.com/2ggpvs" style="width: 400px; height: 300px;" />
+<p class="caption">這是我家的肥笨貓，名叫 Lev Tolstoy ，愛吃又愛睡。我喜歡在他睡覺時拿檯燈猛照他，讓他只能遮著眼睛睡。</p>
+</div>
+<ol class="arabic simple" start="3">
+<li>而如果需要在字間插入圖片，則可以使用下列方式：</li>
+</ol>
+<pre class="literal-block">
+因此，除了\ |b1|\ 之外，不要按下任何按鈕。
+
+.. |b1| image:: http://tinyurl.com/2z9wts
+</pre>
+<p>會顯示為：</p>
+<blockquote>
+因此，除了<img alt="b1" src="http://tinyurl.com/2z9wts" />之外，不要按下任何按鈕。</blockquote>
+</div>
+<div class="section" id="id19">
+<h2>表格的用法</h2>
+<p>在reST中，表格的繪製十分直覺、好用。你只要按照想要的格式，直接繪製表格即可，例如：</p>
+<pre class="literal-block">
++------------+------------+-----------+
+| Header 1   | Header 2   | Header 3  |
++============+============+===========+
+| body row 1 | column 2   | column 3  |
++------------+------------+-----------+
+| body row 2 | Cells may span columns.|
++------------+------------+-----------+
+| body row 3 | Cells may  | - Cells   |
++------------+ span rows. | - contain |
+| body row 4 |            | - blocks. |
++------------+------------+-----------+
+</pre>
+<p>會顯示為：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="34%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Header 1</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>body row 1</td>
+<td>column 2</td>
+<td>column 3</td>
+</tr>
+<tr><td>body row 2</td>
+<td colspan="2">Cells may span columns.</td>
+</tr>
+<tr><td>body row 3</td>
+<td rowspan="2">Cells may
+span rows.</td>
+<td rowspan="2"><ul class="first last simple">
+<li>Cells</li>
+<li>contain</li>
+<li>blocks.</li>
+</ul>
+</td>
+</tr>
+<tr><td>body row 4</td>
+</tr>
+</tbody>
+</table>
+<p>此外，如果表格的格式較為簡單，我們還可以利用另外一種更簡易的方式編排表格如下：</p>
+<pre class="literal-block">
+=====  =====  ======
+   Inputs     Output
+------------  ------
+  A      B    A or B
+=====  =====  ======
+False  False  False
+True   False  True
+False  True   True
+True   True   True
+=====  =====  ======
+</pre>
+<p>這種表格會顯示成：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head" colspan="2">Inputs</th>
+<th class="head">Output</th>
+</tr>
+<tr><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id20">
+<h2>註解和引用</h2>
+<p>在撰寫學術文章時常用到的註腳（footnote）和引用（citation）在reST中也可以輕易地編寫出來，其reST語法如下：</p>
+<ol class="arabic">
+<li><p class="first"><strong>註腳</strong>:</p>
+<pre class="literal-block">
+Linkin Park [#]_ is a rock band from Agoura Hills, California. They
+formed in 1996, and have since sold more than forty million albums and
+won two Grammys. They first achieved mainstream success in 2000 with
+their debut album, Hybrid Theory, which has since been certified Diamond
+by RIAA [#]_. Their following studio album, Meteora, continued the
+band's success, topping the Billboard 200's album charts in 2003, and
+was followed by extensive touring and charity work around the world.
+
+.. [#] 鈕饅頭 sucks。
+.. [#] RIAA also sucks.
+</pre>
+<p>這會顯示為：</p>
+<p>Linkin Park <a class="footnote-reference" href="#id23" id="id21">[2]</a> is a rock band from Agoura Hills, California. They formed in 1996, and have since sold more than forty million albums and won two Grammys. They first achieved mainstream success in 2000 with their debut album, Hybrid Theory, which has since been certified Diamond by RIAA <a class="footnote-reference" href="#id24" id="id22">[3]</a>. Their following studio album, Meteora, continued the band's success, topping the Billboard 200's album charts in 2003, and was followed by extensive touring and charity work around the world.</p>
+<table class="docutils footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id21">[2]</a></td><td><p class="first last">鈕饅頭 sucks。</p>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id22">[3]</a></td><td><p class="first last">RIAA also sucks.（用#標示的註解，會按照順序排下來，但是按照全篇的順序，而非上一個數字。你也可以自行在中括號後標示註腳的數字。）</p>
+</td></tr>
+</tbody>
+</table>
+</li>
+<li><p class="first"><strong>引用</strong>:
+引用和註腳的reST語法其實是一樣的，只是引用使用文字來代替中括號中的數字，例如:</p>
+<pre class="literal-block">
+這是常用在期刊中的引用格式 [CIT2002]_
+
+.. [CIT2002] 引用通常會置於文末。
+</pre>
+<p>會顯示為：</p>
+<p>這是常用在期刊中的引用格式 <a class="citation-reference" href="#cit2002" id="id25">[CIT2002]</a></p>
+<table class="docutils citation" frame="void" id="cit2002" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id25">[CIT2002]</a></td><td><p class="first last">引用通常會置於文末。</p>
+</td></tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>以上所介紹的只是reST其中的一小部份語法，其他更多語法可至reST官方網站中參閱，網址為：<a class="reference external" href="http://docutils.sourceforge.net/rst.html">http://docutils.sourceforge.net/rst.html</a> 。</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="rest.txt">View document source</a>.
+Generated on: 2007-08-31 07:22 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+</html>

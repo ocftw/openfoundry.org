@@ -1,0 +1,99 @@
+
+Suspend to Ram/Disk
+
+對於使用筆記型電腦的朋友們，相信這是一個簡單卻很
+實用的 Tips，在筆記型電腦上如何啟用 Suspend to RAM 
+& Suspend to DISK？
+
+雖然目前的 Linux distro 在這部份已經支援相當良好，
+但免不了還是有失敗的例子，以下分享小弟在 Linux 下
+啟用 Suspend to RAM & DISK 的過程，提供參考。
+
+(一)測試：
+
+先察看您的系統是否已經支援休眠模式了。
+#cat /sys/power/state
+mem disk standby
+(如果有 mem、disk... 等值，表示系統已支援休眠模式)
+
+可以簡單的測試一下休眠是否成功
+#echo -n mem > /sys/power/state
+#echo -n disk > /sys/power/state
+
+如果上面的測試後，系統可以順利休眠與甦醒，那麼這時
+即可使用 Klaptop 或 Kpowersave (如果是 KDE 環境)
+，來詳細設定 Notebook 的相關休眠動作。
+
+PS:
+如果「(一)測試」的部份，cat /sys/power/state 的值
+mem 與 disk 均有，但 Suspend to DISK 是失敗的，
+可以檢查一下 menu.lst (如果是 GRUB 的話)，是否有
+帶入 resume=XXX 的值給 kernel。
+
+而 resume=XXX 的值，即是 resume partition
+(save the suspended image)。
+e.g: resume=/dev/hda7 或 resume=/dev/hdX ...
+
+(二) 編譯核心：
+
+//-- 不建議 Linux 新手或不熟的朋友重新編譯，避免發生
+不可預期的後果。請在編譯核心之時，確保知道自己在做
+什麼。--//
+
+如果系統預設不支援休眠該怎麼辦？一種可能是相關的
+ACPI 模組沒有被掛載上來，另外也許是 kernel 並沒有把
+相關功能編入進去。
+
+如果曉得模組的相關名稱為何的話，可以使用 modprobe
+將相關模組掛載上來，並按照（一測試）的部份試看看休眠
+模式是否順利開啟。
+
+這裡小弟的使用方法，則是 re-build 一份 kernel，直接將
+相關的 ACPI/APM 模組編入核心，小弟使用的 kernel 為：
+linux-source-2.6.15 (2.6.15-3)
+
+首先 reload 先前的 .config 檔，接著將以下相關的選項
+打 * ，編入核心：
+
+Code maturity level options ---> (注意 !!! EXPERIMENTAL!!! )
+[*] Prompt for development and/or incomplete code/drivers
+[*] Select only drivers expected to compile cleanly
+
+Power management options (ACPI, APM) --->
+[*] Software Suspend
+(/dev/hda7) Default resume partition (這裡可設定您的 Resume partition)
+[*] Encrypt suspend image
+
+ACPI (Advanced Configuration and Power Interface) Support --->
+[*] ACPI Support
+[*] Sleep States
+[*] /proc/acpi/sleep (deprecated)
+
+編譯完成後，建立 initrd (mkinitrd)，修改 menu.lst... 等等
+接著 reboot 以新的核心啟動系統，新核心啟動完畢後，
+可繼續「(一)測試」 的步驟，測試系統是否已經支援休眠模式。
+
+若 re-build kernel 後，可以順利支援 Suspend to RAM
+& DISK，那麼真的恭喜您啦！
+
+倘若還是不行，那麼可能就要朝多方向去 Debug 了，
+已不在本文的範疇中了 :P。不過，不妨參考本文後面的
+Reference，或許可幫助您更順利解決問題。
+
+(三) 後記：
+
+以上簡單描述小弟在 Linux 下啟用 Suspend to RAM
+& DISK 的過程，提供參考，如果大家有相關資料或文獻
+要補充那真的太感謝了！
+
+小弟的測試環境：
+測試機器: IBM X40
+測試版本: Debian (with kernel 2.6.15-3)
+
+更多資源：
+http://moto.debian.org.tw/viewtopic.php?t=3149 
+http://moto.debian.org.tw/viewtopic.php?t=8304 
+http://moto.debian.org.tw/viewtopic.php?t=4286 
+http://www.suspend2.net/ 
+
+

@@ -1,0 +1,611 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 192 期 | 2012/03/27 □■□
+________________________________________________________________
+
+◎ 本期主題︰開放源碼的安全演算法工具︰OpenSSL（3）- RSA 非對稱式加解密演算法
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/04/10
+
+□ 本期標題 □__________________________________________________
+
+■ [系統公告] 自由軟體鑄造場電子報將於 4 月份起合併網頁版與純文字版
+
+■ [技術專欄] 開放源碼的安全演算法工具︰OpenSSL（3）- RSA 非對稱式加解密演算法
+
+■ [技術專欄] 從 Github 被 Hack，談 Rails 的安全性（Mass-assignment）
+
+■ [法律專欄] 從自由軟體專案及活動的命名爭議介紹著名商標  
+
+■ [自由文化] 開源軟體會蠶食商業軟體市場嗎？
+
+■ [自由文化] 微軟將 Mayhem 開源：目的為何？
+
+■ [源碼快報] 2012 年文件自由日
+
+■ [源碼快報] ﻿Wine 1.5 版發布
+
+■ [源碼快報] ﻿Mozilla 考慮讓行動版 Firefox 支援 H.264 視頻編解碼器
+
+■ [源碼快報] ﻿NVIDIA 加入 Linux 基金會
+
+■ [源碼快報] ﻿PageKite 提供免費帳號
+
+■ [源碼快報] ﻿Ubuntu 12.04 beta 版本釋出，使用者介面創新是賣點
+
+■ [源碼快報] ﻿Google Play Store 退費政策遭使用者控告
+
+■ [源碼新聞] ﻿OpenFoundry 資源表列 - 地理資訊系統上線
+
+■ [源碼快訊] ﻿輕鬆建置 Nagios 網路監控主機
+
+□ 本期內容 □__________________________________________________
+
+■ [系統公告] 自由軟體鑄造場電子報將於 4 月份起合併網頁版與純文字版
+
+感謝各位讀者長期以來的支持與愛護！
+
+自由軟體鑄造場即將於 4 月份開始，將合併網頁版與純文字版的電子報，改為以發送 HTML 版本的電子報為主，並將 TXT 純文字版本以信件附件檔案的方式發送給各位讀者。
+
+無論您原為網頁版或是純文字版的訂戶，這項改變都不會造成您收不到自由軟體鑄造場電子報，我們還是會維持每個月的雙週二發送當期電子報。
+
+若是您過往以不同信箱分別訂閱自由軟體鑄造場電子報純文字版與網頁版，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰http://www.openfoundry.org/tw/news，或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。
+
+如果您對於退訂有些疑惑，可以參考這一篇說明文件︰http://www.openfoundry.org/index.php？option=com_content&task=view&id=1052&Itemid=4 。
+________________________________________________________________
+
+■ [技術專欄] 開放源碼的安全演算法工具︰OpenSSL（3）- RSA 非對稱式加解密演算法
+
+曾義峰 / 文
+
+前言
+
+OpenSSL 提供了完整安全通信所需的編碼工具，諸如雜湊演算法（Hash algorithms）、加解密演算法（Encryption / Decryption algorithms）及 SSL / TLS 協議的實現等。加上其開放源碼的特性，使得許多開源專案或商業套件都有其踪跡。OpenSSL 除了提供程式 API 擴充接口外，也有命令列模式的操作。
+
+本專案主要使用 C 程式語言撰寫，於 Windows / Linux / BSD / MacOS 下皆可運行。
+
+官方網站︰http://www.openssl.org/
+軟體授權︰OpenSSL License 或 SSLeay License 的雙重授權。
+本篇文章為 OpenSSL 系列文章第三篇。常見的加解密演算法分為對稱式與非對稱式，有興趣的使用者，可以在網路上搜尋相關的文章。本章節將介紹 OpenSSL 在非對稱式加解密演算法上的運用。本篇將著重於命令列模式下的非對稱式加解密演算法的操作。
+
+使用 OpenSSL RSA 演算法產生私鑰
+
+請使用 "genrsa" 為其參數，隨後附上 "-out" 參數指定輸出後的檔案名稱︰
+
+$ openssl genrsa -out private.pem
+Generating RSA private key, 512 bit long modulus
+.++++++++++++
+...++++++++++++
+e is 65537（0x10001）
+執行後，OpenSSL 預設會產生長度為 512 bit 的私鑰。
+
+我們可以使用額外指令參數來改成預設的私鑰長度。例如，產生 1024 bit 長度的私鑰，可以在上列指令的最後加上 "1024"，如︰
+
+$ openssl genrsa -out private.pem 1024
+Generating RSA private key, 1024 bit long modulus
+.++++++
+........................................................++++++
+e is 65537（0x10001）
+以此類推，若是 "4096"，則︰
+
+$ openssl genrsa -out private.pem 4096
+Generating RSA private key, 4096 bit long modulus
+......................................................................................++
+..................++
+e is 65537（0x10001）
+需要注意的是，愈長的私鑰被破解的機率愈低，但是相對地，我們在使用加密與解密的時間也會愈長。使用者可以自行評量。
+
+使用 RSA 的私鑰產生相對應的公鑰
+
+請使用 "rsa" 為其參數，隨後附上 "-in" 參數指定私鑰檔案，"-out" 參數指定產生的公鑰檔案名稱，"-outform" 參數指定公鑰的輸出格式，以及 "-pubout" 參數結尾︰
+
+$ openssl rsa -in private.pem -out public.pem -outform PEM -pubout
+writing RSA key
+執行後，OpenSSL 會產生 public.pem 的檔案在磁碟中。
+
+使用 RSA 的公鑰加密檔案
+
+請使用 "rsautl" 為其參數，隨後附上 "-encrypt" 參數指定加密的運行，"-inkey" 參數指定密鑰檔案，"-pubin" 參數將公鑰產生於加密檔案中，"-in" 參數指定欲加密的檔案，以及 "-out" 參數指定加密後的檔案名稱︰
+
+$ openssl rsautl -encrypt -inkey public.pem -pubin -in file -out file.rsa
+執行後，OpenSSL 會產生 file.rsa 的檔案在磁碟中。
+
+注意，RSA 非對稱式加解密演算法因為先天的限制，無法加密過大的檔案，若遇到此問題時，OpenSSL 會輸出如下的錯誤訊息︰
+
+RSA operation error
+13931︰error︰0406D06E︰rsa routines︰RSA_padding_add_PKCS1_type_2︰data too large for key size︰rsa_pk1.c︰151︰
+若遇到此問題時，最簡單的方式就是使用對稱式的加解密演算法，而不是非對稱式的加解密演算法。
+
+使用 RSA 的私鑰解密檔案
+
+請使用 "rsautl" 為其參數，隨後附上 "-decrypt" 參數指定解密的運行，"-inkey" 參數指定密鑰檔案，"-in" 參數指定欲解密的檔案，以及 "-out" 參數指定解密後的檔案名稱︰
+
+$ openssl rsautl -decrypt -inkey private.pem -in file.rsa -out file
+執行後，OpenSSL 會產生 file 的檔案在磁碟中。
+
+結語
+
+本篇範例介紹了 RSA 非對稱式加解密檔案的操作。當然除了本系列文章的介紹外，OpenSSL 還提供許多好用的功能，就請使用者自行探索囉。
+_______________________________________________________________
+
+■ [技術專欄] 從 Github 被 Hack，談 Rails 的安全性（Mass-assignment）
+
+XDite / 文
+
+◎ 本文轉載自 Blog.XDite.net，原文網址：http://blog.xdite.net/posts/2012/03/05/github-hacked-rails-security/
+
+關於 Github 被入侵這件事，目前在國外開發圈傳的沸沸揚揚。看來中文圈還沒有消息，我來報導一下到底發生了什麼事好了。順便宣導一下開發 Rails 程式碼需要注意的其中一個觀念..
+
+到底發生了什麼事
+
+Rails（https︰//github.com/rails/rails）的 master 被某個 hacker 塞上這一段 commit（https︰//github.com/rails/rails/commit/b83965785db1eec019edf1fc272b1aa393e6dc57）。以證明 Github 是可以被入侵的。
+
+為什麼會發生這件事（糾紛起源）
+
+有一個俄羅斯 Hacker ︰homakov（http://blog.xdite.net/posts/2012/03/05/github-hacked-rails-security/homakov）到 Rails 的 Github issue 頁，report 了一個 issue（https︰//github.com/rails/rails/issues/5228）。聲稱他發現很多「中等程度以下的」Rails 開發者開發任何網站，都沒有在 model 內作上任何 attr_accessible（http://api.rubyonrails.org/classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-attr_accessible）的防護，這樣會引起很多安全性的問題。
+
+Rails 官方應該設計一個機制強迫大家一定得「使用」attr_accessible。因為寫 code 要塞 attr_accessible 被多數開發者認為是根本是一個「常識」。所以這個 issue 很快就被 Rails core team 關掉了。他的意見是，這不是 Rails 的問題，而是開發者的問題，正常人都會做出這樣的反應。
+
+這個 Hacker 覺得他好心來報告，但是卻被忽視，感到很生氣。於是！他 Hack 了 Github 證明這件事情是真的。他不僅利用這個漏洞在 rails/rails 中塞了 commit ，連當初被關掉的 issue ，也用同樣方法打開了。所以這下就鬧到舉世震驚了！
+
+為什麼會發生這件事（剖析 Rails）
+
+從 Rails 表單機制談起
+
+Rails 秉持著 Don’t Repeat Yourself 的精神，將 Form 表單 Helper 直接與 Model 欄位直接結合，節省不少開發者撰寫表單的時間，是一個很聰明的作法。
+
+<%= form_for @post do |f| %>
+  <%= f.text_field ︰title %>
+  <%= f.text_area ︰content %>
+  <%= f.sumbit "Submit" %>
+<% end %>
+
+當表單送出後，會被壓縮成一個 params[︰post] 這樣的 Hash。controller 裡面透過 massive-assignment 的技巧直接 mapping 進 Model 裡。
+
+class PostController < ApplicationController
+  def create
+     @post = current_user.posts.build（params[︰post]）
+     if @post.save
+       # do something
+     else
+       # do another thing
+     end
+  end
+end
+
+這是一個自 Rails 誕生以來就有的機制了，十分便手。有些不了解的 Rails 的其他 Developer 批評這是一個不安全設計，並因此拒絕使用 Rails。欄位暴露在外被人知道，讓他們感到非常不自在。
+萬一被人猜到 user 權限是用 user.is_admin 作為 boolean 值，這樣豈不是很危險嗎？在修改個人資訊頁時，假造 DOM 就不是可以把自己提升為 admin 了嗎？
+
+Rails 內建的安全防禦措施
+
+Rails 也不是沒有針對這件事設計出防禦措施，有兩組 model API ：attr_accessible 與 attr_protected（http://api.rubyonrails.org/classes/ActiveModel/MassAssignmentSecurity/ClassMethods.html#method-i-attr_protected）。其實也就是 白名單、黑名單設計。把 attr_accessible 加在 model 裡，可以擋掉所有 massive assignement 傳進來的值，只開放你想讓使用填寫的欄位。
+class Post < ActiveRecord︰︰Base
+  attr_accessible ︰title, ︰content
+end
+
+而 attr_protected 是完全相反地機制。
+
+知名認證 Plugin 皆內建 attr_accessible
+
+也因為 user.is_admin 幾乎是所有懶惰開發者會寫出來的 code。因此長久的歷史演變下來，許多知名認證 plugin，如 devise（https︰//github.com/plataformatec/devise），restful-authentication 等等，在 User model 裡都會加上 attr_accessible（你可能沒有察覺到，因為可能是透過 include Module 塞進來的功能）。
+因為是隱藏的內建防禦，很多不夠經驗的開發者，反而會被這道自動防禦整到，在設計修改使用者資訊這個功能時，常常表單明明沒問題，但就是修改不了除了密碼和 email 以外的欄位。
+
+User model 自動防禦，那其他 model 呢？
+
+好問題！這就是這次 Github 發生的問題。嚴格來說，根本不是 rails/rails 的錯，而是 Github 內某個被罵 mid/junior level 的 developer 的錯。他根本沒有對其他 model 作上保護，才被 hacker 有機可趁。
+Hacker 也是想要證明連 Github 都會犯這種錯，才會鬧出這種事件。
+
+看到 Github 的事件，我該做什麼？
+
+請回家讀這兩組 model API ：attr_accessible 與 attr_protected 的作用。
+並檢查你的 project 內是否有類似問題：一般來說，容易被攻擊的點都跟 relation 比較有關係。也就是 xxxxx_id 的部分都要清查。
+
+Scoped Mass Assignment
+
+這是 Rails 3.1 加入的新 feature ︰scoped mass assignment，
+http://enlightsolutions.com/articles/whats-new-in-edge-scoped-mass-assignment-in-rails-3-1。
+我也建議你閱讀。
+
+Rails core team 目前的解法
+
+大師 Yahuda Katz（wycats）目前起草了一份新的 proposal（https︰//gist.github.com/1974187），並且丟在 Hacker News（http://news.ycombinator.com/item?id=3664334）讓鄉民討論。應該可能近期就會進 Rails core 或以 plugin 的方式釋出。
+
+我個人的感想
+
+其實昨晚睡前看到一堆人說 Github 被 Hacked 掉，然後追了幾篇討論串之後，覺得真的是沒什麼，因為就我來說，的確應該就是這個 hacker 覺得有必要提醒大家，但這對多數的 Rails Developer 來說，根本是超小的小事，不值得這麼大驚小怪。
+結果憤怒的 Hacker 攻擊了 Github，Github 真的還因為某個 developer 犯了錯誤中招。但我還是覺得沒什麼…
+
+XSS V.S. Massive Assignment
+
+後來睡醒以後才發現不對，其實這東西應該要被拿來跟 auto escape 相比：XSS 是一般設計 Web Application 最容易中招的攻擊。
+XSS 的原因肇因是讓開發者開放讓使用者自行輸入內容，然後無保護的讀出來，Hacker 會利用這種漏洞，寫進有害的 JavaScript 讓使用者中招。正確的方式應該是：內容讀出來之後，都要利用 html_escape 濾掉。
+問題是，html_escape 濾不勝濾，沒有開發者能夠那麼神，寫任何一段 code 都會自律的加上 h（content）。最後 Rails core 痛定思痛，在 Rails 3.0 後效法 Django 的設計，在讀出 content 時，一律先 escape。除非有必要，才另行設定不需 escape。
+
+我想這次的 massive assignment 問題應該也要比照辦理才對…
+
+延伸閱讀：
+
+國外鄉民懶人包：GitHub and Rails︰You have let us all down（http://chrisacky.posterous.com/github-you-have-let-us-all-down）
+
+DHH 給出的 37Signals 的作法：https︰//gist.github.com/1975644
+_______________________________________________________________
+
+■ [法律專欄] 從自由軟體專案及活動的命名爭議介紹著名商標  
+
+林珈宏 / 文
+
+在發起一個專案或是舉辦活動之前，命名是一件非常重要的事情。隨著專案及活動逐漸擴展並提升知名度，它的名稱也會成為社群集體認同的重要元素，例如在各類自由軟體活動中，會見到許多人穿上印有專案名稱、標誌或吉祥物的 T-shirt，筆記型電腦背板也貼上相關的貼紙。並且，成熟發展的專案，往往也具備商業價值。因此，一個專案名稱，除了帶有社群成員對其核心價值的認同之外，同時也包含使用者對於該軟體質量所長期累積的信譽口碑。 
+
+撰寫本文的起因在於，筆者近來觀察到有台灣本地社群面臨與專案或活動名稱相關的爭議事件及疑義，其中也與商標法制中的「著名商標」有關，所以藉此機會介紹商標相關的法律常識給讀者（註一）。以下先介紹商標相關的規定，再提出兩個實例進行初步探討。
+
+◎商標法與著名商標 
+
+商標法的目的在於保障商譽，同時也可防止消費者對於商品或服務提供來源的誤認，因此商標的名稱必須具備識別性，除了申請時須先查詢是否與同類商品服務的既有商標相同或類似之外，其命名也有消極要件須依循，例如不能只以品質、用途、原料、產地等相關特性之描述來申請註冊，才符合識別性的要求（註二）。並且，商品或服務的提供者若要取得其商標的商標權，必須向智慧財產局申請商標註冊，才能享受商標權的保障；這樣的制度稱為「註冊保護原則」。 
+
+「註冊保護原則」在實際運作上是由先註冊者取得商標。如此一來，若有一個商標已具有國際知名度，卻未在某國家註冊，就可能面臨反被他人先註冊的窘境。為解決這個問題，世界智慧財產權組織（World Intellectual Property Organization, WIPO）於 1999 年九月通過《關於保護著名商標規定之聯合備忘錄》（註三），促使各會員國修改其國內商標法，以保障「著名商標（馳名商標，well-known marks）」（註四）。 
+
+我國商標法中定義的著名商標是指，有客觀證據足以認定該商標已廣為相關事業或消費者所普遍認知者，即屬之（註五）；如果一個商標相同或近似於他人的著名商標，可能會導致公眾混淆誤認，或是可能會減損著名商標的識別性或信譽的話，它就不得註冊為商標（註六）。因此，在主張著名商標時，就必須提出客觀的證據來說明，相關事業或是消費者對該商標都已有普遍的聽聞及認知。然而，這樣的標準並不明確，實務判斷上也難以操作，所以另訂有一個著名商標保護的審查基準以補充母法的規定（註七）。 
+
+審查基準中規定，商標是否著名，應以國內消費者的認知為準，而國內消費者會普遍認知這個商標的存在，通常是因為它在國內廣泛使用的緣故；因此，如果要主張著名商標，原則上應檢送該商標於國內使用的相關證據。只是，縱使這個商標並未在國內使用，或實際使用情形並不廣泛，但若可提出客觀證據顯示，該商標於國外廣泛使用所建立的知名度已到達我國者，仍可認定該商標為著名。此外，對於著名商標的認定，並不以在我國註冊或申請註冊或已使用為前提要件，即使該商標為未註冊的著名商標，仍可成為保護對象。
+
+不僅如此，審查基準也說明，在認定著名商標時，應就個案情況，考量以下八點因素之後，綜合判斷之：（1）商標識別性之強弱；（2）相關事業或消費者知悉或認識商標之程度；（3）商標使用期間、範圍及地域；（4）商標宣傳之期間、範圍及地域；（5）商標是否申請或取得註冊及其註冊、申請註冊之期間、範圍及地域；（6）商標成功執行其權利的紀錄，特別指曾經行政或司法機關認定為著名之情形；（7）商標之價值；以及（8）其他足以認定著名商標之因素。 
+
+以上談了這麼多條文，從抽象描述到細項規定，再從細項規定的最末看到「其他因素」的開放認定空間，即可了解法律的判斷標準確實很難達到既清楚、又保留彈性。但我們也可參照上述的判斷標準，在面臨爭議時進行初步的分析探討。以下就從兩個例子談起。 
+ 
+◎ 例一：IE Tab 與 IE Tab 2 
+
+IE Tab 是一個將 Internet Explorer 嵌入 Firefox 內的擴充套件（註八），授權方式為 GPL-2.0，其發起暨主要開發者是國內知名自由軟體開發者 PCMan（註九）。該專案在 2006 年停止開發後，有一家名為 Blackfish Software 的外國公司取用其程式碼，改作為 IE Tab 2，並註冊 http://www.ietab.net/ 的網址，隨後又寄信給 PCMan 表示，希望能以若干金錢換取原 IE Tab 專案的撤收，並遭到拒絕。後來，在 addon.mozilla.org 中還出現一個不名的假冒 PCMan 的帳號，其發言也會引人誤信 PCMan 已同意後續由 ietab.net 接手該專案的開發。而後，去年（2011）年底時，PCMan 發現 IE Tab 2 並未依循 GPL 的規定向用戶釋出源碼。因此，PCMan 就到討論區中揭露相關資訊，隨即引發眾議。（註十）
+
+雖然這個討論串是源自於 GPL 的違反、並未涉及商標權的註冊，不過，由於原來的 IE Tab 已是非常知名、廣為用戶安裝的套件，並且，從該公司註冊 ietab.net 之網址，又同時出現不明的假冒帳號同意 ietab.net 接手專案的開發之事，皆在在顯示「IE Tab」這個未經註冊的商標已具備相當高的商業價值。 
+
+要把這個商譽化為商標權的首要步驟就是申請商標註冊。經筆者查詢，繼續開發 IE Tab 2 的 ietab.net 並未將 IE Tab 於美歐註冊商標；而 PCMan 也沒有註冊台灣的商標，所以目前並沒有商標侵權的問題。但是，如果未來有人取得「IE Tab」在台灣的商標權，其能否取得，就要看「IE Tab」是否屬於著名商標了。
+
+著名商標的定義就是該商標必須廣為相關事業或消費者所普遍認知。在 Firefox 3.5 之前的 IE Tab 是大多數 Windows 作業系統下的 Firefox 使用者會安裝的擴充套件，如此才能在瀏覽 IE Only 的網頁時正常呈現內容；此外，更因為這是一款由國人自製、揚名於世的擴充套件，不僅國內眾多 Firefox 使用者都聽過、也有安裝 IE Tab，它在國外亦有廣泛使用及高知名度。也就是說，「IE Tab」的名稱雖未註冊商標，但它已長期使用，全世界的 Firefox 使用者及相關擴充套件開發者都已普遍認知到這個專案的存在，並可輕易聯繫到原作者。例如，從 ietab.net 寄信給 PCMan 溝通的事也可以推知，相關事業確實知悉、認識「IE Tab」，因此即可將其作為認定著名商標的判斷標準之一。因為審查基準的內容繁多，基於篇幅，筆者在本段落並不打算將所有條件都套用並得出判斷結論，僅說明最直接明顯的論點，讓讀者也可以理解以及試著判斷。
+
+假設，「IE Tab」確屬著名商標，則後來遭他人註冊之商標應在不得註冊之列。因此，在異議人向智慧財產局提出異議，並經審核後，倘智慧財產局認為其異議有理由，即會撤銷該商標註冊。（註十一）此外，若 IE Tab 有經過註冊，屬於著名註冊商標，其商標權人亦得向法院提出訴訟，請求除去其侵害，並請求損害賠償。（註十二）然而，事實上的法律程序曠日費時、所費不貲，倘若 PCMan 並無取得商標、更行經營之計畫，亦難謂實益所在。
+
+◎ 例二：從 JSConf.tw 到 JSDC.tw
+
+去年（2011）年底，一群愛好 JavaScript 的社群朋友共同發起籌備首屆台灣的 JavaScript 研討會，命名為 JavaScript Conference Taiwan，簡稱「JSConf.tw」，同時買下相同域名以作準備。今年一月上旬 jsconf.tw 首頁上線後，總召集人 Caesar Chi 旋即收到一封來自美國的郵件。發信者 Chris Williams 表明其擁有「JSCONF」商標，亦為 JSConf 團隊的領導人，故希望 JSConf.tw 改用其他名稱，以避免與其商標產生衝突。籌備團隊於是開始討論解決之道。（註十三）
+
+經查，「JSCONF」於 2010 年已註冊為美國商標（註十四），迄今在台灣並無註冊。討論過程中，有成員認為，過去未曾聽聞美國及歐洲的 JSConf，本次活動亦並未自稱是美歐 JSConf 在台灣辦的研討會、並無攀附該研討會聲譽之意圖，況且對方也沒有註冊台灣商標，因此只要在官網發文澄清此二 JSConf 互無關聯即可；亦有成員提出，既然其已註冊商標，又已辦過兩年活動，可能屬於國際上的著名商標，因此還是改名為妥。最後，成員共同決議改名為 JavaScript Developer Conference Taiwan（JSDC Taiwan），並註冊 jsdc.tw 作為新域名，就此定案。
+
+雖然因為改變名稱而避免可能的爭議，然而，筆者仍試圖於下文中，簡單地檢驗「JSCONF」此一美國商標是否屬於著名商標；其中，必須視其是否已經達到「相關事業及消費者普遍認知」的程度，並且參考「審查基準」的判斷標準，即可綜合判斷。
+
+（1）商標識別性之強弱：關於識別性，指的是商標指示商品或服務來源，並與他人的商品或服務相區別的特性（註十五）。例如，一個商標不能只是單單在品質、用途、原料、產地等相關特性來命名，否則就不具有識別性（同註二）。以「JSCONF」來說，是 JavaScript Conference 的縮寫，從其全稱 JavaScript Conference 來說，這組字單純屬於其特性的描述，而不具有任何識別性可言。不過，縮寫畢竟不等於全稱，也不應否認「JSCONF」這個縮寫本身仍帶有某程度的識別性。 
+
+（2）相關事業或消費者知悉或認識商標之程度：JSConf 是以 JavaScript 為主軸的研討會，若要提出其相關事業或消費者，則可從其他類似的研討會或教育訓練課程之業者及消費者的方向思考。例如，國內有舉辦以開放源碼、特定程式語言或資訊主題為主軸的知名研討會，例如 COSCUP、OSDC、HIT、RubyConf、PHPConf、PyCon 等，其主辦團隊，即應可認為屬於「相關事業」之一；而「相關消費者」，則可認為是前述相關事業所舉辦的研討會之參與者。若就相關業者是否普遍認知來判斷，最直接的方式就是向上述各活動的主辦人及工作成員加以詢問，是否對於美歐的 JSConf 有所聽聞；而相關消費者是否也有普遍認知，則也可向這些活動的參與者詢問，以判斷相關消費者知悉或認識商標之程度如何，即可探究「JSCONF」在國內的知名度如何，進而成為其是否屬於著名商標的判斷標準之一。 
+
+從另一個角度觀察，JSDC 籌備團隊成員來自台灣 HTML5 及 node.js 兩個社群，不僅熱衷於各種自由軟體活動，本身就是 JavaScript 的愛好者，因此，同前段所述邏輯，亦得將其視為「相關消費者」；在籌備活動的面向上，也可認為是「相關業者」。實情則是，JSDC 籌備團隊成員對於在美歐舉辦的 JSConf.us 以及 JSConf.eu，在收到對方來函之前，確實並無普遍認知。因此，此點亦可用以判斷「JSCONF」知名度的高低。 
+
+（3）商標使用期間、範圍及地域；（4）商標宣傳之期間、範圍及地域；以及（5）商標是否申請或取得註冊及其註冊、申請註冊之期間、範圍及地域：「JSCONF」商標在美國註冊的期間僅有兩年，其使用及宣傳範圍亦僅在歐美、未及於亞洲，遑論台灣。從這三點綜合來看，較難認定其在台灣屬於著名商標。 
+
+（6）商標成功執行其權利的紀錄，特別指曾經行政或司法機關認定為著名之情形；（7）商標之價值；以及（8）其他足以認定著名商標之因素：關於「JSCONF」是否有在其他國家被認定為著名商標、其商標是否有經由專業鑑價機構以認定其價值，以及有無其他足以認定為著名商標因素，礙於筆者未蒐集到此部分資料，故難進行推論。
+
+以上筆者簡單地把相關事實對應至審查基準逐項探討，目的並不在精細論證「JSCONF」是否在台灣可被認為是著名商標而遽下結論，而是讓讀者可以理解，在條文認定大致上的操作為何；並且，也可從逐項檢驗之下，描繪出一個可能的輪廓。
+
+◎ 結論 
+
+從 IE Tab 及 JSConf.tw 此二例中，吾人皆可觀察到在網路社會中，一個專案或活動的命名，已不可避免地與國際接軌。因此，筆者建議，在命名專案及社群名稱及活動時，應以具有高度識別性的文字或圖形作為其名稱及標誌，例如 Ubuntu、Mozilla、Android、Titanium 及 MySQL 等，皆非以其產品相關特性之描述作為名稱。並且，因為前述的社群與商業公司有合作關係，亦有直接由商業公司所發起者，所以其專案名稱及標誌皆有註冊商標；因此，如果一個自由軟體專案或社群活動開始產生商業價值，或有潛在的商業夥伴或競爭者，筆者建議最好要申請商標註冊，以防止被攀附剽竊的憾事重演。此外，在命名及申請網址時，應該先查詢國際間的狀況，以避免專案及活動名稱與他人相同，而發生不必要的爭議。從積極的面向來說，筆者也認為本地社群亦可藉此機會與國外社群接觸，以增進國際間的交流、擴大自身的視野，同時，更可能促成未來的合作空間。
+
+註一：本文及註解中所引用之商標法條文，均以民國 100 年 6 月 29 日所修正之新法為準；惟行政院尚未明定本次修正全文 111 條之施行日期，故新法於本文發表時點尚未施行，在此合先敘明。
+
+註二：參見，商標法第 29 條。 
+ 
+註三：關於保護著名商標規定之聯合備忘錄（Joint Recommendation Concerning Provisions on the Protection of Well-Known Marks），參見：http://www.wipo.int/about-ip/en/development_iplaw/pub833.htm。 
+
+註四：在我國商標法中，除了商標之外，還有對於證明標章、團體標章或團體商標的保護。因此，此處著名商標的範圍事實上尚包含了著名標章在內，其全稱應為「著名商標或標章」，本文基於多數文獻之用詞慣例及行文之便，將其簡稱為「著名商標」。
+
+註五：參見，商標法施行細則第 16 條。 
+
+註六：參見，商標法第 30 條第一項第 11 款及舊法（現行）商標法第 23 條第一項第 12 款之規定。 
+
+註七：對於著名商標詳細的審查標準，參見，商標法第 23 條第 1 項第 12 款著名商標保護審查基準，http://www.tipo.gov.tw/ch/AllInOne_Show.aspx?guid=ecc0cedd-ddcf-4d52-bed6-c21f55b79b5d&lang=zh-tw&path=709。 
+
+註八：參見，ietab.mozdev.org。 
+
+註九：PCMan 的網路 profile：http://www.blogger.com/profile/14064769949626405383。 
+
+註十：參見，http://forum.moztw.org/viewtopic.php?f=11&t=34307。事實上，IE Tab 2 事件中，最主要的爭議點是 GPL 違反的問題，其次才是該公司欲接手該專案之維護開發者的爭議。 
+
+註十一：商標法第 30 條第一項第 11 款規定，相同或近似於他人著名商標或標章，有致相關公眾混淆誤認之虞，或有減損著名商標或標章之識別性或信譽之虞者，不得註冊。第 48 條又規定，商標之註冊違反第 30 條第一項規定之情形者，任何人得自商標註冊公告日後三個月內，向商標專責機關提出異議。
+
+註十二：商標法第 70 條第 1 款規定，明知為他人著名之註冊商標，而使用相同或近似之商標，有致減損該商標之識別性或信譽之虞者，視為侵害商標權。第 69 條第一項規定，商標權人對於侵害其商標權者，得請求除去之；有侵害之虞者，得請求防止之。同條第三項又規定，商標權人對於因故意或過失侵害其商標權者，得請求損害賠償。 
+
+註十三：因筆者亦為核心籌備成員之一，文中關於本研討會之資訊多來自籌備過程中所悉，故恕無線上參考文獻可參見。 
+
+註十四：參見，美國專利商標局蒐尋「JSCONF」之結果頁面：http://tarr.uspto.gov/servlet/tarr?regser=serial&entry=85029188。 
+
+註十五：識別性的判斷標準，本文限於篇幅，無法細說。參見，商標識別性審查基準，http://www.tipo.gov.tw/ch/MultiMedia_FileDownload.ashx?guid=4128105a-c3b2-41d9-993b-86540245801a.pdf。
+_______________________________________________________________
+
+■ [自由文化] 開源軟體會蠶食商業軟體市場嗎？
+
+Kenneth Mak / 文
+
+◎ 本文原載 Linuxpilot 網站，原文章連結（http://www.linuxpilot.com/industry/news/2012030801Commercial-Software-Loses-Ground%20）
+
+有了免費的開源軟體，您還會用付費的商業軟體嗎？這是長久以來開源界的爭論。筆者認為是不會的，但著名研究機構 Gartner 的研究主管 Laurie Wurster 卻持不同的意見。
+
+http://www.openfoundry.org/images/120327/market/market-01.png
+▲ 圖
+
+Laurie Wurster 最近在 Harvard Business Journal 發表的文章，內容公開了 Gartner 對企業採用開源軟體的調查結果。結果發現 29% 的受訪企業 ，都有在不同程度上採用開源技術，其中 46% 的組織在部門和專案層面使用開源軟體、22% 的組織恆久地在所有部門中採用開源軟體、21% 的組織會因應實際情況，決定是否使用開源。
+
+回想十多年前，大部分企業都尚未發現開源技術的價值，要作為商業軟體的代替品使用，對管理層是一個相當冒險的決定。今天 Novell  SUSE Enterprise Linux、MySQL 和 Alfresco 等品牌的知名度已經大為提高，加上有金融機構和大企業採用開源技術的事例，開源在企業心目中已經建立了一定的地位，更加成為了防止單一廠商束縛的主要手段。
+
+但開源技術被廣泛使用的背後，Laurie Wurster 卻認為開源技術正在蠶食商業軟體市場，當中的「重災區」便是 Java 的應用程式伺服器。根據 New Relic 的調查，54% 使用的 Java 應用程式伺服器都是開源的 Apache Tomcat，Jetty 是 16%、JBoss 是 9%，IBM WebSphere 和 Oracle WebLogic 各自的市佔率仍不足 1%。
+
+Laurie Wurster 的觀點並沒有錯，只是筆者認為她看到的並非事實的全部。商業軟體的優勝之處，是提供方便的用戶界面，和全面的技術支援，這些都是開源軟體難以做到的。就以開源私有雲平台 OpenStack 為例，功能的確沒話說，但到第四個版本面世，都還沒未有提供圖像界面。反觀商業軟體 CA AppLogic，一開始已經提供了一個完整的圖像界面，這正是用戶願意付費的理由。上文提到 Java 應用程式伺服器的例子，筆者認為是個例外，畢竟用戶本身都是 Java 方面的專家，技術支援意義不大，上網尋找答案對他們來說更加實際，試問在這種情形下，你還願意付款嗎？
+
+開源技術的確改變了 IT 業界的生態，這是不爭的事實。Internet 最初都是由開源技術發展而來的，Internet 本身的確不收費，收費的是提供上網服務的供應商。商業軟體要用戶心甘情願地付款，關鍵在於在免費的基礎上提供了什麼附加價值。當年的 Internet 是如此，今天的雲端服務也應是如此。
+
+_______________________________________________________________
+
+■ [自由文化] 微軟將 Mayhem 開源：目的為何？
+
+Kenneth Mak / 文
+
+◎ 本文原載 Linuxpilot 網站，原文章連結（http://www.linuxpilot.com/industry/news/2012031201microsoft-Mayhem-oss）
+
+微軟將產品開源化已經不是新鮮事，其目標相當明顯，便是希望把更多人鎖定在 Windows 的平台上，這次也不例外，旗下的 Windows 腳本工具 Mayhem 將會開源化，希望留住正在流失的 Windows 用戶。
+
+http://www.openfoundry.org/images/120327/Mayhem/mayhem-01.png
+▲ 圖
+
+Mayhem 是微軟的應用科學研究部門（Applied Sciences Group）開發的工具，可以將多個 Windows 下的應用程式串聯，以完成一連串的任務，特點是一般沒有編程知識的用戶也能操作。究竟具體地可以完成怎麼樣的工作？在 Mayhem 官方上就舉了幾個例子說明，包括利用手機（當然是 Windows Phone 了）操作 PowerPoint 的投影片、當收到來自天氣系統的警告時，向指定用戶群發送郵件、或者微軟的投票價格下跌時，在 Facebook 上發出「我破產了！」之類的訊息。
+
+將不同應用程式組合成一連串的動作，一直是 Linux 等 UNIX 系統的強項，Linux 系統管理員通常都會把一些極為簡單的應用程式組合，從而完成一些在 Windows 下無法完成的工作。Mayhem 的項目負責人 Paul Dietz 表示，Mayhem 的出現正是為了補充 Windows 加入這方面的功能。其實 Visual Studio 早就已經具備了此等功能，只是不夠平民化，Mayhem 不可以配合 Visual Studio 使用，目的就了為了吸引一些不會使用 Visual Studio 的用戶。Mayhem 開源化後會改由 Outercurve Foundation 的 Innovators Gallery 管理，Innovators Gallery 正是管理這些具試驗性質的 Outercurve 項目而設立的群組。
+
+Outercurve Foundation 最初名叫 CodePlex，是一倨推廣企業使用開源技術的非牟利組織，由微軟於 2009 年成立。2010 年改稱 Outercurve Foundation，目前管理的開源項目達 22 個，除了微軟以外還接受其他企業的贊助。Mayhem 現在已可在官方網站下載，採用的是 Microsoft Public License（Ms-PL）授權。為了吸引更多人使用 Mayhem，Outercurve 舉辦了名為 Make Your Own Mayhem 的活動，最優秀者可得到 5,000 美元的獎金，截止日期為 2012 年 4 月 3 日。
+_______________________________________________________________
+
+■ [源碼快報] 2012 年文件自由日
+
+黃湘婷 / 編譯
+
+今年的文件自由日（Document Freedom Day）將於 3 月 28 日舉行，這項活動開始於 2008 年，由歐洲自由軟體基金會（FSFE）發起，訂於每年三月的最後一個星期三，目的為幫助突顯開放文件格式和標準的重要性，目前已有許多組織共同響應，在各大洲皆有團體舉辦活動或聚會，一些著名的公司如 Google、Oracle 也提供贊助，一同慶祝這個文件自由日。
+
+文件自由日的目的，主要是推廣開放標準的理念。
+
+開放標準與開放格式在定義上略有不同。開放標準是透過一種準則，增加不同系統間的互相操作性，使不同公司的系統之間可以進行交流。而開放文件格式，訴求是不需依靠單一公司的軟體才能開啟文件，其它支援該文件格式的軟體也能使用、編輯，讓大眾不必購買特定的軟體才能瀏覽。舉例來說，若每家公司都使用不同的文件格式軟體，當他們在工作上需要合作往來時，就需要有一方去購買對方使用的軟體才能夠編輯該文件，如果他們改用開放文件格式的軟體，就能省下這筆花費。
+
+目前能相容最多平台的文件軟體應屬 OpenOffice.org，該軟體最大的優勢為免費，並且為開放原始碼的軟體，在 Windows、Linux、Mac OS X 上皆能使用，但普及率仍不及微軟的 Microsoft office。
+
+文件自由日活動提倡文件格式的解放，希望能推廣使用開放標準的格式，讓使用者不會因為文件格式而被特定廠商套牢，令不同平台、不同軟體之間的文書檔案能夠互通，不再受單一軟體的限制。
+
+今年在台北也有2012年文件自由日的活動，活動由依瑪貓於慕哲咖啡館舉辦，依瑪貓為 Perl CPAN 模組庫作者，資深 Perl 模組燒機測試者，使用 Perl 超過十年，也擅長撰寫 PHP 程式，同時也是台灣首位加入 OpenOffice 核心團隊的開發者。伊瑪貓希望透過這場活動，讓台灣的朋友也與國際同步，一同慶祝開放文件格式的誕生，有興趣的朋友可以到 http://registrano.com/events/dfd2012-taipei 報名參加。
+
+相關網址
+
+Document Freedom Day 官方網站
+http://documentfreedom.org/index.en.html
+
+3 月 28 日為文件自由日
+http://www.h-online.com/open/news/item/Document-Freedom-Day-on-March-28-1472551.html
+
+3 月 28 日為文件自由日
+http://www.bristolwireless.net/2012/03/28th-march-is-document-freedom-day/
+
+準備 2012 年的文件自由日!
+http://blog.documentfoundation.org/2012/03/14/get-ready-for-the-document-freedom-day-2012/
+_______________________________________________________________
+
+■ [源碼快報] ﻿Wine 1.5 版發布
+
+黃湘婷 / 編譯
+
+Wine 是一種在類 Unix 系統上執行 Windows 程式的軟體，全名為「Wine Is Not an Emulator」，也有另一種非官方說法稱為「Windows Emulator」。類 Unix 系統大部分以自由軟體為主，Windows 使用者在剛使用類 Unix 系統時，會發現有些軟體不支援該系統的情況，就必須要在類 Unix 系統中尋找其它的軟體重新學習。
+
+透過 Wine，我們可以省下尋找替代軟體的麻煩，Wine 能在類 Unix 系統上安裝與執行大部分 Windows 的程式，其運作原理為利用相容模式呼叫 DLL（Dynamic Link Library，動態連結函式庫）來執行。在經歷了 20 個月的測試版修正後，Wine 1.4 正式版終於發布。1.4 版發布後一星期，緊接著又推出 1.5 版。Wine 適用於大多數的 Linux 版本、BSD 變種、Solaris 作業系統，也可在 Mac OS X 上安裝使用。
+
+Wine 1.4 包含新的 DIB（Device Independent Bitmap）繪圖引擎，提供更多的圖像編碼器如：TGA、CMYK 和 JPEG 的解碼，BMP、TIFF、PNG 和 ICNS的編碼。音頻方面重新設計了以 Windows Vista 為基礎的音效堆疊，並不再支援 Jack、NAS、Audio IO、OSS 第 3 版及 ESD 音頻子系統。使用者介面的部分提供Vista 風格的文件對話框，統一的多媒體播放框架 GStreamer。
+
+而最新的 1.5 版則提供新版本的 Gecko 網頁排版引擎，部分支援 Mac OS X 上使用的垃圾桶，MSXML 的各種改進，修復 64 位元的異常處理，以及其他各種錯誤的修正。
+
+除了 Wine，另外還有 CodeWeaver 公司的 CrossOver 也是提供在類 Unix 系統上安裝 Windows 應用程式的軟體，可視為 Wine 的商業版，需要付費使用。CrossOver 主打文書處理等商業應用，同時針對遊戲部分設計 CrossOver Games，在繪圖方面著手，成功的模擬 DirectX，能夠正常執行 Windows 遊戲。
+
+相關網址︰
+
+Wine 1.4 穩定版發布，已可安裝於 Ubuntu
+Wine 1.4 Stable Version Has Been Released and Ready to Install in Ubuntu
+http://ubuntuportal.com/wine-1-4-stable-version-has-been-released-and-ready-to-install-in-ubuntu-1/
+
+Wine 1.4穩定版發布
+WINE 1.4（STABLE）RELEASED
+http://www.webupd8.org/2012/03/wine-14-stable-released.html
+
+Wine 1.4 主打重新設計的音效堆疊與改進的圖形渲染
+Wine 1.4 sports a redesigned audio stack, improved graphics rendering
+http://www.h-online.com/open/news/item/Wine-1-4-sports-a-redesigned-audio-stack-improved-graphics-rendering-1466284.html
+
+Wine 1.5 版發布!
+Wine 1.5 has been released! PPA Ubuntu
+http://www.unixmen.com/wine-1-5-has-been-released-ppa-ubuntu/
+_______________________________________________________________
+
+■ [源碼快報] ﻿Mozilla 考慮讓行動版 Firefox 支援 H.264 視頻編解碼器
+
+黃湘婷 / 編譯
+
+現今行動裝置越來越普遍，能夠發展出符合最新需求的軟體是企業期待達到的目標，以觀看數位影片為例，HTML5 網頁採用的大多是 H.264 格式影片，H.264視頻解碼器能以低資料速度觀看高畫質的影片，對於行動裝置來說便能相對的省電。
+
+由於 H.264 並非開放的多媒體編解碼器，在 Android 手機上播放 H.264 格式影片必須透過 Adobe Flash Player 硬體解碼，Mozilla 無法直接支援。但在去年底，Adobe 宣布不再支援行動裝置版本的 Flash Player，Mozilla 基金會為了提升其競爭力，便嘗試研發支援行動版 Firefox 的 H.264 視頻編解碼器，最後的成果顯示不如預期。
+
+過去 Google 曾透過收購 On2 Technologies 公司來達到強化 Web 技術、網路影音品質創新的目的，並釋出了該公司開發的多媒體編解碼器 VP8 成為開放原始碼產品。Mozilla 也因此從原本的 Ogg Theora 進而發展至支援 VP8，未來若 H.264 能成為開放的多媒體編解碼器，Mozilla 便不用有授權因素的考量，成功的支援 H.264。
+
+Mozilla 基金會的技術總監 Brendan Eich 表示，行動裝置的大量成長，穩定、省電的優勢讓 H.264 格式成為贏家，能在 Android 上實現Firefox 存取 H.264 內容是必要的，目前的失敗是一個痛苦的經歷，Mozilla 必須承認這個失敗，並努力找到解決此一僵局的方式。
+
+相關網址：
+
+Mozilla Firefox 考慮支援 H.264
+Mozilla Reluctantly Considers Supporting H.264 in Firefox
+http://www.pamil-visions.net/mozilla-h264/233788/
+
+Firefox 行動版的 H.264視頻編解碼器可能將無法使用
+Firefox mobile may include H.264 support as Mozilla rethinks opposition
+http://www.techspot.com/news/47879-firefox-mobile-may-include-h264-support-as-mozilla-rethinks-opposition.html
+
+Mozilla Firefox 屈服於視頻專利
+Mozilla Firefox Gives in on Web Video Patents
+http://www.internetnews.com/blog/skerner/mozilla-firefox-gives-in-on-web-video-patents.html
+_______________________________________________________________
+
+■ [源碼快報] ﻿NVIDIA 加入 Linux 基金會
+
+謝良奇／編譯
+
+致力於推廣 Linux 的非營利組織 Linux 基金會（Linux Foundation），最近宣佈 Fluendo、Lineo Solutions、Mocana、NVIDIA 這 4 家公司加入該組織，其中最引人注目的，是圖形晶片原設備製造商（OEM）大廠 NVIDIA，這次終於正式支持 Linux。
+
+隨著 NVIDIA 成為 Linux 基金會會員，包括 AMD Graphics Technologies（前身為 ATI）和 Intel 在內，三大主要圖形晶片設計廠都已支持 Linux。以 GeForce 晶片組而聞名，NVIDIA 長久以來與 Linux 之間有著彆扭的關係。
+
+儘管長期以來 NVIDIA 不斷推出 Linux 圖形驅動程式，並持續進行更新，但是該公司圖形處理器的驅動程式一直採取私有二進位形式（binary blobs），使得自由軟體用戶無法使用該驅動程式，且開放源碼開發者也不能加以改進。
+
+即使是現在仍然不能確定 NVIDIA 是否會開源該公司的驅動程式。NVIDIA 的 Linux 平台軟體副總裁 Scott Pritchett 在聲明中表示，該公司堅定地致力於讓旗下的 GPU 和行動產品，擁有世界級的使用體驗與創新。加入 Linux 基金會能夠加速他們與組織和個人間的合作，對塑造 Linux 的未來有所幫助，並為 Linux 的用戶與開發者帶來絕佳體驗。
+
+另一方面，NVIDIA 網站對加入 Linux 基金會一事隻字未提，完全支援 NVIDIA 圖形處理器的開放源碼計畫也沒有出現什麼消息。外界不禁要猜想，倘若尚未決定完全擁抱 Linux， NVIDIA 為何會有加入 Linux 基金會的動作？
+
+Linux 基金會從 2007 年，作為開放源碼開發實驗室（Open Source Development Lab，OSDL）與自由標準組織（Free Standards Group）的結合而成立，至今已經邁過許多年頭。NVIDIA 之所以加入 Linux 基金會，相信主要是為了在參與、整合並且在 Linux 上進行協同合作。特別是 Linux 作為開放源碼作業系統，持續地在企業伺服器、行動與嵌入式電子產品、高性能運算等關鍵產業中成長並展現優勢。
+
+Linux 主導超級電腦與高性能運算已經相當長一段時間，NVIDIA 無疑也是日趨投入高性能運算市場的廠商之一。加入 Linux 基金會可以協助 NVIDIA 更加深入地整合且支援 Linux，並更積極地尋求其顧客。
+
+此外，NVIDIA 加入 Linux 基金會的動作，也引來部份自由與開放源碼支持者的懷疑。雖然 Microsoft 和 NVIDIA 等公司很難改變開放源碼軟體社群，對他們行動和意圖的看法，這一點有些時候卻使得這些公司在開放源碼參與上，採取更為積極和主動的態度。
+
+
+相關網址
+
+NVIDIA 加入 Linux 基金會
+http://www.zdnet.com/blog/open-source/nvidia-joins-the-linux-foundation/10530?tag=content;search-results-river
+
+Linux 基金會成長帶動開放源碼競合
+http://www.linuxinsider.com/story/Open-Source-Coopetition-Fueled-by-LF-Growth-74624.html
+_______________________________________________________________
+
+■ [源碼快報] ﻿PageKite 提供免費帳號
+
+謝良奇／編譯
+
+PageKite 要將旗下的反向代理服務（reverse-proxy service），免費提供給開放源碼專案使用。該公司表示提供該公司服務的免費帳號，是為了答謝自由軟體社群。
+
+PageKite 包含一支 Python 用戶端程式，用來和該公司的線上服務進行通訊。該項服務接著提供網際網路存取至用戶系統上執行的網路伺服器，外界可以從 http://username.pagekite.me 這種形式的子網域下，存取到該網路伺服器，網路流量可選擇透過 SSL 加密。PageKite 會傳送 HTTP（S）以及其他協定如 VNC 的流量。
+
+為了獲得免費帳戶，開發者必須撰寫合乎 Debian 自由軟體指南（Debian Free Software Guidelines）或開放源碼促進會（OSI）開放源碼定義的自由軟體。開發者的專案必須跟 web 有關，並且在網站上提供連回 PageKite 的連結。
+
+開放源碼 BarCamp 籌辦軟體 CampFireManager 已經在使用免費的 PageKite 帳號，在會議中提供軟體給外界存取。
+
+相關網址
+
+PageKite 提供免費帳號給開源開發者
+http://www.h-online.com/open/news/item/PageKite-offers-free-accounts-for-open-source-developers-1465761.html7
+_______________________________________________________________
+
+■ [源碼快報] ﻿Ubuntu 12.04 beta 版本釋出，使用者介面創新是賣點
+
+謝良奇／編譯
+
+代號 Precise Pangolin 的 Ubuntu 12.04，首次 beta 版本已經在日前釋出。作為該知名 Linux 散佈套件的下一個主要版本，12.04 釋出將在 4 月正式推出。由於是長期支援（long-term support）版本，表示 12.04 將提供長達 5 年的更新與支援。
+
+Precise 將針對 Ubuntu 的使用者介面shell Unity 提出若干重要的改進。12.04 中對 Unity 最主要的增強為 HUD，這是以鍵盤作為驅動，用以存取選單項目的新使用者介面。12.04 還將提供更好的硬體支援，例如對特定硬體組態的加強電源管理。
+
+Ubuntu 創辦人 Mark Shuttleworth 在部落格中討論此次 beta 釋出，他強調 HUD 實作是相當重要的成果。他將其視為一項創新，反映出 Ubuntu 社群有能力創造與其他主要平台匹敵的獨特使用者體驗。
+
+他說，隨著 Ubuntu 12.04 LTS，在完全生產就緒且企業認證的自由軟體平台上，有了真正的桌面使用者體驗創新。對於想走在前端的用戶，HUD 是他們針對複雜應用軟體所提供全新使用者介面的第一步。他們正在解構傳統使用者介面。
+
+HUD 讓使用者藉由鍵入部份選單名稱來啟動選單項目，採用的模糊搜尋演算法可標定部份匹配結果，這項功能將取代傳統選單快捷鍵。不過 Unity 還是會有傳統的鍵盤快捷鍵和以滑鼠驅動的選單介面。與標準選單互動典範並行的 HUD 將作為選擇性的便利機制，可運作於支援 Unity 全域選單系統的所有應用軟體中，並運用到同樣的 D-Bus 選單框架。
+
+Unity 環境首次出現在11.04 中作為 Ubuntu 桌面標準引來許多爭論，比起 GNOME 桌面，這套新 shell 的彈性和可配置性較差。12.04 中的 Unity 看來更為穩固且經過良好整合。
+
+相關網址
+
+Ubuntu 創辦人為 12.04 beta 釋出中的使用者介面創新作宣傳
+http://arstechnica.com/business/news/2012/03/ubuntu-founder-touts-ui-innovation-in-1204-beta-release.ars
+_______________________________________________________________
+
+■ [源碼快報] ﻿Google Play Store 退費政策遭使用者控告
+
+蕭惟杰（RJ Hsiao）／編譯
+
+去年6月，Google 因拒絕台北市政府法規會對於在 Android Market 上依台灣消保法提供7天鑑賞期的要求，被裁罰新台幣100萬元，而停止在台灣提供付費應用程式銷售的服務，引發台灣消費者一片譁然。Google 對此感到不符並提起訴願，也在上個月遭到經濟部駁回。雖然近日立委提案修正消保法，將7天鑑賞期鬆綁，被外界被解讀是「Google 條款」，使得這件事看似有了轉機；不過在美國，有使用者對最近改名為 Google Play Sotre 的 Android Market 所提供的15分鐘內無條件退款感到不服，進而向法院提出控告。
+
+日前，加州居民，Dodd J. Harris 以及 Stephen Sabatino 向加州高等法院對 Google 提出控告，指稱 Google Play Store 誤導使用者，與事實不符的宣稱上面的應用程式可以相容於任何 Android 手機，而且15分鐘內退款的政策沒有提供足夠的時間，使得在期限內完成退款動作幾乎是不可能的。
+
+事情的緣由，是因為 Harris 於去年12月在 Android Market（當時尚未改名為 Play Store）上面花費美金4.83元購買 "Learn Chinese Mandarin Pro" 這套應用程式，卻無法在手機上面運行。在 Harris 多方嘗試後，於購買後20分鐘決定辦理退費，可是卻超過退費期限了。同時，Sabatino 於今年1月花費美金4.49元購買了 "aBTC" 這套 BitTorrent 客戶端程式卻，沒辦法透過它下載任何檔案。當然，歷經一個小時的嘗試後，他也沒辦法完成退費動作了。
+
+在『Google Play Store 的政策』（http://play.google.com/about/android-developer-policies.html "Google Play app policies"）中，提供給使用者一個切確的機制讓使用者在15分鐘內進行退費，並且每一個軟體只提供一次退費的機會。在2010年12月 Google 將退費的期限由24小時縮減至15分鐘時，曾說到：「大部分的使用者都能在購買後15分鐘內完成退款請求。」
+
+本次訴訟也提到，Google 缺乏對在 Google Play Store 上架的應用程式進行審查的機制。為了遵循「開放的利益」，Google Play Store 從還被稱為 Android Market 的時候，就讓任何應用程式都能上架而不像 Apple 的 AppStore 那樣進行審查。這樣的方針也導致了不算少數的惡意程式充斥混在 Google Play Store 之中。為此，Google 於上個月加入了被稱為 "Bouncer" 的機制，用來在應用程式上架前進行掃描，檢查是否含有惡意程式的特徵。
+
+Google Play Store 的退費政策自2010年12月將付費後24小時內完成退費縮減至15分鐘內以後就飽受爭議，而究竟這15分鐘是否為確保開發者及消費者雙方權益的平衡點也尚未有定論，不過由於本月初時 Google 將應用程式的大小上限由50MB提昇到了4GB，許多遊戲、應用程式不見得能在15分鐘內完成檢視，想必在未來，「15分鐘內退費是否合適」這點將會被重新檢視。
+
+相關網址
+
+Google Sued Over Bogus Android Apps, Return Policy
+http://www.pcmag.com/article2/0,2817,2401702,00.asp
+
+Californians Sue Google Over Faulty Android Apps
+http://paidcontent.org/article/419-californians-sue-google-over-faulty-android-apps/
+
+Android Apps Break the 50MB Barrier
+http://android-developers.blogspot.com/2012/03/android-apps-break-50mb-barrier.html
+
+七天鑑賞期鬆綁 立委提案修法
+http://life.chinatimes.com/2009Cti/Channel/Life/life-article/0,5047,100305+112012031900047,00.html
+
+經濟部駁回Google訴願，Android無付費應用僵局持續
+http://www.bnext.com.tw/focus/view/cid/103/id/21951
+_______________________________________________________________
+
+■ [源碼新聞] OpenFoundry 資源表列 - 地理資訊系統上線
+
+ROCK / 文
+
+OpenFoundry 網站上所提供的「資源表列」（Resource Catalog，http://www.openfoundry.org/tw/resourcecatalog?Name=Value）網羅了關於自由軟體的各種相關資源，並且將這些廣大的資源分類整理得非常詳細。
+
+「資源表列」目前的分類主要有︰企業運算（http://www.openfoundry.org/tw/resourcecatalog/Enterprise）、嵌入式系統（http://www.openfoundry.org/tw/resourcecatalog/Embedded）、程式開發（http://www.openfoundry.org/tw/resourcecatalog/Program-Development）、資訊安全（http://www.openfoundry.org/tw/resourcecatalog/Security）、雲端運算（http://www.openfoundry.org/tw/resourcecatalog/Cloud-Computing）、相關組織（http://www.openfoundry.org/tw/resourcecatalog/Groups）、一般應用（http://www.openfoundry.org/tw/resourcecatalog/General-Applications）、法律授權（http://www.openfoundry.org/tw/resourcecatalog/Law-and-Licensing）。
+
+近年來全球暖化、氣候異常的情形越來越嚴重，相關的話題也從未間斷，災難預警、地理資訊系統（Geographic Information System，GIS，http://www.openfoundry.org/tw/resourcecatalog/GIS）也逐漸被國人所重視。因應這樣的需求，OSSF 也在「資源表列」新增了地理資訊系統的分類，針對其相關的資源做了詳細的整理，讓使用者能夠方便地從中找到需要的資料。
+_______________________________________________________________
+
+■ [源碼快訊] ﻿輕鬆建置 Nagios 網路監控主機
+
+OSSF / 文
+
+Nagios 是一個開放原始碼的網路監控系統，主要功能為檢測主機與服務，當出現問題時發出警告提醒用戶。由於我們不可能隨時都待在主機前檢視系統服務的運作，Nagios 便為我們解決了這項煩惱。除了 Nagios 自己的監控程式外，也支援使用者自行開發的 Plugin，令使用者能依自己的需求編寫簡單的 Plugin，包含 C++、Perl、ruby、Python 等多種開發語言。
+
+此次 OSSF 與酷學園（Study Area，http://phorum.study-area.org/index.php?PHPSESSID=8gvcfv2vjrt2egs2ke07gb7hd6&）、國家高速網路中心（NCHC，http://www.nchc.org.tw/tw/）的 Ezilla 團隊（http://ezilla.info/cht/index.html）合作舉辦「輕鬆建置 Nagios 網路監控主機」工作坊，Ezilla 提供我們 Virtual Lab 的測試環境，解決了以往相關實作課程使用到虛擬機器，而使執行速度變慢的問題，利用雲端存取的方式，簡單快速的打造專屬的私有雲，在儲存方面，提供直接在系統中掛載虛擬儲存空間，有效減少資料傳遞與網路延遲的時間，使課程實作的部分更加順暢。
+
+對於建置 Nagios 網路監控主機有興趣的朋友可至課程網頁（http://www.openfoundry.org/tw/activities/details/302）瀏覽相關訊息，更歡迎一同報名參加！活動地點為：崑山科技大學，資訊科技學院 I4502 教室，台南市永康區大灣路949號（http://www.ksu.edu.tw/cht/introduction/map_outside.aspx）。
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、粘卉慈
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。
+
+
+

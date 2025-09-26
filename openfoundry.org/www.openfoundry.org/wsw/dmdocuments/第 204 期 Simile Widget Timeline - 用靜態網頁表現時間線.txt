@@ -1,0 +1,859 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 204 期 | 2012/09/25 □■□
+________________________________________________________________
+
+◎ 本期主題︰Simile Widget Timeline - 用靜態網頁表現時間線
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/10/16
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] Simile Widget Timeline - 用靜態網頁表現時間線
+
+■ [法律專欄] 因應網路時代與雲端應用而生的 AGPL-3.0 授權條款
+
+■ [源碼秘技] 透過 Bumblebee 及 Synergy 使 Nvidia Optimus 的筆電能在 Ubuntu 上使用 HDMI
+
+■ [源碼新聞] Opus codec 彙集各大公司專利技術以開放授權方式釋出
+
+■ [源碼新聞] 短小精幹的 VectorLinux
+
+■ [源碼新聞] 西班牙學校 Ubuntu 系統的電腦已達 22 萬台
+
+■ [源碼新聞] NexPhone - 結合桌上、平板與筆記型電腦的 Ubuntu for Android 手機
+
+■ [源碼新聞] 圖書館目錄後設資料：公眾授權或公眾領域宣告？
+
+■ [源碼新聞] 「101年度中文全字庫應用研討會」開始報名了！
+
+■ [源碼新聞] 2012 年十月份社群活動列表
+_______________________________________________________________
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] Simile Widget Timeline - 用靜態網頁表現時間線
+
+林雪凡／文、林誠夏／編修
+
+簡介
+
+Timeline 可讓網頁建立者在靜態網頁上，顯示複雜的時間線示意圖。
+
+Timeline 是 MIT "SIMILE Project" 釋出的一項開源作品。該計劃提供了一些結構精美的網路小程式 (widget) 供人自由運用，而 Timeline 元件就是這其中之一。
+
+要使用它，您得懂一些基本的 html 與程式設計邏輯才行－很基本的就行。其他的，我會一步一步地示範給您看的。
+
+
+安裝說明
+
+本軟體不用安裝，請打開您的文字編輯器，直接在網頁上建立時間線吧。
+
+
+快速開始
+
+官網提供了簡單易懂的快速開始導覽（見：http://code.google.com/p/simile-widgets/wiki/Timeline_GettingStarted），本文是以我自己理解並實驗的方式來進行解說。
+
+建立基礎面板
+
+首先，您必須擁有一個標準的 .html 檔案，這檔案就是要秀出您時間線的檔案。若您原本沒有現存的 html 檔，您可以先建立一個空白的來玩玩。
+
+一個標準的 HTML5 空白頁面，內容會像是這樣……
+
+1＜!DOCTYPE html＞
+2 ＜html＞
+3     ＜head＞
+4         ＜meta charset="UTF-8" /＞
+5     ＜/head＞
+6     ＜body＞
+7     ＜/body＞
+8 ＜/html＞
+
+有了網頁，我們這才能夠開始在網頁中載入 Timeline 的 API。
+
+請在 ＜head＞ 區段中塞入以下程式碼：
+
+＜script src="http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js?bundle=true" type="text/javascript"＞＜/script＞
+
+網頁將會變成：
+
+ 1 ＜!DOCTYPE html>
+ 2 ＜html>
+ 3     ＜head>
+ 4         ＜meta charset="UTF-8" />
+ 5         ＜!-- 就這行 --＞＜script src="http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js?bundle=true" type="text/javascript"＞＜script＞
+ 6     ＜/head＞
+ 7     ＜body＞
+ 8     ＜/body＞
+ 9 ＜/html＞
+
+這邊載入的是 2.3.0 版本的 API。Timeline 還有 2.3.1 版本的 API 可用，不過既然官網教學示範中是採用 2.3.0 版本，筆者這邊也索性乖乖照辦了。有興趣嘗鮮的人，可以把路徑改一改，試試新版 API 有什麼好處。
+
+API 準備完畢後，就將時間線欄位塞入網頁中。
+
+請將以下的程式碼放入 ＜body＞ 中，就放入到您想插入 Timeline 的地方。
+
+1 ＜div id="my-timeline" style="height: 350px; border: 1px solid #aaa"＞＜/div＞
+2 ＜noscript＞
+3     This page uses Javascript to show you a Timeline. Please enable Javascript in your browser to see the full page. Thank you.
+4 ＜/noscript＞
+
+＜div＞ 是一個欄位，我們等會兒會用 Timeline 填充它，唯一需要注意的是：id 必須和 API 指定的目標對象一致（目前還沒指定）。至於 Timeline 的大小，可直接用 html 與 CSS 語句加以調整。
+
+如果使用者的瀏覽器不允許 Javascript 執行， ＜noscript＞ 內的東西會顯示出來，好提醒讀者修改瀏覽器的設定。
+
+終於要運用 API 了！請自行在 ＜body＞ 中找地方加入以下程式碼（用 ＜script＞ 標籤括起來），或是運用外部 .js 檔案來運行。
+
+ 
+ 1 var tl;
+ 2 function onLoad() {
+ 3     var bandInfos = [
+ 4         Timeline.createBandInfo({
+ 5             width:          "70%",
+ 6             intervalUnit:   Timeline.DateTime.MONTH,
+ 7             intervalPixels: 100
+ 8         }),
+ 9         Timeline.createBandInfo({
+10             width:          "30%",
+11             intervalUnit:   Timeline.DateTime.YEAR,
+12             intervalPixels: 200
+13         })
+14     ];
+15     tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+16 }
+17 
+18 var resizeTimerID = null;
+19 function onResize() {
+20     if (resizeTimerID == null) {
+21         resizeTimerID = window.setTimeout(function() {
+22             resizeTimerID = null;
+23             tl.layout();
+24         }, 500);
+25     }
+26 }
+
+注意 tl = Timeline.create() 那行，id 必須要和先前準備好的欄位 id 相同。
+
+參看上方 onLoad() 中的設定，這部份可讓我們在先前預備的 ＜div＞ 中加入兩個「時間線」元素。（以 javascript 的角度來說，那兩個時間線的基礎設定資料，被存放在名叫 bandInfos 的容器中）。
+
+bandInfos 中定義了兩條時間線的資料。其中，intervalPixels 表示每個格子的寬度，至於 intervalUnit 則表示了格子的單位。如果您不懂此處說的「格子」是什麼意思，請看看待會兒的截圖，您一定會馬上理解的。
+
+在 Timeline.createBandInfo() 中，還有更多設定可以調整，想進一步了解請看 Timeline 的官方文件：http://code.google.com/p/simile-widgets/wiki/Timeline_TimelineClass。
+
+繼續吧。
+
+上面固然做了設定，但 onLoad() 其實還沒執行。請把 onLoad() 和 onResize() 兩個函式作為事件掛到 ＜body＞ 上面，讓他們跑起來：
+
+1 ＜!-- 將 ＜body＞ 修改為以下的樣子： --＞
+2 ＜body onload="onLoad();" onresize="onResize();"＞
+
+現在您可以把 html 放入瀏覽器觀察看看，應該已經能顯示出兩條時間條了。
+
+▲ 圖1：兩條時間帶。(http://www.openfoundry.org/images/120925/Timeline_01.png)
+
+您大可用滑鼠拉拉看這兩條時間帶，您會發現它們是彼此獨立的，這不對。應該要讓他們關聯起來：
+
+1 //在 bandInfos = [...] 下面加入這兩行
+2 bandInfos[1].syncWith = 0;
+3 bandInfos[1].highlight = true;
+
+bandInfos[1].syncWith = 0 意味著從第二個元素同步往第一個元素，您若反過來指定 bandInfos[0].syncWith = 1 也可以將時間帶連上。不過為了讓 highlight 功能正確運作，要從大單位（如年）的時間帶連向小單位（如：月）的時間帶，而不要反過來。
+
+再回去看瀏覽器，底下果然出現了 highlight 的部份。拉拉看上下兩個時間條，也會同步滑動了。
+
+效果挺好的不是嗎？
+
+▲ 圖2：連結後的時間帶。效果要拖拉才能看出，圖上只能看到 highlight 的效果。(http://www.openfoundry.org/images/120925/Timeline_02.png)
+
+加入事件
+
+緞帶已經綁好了，不過上面還是一片空白。我們應該給它一點裝飾品。
+
+修改 onLoad()，讓緞帶加入事件來源。
+
+1 function onLoad() {
+2   //新增下面這行
+3   var eventSource = new Timeline.DefaultEventSource();
+4   var bandInfos = [
+5       Timeline.createBandInfo({
+6           //新增下面這行
+7           eventSource:    eventSource,
+8           width:          "70%",
+9           intervalUnit:   Timeline.DateTime.MONTH,
+10           intervalPixels: 100
+11       }),
+12       Timeline.createBandInfo({
+13           //新增下面這行
+14           eventSource:    eventSource,
+15           width:          "30%",
+16           intervalUnit:   Timeline.DateTime.YEAR,
+17           intervalPixels: 200
+18       })
+19   ];
+20   bandInfos[1].syncWith = 0;
+21   bandInfos[1].highlight = true;
+22
+23   tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+24   //新增下面這行
+25   Timeline.loadXML("example1.xml", function(xml, url) { eventSource.loadXML(xml, url); });
+26 }
+
+上圖中總共增加了四行，來設定事件資料來源。
+
+從最上面開始，先用 Timeline.DefaultEventSource() 創建事件來源物件，然後將事件來源物件指派給時間帶，最後去將實體資料與事件來源物件關聯起來，將來源繫結到 xml 檔案上。
+
+程式碼的部份，這麼做就可以了。然而目前我們還沒有編寫任何 xml，所以暫時還沒能看到變化。
+
+xml 怎麼寫？雪凡在這邊提供了一個範例：
+
+1 
+4
+5   ＜event
+6       start="2012-5-27"
+7       title="罰勤中……"＞
+8   ＜/event>
+9
+10   ＜event
+11       start="2012-9-6"
+12       end="2012-9-8"
+13       title="紅色炸彈來襲！"＞
+14       老油條終於結婚，記得買西裝。
+15   ＜/event＞
+16
+17   ＜event
+18       start="2012-5-2"
+19       end="2012-7-14"
+20       isDuration="true"
+21       title="畢業前衝刺！"＞
+22   ＜/event＞
+23
+24   ＜event
+25       start="2012-7-20"
+26       latestStart="2012-7-30"
+27       earliestEnd="2012-8-19"
+28       end="2012-9-1"
+29       durationEvent="true"
+30       title="有適度考察異國風情的必要"＞
+31   ＜/event＞
+32
+33 ＜/data＞
+
+修改好後刷新瀏覽器，您應該能看到類似於下方的介面：
+
+▲ 圖3：加入事件後的時間帶。(http://www.openfoundry.org/images/120925/Timeline_03.png)
+
+這就解說一下，上面寫的 xml 是怎麼回事：
+
+xml的 ＜data＞ 標籤中有兩個參數： wiki-url 與 wiki-section。這兩個參數是用來指定「討論維基」用的。
+
+在 Timeline 中，每個「事件 (Event)」都會自動產生相對應的討論連結，而討論連結的格式為：「wiki-url + wiki-section + event title」
+
+在上面的例子中，假設使用者點擊了「紅色炸彈來襲！」的討論按鈕，該使用者就會被帶往 http://xxx.sinica.edu.tw/wiki/whiteboard/紅色炸彈來襲！這個位置。
+
+如此一來，要怎麼設定那兩個參數很清楚了。當然如果您沒有 wiki 那就不用理它。
+
+
+小心 Same origin policy
+
+如果您在本機路徑中，運行上述的程式碼（瀏覽器路徑會顯示 file:///...），您可能無法得出正確結果。
+
+這是因為基於某些安全考量，javascript 不允許本地程式存取其他檔案，所以您將無法載入 .xml。無論如何，您得把這些資料與程式，全部丟上網頁伺服器，才能讓它們乖乖工作。
+
+搭網頁伺服器很麻煩。若您手邊沒有現成的伺服器可供測試，您也可以打開終端機，用 python 產生一個臨時的伺服器：
+
+1 # 開啟 shell 在程式碼目錄中，「擇一」使用以下指令
+2 python3 -m http.server 8000 # 使用 python 3.x 搭建簡易伺服器
+3 python -m SimpleHTTPServer  # 使用 python 2.x 版本也行
+
+鍵入指令後，您就可以用像 http://127.0.0.1:8000/example.html 的格式，來（在網頁瀏覽器中）打開剛剛的 html 檔案。如果您對本主題有興趣，請參看英文維基百科的說明頁。(http://en.wikipedia.org/wiki/Same_origin_policy)
+
+▲ 圖4：點擊時間條上的項目會出現對話框，裡面有前往討論頁面的連結可按。(http://www.openfoundry.org/images/120925/Timeline_04.png)
+
+其他方面，您可用 title 決定要顯示什麼文字、用 start 設定開始時間、用 end 設定結束時間、用 isDuration（或 durationEvent）來標誌這是一個時間段事件，此外，還可以在 標籤中夾入文字做為細部說明。如果您想知道還有哪些 Event 變數可用，請見官方說明頁 (http://code.google.com/p/simile-widgets/wiki/Timeline_EventSources)。
+
+到此，所有必備的東西都設定完成。接下來是美容時間。
+
+
+畫面調整
+
+onLoad() 中還有些東西可以加入：
+
+1   var bandInfos = [
+2      Timeline.createBandInfo({
+3           eventSource:    eventSource,
+4           width:          "70%",
+5           date:           "Jun 28 2012 00:00:00 GMT", // 注意這行
+6           intervalUnit:   Timeline.DateTime.MONTH,
+7           intervalPixels: 100
+8       }),
+9       Timeline.createBandInfo({
+10           eventSource:    eventSource,
+11           width:          "30%",
+12           date:           "Jun 28 2012 00:00:00 GMT", // 注意這行
+13           overview:       true, // 注意這行
+14           intervalUnit:   Timeline.DateTime.YEAR,
+15           intervalPixels: 200
+16       })
+17   ];
+
+date 允許您指定「載入時要將時間滑到哪個位置」；至於 overview 則可讓時間條變成概覽畫面。概覽畫面的意思是說：所有文字都會消去，只留下時間段示意圖的意思......請看下圖的範例：
+
+▲ 圖5：將下方的時間條設成 overview，效果很明顯。(http://www.openfoundry.org/images/120925/Timeline_05.png)
+
+有了以上的知識，基本的 Timeline 運用就沒問題了。
+
+
+深入閱讀
+
+筆者找不到本軟體的 API 參考手冊，只有一拖拉庫的 How-To 文件。雖然 How-To 文件沒什麼不好呀，但深入鑽研時總有些苦手......
+
+不管怎麼說，推荐清單還是列出來了，請看：
+
+1. 快速開始：http://code.google.com/p/simile-widgets/wiki/Timeline_GettingStarted。本文就是參考這份快速開始文件撰寫的。
+
+2. 官方文件清單：http://code.google.com/p/simile-widgets/w/list。官方文件的索引頁 (index page) 不好用，要找東西直接挖清單比較快。另外也請愛用頁面上的搜索條。
+
+3. Timeline 類別的 API 介紹：http://code.google.com/p/simile-widgets/wiki/Timeline_TimelineClass。
+
+4. Event 的可能參數一覽：http://code.google.com/p/simile-widgets/wiki/Timeline_EventSources。
+_______________________________________________________________
+
+■ [法律專欄] 因應網路時代與雲端應用而生的 AGPL-3.0 授權條款
+
+葛冬梅／文
+
+GNU Affero General Public License 3.0 (AGPL-3.0) 是自由軟體基金會於 2007 年 11 月 19 日所發布的一份自由開源軟體授權條款（註一）。這份授權條款與 GPL-3.0 為孿生條款，因為這兩份條款僅在第 13 條有所不同，其餘的規定則一模一樣。但這第 13 條的不同差異處，就讓 AGPL-3.0 與 GPL-3.0 的拘束特性有著很大的分別，這也讓許多提供網路服務的公司對於這份條款避之唯恐不及。但 AGPL-3.0 在使用上真的如此令人恐懼？其中的條款內容究竟如何？在利用自由開源軟體元件的同時，又應該以什麼樣的態度與立場來面對 AGPL-3.0？本文將會針對這些問題一一說明 。
+
+如本文一開始所述，AGPL-3.0 與 GPL-3.0 僅第 13 條的內容不同，而 AGPL-3.0 這一條的內容若是用白話來解釋，大意是：若透過網路連結的服務方式，讓使用者可以利用 AGPL-3.0 衍生程式的服務，即便這位使用者並沒有真的取得或擁有 AGPL-3.0 衍生程式的程式碼，此時網路服務的提供者，仍然要讓這位使用者可以取得這個 AGPL-3.0 衍生程式的源碼。這樣的網路服務提供者在早期一般簡稱為 ASP (Application Service Provider)，對照到現在通行的用詞，這些 ASP 業者就是提供 SaaS (Software as a Service) 的業者，像 Google Search、Google Map、Gmail 等都屬於這樣的網路服務，Google 的各項服務可說就是 ASP 服務型態的典型。從撰寫理由來看，AGPL 之所以特別規定 ASP 業者必須提供程式源碼給網路使用者，是因為在還沒有 AGPL 這樣的授權條款之前，許多 ASP 業者利用 GPL 授權元件來架構網路應用程式，而依照 GPL 的規定，這些應用程式因為並沒有被散布到 ASP 業者以外之處，也就是網路服務的使用者並沒有取得這些應用程式，僅透過網路來利用程式的功能，所以網路使用者並沒有權利依 GPL 授權條款，向 ASP 業者索取這些應用程式裡 GPL 元件的程式源碼（註二）。一些自由開源軟體理念者認為，這樣的現象是因為 GPL 規定有漏洞所造成，因此推動修改 GPL 授權條款的內容。在自由軟體基金會 (Free Software Foundation, FSF) 的同意下，透過在 GPL-2.0 第 2 條第 1 項的後面加上第 d) 款，AGPL-1.0 就這樣誕生了。因此雖然 GPL-2.0 與 AGPL-1.0 這兩份條款的版本差一個號次，但其實也可以算是內容近乎完全一致的孿生條款（註三）。 
+
+其後，自由軟體基金會在草擬 GPL-3.0 的同時，也草擬、制訂出了最新一版的 AGPL-3.0，從此 GPL-3.0 與 AGPL-3.0 的內容與版本號次開始一致。而在一版與三版中間，有一個僅具象徵性意義的過渡版本 AGPL-2.0，其中簡短的內容主要是表達：若一個程式採用 AGPL-1.0 及其後版本授權的話，程式使用者可以根據 AGPL-2.0 的規定，自由決定是否要採用 AGPL-3.0 來授權這個程式（註四）。 
+
+從歷史背景可以了解到，AGPL 這一個系列授權條款共有三個版本，這三個版本都是在 GPL 的基礎上，著力處理 ASP 業者的利用行為，因此 AGPL 具有 GPL 的所有特性，這其中當然也蘊含了實踐四大自由的理念（註五），以及對於衍生程式的授權拘束性在內。不過由於文章篇幅有限，本文僅針對最新版的 AGPL-3.0 加以介紹，同時將焦點集中在第 13 條，其餘與 GPL-3.0 相同的內容，還請讀者另行參考 GPL 相關的文章。
+
+依據 AGPL-3.0 第 13 條的規定，若是程式被修改並產生衍生程式的話，任何與這個衍生程式透過電腦網路來互動的網路使用者，都必須要有機會可以透過網路來近用 (access) 這個 AGPL-3.0 衍生程式的程式源碼，也就是說，將衍生程式放置到網路上，供網路使用者利用之人，有義務要提供衍生程式使用者取得程式源碼的機會。以 AGPL-3.0 授權的 SatusNet 微網誌為例（註六），若甲公司下載 StatusNet 的程式源碼，修改之後重新命名為 CrossChat，並將 CrossChat 上線，依此衍生程式提供網路使用者微網誌服務，此時甲公司就必須遵守 AGPL-3.0 的規則，讓 CrossChat 使用者可以透過網路取得 CrossChat 的程式源碼。因此可以知道，啟動 AGPL-3.0 第 13 條規定的關鍵在於「修改」與「網路服務」，若甲公司並沒有修改 StatusNet，而是整包拿來、改換名稱與 logo ，之後讓其他元件透過此 AGPL-3.0 原始程式的互動介面 (Application programming interface, API)，直接上線提供服務的話，此時甲就沒有提供 AGPL-3.0 原始程式源碼的義務（註七）。
+
+在這樣的基本規定之上，還有幾點必須要注意：
+
+(1) 由於 AGPL-3.0 衍生程式是透過網路與服務使用者互動，最簡便提供程式源碼的方式，就是利用網路傳輸來進行提供，所以 AGPL-3.0 規定網路服務提供者必須將衍生程式的程式源碼儲放在網路伺服器上，然後提供服務使用者近用這些儲放設備的管道，讓其可以因此取得程式源碼 (... providing access to the Corresponding Source from a network server....)；
+
+(2) 為了避免服務提供者利用過於複雜或者困難的技術，來阻礙使用者下載程式源碼，間接影響程式源碼的自由散布，因此 AGPL-3.0 規定網路服務提供者必須利用標準或一般常見的方式，來幫助、便利使用者下載程式源碼 (... through some standard or customary means of facilitating copying of software....)；
+
+(3) 由於網路服務提供者本身已經是透過網路來提供服務，額外提供程式源碼的成本幾乎等同於零，所以 AGPL-3.0 規定透過網路傳輸來提供程式源碼的行為必須是免費的。
+
+接續上述的例子，來進一步說明：甲公司可以在 CrossChat 的網站上，單獨開立上一個名為 "Source Code" 的頁面，在該頁面中說明 CrossChat 的授權方式，同時提供下載程式源碼的連結，如此就可以滿足 AGPL-3.0 要求免費提供衍生程式源碼的基本義務規定。當然，甲公司也可以採用其他方式，例如服務使用者在完成 CrossChat 的註冊程序之後，會收到一封註冊完成通知信，甲公司可以在通知信中附上 CrossChat 原始碼的下載網址，讓使用者透過直接點選連結就可以下載到原始碼。總之，透過近用網路伺服器的管道來便利使用者取得原始碼，在技術上與方法上都可以有許多的變化，只要符合上述 AGPL-3.0 規定與取得便利的基本精神，就是可行的方式。
+
+http://www.openfoundry.org/images/120925/AGPL/LC_201209_img1.png
+▲ 圖1：identi.ca 是利用 StatusNet 所架設的微網誌網站，這個網站透過 "Source" 獨立頁面說明網站系統源碼的來源、授權條款，與下載程式源碼的管道。
+
+AGPL-3.0 與 GPL-3.0 一樣，都是為了實踐四大自由而制定的授權條款，也因此這兩份條款對於衍生程式都具有較嚴謹的授權拘束性（註八），這樣的特性如果發揮到極致，會讓 AGPL-3.0 與 GPL-3.0 這兩份孿生條款彼此排斥，所以為了讓 AGPL-3.0 元件與 GPL-3.0 元件可以結合並存在同一個程式當中，兩份條款分別在其第 13 條的地方一同設立了例外規定：那就是，各自的授權條款僅拘束原本各自的元件，而不會擴及拘束到另一方的授權元件，也就是 AGPL-3.0 授權的元件，維持 AGPL-3.0 的授權，而 GPL-3.0 授權的元件，一樣維持 GPL-3.0 授權，彼此的授權狀態互不干擾，然而，當整體衍生程式成為網路服務程式的話，GPL-3.0 授權的元件，則必須一併適用 AGPL-3.0 第 13 條的進階規定，也就是說，此時 GPL-3.0 元件的程式源碼也必須一併提供給使用者，以不弱化 AGPL-3.0 設定網路服務就要啟動程式源碼提供義務的規定。如此一來，兩份條款彼此有了例外並存的依據，亦可以增進元件的結合與應用，同時也維持了 AGPL-3.0 規範 ASP 業者必須提供程式源碼的初衷。
+
+而對於開源界來說，正因為 AGPL-3.0 著眼於網路使用方面的規則，特別針對網路服務行為規定有提供程式源碼的義務，所以一些自由開源專案反而特別偏好採用 AGPL-3.0 來授權，如此未來專案程式被網路服務提供者透過網路加以應用的時候，就可以要求服務提供者必須提供衍生程式的程式源碼。這樣的專案除了前述的 StatusNet 之外，企業資源管理系統 OpenERP、人際關係管理系統 SugarCRM、圖形資料庫系統 Neo4j，以及軟體專案開發管理平台 Launchpad 等著名的自由開源軟體專案（註九），都是採用 AGPL-3.0 來授權。
+
+在經過上述的簡要介紹之後，讓我們重新審視本文一開始羅列的諸多疑問：AGPL-3.0 在使用上真的如此令人恐懼？一般使用者與商業使用者，又該以什麼樣的態度與立場來面對 AGPL-3.0？
+
+其實，從應用面來看，AGPL-3.0 的授權拘束性並非會被無限制擴張的，只要使用者能謹守不直接修改原程式這個重要判斷準則，因為 AGPL-3.0 的規則，並非要所有運用 AGPL-3.0 程式進行網路服務的專案，都必須將自己撰寫的所有程式源碼提供出來，其要求程式源碼的範圍，還是強調在原程式已被修改的部份，以及該部份與直接對應元件結合成為衍生作品時的程式源碼。不過，不可諱言的是，也因為 AGPL-3.0 這樣的義務規定，間接擴張了 AGPL-3.0 授權拘束性的影響力，一些無法或不願意將程式源碼提供出來，或對此規則有疑慮的公司，理所當然便會採取避用 AGPL-3.0 授權元件的策略，以保守其網路應用程式在技術方法上的隱密性。然而在這樣的情況下，部份 AGPL-3.0 授權的專案，也已開始套用過往在 GPL 授權專案上常見的雙重授權商業模式（註十）：這些專案一方面透過 AGPL-3.0 釋出程式源碼，獲得與社群開發者協同開發與除錯的優勢，另外一方面也提供封閉源碼的商業授權條款，讓想要另外客製化應用、卻又無法提供所有衍生程式源碼的公司與個人，有另外一個選擇的管道。前述的 OpenERP 與 SugarCRM，便皆是採用此種雙重授權策略的範例專案。所以客觀來說，AGPL-3.0 基於 GPL-3.0 發展的授權拘束性，雖然確有擴張，但卻並不是無法控管。許多網路傳聞，單單一句話說「使用 AGPL-3.0 授權元件進行網路服務，便得提供自身系統的所有程式源碼。」那也是太簡略而不清楚明瞭的誤解。只要使用端有正確的使用觀念，對於 AGPL-3.0 元件的應用，能遵守其授權拘束性開啟的分際，或是事先詢求權利人的另外授權，那麼是毋需過度擔心與恐懼的。
+
+----
+
+註一：AGPL-3.0 授權條款全文請見：http://www.gnu.org/licenses/agpl-3.0.html。
+
+註二：關於 ASP 業者利用自由開源軟體的相關討論，請見：葛冬梅，ASP 與自由／開放源碼軟體的散布條款，http://www.openfoundry.org/tw/legal-column-list/494-asp-。
+
+註三：AGPL-1.0 內容請見：http://www.affero.org/oagpl.html。在前言之前，有一小段文字，清楚說明 AGPL-1.0 是修改自 GPL-2.0。　
+
+註四：AGPL-2.0 的內容請見：http://www.affero.org/agpl2.html。
+
+註五：關於四大自由的內容以及與 GPL 條款的關係，請參見：葛冬梅，讓人既愛又頭痛的 GNU GPL，http://www.openfoundry.org/tw/legal-column-list/525。
+
+註六：精確來說，StatusNet 是採用「AGPL-3.0 及其後版本」來授權。StatusNet 官網：http://status.net/；StatusNet 開發專案網頁：http://gitorious.org/projects/statusnet。
+
+註七：不過甲公司仍然可以自行提供 StatuNet 的程式源碼，這樣的作法可以協助自由開源軟體的散布，進而促進開發軟體專案的名聲，並與開發社群建立良好關係，促進整體自由開源軟體生態的正向循環。
+
+註八：關於 GPL 授權拘束性的說明與相關議題，請參見：林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（上），http://www.openfoundry.org/tw/legal-column-list/8446；林誠夏，GPL 條款對於衍生程式的判定標準與其授權拘束性的擴散範圍（下），http://www.openfoundry.org/tw/legal-column-list/8447。
+
+註九：此段所提到的軟體進一步資訊如下：OpenERP 網站，http://www.openerp.com/；SugarCRM 網站，http://www.sugarcrm.com/；Neo4j ，http://neo4j.org/；Launchpad 為 Canonical 公司所開發，該公司即為 Ubuntu 作業系統背後的支持公司，Canonical 開發了 Launchpad 用於自由開源軟體的開發與管理，同時也在 Launchpad 上面持續維護與開發 Launchpad，https://launchpad.net/launchpad-project。
+
+註十：關於自由開源軟體雙重授權策略的應用，請參考：林誠夏，自由軟體的商業應用模式（下）－雙重授權篇，http://www.openfoundry.org/tw/legal-column-list/1056。
+_______________________________________________________________
+
+■ [源碼秘技] 透過 Bumblebee 及 Synergy 使 Nvidia Optimus 的筆電能在 Ubuntu 上使用 HDMI
+
+蕭惟杰／編譯
+
+Nvidia 推出的 Optimus 技術是讓一台擁有內建顯示晶片的 Intel CPU 及 Nvidia 獨立顯示晶片的筆記型電腦，可以視情況在兩個顯示晶片之間做切換，來達到省電目的的解決方案，不過這一直都只能在 Windows 7 上正常的運作，使得 Linux 之父 Linus Torvalds 為此對 Nvidia 大比中指、表達不滿，儘管 Nvidia 推說有大力支援了 Bumblebee 計劃。而 Bumblebee 計劃的目的是在於把 Nvidia Optimus 的功能移植到 Linux 平台上，從命名也可以看出之間的關聯性（Optimus 與 Bumblebee 正是變形金剛中的柯博文及大黃蜂），目前的進度仍處於「需要時才把運算丟到獨立顯示晶片上處理」的階段，而這樣的情況，導致筆電上的 HDMI 或 Display Port 的輸出無法使用（筆電上通常這兩種 Port 為獨立顯卡所管理）。可惜的是，目前的情況，離 Windows 上的「終極型態」尚有很大一段差距，但是仍然有所謂「外道」的做法，可以讓我們「硬是要」透過 HDMI 或 Display Port 將畫面輸出，讓我們的內心得到小小的慰藉。
+
+這裡提供的做法，就是使用第二個桌面環境，這邊使用的是 LXDE，但是其實也可以改用其他的桌面環境像是 Xfce，而這第二個桌面環境將會透過 HDMI 輸出到外接顯示器。你可以同時在平常使用的桌面環境與第二個桌面環境上執行任何應用程式像是玩遊戲、看影片等等，而且這兩個桌面環境共用鍵盤與滑鼠。看起來會像是這樣子：
+
+(http://www.openfoundry.org/images/120906/HDMI/01.jpg)
+圖1：筆電螢幕所使用的桌面環境
+
+(http://www.openfoundry.org/images/120906/HDMI/02.jpg)
+圖2：透過 HDMI 輸出到外接顯示器外接顯示器的第二個桌面環境 
+從圖中可以發現，他們執行在同一台電腦並各自使用不同的顯示晶片。
+
+不過，這邊也有幾點要注意：
+
+＊目前仍無法透過 HDMI 輸出聲音，聲音只能透過與音效晶片連接的裝置像是內建喇叭輸出。
+＊無法直接將畫面在兩個桌面環境之間移動，只能透過到直接在第二個桌面環境執行程式或是透過 export DISPLAY=:8.0 將執行程式的畫面導到第二個桌面環境上。
+＊當第二個桌面環境運行時，你的主要桌面環境上會多出一組系統圖示。下面會提到解決方法。
+
+
+步驟
+
+以下的步驟將以 Ubuntu 12.04 為例：
+
+1. 安裝 Bumblebee，如果你尚未安裝。這裡 (https://wiki.ubuntu.com/Bumblebee) 有相關說明。
+
+2. 因為 Unity 無法透過 Bumblebee 運行（不確定是否能在不互相干擾的情況下運行兩個相同的桌面環境），所以你需要使用其他不同的桌面環境，像是 LXDE 、 Xfce 等等，安裝你想要的，在這邊我們以 LXDE 為例。然後為了讓這兩個桌面環境共用鍵盤滑鼠，我們需要利用 Synergy 這套可以在多台電腦間共用鍵盤滑鼠的跨平台軟體。以下指令將會安裝 LXDE 與 Synergy ：
+
+	sudo apt-get install synergy lxde lxde-common
+
+3. 安裝好 Synergy 後，你需要建立一個設定檔方能使用。你可以從這裡 (http://webupd8.googlecode.com/files/synergy.conf) 下載範例檔，複製到家目錄並更名為 .synergy.conf。這樣的設定檔應該足以使用，但如果你還想做些修改，你可以參考這篇文件 (http://synergy2.sourceforge.net/configuration.html) 來修改你的 Synergy 設定檔。
+
+4. 透過這個 Script (http://webupd8.googlecode.com/files/hdmi-0.1.tar.gz) 讓 LXDE 啟動並顯示在外接外接顯示器上面。將壓縮檔解開，複製 hdmi 這個 script 到你的家目錄並透過下面指令將這個 script 標示為可執行：
+
+	chmod +x ~/hdmi
+
+然後，你可以開始執行這個指令：
+
+	~/hdmi
+
+之後， LXDE 將會透過 HDMI 啟動到外接顯示器上。等待一下（大約10秒），然後你可以嘗試將滑鼠往右移動，滑鼠游標應該會跑到你的 HDMI 顯示裝置上。
+
+這邊解說一下這個 script 做了哪些事情：
+
+＊設定畫面輸出到我們要使用的 HDMI 顯示器（Display 8， 由 Bumblebee 建立的虛擬顯示畫面編號）：
+
+	export DISPLAY=:8.0
+
+＊透過 optirun （以 Bumblebee 處理指定應用程式所需繪圖運算的指令）執行 LXDE：
+
+	optirun startlxde &
+
+＊分別為兩個顯示畫面建立 Synergy 連接：
+
+	synergys -f -a 127.0.0.1 --display :0 -n ubuntu &
+	synergyc -f -n hdmi --display :8 127.0.0.1 &
+
+＊最後，將輸出畫面設定回主顯示器，結束這個回合：
+
+	export DISPLAY=:0.0
+
+這個 script 也使用一些 sleep 指令，以確保有足夠的時間讓目前的指令在下個指令執行前完成所有動作。
+
+
+小技巧
+
+啟動應用程式
+
+如果你想要讓應用程式啟動到外接螢幕的畫面上，你可以直接將滑鼠移到外接螢幕上並點選 LXDE 的選單來執行程式，或是在主畫面下達以下指令：
+
+	export DISPLAY=:8.0 ＜APPLICATION＞
+
+＜APPLICATION＞ 可以是你要執行的任何程式。另外，你也可以先在終端機下先執行 export DISPLAY=:8.0，然後你接下來執行的程式都會出現在外接螢幕上。
+
+設定 Nvidia 顯示卡
+
+運用上面的指令，你也可以執行 nvidia-settings，如果你是使用 Nvidia 專用顯示驅動：
+	export DISPLAY=:8.0 nvidia-settings
+
+修正重複啟動的自動執行程式 / 系統圖示：
+
+為了避免啟動 LXDE 時，主畫面會出現兩組系統圖示（像是網路圖示等）的情況，我們可以透過下面的指令讓 LXDE 啟動時不會載入所有的自動執行程式：
+
+	for f in /etc/xdg/autostart/*; do if [[ ! `grep "NotShowIn=LXDE" $f` ]]; then echo "NotShowIn=LXDE;" | sudo tee -a $f; fi; done
+	for f in ~/.config/autostart/*; do if [[ ! `grep "NotShowIn=LXDE" $f` ]]; then echo "NotShowIn=LXDE;" | tee -a $f; fi; done
+
+你也可以手動將 NotShowIn=LXDE; 加到 `/etc/xdg/autostart` 及 `~/.config/autostart` 兩個資料夾中所有你不想在 LXDE 啟動載入的應用程式所對應的 .desktop 檔案。更多關於 NotShowIn 及 OnlyShowIn 的用法，請參考 "MAKE APPLICATIONS AUTOSTART ONLY IN A CERTAIN ENVIRONMENT (GNOME, UNITY, KDE, ETC.)" (http://www.webupd8.org/2011/11/make-applications-autostart-only-in.html)。
+
+
+相關網址
+
+1. Get HDMI Working With Nvidia Optimus On Ubuntu By Using Bumblebee And Synergy
+http://www.webupd8.org/2012/08/get-hdmi-working-with-nvidia-optimus-on.html
+
+2. Bumblebee Project
+https://github.com/Bumblebee-Project/Bumblebee/
+
+3. Issue #75: HDMI output possible? · MrMEEE/bumblebee-Old-and-abbandoned
+https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/75#issuecomment-2797298
+
+4. M11XR3 Bumblebee and the dual screen setup
+http://itviking.net/blog/m11xr3-bumblebee-and-the-dual-screen-setup
+_______________________________________________________________
+﻿
+■ [源碼新聞] Opus codec 彙集各大公司專利技術以開放授權方式釋出
+
+黃湘婷／編譯
+
+Opus 為一種傳遞聲音及音訊並擁有低延遲特性的音頻格式，在最近成為了該領域第一個免授權費用的開放標準格式，是由 IETF (Internet Engineering Task Force) 匯整提出 (http://tools.ietf.org/html/rfc6716)，為 Mozilla 與 Microsoft 的心血之作，另外也包含 Google, Broadcom, Xiph.org 以及 Octasic 等企業的支持與聯合開發。
+
+Opus 主要是結合 Skype 早期網路通話的 SILK 語音編解碼器與 Xiph.org 的 CELT 音樂編解碼器而成，與 G.711 編碼同樣被列入 WebRTC (http://www.webrtc.org/) 計劃，一同實現令瀏覽器具有溝通能力的功能。此外，Opus 的各個聯合開發的企業也貢獻自己的專利為開源相容的標準，藉由這個 Opus 的許可條款，在不以專利侵權控告 Opus 的前提下，任何人都可以使用這個開源的編解碼器。
+
+Skype 的工程師也表示新型的編解碼器 Opus 將帶來 CD 品質的音質，舉例來說，在收訊較差的地方，Opus 能夠使雜音或是音律的震盪降低，而位於收訊較好的地方，透過 Opus 的聲音品質能夠讓使用者覺得跟朋友是在同一間房間聊天，而不是透過網路電話傳遞。
+
+至於我們什麼時候能夠使用 Opus 呢？最快在幾個月後就會正式上市，更好的消息是，他不僅適用於 Skype，透過 Skype 的推廣，也有其他公司準備使用 Opus，其中一家就是著名的網路電話軟體 Viber，與 Skype 不同的是 Viber 為透過手機號碼綁定，不需再另外申請帳號，若您與您的朋友都安裝了 Viber，便能進行免費的通話。
+
+
+相關網址：
+
+1. Skype 新的標準 Opus 編解碼器能有 CD 品質的聲音
+http://www.zdnet.com/cd-quality-voice-heads-for-skype-via-newly-standardised-opus-codec-7000004270/
+
+2. Skype Opus 音頻編解碼器令網路電話達到 CD 品質的音質
+http://www.androidauthority.com/skypes-new-opus-audio-codec-set-to-deliver-cd-quality-sound-over-voip-114521/
+
+3. Skype 的 Opus 音頻編解碼器得到 IETF 標準
+http://www.neowin.net/news/skypes-opus-audio-codec-gets-ietf-certification
+_______________________________________________________________
+
+■ [源碼新聞] 短小精幹的 VectorLinux
+
+黃郁文／編譯
+
+VectorLinux 雖然在 Linux 桌面系統的領域不算新人，其功能與介面精簡實用，但卻不是那麼廣為人知，所以非常值得透過本篇報導介紹給大家使用！
+
+VectorLinux 的格言是：簡單精巧！其開發團隊決定將「精簡質樸、使用者導向 (Keep it simple, keep it small and let the end user decide what their operating system is going to be.)」做為開發上的準則與格言。而相較於 VectorLinux 現今的成果，這一點他們確實也準確無誤地做到了。
+
+VectorLinux 承襲 Slackware Linux 的開發架構，搭配 Xfce 與 KDE 二個桌面系統來進行運用，不過，與一般版本的 Slackware Linux 相比，VectorLinux 相當強調使用環境的輕簡便利以及客製化，以符合使用者個別的使用需求。VectorLinux 在開發理念上，一直專注於避免作業系統過於龐大，所以一直以來它都保有 Xfce 為其桌面系統選項之一，這是因為 Xfce 在運作上，能夠僅佔用約 225 MB 的記憶體運算空間，所以適合在硬體運算資源較低的設備上。再者，運算資源的有效控管，同時也是 VectorLinux 沒有選用 LibreOffice 與 OpenOffice 為預設文書系統的重要原因，在文書系統方面 VectorLinux 是採用 AbiWord 為文字處理程式，Gnumeric 為試算表程式，這兩隻程式都有因應 VectorLinux 的運作方式進行調校，所以執行起來非常順暢。
+
+不過對於一般初學者來說，安裝 VectorLinux 的過程中有幾件事是需要特別注意的，第一點，並不是所有版本的 VectorLinux 都提供 Live CD，有些版本僅提供安裝光碟，所以安裝之前應視自己的需求選訂好想要的版本；第二點，慎選在安裝過程中提示的每個選項，因為 VectorLinux 在安裝流程方面較為單向性，有時若途中步驟選擇錯誤的話，並沒有辦法直接回到上一個步驟重新選擇，此時只能透過重開機的方式重跑一次安裝流程。不過除了這二點以外，一旦安裝好 VectorLinux，後續的操作體驗瞬間感到海闊天空！預設程式的運算快速，與電腦週邊硬體的結合方式也很容易，甚至無線網路的設定也相當輕簡便利，使用起來給人的感受，頗類似 Ubuntu Linux 在過往 8、9 版帶給使用者的驚豔之感。（Ubuntu Linux 在採用 Unity 與 Gnome 3 桌面系統之後，大幅度提高了硬體資源方面的運算需求。）
+
+VectorLinux 桌面的預設配置，左邊是軟體與系統捷徑標籤，上方是 Gnome 控制台，下方則是運作 Cairo dock 的常用程式快捷圖標。其標準版本適用於低階電腦，所以選用佔用記憶體較少空間的應用程式，並配備多媒體、辦公軟體以及 LXDE、IceWM，以及 JWM 等耗費系統資源較小的桌面環境，並使用 Slapt-get 與 Gslapt 來處理額外軟體的安裝與管理。在系統安裝方面則使用 Vasm 與 VasmCC 來設定網路及檔案分享，使用 Exaile 播放音樂，GTK 繪圖與GTK-based 的 Xfce 桌面環境更加契合。另外，使用 VL-QwikPicks 也讓配置與下載應用程式更加容易。再者，Vector Linux 開發團隊對 Xfce 選單的改良，也讓新增軟體的搜尋更佳方便。而 Cairo dock 的桌面轉換程式，可轉換至四個虛擬工作空間，相當方便。重要的是，Vector 有很積極熱情的支援社群，軟體使用上的各種問題都能迅速得到回答。可惜的是，目前欠缺穩固的更新管理方案，故在不安全的網路環境下進行更新時，便較可能產生安全性的問題。整體而言，VectorLinux 是讓人印象深刻，且精實可用的 Slackware-based Linux 衍生版本，只是在安裝操作與桌面圖片的吸引度上能再改進些的話，那就更好了！
+
+相關網址：
+
+1、短小精幹的 VectorLinux
+http://www.linuxinsider.com/story/VectorLinux-A-Desktop-Thats-Slim-Sleek-and-Speedy-76123.html
+
+2、輕而快的 Vector Linux
+http://www.techrepublic.com/blog/opensource/vector-linux-lightning-fast-throwback-to-old-school-linux/3489
+_______________________________________________________________
+
+■ [源碼新聞] 西班牙學校 Ubuntu 系統的電腦已達 22 萬台
+
+黃湘婷／編譯
+
+Canonical 公司一直以來積極致力於提高 Ubuntu 在國際上的曝光率，以 Dell 電腦在出廠前預先安裝了 Ubuntu 系統為例，此舉成功的將 Ubuntu 打入印度與中國市場，在印度 Ubuntu 系統的零售據點也達到 850 個 (http://blog.canonical.com/2012/06/18/dell-extends-ubuntu-retail-into-india/)。Canonical 的執行長 Jane Silber 表示，他們準備向西班牙的教育機構進攻，大力推廣 Ubuntu。
+
+在西班牙 Andalusian 地區政府的要求下，技術工程公司 Isotrol 在 2 千多所學校，約 22 萬台的電腦中安裝了 Ubuntu 系統。Canonical 公司表示，目前約有 60 萬名學生與 7 萬 5 千名老師使用 Ubuntu 的 Guadalinex EDU 系統，另外也預估在年底將達到 150 萬名學生與 20 萬名老師使用 Ubuntu。
+
+透過此政策，學生能夠更容易也更方便的接受新的知識，掌握世界第一手的資料，此外也能夠增加創新能力，同時藉由進步的資訊科技設備，促進了互動課程的實施，另外也提供對於教師使用新平台的訓練，此一動作毫無疑問的是這個計畫成功的關鍵。
+
+Canonical 由於 Dell 在中國越來越強大，目前也持續的構想推廣策略，在葡萄牙與 Asus 合作，同樣是以在電腦上預裝 Ubuntu 的方式行銷。Canonical 此次結合教育進入市場這個策略是成功的，相信利用此方式推廣至其他教育市場的前景也將無可限量。
+
+
+相關網址：
+
+1. Ubuntu 系統的電腦在西班牙學校已達 22 萬台
+http://www.thevarguy.com/2012/09/10/ubuntu-reaches-220000-pcs-in-schools-in-spain/
+
+2. 在西班牙有數十萬的學生使用 Ubuntu
+http://ostatic.com/blog/in-spain-hundreds-of-thousand-of-students-get-ubuntu-access
+
+3. 在 Andalusia 區的學校約有 22 萬台 Ubuntu 電腦
+http://www.ubuntu.com/products/casestudies/Andalusia-deploys-220000-Ubuntu-desktops-in-schools-throughout-the-region
+_______________________________________________________________
+
+■ [源碼新聞] NexPhone - 結合桌上、平板與筆記型電腦的 Ubuntu for Android 手機
+
+黃湘婷／編譯
+
+對於隨身攜帶手機、平板與筆記型電腦以及維持不同設備間的資料同步感到厭倦了嗎？NexCrea (http://www.nexcrea.com/) 公司為此推出了 NexPhone 計劃，希望這台手機不只是單純的智慧型手機，還能夠結合平板、筆電與桌上型電腦，在官網上也非常有企圖心的表示：希望未來人們只需要一隻能夠結合不同設備的智慧型手機 NexPhone 就足夠了。
+
+藉由 NexPhone, 使用者便能在外接的設備上隨心所欲地編輯資料、使用手機的應用程式，甚至能夠撥打電話，實現了一般智慧型手機才能使用的功能。雖然早在 NexPhone 之前，Asus 就曾推出能夠外接成為平板與筆電的 PadFone, 但 NexCrea 將視野放的更遠，令 NexPhone 能夠進一步將手機使用的 Android 系統與 Ubuntu 系統結合 (Ubuntu for Android, http://www.gottabemobile.com/2012/02/21/ubuntu-for-android-turns-your-smartphone-into-a-real-computer/)。
+
+想像一下，在前往公司的路上使用 Nexphone 接上平板電腦辦公，到了辦公室帶著連接 Nexphone 的筆電與客戶開會，下班後 Nexphone 回復為一般智慧型手機與朋友們連絡，無論使用哪種外接設備，資料都儲存在手機當中。
+
+如此方便的手機目前還在研發階段，仍有許多問題需要解決，包括：手機的售價、Android 能夠運行的版本、這樣的手機能夠成功的令使用者願意放棄平板、筆電與桌上型電腦嗎？但 Nexphone 的未來在科技界的發展仍然是被看好的，相信此款能夠結合眾多設備的手機也將克服困難順利上市。
+
+
+相關網址：
+
+1. NexPhone：結合電腦、筆記型電腦與平板電腦的 Ubuntu 智慧型手機
+http://www.omgubuntu.co.uk/2012/09/meet-the-nexphone-an-ubuntu-based-smartphone-pc-tablet-and-laptop-in-one
+
+2. NexPhone 將實現手機、平板與電腦合一的設備
+http://www.gottabemobile.com/2012/09/10/nexphone-promises-one-device-for-phone-tablet-and-pc/
+
+3. NexPhone 計劃：能夠外接於平板、筆記型電腦與桌上型電腦的智慧型手機
+http://liliputing.com/2012/09/nexphone-project-a-smartphone-with-tablet-laptop-and-desktop-pc-docks.html
+_______________________________________________________________
+
+■ [源碼新聞] 圖書館目錄後設資料：公眾授權或公眾領域宣告？
+
+謝良奇／編譯
+
+◎ 本文原載台灣創用CC計畫，原文章連結按此 (http://creativecommons.tw/blog/20120914)。
+
+http://www.openfoundry.org/images/120925/library.jpg
+▲圖：catalogue / elise.y / CC BY (http://www.flickr.com/photos/polaroidia/4301528813/)
+
+據報數週前 OCLC 建議其成員圖書館，在線上分享圖書館目錄資料時，採用開放資料公用姓名標示授權 (ODC-BY) (http://opendatacommons.org/licenses/by/1.0/)。相較於以公眾領域 (如 CC0 公眾領域貢獻) 釋出書目之後設資料，OCLC 採取授權路線的決定值得商榷。
+
+雖然 OCLC 認為以 ODC-BY 等開放授權釋出其資料，符合其社群常規。但除此之外仍有其他兼容選項。例如哈佛圖書館年初就曾與 OCLC 協議，在 CC0 公眾領域貢獻下釋出後設資料，同時，哈佛一方面仍建議用戶最好能標示資料出處 (但不強制)，非將出處標示列為具有法律拘束力的授權前提。
+
+對於經常被組合混用，加上出處眾多授權又不一的資料，並不適宜用 ODC-BY 等授權方式要求標示出處。例如 OCLC 釋出的百萬筆 WorldCat 記錄就包含了 8 千萬筆 RDF 鏈結資料，在此將姓名標示當作是授權條件所帶來的複雜度，恐怕令使用者在技術上難以遵循。
+
+ODC-BY 授權範疇還涉及到歐洲資料庫權利。資料庫權利並不適用美國，且涵蓋資料庫整體而非內容， 不確定該授權能否應用於單一檔案的書目資料。儘管 ODC-BY 授權可能適合 OCLC  應用在 WorldCat，但對於希望以檔案下載形式，分享部分目錄資料的美國圖書館來說，是否選擇該授權，仍值得商榷。
+
+再者，由於歐盟以外的大多數國家，包括美國在內，並不為非創造性資料庫給予保護，ODC-BY 授權的功能最多只是當作從授權者網站直接下載檔案的合約限制，無法約束間接取得資料的重用戶。這種授權在許多情況下無法對分享資料的圖書館或 OCLC，提供他們預期的保障。
+
+基於上述理由，包括大英圖書館在內的文化機構，都採用 CC0 公眾領域貢獻作為線上發佈目錄資料之用。採用像 CC0 這樣的公眾領域貢獻，加上盡可能標示出處的要求，這種方式能在目錄資料上發揮最大實驗性與創新，又能保留圖書館界的使命與價值觀，同時尊重 OCLC 與圖書館界在這寶貴資源上的投資。
+
+原文出處：http://creativecommons.org/weblog/entry/33768。
+_______________________________________________________________
+
+■ [源碼新聞] 「101年度中文全字庫應用研討會」開始報名了！
+
+行政院研究發展考核委員會／文
+
+為彙集國家中文標準交換碼 (CNS11643) 相關字碼與屬性資料之資訊運作平台，本會已建置「全字庫網站」(http://www.cns11643.gov.tw)，目前納編逾十萬字，另配合應用發展趨勢，亦開發工具軟體提供各界快速查詢及免費下載使用，以滿足資訊使用者對中文資訊之需求。對於電腦系統或應用軟體有缺字或交換等問題，亦提供相關解決方案，期營建優質的中文字碼環境。
+    本次研討會歡迎政府機關 (構) 與民營企業及團體等報名參加，亦歡迎一般使用者參與本次活動。現場將對全字庫服務作精要之介紹，並提供實機操作演練，公務員參加本次活動可登錄3小時終身學習時數。
+
+參加對象：各機關 (構) 團體造字管理人員、使用電腦中文字形不足者、處理網頁中文字形顯示不足者、轉碼需求者或對全字庫相關應用有興趣者。
+
+
+研討會分為一般應用場次以及轉碼服務應用場次：
+
+一般應用場次：
+
+＊時數：每場 3 小時，含 2 小時授課及 1 小時實機演練
+＊內容：以「CNS11643中文標準交換碼全字庫網站」為主，包含：
+1. 中文碼簡介。
+2. 全字庫簡介及網站介紹。
+3. 全字庫工具介紹。
+4. 實機操作。
+5. 綜合問答及問卷調查。
+＊適合對象：一般使用者／自造字管理者。
+＊研習目標：
+1. 全字庫網站功能之介紹。
+2. 瞭解如何使用全字庫工具。
+3. 推廣全字庫的功能與服務。
+＊舉辦日期：
+
+1. 台北：10月19日(下午)、10月23日(下午)、10月30日(下午)。
+＊淡江大學台北校區
+＊地址: 台北市金華街199巷5號
+＊電話：(02)- 26215656轉8311
+＊地圖: http://www.tku.edu.tw/taipei-roadmap.htm
+
+2. 台中：09月28日(上午)、09月28日(下午)
+＊文化大學推廣教育部台中教育中心
+＊地址：台中市中港路二段128之2號3樓(Rich 19大樓)
+＊電話：(04)-27087982轉7982
+＊地圖：http://future.sce.pccu.edu.tw/service/service01_07.asp#b
+
+3. 高雄：10月11日(下午)、10月12日(上午)
+＊義守大學推廣教育中心
+＊地址: 高雄市前金區五福三路21號9樓
+＊電話：(07)216-9052
+＊地圖: http://www.eec.isu.edu.tw/environment/
+
+4.花蓮：10月04日(下午)
+＊慈濟大學 
+＊地址:花蓮市中央路三段701號 
+＊電話：(03)-8565301
+＊地圖: http://about.tcu.edu.tw/?page_id=29
+
+轉碼服務應用場次：
+
+＊時數：每場3小時，含2小時授課及1小時實機演練
+＊內容：
+1. 中文編碼方式。
+2. 資料庫轉碼。
+3. 轉碼工具。
+4. 全字庫軟體包轉碼。
+5. 全字庫網站轉碼服務。
+6. 實機操作。
+＊適合對象：系統程式設計師／自造字管理者，有程式撰寫經驗者為佳。
+＊研習目標：全字庫轉碼機制之套用。
+
+1. 台北：10月31日(上午)
+＊淡江大學台北校區
+＊地址：台北市金華街199巷5號
+＊電話：(02)- 26215656轉8311
+＊地圖：http://www.tku.edu.tw/taipei-roadmap.htm
+
+註：
+(1). 上午場次：9:00~12:00；下午場次：14:00~17:00。
+(2). 活動開始前 30 分鐘開始報到。
+
+＊報名期間：9月17日開始接受報名，額滿為止。
+＊報名方式：
+＊傳真報名：請填妥報名表傳真（傳真號碼: 02-2655-7559），請務必加填 e-Mail。
+＊電子郵件報名：請自全字庫網站 (http://www.cns11643.gov.tw) 之「全字庫服務」項下「活動快訊」點選「101年度中文全字庫應用研討會」下載「活動說明暨報名表」檔案，填妥報名表所需資料，Email 至 anita@dynacw.com。
+＊聯絡電話：(02)2655-7558 分機 308 吳小姐。
+＊主辦單位：行政院研究發展考核委員會。
+＊執行單位：碁曄科技股份有限公司／威鋒數位開發股份有限公司。
+_______________________________________________________________
+
+■ [源碼新聞] 2012 年十月份社群活動列表
+
+OSSF電子報團隊／整理
+
+十月份的活動列表出爐囉！本月份又多了許多社群活動,有著不同性質但同樣熱血的朋友們,有興趣的朋友們不妨邀請有共同興趣的朋友一同前往看看！另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信： ossfepaper@openfoundry.org 。
+
+
+2012 年 10 月活動
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（10/1）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（10/2）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+KuLUG 大高雄 Linux 使用者協會（10/4）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~21:30
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（10/4）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+KSDG - Python + MongoDB for Web（10/4）
+地點：高雄市前鎮區復興四路 2 號 7 樓 708 室
+時間：19:30~21:00
+活動資訊：https://groups.google.com/forum/?fromgroups=#!topic/mosut/hzPu0HxiiyA
+
+MozTW Lab @ TP（10/5）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+TOSSUG 社群聚會（10/9）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+Taipei GTUG（10/10）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：19:30~22:30
+活動資訊：http://www.taipei-gtug.org/
+
+KuLUG 大高雄 Linux 使用者協會（10/11）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~21:30
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（10/11）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（10/12）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+2012 Taiwan Wikimedian Autumn Meetup 2012年台灣維基人秋季聚會（10/13）
+地點：台北市文山區秀明路二段 175 號
+時間：9:30~16:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia_talk:2012AUTW
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（10/15）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（10/16）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+WoFOSS 好自由小組聚會（10/17）
+地點：伯朗咖啡-北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.com/2012/04/wofosswofoss.html
+
+KuLUG 大高雄 Linux 使用者協會（10/18）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~21:30
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（10/18）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（10/19）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+TOSSUG 社群聚會（10/23）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+
+Taipei GTUG（10/24）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：19:30~22:30
+活動資訊：http://www.taipei-gtug.org/
+
+KuLUG 大高雄 Linux 使用者協會（10/25）
+地點：台灣高雄市左營區富民路 391 號
+時間：19:00~21:30
+活動資訊：http://kalug.linux.org.tw/
+
+Hacking Thursday（10/25）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（10/26）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+
+MOPCON 2012（10/27~10/28）
+地點：高雄市前鎮區復興四路 12 號（高雄軟體科技園區 806 海景會議廳）
+時間：9:00~17:00
+活動資訊：http://registrano.com/events/mopcon2012
+
+Taipei Wikipedian Weekly Meetup: Community Operation 維基台北定期聚 — 社群經營工作雙週聚（10/29）
+地點：台北市松山區民生東路三段 140 巷 11 號
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+TOSSUG 社群聚會（10/30）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~22:00
+活動資訊：http://www.tossug.org/
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰林誠夏、林珈宏、彭冠雯、王怡凱、陳蕙蓁
+◎ 外稿編譯︰謝良奇、黃湘婷、蕭惟杰、黃郁文
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

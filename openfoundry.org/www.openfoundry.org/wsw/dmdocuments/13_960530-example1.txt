@@ -1,0 +1,61 @@
+
+ipw2200/ipw2915 from-scratch
+
+(一)：
+「Drivers and Firmware」
+http://ieee80211.sourceforge.net/INSTALL
+http://ipw2200.sourceforge.net/INSTALL
+
+(二)：
+「Wireless-Tools」
+ifconfig(8), iwconfig(8), iwspy(8), iwlist(8), iwevent(8),
+iwpriv(8), wireless(7).
+
+(三)：
+If you want to use WPA-PSK+TKIP.. and other
+mode, you can choose「WPAsupplicant」
+
+「Wpasupplicant」
+less /usr/share/doc/wpasupplicant/README.Debian
+less /usr/share/doc/wpasupplicant/examples/wpa_supplicant.conf.gz
+
+「Create Startup Script for Wpasupplicant」
+# /etc/default/wpasupplicant
+# Useful flags:
+# -D                        Wireless Driver
+# -D wext                 less /usr/share/doc/wpasupplicant/README.Debian
+# -i                          Interface (required, unless specified in config)
+# -c                         Configuration file
+# -d                         Debugging (-dd for more)
+# -w                         ait for interface to come up
+ENABLED=1              #<— important!!!
+OPTIONS="-w -i eth1 -D wext -B -c /etc/wpa_supplicant.conf"
+
+「Make sure you have a configuration file」
+# Minimal /etc/wpa_supplicant.conf to associate with open
+# access points. Please see
+# /usr/share/doc/wpasupplicant/examples/wpa_supplicant.conf.gz for more
+# complete configuration parameters.
+# Also see the other files in /usr/share/doc/wpasupplicant/examples/ for
+# specific configuration examples.
+ctrl_interface=/var/run/wpa_supplicant
+ctrl_interface_group=0
+eapol_version=1
+ap_scan=1
+fast_reauth=1
+### Example of basic WPA-PSK secured AP
+network={
+ssid="Denny’s Home"
+psk="ABCDEFG"
+}
+
+「Make sure you set "ENABLED=1" to "/etc/init.d/wpasupplicant"」
+# insane defaults
+OPTIONS="-Bw"           # daemonize and wait for interface
+CONFIG="/etc/wpa_supplicant.conf"
+ENABLED=1               #<— important!!!
+
+(四)：
+Have Fun 
+
+

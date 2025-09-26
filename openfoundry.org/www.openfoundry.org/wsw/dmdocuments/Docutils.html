@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Docutils使用方式</title>
+<style type="text/css">
+
+/*
+:Authors: Ian Bicking, Michael Foord
+:Contact: fuzzyman@voidspace.org.uk
+:Date: 2005/08/26 
+:Version: 0.1.0
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for Docutils.
+Based on ``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+/* body {
+  font-family: Arial, sans-serif;
+}
+
+em, i {
+  font-family: Times New Roman, Times, serif;
+} 
+*/
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  border: thin solid black;
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  -moz-border-radius: 8px;
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffffff;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  border: medium solid black;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #eeeeee;
+  border: thick solid black;
+  -moz-border-radius: 20px;
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin black solid;
+  padding: 5px;
+  background-color: #EEF;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 100%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document" id="docutils">
+<h1 class="title">Docutils使用方式</h1>
+
+<p>Docutils是個開放源碼的純文字處理系統，可以將純文字轉為各種好用的格式，包括HTML、Latex和odt等。Docutils中包涵了<a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>這個容易閱讀、編寫的純文字標記語言。此份教學文件假設使用者已經知道如何使用終端機，並已經裝好Python。</p>
+<div class="section" id="id1">
+<h1>安裝Docutils</h1>
+<p>首先請到Docutils的<a class="reference external" href="http://docutils.sourceforge.net/">官方網站</a>下載最新版的Docutils後，用7-zip或其他壓縮軟體解壓縮。</p>
+<img alt="http://farm2.static.flickr.com/1210/1274454392_760fe99921_o.png" src="http://farm2.static.flickr.com/1210/1274454392_760fe99921_o.png" />
+<p>然後打開終端機程式，選擇剛剛解壓縮出來的Docutils資料夾後，輸入:</p>
+<pre class="literal-block">
+python setup.py install
+</pre>
+<p>如果你沒有安裝的權限，請使用sudo指令取得安裝權限。接著Docutils就會自動安裝到你的系統中，等安裝程序完成後即可使用。</p>
+</div>
+<div class="section" id="rest-html">
+<h1>將reST檔案轉為HTML檔</h1>
+<p>Docutils中有許多轉檔指定，你可以在安裝資料夾下的「Tools」資料夾下看到這些指令，包括：rst2html.py、rst2latex等等。現在我們就來試試看如何使用Docutils將純文字檔案轉換成可用的HTML檔案。</p>
+<ol class="arabic">
+<li><p class="first">先將以reST檔案存成副檔名為.txt的純文字檔案。</p>
+</li>
+<li><p class="first">打開終端機，並移至reST檔案所在的資料夾。</p>
+</li>
+<li><p class="first">在終端機中輸入:</p>
+<pre class="literal-block">
+rst2html.py &lt;reST檔案名稱&gt;.txt &lt;欲儲存的檔案名稱&gt;.html
+</pre>
+</li>
+<li><p class="first">完成，將剛剛儲存的HTML檔案打開檢查是否有錯誤。</p>
+</li>
+</ol>
+<div class="section" id="rest">
+<h2>美化你的reST文件</h2>
+<p>如果你覺得寫出來的reST不夠美觀，希望能加入更多的編排變化，rst2html.py這個程式還可以讓你載入CSS檔美化你的文件。方式如下：</p>
+<ol class="arabic">
+<li><p class="first">先將安裝資料夾中的html4css1.css拷貝到檔案輸出的目的資料夾下，並新增一個要使用在reST上的CSS檔案（例如：rest.css）。</p>
+</li>
+<li><p class="first">然後置入下列範本:</p>
+<pre class="literal-block">
+/*
+:Author: 你的姓名
+:Contact: 你的電子郵件
+:Copyright: 此份樣式表的授權
+
+樣式表的詳細說明
+*/
+
+&#64;import url(html4css1.css);
+
+/* 在下方置入你的CSS程式碼，例如：*/
+
+h1, h2, h3, h4, h5, h6, p.topic-title {
+  font-family: sans-serif }
+</pre>
+</li>
+<li><p class="first">將範本存檔後，打開終端機，並輸入:</p>
+<pre class="literal-block">
+rst2html.py --stylesheet-path=rest.css &lt;reST檔案名稱&gt;.txt &lt;欲儲存的檔案名稱&gt;.html
+</pre>
+</li>
+</ol>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">在撰寫rst2html的CSS樣式表時，請注意一定要載入html4css1.css此份檔案，因為reST的某些固定樣式必須由此份檔案提供。</p>
+</div>
+</div>
+</div>
+<div class="section" id="rest-latex">
+<h1>將reST檔案轉為LaTeX檔</h1>
+<p>Docutils也可以用來將reST檔轉成LaTeX檔案，但並不是所有的功能都支援，例如中文支援度不佳，有時仍會有無法辨試的文字，不支援jpg、gif和png圖檔，與表格支援不佳等。因此目前這支程式在轉換中文reST方面，仍未達到實用的地步。因此目前最好僅用來轉換格式簡單的英文reST檔。</p>
+<p>轉換reST為LaTeX檔的基本概念如下：</p>
+<ol class="arabic">
+<li><p class="first">打開終端機，並移至reST檔案所在的資料夾。</p>
+</li>
+<li><p class="first">在終端機中輸入:</p>
+<pre class="literal-block">
+rst2latex.py &lt;reST檔案名稱&gt;.txt &lt;欲儲存的檔案名稱&gt;.tex --output-encoding=utf-8
+</pre>
+</li>
+<li><p class="first">加入對應的LaTeX格式語法，如指定字型等。</p>
+</li>
+<li><p class="first">Typeset LaTeX檔案。</p>
+</li>
+</ol>
+<p>不過由於reST與LaTeX之間的轉檔較為繁複，而且依據使用者所使用的平台和LaTeX版本的不同，也有不同的轉檔方式。例如我使用的是Mac上的XeLaTeX，因此不需安裝CJK系統，而且可以任意指定系統字型，但轉出的PDF檔中文會漏字，且無法處理圖片和表格。至於PC上的CJK LaTeX和PDF LaTeX的配合目前仍尚未嘗試過。</p>
+<div align="left" class="figure" style="width: 400px">
+<img alt="http://farm2.static.flickr.com/1016/1282781427_e152943abd_o.png" src="http://farm2.static.flickr.com/1016/1282781427_e152943abd_o.png" style="width: 400px; height: 300px;" />
+<p class="caption">使用rst2latex轉成的中文LaTeX檔仍然會有問題，例如文件右方被切除，無法顯示表格和圖片等。</p>
+</div>
+</div>
+<div class="section" id="rest-open-document-format">
+<h1>將reST檔案轉為Open Document Format</h1>
+<p>將reST檔轉成Open Document Format的程序較為麻煩，但轉換後的檔案較LaTeX實用，雖然仍有些功能無法完全相容，但只要一些後製功夫，你的reST檔案馬上就可以轉成可用的odt檔，讓你可以使用OpenOffice.org或NeoOffice繼續編輯文字檔案。</p>
+<div class="section" id="id3">
+<h2>安裝必要的程式</h2>
+<p>要能夠使用rst2odt.py，你必須先安裝Lxml和ElementTree，由於我使用內建的ElementTree無法成功轉檔，因此最好將這兩個程式都更新到最新版本。</p>
+<ol class="arabic">
+<li><p class="first">請先到<a class="reference external" href="http://codespeak.net/lxml/index.html">Lxml官方網站</a>下載最新的Lxml。</p>
+</li>
+<li><p class="first">將下載好的Lxml解壓縮後，打開終端機，並在解開的Lxml資料夾下輸入:</p>
+<pre class="literal-block">
+sudo python setup.py install
+</pre>
+</li>
+<li><p class="first">接著再到<a class="reference external" href="http://effbot.org/zone/element-index.htm">ElementTree官方網站</a>下載最新的ElementTree，並將其解壓縮。</p>
+</li>
+<li><p class="first">接著打開終端機，並移至解開的ElementTree資料夾，然後輸入:</p>
+<pre class="literal-block">
+sudo python setup.py install
+</pre>
+</li>
+</ol>
+<p>以上為Unix-like（包括OS X、Linux）的安裝方式，Windows可以直接下載exe執行檔安裝。</p>
+</div>
+<div class="section" id="rst2odt-py">
+<h2>使用rst2odt.py</h2>
+<p>由於rst2odt.py並不包涵在Docutils中，我們必須另外下載安裝，請至<a class="reference external" href="http://docs.huihoo.com/homepage/dkuhlman/odtwriter.html">rst2odt.py的網頁</a>下載最新版。</p>
+<ol class="arabic">
+<li><p class="first">將下載的檔案解壓縮後，打開終端機，並移至解開的資料夾後，輸入:</p>
+<pre class="literal-block">
+sudo python setup.py install
+</pre>
+</li>
+<li><p class="first">將rst2odt.py安裝好之後，我們就可以開始使用了。請打開終端機，並至移要轉換的reST檔所在的資料夾。</p>
+</li>
+<li><p class="first">然後在終端機中輸入:</p>
+<pre class="literal-block">
+rst2odt.py &lt;reST檔案名稱&gt;.txt &lt;欲儲存的檔案名稱&gt;.odt
+</pre>
+</li>
+<li><p class="first">接下來就可以使用OpenOffice.org打開轉好的檔案，並修改不正確的部分後，就可以繼續編輯了。</p>
+</li>
+</ol>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">雖然rst2odt.py轉出來的odt檔已經堪用，但還是有一些小問題，例如：文件內的超連結會失效、無法插入網路圖案（必須使用單機圖案）等。</p>
+</div>
+<p>以上是三種reST經常轉換的三種檔案格式，除了這三種格式外，reST還可以轉換為HTML S5、PDF（需經PDF LaTeX）和XML等，讓使用者能依據自己的需要轉換。</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="Docutils.txt">View document source</a>.
+Generated on: 2007-08-31 08:55 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+</html>

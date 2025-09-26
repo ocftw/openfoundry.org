@@ -1,0 +1,43 @@
+
+全系統完整備份 Scripts
+
+#!/bin/bash
+mntpoint="/mnt/backup"
+hddstate=`mount $mntpoint 2> /dev/null && sudo chown cyj.cyj $mntpoint && df|grep sda5|sed 's/ \+/ /g'|cut -d" " -f1`
+declare -i freespace=`test -z $hddstate || df|grep sda5|sed 's/ \+/ /g'|cut -d" " -f4`
+bktime=`date +%F-%H%M`
+
+backup_now() {
+echo -e "\nBackup starting now!\n==================================>"
+`mkdir -p $mntpoint/FullBK/$bktime`
+bkpath="$mntpoint/FullBK/$bktime"
+bkpath2="$mntpoint/FullBK/other"
+`sudo cp -a /mydocs /EIO_Binders/ /bin/ /boot/ /dev/ /etc/ /home/ /lib/ /root/ /sbin/ /usr/ /var/ $bkpath2/* $bkpath`
+`sleep 5;umount $mntpoint`
+}
+
+freespace_lt_10g() {
+if !([ -z $hddstate ]) ; then
+echo -e "\nIt's too less freespace to backup!.. removing old backup files!\n==================================>"
+oldfiles=`ls -l $mntpoint/FullBK/|head -2|tail -1|sed 's/ \+/ /g'|cut -d" " -f8`
+`sudo rm -rf $mntpoint/FullBK/$oldfiles;sleep 5`
+backup_now
+fi
+}
+
+freespace_gt_10g() {
+if !([ -z $hddstate ]) ; then
+backup_now
+fi
+}
+
+if !([ -z $hddstate ]) ; then
+if [ "$freespace" -lt "10240000" ];then
+freespace_lt_10g
+else
+freespace_gt_10g
+fi
+echo -e "\nok! well done!\n<==================================\n"
+else
+echo -e "\nno usb_hdd interface found.\n<==================================\n"
+fi

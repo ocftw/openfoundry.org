@@ -1,0 +1,1265 @@
+________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 195 期 | 2012/05/15 □■□
+________________________________________________________________
+
+◎ 本期主題︰利用 RequireJs 將 Backbone.js 程式模組化
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/05/29
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 利用 RequireJs 將 Backbone.js 程式模組化
+
+■ [技術專欄] 網站程式上線前需要準備的事（二）
+
+■ [企業應用] 授權流言終結者#4︰MongoDB 授權的分析與探討
+
+■ [源碼秘技] 小巧好用的靜態網頁產生工具 - nanoc
+
+■ [源碼新聞] Google 轉換至 OpenFlow 網路，下一個挑戰是用戶 SDN
+
+■ [源碼新聞] Linux 基金會將舉辦開放源碼雲端會議 CloudOpen
+
+■ [源碼新聞] 法國政府提高開放源碼普及率
+
+■ [源碼新聞] Google 雲端硬碟的 Linux 版本正開發中
+
+■ [源碼新聞] ownCloud 提供 Android 版手機程式
+
+■ [源碼新聞] Apache OpenOffice 團隊發表 Apache OpenOffice™ 3.4
+
+■ [源碼新聞] 第 18 屆 海峽兩岸資訊管理發展與策略學術研討會 暨 2012 兩岸資訊發展高峰論壇 (CSIM 2012)
+
+■ [源碼新聞] 2012 年 5 月份社群活動列表
+
+■ [源碼新聞] FreedomHEC Taipei 2012 將於 5/16 開放報名，6/12 - 6/13 舉行
+
+■ [源碼新聞] 台灣創用 CC 計畫公開徵求論文摘要與議程籌組（6/15截止）
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 利用 RequireJs 將 Backbone.js 程式模組化
+
+◎ 本文轉載自網站製作學習誌 (http://www.jaceju.net/blog/archives/requirejs-x-backbone/)。
+
+jaceju / 文
+
+之前分享了初探 RequireJS (http://www.jaceju.net/blog/archives/beginning-requirejs/) 一文後，對 RequireJS 已經有一定的瞭解，但後來實際應用到 Backbone.js 程式上時，發現了一些要特別注意的事項。
+
+以下便是我在整合兩者時的筆記。
+
+baseUrl 選項
+
+在 初探 RequireJS (http://www.jaceju.net/blog/archives/beginning-requirejs/) 的範例中，我是這樣寫的：
+
+js/main.js
+
+ 1　require({
+ 2　  paths: {
+ 3　    "order": "../lib/requirejs/order",
+ 4　    "lib": "../lib"
+ 5　  }
+ 6　});
+ 7
+ 8　require([
+ 9　  'app',
+10　  'order!lib/jquery/jquery-min',
+11　  'order!lib/underscore/underscore-min',
+12　  'order!lib/backbone/backbone-min'
+13　], function (App) {
+14　  App.initialize();
+15　});
+
+事實上這會影響我們在用 r.js 時的編譯，所以第一步我們先加上 baseUrl 選項：
+
+js/main.js
+
+ 1　require({
+ 2　  baseUrl: './',
+ 3　  paths: {
+ 4　    order: 'lib/requirejs/order',
+ 5　  }
+ 6　});
+ 7
+ 8　require([
+ 9　  'js/old_app',
+10　  'order!lib/jquery/jquery-min',
+11　  'order!lib/underscore/underscore-min',
+12　  'order!lib/backbone/backbone-min'
+13　], function (App) {
+14　  App.initialize();
+15　});
+
+baseUrl 是指讓 RequireJS 搜尋模組路徑時的起始位置；如果是用 ./ 的話，指的就是 index.html 所在的網址。
+
+這樣一來我們就不用設定 lib 的別名了。
+
+註：接下來的範例裡，除非必要，否則將不會特別提到選項的部份。
+
+第三方套件載入時機
+
+先前我們的 js/app.js 是這樣寫的：
+
+js/app.js
+
+ 1　define(function () {
+ 2　  return {
+ 3　    initialize: function () {
+ 4　      var Model = Backbone.Model.extend({
+ 5　        // ...
+ 6　      });
+ 7　      var View = Backbone.View.extend({
+ 8　        // ...
+ 9　      });
+10　      var model = new Model();
+11　      var view = new View({
+12　        model: model
+13　      })
+14　    }
+15　  }
+16　});
+
+在 initialize 方法裡我把所有的程式碼都塞在這裡，而當我想把 model/view 分離出來時，卻遇到了很大的難題。
+
+首先我想把 Model 分離出來，所以加入一個 js/model/Model.js 如下：
+
+js/model/Model.js
+
+ 1　define(function () {
+ 2　  return Backbone.Model.extend({
+ 3　    // ...
+ 4　  });
+ 5　});
+
+然後把 js/app.js 改寫成：
+
+js/app.js
+
+ 1　define([
+ 2　  'js/model/Model'
+ 3　], function (Model) {
+ 4　  return {
+ 5　    initialize: function () {
+ 6　      var View = Backbone.View.extend({
+ 7　        // ...
+ 8　      });
+ 9　      var model = new Model();
+10　      var view = new View({
+11　        model: model
+12　      })
+13　    }
+14　  }
+15　});
+
+重新執行，結果瀏覽器告訴我：Backbone is not defined。
+
+怎麼回事呢？
+
+原因是 js 檔案的載入順序，以及 factory 執行的時機。我們來分析一下整個程式的載入流程：
+
+1. 載入 js/app.js 。
+
+2. 載入 js/model/Config.js 。
+
+3. 執行 js/model/Config.js 的工廠方法。
+
+4. 載入 jQuery 。
+
+5. 載入 underscore.js 。
+
+6. 載入 Backbone.js 。
+
+7. 執行 js/app.js 的工廠方法。
+
+8. 執行 js/app.js 的 initialize 方法。
+
+還記得 define API 會在相依的模組完載入後就執行工廠方法嗎？
+
+這裡我們的 js/model/Config.js 因為沒有指定相依模組，所以載入後就會直接執行其工廠方法。但是因為 Backbone.js 等第三方套件還沒載入，所以在第三個步驟時，瀏覽器就噴錯誤給我們了。
+
+怎麼解決呢？第一個方法是把 js/main.js 中的 'js/app' 移到第三方套件後載入，不過得再加入不必要的 namespace：
+
+js/main.js
+
+ 1　require([
+ 2　  'order!lib/jquery/jquery-min',
+ 3　  'order!lib/underscore/underscore-min',
+ 4　  'order!lib/backbone/backbone-min',
+ 5　  'order!js_1/app',
+ 6　], function (_jQuery, _Underscore, _Backbone, App) {
+ 7　  App.initialize();
+ 8　});
+
+註：要記得相依的 js 模組會與 callback 的參數從左至右一一對應。
+
+這樣確實就可以讓模組依照我們相要的順序依序載入了。
+
+不過那些用不到的 namespace 真的很礙眼，還好 JavaScript 可以讓我們不需要寫它們；我們直接改用 arguments 來將 App 載入：
+
+js/main.js
+
+ 1　require([
+ 2　  'order!lib/jquery/jquery-min',
+ 3　  'order!lib/underscore/underscore-min',
+ 4　  'order!lib/backbone/backbone-min',
+ 5　  'order!js/app',
+ 6　], function () {
+ 7　  App = _.last(arguments);
+ 8　  App.initialize();
+ 9　});
+
+這樣就看不到那些無用的 namespace 了。
+
+物件還是建構式
+
+仔細比較 js/app.js 與 js/model/Model.js，一個是回傳純物件 {...}，一個是回傳 Backbone.Model.extend({...})，這兩者有什麼不同呢？
+
+純物件的方式，我們可以直接使用它的方法：
+
+ 1　App.initialize();
+
+而 Backbone.Model.extend({...}) 回傳的則是一個建構函式，我們要用 new 關鍵字來使用它：
+
+js/app.js
+
+ 1　define([
+ 2　  'js/model/Model'
+ 3　], function (Model) {
+ 4　  return {
+ 5　    initialize: function () {
+ 6　      var model = new Model();
+ 7　    }
+ 8　  }
+ 9　});
+
+另外千萬不要直接回傳 new 之後的 Model 或是 View，也就是：
+
+js/model/Model.js
+
+ 1　define(function () {
+ 2　  return new Backbone.Model.extend({
+ 3　    // ...
+ 4　  });
+ 5　});
+
+因為這樣一來回傳的是物件，而非建構函式，開發上就會造成問題。
+
+錯誤的 order plugin 用法
+
+RequireJS 的 order plugin 可以讓我們依序載入模組，但它卻還是有所限制。
+
+假設我把前面的第三方套件放到 js/vendor.js 裡面：
+
+js/vendor.js
+
+ 1　define([
+ 2　  'order!lib/jquery/jquery-min',
+ 3　  'order!lib/underscore/underscore-min',
+ 4　  'order!lib/backbone/backbone-min',
+ 5　], function () {});
+
+然後把 js/main.js 改成：
+
+js/main.js
+
+ 1　require([
+ 2　  'order!js/vendor',
+ 3　  'order!js/app',
+ 4　], function (Vendor, App) {
+ 5　  App.initialize();
+ 6　});
+
+這時我發現程式處於一種不穩定的狀態，也就是時好時壞。
+
+這是因為我們使用的是非同步載入的方式，但 order plugin 只能確保同一個檔案裡的載入順序，當跨到不同檔案時，order plugin 就會失效了。
+
+r.js 注意事項
+
+原本以為 r.js 能夠取用 js/main.js 裡的設定，但後來測試的結果是不行。所以在使用 r.js 編譯檔案時，如果有以下的設定：
+
+js/main.js
+
+ 1　require({
+ 2　  baseUrl: './',
+ 3　  paths: {
+ 4　    order: 'lib/requirejs/order',
+ 5　    text: 'lib/requirejs/text'
+ 6　  }
+ 7　});
+
+那麼在下 r.js 指令時，就要把它們都加入：
+
+ 1　r.js -o \
+ 2　name=js/main \
+ 3　out=js/main-built.js \
+ 4　baseUrl="./" \
+ 5　paths.order="lib/requirejs/order" \
+ 6　paths.text="lib/requirejs/text"
+
+這樣一來，才能編出正確的單一壓縮 js 檔案。
+
+不過每次要下這麼長的指令還真麻煩，還好 r.js 也提供了方便的用法，就是建立一個 build profile；我們只需要在專案根目錄加上一個 build.js：
+
+ 1　({
+ 2　  baseUrl: './',
+ 3　  name: 'js/main',
+ 4　  out: 'main-built.js',
+ 5　  paths: {
+ 6　    order: 'lib/requirejs/order',
+ 7　    text: 'lib/requirejs/text'
+ 8　  }
+ 9　})
+
+然後利用 build.js 來重新最佳化：
+
+ 1　r.js -o build.js
+
+效果就是一樣的了。
+
+build profile 的其他選項請參考官方提供的 build.js (https://github.com/jrburke/r.js/blob/master/build/example.build.js) 範例。
+
+text plugin
+
+RequireJS 提供了一個很棒的非同步樣版載入模組，名為 text；它可以幫我們把外部的 html 檔案載入，並當做字串使用。用法如下：
+
+js/view/View.js
+
+ 1　define([
+ 2　  'text!template/view_template.html'
+ 3　], function (viewTemplate) {
+ 4　  return Backbone.View.extend({
+ 5　    initialize: function () {
+ 6　      this.$el.html(viewTemplate);
+ 7　    },
+ 8　  });
+ 9　});
+
+註：text 是 lib/requirejs/text 的別名。
+
+有趣的是，它在透過 r.js 編譯時，就會把樣版檔直接編譯為字串，而不再經外部載入。
+
+假設 template/view_template.html 的內容為：
+
+template/view_template.html
+
+ 1　<p>This is template.</p>
+
+那麼透過 r.js 編譯後的結果如下：（已經有重新格式化）
+
+ 1　/* other modules */, define("text!template/view_template.html", [], function () {
+ 2　  return "<p>This is template.</p>"
+ 3　}), define("js/view/View", ["text!template/view_template.html"], function (a) {
+ 4　  return Backbone.View.extend({
+ 5　    initialize: function () {
+ 6　      this.$el.html(a)
+ 7　    }
+ 8　  })
+ 9　})
+
+從上面的範例就可以看到 text plugin 把 template/view_template.html 變成一個會回傳字串的模組了。
+_______________________________________________________________
+
+■ [技術專欄] 網站程式上線前需要準備的事（二）
+
+◎ 本文轉載自 Blog.XDite.net (http://blog.xdite.net/)。
+
+XDite / 文
+
+第 2 件事：application deployable from day 1
+
+在進入開發階段後，我會做的第一件事：make application deployable
+
+也就是：專案開始第一天，就必須要有個 production 直接可運行（可以鎖密碼，當作測試 server）才行。（我在 Rails 101 (http://rails-101.logdown.com/) 這本書最後一章，加入 capistano 與裝機為必練技能，就是這個緣故。）
+
+為什麼專案需要 deployable？
+
+提前控制風險：開發環境與線上環境的不同
+
+在一般的經驗中，往往在專案進行到尾聲快上線之時，才會注意到一個可能使專案時程大爆炸的事情： 開發端與線上端的環境通通不一樣。
+
+在開發過程中，所有人只專注在自己的機器上能不能動，這是常態。專注在實現功能，東西有缺就先在 local 上塞假資料。在最短時間內將 feature 盡可能寫完絕對是第一要務。
+
+但很可惜的，寫完並不等於放到正式環境上可以動。
+
+網站上其實非常多功能需要實際被「真人」測試，才會知道到底有沒有問題。有一些設定，甚至開發環境與上線完全不一樣。（以 Rails 來說，其實就差很多。比如說程式 class 會不會被 cache，asset 有沒有 optimize，上傳路徑以及與第三方接軌的設定等等…）
+
+如果拖到最後一個月才做 deploy 的這件事，因為「到底有多少東西不一樣」，變成了一個完全的未知數。原本夠用的一個月測試期，被這樣一壓縮可能完完全全就不夠用了。而且因為專案截止日已近，隨之而來的壓力更加大了犯錯的可能性。
+
+一個透明的已知進度
+
+Day1 就有一個可以直接實際測試的站台，還有一個很大的好處，能夠確保專案中所有人都知道現在進度，與規格書上的東西到底差多少。如果有重大瑕疵，或者是絕對不可行的功能，就可以早早提出修改，下架等等。節省大家寶貴的開發精力。
+
+如果專案截止日最後十五天，大家才知道很多東西原來根本是做不出來的，或者是跟原本想像差太多的，這時候鐵定陷入交相指責，一遍慌亂的狀況。
+
+絕對注意：捍衛進度
+
+不過這一招的使用，專案經理或者是 RD 主管要特別注意。因為 Day 1 就有一個直接可以看的站台，不少完全不懂「技術」的專案參與者（通常是企劃或老闆），會對網站的「裸站」狀態感到極度的恐慌，他們會挑剔 UI，會不滿 implement 細節，進而想要實際插手進度修改內容。請務必堅持住，堅持到進入最後一個階段：測試修飾期才可以讓他們修改（通常進入準完工階段，裸站狀態其實也消失了，當初挑剔的東西幾乎在這個階段不復存在，故也沒有修改的必要。）
+
+P.S. 可以架設一個 issue tracking system，把他們提出的修改事項先通通記起來，但通通不實作。等到接近測試期，再來看看這些當初的「建議」到底還有哪些實際需要被執行。
+
+只有「完全不合實際應用」的東西，或者是「變更會讓實作方式更合理」的東西可以在整個開發期，被丟入排程中。
+
+否則，他們的驚慌，會害這個專案完全結不了案。
+_______________________________________________________________
+
+■ [企業應用] 授權流言終結者#4︰MongoDB 授權的分析與探討
+
+曾義峰 / 文
+
+1. 前言
+
+MongoDB (http://www.mongodb.org/) 是一種文件導向的 NoSQL[註]資料庫系統 (document-oriented NoSQL database system)。主要使用 C++ 程式語言撰寫，並以 BSON（類似於 JSON 的格式）為其儲存資料結構的架構。
+
+MongoDB 專案始於 2007 年 10 月，由 10gen (http://www.10gen.com/) 團隊主導核心的開發。於 2009 年首度以產品的形式推出，並改以 AGPL-3.0 (http://www.gnu.org/licenses/agpl-3.0.html) 為其軟體之授權條款進行散布。這種雙重授權方式與過去我們所知的 MySQL (http://www.mysql.com/) 類似，但本質上卻帶著很不一樣的時代背景與商業思維，為了與 MySQL 類有所區別，故此我稱之為「雙重授權模式 2.0」。不過在本篇文章中不會討論商業思維的部分，而是著重於授權案例的應用。
+
+隨著 NoSQL 資料庫系統概念的興起及推動，現今採用 MongoDB 的使用者也有愈來愈多的趨勢。本篇文章將以 MongoDB 專案為實例，蒐集並探討常見的問題及誤解。
+
+2. MongoDB 的授權分析
+
+根據 MongoDB 官方網站的著作權授權專頁 (http://www.mongodb.org/display/DOCS/Licensing) 說明。MongoDB 將整體的專案分成三大部分，並分別使用不同的授權聲明。
+
+http://www.openfoundry.org/images/120508/myth04/2012-03-26_mongodb_official_license_page.png
+▲ 圖1：MongoDB 官方網站的著作權授權專頁
+
+其一，若使用 MongoDB 專案中核心資料庫系統的部分，其授權是 AGPL-3.0 及商業授權的雙重授權模式。代表著，使用該部分的專案時，我們可以選擇 AGPL-3.0 為其授權條款並遵循之，或者向 10gen 公司另行購買商業授權。
+
+其二，若使用 MongoDB 官方提供的資料庫驅動元件 (Database Driver)，其授權是 Apache-2.0 (http://www.apache.org/licenses/LICENSE-2.0.html) 的授權模式。代表著，使用該部分的專案時，我們僅需遵守 Apache-2.0 授權條款之義務，即可對等取得該授權之權利。另外，需要特別注意的是，假如使用的資料庫驅動元件為非 MongoDB 官方所提供的，我們則需要特別注意該元件的授權內容。
+
+其三，MongoDB 官方文件使用的是 Creative Commons BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)（Creative Commons 姓名標示-非商業性-相同分享方式 3.0）授權。代表著，使用該部分的專案時，需要符合以下要件：明確標示其著作權人、不可利用於商業行為，以及文件內容需延用相同分享的方式進行改作及散布。
+
+因此在利用 MongoDB 前，必須先行由「使用之部分」來確立其「授權條款」，並依據其權利義務分別遵循。舉例而言，如果使用到 MongoDB 核心資料庫功能，則必須依據使用的需求，來決定採用的是 AGPL-3.0 授權亦或是付費購買商業授權；同時，若使用 MongoDB 官方資料庫驅動元件進行資料庫操作時，該部分則必須遵循 Apache-2.0 授權，反之若使用的是非官方的元件，那麼就必須視該元件之授權而為之。
+
+http://www.openfoundry.org/images/120508/myth04/2012-03-26_mongodb_official_driver_list.png
+▲ 圖2：MongoDB 官方網站所提供的官方及非官方資料庫驅動元件 (http://www.mongodb.org/display/DOCS/Drivers)
+
+3. MongoDB 授權常見的誤解及探討
+
+3-1. 是否只要使用 MongoDB，即必須提供專案原始碼？
+
+這是一個涵蓋範圍很廣的議題，同時也是 MongoDB 最常見的問題之一。
+
+首先，根據本篇文章第 2 部分「MongoDB 的授權分析」所述，我們必須先行了解使用的是 MongoDB 的何部分，及其該部分的授權。另外，為了避免本文過於冗長，接下來僅以下列虛擬案例的情況來具體說明。
+
+假如我們有一專案，其資料庫使用的是 MongoDB 的核心資料庫系統，並且選擇 AGPL-3.0 為其授權模式，而非商業授權。另有一應用程式，該應用程式使用的是 MongoDB 官方提供的 PHP 資料庫驅動元件，使其得以與 MongoDB 核心資料庫系統進行溝通。此時所繪製的授權分析圖為如下，
+
+http://www.openfoundry.org/images/120508/myth04/mongodb_license_example.png
+▲ 圖3：MongoDB 虛擬案例的授權分析圖
+
+以下將以不同的情況來分別敘述之。
+
+3-1-1. 網頁服務為公開的網站形態
+
+如果該專案所提供的服務為公開的電腦網路環境，例如提供一個公開的網站服務，則授權分析圖為如下，
+
+http://www.openfoundry.org/images/120508/myth04/mongodb_license_example_public.png
+▲ 圖4：MongoDB 虛擬案例的授權分析圖--公開的網站形態
+
+此時若僅考慮 MongoDB 核心資料庫系統之 AGPL-3.0 及資料庫驅動程式之 Apache-2.0 的授權時，在一般的使用下，即未修改 MongoDB 核心資料庫系統（上圖中紅色的部分）及資料庫驅動程式（上圖中綠色的部分）的情形，我們並不需要將專案中相關的程式原始碼公開，也就是不需要公開網站自行開發的應用程式（上圖中藍色的部分），甚至連 MongoDB 核心資料庫系統及資料庫驅動程式的程式原始碼也不需要額外在網站服務中提供給外部下載。
+
+再者，同上所述，如果僅修改 MongoDB PHP 資料庫驅動程式時，我們同樣不需要將專案中相關的程式原始碼公開，因為該修改的部分屬於 Apache-2.0 授權，在 Apache-2.0 授權中並未要求此修改行為需要公開該部分或甚至專案中相關部分的程式原始碼，當然也就無需公開網站自行開發的應用程式。此時的授權分析圖如下，
+
+http://www.openfoundry.org/images/120508/myth04/mongodb_license_example_public_modified_mongodb_driver.png
+▲ 圖5：MongoDB 虛擬案例的授權分析圖--公開的網站形態（僅修改 MongoDB 資料庫驅動程式）
+
+反之，同上所述，如果修改的是 MongoDB 核心資料庫系統時，此時的授權分析圖如下，
+
+http://www.openfoundry.org/images/120508/myth04/mongodb_license_example_public_modified_mongodb_core.png
+▲ 圖6：MongoDB 虛擬案例的授權分析圖--公開的網站形態（修改 MongoDB 核心資料庫系統）
+
+因修改的部分屬於 AGPL-3.0，同時利用之方式符合遠端電腦網路之互動行為，所以需要根據 AGPL-3.0 第 13 節之內容遵循相關的義務要求，其內容原文如下，
+
+    13. Remote Network Interaction; Use with the GNU General Public License.
+
+      Notwithstanding any other provision of this License, if you modify the
+    Program, your modified version must prominently offer all users
+    interacting with it remotely through a computer network (if your version
+    supports such interaction) an opportunity to receive the Corresponding
+    Source of your version by providing access to the Corresponding Source
+    from a network server at no charge, through some standard or customary
+    means of facilitating copying of software.  This Corresponding Source
+    shall include the Corresponding Source for any work covered by version 3
+    of the GNU General Public License that is incorporated pursuant to the
+    following paragraph.
+
+      Notwithstanding any other provision of this License, you have
+    permission to link or combine any covered work with a work licensed
+    under version 3 of the GNU General Public License into a single
+    combined work, and to convey the resulting work.  The terms of this
+    License will continue to apply to the part which is the covered work,
+    but the work with which it is combined will remain governed by version
+    3 of the GNU General Public License.
+
+簡言之，此時我們除了要提供修改 MongoDB 核心資料庫系統的程式外，其它所有與該部分相關的對應原始碼 (Corresponding Source) 也都需要公開並提供所有得以使用此網站服務的人。換句話說，除了核心修改的部分外，連帶其它與 MongoDB 核心資料庫系統有相關的部分，都很可能需要開放並對外公開提供下載的管道。
+
+3-1-2. 網頁服務為公司內部的網站形態
+
+如果該專案所提供的服務為公司內部的電腦網路環境，例如提供一個僅允許公司內部使用的網站服務，則繪製的授權分析圖為如下，
+
+http://www.openfoundry.org/images/120508/myth04/mongodb_license_example_internal.png
+▲ 圖7：MongoDB 虛擬案例的授權分析圖--公司內部的網站形態
+
+此時無論是否有修改 MongoDB 核心資料庫系統或是資料庫驅動程式，一般而言是不需要提供相關程式原始碼之義務。
+
+3-1-3. 服務性質為 OEM／ISV 形態
+
+如果該專案所提供的服務為 OEM（Original Equipment Manufacturing, 妥託代工）或 ISV（Independent Software Vendor, 獨立軟體開發商）型式時，此時無論是否有對 MongoDB 核心資料庫系統或資料庫驅動程式進行修改，整體專案很可能都需要提供相關的程式原始碼予後續的合作廠商及購買設備的消費者，這也同時意謂著，網站自行撰寫的應用程式通常也含括其中且允予開放下載。
+
+3-2. 專案非商業利用，是否也要提供程式原始碼？
+
+這裡無關乎網站是否具有商業利用行為，只要合乎上述 3-1 部分所述的任何條件，不管屬於非商業利用或社會公益行為，皆同時需要符合該部分中所描述的對等義務要求。
+
+3-3. 資料庫中的資料是否需要公開？
+
+根據 AGPL-3.0 或 Apache-2.0 內容，資料庫中的資料（如會員資料，交易資料等）都不符合其要求之程式 (Program) 或原始碼 (Source code) 的定義範圍，因此無論是否需要公開網站原始碼，網站資料庫中之資料通常都可以不對外進行公開揭示。
+
+3-4. 使用 AGPL-3.0 的 MongoDB 為資料庫時，客戶端程式是否也會變成 AGPL-3.0？
+
+在專案中，若選擇以 AGPL-3.0 為 MongoDB 的使用授權時，一般而言是不會連帶影響客戶端程式的授權狀態。舉例而言，無論是否使用 MongoDB 官方提供的資料庫驅動元件，或是其它社群提供之元件，甚至是自行開發的元件，都不會因為透過電腦網路與遠端 AGPL-3.0 的 MongoDB 溝通而影響到原本的授權狀態。
+
+我們可以從 MongoDB 官方部落格的文章 (http://blog.mongodb.org/post/103832439/the-agpl) 得知官方的認定標準。
+
+http://www.openfoundry.org/images/120508/myth04/2012-03-26_mongodb_official_blog_the_agpl.png
+▲ 圖8：MongoDB 官方對於 AGPL 的看法
+
+特別是其中的這一段，
+
+    Note however that it is NOT required that applications using mongo be published.
+    The copyleft applies only to the mongod and mongos database programs.  This is
+    why Mongo DB drivers are all licensed under an Apache license.  You application,
+    even though it talks to the database, is a separate program and "work".
+
+該段意指，AGPL-3.0 的部分只涵蓋於 mongod 與 mongos 的資料庫程式，而官方 MongoDB 資料庫驅動元件皆是採用 Apache-2.0 授權。因此，當應用程式經由 Apache-2.0 的資料庫驅動元件與 AGPL-3.0 的核心資料庫溝通時，可以合理視為彼此分開的獨立著作，不需要受到 MongoDB 核心資料庫授權 AGPL-3.0 的影響。
+
+3-5. 如果不想或不得公開自行開發的程式碼時，該怎麼辦？
+
+根據本篇文章第 2 部分「MongoDB 的授權分析」所述，針對 MongoDB 核心資料庫系統的部分，其授權是 AGPL-3.0 及商業授權的雙重授權模式。因此，除了 AGPL-3.0 外，我們還可以額外購買商業授權。所以，在面對必須公開專案中不想或不得公開之程式碼時，是可以改向 10gen 團隊以客戶服務的方式，或是線上申請 (http://www.10gen.com/oem) 的方式，來談及商業授權版本的費用。
+
+此問題通常針對的是 MongoDB 核心資料庫系統之 AGPL-3.0 的授權，而不是 MongoDB 資料庫驅動程式之 Apache-2.0。因為 Apache-2.0 相較於 AGPL-3.0 而言，互惠性要求範圍較小，相對於後續商業利用的友善程度較高，所以比較不會面臨到類似的問題。但若對於 Apache-2.0 授權的範圍外有特別的需求，也可以向 10gen 團隊談及商業授權，即使 MongoDB 官方網站的著作權授權專頁 (http://www.mongodb.org/display/DOCS/Licensing) 並沒有提到這點。
+
+4. 結語
+
+許多人對於利用 GPL 類的相關程式時皆會心生畏懼，更無論乎是互惠性要求範圍更廣的 AGPL-3.0。其實無論是 GPL-2.0 還是 AGPL-3.0，都並非不可理喻的授權條款，也唯有在「知彼」後，我們才能更得心應手，而有所因應。
+
+此外，MongoDB 與過去普遍比較熟知的 MySQL 雙重授權的商業模式不太一樣。MySQL 使用的是「GPL-2.0」與「商業授權」的雙重模式，但是 MongoDB 則是使用「AGPL-3.0」與「商業授權」的雙重模式。
+
+兩者在商業模式的核心想法及應用上有著很大的不同，但其中不難看出 MongoDB 面對時代背景變遷所作出的改變，進而更能契合 SOA（Service-Oriented Architecture，服務導向架構）及雲端的時代。為了區別兩者間明顯的變遷，我們可以把 MySQL 的商業模式稱為「雙重授權模式 1.0」，而 MongoDB 的案例應用則稱為「雙重授權模式 2.0」。
+
+[註] NoSQL (Not only SQL) 是一種有別於典型關聯式資料庫系統 (RDBMS) 的設計方式。其資料的儲存不需要固定的資料表結構，通常也不支援 "join" 的 SQL 語法，甚至不保證資料異動的 ACID (Atomicity/Consistency/Isolation/Durability) 原則，但是較關聯式資料庫擁有更佳的橫向擴展優勢。
+
+[MongoDB]: http://www.mongodb.org/ "MogoDB 官方網站"
+[MySQL]: http://www.mysql.com/ "MySQL 官方網站"
+[10gen]: http://www.10gen.com/ "10gen 官方網站"
+[GPL-2.0]: http://www.gnu.org/licenses/gpl-2.0.html "GPL-2.0 授權條款全文"
+[GPL-3.0]: http://www.gnu.org/copyleft/gpl-3.0.html "GPL-3.0 授權條款全文"
+[AGPL-3.0]: http://www.gnu.org/licenses/agpl-3.0.html "AGPL-3.0 授權條款全文"
+[Creative Commons BY-NC-SA 3.0]: http://creativecommons.org/licenses/by-nc-sa/3.0/ "Creative Commons 姓名標示-非商業性-禁止改作 3.0 授權"
+[Apache-2.0]: http://www.apache.org/licenses/LICENSE-2.0.html "Apache License, Version 2.0"
+_______________________________________________________________
+
+■ [源碼秘技] 小巧好用的靜態網頁產生工具 - nanoc
+
+Kent / 文
+
+簡介
+
+Official website：nanoc.stoneship.org (http://nanoc.stoneship.org/)
+
+nanoc 是一個用 Ruby 實現的靜態網頁產生工具。從它的官方網站，nanoc 標榜自己是一個給中到小型網站的 Ruby 網頁系統。nanoc 是一個非常彈性的工具。它讓管理靜態網頁非常的方便，而且還可以用不同的語法來編輯內容。透過不同的 Ruby 工具，nanoc 可以再編譯成 HTML、CSS 格式。因為這樣的設計，nanoc 產生出來的內容可以非常輕易的發佈到伺服器上，而無需多安裝套件在伺服器上，或煩惱相容性的問題。
+
+本文將介紹一些 nanoc 的入門知識，並帶領讀者實作一個簡易的個人網頁，透過實例輕鬆學習使用 nanoc 的方式，協助您在未來可以很輕易的使用這個工具產生並編輯自己的靜態網站。
+
+安裝說明
+
+本文假設讀者有些許的命令行操作的經驗，並在一台裝有 Ruby1.8.6 或以上，以及 Rubygems 這個套件管理工具的主機上操作，以下操作範例適用於 *nix-like 系統上。
+
+請打開命令行介面並輸入
+
+gem install nanoc 
+
+接下來，如果想要確認安裝是否成功，請輸入以下指令確認。
+
+nanoc --version
+
+使用說明
+
+以下的篇幅將說明 nanoc 的用法跟實作。
+
+nanoc 在安裝以後就可以直接在命令列裡操作，這就是為什麼我們可以透過 `nanoc --version` 指令，來獲取本機的 nanoc 安裝訊息。
+
+首先先到一個工作資料夾，然後利用以下命令創建一個叫做 site 的 nanoc 資料夾。
+
+nanoc create_site web 
+
+如果一切順利的話，會看到一些檔案被自動產生。接下來，移到 site 這個資料夾下，注意，後續的 nanoc 指令都需要在 nanoc 檔案夾中才可以執行。我們先看看 nanoc 自動幫我們生成的模板是怎麼樣：
+
+nanoc compile 
+nanoc view 
+
+現在開啓瀏覽器然後到 `http://localhost:3000/`. 讀者應該看到下圖：
+
+http://www.openfoundry.org/images/120508/nanoc/nanoc1.png
+▲ 圖1
+
+現在在深入探討 nanoc 的運作方式。 nanoc 的資料夾具有以下幾個目錄跟檔案：
+
+config.yaml：網站設定檔都會放在這裡
+Rules：關於編譯、路徑以及版面的規定都放置在這裡
+content/：存放編輯的檔案。nanoc 的編譯指令就是從這裡抓檔案然後轉成輸出檔到 output/
+layouts/：版面相關的檔案都放置在這裡
+output/：編譯完成的檔案就存放在這裡
+tmp/：存放優化編譯的一些數據
+
+每一次使用者編譯 nanoc 的檔案夾，nanoc 在讀取完設定檔之後就會進行編譯（事實上，nanoc 會先查看 lib/，但這屬於比較進階的用法，需要寫 Ruby 的是程式碼，所以不在本文的討論範圍之內）。 編譯是根據設定檔而定。
+
+之後的指令 `nanoc view` 啟動 nanoc 內建的 Ruby WEBrick 伺服器以方便使用者檢查自己的編輯結果。nanoc 並不要求部署伺服器一定要安裝 WEBrick 才能夠顯示一樣的效果。這是因為 nanoc 編譯出的輸出檔是 HTML、CSS，所以基本上，只要是能夠處理這些檔案的伺服器都能夠支援 nanoc 的產出。
+
+在本文接下來的實作部分會有介紹。希望讀者可以在本章節之後對 nanoc 的架構與運行有基本的認識。
+
+實例研究
+
+現在筆者將帶讀者製作一個簡易的個人網頁，並藉機熟悉一下 nanoc 的基本指令。
+
+前面有提到 nanoc 非常的彈性，nanoc 提供使用者一個選擇編輯文件的語法的空間。以下將會介紹給讀者一個利用 markdown 編寫網頁的方式。如果對於 markdown 不是很熟悉，可以參考此教學文件 (http://www.openfoundry.org/tw/resourcecatalog/Program-Development/Markup-Languages/markdown)。
+
+首先需要先安裝一些處理 markdown 的套件
+
+gem install kramdown 
+gem install adsf 
+
+kramdown 是 Ruby 的 markdown 實作，專門用處理 markdown 的套件。 
+adsf 是個讓使用者可以在任何子檔案夾中，都可以啓動伺服器以檢視成果的好用工具。
+
+開啓 content/index.html，然後用 markdown 語法編寫一段文字：
+
+--- title: Home --- 
+# This is Bob's web page Welcome! I like to code and I need some internet presence. 
+## Interests 
+- Programming 
+- Design 
+- Typography 
+## Hobbies 
+- Baseball 
+- Tennis
+
+接下來，需要設定 Rules 檔。之前曾經提過 Rules 是專門用來設定編譯、路徑、以及版面的設定檔。這裡我們希望讓 nanoc 用 kramdown 來處理用 markdown 編寫的主頁。輸入以下的程式碼在任何規則之前。
+（規則的順利很重要，因為 nanoc 依序處理規則，最先符合規則的檔案會被以規則內定義的程式去跑）
+
+compile '/' 
+   fileter :kramdown 
+   layout 'default' 
+end
+
+現在用 nanoc 編譯然後開啓伺服器來檢視成果：
+
+http://www.openfoundry.org/images/120508/nanoc/nanoc2.png
+▲ 圖2
+
+上述步驟成功讓 nanoc 編譯 markdown 成 html 檔案，但是旁邊的 side bar 還是舊有的預設條目。這可以透過修改 layouts/default.html 來改變。（注意，我們在 Rules 中指定要用 default 做 layout，所以我們現在修改這個檔案。如果讀者想要嘗試也可以自訂 layout）
+
+＜%= yield %＞
+Items
+Home
+Contact
+
+如此即可讓整個網頁更個人化。
+
+最後，筆者將會介紹，如何產生新的網頁然後設定好路徑.輸入：
+
+nanoc create_item contact 
+
+打開新產生的文件，然後輸入以下的文字：
+
+--- 
+title: A New Item 
+---
+ 
+My email address is bob123@example.com
+
+接者, 更動以下幾個地方來完成我們的個人網頁。我們在 Rules 裡面告訴 nanoc 要處理 contact.html 這個檔案
+
+compile '/contact' do
+ filter :kramdown 
+　layout 'default' 
+end
+
+再來，修改 layouts/default.html 中的路徑：
+
+＜%= yield %＞
+Items
+Home
+Contact
+
+重新編譯開啓伺服器後，試試看點擊 home 跟 contact 來確定路徑是否都設定正確。
+
+結論
+
+nanoc 是一款非常強大的靜態網頁生成系統。本文向讀者介紹一些很基礎的 nanoc 入門知識與運用，基本上，利用這些已經可以處理一大部分的需求，若是有心想要更深入瞭解，筆者建議先具備 Ruby 程式語言的基本知識，如此學起來會事半功倍。 
+
+參考資料
+nanoc官方網站, http://nanoc.stoneship.org/
+_______________________________________________________________
+
+■ [源碼新聞] Google 轉換至 OpenFlow 網路，下一個挑戰是用戶 SDN
+
+謝良奇 / 編譯
+
+向來對基礎架構保密到家的網路巨人 Google，日前罕見地由技術基礎架構資深副總裁 Urs Hölzle，對外揭露其內部資料中心網路的一角。Hölzle 公佈 Google 已重新打造龐大內部網路，為該公司帶來效率與降低成本。Google 骨幹網路流量如今已運行在採用開放源碼技術 OpenFlow 打造的軟體定義網路 (software-defined network，SDN)。此舉也展示 OpenFlow 標準已為商業用途準備就緒。
+
+Hölzle 日前在第二屆年度開放網路高峰會 (Open Networking Summit) 發表演說，主題放在 Google 如何在其網路上運用 OpenFlow 降低成本與減少複雜度。在演說中 Hölzle 指出 Google 希望在今年能夠開始將這種可程式化網路，延伸至用戶面向網路上，這個 SDN 能夠處理更為複雜且重要的流量。
+
+Hölzle 表示在此一方向所取得的進展，是 Google 在網路方面最重要的改變。此外他也首次證實，曾經因為打造自用伺服器出了名的 Google，也已經設計並製造了該公司的網路設備。Hölzle 表示建造網路硬體並不困難，真正難的是軟體部份。
+
+在演說中，Hölzle 解說了 Google 在2010 年為建構此一 OpenFlow 網路所開發的設備。那是利用商用矽晶 (merchant silicon) 的基本交換器，幾乎不執行什麼軟體，只有開機所需的軟體以及 OpenFlow 代理程式。其他一切全都交由控制器掌管。
+
+Google 經常需要在資料中心之間搬移以 petabytes 為單位計算的資料，儘管 Google 掌握了內部流量的排程，卻在流量工程上遭遇到困難。OpenFlow 是 Google 為此找到的答案，這是由美國史丹福大學與加州大學柏克萊分校的科學家共同發展的開放源碼系統，OpenFlow 運用 SDN 方式，透過分隔網路設備中封包交換和管理兩大功能，大大提升了網路營運者的控制能力。
+
+這項技術透過在集中式電腦伺服器上執行的軟體，來控制網路作業，藉此節省成本、時間、電力耗損。Hölzle 表示，當時他們已經朝這個方向進行，用拙劣的方式發展SDN，看到 OpenFlow 的那一刻，他們很清楚這個就是他們要的。
+
+Google 也加入了推廣 OpenFlow 的開放網路基金會 (Open Networking Foundation)，其他成員包括 Yahoo、Microsoft、Facebook、Verizon、Deutsche Telekom，和一家新創公司 Nicira。但是上述成員至今未曾發表過任何有如 Google 這般規模的實作。
+
+一旦 OpenFlow 普及之後，將可能影響到如 Alcatel-Lucent 和 Cisco Systems 這樣的主要路由器與交換器製造商，以及他們所使用的 ASIC 晶片與嵌入式處理器。這一次 Google 要用其軟體專長顛覆目前的網路典範。
+
+在其網路上使用 OpenFlow，Google 得以達成集中式流量工程。Hölzle 指出，在網路設備中僅配有少許記憶體的嵌入式處理器上，難以做到的事，如今可以輕易完成。
+
+為了在被稱為 G 規模 (G-Scale) 網路上實現 OpenFlow 而打造路由器，並非 Google 首次嘗試動手製作這類設備。一位前 Google 員工曾透露該公司早在 2005 年就開始自行設計設備。 Hölzle 表示，2010 年當時他們開始此一專案時，根本買不到任何適用的設備。
+
+儘管如此，Hölzle 並不希望外界過分看待 Google 製造網路交換器一事。他強調不要為此而斷定 Google 有意和 Cisco 與 Juniper 競爭。他希望隨著更多大型營運商開始採用 OpenFlow，網路設備製造商可以開始設計支援此一技術的設備。如此一來，Google 會是可能買家之一。
+
+Hölzle 表示，他希望 Google 能在今年開始著手將用戶面向網路移往 SDN 上。雖然這不表示此一轉換會很快發生，但終究會如此。Google 僅在 2 年內就將所有內部網路流量，轉換到 OpenFlow 網路上。
+
+此一轉換的重要性，在於 Google 在內部網路看到的成本節省，最終有助降低用戶寬頻網路的傳輸成本，幫助 ISP 們壓低成本。對 Hölzle 來說，讓軟硬體與 ISP 產業了解到，此一方向能讓他們因此受惠，才是他演說的真正理由。
+
+相關網址
+
+Google’s next OpenFlow challenge: taking SDNs to the consumer.
+http://gigaom.com/cloud/googles-next-openflow-challenge-taking-sdns-to-the-consumer/
+
+Going With the Flow: Google’s Secret Switch to the Next Wave of Networking.
+http://www.wired.com/wiredenterprise/2012/04/going-with-the-flow-google/all/1
+
+Google describes its OpenFlow network.
+http://www.eetimes.com/electronics-news/4371179/Google-describes-its-OpenFlow-network
+_______________________________________________________________
+
+■ [源碼新聞] Linux 基金會將舉辦開放源碼雲端會議 CloudOpen
+
+謝良奇 / 編譯
+
+開放源碼是否會主導雲端仍是未知數，然而旨在推廣 Linux 的非營利組織 Linux 基金會 (Linux Foundation)，正想透過舉辦一個新的技術研討會，給予上述問題一個肯定的答案。Linux 基金會將於今年夏天，為 OpenStack、CloudStack 以及其他開放源碼雲端相關專案的贊助者與支持者，舉辦 CloudOpen。
+
+Linux 基金會在新聞稿中表示，首次 CloudOpen 大會將於 2012 年 8 月 29 到 31 日，在美國加州聖地牙哥和 LinuxCon North America 同時舉辦。為需要部署與開發雲端解決方案的軟體開發者和 IT 管理者所設計的 CloudOpen，涉及的技術內容包括 Chef、Gluster、Hadoop、KVM、Linux、oVirt、Puppet、Xen，以及大規模資料策略和開放雲端平台及工具。
+
+大會的程序委員會包括了來自 CloudStack 贊助者如 Citrix 與 Eucalyptus 的代表，以及集結於 OpenStack 背後的獨立軟體開發商與 OEM，包括 IBM、Red Hat 與OpenStack 專案。大會贊助者包括了主要的開放源碼雲端支持者，如 Canonical、Citrix、Dell、Eucalyptus Systems、HP、Hitachi、IBM、Intel、NEC、Puppet Labs、SUSE。
+
+不久前過去支持 OpenStack 的 Citrix，將其 Cloud.com CloudStack 程式碼貢獻給 Apache 軟體基金會 (Apache Software Foundation)，以 Apache License 2.0 授權釋出之後，便掀起了這一場所謂的開放源碼雲端大戰。
+
+Citrix 與其他 CloudStack 支持者維護相容於 Amazon EC2 的 API，使得其開放源碼堆疊對企業更為親和力，另外 OpenStack 這一方則認為 Citrix 此舉只是為了替該公司昂貴卻蹣跚的雲端堆疊拉攏支持的最後掙扎。
+
+不論如何，有兩套開放源碼雲端專案彼此競爭，總是件好事。只不過企業或許得好好考慮一下，究竟是 Apache 軟體基金會相容於 Amazon EC2 的 CloudStack，或是擁有 Red Hat、IBM、Canonical 後援的 OpenStack，才最能符合他們的需求。
+
+為了避免雲端解決方案分歧化可能造成的雲端綁定 (cloud lock-in)，Red Hat 於 2009 年發起了 Apache Deltacloud。該專案主席 David Lutterkort 表示，最大挑戰在於用戶正忙於在眼花撩亂的雲端上找出最佳實踐，綁定問題還沒有獲得重視。
+
+Linux 基金會新的 CloudOpen 大會正是為了對此議題投以關注。該基金會行銷與開發者服務副總裁 Amanda McPherson 認為，開放是這個會議的基礎信念。他們是從經驗得知這一點，而且也知道雲端需要開放才能獲得長期的成功。因為 Linux、開放源碼軟體、協同開發是雲端的基礎，提供一個中立於廠商的論壇，讓致力於開放性的各方能促進發展，讓用戶與產業能夠學到雲端上的開放。
+
+相關網址
+
+Linux 基金會將舉辦 CloudOpen 以減緩開放源碼雲端大戰
+http://www.zdnet.com/blog/open-source/linux-foundation-to-host-cloudopen-to-mitigate-open-source-cloud-war/10828?tag=content;search-results-river
+
+Linux 基金會用 CloudOpen 支持開放雲端
+http://www.wired.com/cloudline/2012/04/linux-foundation-cloudopen/
+
+Linux 基金會將舉辦開放源碼雲端會議 “CloudOpen”
+http://techcrunch.com/2012/04/25/linux-foundation-to-host-open-source-cloud-conference-cloudopen/_______________________________________________________________
+
+■ [源碼新聞] 法國政府提高開放源碼普及率
+
+謝良奇 / 編譯
+
+根據法國總統 Nicolas Sarkozy 所述，該國政府的年度 IT 預算中有 15% 是用在開放源碼軟體相關的服務上。這些數字來自由 Conseil National du Logiciel Libre (CNLL) 發表的一份報告，CNLL 是一個代表開放源碼 IT 服務供應商的貿易組織。這份報告也指出，上述數字正以每年 30% 的速度成長。
+
+另一份由獨立技術與市場研究公司 Forrester 發表的 IT 趨勢調查，同樣顯示德國與法國在開放源碼商業應用上，正以相當快的速度迎頭趕上。德國的開放源碼市場比起法國更為成熟，24% 的德國公司將擴展他們基於開放源碼的系統。而法國的市場則較為活躍，有 31% 的公司在執行基於開放源碼的先導專案。
+
+Sarkozy 認為開放源碼與自由軟體是法國數位部門的發展策略。另一位法國總統候選人 François Hollande 同樣表達了對開放源碼的支持。他同意 Sarkozy 應該培植開放源碼與開放標準的看法，特別是針對政府與中小企業。
+
+此外，Hollande 強烈反對軟體專利，並且表示將確保共同專利 (Community patent) 的實施，不會成為軟體專利、數學方法、商業方法合法化的機會。另一方面，總統 Sarkozy 則支持軟體專利。
+
+在教育上，Sarkozy 表示他在傾向支持開放源碼解決方案，但這並未列入他的優先事項。Hollande 則指出這將會是他施政下極具重要性的部份。Hollande 希望讓學生從資訊技術的消費者，成為能寫又能讀程式碼的創作者。
+
+相關網址
+
+開放源碼在法國政府普及度上升
+http://www.h-online.com/open/news/item/Open-source-adoption-on-the-rise-in-the-French-government-1546061.htm
+
+德國與法國對開放源碼的採用顯著增加
+http://www.pillarone.org/collaboration/blog/germany-and-france-significantly-increase-open-source-adoption
+_______________________________________________________________
+
+■ [源碼新聞] Google 雲端硬碟的 Linux 版本正開發中
+
+黃湘婷 / 編譯
+
+Google 於四月底推出了 Google Drive 雲端硬碟，提供每個 Google 帳號 5GB 的免費空間，並可付費擴充空間，最大可升級至 16 TB。除了 Windows 的版本外，也提供了 Mac 的版本以及能在 Android 手機上使用的 App 版，至於 Linux 作業系統目前則不適用，僅能在 Google Drive 的網頁上做存取。
+
+Google Drive 的操作介面與 Google 文件相當類似，可說是 Google 文件的升級版，在推出這項服務後，原先儲存在 Google 文件的檔案將自動轉至雲端硬碟，上方的列表也由「文件」改成「雲端硬碟」。
+
+除了空間的增加外，雲端硬碟能支援多達 30 種不同類型的檔案格式，包含 Adobe 的 Photoshop 及 Illustrator 檔案，令使用者不需安裝相關的應用程式便能由雲端硬碟進行檢視。另外也提供了 OCR 文字辨識技術，將 PDF 及圖片轉換為 Google 文件，成功擷取其中的文字。
+
+至於 Linux 版的雲端硬碟何時會推出呢，Google 文件的社群經理 Teresa Wu 表示，他們正致力於開發對 Linux 的支援。Android 是基於 Linux 平台的作業系統，若已開發出能在手機上使用的 App，相信未來雲端硬碟也能適用於 Linux 的桌面環境。
+
+相關網址︰
+
+雲端硬碟推出，目前並無支援 Linux
+http://www.omgubuntu.co.uk/2012/04/google-drive-launches-without-linux-support/
+
+雲端硬碟即將推出 Linux 版
+http://www.omgubuntu.co.uk/2012/04/google-drive-is-coming-to-linux/
+
+Linux 版雲端硬碟正開發中
+http://www.cio.com/article/705112/Google_Drive_for_Linux_Is_on_the_Way
+_____________________________________________________________________________________________________
+
+■ [源碼新聞] ownCloud 提供 Android 版手機程式
+
+黃湘婷 / 編譯
+
+ownCloud 為一個提供雲端服務的開放原始碼軟體，與 Dropbox, Google Drive, SkyDrive 等常見的雲端硬碟不同的地方為︰ownCloud 能夠讓使用者建立自己的雲端伺服器，便能自行管理與備份，有別於一般的雲端硬碟是將檔案放到別人的伺服器上。
+
+ownCloud 目前最新的版本為 ownCloud 3，功能包含檔案、音樂、日曆、連絡人及書籤的同步，透過瀏覽器或 WebDav 便能進行各項管理工作以及資源共享的服務，ownCloud 的官網也提供了讓使用者試用的功能 http://demo.owncloud.org/files/index.php，能簡單的操作試用 ownCloud 服務。
+
+由於是開放原始碼軟體，ownCloud 有專屬的 Apps 網站 http://apps.owncloud.com/，讓一般使用者也能成為程式開發人員，共享自己所開發的程式於網路上，增加軟體的擴充性。
+
+在 4 月底，ownCloud 推出了能在 Android 2.3.6 以上運行的手機軟體的測試版（尚未於 Google Play 發布，可在 ownCloud 的部落格 https://owncloud.com/blog 下載試用），能將 Android 手機中的文件與照片上傳，也能瀏覽、下載以及刪除雲端硬碟上的檔案，透過移動裝置存取檔案更加方便。至於 iOS 版的手機軟體 ownCloud 表示目前還在開發當中，預計 4 至 6 個星期後與下一個版本的 Android App 一同發布。
+
+相關網址︰
+
+ownCloud 發布了 Android 版的手機程式
+http://www.thepowerbase.com/2012/05/owncloud-releases-android-app/
+
+ownCloud Android 手機程式已提供下載
+OWNCLOUD ANDROID APP AVAILABLE FOR DOWNLOAD
+http://www.webupd8.org/2012/05/owncloud-android-app-available-for.html
+
+ownCloud：Android 手機程式發布
+https://owncloud.com/blog/the-android-app-is-here
+_______________________________________________________________
+
+■ [源碼新聞] Apache OpenOffice 團隊發表 Apache OpenOffice™ 3.4
+
+Apache OpenOffice 官方新聞稿
+
+http://www.openoffice.org/zh-tw/news/aoo34.html
+
+全球超過百萬人使用，開放原始碼跨平台、支援多國語言的文書處理軟體，數不盡的新功能。Windows、Linux 和 Macintosh 版本免費下載 (http://www.openoffice.org/download/)。
+
+www.OpenOffice.org—2012 年 5 月 8 日—Apache OpenOffice 團隊發表今天正式發表 Apache OpenOffice™ 3.4。這是 OpenOffice 在 Apache 軟體基金會下的第一個版本。
+
+Apache OpenOffice 是原版的開放原始碼文書處理軟體，適合專業及一般使用者。
+
+「Apache 軟體基金會自從受贈 OpenOffice.org 起，基金會及我們的育成計劃團隊，就接下了一個嚴峻的挑戰：重新組織社群，並要將授權不明的 OpenOffice，轉變成嚴格符合 Apache 授權的軟體。」Apache 軟體基金會主席，兼 Apache OpenOffice 專案督導的 Jim Jagielski 表示，「隨著 Apache OpenOffice 3.4 發表，專案團隊交出漂亮的成績單：吸引了來自超過 21 個贊助企業的開發者，同時避免企業過度干預傷害社群；建立穩定的系統基礎，同時擁有比其他同質產品更多的顯著優勢；最重要的是：建立了活躍、多元的使用者與開發者社群。」
+
+Apache OpenOffice 是開放原始碼文書處理軟體的領導品牌，全球超過百萬人使用，涵蓋家庭、企業、政府部門、研究機構、學術單位，並有十六種語言版本。Apache OpenOffice 3.4 現已免費下載 (http://www.openoffice.org/download/)。 OpenOffice 3.4 的特色如下：
+
+*包含文書處理、試算表、簡報圖形、資料庫、繪圖、數學公式編輯，並提供 Windows、Linux（32 及 64 位元）及 Macintosh 版。
+*提供英文、阿拉伯文、捷克文、德文、西班牙文、法文、加利西亞文、匈牙利文、義大利文、日文、荷蘭文、俄文、巴西葡萄牙文、簡體中文及正體中文版本。
+*加強開放文件格式支援，包含新的 ODF 1.2 加密選項，及新的試算表函式標準。
+*加強 Calc 樞鈕分析表功能。
+*加強圖形功能，包括線段端點樣式、裁切變形 (https://blogs.apache.org/OOo/entry/features_for_graphicobjects_and_oleobjects) 及支援可縮放向量圖檔 (SVG) (https://blogs.apache.org/OOo/entry/native_svg_support_for_apache)。
+*更快，更穩。
+
+要知道全部有哪些新功能，請參閱新版說明 (https://cwiki.apache.org/confluence/display/OOOUSERS/AOO+3.4+Release+Notes)。
+
+Apache OpenOffice 使用者還可享有眾多協力廠商團體的周邊產品，超過兩千三百個範本 (http://templates.services.openoffice.org/)，和超過八百個擴充套件 (http://extensions.services.openoffice.org/)。
+
+社群開發模式「The Apache Way」
+
+OpenOffice 基本系統最初是在 1990 年代由 Star Division 開發，分別在 1999 年和 2010 年被昇陽電腦和甲骨文公司購併，並在 2010 年中轉移給 Apache 軟體基金會。
+
+目前團隊由開發者、測試者、翻譯者等各種志工組成，透過俗稱為「The Apache Way」的流程運作，並有來自全球上百位的開放源始碼志工共同支援。
+
+「從十年前的初版發表到現在，在 Apache 下的 OpenOffice 第一個版本 3.4 版，揭開了 OpenOffice 歷史上嶄新的一頁。」 RedMonk 的首席分析師 Stephen O'Grady 指出。「經過幾個月的努力，OpenOffice 得以用新的授權釋出，更能吸引全球使用者、開發者和獨立軟體商。」
+
+Apache OpenOffice 目前為 Apache 育成專案，由預備專案管理委員會 (PPMC) 管理日常的運作、社群發展和新版釋出。Apache OpenOffice 的原始碼、下載、說明文件、通信群組和相關資訊，請參閱 http://incubator.apache.org/openofficeorg/。
+
+作為第一個 OpenOffice 的 Apache 官方版本，開發團隊符合了育成專案管理委員會訂立的政策。為此，開發團隊將與 Apache 軟體基金會 (ASF) 授權政策不相容的程式碼、函式庫、功能等，一一找出來、以相容的功能替代或移除，以符合育成專案管理委員會的授權政策。
+
+展望
+
+展望未來，OpenOffice 計劃支援更多語言，強化無障礙設計，增強使用體驗和效能，並採用 IBM Lotus Symphony 所貢獻的新功能和新設計。
+
+Apache OpenOffice 專案管理委員會歡迎您的加入。有很多地方需要大家的參與與貢獻。欲知詳情請參閱如何參與 (http://incubator.apache.org/openofficeorg/get-involved.html)。
+	
+「Apache OpenOffice 投資開發了十五年以上，是開放源始碼文書處理軟體的領導品牌。我們很高興能完全以 Apache 2.0 授權發表。這是未來在 Apache 下， OpenOffice 創新開發的基礎。」身兼版本管理者和資深核心開發者的 Juergen Schmidt 說。「這個重大里程碑，象徵 OpenOffice 已經擁有足夠多元、活躍、專業的社群基礎，向未來邁進。我們可望能在接下來幾週內，脫離育成階段，晉陞為 Apache 一級專案。」
+
+進一步資訊
+
+若要知道 Apache OpenOffice 更進一步的產品資訊，請參閱我們的網站 www.openoffice.org。關於 Apache OpenOffice 專案，及志工參與方法詳情，請參閱我們的專案網站 http://incubator.apache-dot-org/openofficeorg/。
+
+若要訂閱 OpenOffice 相關官方公告，請將郵件寄到 ooo-announce-subscribe@incubator.apache.org。你也可以加我們的 Facebook (https://www.facebook.com/ApacheOO)、Twitter (https://twitter.com/#!/apacheoo)、Identi.ca (http://identi.ca/apacheoo) 和 Google+ (https://plus.google.com/u/0/114598373874764163668/posts) 專頁。
+
+關於 Apache 軟體基金會 (ASF)
+
+Apache 的技術，廣泛使用在超過半個以上的全球網際網路、多達 Petabytes 的資料、每秒數兆的運算、上億的專案上，協助改善了無數使用者和開發者的體驗。自 1999 年成立起，以「The Apache Way」協助、開發、育成自由軟體的創新發展。全球六大洲有超過 400 個個人會員、 3500 位貢獻者共同合作，管理超過 150 個專案。
+
+「Apache」、「Apache OpenOffice」、「OpenOffice」及「OpenOffice.org」為 Apache 軟體基金會在美國及其他國家的（註冊）商標。其他品牌及商標為其註冊人所有。
+
+使用推薦
+
+社群推薦
+
+「OpenOffice.org 曾是劃時代的文書處理工具，並制定了開放文件格式 (ODF) 標準。我們非常高興， OpenOffice 現在能在孕育眾多優異專案的 Apache 下成長。這個里程碑，見證了尊重每個志工的時間、精力的『Apache Way』，造就了 Apache OpenOffice 成為人人可用的軟體。」
+— Apache OpenOffice 專案管理委員會成員、 OpenOffice 巴西社群成員 Claudio Filho
+
+「Apache OpenOffice 3.4 是 OpenOffice.org 重大的進步。除了許多 OpenOffice.org 時代的功能改進外，我們也加上很多的新功能，品質符合您的期待。請您使用 Apache OpenOffice 3.4 在您的生活、商業、教育環境中，以不負我們眾多志工的辛勤努力。德文志工們會繼續提供支援，傾聽您的問題及訴求。讓我們共同創造 Apache OpenOffice 的未來。」
+— Apache OpenOffice 專案管理委員會成員、 OpenOffice 德文社群成員 Regina Henschel
+
+「OpenOffice 和它龐大、多元的社群，搬家到 Apache 了。超過四十個義大利社群志工協助翻譯及品管，確保 Apache OpenOffice 3.4 不會辜負您對我們的期待。新的授權允許 OpenOffice 自由使用在其他專案上。我非常期待未來跨專案的合作，以促進使用者最大的福址。」
+— Apache OpenOffice 專案管理委員會成員、OpenOffice 義大利社群成員 Andrea Pescetti
+
+「Apache OpenOffice 3.4 是是台灣中文社群第一次直接參與開發與翻譯工作的版本，是 OpenOffice 台灣社群嶄新的里程碑。誠摯邀請您下載試用，感受前所未有的全新體驗。」
+— Apache OpenOffice 專案管理委員會成員、 OpenOffice 台灣社群成員楊士青
+
+企業推薦
+
+「這一刻真讓人激奮！過去十年以來， SourceForge 一直是開放原始碼社群最可靠的夥伴。現在我們很榮幸能和 Apache 軟體基金會合作，釋出 Apache OpenOffice 3.4 版。這是 OpenOffice 和其社群的重大里程碑。我們團隊很樂意持續貢獻，並期待未來的發展。恭喜大家！」
+— Geeknet Media 執行長 Jeff Drobick
+
+「IBM 很樂意能以 Apache 第二版授權貢獻 Apache OpenOffice 專案。 Apache OpenOffice 是社會企業創新、建立文書文件的獨特機會。我們希望能儘快將 Symphony 的程式碼貢獻給 Apache OpenOffice 。」
+— IBM 協同合作解決方案副總裁 Kevin Cavanaugh
+
+「PSC Group, LLC 多年來一直在客戶方案中使用 Lotus Symphony 和 OpenOffice 。在 OpenOffice 移轉到 Apache 軟體基金會名下後， PSC 已經簽好了企業貢獻授權書，我們的顧問們也都要成為個人志工。我們期待能在下一版 Apache OpenOffice 4 貢獻一份心力。」
+— PSC Group, LLC 企業協同合作主任 John Head
+
+「我們的目標是要持續帶給使用者商業價值。因此我們持續參與 Apache OpenOffice 計劃，針對在 SugarCRM 中產生報表、文件協同合作，以提高辦公室生產力。只要使用者生產力更高，就能更專注於業務內容。這正是我們要帶給使用者的一流體驗。」
+— SugarCRM 共同創辦人兼技術長 Clint Oram
+_______________________________________________________________
+
+■ [源碼新聞] 第 18 屆海峽兩岸資訊管理發展與策略學術研討會暨 2012 兩岸資訊發展高峰論壇 (CSIM 2012)
+
+CSIM 大會 / 文
+
+研討會宗旨
+
+「海峽兩岸資訊管理發展與策略學術研討會」是海峽兩岸四地資訊管理領域的專家學者為促進資訊管理學術發展、分享學術研究成果，自 1994 年起輪流在兩岸四地的大學所舉辦的學術研討會。過去十年，資訊與通訊科技的演進，帶動了科技與商務的結合、商務與生活的結合、生活與美學的結合、美學與創意的結合，加以「創新」「創意」與「資訊服務」產業以及研究議題的興起，其改變的不只是資訊科技產業的風貌，也改變了人與人之間的生活風貌，也是下一世代的競爭力所在。
+奠基于上，本研討會與高峰論壇的內容包括：
+
+    學術論文發表與研討
+    兩岸資訊發展高峰論壇
+    主題演講
+
+研討會議題
+
+本研討會涵蓋主題包括，雲科技與服務、資訊管理、社群網路、電子商務/行動商務、企業 e 化 / m 化 / u 化、創新與知識管理、資訊、通訊與資安、資訊教育、商業智慧、生物與醫療資訊、其他資訊管理相關議題等。
+
+研討會地點
+
+實踐大學（台北校區）
+
+主辦單位
+
+    主辦單位：中華民國資訊管理學會、臺灣大學（管理學院）、實踐大學
+    承辦單位：實踐大學資訊科技與管理學系（所）
+    協辦單位：復旦大學、清華大學、南京大學、資訊系統協會中國分會、中國資訊經濟學會
+
+投稿須知與重要日期
+
+    會議論文可以用摘要或全文投稿，摘要以不超過 500 字為限，全文投稿以不超過 15 頁為限。
+    論文採線上投稿詳情與格式請參閱網站 (http://csim2012.usc.edu.tw)
+    論文截稿日期為：2012 年 6 月 10 日(日)
+    論文接受函通知為：2012 年 6 月 25 日(一)
+    論文完稿截止暨會議註冊截止日：2012 年 7 月 16 日(一)
+    會議議程公告為：2012 年 7 月 23 日(一)
+
+聯絡資訊
+
+    林明華 2012csim@gmail.com
+    李孟晃 meng@mail.usc.edu.tw
+    實踐大學資訊科技與管理學系辦公室聯絡電話 02-2538-1111 分機 8812、8813
+_______________________________________________________________
+
+■ [源碼新聞] 2012 年 5 月份社群活動列表
+
+OSSF 電子報團隊 / 整理
+
+五月份的活動列表出爐囉！各位有興趣的朋友記得先把時間預留下來唷，找尋同伴一起討論、一起吸收新知。另外，由於活動列表出來的時間比較早，若後續有活動希望也能一起做宣傳的朋友們，記得來信： ossfepaper@openfoundry.org 。
+
+2012 年 5 月活動
+
+Rails Tuesday（5/1）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（5/1）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（5/2）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（5/3）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（5/4）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+MozTW 火狐幫幫忙 台北報到（5/5）
+地點：台北市信義區信義路五段 106 號 4F A-1（Mozilla Space）
+時間：13:30~15:30
+活動資訊：http://bit.ly/fxhelper12
+Moz.TW：http://moztw.org/
+
+Rails Tuesday（5/8）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（5/8）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+Ubuntu Pilot of Taipei on Second Tuesday 第 25 次聚會（5/8）
+地點：台北市松江路 69 巷 8-1 號（綠逗豬式會社）
+時間：18:00~21:00
+活動資訊：http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?topic_id=49252&forum=30
+
+Taipei GTUG（5/9）
+地點：台北市中山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：19：30-21:30
+活動資訊：http://www.taipei-gtug.org/
+
+RGBA 網路設計師聚會（5/9）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（5/10）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+Hacking Thursday（5/10）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（5/11）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+臺北定聚社群經營工作雙週聚（5/14）
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+Rails Tuesday（5/15）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（5/15）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（5/16）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+WoFOSS 好自由小組聚會（5/16）
+地點：伯朗咖啡-北科大店（台北市忠孝東路三段 52 號 1 樓）
+時間：19:30~22:00
+活動資訊：http://wofoss.blogspot.com/2012/04/wofosswofoss.html
+
+Hacking Thursday（5/17）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（5/18）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+JSDC.tw（5/19）
+地點：台北市南港區研究院路二段128號（中研院 人文社會科學館）
+時間：08:00～19:00
+活動資訊：http://jsdc.tw/2012/
+
+SA@Tainan 你所不知道的 CMake（5/20）
+地點：台南市永康區大灣路949號（崑山科技大學 資訊科技學院 I5401視聽教室）
+時間：13:00～16:00
+活動資訊：http://samc.study-area.org/registry/add/104
+
+Rails Tuesday（5/22）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（5/22）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（5/23）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（5/24）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+
+MozTW Lab @ TP（5/25）
+地點：台北市中山區民生東路二段 114 號 （咖啡．銅號）
+時間：19:30~23:00
+活動資訊：https://groups.google.com/group/moztw-general
+Moz.TW：http://moztw.org/
+
+Firefox x Ubuntu 12(.04) Release Party（5/27）
+地點：台中市西區中港路一段 121 號（水舞饌 中港店）
+時間：14:00~17:00（1:45 開始進場）
+活動資訊：http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?topic_id=48996&forum=30
+
+臺北定聚社群經營工作雙週聚（5/28）
+地點：台北市松山區民生東路三段 140 巷 11 號（果子咖啡）
+時間：18:00~20:00
+活動資訊：http://zh.wikipedia.org/wiki/Wikipedia:WPTP-Social
+
+Rails Tuesday（5/29）
+地點：台北市松江路 330 巷 26 號（田中園）
+時間：19:30~22:00
+活動資訊：http://registrano.com/group/rubytaiwan
+
+TOSSUG 社群聚會（5/29）
+地點：台北市南昌路二段 200 號（Mix Coffee & Tea）
+時間：18:00~21:00
+活動資訊：http://www.tossug.org/
+
+RGBA 網路設計師聚會（5/30）
+地點：台北市中正區晉江街 10 號（早秋咖啡）
+時間：19:30~22:00
+活動資訊：http://rgba.tw/about
+
+Hacking Thursday（5/31）
+地點：台北市重慶南路一段 1 號 2 樓（MarketPlace）
+時間：19:30~22:00
+活動資訊：http://www.hackingthursday.org/
+_______________________________________________________________
+
+■ [源碼新聞] FreedomHEC Taipei 2012 將於 5/16 開放報名，6/12 - 6/13 舉行
+
+林珈宏 / 文
+
+Freedom 硬體工程師研討會 (Freedom Hardware Engineer Conference, FreedomHEC) 是由國內 Open Source 開發人員與國外 Linux Kernel 社群開發者所合作籌畫的有關 Open Source 系統的硬體研討會。從中您將了解到讓硬體相容於開放原始碼的 Linux 作業系統有多容易。透過 FreedomHEC，硬體廠商可與國內外的 Linux 專家進行交流，從而協助其以非常低的成本開發出 Linux 驅動程式，讓硬體廠商可以主宰自己硬體的命運, 將硬體銷售到 Linux 市場；並且，國內廠商的 Linux 工程師亦可以藉此機會與國際 Linux 資深 Kernel 開發者交流，學習如何參與 Linux Kernel 社群，同時也可讓台灣廠商在 Linux Kernel 社群的協助下，順利開發出驅動程式並整合至上游 Linux 系統中，使台灣的產品得到即時的 Linux 支援。
+
+FreedomHEC Taipei 2012 將於 6/12 (二) 至 6/13 (三) 在國科會科技大樓舉行，5/16 (三) 開放註冊報名，費用為新台幣 700 元整。本屆研討會由中央研究院資訊創新研究中心自由軟體鑄造場 (OSSF) 與資擘股份有限公司及臺灣符式 (Forth) 推廣協會共同主辦，並由幾位熱心的開放源碼支持者獨立執行籌辦業務，因此除歡迎大家踴躍註冊報名參與之外，也歡迎各界的慷慨贊助。相關贊助與註冊報名款項將完全作為會議活動及講者邀請支出之用，相關核心籌辦者均義務協助、不支費用，會後結餘也將作為未來會議籌備基金使用。
+
+歷屆的 FreedomHEC Taipei 皆邀請來自世界各地重要的 Linux Kernel 開發者分享技術開發心得與經驗，同時介紹 Linux Kernel 現況以及如何與 Linux Kernel 社群合作。FreedomHEC Taipei 2008 共邀請了 9 位國外來自日本、俄羅斯、中國大陸、美國、澳洲、德國等國家的 Linux Kernel Hacker 參與，其中有負責維護 Git 版本管理程式 Junio C Hamano 以及曾擔任 Linux Kernel iptables 設計的 Harald Welte；FreedomHEC Taipei 2009 則邀請到主持 Linux Driver Project 的 Greg Kroah-Hartman 及 lwn.net (http://lwn.net/) 主編 Jonathan Corbet 參與。今年 FreedomHEC Taipei 2012 比較特別的主題是 Matthew Garrett 會談到 UEFI Secure Boot 對開源碼作業系統的重大影響，Hisao Munakata 則會介紹 Linux Foundation 所提出，由 NEC、Sony、Panasonic、Qualcomm、Toshiba、Renesas 及 Samsung 等大廠所支持，對消費者電子產業有相當影響的 Long Term Support Initiative (LTSI) 計畫，LTSI 計畫維護一個可提供長期支援修正的 Linux Kernel 版本。此外，FreedomHEC Taipei 還有許多精彩議程，相關議程與講者資訊請參考 FreedomHEC Taipei 2012 官方網站：http://taipei.freedomhec.org。
+_______________________________________________________________
+
+■ [源碼新聞] 台灣創用 CC 計畫公開徵求論文摘要與議程籌組（6/15截止）
+
+emyleo / 文
+
+◎原文網址︰http://creativecommons.org.tw/blog/20120511。
+
+第二十三屆科學與技術資料委員會國際會議 (The 23rd International CODATA Conference)今年十月底將於台北舉行，會議主題為「開放資料與資訊: 變動中的地球」。
+公開徵求論文摘要與議程籌組，收件截止日期為6月15日。
+
+詳情請見以下公開徵求文件，並煩請廣為散布。
+敬請踴躍投件，共同參與這次會議。感謝！
+
+公開徵求：論文摘要與議程籌組
+
+第二十三屆科學與技術資料委員會國際會議
+
+「開放資料與資訊: 變動中的地球」
+
+2012 年 10 月 28-31 日 於 台北 中央研究院
+http://www.codata2012.com/
+
+收件截止日期：2012 年 6 月 15 日
+
+會議背景:
+
+我們所居住的地球面臨眾多的問題與挑戰，科學資料與資訊則扮演了前所未有的重要角色。資料的自由取得與開放使用的呼聲日益劇烈。能否營造資料與資訊的開放環境，已是眾人 研究成果能否被有效散布、廣泛使用、以及進一步協同分析的關鍵。
+
+「第二十三屆科學與技術資料委員會國際會議」的主題是「開放資料與資訊: 變動中的地球」。為期三天的會議中，產、學、研各界人士與利益相關者，將針對開放資料與資訊的各項議題進行演說、討論與辯論。此會議提供一個平台，供眾多利益相關者和來自「國際科學理事會」 (ICSU) 、「科學與技術資料委員會」 (CODATA) 、以及其他學術網路，針對法律、經濟與技術的挑戰進行對話。此會議也納入社會影響評估等議題，進而協助解決變動中的地球所面臨的問題。
+
+「科學與技術資料委員會國際會議」是由「科學與技術資料委員會」 (CODATA: The Committee on Data for Science and Technology) 在「國際科學理事會」 (ICSU: International Council for Science) 監督下辦理的國際會議，兩年舉辦一次。過去幾次的會議分別於北京 (2006) 、基輔 (2008) 以及南非開普敦 (2010) 舉行。2012年的會議將於 10 月 28～31日在台北中央研究院舉行。
+
+會議主題:
+
+此會議在科學與技術的範疇下，設定資料品質、可性度、資料的管理與取用性等議題為主要目標，對論文摘要 (Abstracts) 與議程籌組 (Session Proposals) 公開徵求，議題包括但不限於下列各項：
+
+* e化科學與其網路
+* 資訊科學與計算資訊學
+* 資料探勘與知識管理
+* 可相互操作性與資料整合
+* 地球與環境資料
+* 生物科學、醫療、以及健康資料
+* 物理科學資料
+* 社會科學資料以及數位人文學科
+* 開放取得、公部門資訊、以及法律與政策議題
+* 語意網與資料連結
+* 全球永續發展下的資料挑戰：里約高峰會 20 年後
+
+
+論文摘要與議程籌組提交資訊:
+
+收件截止日期: 2012 年 6 月 15 日 (已自 5 月 25 日展延)
+
+提交形式分為二類：論文摘要 (Abstracts) 與議程籌組 (Session Proposals)
+
+提交網址：http://www.easychair.org/conferences/?conf=codata2012
+
+提交細節與會議相關資訊，請參見網址︰http://www.codata2012.com CODATA Taiwan
+
+聯絡信箱︰ codata.taiwan@citi.sinica.edu.tw
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰、陳立忠
+◎ 執行編輯︰李婉婷、林珈宏、粘卉慈
+◎ 外稿編譯︰謝良奇、黃湘婷
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

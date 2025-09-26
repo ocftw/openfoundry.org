@@ -1,0 +1,137 @@
+
+Patch Kernel+ Support Wireless(ipw2200)
+================================================================
+1. apt-get install wireless-tools wpasupplicant
+2. cd /usr/lib/hotplug/firmware
+3. wget http://yenjinc.info/Files/ipw2200-fw-3.0-tgz
+4. tar zxvf *.tgz
+5. rmmod ipw2200 ; modprobe ipw2200
+6. iwlist eth1 scanning
+7. cd /usr/share/doc/wpasupplicant/examples/
+8. vi /etc/wpa_supplicant.conf
+9. wpa_supplicant -w -i eth1 -D wext -B -c /etc/wpa_supplicant.conf
+10. vi /etc/network/interfaces
+11. dhclient eth1
+================================================================
+
+
+NAT
+================================================================
+1. echo "1" > /proc/sys/net/ipv4/ip_forward
+2. vi /etc/sysctl.conf (add net/ipv4/ip_forward=1)
+3. iptables -t nat -A POSTROUTING -o eth1 -s 192.168.1.0/24 -j MASQUERADE
+================================================================
+http://linux.vbird.org/linux_server/0250simple_firewall.php
+================================================================
+
+
+DHCP
+================================================================
+1. apt-get install dhcp
+2. vi /etc/dhcpd.conf (add dhcp-range)
+3. vi /etc/default/dhcp (add dhcp-interfaces)
+4. vi /etc/dhcpd.conf (add static ip)
+
+   host XXXXX
+   {
+	hardware ethernet xx:xx:xx:xx:xx:xx;
+	fixed-address xxx.xxx.xxx.xxx;
+   }
+================================================================
+http://linux.vbird.org/linux_server/0340dhcp.php
+================================================================
+
+
+WWW(apache2+php+mysql)
+================================================================
+1. apt-get install apache2 php5 libapache2-mod-php5
+2. apt-get install mysql-server php5-mysql phpmyadmin
+3. vi /etc/apache2/mods-available/userdir.conf
+
+   <IfModule mod_userdir.c>
+       UserDir www
+       <Directory /home/*/www>
+           ........
+       </Directory>
+   </IfModule>
+
+4. cd /etc/apache2/mods-enabled
+5. cp ../mods-available/userdir* .
+6. vi /etc/php5/apache2/php.ini
+
+   register_globals = On
+   post_max_size = 8M
+   default_charset = "Big5"
+   upload_max_filesize = 100M
+
+   extension=mysql.so
+
+7. mysqladmin -u root password 'your passwd'
+8. vi /var/www/phpmyadmin/config.inc.php
+
+   $cfg['Servers'][$i]['auth_type']     = 'http'
+
+9. /etc/init.d/apache2 restart
+10. /etc/init.d/mysql restart
+================================================================
+http://linux.vbird.org/linux_server/0360apache.php
+================================================================
+
+
+FTP/SFTP(vsftpd)
+================================================================
+1. wget http://yenjinc.info/Files/Vsftpd_config.tgz
+2. apt-get install vsftpd
+3. vi /etc/vsftpd.conf
+4. vi /etc/vsftpd.user_list
+5. touch /etc/vsftpd.pem
+6. openssl req -x509 -nodes -days 365 -newkey rsa:1024 \
+   -keyout /etc/vsftpd.pem \
+   -out /etc/vsftpd.pem
+7. /etc/init.d/vsftpd restart
+
+具有 SFTP 加密模式
+可以匿名登入 (可以 Upload Files)
+可以用 Users 帳號登入 (進入家目錄)
+鎖定 FTP 根目錄 (只能在自己的目錄裡遊走)
+
+================================================================
+$ man vsftpd.conf
+http://linux.vbird.org/linux_server/0410vsftpd.php
+================================================================
+
+
+MAIL(Postfix+smtp+pop3)
+================================================================
+1. apt-get install postfix postfix-tls qpopper pop-before-smtp
+2. vi /etc/pop-before-smtp/pop-before-smtp.conf
+   $file_tail{'name'} = '/var/log/mail.log';
+   # A fairly modern Qpopper pattern.
+   $pat = '^(... .. ..:..:..) \S+ (?:in\.)?qpopper[^[]*\[\d+\]: \([^)]*\) ' .
+   'POP login by user "[^"]+" at \([^)]+\) (\d+\.\d+\.\d+\.\d+)';
+
+3. vi /etc/postfix/main.cf
+   mynetworks = 127.0.0.0/8, hash:/var/lib/pop-before-smtp/hosts
+   smtpd_recipient_restrictions = permit_mynetworks,reject_non_fqdn_recipient,check_client_access hash:/var/lib/pop-before-smtp/hosts,check_relay_domains
+   mailbox_size_limit = 102400000
+
+4. /etc/init.d/postfix restart
+5. /etc/init.d/pop-before-smtp restart
+================================================================
+http://linux.vbird.org/linux_server/0380mail.php
+================================================================
+
+
+其他 (進階) 伺服器安裝與設定
+================================================================
+DNS 詳細架設與設定：
+http://linux.vbird.org/linux_server/0350dns.php
+
+E-mail 防毒方案：postfix+amavisd-new+spamassassin
+http://wiki.debian.org.tw/index.php/Amavisd-new
+
+Samba 防毒方案：Samba+ ClamAV
+http://wiki.debian.org.hk/w/Scan_virus_on_Samba_with_ClamAV
+http://linux.vbird.org/linux_server/0370samba.php
+================================================================
+

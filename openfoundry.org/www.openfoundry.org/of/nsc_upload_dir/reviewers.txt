@@ -1,0 +1,7 @@
+openfoundry wangaguo
+openfoundry kaworu
+openfoundry LCamel_m
+testproject01 freddi_chen
+testproject01 nscreviewer01
+testproject02 nscreviewer01
+testsvn LCamel_m

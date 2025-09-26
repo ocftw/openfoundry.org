@@ -1,0 +1,973 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 201 期 | 2012/08/14 □■□
+________________________________________________________________
+
+◎ 本期主題︰如何利用 Onion 管理 PHP 專案
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/08/28
+
+□ 本期標題 □__________________________________________________
+
+■ [技術專欄] 如何利用 Onion 管理 PHP 專案
+
+■ [技術專欄] Cancan 實作角色權限設計的最佳實踐 (1)
+
+■ [源碼秘技] Phatch － 跨平台的批次圖片處理軟體
+
+﻿■ [自由專欄] 「公眾領域貢獻宣告 (CC0) 」與「公眾領域標章 (PDM) 」
+
+﻿■ [源碼新聞] GNU 創立者 Stallman 認為 Steam 線上平台將要散布 Linux 下執行的 DRM 遊戲是不盡然道德的
+
+﻿■ [源碼新聞] Microsoft 與商用 Linux 的軟體供應商 Amdocs 簽訂專利交互授權協議
+
+﻿■ [源碼新聞] Linux Mint 開發團隊新創 Nautilus 分支專案
+
+■ [源碼新聞] 在 Fedora 上也能使用 Unity 桌面環境
+
+■ [源碼新聞] Ubuntu 12.10 將加入創新的 Web App 整合功能
+
+■ [源碼新聞] 知名文字編輯器 TextMate 成為開源軟體
+
+﻿■ [源碼新聞] Android 4.1 發佈不到一個月，截至 7 月底使用比例已達 0.8 %
+
+■ [源碼新聞] InSync 推出 Linux beta 版，在 Ubuntu 上也能同步 Google 雲端硬碟檔案
+
+□ 本期內容 □__________________________________________________
+
+■ [技術專欄] 如何利用 Onion 管理 PHP 專案
+
+Jace Ju／文
+
+前言
+
+相信只要是 Ruby 開發者，都會對 Gem 這個專案套件管理機制非常讚賞。而其中還有一個很棒的工具叫做 bundler，它能在我們布署專案時，協助我們處理專案所會相依的 gem 套件。
+
+PHP 在這方面雖然有 PEAR (http://pear.php.net/) 這個套件管理庫，但是能夠處理專案相依套件的功能卻付之闕如。所幸網路高手 c9s (https://github.com/c9s) 也發現了這個問題，因此他便開發了 Onion (https://github.com/c9s/Onion) 這個非常好用的 PEAR 套件管理工具。
+
+在「 利用 GitHub 建立自己的 PEAR 頻道 (http://www.openfoundry.org/tw/tech-column/8733--github-pear-) 」一文中，筆者曾簡單地介紹 Onion 建立 PEAR 套件的方式，本文將繼續為大家介紹 Onion 的其他強項功能。
+
+
+Onion 入門
+
+1. 安裝
+
+Onion 的安裝很簡單，只要透過 curl 指令就可以快速安裝：
+
+ $ curl -s http://install.onionphp.org/ | sh
+
+這樣一來， onion 指令會被安裝在個人家目錄的 bin 資料夾下。如果你不想放在這個路徑，那麼你也可以從以下路徑直接下載：
+
+ https://raw.github.com/c9s/Onion/master/onion
+
+然後再將它設為可執行，
+
+ $ chmod u+x onion
+
+並搬移至系統 PATH 環境變數所找到的路徑下即可，例如 /usr/local/bin/ 。
+
+2. 功能簡介
+
+安裝好 onion 指令後，直接輸入：
+
+ $ onion
+
+將可以看到以下輸出：
+
+▲ 圖1：onion 指令之輸出 (http://www.openfoundry.org/images/120814/onion/01.jpg)
+
+在 onion 中可以使用的指令有：
+
+* help：顯示說明文件，如圖1 所示。
+* init：初始化 package.ini 文件。
+* build：建立 PEAR 套件。
+* compile：將目前的專案編譯為 Phar 格式的函式庫。
+* install：在 vendor 目錄下，安裝目前專案所相依的套件。
+* bundle：同 install 指令，為舊版相容用。
+* self-update：自我更新成最新的版本。
+
+以下為大家介紹如何使用這些功能。
+
+3. 專案初始化
+
+在新版的 Onion 中，我們可以直接利用 init 指令來幫我們建立一個預設的 package.ini 檔案，語法格式如下：
+
+ $ onion init＜dir＞
+
+package.ini 是 Onion 用來管理套件所必要的檔案，稍後筆者會再為大家詳細介紹它。
+
+4. 建立 PEAR 套件
+
+在「利用 GitHub 建立自己的 PEAR 頻道 (http://www.openfoundry.org/tw/tech-column/8733--github-pear-)」一文中，筆者已經介紹過 build 指令的用法：
+
+ $ onion build --pear
+
+這樣一來， Onion 會透過 PEAR 的內建功能，為我們把目前的專案打包成 PEAR 可以接受的壓縮檔格式。
+
+5. 編譯為 Phar 格式的函式庫
+
+PHP 的 Phar 格式類似 Java 中的 JAR 格式，可以將套件下所有的 PHP 檔案全部包成一個壓縮檔，方法如下：
+
+▲ 圖2：onion compile 的範例指令 (http://www.openfoundry.org/images/120814/onion/02.jpg)
+
+這麼一來我們會得到一個 example.phar 的檔案，而程式進入點則為專案中的 example.php。以下方式就可以讓這個 Phar 檔直接執行：
+
+ $ mv example.phar example
+ $ chmod +x example
+ $ ./example
+
+註：如果各位打算將套件打包成 Phar 檔的話，那麼要注意 require(_once) 及 include(_once) 所引入的檔案路徑，必須是相對的才行
+
+6. 安裝目前專案所相依的套件
+
+在開發 Ruby 專案時，我們可以用 Gemfile 來管理相依的套件；而這對 Onion 來說，也是很容易的事情。
+
+在 package.ini 中定義好專案所相依的 PEAR 套件後，就可以用以下指令來安裝：
+
+ $ onion install
+
+接下來 Onion 就會把這些相依套件安裝在專案的 vendor/pear 路徑下。至於如何在 package.ini 設定相依套件，稍後筆者會再詳細介紹。
+
+7. 自我更新版本
+
+c9s 所開發的 PHP 工具幾乎都有這個強大的功能，可以自行將工具的版本升級，指令如下：
+
+ $ onion self-update
+
+這樣一來，就可以更新到最新的版本。
+
+
+package.ini 常用設定介紹
+
+接下來筆者要為大家介紹 package.ini 中，幾個比較常用區段的設定說明。
+
+1. package
+
+這個區段是在執行完 init 指令後，就會自動建立好的。 Onion 會事先提供：name、 version、 desc 及 author 等四個參數；以下為目前所支援的參數說明，標明「選用」的參數可以不寫：
+
+ [package]
+ ; 套件名稱
+ name = Your Package Name
+
+ ; 套件描述
+ desc = Description
+
+ ; 同 desc (選用)
+ summary = ....
+
+ ; 套件的官方網站 (選用)
+ homepage = http://your.web.com
+
+ ; 版權說明，預設為 PHP (選用)
+ license = PHP
+
+ ; 版本號
+ version = 0.0.1
+
+ ; API 的版本號，預設同 version (選用)
+ version.api = 0.0.1
+
+ ; 套件頻道，在打包成 PEAR 壓縮檔時會需要用到
+ ; 預設為 pear.php.net (選用)
+ channel = pear.php.net
+
+ ; 專案作者
+ author = Author Name ＜author＠example.com＞
+
+ ; 專案有多個作者時可以用以下方式定義 (選用)
+ authors[] = Author Name ＜author＠example.com＞
+ authors[] = Author Name
+
+ ; 程式碼貢獻者及維護者 (選用)
+ contributors[] = ...
+ maintainers[]  = ...
+
+2. require
+
+這個區段主要描述專案所需要的環境及相依套件，它們在使用 install 指令時會用到；預設不會提供，需要自己加入。
+
+ [require]
+ ; PHP 版本，可加入 ＞ 及 ＜ 等前置字元
+ php = '＞ 5.3'
+
+ ; PEAR 安裝程式版本
+ pearinstaller = '1.4.1'
+
+ ; 專案所相依的 PEAR 套件，格式為「頻道/套件名稱 = 版本號」
+ ; 其中版本號可以省略，這樣 Onion 會直接下載最新版本
+ pear.channel.net/package = 1.1
+
+ ; 相依套件的另一種寫法，直接使用 URI 定義
+ package = http://www.example.com/Foo-1.3.0
+
+ ; 專案會用到的 PHP extension
+ extensions[] = 'reflection'
+ extensions[] = 'ctype'
+ extensions[] = 'pcre'
+
+3. roles
+
+這個區段主要在定檔套件中檔案的角色，它們會依照角色的不同，被安裝到適當的位置裡。
+
+ [roles]
+
+ ; 通常套件如果有提供 shell script 的話，可以將它放在 bin 目錄下
+ ; 並且給它 script 角色，那麼在透過 pear 指令安裝時，
+ ; 它就會被安裝為系統指令
+ bin/your_script = script
+
+ ; 其他副檔名的角色，支援萬用字元 (*)
+ *.md = doc
+ *.php = php
+
+其他的區段在實務上筆者幾乎用不到，若是有使用上的疑問，可以請教原作者 c9s (https://github.com/c9s)。
+
+
+範例
+
+以下筆者將用 Library 及 Web Applicaton 這兩種不同的範例，來介紹 Onion 在實際專案上是怎麼使用的。
+
+1. Library
+
+通常我們會希望開發出來的功能是可以被重複使用的，這時把它們打包成 library 是明智的選擇。這裡筆者將介紹
+
+首先我們要依照 Onion 所規範的方式來定義專案的目錄結構，假設專案的路徑為 /path/to/library：
+
+ $ mkdir -p /path/to/library
+ $ cd /path/to/library
+ $ mkdir bin src docs tests
+
+其中 bin 是放置 Shell Script，src 是存放 PHP 程式原始碼；docs 則是用來存放文件，tests 則放置測試程式。
+
+接下來我們要建立 package.ini ，執行：
+
+$ onion init .
+建立 package.ini 後，修改裡面的內容：
+
+ [package]
+ name = UriFetcher
+ version = 0.0.1
+ desc = Fetch and cache data from URI
+ author = Jace Ju ＜jaceju＠example.com＞
+ channel = pear.jaceju.net
+
+ [require] php = "> 5.3" 
+ pearinstaller = 1.4.1
+ 
+ [roles] bin/urifetcher = script 
+ *.md = doc 
+ *.php = php
+
+這裡我虛構了 UriFetcher 這個套件，它必須在 PHP 5.3 以上版本執行；另外這個套件也提供 urifetcher 這個 Shell Script ；當然，這裡的內容只是範例，請大家依實際狀況調整。
+
+現在我們可以開始撰寫套件內容了，這邊就不再為大家詳細介紹程式內容，只單純列出這個套件的檔案清單：
+
+▲ 圖3：onion - library tree layout (http://www.openfoundry.org/images/120814/onion/03.jpg)
+
+在 src 目錄下，所有 PHP 類別檔的命名與路徑都要按照 PHP FIG PSR-0 (https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) 的規範。
+
+而在 tests 目錄下，每個類別檔的單元測試程式一樣也是要遵守 PSR-0 規範。
+
+在開發的過程中，各位可以選擇使用 TDD 或其他慣用的開發流程。在確定功能無誤後，我們就可以建立 package.xml，方便我們將套件安裝到系統上測試；這個步驟可以透過以下指令來執行：
+
+ $ onion build
+
+建立好 package.xml 後，就透過以下指令來進行安裝測試：
+
+ $ pear config-set auto_discover 1
+ $ pear install -f package.xml
+
+另外因為我們有加入 urifetcher 這個 shell script ，所以可以利用以下指令來查看它是否有被正常安裝：
+
+ $ which urifetcher
+
+在系統安裝測試無誤後，就可以按照「利用 GitHub 建立自己的 PEAR 頻道 (http://www.openfoundry.org/tw/tech-column/8733--github-pear-)」一文中所介紹的方式，來將套件打包並上傳到我們自訂的頻道。
+
+2. Web Application
+
+Web Application 的開發方式其實與 Library 很像，差別在於它需要布署在 Web Server 上面來向瀏覽者提供服務，而非透過程式的呼叫。
+
+通常它的目錄結構會如下所示：
+
+▲ 圖4：onion - webapp tree layout (http://www.openfoundry.org/images/120814/onion/04.jpg)
+
+當然大家也可以採用目前一些常見 Web Framework 所定義好的目錄結構，基本概念都是差不多的。
+
+第一步我們當然是先初始化我們的 package.ini ，這裡假設專案路徑為 /path/to/webapp：
+
+ $ cd /path/to/webapp
+ $ onion init .
+
+然後修改 package.ini 的內容：
+
+ [require]
+ pear.twig-project.org/Twig =
+
+這裡筆者假設會在這個專案裡面會用到 Twig 這個樣版套件。
+
+各位應該會發現筆者在這裡只用到 require 這個區段，這是因為我們不需要打包 Web Application ，所以不需要把 package.ini 轉譯為 package.xml ；換句話說，在 Web Application 中，我們只需要透用 Onion 來管理相依套件。
+
+接下來不論在在開發、測試或正式上線等環境，我們都可以用以下的方式來安裝相依套件：
+
+ $ onion install
+
+而在程式裡面，我們必須在進入點 (通常是 index.php ) 的最上方，加入這段 PHP 碼：
+
+ ＜?php
+
+ // 加入此段程式碼
+ set_include_path(implode(PATH_SEPARATOR, array(
+     __DIR__ . '/vendor/pear',
+     get_include_path(),
+ )));
+
+ // 自動載入的程式碼
+ // ...
+
+這樣程式才能夠先取用 vendor/pear 中的相依套件。
+
+大致上筆者常用的功能就是這些，其他更進階的功能，各位可以在 Onion 的官網與作者討論。
+
+
+心得
+
+PHP 在第四版時，套件管理這個概念才正式進入 PHP ；而在實作上， PEAR 套件的開發方式也比其他語言的機制繁瑣。
+
+但即便如此，透過了 Onion 這個方便的工具，不但讓我們能夠輕鬆地管理專案的相依套件，也能夠讓我們能以簡單的方式來設定自行開發的套件。
+
+或許 PEAR 這個架構現在看起來是老舊了些，但還是有其他高手正努力為 PHP 開發更良好的套件管理機制。相信有一天，我們能夠以更方便更快速的方式，來打造屬於我們自己的 PHP 套件。
+_______________________________________________________________
+
+■ [技術專欄] Cancan 實作角色權限設計的最佳實踐 (1)
+
+XDite／文
+
+◎ 本文原載 XDite 網站，原文章連結 (http://blog.xdite.net/posts/2012/07/30/cancan-rule-engine-authorization-based-library-1/)
+
+權限存取設計是在開發 Application 中相當讓人棘手的一個題目。
+
+在一個網站開始建設的初期，通常這樣的問題並不會浮現，畢竟一般人的需求大半只會有 user 和 admin 兩種角色。但是隨著網站長大，更多的生意需求浮現，第三種角色的出現，通常就會把原本乾淨的 code 弄得骯髒不堪。
+
+
+多種角色的權限設計難題
+
+當只有 user 和 admin 的情況下，你可以在 view 裡面單純的做出這樣的設計
+
+<% if user.is_admin ? %>
+  <%= link_to("Admin Pannel", admin_panel_path ) %>
+<% end %>
+
+並且在 controller 裡面加上權限判斷
+
+class Admin::ArticleController < ApplicationController
+  before_filter :require_is_admin
+end
+
+但一段時間之後，User Story 被加進了這樣的需求：
+
+* 使用者可以被設定為「editor」
+* 擁有「editor」角色的使用者，可以進入 admin 後台發表、編輯文章
+* 擁有「edtior」角色的使用者，進入 admin 後台內的活動範圍僅限縮在文章後台內
+* 擁有「edtior」角色的使用者，進入 admin 後台內，不可以看到其他後台選項。
+
+身為開發者的你，要如何在現有後台內加入這樣的設計？
+
+不用實際動手寫也知道，若如以往使用 if / else 的設計，Helper / Controller / View 鐵定變成一團血肉模糊。
+
+抱怨不能解決問題，但世界上是否存在乾淨的解答？
+
+
+Rule-engine based authorization library: Cancan
+
+答案就是：「Rule Engine」。
+
+「針對多種條件執行多種動作」，此類的使用者需求，無論是使用 if / else，甚至是 case when，架構還是不免會一團混亂。與其承襲舊思路，不如啟用新想法「Rule Engine」實作：預先設計撰寫一套邏輯規則引擎，而後程式針對預設的規則進行邏輯判斷後執行。
+
+而「角色權限」的設計需求上，正特別適合用 Rule Engine 這樣的觀念去建構。Rails 界知名的 authorization library cancan (https://github.com/ryanb/cancan) 正是以此作為基礎。
+
+
+Cancan 可以做到的：介面單純化
+
+cancan 希望做到的是，把權限判定的處理部分從 Helper / Controller / View 裡面，全部移到 app/models/ability.rb 進行判定。也因此可以做到
+
+* View 只需要判斷是否可以執行動作，而不必問是否有權限
+
+<% if can? :update, @article %>
+  <%= link_to "Edit", edit_article_path(@article) %>
+<% end %>
+
+* Controller 不需要手動判斷是否具有權限
+
+class ArticlesController < ApplicationController
+  authorize_resource
+
+  def show
+    # @article is already authorized
+  end
+end
+
+但驚人的是 view 的權限會是與 controller 的權限判定規則 卻是一致的。（以往「自刻」權限判定，往往加了 view 卻會忘記 controller, 加了 controller 卻會忘記 view ）
+
+
+Cancan 希望做到的：權限中心化管理
+
+而是否有權限存取，則全交給 app/models/ability.rb 去判斷處理。
+
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+
+    if user.blank?
+      # not logged in
+      cannot :manage, :all
+      basic_read_only
+    elsif user.has_role?(:admin)
+      # admin
+      can :manage, :all
+    elsif user.has_role?(:member)
+
+      can :create, Topic
+      can :update, Topic do |topic|
+        (topic.user_id == user.id)
+      end
+
+      can :destroy, Topic do |topic|
+         (topic.user_id == user.id)
+      end
+
+      basic_read_only
+    else
+      # banned or unknown situation
+      cannot :manage, :all
+      basic_read_only
+    end
+
+
+  end
+
+  protected
+
+  def basic_read_only
+    can :read,    Topic
+    can :list,    Topic
+    can :search,  Topic
+  end
+end
+
+
+小結
+
+cancan (https://github.com/ryanb/cancan) 是一套相當 powerful 的權限管理系統，但是它的文件卻相當不好讀，第一次想使用 cacan的 developer 很難從文件上找到自己想要的範例以及 api，或者了解其原理構造。如果沒有先給一些基礎範例，往往會是寸步難行。
+
+下一篇我會深入頗析 Cancan 更深的設計原理，讓大家更看得懂 cancan 的 API 到底想幹什麼….。
+_______________________________________________________________
+
+■ [源碼秘技] Phatch － 跨平台的批次圖片處理軟體
+
+林雪凡／文
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch00.gif)
+
+軟體名稱：Phatch
+介紹版本：0.2.7
+官網：http://www.phatch.org/
+授權：GPL-3.0+
+
+
+簡介
+
+Phatch 源自「PHoto bATCH Processer」一詞，官網的宣傳口號為「一鍵優化千張照片」－雖然實際操作鍵數要比一鍵略多幾鍵，但也夠方便了。
+
+Phatch 有著小巧的介面，讓使用者以「縮放」、「亮度調整」等「動作 (action)」為本，建立起一串動作列表。一旦動作列表被規劃好，Phatch 能讓使用者對任意數量的圖片，執行這串動作列表。而已被規劃好的列表也能被 Phatch 儲存下來，供使用者日後重複呼叫使用。
+
+Phatch 可以在 Mac、Linux 與 Windows 平台下使用，是跨平台的自由開源軟體。
+
+
+安裝與執行
+
+想要讓 Phatch 在電腦上跑起來，官網的下載頁 (http://photobatch.stani.be/download/index.html) 有您所需的檔案。不過在下載前，建議您先看看安裝說明 (http://photobatch.wikidot.com/install)。
+
+官網安裝說明寫了一堆，這邊稍微歸納一下。
+
+
+Linux 平台
+
+對於 Linux 使用者來說，若使用的是 archlinux、fedora 或 openSUSE 其中一個發行版，前往發行版的套件倉庫中就能找到 Phatch，直接使用它們即可（archlinux 是在 AUR 中）；如果是 debian 或 ubuntu 使用者，Phatch 官網有提供 deb 安裝包讓您下載。
+
+身為 Linux 用戶但不屬於這些發行版者，也可直接下載源碼，並在源碼目錄中執行：
+
+python phatch.py
+
+就能讓 Phatch 妥善運作了－當然前題是滿足套件相依性。
+
+官方指定的必備套件有：
+
+1. python 2.4 或 2.5
+
+2. python-wxgtk 2.6 或 2.8
+
+3. python-imaging 1.1.5 或 1.1.6
+
+4. findutils
+
+選配套件有：
+
+1. python-pyexiv2
+
+2. python-nautilus
+
+以上可以參考看看。
+
+
+Windows 平台
+
+首先，您必須確定您的平台上有一切所需的依賴組件。如果您沒有或對此不確定，您可以下載官方頁面 (http://photobatch.wikidot.com/install#toc9) 上提供的 phatch-dependencies-win32-py25.zip 相關套件包。套件包的安裝方法請參考壓縮檔中的 README.txt，這邊不贅述。
+
+當您準備好依賴後，就可以下載官網提供的程式源碼包，解開源碼包後雙擊執行 phatch.py 檔案，就可以讓程式跑起來了！
+
+
+介面與操作
+
+初打開時，Phatch 的介面如下：
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch01.gif)
+
+▲ 圖1：Phatch 啟動時的截圖
+
+如上圖所示，Phatch 的外觀非常儉約，除中間的大片空白外，只提供了一條選單列與一排按鈕。
+
+按鈕的功能從左至右依次為：
+
+1. 開啟：之前儲存的動作列表。
+2. 執行：當前的動作列表。
+3. 加入：新動作。
+4. 移除：當前選擇的動作。
+5. 上移：當前選擇的動作。
+6. 下移：當前選擇的動作。
+7. 跳出元數據檢查視窗。
+8. 顯示當前動作列表的描述訊息。您也可由此修改訊息內容，範例見圖2。
+
+這些按鈕只提供了 Phatch 的部份功能。使用 Phatch 不能全靠按鈕，有些重要操作還是得透過選單才能進行。比方說保存動作列表等。
+
+Phatch 的初始畫面非常貼心地提醒使用者去按【＋】號的大按鈕，讓使用者去新增行動。不過作為初學者，現在先不忙按那個鈕。建議大家先打開 Phatch 預設提供的動作列表，看看一份動作列表具體是什麼樣子。
+
+按【Action List】→【Open Library...】，然後選擇【Button】，螢幕就會變成如下這般。
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch02.gif)
+
+▲ 圖2：讓 Phatch 讀取 Library: button 後
+
+原本中間的空白部份，被一連串的「動作」給填滿了。
+
+綠色的動作會被執行，紅色則不會。要讓某動作在執行與否之間切換，請去按【Edit】→【Enable】與【Edit】→【Disable】來切換，此外也可用右鍵選單來切換它們。
+
+每個動作底下都有很多額外參數可以填，比方說縮放大小、圓角程度之類的。有些欄位還可填入用角括弧框起的變數，像是 之類的……至於具體有哪些變數可用，還請參照官網這一頁：http://photobatch.wikidot.com/variables/，說明得很詳細了。
+
+執行動作列表
+
+現在動作列表已經準備妥當，那麼我們該要如何套用到圖片上呢？
+
+1. 準備好想要處理的圖片
+
+	＊ Phatch 提供了很多匯入圖片的方法，不過其中最簡單的做法，還是將整個資料夾匯入。（以下假設各位將要處理的圖片，全部集中到同個資料夾中。）
+
+2. 調整動作列表最下面的動作「Save」的參數值：
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch03.gif)
+
+▲ 圖3：修改 Save 的值
+
+Save Action 的參數裡面，需特別注意的是「In」這個欄位。本欄會決定轉換出來的檔案將被存到哪裡。
+
+原本的預設路徑怪怪的，建議改成：
+
+＜folder＞/changed
+
+這樣。
+
+如此一來，假設原圖片被放在「/home/xxx/images」下，轉換後的圖片就會直接被塞入「/home/xxx/images/changed」中，管理起來比較方便。
+
+3. 點擊【Execute the action（火箭）】來執行動作列表。
+
+一旦您決定執行，「匯入選擇視窗」就會跳出來，讓您選擇要匯入處理的圖片是哪些。當然，您該選擇您放圖片的資料夾，圖示如下：
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch04.gif)
+
+▲ 圖4：匯入選擇視窗
+
+4. 按【Batch】，最終檢查視窗就會跳出來。
+
+5. 按【Continue】按鈕，新圖檔就會產生到指定的位置上。
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch05.gif)
+
+▲ 圖5：最終檢查視窗
+
+如何，蠻直覺的吧？
+
+
+添加與刪除列表中的動作
+
+只要搞懂前述基本流程，Phatch 在操作上就已毫無秘密可言。剩下的只是刪添各種動作，替動作修改參數，只是這樣。
+
+添加「動作」的方法很簡單，正如同 Phatch 最初提示的那樣，只要透過按鈕列上的【＋】符號就能叫出。而刪除就更單純了，只要選擇某個動作，按【×】就行了。
+
+(http://www.openfoundry.org/images/120807/Phatch/phatch06.gif)
+
+▲ 圖6：添加「動作」時，供使用者選擇的視窗。可選的動作類型大概有五十種以上。
+
+選好動作並將其插入後，就可替動作設定具體數值，就如同先前示範時替「Save 動作」所做的那樣。大部份的變數含意一望可知，但如果無論如何都搞不懂，建議參考這一頁：http://photobatch.wikidot.com/actions/，會有些針對性的說明供參考。
+
+
+儲存與讀取動作列表
+
+辛苦建立好的動作列表，想保留下來供日後重複使用。這該怎麼做？
+
+【Action List】→【Save】這樣就行了。
+
+至於讀取動作列表，按介面最左邊的資料夾按鈕就能搞定。
+
+
+大麻煩、小麻煩
+
+Phatch 目前的還不夠精緻，使用時有些小問題需要留意。
+
+
+翻譯
+
+Phatch 有簡中翻譯版本，可惜翻譯質量欠佳，有些部份連程式變數都給翻譯了，偶爾會讓程式運作時出現意料外的錯誤。
+
+建議不要使用簡中翻譯，然而 Phatch 的語系在圖形介面下沒法修改，此外就算用繁中系統也可能自動載入簡中語系，只能在執行程式時透過終端機輸入語系參數，就像下面這樣：
+
+phatch -l en
+
+因翻譯問題頭疼時，您可參考看看要不要用這招。
+
+
+中文路徑
+
+筆者使用時發現，有些時候，Phatch 的 Save Action 無法將檔案正確寫入中文路徑底下，只能寫到純英文路徑裡。
+
+建議不要將圖檔放在中文路徑下處理，否則可能突然出問題。
+
+
+後記
+
+Phatch 是款介面簡單，功能強大的圖片後製軟體。
+
+Phatch 使用方式直覺，能將大量參數整齊合理地包裹在介面裡，以預先規劃好的設定，一次性地處理大量圖片。讓使用者在擁有指令行等級自由度同時，又擁有 GUI 的方便性與易用性。
+
+不過，沒有圖片預覽這點，或許是它身為圖片後製軟體的一項小小缺憾吧？
+
+
+參考資料
+
+Phatch 官方網站：http://photobatch.stani.be/
+
+Phatch 官方手冊：http://photobatch.wikidot.com/
+_______________________________________________________________
+
+■ [自由專欄] 「公眾領域貢獻宣告 (CC0) 」與「公眾領域標章 (PDM) 」
+
+謝良奇／編譯
+
+◎ 本文原載 台灣創用CC計畫 網站，原文章連結 (http://creativecommons.org.tw/blog/20120711)
+
+本篇文章將簡介最近正在推行的「公眾領域貢獻宣告 (CC0) 」與「公眾領域標章 (PDM) 」，並且透過比較列表，讓大家更清楚兩者之間概念上的差異。
+
+公眾領域貢獻宣告 (CC0)
+
+不論權利人是否想要著作權，著作權法與世界上其他法律都自動對權利人的著作，提供著作權保護。公眾領域貢獻宣告 (CC0) 就是給那些想拋棄這些權利的朋友一個管道，在符合法律規定的最大範圍內，拋棄其權利。一旦權利人採用公眾領域貢獻宣告 (CC0) 到他們的作品上，在著作權法上他們就已經不再擁有該著作了。所以，公眾領域貢獻宣告 (CC0) 就是一種「不保留權利」的選擇。
+
+公眾領域標章 (PDM)
+
+任何人都可以將公眾領域標章 (PDM) 標記於已不受著作權限制的作品之上，讓所有公眾知道此作品的公共狀態，並能輕易發現。公眾領域標章 (PDM) 只能用來標記在全球年代相隔久遠且已不受著作權限制的著作，並非用來改變該著作於著作權法下現在的狀態，或是影響任何人關於此著作的相關權益。
+
+公眾領域貢獻宣告 (CC0) 與公眾領域標章 (PDM) 對照表 
+
+謝良奇 編譯
+
+有關公眾領域 (http://wiki.creativecommons.org/Public_domain) 工具的更多資訊，請見[公眾領域貢獻宣告（CC0）常見問題集] (http://wiki.creativecommons.org/Zh-tw:CC0_%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C) 與 [公眾領域標章(PDM)常見問題集] (http://wiki.creativecommons.org/PDM_FAQ)。
+
+▲ 表格：公眾領域貢獻宣告 (CC0) 與公眾領域標章 (PDM) 對照表 (http://www.openfoundry.org/images/120807/CC0/cc0.jpg)
+_______________________________________________________________
+
+﻿■ [源碼新聞] GNU 創立者 Stallman 認為 Steam 線上平台將要散布 Linux 下執行的 DRM 遊戲是不盡然道德的
+
+黃郁文／編譯
+
+Valve 公司近來宣布其打算要讓 Steam 線上平台的遊戲，亦可直接散布給 Linux 作業系統的玩家使用，為了達到這個目標，其旗下用來開發與執行開源遊戲的 Source game 引擎 (http://source.valvesoftware.com/)，以及熱門遊戲「惡靈勢力二代 (Left 4 Dead 2)」，亦已經開始進行 Linux 作業系統的轉移與布署。 Valve 公司表示此舉源自對於 Windows 作業平台封閉性之憂慮。而就 Linux 桌面端來說，因為使用者相對較少，以及 Linux Distro 多元化的緣故，一直以來遊戲市場較不受到商用軟體公司的重視，故 Steam 線上平台支援的到來，未來對於想要在 Linux 系統直接執行遊戲的愛用者來說，應是一大鼓舞。
+
+不過，GNU Project 與自由軟體基金會創辦人 Richard Stallman，對於 Valve 公司轉換跑道到 Linux 作業系統的行為仍抱持疑問，因為這類的遊戲軟體公司多使用數位權利管理機制 (Digital Right Management, DRM) 來禁錮遊戲軟體的修改與再散布，這樣的動作限制了遊戲使用者的自由，而從軟體自由的推動理念來看，這樣的作為也是不盡道德的；從現實面來看 Richard Stallman 也認同使用者在開放的 Linux 作業系統下執行程式，要比在 Windows 上好的很多，所以他表示 Valve 公司此項行動有好有壞，優點是讓 GNU/Linux 作業系統的使用者能夠執行想要的遊戲，甚至進一步鼓勵遊戲的愛用者能從 Windows 作業系統轉換到 GNU/Linux 作業系統，但是同時 Richard Stallman 也表達疑慮，其擔心此行動會使 GNU Project 與其他自由軟體專案創建之初所要傳達的軟體自由精神被忽略，從這個立場來看，Richard Stallman 認為 Valve 公司的行動是否受歡迎就是其次的事，其認可的優先條件，還是此舉能不能幫助使用者從軟體 DRM 的枷鎖中解放出來。
+
+所以，Richard Stallman 期盼自由軟體的擁護者，除了 Steam 平台提供的封閉性遊戲之外，也能夠支持例如 Liberated Pixel Cup (http://lpc.opengameart.org/)，這種以開源素材創造自由開源軟體遊戲的活動。這就像是有了封閉系統架構的訊息互動網站 Twitter 或是 Facebook，但世上也可以兼容併有開源架構的 identi.ca (http://identi.ca/)，讓使用者具有選擇認同方案的基本自由。
+
+
+相關網址
+
+1. GNU 創立者 Stallman 認為 Steam 遊戲平台上的 Linux 布署計畫不盡道德
+http://arstechnica.com/information-technology/2012/07/gnu-founder-stallman-calls-drmd-steam-for-linux-games-unethical/
+
+2. Valve 宣布將旗下 Steam 平台、Source 電玩引擎，以及惡靈勢力二代轉植至 Ubuntu Linux 上進行運作
+http://arstechnica.com/gaming/2012/07/valve-announces-ubuntu-port-of-steam-source-engine-and-left-4-dead-2/
+
+3. 在 Steam 平台上養企鵝
+http://blogs.valvesoftware.com/linux/steamd-penguins/
+_______________________________________________________________
+
+﻿■ [源碼新聞] Microsoft 與商用 Linux 的軟體供應商 Amdocs 簽訂專利交互授權協議
+
+黃郁文／編譯
+
+Microsoft 宣布和全球知名的 Amdocs 達成專利交互授權協議。Amdocs 全球聘員共達 2 萬人，總資產達 46 億美元，是一間提供帳務及客戶關係管理軟體 (billing and customer relationship management) 的系統供應商，其服務的客戶包含 AT&T、T-Mobile、Vodafone…等等一級與二級的著名電信供應商。目前此份協議內容的細節不明，只約略得知 Amdocs 在其雲端資料中心所使用的 Linux 伺服器落入 Microsoft 的專利組合範圍，故必須要與 Microsoft 先一步洽談專利交互授權協議，以降低可能衍生的專利涉訴風險。
+
+Microsoft 自 2003 年 12 月起，就積極行使其專利布局以獲得權利金，並宣稱 Linux 侵害其 235 項專利，之前在 2009 年時，Microsoft 便曾控告利用 Linux 的 TomTom 公司侵害其 8 項專利，嗣後並取得 TomTom 與其洽談專利授權的合同。同年，Buffalo 也因為利用 Linux 建置的 NAS 與路由器產品，而與 Microsoft 簽訂了專利授權契約，近年更有眾多的 Android 裝置製造商，因擔心專利侵權的風險，而轉和 Microsoft 簽訂專利授權契約，縱使是起初起身反抗的 Barnes and Noble，最終也以支付專利授權金為前提來進行和解收場。
+
+看來 Microsoft 近年積極與商用 Linux 公司密切合作，其終極目的似乎在於取得專利權利金。Microsoft 的副總裁 Horacio Gutierrez 表示：「包括 Amdocs 在內，過去 10 年間 Microsoft 已與其他商業公司簽訂了超過 1100 個專利授權契約，如此用以確保其智慧財產權利能獲得保障，並能為其所費不貲的研究投資取得回報。」Microsoft 此波針對 Linux OS 商用公司進行的強勢協議，已引發不少 Linux 供應商的疑慮與擔憂，因為目前市面上採用免費可得的 Linux OS 來進行商業服務的公司著實不少。諷刺的是，Microsoft 曾經一度以「惡性腫瘤 (cancer)」一詞來形容自由開放源碼與 Linux OS 的發展，但看來其現在正藉著此一「病症」的普及與擴大，來榨取授權金上的豐厚獲利。
+
+
+相關網址
+
+1. Microsoft 與 Linux OS 商用公司簽訂專利授權
+http://www.theinquirer.net/inquirer/news/2194102/microsoft-gets-amdocs-to-sign-licence-agreement-to-use-linux-on-servers
+
+2. Microsoft 專利授權予以 Linux 伺服器建置服務的資料中心
+http://www.h-online.com/open/news/item/Microsoft-licenses-patents-for-Linux-server-data-centers-1652407.html
+
+3. Microsoft 鎖定 linux server 公司
+http://redmondmag.com/articles/2012/07/26/microsoft-targets-linux-server-in-amdocs-ip-deal.aspx
+_______________________________________________________________
+
+■ [源碼新聞] Linux Mint 開發團隊新創 Nautilus 分支專案
+
+黃郁文／編譯
+
+因不滿於 GNOME 桌面系統下的 Nautilus file manager，在最新版移除了一些使用者愛用的功能，Linux Mint 的開發團隊決定另闢新徑，根據 Nautilus 的程式源碼新創 Nemo 分支。Linux Mint 的專案開發領導者 Clement Lefebvre 表示：「Linux Mint 其下的桌面系統 Cinnamon，本就是 Gnome 桌面系統的分支，所以當 Gnome 下面的 Nautilus 也變得一樣複雜難用時，Linux Mint 團隊不介意比照辦理自創分支，Nemo，就是針對 Nautilus 降階需求而來的分支專案。」
+
+Nemo 專案目前在介面的部分，與舊版的 Nautilus 3.4.x 系列版本相差無幾。而這也是繼 GNOME Shell 以及 Mutter 之後，Linux Mint 開發團隊第三度，針對 GNOME 桌面系統重要元件進行的分支創建以及後續維護。無獨有偶的，除了 Linux Mint 開發團隊的 Nemo 之外，另一個衍生自 Ubuntu Linux 的新興作業系統 elementary OS (http://elementaryos.org/)，也已經從 Nautilus 專案的主幹出走，自從維護一套較為精簡分支專案 Nautilus Elementary。想要嘗新試用 Nemo 的朋友，Linux Mint 團隊已在其網站論壇上，羅列詳細指導的安裝步驟 (http://forums.linuxmint.com/viewtopic.php?f=190&p=614356)，不過現階段 Clement Lefebvre 也表示：「目前 Linux Mint 開發團隊並沒有確定要徹底放棄 Nautilus，也還沒決定是否未來版本皆會以 Nemo 取代 Nautilus，但這些事大抵會在 Cinnamon 1.6 版正式推出時見分曉，屆時 Linux Mint 團隊絕對會選擇一個最佳的檔案管理解決方案，配合 Cinnamon 1.6 一併釋出。」
+
+
+相關網址
+
+1. Linux Mint 開發團隊創建 Nautilus 專案分支
+http://www.h-online.com/open/news/item/Linux-Mint-team-forks-Nautilus-1660545.html
+
+2. Linux Mint 開發者新創 GNOME file manager 分支
+http://www.zdnet.com/linux-mint-developers-work-on-gnome-file-manager-fork-7000002232/
+_______________________________________________________________
+
+■ [源碼新聞] 在 Fedora 上也能使用 Unity 桌面環境
+
+蕭惟杰 (RJ)／編譯
+
+在去年 Ubuntu 的開發團隊在當時推出的最新發行版本 (11.04) 中，正式以自家的 Unity 桌面環境取代歷史悠久的 GNOME 2，而不是像其他的發行版那樣改用作為後繼的 GNOME 3 時，曾引來了不少批評，其中也包含了「Unity 將只有 Ubuntu 能使用」這樣的指責。不過這樣的指責將化為烏有，因為事實上，Unity 桌面環境（與其組成元件）皆可改寫並移植到其他的 Linux 發行版，而 Fedora 的開發團隊證實了這點。
+
+Unity in Fedora (http://i.imgur.com/mZ0l7.jpg)
+
+上下兩張圖正是友善的 GNOME Ayatana 團隊籌元所提供的。其展示了目前的移植進度：除了一點小瑕疵之外（目前最明顯的就是那個還沒修掉的 Ubuntu 圖示了），Unity 5.12 及 Compiz 在 Fedora 17 上面能正常的執行。
+
+Unity in Fedora (http://i.imgur.com/bn7Re.jpg)
+
+搶先試用
+
+如果 Fedora 使用者想要玩玩看 Unity，需要自行加入下面的套件來源：(http://download.opensuse.org/repositories/GNOME:/Ayatana/Fedora_17/)
+
+但是，需要特別指出，將該套件來源加入後，更新時將會將一些 GNOME 核心組件取代成與 Unity 相容的版本，請不要在重要的電腦上試用。
+
+透過終端機下達以下指令：
+
+    $ sudo su
+    # cd /etc/yum.repos.d/
+    # wget http://download.opensuse.org/repositories/GNOME:/Ayatana/Fedora_17/GNOME:Ayatana.repo
+
+到這邊，該套件來源就加進去了。截至目前，單純的下達 "`yum install unity`" 指令並不會把所有所需的套件都安裝，像是 gconf-editor 是載入 Unity 的必要套件。
+
+移植的工作到目前為止尚未完成、完美，所以並不是每次都能正常運作。如果你遇到問題，你只需要重新啟動，並在登入畫面時選擇使用 "GNOME" 回到原本正常的桌面環性，或是使用終端機跟努力奮戰，排除故障。
+
+更多的相關資訊請參閱 https://build.opensuse.org/project/users?project=GNOME:Ayatana
+
+相關網址
+
+1. Unity Desktop Available for Fedora
+http://www.omgubuntu.co.uk/2012/07/unity-desktop-available-for-fedora
+
+2. Unity to be "available in Fedora"
+http://www.omgubuntu.co.uk/2010/12/unity-to-be-available-in-fedora
+_______________________________________________________________
+
+■ [源碼新聞] Ubuntu 12.10 將加入創新的 Web App 整合功能
+
+蕭惟杰 (RJ)／編譯
+
+Ubuntu 公開了最新的版本 12.10，同時也首次推出新功能 "Web Apps"。這個功能讓網路應用、網站與服務直接整合到 Ubuntu 的桌面環境，並有效運用 Ubuntu 的技術像是應用程式選單、HUD（抬頭顯示）、訊息選單、聲音選單、快捷清單等。
+
+▲ 圖1 (http://cloudfront.omgubuntu.co.uk/wp-content/uploads/2012/07/gdocs.jpg)
+
+所以，舉例來說：
+
+	＊你可以透過聲音選單開啟 Last.Fm 並進行播放控制。
+	＊透過訊息選單取得 Facebook 的新訊息通知
+	＊透過彈出式訊息通知 (Notification Bubbles) 得到 BCC 新聞的通知
+	＊透過 Dash 搜尋你的 Google 文件
+
+你也可以透過 Alt + Tab 在已整合網站之間做切換，就像在使用其他應用程式那樣，你也可以透過 HUD 對某些網站、服務執行一般動作，像是 GMail 的撰寫郵件。
+
+最重要的是，這些都是可以選擇要不要的。例如瀏覽 GMail 時，瀏覽器會彈出提示詢問你是否要將網站與桌面整合。
+
+
+▲ 圖2：Unity web apps in Ubuntu (http://cloudfront.omgubuntu.co.uk/wp-content/uploads/2012/07/Screen-Shot-2012-07-19-at-17.55.03.png)
+
+選擇 Yes 則你將會透過 OSD 及訊息選單得知有新郵件，以及透過 HUD 及應用程式選單執行 GMail 的一般功能。選擇 No 則該網站將會與你的桌面保持獨立。
+
+▲ 圖3：與 GMail 整合 (http://cloudfront.omgubuntu.co.uk/wp-content/uploads/2012/07/gmail-integration.jpg)
+
+瀏覽器及網站的支援
+
+目前已經有 Firefox 及 Chromium 支援整合 Web Apps 的功能，而開發者們仍持續讓其他的瀏覽器像是 Epiphany 或 Midori 也支援此功能。
+
+在網站的部份，目前已有支援 Web Apps 的有 Yahoo Mail 及 Google 的服務像是 Gmail、Google Calendar、News、Google Plus、Reader、YouTube，以及 Launchpad、Facebook、Twitter、Grooveshark、Last.fm 等，詳細的清單請看這邊 (http://bazaar.launchpad.net/~webapps/webapps-applications/trunk/files/head:/src/)。如果你也想讓你的網站支援 Web Apps，這邊有相關的 API 文件 (http://developer.ubuntu.com/api/ubuntu-12.04/javascript/index.html)。
+
+搶先試用
+
+如果你對這個新功能迫不及待的躍躍欲試，你可以透過以下兩道指令完成新增套件來源及安裝：
+
+    $ sudo add-apt-repository ppa:webapps/preview
+    $ sudo apt-get update && sudo apt-get install unity-webapps-preview
+
+
+然後重新登入即可。特別要注意的是，如果你已經透過其他 PPA 來源在 Ubuntu 上面安裝較新的 Unity 版本，像是 Unity Revamped PPA (http://www.webupd8.org/2012/05/how-to-get-dodge-windows-and-minimize.html)，則 Web Apps 功能將會沒有作用，你必須先將這其他的 PPA 來源清除。
+
+當然，如果你不想用了，你也可以還原，只要執行以下指令：
+
+    $ sudo apt-get install ppa-purge
+    $ sudo ppa-purge ppa:webapps/preview
+    $ sudo apt-get remove gnome-control-center-signon signond signon-keyring-extension signon-plugin-oauth2 signon-ui libunity-webapps-chromium unity-chromium-extension unity-lens-gdocs unity-lens-photo unity-scope-flickr xul-ext-webaccounts xul-ext-unity xul-ext-websites-integration
+
+然後一樣重新登入即可。
+
+
+相關網址
+
+1. Ubuntu 12.10 to Feature Innovative Web App Integration
+(http://www.omgubuntu.co.uk/2012/07/ubuntu-unveil-new-web-apps-feature-for-12-10)
+
+2. How To Install Ubuntu’s New Web Apps Feature in 12.04 & 12.10
+(http://www.omgubuntu.co.uk/2012/07/how-to-install-ubuntus-new-web-apps-feature)
+
+3. INSTALL THE NEW UBUNTU WEBAPPS TECHNOLOGY IN UBUNTU 12.04 OR 12.10
+(http://www.webupd8.org/2012/07/install-new-ubuntu-webapps-technology.html)
+_______________________________________________________________
+
+■ [源碼新聞] 知名文字編輯器 TextMate 成為開源軟體
+
+蕭惟杰 (RJ)／編譯
+
+8 月 9 日對所有平台的開發者來說或許是個黃道吉日，因為 TextMate (http://macromates.com/) 這套在蘋果電腦的作業系統 OS X 上面最廣為人知且使用者眾多的文字編輯器，選擇在這天對大家正式宣佈 (http://blog.macromates.com/2012/textmate-2-at-github/)，其第 2 版 (TextMate 2) 的程式碼以 GPL 3 授權的方式釋出！
+
+身為 TextMate 開發者的 Allan Odgaard 在上面寫到：
+
+「我總是想順著使用者的角度來思考他們所需的環境，而在這件事情上我所能做的就是，優先考慮如何讓我程式寫起來得心應手……」
+
+「……對於持續成長的用戶群，我認為最理想的做法就是開放程式的原始碼。」
+
+Odgaard 目前選擇以 GPL 3 (http://www.gnu.org/copyleft/gpl.html) 授權的方式釋出其程式碼，但將來還會改用限制較少的授權方式釋出。
+
+Odgaard 在提到他做出這選擇的原因時，也藉機諷刺蘋果：「在我內心的駭客希望所有的軟體都能變得自由，所以在我們的平台提供者（蘋果公司）採取手段限制我們自由的這段時間，我以此（開放 TextMate 2 的原始碼）作為反抗這種趨勢的小嘗試。」
+
+雖然 TextMate 2 開放原始碼並不意味著這套程式很快的就能出現在其他平台像是 Linux、Windows 上面，但是我們可以期待未來我們可以在其他平台上面享受 TextMate 2 的強大功能。
+
+你可以在 GitHub 上面 (https://github.com/textmate/textmate) 取得 TextMate 2 的原始碼。
+
+
+相關網址
+
+1. TextMate Blog : TextMate 2 at GitHub
+http://blog.macromates.com/2012/textmate-2-at-github/
+
+2. TextMate 2 on GitHub
+https://github.com/textmate/textmate
+
+3. Mac App "TextMate2" Goes Open Source, Could Come to Linux
+http://www.omgubuntu.co.uk/2012/08/textmate2-goes-open-source-could-come-to-linux
+_______________________________________________________________
+
+﻿■ [源碼新聞] Android 4.1 發佈不到一個月，截至 7 月底使用比例已達 0.8 %
+
+黃湘婷／編譯
+
+今年可說是 Android 4.0 大躍進的一年，雖然代號為 Ice Cream Sandwich 的 Android 4.0 早在去年底就推出，但除了新推出的機種外，能夠直接支援升級的手機並不普遍，直到四月底才由 Sensation 系列開始慢慢開放舊型機種的升級。
+
+在 Android 4.0 提供支援越來越多機型的同時，Google 於 6 月底在舊金山舉辦的 Google I/O 開發者大會中展示了更新的版本：代號為 Jelly Bean 的 Android 4.1，約於 7 月中正式發佈，首批支援 Jelly Bean 的手機有 Galaxy Nexus, Nexus S 以及 Google 新推出的平板電腦 Nexus 7 等等。
+
+藉由使用者進入 Google Play Store 的統計數據，可發現在短短的幾周內搭載 Jelly Bean 裝置的比例已達 0.8 %，去年發佈的 Ice Cream Sandwich 則有將近 15.8 % 的使用比例，而佔有率最高的版本仍然為 Android 2.3，高達 60.3 %。
+
+至於 Jelly Bean 帶來的更新包括提升了畫面的流暢度、有效降低觸控延遲的時間以及更加豐富的通知欄等等，以收到郵件為例，不僅會顯示寄件者是誰，還能預覽部分的郵件內容，令使用者不用進入應用程式便能執行簡單的動作，而通知欄的外觀更有不同的樣式供使用者做選擇，是與以往較為不同的部分。
+
+
+相關網址
+
+1. Android 4.1 Jelly Bean 已達 0.8 % 的市佔率
+http://www.zdnet.com/android-4-1-jelly-bean-hits-0-8-percent-market-share-7000002036/
+
+2. Android 4.1 Jelly Bean 市佔率達 0.8 %，Ice Cream Sandwich 也正增加中
+http://www.ibtimes.com/articles/369859/20120802/android-jelly-bean-features-ice-cream-sandwich.htm
+
+3. Android 4.1 Jelly Bean 有 0.8 % 的市佔率
+http://www.latinospost.com/articles/2544/20120802/android-4-1-jelly-bean-update-still-only-0-8-of-market-manufacturers-say-updates-in-development.htm
+_______________________________________________________________
+
+■ [源碼新聞] InSync 推出 Linux beta 版，在 Ubuntu 上也能同步 Google 雲端硬碟檔案
+
+黃湘婷／編譯
+
+InSync (https://www.insynchq.com/) 為一提供檔案備份與同步的軟體，在 Google 雲端硬碟尚未推出前，使用者藉由 InSync 能夠將 Google 文件的檔案備份至電腦中，並且會同步更新至文件最新的版本。在 Google 雲端硬碟 Windows 版推出後，InSync 也不落人後，搶先發佈了 Linux Beta 版，成功將 Google 雲端硬碟帶至 Linux 系統。
+
+InSync 的使用方式類似於 Dropbox (https://www.dropbox.com/)，在設定 Google 帳號後，會自動將使用者雲端硬碟中的檔案下載至以該帳號為命名的資料夾，同時 InSync 也支援同步多個帳號的功能，方便使用者依個人需求擴大空間與分類管理，是 Google 雲端硬碟以及 Dropbox 沒有的部份。
+
+另外 InSync 主打的功能還有離線編輯 Google 文件，能夠以微軟 Office 相容的檔案格式下載（gdoc 為 .doc，gsheet 為 .xsl 等等），在 Linux 上便能使用 LibreOffice 或 OpenOffice 等其他類似的辦公室軟體做編輯。而檔案分享的方式也如同 Dropbox，僅需點選右鍵就能分享檔案以及下載連結。
+
+雖然僅為測試版本，目前已可成功安裝於 Ubuntu 11.10, 12.04, 12.10 以及 Linux Mint 13 以上的系統。在價格與空間上 Google 雲端硬碟預設為 5 GB，可以每個月 4.99 美元擴充至 100 GB，Dropbox 預設為 2 GB，擴充至 100 GB 則為每年 99 美元。
+
+
+相關網址
+
+1. InSync 將 Google 雲端硬碟帶至 Ubuntu 系統
+http://www.omgubuntu.co.uk/2012/08/insync-brings-google-drive-to-ubuntu
+
+2. 在 Ubuntu 以及 Linux Mint 利用 InSync 存取與同步 Google 雲端硬碟
+http://www.upubuntu.com/2012/08/access-and-sync-google-drive-using.html
+
+3. InSync 解決了在 Linux 環境使用 Google 雲端硬碟的問題
+http://www.linuxnews.co/2012/07/insync-solves-google-drive-for-the-linux-desktop/
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰林珈宏、彭冠雯、王怡凱
+◎ 外稿編譯︰謝良奇、黃湘婷、黃郁文
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。

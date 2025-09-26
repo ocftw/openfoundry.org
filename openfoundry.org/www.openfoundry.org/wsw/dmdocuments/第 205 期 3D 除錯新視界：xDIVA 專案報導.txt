@@ -1,0 +1,1132 @@
+﻿________________________________________________________________
+
+□■□ 自由軟體鑄造場電子報第 205 期 | 2012/10/9 □■□
+________________________________________________________________
+
+◎ 本期主題︰3D 除錯新視界：xDIVA 專案報導
+◎ 訂閱網址︰http://www.openfoundry.org/tw/news/
+◎ 下次發報時間︰2012/10/23
+
+□ 本期標題 □__________________________________________________
+
+■ [源碼專案] 3D 除錯新視界：xDIVA 專案報導
+
+■ [企業應用] 5 個值得一看的開源軟體
+
+■ [源碼秘技] 《雪凡與好朋友們的 Ren'Py 遊戲引擎初學心得提示》第一回：Ren'Py 是什麼？
+
+■ [源碼秘技] OpenMeetings - 自由軟體線上會議系統
+
+■ [源碼秘技] Pandoc - 用命令行轉換標記語言！
+
+■ [源碼新聞] Red Hat 利用 GPL-2.0 失權條款在專利訴訟中進行反訴
+
+■ [源碼新聞] Tizen Linux 再進化！跨國車商將與科技研發公司共組車載 Linux 工作群組 
+
+■ [源碼新聞] 舊版 Android 系統上有控制碼認證不全的漏洞
+
+■ [源碼新聞] 歐洲數位圖書館使用 CC0 在公眾領域釋出 2 千萬筆記錄
+
+■ [源碼新聞] 開發者指責開源工具供應商 Appcelerator 強索授權金
+_______________________________________________________________
+
+□ 本期內容 □__________________________________________________
+
+■ [源碼專案] 3D 除錯新視界：xDIVA 專案報導
+
+自由軟體鑄造場電子報／文
+
+對程式設計師，工程師以及許多科技資訊工作者而言，除錯器 (Debugger) 是不可或缺的一項工具。除錯器的主要功能，在於幫助使用者在程式運作時找出臭蟲 (bug) ，並予以排除；然而，身為工具，必然存在著某種限制。
+
+由中央大學資工系鄭永斌教授所主持的「xDIVA ─ 具備可合成與互動之除錯資訊視覺化軟體工具」自由軟體專案，從協助資訊工程工作者的立場出發，力圖跨越工具的有限性，探索跨界與創新的可能空間。
+
+
+一、「活」的軟體，而非「死」的工具
+
+「xDIVA ─ 具備可合成與互動之除錯資訊視覺化軟體工具」是一個總共為期四年的專案，由中央大學資工系鄭永斌教授主持，主要研發目的，是開發一個能夠跨領域，甚至跨界域的除錯工具。
+
+一般來說，資訊軟體的開發通常必須用到諸多不同的工具，除錯器便是其中非常重要的一項，因為在程式開發中，不免會遭遇一些錯誤，此時，便需要除錯器的協助，才能順利校正修補。
+
+鄭教授表示，近十幾年來，除錯器就工具本身的演進並未呈現出顯著的改進，「因為我研究的領域正好是軟體工程，從理念發想、產生樣品，到真正推出產品，這段流程需要走過一段滿長的距離，最快的測試方式，就是釋放在網路平臺上，讓人們自由分享與使用，但如果真的要做到產品化規格，便不只是測試與修改那麼簡單。許多的學研專案都停留在完成樣品的階段就結案，但我們這個專案不同的地方，在於我們是真心地想做出穩定的產品，讓程式設計師、工程師與資訊工作者能夠實用！」
+
+鄭教授說道，不同的軟體程式與專題領域，有其個別相應不同的除錯需求，鄭教授援引自己在中央研究院的經驗為例，當時鄭教授主要研究「光學文字辨認」，簡單來講，就是將文字或影像透過光學掃描轉換成數位檔案，也時常有修改程式的需要，但一旦修改，就發現錯誤率頓時提高，這時便需要一項一項地分別除錯，不僅耗時間也耗心力。於是，鄭教授的作法是以互動性為概念，重新寫一個屬於該專題專用的視覺化除錯器程式。
+
+由於每個應用領域都擁有自己專用的除錯器，基於領域限制，研發出來的除錯器的無法進行跨領域的普遍應用，鄭教授說道：「我的腦中開始孕育一個想法：如果可以做出一個能夠跨領域應用的除錯器，可以通用於所有的軟體程式與專題領域，比如影像處理、Layout 設計、工業領域等等，都可以使用同一個除錯器，來輕鬆地協助使用者普遍應用，可以節省許多力氣。」而這正是 xDIVA 誕生的源頭。
+
+
+二、創新，從腳踏實地開始
+
+鄭教授說道，當初決定做這個題目時瀏覽過許多相關研究資料，包括目前被稱為「二元樹」的資料結構，但這類資料結構多被運用在資訊教育上，作為老師給學生練習之用，無法應付程式設計師的需求；加上每個領域的資料結構各有差異，產生了視覺化的套用問題，除錯器在設計上往往為了應對某個程式而被寫死，一旦程式變化，立即發生不適用問題，這也是視覺化程式的通病，也正是 xDIVA 面對的燙手山芋。
+
+「我想做的不是去特定寫死一個程式，而是提供許多基本的視覺元素，來兜合出新的視覺化效果。換句話說， xDIVA 提供的內涵有如物理學中的基本粒子，是一種包含了各種基本元素的系統，你可以依照自己的需求去編輯、組織，依照不同的資料結構來自由組合，就好像樂高積木有許多元件，可供人去發揮創意，組合成想像中的形體。」
+
+xDIVA 利用人類視覺感官的直覺運作，提供了視覺化與隱喻性的多重組合。傳統除錯器是利用文字及數值來顯示變數，但文字或數值的理解還需經過視覺與大腦的轉換，「用眼睛看就能夠了解的東西，用文字反而卻無法看見。以影像程式來說，影像具有 RGB 三個值，若是將某個像素的 RGB 印在紙上，其實你光看數值，只能自己判斷這個到底是什麼顏色，但如果運用 3D 視覺化工具，就能當場以互動的方式展現出來。」鄭教授笑道：「年輕時我自己也寫過很多程式，光是一個 bug 就要花很多時間處理，除錯這個概念，除了使用者本身的經驗與功力，如果有一個跨領域的好工具則會更加實用。講得偉大一點，我想要顛覆現在既有的除錯器，提供一種新式的 3D 視覺化除錯器！」
+
+
+三、產學合作，創造跨界新價值
+
+以比喻法來說，鄭教授認為：「xDIVA 就像 iPad，使用者不用特地去學 3D 影像化互動技術，直接就能一目暸然；而傳統除錯器就像 DOS，單純只是純文字互動，必須下很多結構化的指令。」
+
+從純粹的學術研究興趣，到實際的研究成果，「xDIVA ─ 具備可合成與互動之除錯資訊視覺化軟體工具」的研發成就已成功獲得學術界的肯定，但鄭教授更希望在實用層面上有所提升，是故展開與業界合作的嘗試。試用對象主要為 EDA（Electronic Design Automation，電子設計自動化）廠商，由於一般企業對資訊軟體的需求通常傾向直接購買套裝軟體，而這些軟體大都由 EDA 廠商開發寫成，而 xDIVA 主要提供給 EDA 廠商試用，這些廠商雖然自己也有寫除錯工具，但問題是，因為是特地針對某個程式所寫的，一旦除錯情境變動，工具就必須整體更新，所費成本不貲。
+
+目前，xDIVA 多提供科技業試用，鎖定資料結構複雜度高的產業，並在中研院資創中心的自由軟體鑄造場 (Open Source Software Foundry, OSSF) 所提供的 OpenFoundry 專案開發平臺上開放程式源碼，期望能吸引更多資訊相關工作者來試用及修改，以期使 xDIVA 的穩定度與完整度再上層樓。鄭教授的策略，是先找到 EDA 廠商的對口工程師，提供 xDIVA 的最新版本請他們試用，同時調查企業的除錯需求，如果該廠商的工程師覺得實用，就能漸漸發揮推廣之效。「理想的作法是從龍頭公司著手，目前已經和首屈一指的外商公司 Synopsys 連接上，請基層工程師試用，如果用得上手，其他公司也會接續跟進。」鄭教授說道，產品若要真正上軌道，穩定度是首要考量，這也是產業界與學術界的主要差異，「對學術界而言，價值通常建立在長遠的研究目標與通用性之上，但對產業來說，企業考量的是：產品是否能有效解決他們的問題、產生利潤，這是產學雙方考量上的差異。」
+
+四、教育，是臺灣資訊產業的未來
+
+除了產業合作，xDIVA 的 3D 視覺化與互動特性亦能在資訊教育發揮效用。鄭教授舉例說明，在臺大資工系開設演算法課程的呂學一教授，在課堂中使用 PowerPoint 動畫，利用視覺化進行教學而頗受好評，鄭教授由此發想認為，亦可在教學時套用 xDIVA 。「人類是視覺化的動物， xDIVA 則能自動對應程式來呈現 3D 動畫，在設計教學動畫上非常有幫助。」鄭教授表示。
+
+就價值產生面而言，「xDIVA ─ 具備可合成與互動之除錯資訊視覺化軟體工具」對學校與研究單位而言，可以產生出技術移轉資金，讓業界主動有興趣投入，產學彼此合作，便有成立新公司的可能，也能聘用更多工程師，製造就業機會與產業新機；若技轉合作模式成熟，便可有更多人才培養的資源，形成正面的產學互動循環。
+
+鄭教授強調，自己的理念，是顛覆除錯領域的未來，但推廣與成熟需要時間的培養，「我相信，試用階段是必須的，唯有讓第三者出現，才能發揮具體效果發，而不斷的改進，才能導致真正的進步！」
+
+「臺灣的軟體產業現在其實都在賺辛苦錢。」鄭教授以蘋果公司的成功為例，「蘋果的成功並不是靠硬體或是漂亮的設計，而是靠整合度極強的軟體系統。軟體產業的特性是，一旦你有了新的研發，就必須趕快切進市場，切入後再來改進，這樣子後面的人便永遠追不上，因為你自己也同時在不停前進。」
+
+回到教育面，鄭教授認為，若要研發、修改大型複雜的程式源碼，學生的資訊能力必須要有一定程度，這正是人才培養之所以重要的原因，但臺灣的教育現在仍然以升學考試為取向，導致學生的實作能力貧弱，在大學時，老師們努力幫學生建立基礎，但到了大四，學生紛紛去補習、考研究所、拼學歷。「身為資訊科技領域的學生，卻沒有紮實的實作能力，這樣的人才進入產業，自然會影響到產業素質。」鄭教授說道。
+
+教育、人才與產業發展，是彼此緊密連扣的環節鏈，臺灣的資訊軟體產業若要拓展光明前景，教育環境與觀念便必須先行有所改革，教育扮演著人才培養的關鍵角色，也是臺灣科技資訊產業發展不可或缺的基礎！
+
+
+【技術文件摘要說明】
+
+xDIVA 簡介
+
+3D 軟體除錯視覺化工具 xDIVA 之建構計畫，提出一個除錯視覺化雛形工具 xDIVA (eXtreme Debugging Information Visualization Assistant) 的研究。其主要目的著眼於處理無窮廣泛的資料種類 VM 的對映。 xDIVA 導入新穎嚴格的物件導向 觀念，使 VM 可以互相溝通、組合，且和資料完全分離，達到最低的耦合。換言之，一個複雜的 VM 可以由許多基礎 VM 組合而成，每一個都是獨立且可替代的。資料型態和 VM 之間的對映可以依客戶需求訂做，重新裝配，讓使用者在不需要撰寫任何的程式碼，或者規則語言 (rule-like language) 就可以從既有的 VM 材料庫中，組合出符合期望的視覺化結果。
+
+系統需求
+
+＊具備 debugger 的 GUI 前端程式。
+＊GUI 必須具備基本功能包括瀏覽程式碼，設定中斷點，執行除錯，以文字模式顯現出變數。
+＊允許使用者藉由 GUI 介面對 DIVA 發出變數視覺化的指令。
+＊DIVA 可由除錯器端取得程式變數的數值以進行的使用者要求的視覺化。
+＊DIVA 必須具備讓使用者進行 VM 調整（譬如資訊與 VM 如何對應、數量龐大時如何排列等）的使用者介面，並將 VM 以 3D 的方式呈現在螢幕上。
+
+系統架構
+
+xDIVA 主要由除錯器前端 (Minerva) 以及視覺化子系統 (DIVA) 所組成。
+在本系統當中，除錯前端子系統 (Minerva, Visual Studio add-in,Eclipse add-in) 即除錯器介面，使用者對除錯前端子系統下達除錯動作的指令會透過網路部分與 DIVA 端的 Command Agent 作互動，而 Command Agent 會依照使用者的指令對 WOPM 以及 DIVA UI 作動作。 WOPM 會依照變數的型態以及 Mapping Dialog 連結的結果提供連結方式給 Mapping Engine，Mapping Engine 負責將連結的結果合併成 Mapping Tree 提供給 DIVA 查詢以及視覺化使用。而 DIVAUI 分為兩個部分，一個是視覺化的視窗，另一個是 Mapping Dialog 的部分，Mapping Dialog 是讓使用者來自行調整 VM 與欲視覺化變數之間的關聯關係，以及調整 VM 屬性的 Dialog。
+
+xDIVA 的視覺化子系統 DIVA 有相當多個重要元件，第一個是 Watched Object Pool Module (WOPM)，WOPM 儲存所有等待 DIVA 視覺化的變數、指標、和物件。這些資料由其除錯器前端 (Minerva) 取得，當中斷點改變時會改變其值。前端負責通知程式狀態的改變，有一些複雜的程序在這時後啟動來確保 WOPM 和 debugger 的資料同步。Command Agent 元件用來處理同步的程序，舉例來說，當接受到 visualize p 這個指令的時後，Command Agent 會送出一連串的指令向前端要求 p 的資訊，當資訊取得後，Command Agent 則在 WOPM 建立一個物件。- 10 -在 visualization metaphor 和 WOPM 之間有個重要的元件叫 Mapping Engine，它負責維持 WOPM 裡的物件和 VM 的映射，也允許使用者手動設定如何映射。
+
+(http://www.openfoundry.org/images/121009/xDIVA/xDIVA.jpg)
+▲圖：xDIVA 系統架構圖
+
+視覺化子系統 DIVA 和前端處理器 Minerva 的溝通是透過網路交換訊息，因為 Minerva 是由 Java 實做完成，這個設計甚至使得程式設計人員也可以在 Linux 下 debug 程式，然後將結果呈現在 Windows 平台上。
+
+xDIVA 運用 Open Source 3D 引擎 OGRE 來進行 3D 繪圖。OGRE 是個物件導向的 3D 引擎，相較於其他 3D 開發平台如：OPENGL 或 DIRECTX，ORGE 的程式設計門檻比較低。因此，ORGE 作為一個 3D 繪圖引擎，可以降低相當多的程式開發時間和功夫。ORGE 提供相當多的 3D 特效，有助於增進的視覺化的多樣性，提升視覺化的品質，超越過去視覺化系統只依賴基本的顏色與圖形。
+_______________________________________________________________
+
+■ [企業應用] 5 個值得一看的開源軟體
+
+黃湘婷／編譯
+
+◎本文翻譯自 ZDNet，原作者為凱文光，原文章連結：http://www.zdnet.com/5-oss-up-and-comers-to-watch-7000003056/
+
+摘要：從開源管理、Web 應用程式框架，到巨量運算和 IT 配置，皆使用 DevOps 模型，亞洲 ZDNet 特別介紹了一些這個領域的開源軟體。
+
+RedHat 在 2012 年收入到達 11.3 億美元之後，創造了一個年收入超過十億的里程碑，也開啟了一條讓其他開源軟體能夠跟進的道路。
+
+Forrester Research (http://www.forrester.com/home) 的首席分析師 Jeffrey Hammond 表示，該公司已證明了他們能靠著與客戶簽約並使用他門的開源軟體，來和一些大企業們並駕齊驅。
+
+Red Hat 成功的例子(http://www.zdnet.com/blog/open-source/red-hat-the-first-billion-dollar-linux-company-has-arrived/10692) 就擺在大家眼前，ZDNet Asia 採訪了業界的觀察家，找出其他可能跟進採取類似操作模式，正積極商業化他們的產品，或是以滿足當前與未來的商業需求為目標的開源軟體供應商。
+
+
+Black Duck Software (http://www.blackducksoftware.com/)
+ 
+Hammond 表示，Black Duck Software 提供策略、產品，以及服務，使企業大規模採用開源軟體，證明開源工具也能建立商業產品。
+
+Hammond 指出，其關鍵有價值的主張為：透過有一定規模的使用開源軟體，不僅能夠幫助大型企業增加經濟價值，同時也能確定潛在的風險，確保這些開源軟體的框架不會被濫用，授權模式也能彼此間互不衝突、和平共處。
+
+另外分析師也補充他列出 Black Duck Software 的原因：許多開發人員不了解拘束性授權（viral licenses, 亦可翻譯為具感染性的授權，如 GPL 授權）與非拘束性授權（non-viral licenses, 亦可翻譯為不具感染性的授權，如 EPL、MIT 授權）之間的差異，某些情況下，有可能導致開發人員在不了解授權的情況下，誤用開源的程式碼或框架而導致影響了該公司所屬的智慧財產權產品。
+
+
+Sencha (http://www.sencha.com/)
+
+另一個值得注意的開源軟體公司為 Sencha，根據該公司的網站，可以看出其為提供大型企業開源 Web 應用程序框架與工具的供應商，數以千計的企業用戶，甚至包含有一半的百大企業都依靠該公司的技術來增強內部與外部的商業應用程式。
+
+Hammond 表示，該公司的長處為提供許多良好的行動裝置與 Web 的框架，而這些都有望成為下一個大型開發框架。
+
+例如 EXT.js 就是一個 Sencha 為其提供商業支援的熱門 JavaScript 框架，目前也被廣泛使用於許多企業編寫跨平台的行動裝置應用程式。
+
+
+Hortonworks (http://hortonworks.com/)
+
+第三個公司為 Hortonworks，451 Research (https://451research.com/) 研究部經理 Matt Aslett 指出，這個將 Apache Hadoop 從 yahoo 獨立出來 (http://www.zdnet.com/yahoo-makes-hadoop-team-independent-3040093268/) 的公司，可說是 "下一個 Red Hat"，他將既有的商業模式帶出，並致力於其軟體維持百分之百的開源。
+
+與競爭對手 Cloudera (http://www.cloudera.com/) 相比，雖然該公司的 Hadoop 發行版完全是基於開源模型，並補充了為企業提供的管理軟體。然而 Hortornworks 仍然讓其資料平台與管理中心完全的開源。
+
+從開源的戰略的角度來看，觀看這兩個競爭對手何者才能成為主導 Hadoop 的分銷商是非常有趣的，就好比 Red Hat 成為 Linux 的主要分銷商。
+
+
+Puppet Labs (http://puppetlabs.com/)
+
+Puppet Labs，是 451 Research 的資深分析師 Jay Lyman 所挑選，主要原因為該公司已將自己良好地奠基在 DevOps (http://www.zdnet.com/cloud-driving-devops-transformation-importance-7000001783/)。
+
+Lyman 表示，該公司提供以 Ruby 編寫的的自動化服務框架，而這同時結合開發與操作、活用雲端運算資源的靈活、自動化、有效率的特性，成為 DevOps 實現的關鍵起跑點。
+
+除了對於 Linux 平台外，他們也逐步增加對於 Windows 的支援，藉此來融入整個大環境，滿足許多大型企業在混合環境與 Windows 環境的管理需求。
+
+Puppet Labs 提供的服務反映出 DevOps 的實踐與技術，從 Web 2.0、媒體、科技公司，不斷擴展至更多的主流企業，包括金融服務、保險、電信及政府等。
+
+另一位分析師 Hammond 也表示，有越來越多的企業使用 Puppet Labs 框架做為 IT 基礎設施的配置，而它也令企業願意真正地花心思在 IT 服務管理的軟體成本配置上。
+
+
+Zenoss (http://www.zenoss.com/)
+
+最後談到的是 Zenoss，是另一個系統管理供應商，同樣也是運用雲端運算與 DevOps 有發展潛力的公司。
+
+該公司除了提供免費的社區版本外，也開放企業贊助其軟體，另外也與大型的 IT 廠商如 Cisco 與 VMware 一同合作，滿足中型市場客戶的需求，從而對抗其他非開源軟體供應商進入市場。
+_______________________________________________________________
+
+■ [源碼秘技] 《雪凡與好朋友們的 Ren'Py 遊戲引擎初學心得提示》第一回：Ren'Py 是什麼？
+
+林雪凡／文
+
+各位好，我是雪凡。歡迎各位螢幕前的觀眾們準時收看「雪凡與好朋友們的 Ren'Py 遊戲引擎初學心得提示」第一回：「Ren'Py 是什麼」。看在第一回的份上，本回內容，將聚焦在 Ren'Py 與遊戲引擎的概括性介紹，與最新 6.14 版啟動器之介面說明上面。
+
+遊戲製作......這是一個相當困難、麻煩無比，而又極需根性的活計。且不說做得好玩或做到具有藝術性，僅僅只是「開始」或「完成」，那都是相當地不容易。身為遊戲製作者，您必須上能作曲填詞，下能繪圖美工，左能撰寫劇本，右能設計程式，中間還得要忍耐少則數月，長要數年的開發，並將前述一切條件進行整合......一言以蔽之，你必須天上知一半，地下知全部才行。退一步來說，您至少也得認識擁有這類能力的傢伙們，並能用足夠的熱情或鈔票，說服他們替您工作。（註一）
+
+本文的目的，不在於告訴大家如何藝術性地做出好遊戲－－事實上，這點在下也很難說有多少自信。而僅僅只是希望減少各位觀眾，與遊戲製作間的技術距離，讓整個社會更加宅腐化而已。不管怎麼說，希望您有與我相同的願景，感受到我們磅薄之熱情......
+
+(http://www.openfoundry.org/images/120925/RenPy/01.jpg)
+「……喂，廢話說到這種程度，也該適可而止了吧？重點是，不替大家介紹一下嗎？」
+
+(http://www.openfoundry.org/images/120925/RenPy/02.jpg)
+「嗨嗨！我們到場了。長官～」
+
+(http://www.openfoundry.org/images/120925/RenPy/03.jpg)
+「……稍、稍微有點緊張。」
+哦呀，這還真是抱歉。立刻就來介紹一下......（翻腳本）等等，你們今天沒通告啊。
+
+(http://www.openfoundry.org/images/120925/RenPy/04.jpg)
+「關於那個，已經和大家說過了，不過......」
+
+(http://www.openfoundry.org/images/120925/RenPy/05.jpg)
+「湊熱鬧！」
+
+(http://www.openfoundry.org/images/120925/RenPy/06.jpg)
+「提早和大家見面是身為淑女的禮貌嘛。」
+要我說的話，您的表情似乎和淑女有著相當遙遠的距離......話說今天吐嘈役不在嗎？
+
+(http://www.openfoundry.org/images/120925/RenPy/07.jpg)
+「其實還有一隻躲在後面。」
+
+(http://www.openfoundry.org/images/120925/RenPy/08.jpg)
+「......請當我不存在，我只是來監視姊姊而已。」
+
+這......好吧。雖然有著各種各樣地傷腦筋，總之還請各位去後台坐著，要不然就先回家......總之別打插！拜託妳們！第一印象是很重要的。
+
+(http://www.openfoundry.org/images/120925/RenPy/09.jpg)
+「我就說會給人添麻煩的......姊姊！快走啦。」
+
+(http://www.openfoundry.org/images/120925/RenPy/10.jpg)
+「耶？好過份！怎麼這樣......（被推走）」
+
+(http://www.openfoundry.org/images/120925/RenPy/11.jpg)
+「不、不好意思，各位再見了。」
+
+（吵雜吵雜......）
+
+這群傢伙到底是來幹嘛的呢？當真迫不及待想露個臉嗎？……哦，各位觀眾，今回的「雪凡與好朋友們的（省略）」中，是沒有「好朋友們」的通告，這點還真是抱歉。敬請期待下回。
+
+回到之前的話題。
+
+剛才說過了，遊戲製作之路，可是非常艱辛的。希望各位已經有了心理準備。
+
+那麼，在愛與勇氣以及希望的名義下，讓我們以 Ren'Py 為魔杖，華麗地揮開咱們的遊戲之路吧！
+
+
+第一回：Ren'Py 是什麼
+
+(http://www.openfoundry.org/images/120925/RenPy/12.jpg)
+▲圖1：Ren'Py 的 Logo。本圖片原作者為 PyTom，以 MIT License 授權釋出。
+
+一言以蔽之，Ren'Py 是一款遊戲引擎。
+
+所謂遊戲引擎，簡單說來，就是「整合了大部份遊戲運作機制的一套程式集合」。
+
+說得更直白一點，遊戲引擎，就是讓遊戲製作變得簡單又快的方便工具！......不過醜話說前面，這邊說「簡單又快」僅僅是相對上而言，當您被遊戲製作坑住脫不了身時，切誤怪到咱頭上來。
+
+因為不同遊戲引擎所支援的遊戲種類不同，他們所持有的能力，也理所當然有著明顯差異。但總地來說，一款遊戲引擎中，通常會包含圖形顯示、聲音播放、檔案資源管理、物理計算等等的功能。
+
+透過這些內建的功能，遊戲製作者在製作遊戲時，就無需浪費時間去處理一些「真要說起來確實不可或缺，但又和遊戲本身沒啥關係的工作」－－比方說存檔要存在哪裡、檔案格式如何、又或怎麼驅動顯示卡之類的瑣碎問題－－而可以將心力集中在遊戲內容製作上面。
+
+Ren'Py 是一款遊戲引擎，自然也有它擅長的遊戲範圍。
+
+很可惜，Ren'Py 並不能用來製作 CS 之類的第一人稱射擊遊戲，也不能製作博德之門那型的角色扮演遊戲（註二）。它的專長領域是文字冒險、戀愛冒險、電子小說類型的遊戲。
+
+如果這樣說您依然不理解，雪凡建議您前往 Ren'Py 的官網 (http://www.renpy.org/) 看看截圖，或去抓幾款免費遊戲試玩看看。您一定馬上就能明白我的意思。
+
+最後補充一下，Ren'Py 的發音是 "Ren-Pi"，據傳是由「戀愛」的「戀（日文發音）」與 Python 的 Py 所組成的。請別唸錯哦！
+
+
+Ren'Py 有什麼特色？
+
+為什麼選 Ren'Py，而不是其他引擎？
+
+首先，就像前面介紹的那樣，Ren'Py 是一款文字冒險遊戲引擎，它能大幅減少您在製作這類遊戲時的工作量。雖然這類遊戲也可用泛用型的遊戲引擎來加以製作，但這樣一來，您將面對複雜個三五倍的 系統，與一堆的瑣碎工作。畢竟自由度愈大的引擎，需要由人手工處理的細節也就愈多。
+
+其次，它是一款開放源碼的遊戲引擎。引擎整體全由開源組件組成，而且 Ren'Py 本身，更是採用了即使以開放源碼世界的標準來說，也算是最為自由的 MIT 授權條款。如果您不懂「開源」或「MIT 授權條款」 (http://opensource.org/licenses/MIT) 是什麼意思，那也不用緊張，一言以蔽之，Ren'Py 可以讓您愛怎麼用就怎麼用，而不需要您提供您的 VISA 卡卡號。
+
+Ren'Py 的操作介面 (API) 相當穩定，因升級而給開發者造成的麻煩幾乎不存在，而在這一前提下，遊戲引擎的開發也相當有活力。不瞞各位，本文寫作時最近一次版本更新，還是 2012 年 8 月 26 號推出的「6.14 蒸氣龐克倉鼠」版本，該版提供了比 6.13 版更好的顯示驅動支援能力。
+
+平台支援方面，Ren'Py 目前同時可以在三大主流平台（Mac OSX、Linux 與 Windows）上運行，甚至它還支援 Android 手機系統。做出的遊戲無需過多調整，就可直接在手機上面啟動。
+
+就算不提這些硬性優點，在軟性方面，Ren'Py 的使用者社群也相當活躍。由於它是在英語圈中發展起來的，絕大多數的官方文件與討論都是英語版本，遊戲作者可和引擎開發者直接用英語交流。相比之下，其他的同類引擎多由日本人生產，語言隔閡難免比較大些......
+
+什麼，您說沒有台灣人製作繁體中文版本，不能直接用繁中交流算哪門子方便？這......這個，您這樣說我會很困擾的。大概是因為台灣人沒那麼宅的緣故吧。這方面，就要請各位多多努力了。嗯。
+
+
+目標讀者群……
+
+不用說，當然是想製作這類遊戲的人囉。
+
+如果您不想做遊戲，請不用在此浪費時間。這很花時間，我是認真的！
+
+另外，既然是遊戲製作，咱預期您多少有一點點最基本的程式寫作觀念。Ren'Py 是一款基於 Python 語言的遊戲引擎，使用他，免不了要和程式語言（就是 Python）打點交道。（註三）
+
+不過雪凡並不指望您會使用 Python 這種語言。需要寫程式的部份，雪凡會適度解說。總之程式的事情無需太過擔心，重點……是要有著製作遊戲的愛！（握拳）
+
+只有技術並不算是製作遊戲，做遊戲最重要的是愛 DA☆ZE！就算是笨蛋，有愛就沒問題了。其他方面，本文會好好地把咱的經驗告訴你的。
+
+
+下載
+
+儲備了足夠的愛與幹勁後，我們來幹些實事吧。
+
+請前往官網的最新版本頁面 (http://www.renpy.org/latest.html)下載 Ren'Py。頁面上有三個 "Download SDK" 按鈕可以按，不管您按哪個按鈕，抓下來的東西內容都相同，僅僅只是壓縮格式不同。挑一個下載就夠了。
+
+    【對於 Linux 用戶......】
+    您可能會想使用您發行版軟體倉庫內的版本，不過小的建議您還是別這麼做。
+    雖然不清楚是不是咱太弱的緣故，但各發行版的打包，除了版本號較低以外，還給我造成了多如牛毛的各式小問題。
+    官網的壓縮檔運作得很好，且版本也新，推荐使用。
+
+
+下載後找個地方解壓縮，會產生一個名稱像是 "renpy-6.14.0-sdk" 之類的資料夾，這資料夾中包含了遊戲引擎所需的所有元件。
+
+為行文方便，後文中，雪凡一律稱它為「SDK 資料夾」或「SDK 目錄」
+
+那麼，我們這就進入 SDK 目錄下。準備打開啟動器吧。
+
+
+啟動器 (Launcher)
+
+為方便遊戲製作者管理遊戲、測試遊戲，Ren'Py 的開發過程中，建議隨時開著啟動器。
+
+進入 SDK 資料夾後，Linux 使用者可雙擊 "renpy.sh"，Windows 使用者可雙擊 "renpy.exe"，好將啟動器呼叫出來。
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_02_Launcher.jpeg)
+▲圖2：這就是 Ren'Py 的啟動器！
+
+上圖所示的是 6.14.X 版的啟動器，長相和 6.13 的啟動器樣子完全不一樣，第一次看到時，或許讓人有點發慌......
+
+    【啟動器面板】
+    啟動器面板僅僅只有開發者會看到，遊戲做好後不會附在遊戲中，和玩家半點關係也沒有。此外，其實這個啟動器程式也是用 Ren'Py 做的，從技術上來說，也算是一個 Ren'Py 遊戲......
+
+別慌！咱這就解說一下面板內容。
+
+選擇專案與啟動遊戲
+
+請看啟動器左上角。 大大的「PROJECTS（專案列表）」文字下方，列出了目前啟動器所探查到的所有遊戲專案。遊戲開發者可以選擇其中一項遊戲專案，作為當前的「Active Project（活動專案）」 啟動器面板上，絕大多數的操作與訊息提示，都是針對「活動專案」而運作。選定活動專案是開發者的第一要務。
+
+新使用者第一次執行啟動器時，專案列表中應該只會看到兩個項目：「Tutorial」與「The Question」。前者是 professor Eileen 以遊戲形式進行的 Ren'Py 設計教學，咱常常去上她的課；後者則是一個簡單的示範遊戲，讓玩家可以看看一個完整遊戲應該怎麼拼裝起來，不過可惜這遊戲給咱的幫助，並沒有 professor Eileen 來得大......
+
+不用說，這兩個範本遊戲都是英文的。但就算英文苦手，看看艾琳教授提供的效果示範，那也是很有參考價值的。
+
+右下角處有個大而顯眼的「Launch Project（啟動專案）」字樣。按了之後，活動專案就會立刻從頭執行、任您試玩。
+
+升級
+
+在「Launch Project（啟動專案）」的大按鈕下方，共有3 個小按鈕，從右到左依序為「離開 (quit)」、「設定 (preferences)」與「升級 (update)」。
+
+此處的「升級」，不是指遊戲升級，而是指 Ren'Py 引擎（含開發工具）升級－－這套整合升級系統是 6.14 版提供的最新功能。按下後會立刻連上網路，檢查是否有新的 Ren'Py 版本發佈，並在您確認要升級後進行更新。
+
+    【升級頻道】
+    您可以在設定頁面中，選擇不同的升級頻道。看是要採用慢而穩定的 Release 升級頻道，還是要快而激進地搶先使用不穩定的 Experimental 升級頻道。
+
+這邊提醒一下：當您選定了一個 Ren'Py 引擎版本來開發遊戲後，就算 Ren'Py 之後又提供了新版本，您也沒有必要勉強自己追上新版本的遊戲引擎，而可以繼續使用舊有版本開發遊戲。
+
+如果您要升級，好讓遊戲引擎能得到更好的效能、相容性乃至於新特性，建議先看看「不相容說明頁面」 (http://www.renpy.org/doc/html/incompatible.html)，以免因為升級而不小心弄掛了遊戲。雖然這種狀況很少。
+
+設定
+
+按下「preferences（設定）」按鈕後，會跳出設定畫面：
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_03_Launcher_preferences.jpeg)
+▲圖3：設定畫面
+
+左上角的「Projects Directory（專案目錄）」，是指「收集您所有專案」的目錄，而非特指某個遊戲的目錄。
+
+舉例來說，您的遊戲與「專案目錄」間的關係，將會像這樣：
+
+.../專案目錄/遊戲1的目錄 .../專案目錄/遊戲2的目錄 .../專案目錄/遊戲3的目錄
+
+若您是第一次執行 Ren'Py 啟動器，「專案目錄」這邊應該會顯示成「未指定」的狀態。不管怎麼說，在您建立一個新的遊戲專案之前，最好把此處的「專案目錄」給設定好，免得 Ren'Py 自動將您新建的遊戲，藏在某些奇怪的地方。
+
+建議您現在就設定它。設定在哪都行，只要自己知道位置就好。
+
+使用的編輯器
+
+「Text Editor（文字編輯器）」可以讓您選擇，您要用什麼文字編輯器來編寫程式碼。
+
+    【文字編輯器】
+    所謂「文字編輯器」，就是可用來瀏覽「純文字檔案」，並在其中打字的那種程式。然而和 Word 之類的文書編輯軟體相比，「文字編輯器」並不能用來處理有格式的文字。
+  （比方說網頁）
+    要說「文字編輯器」的範例，對 Windows 使用者來說，最常見到的文字編輯器大概就是「記事本」了。
+
+Ren'Py 過去主推的編輯器是 jEdit，但自從更新到 6.14 版後，預設推荐的編輯器就換成了 Editra，據說日後 jEdit 的官方支援會漸漸消失。
+
+然而非常可惜地，Editra 編輯器對輸入法 (IME) 的支援有問題，因此所有中日韓文用戶都無法在 Linux 與 Mac OSX 下輸入他們的文字，而在 Windows 下輸入法運作也有瑕疵，因此對中文使用者來說不太可用，所以只能扔掉。詳情見此頁的錯誤回報：http://lemmasoft.renai.us/forums/viewtopic.php?f=32&;t=14498&start=15#p209969
+
+對 Ren'Py 來說，這檔子事也不是第一次發生了。想以前主打 jEdit 時，當時的 jEdit 也有中文顯示不出來，得另調設定才能顯示的毛病，不久前才好不容易修好，眼看又要把 jEdit 拋掉了……喂！這是打算把反中日韓傾向貫徹到底嗎？（苦笑） 不管怎麼說，請在此處選擇您想使用的編輯器。如果您完全沒概念的話，選 "jEdit" 或 "System Editor" 通常會是不錯的主意。
+
+若選擇「System Editor（系統編輯器）」，啟動器會用您系統預設的編輯器來開啟程式檔案。而若選擇 "None"，則啟動器本身將不會去開啟任何檔案－－您當然不該選 "None"。
+
+面板中的其他選項目前並不重要，且現在缺乏基礎，也不好解釋，之後有必要再回來講。請按 Back 跳回主畫面。
+
+介面說明先告一段落，我們實際建立一個專案試試。
+
+
+新建專案
+
+請確定已經將「設定」中的「專案目錄」給指派好，之後只要按下圖中的按鈕......
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_04_Launcher_new_project.jpeg)
+▲圖4：按這裡建立新專案
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_05_Launcher_set_project_name.jpeg)
+▲圖5：設定專案名字
+
+按下「Create New Project（新建專案）」按鈕後，立刻會跳出畫面，要您設定專案名字。名字雖然只接受英文，不過別擔心，這邊設定的名字只是專案代號而已，顯示在玩家眼前的名字日後是可以改成中文的。
+
+就取一個簡單清晰的開發代號吧。
+
+這個名字最重要的意義，是會在未來成為本專案資料夾的目錄名。其中雖然可以包含空白，不過基於程式設計常識建議您不要這麼做，或許能少碰上一些潛在的麻煩。
+
+按下鍵盤上的 Enter 按鈕，就能確定名字，接著會進入 Theme（介面主題）選擇畫面。
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_06_Launcher_theme.jpeg)
+▲圖6：選擇 theme 與色彩佈局。 此處是用來定義您遊戲介面風格的，選好後按 Continue 就行了。
+如果選項太多，一時不能確定也不用煩惱，反正醜介面看三天就會習慣……啊不我說錯了，是日後可以再調整啦。總之這裡先隨便選一個差不多順眼的。
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_07_Launcher_project_created.jpeg)
+▲圖7：挪，新專案就在這裡。專案名是 "Welcome"。兩步驟完成後，新專案就被建出來了，雖然還沒有內容，不過完全可以跑起來。興高采烈地馬上去按「Launch Project（啟動專案）」按鈕，試試效果。
+
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_08_Welcome_new.jpeg)
+▲圖8：這就是新遊戲專案 "Welcome"。其使用介面風格是 "Diamond"，使用色彩佈局為 "Dramatic Flesh"。參考一下吧。
+
+按下「Start Game（開始遊戲）」看看......
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_09_Welcome_new_startgame.jpeg)
+▲圖9：按下 Start Game 後，艾琳教授將從旁親切地給您提示。
+
+雖然可以跑是不錯啦，不過……怎麼好像讓人有點小失望？
+
+主選單畫面中空空如也，選單選項也全是英文的？啟動遊戲後居然只有棋盤格！再說視窗標題處還顯示成 "A Ren'Py Game"……不管怎麼看都很不專業啊！更別說那比例，還是 4:3 這種時代的遺留物......
+
+安啦，都可以改的。咱們慢慢來吧。
+
+【灰色的棋盤格】
+棋盤格畫面在 Ren'Py 中的意義，和任何主流圖片製作軟體一樣，代表的是「透明」－－是那種「就連白色也沒有」的空空如也。
+當然囉，遊戲做好時，您絕對不會打算在螢幕上曝露出如此失態的東西。就算只是平凡無奇的藍白條紋也好，做遊戲時把螢幕填滿可是人類的義務！
+
+
+啟動器介紹 Part 2
+
+有了具體的遊戲專案可玩後，這就繞回來補充介紹，看看啟動器能對當前專案 (Active Project) 提供怎樣幫助。
+
+請看 Launch Project 按鈕上方的大空間（或說主畫面的右半部）。此處提供了對當前活動專案的操作支援。
+
+打開資料夾
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_10_Launcher_right.jpeg)
+▲圖10：啟動器主畫面的右半部
+
+首先，最上方會顯示目前活動專案的名稱（此例圖中為 "tutorial"）。
+
+「Open Directory（開啟資料夾）」下的選項，可快速打開 "base" 與 "game" 資料夾。而這兩個資料夾的意義是：
+
+＊game 資料夾：
+    收集了當前遊戲一切腳本、圖片與音樂等資源。
+＊base 資料夾：
+    就是當前遊戲的根目錄－－記得嗎？您新建遊戲時有替它取過名字。
+    和本遊戲有關的一切檔案，都被集中存放在此一資料夾中。其中除了包含 game 資料夾外，還可放置其他和遊戲有關，但遊戲執行時又不會直接用到的檔案－－比方說像是說明手冊、授權     聲明與啟動圖示一類的東西。
+
+這兩個資料夾，在遊戲開發的歷程中會不斷被用到，特別是 game 資料夾。各種圖片、音樂、腳本等檔案進進出出，全都要存取 game 資料夾。
+
+腳本檢查與永久性資料
+
+「Check Script（檢查腳本）」按鈕，可以讓 Ren'Py 主動分析您的遊戲程式腳本，以取得一些參考資訊，比方說故事中總共有多少句對白，平均場景對話數、每句對話的語句長度等等。不過需注意，如果您的程式碼有任何語法錯誤，這些資訊是跑不出來的。
+
+    【Script】
+    如果您有戲劇或程式設計背景，本文中的「Script（腳本）」，就差不多是您記憶中的那個意思，頂多只是格式有所不同。
+    不管怎麼說，在本文中，您可以把腳本、程式碼與 Script 視為同義詞。
+
+「Change Theme（變更介面主題風格）」如字面上的意思，可以再次改變您的介面風格，畫面就和新建專案時見過的一樣，這邊不提。
+
+下方的「Delete Persistent（刪除永久性資料）」按鈕，那是用來刪除當前專案的「永久性資料 (persistent data)」的......好吧，我知道「永久性資料」這詞實在太過裝模作樣，簡單解釋一下，所謂的永久性資料，不包含存檔，也與單一存檔進度無關，僅僅只用在 「與遊戲整體有關的狀態變化」上。
+
+果然還是很裝模作樣？這......舉例而言，就像是主選單的隱藏要素解鎖、破台次數、畫廊圖片解鎖、已閱讀過的語句記錄（才可正確地中斷快進）之類的。這些都和單一遊戲進度無關，但又確實需要記錄的東西......再不懂我也解釋不出來了！如果您想看看官方的說明（英文），可參考這裡：http://www.renpy.org/wiki/renpy/doc/reference/Persistent_Data
+
+總之，您在測試的過程中，有時會想刪除永久性資料來初始化您的遊戲。這時敲它就對了。
+
+建立發行版
+
+右邊的「Build Distributions（建立發行版）」選項可以讓您創建當前遊戲的發行版－－就是可讓玩家抓去玩，或是要燒成光碟的版本。
+
+ 我們現在按下「建立發行版」按鈕，會跳出發行版設定畫面......
+
+阿勒？這是什麼？
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_11_Launcher_build_addinfo.jpeg)
+▲圖11：第一次建立發行版時，可能會問您問題......
+
+其實按下 "Build Distributions" 時，Ren'Py 會探測您的 options.rpy 檔案內，有沒有包含建立發行版所需的資訊，如果沒有，就會很好心地幫您將基本資料新增在該檔案的尾部。
+
+按 yes 吧，否則沒法繼續。
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_12_Launcher_build.jpeg)
+▲圖12：終於進入發行版設定畫面了
+
+
+發行版畫面左側提供了些許遊戲當前的設定資訊，而右側，則是一些可供複選的選項。這些選項中，您可以選擇具體要建立哪些平台的發行版。
+
+透過本介面建立的發行版可以單獨啟動，而不需要搭配開發包與啟動器，也不用裝其他依賴程式，更不用安裝進電腦......滑鼠直接雙擊就能開始玩。
+
+發行版選單中「Build Updates（建立升級）」選項，可讓您分發出去的遊戲支援補丁 (patch) 功能。當您將遊戲小幅度升級後，玩家就不必從頭下載一個全新版本，而可以直接打補丁......當然這個問題和各位還很遙遠，需要時再去就好翻手冊研究 (http://www.renpy.org/doc/html/updater.html) ，現在不管。
+
+發行版選單雖然方便，但很多進階設定，比方說資源加密、變更執行檔檔名、圖示等，還是得手動編輯 options.rpy 中的相關選項才能處理。透過左側的 "Edit options.rpy"，可以快速將設定檔打開來編輯。
+
+編輯時，建議參考這份說明：http://www.renpy.org/doc/html/build.html。
+
+您現在還不會編沒關係，簡單跳過吧，這部份日後再講。
+
+腳本檔案導覽
+
+回到啟動器面板的右半部。
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_10_Launcher_right.jpeg)
+▲圖10：啟動器主畫面的右半部 
+
+您應該注意到了，右上角有個寫著「Edit File（編輯檔案）」的區域。按它下面的那些檔案名稱，就可以將腳本檔案打開來檢閱與編輯。
+
+不過老實說，這部份的功能相當殘念，因為列在上面的檔案固定就那三個，數量太少了還不能自訂，所以完全不實用，我平常都無視它。除非您想用「All File（一次打開所有檔案）」的選項……但這種作法又有點太過粗暴，太虐待電腦了。
+
+幸好，啟動器中還有其他替代方案！而且功能超強......
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_13_Launcher_right_arrow.jpeg)
+▲圖13：Navigate Script 按鈕。
+
+「Navigate Script（腳本導航）」的按鈕看起來很像標題，總讓在下忽略它其實是可以按的。我只要持續一週沒開 Ren'Py 就會忘記它，老找不到功能藏在哪裡......
+
+總之，按下之後會跳出如下畫面：
+
+(http://www.openfoundry.org/images/120925/RenPy/renpy_14_Launcher_navigate.jpeg)
+▲圖14：Navigate 選單，內容分上下兩排。
+
+上面的「Category」表示分類，點選這些分類後，底下就會照您當前的遊戲內容，自動分析出所有有關項目。
+
+點列出的項目後，就能立刻開啟對應的檔案－－若您所用的是 Ren'Py 預設提供的 Editra 編輯器，還可直接跳到該項目所在的行數去，方便得沒話說，但如果用系統編輯器，就沒能支援行數功能了。
+
+如果您想寫點小程式，讓您熱愛的編輯器完整支援 Ren'Py，參考資料在此：http://www.renpy.org/doc/html/editor.html。當然囉，如果是新手，還是建議跳過這部份，太難的東西對士氣打擊可是很大的。
+
+好啦，啟動器介紹已經非常充份了，大家準備興致勃勃地撰寫遊戲內容了嗎？
+
+嘛（推眼鏡），請先別急。本回字數已經嚴重爆表，我們就下次再續吧。給咱等著啊！
+
+（本篇完）
+
+(http://www.openfoundry.org/images/120925/RenPy/13.jpg)
+「啊那個那個，對、對不起！稍微迷路了一下，通告遲到......」
+
+（用各種意義上都很同情的眼神盯著她瞧）
+
+......乖哦。（給顆糖）
+
+(http://www.openfoundry.org/images/120925/RenPy/14.jpg)
+「等一下！這是什麼意思啊？喂！」
+
+（下回待續！）
+
+註一：當然囉，基於創作共享 (http://creativecommons.tw/explore) 理念的蓬勃發展，網路上也有大量 CC 授權的素材可用，不過即使如此，想全靠共享素材製作遊戲，不管怎麼說還是十分為難人的。本文日後也會多少提及素材搜尋、製作與使用方面的問題。敬請期待！
+
+註二：要用 Ren'Py 製作角色扮演遊戲，嚴格來說還是可以的，但作者得手刻很多程式碼，比方說親手建立物品欄與任務系統之類的東東。只要有心，也有人可以做出這種遊戲：http://games.renpy.org/game/loren-amazon-princess.shtml
+
+註三：您可能會感到困惑：「寫程式？要我寫那種看起來像密碼一樣的東西？這聽起來就又難又麻煩。為什麼不選一款完全不用寫程式，在螢幕上拖拖拉拉點點滑鼠就能做遊戲的軟體呢？」
+
+親愛的觀眾啊，那種軟體當然是有的，不過可選的種類就少了很多，而且引擎的限制往往也更多。這是因為，愈是強大的遊戲引擎，需要讓使用者加以評估操控的東西也愈多，而其結構也會愈複雜。而這種複雜性，通常很難被包裝在圖形使用者介面裡。
+
+如果您就是要找這種拉拉滑鼠就能製作遊戲的程式，或許可以參考光譜代理的「戀愛遊戲製作大師」與「RPG 製作大師」系列－－這兩款是我之前有多少接觸過的。
+_______________________________________________________________
+
+■ [源碼秘技] OpenMeetings - 自由軟體線上會議系統
+
+Louie Chen／文
+
+由於需要用到多人視訊功能，但是又要能夠分享桌面，目前似乎沒有自由軟體能做到如此。所以就試著找看看，找到 apache foundation 的 openmeetings，這才知道有這麼一套 "自由軟體線上會議" 程式存在。看了些文件後，真是覺得功能符合我的需求，於是 花了幾天時間來研究安裝建置及使用，做成筆記。
+
+openmeetings 特點：
+
+＊自由軟體
+＊視訊及語音會議，也可打文字聊天 (chat)。
+＊白板可展示圖片、影片、簡報等等（可同時多個白板）。
+＊分享及控制桌面（類似 vnc），並可將桌面錄影起來。
+＊詳細的權限控管（防止講到一半被干擾）。
+＊內建民調系統，方便決策用。
+＊預約會議，可以 email 通知。
+＊支援外掛程式，擴充功能。
+
+安裝前準備：
+
+小弟的環境是以 debian testing (wheezy) 安裝，若是其他 distribution，請自行修改。
+
+命令是以一般使用者即可安裝，只有在安裝 package 時 apt-get 要 root 權限，在此是用 sudo。
+
+在安裝 openmeetings 前，有些東西是必要的，要先準備好：
+
+＊JRE (java runtime environment)，安裝 openjdk。
+　$ sudo apt-get install openjdk-7-jre
+
+＊要能夠分享桌面，必須要能執行 .jnlp 檔，裝上 icedtea-netx
+　$ sudo apt-get install icedtea-netx
+
+＊將桌面錄製成影片或?入 .avi, .flv, .mov, .mp4 到白板要安裝工具。
+　$ sudo apt-get install ffmpeg sox swftools
+
+＊debian wheezy 的 swftools 裡並沒有 pdf2swf 這個指令，所以無法上傳 pdf 檔來做簡報，若一定要有，請自行從原始碼編譯。
+　在白板中匯入圖片，要圖片轉檔工具。
+　$ sudo apt-get install imagemagick
+
+＊要在白板中匯入 office 檔，要裝上 libreoffice 或 openoffice 及轉檔工具 jodconverter。
+　$ sudo apt-get install libreoffice openmeetings ?入 .doc, .docx, .ppt, .pptx，都是用 libreoffice 或 openoffice 去做轉換動作，所以在 openmeetings 　這台伺服器上一定要裝 office。而呼叫 office 來做轉換的動作，則由 jodconverter 來完成。
+
+　因為 openmeetings 在檔案上傳後，都是轉成 pdf，所以要安裝 ghostscript。
+　$ sudo apt-get install ghostscript
+
+＊上傳的 office 要支援中文，系統上要裝 utf8 中文字型。
+　$ sudo apt-get install ttf-arphic-uming ttf-arphic-ukai
+
+　若之前舊文件有用 big5 字型，也要安裝 big5 字型。
+　$ sudo apt-get install ttf-arphic-bsmi00lp ttf-arphic-bkai00mp
+
+　若文件用到 windows 的細明體的話，預設 linux 並沒有，所以轉換後會變亂碼，直接將字型從 windows 拷貝到 linux 下即可。 $ sudo 　mkdir /usr/share/fonts/truetype/windows/
+　$ sudo cp mingliu.ttc /usr/share/fonts/truetype/windows/
+
+開始安裝：
+
+到 http://incubator.apache.org/openmeetings/ 抓 openmeetings 回來。 解開到指定目錄：
+
+$ mkdir /media/share/apps/openmeetings /
+$ tar xvf apache-openmeetings-incubating-2.0.0.r1361497-14-07-2012_1108.tar.gz -C /media/share/apps/openmeetings 
+
+由於 debian wheezy 裡的 jodconverter 是 2.2.2 版，必須將 office 啟動成一個 service 在背景跑，listen 一個 tcp port，然後 jodconverter 2.x 再透過 tcp port 去要求 office 做轉換動作。
+
+但是 jodconverter 3.0 則 office 不用在背景跑，jodconverter 3.x 會去呼叫 office 來轉檔，轉完後會關閉 office，所以用 3.x 版比較省資源 。
+
+jodconverter 2.x: $ sudo apt-get install jodconverter
+$ soffice --headless --nofirststartwizard --accept="socket,host=localhost,port=8100;urp"
+會 listen 在 localhost:8100, 而 jodconverter 2.x 在轉換時會自行去跟 office 溝通。
+
+或使用 jodconverter 3.x:
+下載 jodconverter 3.0:
+(http://code.google.com/p/jodconverter/downloads/list)
+解開至 openmeetings 目錄裡
+$ unzip jodconverter-core-3.0-beta-4-dist.zip -d /media/share/apps/openmeetings/ jodconverter 是 3.0-beta-4, 若下次 beta 5 或正式版釋出，則路徑　會不同，要再修改，所以預先做個連結，以後不用再到 openmeetings 裡修改路徑，將新版做個連結即可。
+$ cd /media/share/apps/openmeetings/
+$ ln -sf jodconverter-core-3.0-beta-4 jodconverter-core
+
+預設 openmeetings 資料庫是用 apache derby database，若要改成 mysql 則需在此先準備好。
+
+＊mysql 伺服器部份設定：
+　首先 mysql 伺服器的 charset 一定要設成 utf8，否則無法安裝成功。
+　$ sudo apt-get install mysql-server
+　$ sudo vi /etc/mysql/my.cnf
+　[mysqld]
+　character_set_server=utf8
+　重新啟動 mysql server
+　$ sudo /etc/init.d/mysql restart
+
+＊安裝 Jconnector
+　下載 (http://www.mysql.com/downloads/connector/j/)
+　解開後，
+　將 mysql-connector-java-5.1.22-bin.jar 放到指定目錄下
+　$ cp mysql-connector-java-5.1.22-bin.jar /media/share/apps/openmeetings/webapps/openmeetings/WEB-INF/lib/
+
+＊openmeetings 呼叫 mysql 設定：
+　將 mysql 專用設定檔覆蓋掉原本的：
+　$ cd /media/share/apps/openmeetings/webapps/openmeetings/WEB-INF/classes/META-INF/
+　$ cp mysql_persistence.xml persistence.xml
+　修改 persistence.xml 裡面 mysql server 位置、使用者、密碼。
+
+　由於 openmeetings 要使用 mysql 時，是以 mysql root 權限去使用，這樣風險太大。沒必要的權限不要開。所以先手動建立 　　openmeetings 資料庫，然後允許 your_openmeetings_user 這個使用者只能使用這個資料庫，其他的不能動。
+
+　以 mysql root 連到 mysql server 下指令：
+　mysql > create database openmeetings;
+　mysql > grant all on openmeetings.* to your_openmeetings_user@localhost identified by 'your_openmeetings_password';
+
+　密碼設為 your_openmeetings_password, 這樣 client 只能以 your_openmeetings_user 使用者由本機連進來，並且僅能使用 openmeetings 這個　資料庫，若 openmeetings 伺服器和 mysql 不在同一台，請改 localhost。
+
+啟動 openmeetings server：
+
+$ cd /media/share/apps/openmeetings/
+$ ./red5.sh
+假如你的 openmeetings 伺服器需要更好效能、能承受更高負載，則啟動時請改用：
+$ ./red5-highperf.sh
+
+等個約 30 秒，若沒問題，伺服務啟動完成，會 listen tcp port 5080, 1935, 8088 和其他幾個 port。
+
+openmeetings 本身就有內建 http server，不用額外配合 apache web server。
+
+Port 5080: HTTP (瀏覽器登入及檔案上傳下載)
+Port 1935: RTMP (Flash Stream and Remoting/RPC)
+Port 8088: RTMP over HTTP-Tunneling (rtmpT)
+
+因此在 openmeetings server 上的防火牆要打開 tcp 5080, 1935, 8088，其他的是 openmeetings 內部自己使用就不需要。
+
+打開瀏覽器，開啟 openmeetings web-installer, 開始安裝：
+(http://localhost:5080/openmeetings/install)
+
+開啟頁面有一堆說明，預設 openmeetings 資料庫是用 apache derby dat abase, 在真實 production run 環境下，可改用 mysql、postgres、 IBM DB2、oracle 等等。不管那些說明，直接按 "Continue with STEP 1" 進入安裝畫面。
+
+開始要先填上使用者及密碼，電子郵件及時區，這個使用者即為 "超級使用者" 身份。電子郵件則是忘記密碼時重置密碼用及傳送會議連結。
+
+在 Configuration 部份，預設是系統會寄一封信給新註冊的使用者，使用者收信後，點選 email 上的連結啟動帳號，若是不想這麼麻煩，可修改
+
+Send Email to new registered Users (sendEmailAtRegister)  	                             	No
+New Users need to verify their EMail (sendEmailWithVerficationCode)  	           	No
+
+預設電子郵件伺服器是指向 localhost, 所以本機 mail server 要 listen tcp port 25；另外也可使用外部 smtp server, 如 google 的 smtp.gmail.com的方式。
+
+SMTP-Server (smtp_server)                                                           	             smtp.gmail.com
+SMTP-Server Port(default Smtp-Server Port is 25) (smtp_port)   	             587
+SMTP-Username (email_userpass)                                           　　　　　　gmail 使用者名稱(自行設定)　
+SMTP-Userpass (email_userpass)                                                  	             gmail 密碼(自行設定)
+Enable TLS in Mail Server Auth                                                    	             Yes
+
+在 Converters 部份，若是有在 PATH 裡的執行檔，則不用在此設定，可直接找到。因此只要調整 jodconverter 3.x 版的 JOD Path：
+JOD Path: ./jodconverter-core/lib
+
+其他的都保持原狀，拉到最底下按 INSTALL 按鈕開始安裝動作，我的電腦持續卡住約 10 分鐘才安裝完成(使用 derby database)，若用 mysql 大約 2 分鐘，要有點耐心，完成會跳到另一個視窗，千萬不要一直 refresh 或重開瀏覽器，否則會安裝失敗。
+
+使用：
+
+安裝完成後，直接按 Enter the Application 到登入畫面。登入畫面是用 flash 的，所以瀏覽器要裝 adobe flash plugin, 小弟試用過 gnash, 無法使用。 也可直接開啟網址使用，網址為 (http://localhost:5080/openmeetings)
+
+以剛才建立的超級使用者登入 (Sign in) 或新註冊一個，按 (Not a member?) ，註冊時可選擇語言，有正體中文可選，可是翻譯並不完整而且很多是大陸用語，為求一致性，所以選英文介面來介紹。
+
+Dashboard：
+
+剛登入時是位於 "Dashboard" ，如圖1。
+(http://www.openfoundry.org/images/121009/OpenMeetings/OpenMeetings_01.jpg)
+▲圖1 Dashboard
+
+上方的功能表項目：
+
+【Home】回到 "Dashboard" 及開啟月曆觀看及預約會議。
+【Recordings】觀看及下載之前已錄製好的影片。
+【Rooms】各會議室目前狀況（公共，私人，個人會議室）。每間會議室有不同的屬性，如 Interview Room 就是一對一。
+【Administration】若是以超級使用者登入，則會出現此選單，內容有：
+
+＊Users : 管理及修改使用者資料，可於此設定使用者等級 (user, moderator, admin)。
+＊Connections : 觀看目前伺服器上線的使用者，必要時可將他踢出伺服器。
+＊Usergroups : 將使用者分群組，如系統組、推廣組。
+＊Conference rooms : 檢視及微調各個會議室的詳細屬性，若於某會議室裡的 「Moderated」核取方塊內打?，而且某位進入的使用者 等級為 moderator，則此使用者會自動擁有會議主持人權限。
+＊Configuration : 修改 OpenMeetings 伺服器的細項設定。
+＊Language editor : 從這裡做訊息翻譯動作。
+＊LDAP : 結合 LDAP 使用的設定。
+＊Backup : 使用者資料匯出及匯入，用於伺服器升級時。
+左上角是個人資料及大頭照。
+
+右上角 "Profile" 可修改個人詳細資料。
+
+下方 "My rooms" 活頁標籤為個人會議室及你必須參加的會議列表，按每個會議室的整條長方型條可看目前會議室內的人員，要加 入會議室則點 [Enter]。
+
+"My rooms" 的右邊是 "Chat"，可看目前線上人員並與他溝通。也可邀請某位目前在線上的人進某個會議室。
+
+右邊是簡易使用說明及捷徑。按下 [Start] 可進入會議室列表（和上方 "Rooms" 一樣）。接著請按下 [Start]，即可看到會議室列表 。
+
+在公開會議室選 "conference room with micro option set" 這間會議室並點 [Enter] 。
+
+會議室：
+
+首先會彈出一個 "Choose device" 視窗，選擇 webcam、麥克風及解析度，按 [Start recording test] 確認 webcam 有看到影像，沒問題按 [Start conference] 進入會議室，如圖2。
+(http://www.openfoundry.org/images/121009/OpenMeetings/OpenMeetings_02.jpg)
+▲圖2 會議室 
+
+第一個進入會議室的人，會自動成為會議主持人，擁有所有權限。（使用白板、桌面分享及錄影、控制遠端桌面、是否有權限獨 佔麥克風）。
+
+左上角為功能表：
+
+【EXIT】離開會議室
+【Files】上傳檔案
+【Actions】多項功能
+＊Send invitation: 將目前會議室直接以連結網址寄出電子郵件來邀請人加入會議。
+＊Share/record screen: 分享目前桌面及桌面錄影。
+＊Apply to be moderator: 要求擁有會議主持人的所有權限
+＊Apply for whiteboard access: 要求使用白板權限。
+＊Apply for audio/video access: 要求分享聲音及影像權限。
+＊Create a poll: 建立問卷調查。
+＊Poll results: 看問卷結果。
+＊Vote: 問卷調查投票。
+＊Edit default settings: 更改預設白板設定。
+
+最右上角可看到目前會議室名稱、要求取得會議主持人權限及分享自己的桌面及錄影。
+
+點選分享及桌面錄影圖示，會出現視窗詢問要以什麼應用程式來開啟 .jnlp 檔，若在 client 機器上有裝 icedtea-netx，則此時可選 IcedTea Java Web Start 來使用。可將桌面分享給會議中的人，並可同時錄影起來，如圖3。
+
+按左上角 [Start sharing]，會立即將自己的桌面分享給會議室內的所有人員。
+
+右上 [Close] 關閉此視窗。
+
+左邊中間可微調要分享桌面的大小，預設是全螢幕，可以拖拉只分享某一部份。
+
+右邊中間可調整錄影的解析度。
+
+下方 [Start Recording] 開始錄影， [Stop recording] 停止錄影，可以不分享桌面，單純只錄影。
+
+在按下停止錄影後，伺服器還在背景做轉換動作，所以要過個幾分鐘，影片才會出現在 Dashboard 裡的 Recordings，不要認為為什麼沒看到影片。
+(http://www.openfoundry.org/images/121009/OpenMeetings/OpenMeetings_03.jpg)
+▲圖3 桌面分享及錄影視窗 
+
+左邊：
+
+"Users" 活頁標籤為參加會議室人員列表及權限，於此要求權限或開放權限給某人。
+
+"Files" 活頁標籤可上傳檔案放到白板展示。在上傳完成後，檔案位於 "My files (home drive)"，只能自己能存取，用滑鼠將檔案拖到 "Room files (public drive)" 則參加會議的人都可以存取，不同會議室有不同的 public drive。將要展示的文件或圖片，以滑鼠左鍵拖到右 方白板上，若是多頁檔案，則下方 "Document properties" 綠色箭頭可切換上、下頁；或是於左方檔案列表檔案上按滑鼠右鍵，選 "Open document"，則可看到每一頁內容，直接在頁面上按滑鼠左鍵即可展示到白板。
+
+左下角視窗為動作視窗，若有要求權限時，在會議主持人的左下角出現要求訊息，會議主持人可於此同意或拒絕權限。
+
+右邊一大塊即為白板，預設只有一個白板，可按上方綠色內有白色加號圓圈來新增另一個白板。
+
+白板下方 "Properties" 可調整畫筆顏色及方塊或橢圓填滿的顏色及投影片上、下頁功能。
+
+最下方 "Chat" 可打字發言。
+
+會議流程大致如下：
+
+
+＊進入會議室，先將 webcam 及麥克風設定好。
+＊至少要求使用白板及獨佔麥克風權限，或要求全部權限才能做簡報，展示投影片。
+＊點選 "Files" 活頁標籤並上傳檔案。
+＊將檔案以滑鼠左鍵拖到右方白板。
+＊點選自己的麥克風視窗來獨佔麥克風，會同時將別人的麥克風靜音。
+＊開始簡報。
+
+經過一陣子的研究，大致弄懂 OpenMeetings 的操作，整個功能非常完整，若再加上外掛來運作，真是殺手級軟體，不愧是 "自由軟體線上會議方案"。
+
+
+參考文件：
+＊http://jainan.blogspot.tw/2011/10/202-windows-2003-install-openmeetings.html
+＊http://incubator.apache.org/openmeetings/
+_______________________________________________________________
+
+■ [源碼秘技] Pandoc - 用命令行轉換標記語言！
+
+林雪凡 / 文
+
+軟體名稱：Pandoc
+介紹版本：1.9.2
+官網：http://johnmacfarlane.net/pandoc/
+授權：GPL-3.0
+
+
+簡介
+
+Pandoc 是一款命令行轉檔軟體。不過和一般人對轉檔軟體的印象不同，它所轉換的對象不是影片，而是標記語言。
+
+Pandoc 能將 Markdown、reStructuredText、textile、HTML、DocBook、LaTeX 格式轉換為……
+1. 基於 HTML 的標記語言：包括 XHTML、HTML、S5 幻燈片。
+2. 文書編輯格式：包括 docs、odt。
+3. Epub 電子書。
+4. LaTeX 格式。透過 LaTeX 格式還可以進一步轉為 PDF 格式。
+5. 許多輕量級標記語言，包括：Markdown、reStructuredText、AsciiDoc、Mediawiki、Textile 與 Emacs Org-Mode。
+
+
+安裝說明
+
+Windows 與 Mac OS X 使用者，請從下面的網頁下載安裝：
+http://code.google.com/p/pandoc/downloads/list
+
+至於 Linux 與 BSD 使用者，請檢查您的套件庫，從套件庫安裝即可。倘若套件庫版本過舊，官網也有提供使用源碼包安裝的方式。詳情請參看這頁：
+http://johnmacfarlane.net/pandoc/installing.html
+
+
+使用說明
+
+前面說過了，Pandoc 是款命令行軟體，所以請打開終端機，咱們開始下指令吧。
+
+
+基本指令下法
+
+先看下面這行：
+
+	pandoc demo.rst -o demo.md
+
+這就是最簡單的 Pandoc 用法。
+
+pandoc 是 Pandoc 的主程式，Pandoc 的所有操作都是透過這個程式執行的。demo.rst 指定了轉檔時的輸入檔案，-o demo.md 則是輸出檔案。如果不用 -o 參數指定輸出檔名，Pandoc 就會直接將結果輸出到標準輸出上（一般說來，這是指終端機上）。
+
+Pandoc 會透過副檔名，自動判斷輸入與輸出的檔案格式。像上面那一行，輸入檔案會被自動視為 reStructuredText 而輸出檔案則會被自動視為 markdown。
+
+您也可以透過 -f 與 -t 參數強制指定輸入與輸出的格式，比方說：
+
+pandoc demo.txt -o output.txt -f markdown -t html
+以上這句指令，會將輸入檔案「demo.txt」視為 markdown 格式，並將它轉為 html 格式後，存到 output.txt 位置上。
+
+-f、-t 後面可接哪些格式名稱？請參看這裡：
+http://johnmacfarlane.net/pandoc/README.html#general-options
+
+
+產生 PDF
+
+在 Pandoc 支援的格式中，想用 Pandoc 產生 pdf 檔又多了幾個小撇步，讓我試好久，請聽我說明解釋。
+
+pandoc 的 PDF 產生功能是透過 LaTeX 來做的，所以除了主程式外，使用前還得先裝別的外掛程式。在 Linux 上，這個程式就是 texlive 包，請自行抓來裝。如果光裝 texlive 包 Pandoc 轉 pdf 時還是跑不起來，就將 texlive-cjk 包和 texlive-xetex 包也裝上，這樣就該沒問題了。
+
+兩個包合計將近 500 MB，真是夠大的……
+
+裝好了之後，就請立刻執行看看吧：
+
+	pandoc demo.rst -o demo.pdf
+
+若您的 demo.rst 是純英文的，照上面操作就可以順利產生 pdf 檔案了。然而如果原始文件檔中含有其他字元（比方說中文字），執行之後 pdf 產生不出來，反而會吐出「Undefined control sequence」如何如何的錯誤訊息，這是因為預設的 latex 引擎不支援中文的緣故。
+
+為了解決這個問題，必須改用能支援 Unicode 的 xelatex 引擎。
+
+此外預設的字型也不包括中文，為了順利顯示，這邊還需要另外指定中文字型。總之就是下面這行（指定的字型是文泉驛微米黑，您可以替換成您希望的。請記得用英文名稱）：
+
+pandoc demo.rst -o demo.pdf --latex-engine=xelatex -V mainfont="WenQuanYi Micro Hei"
+如此一來就能順利產生出中文的 pdf 檔案了。
+
+不過，儘管順利產生了 pdf，但某些問題依然存在（比方說中文的 line break），這些東西必須透過校調模版才能解決。接下來筆者會介紹一下 Pandoc 的模版，但關於如何用 XeTeX 設定中文 pdf 文件已經超出本文範圍，網路上有很多這方面資料，個人推荐新手參考這一頁來修改模版：http://electronic-blue.wikidot.com/doc:xetex
+
+
+使用模版 (template)
+
+模版 (template) 是用來告訴 Pandoc，它應該要用什麼格式來產生目的檔案用的。
+
+說得更具體一點：字型如何？字要多大？頁面寬度多寬？加重語氣時要用黑體還是斜體？……這些都有賴模版進行設定。
+
+不同的目標檔案格式，其模版的基本格式也不一樣。比方說 html 的模版就會是 CSS 與 html 的混合，latex 就是 .tex 格式……諸如此類。此外，模版中還會混有 pandoc 專屬的內部程式碼。
+
+嗯……這樣說好像很複雜。不過只要擁有相應格式的撰寫經驗，修改預設模版其實並不難，試試看就知道了。但第一步，您要先找到這些模版被放在哪裡。
+
+在我的 (Linux) 電腦上，預設模版被堆放在這個位置：
+
+	/usr/share/pandoc-1.9.2/templates
+
+您也可以用以下指令叫出某格式的模版，來閱讀或另存：
+
+pandoc -D html | less # 閱讀 html 格式的模版
+
+pandoc -D html > mytemplate.txt # 另存到 mytemplate.txt 中
+
+得到範本後，就可以依樣畫葫蘆地修改他們了。
+
+怎麼修改等會兒再說。總之，當您將模版修改好後，就可以透過 --template 參數套用它。如同下面這行：
+
+pandoc demo.rst -o demo.html --template=mytemplate.txt
+您可以用模版功能來進行絕大多數的格式自定義，自由度相當高。至於少部份無法透過模版架構進行自訂的東西，在 Pandoc 指令後方往往也能追加一些特殊參數來處理。具體有哪些參數可用，還請參看官網的參數列表：http://johnmacfarlane.net/pandoc/README.html#options
+
+
+定義與修改模版
+
+如果您剛剛試著看過任何一個 Pandoc 模版，這時恐怕正感到頭暈，因為模版裡面堆滿了錢……不，應該說是「$」符號。這些「$」符號被兩兩成對地運用著，像我們平常使用括號那樣夾著某些東西。
+
+這就是 Pandoc 所使用的模版巨集語句！包括以下幾種：
+
+1. if 判斷→ $if（變數名）$　$else$　$endif$
+* 如果變數有被指定，則 $if（變數名）$ 後的內容會被實際寫入檔案中。反之，如果變數沒被指定，則 $else$ 後面的內容會被寫入。判斷式的最後需用 $endif$ 收尾。
+
+2. for 迴圈→ $for（變數名）$　$endfor$
+* 運用在多值變數上。會重複寫入 $for（變數名）$ 與 $endfor$ 之間的內容。變數有多少個值就會重複寫入幾次。
+
+3. 變數→ $變數名$
+* 會被替換為指定的變數值。
+* 變數名可以自己取，比方說取為 largefontsize 等等。
+
+有這些東西就能玩出很多花樣了，比方說：
+
+	$if(largefontsize)$ font-size: $largefontsize$; $endif$
+
+這行表示，當使用者有指定 largefontsize 時，才將 font-size: $largefontsize$; 這行寫入 CSS 中……哎，可玩的東西很多啦。
+
+說了那麼多，那麼該如何將變數具體指定為某個值呢？
+
+我們回來看看 pdf 篇最後的範例：
+
+	pandoc demo.rst -o demo.pdf --latex-engine=xelatex -V mainfont="WenQuanYi Micro Hei"
+
+這行中，「-V mainfont=...」也可以寫成「--veriable mainfont=...」。更直接點說，這段指令將一個名叫 mainfont 的變數，設定為 "WenQuanYi Micro Hei" 的值……
+
+這樣應該完全理解了吧？變數就是如此了。
+
+您可以看看官方說明 (http://johnmacfarlane.net/pandoc/README.html#templates)，內容和我這邊寫的差不多；不過下面多了些常見變數的命名與介紹，那些東西我就不費事重複了，需要變數資料的人請自己查一下。
+
+
+瑕疵與繞過
+
+Pandoc 轉檔很方便，但程式本身還是有些問題。至少在筆者的經驗中，1.9.2 版透過命令行輸入時，若輸入的字串中包含任何非英文字元，就會報錯。
+
+但這並不是 Pandoc 內部不能處理非英文路徑，而似乎是 Pandoc 的「命令行介面」不能傳入非英文字元，這理由在下也搞不清楚。
+
+如果不幸碰上，稍微更名一下就能將它給繞過了。
+
+
+深入閱讀
+
+以下是推荐的閱讀清單。
+
+1. 支援的轉檔格式表，用一張大圖表示：
+http://johnmacfarlane.net/pandoc/diagram.png
+
+2. 經 Pandoc 擴充後的 Markdown 格式手冊：
+http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown。Pandoc 的 Markdown 格式並不「官方」，這份自行擴充後的 Markdown，顯然被 Pandoc 作者視為得意特色，語法說明書長度比起 Pandoc 其他部份的說明全部加起來都還要多（笑）。
+
+3. Pandoc 參數說明：
+http://johnmacfarlane.net/pandoc/README.html#options
+
+4.Pandoc 指令範例：
+http://johnmacfarlane.net/pandoc/demos.html
+_______________________________________________________________
+
+■ [源碼新聞] Red Hat 利用 GPL-2.0 失權條款在專利訴訟中進行反訴
+
+林誠夏／編譯
+
+Linux Distro 領域裡著名的維運公司 Red Hat，目前在美國正與 Twin Peaks Software 進行專利權的相關訴訟。Twin Peaks Software 指稱 Red Hat 侵犯了他們在 2011 年持有的美國 7,418,439 號專利，此為一個巨量並行文件系統相關的運算專利。根據 Groklaw 網站上的報導，Red Hat 為因應 Twin Peak Software 在專利權上的侵權控訴，正式於法庭程序上利用 GPL-2.0 失權條款提出反訴 (counterclaim)，以作為一個抗衡 Twin Peaks Software 專利權的訴訟手段。
+
+這是因為 GPL-2.0 明訂違反 GPL-2.0 授權義務性規定者，其依 GPL-2.0 取得的權利會自動終止：「Any attempt otherwise to copy, modify, sublicense or distribute the Program is void, and will automatically terminate your rights under this License.」透過 GPL-2.0 此項條款，Red Hat 指出 Twin Peaks Software 在其 TPS Replication Plus 與 TPS MyMirror 兩項產品中，內嵌使用了 GPL-2.0 授權的程式碼，但在散布上並未提供產品客戶相對應有的程式源碼 (corresponding source code)。Red Hat 進一步聲稱，此舉已然是違反 GPL-2.0 的義務性規定，而應判定 Twin Peaks Software 罹於合法使用這些 GPL-2.0 授權程式碼的權利，倘若如此，Twin Peaks Software 此二款產品中包含有一項 mount.mfs 子系統，乃是修改自 Red Hat 與其他開發者以 GPL-2.0 授權釋出的 Linux 系統套件，依法理與邏輯來推論，Twin Peaks Software 因違反 GPL-2.0 授權條款在先，故不得再主張其是以 GPL-2.0 授權的基礎來使用這些程式碼，也就是說，Twin Peaks Software 正在無權使用 Red Hat 釋出並被匯入 mount.mfs 的程式碼，從而 Red Hat 便以程式碼著作權利人的請求權基礎，提出反訴要求承審法院判定 Twin Peaks Software 侵權利用行為所應支付的賠償金數額，並且以權利持續受到損害為由，一併核發禁止 Twin Peaks Software 侵權產品繼續販售與散布的禁制令。
+
+最後，Red Hat 並表示，按照 GPL-2.0 條款的文義解釋，如果違規散布的對象是使用 GPL-2.0 授權條款，例如本案中的 util-linux 套件程式，則使用者本依 GPL-2.0 授權條款所取得的授權，不僅會立即自動終止，且唯有再次向著作權利人取得同意後，才可以復權。由此項訴求可知，雖然 Red Hat 當初以 GPL-2.0 釋出其撰寫的程式碼時，並未規劃專利方面的布局事宜，但如今碰到專利侵權訴訟，倒也可以引用 GPL-2.0 在著作權方面對權利人的保障條款，據以成為一種反制與自保的有效手段。
+
+
+相關網址：
+
+1、Red Hat 引用 GPL 授權條款來反擊專利訴訟
+http://www.h-online.com/open/news/item/Red-Hat-uses-GPL-to-strike-back-in-patent-lawsuit-1709584.html
+
+2、Groklaw：Twin Peaks 與 Red Hat 的訴訟紀錄與分析
+http://www.groklaw.net/article.php?story=20120913073511444
+_______________________________________________________________
+
+■ [源碼新聞] Tizen Linux 再進化！跨國車商將與科技研發公司共組車載 Linux 工作群組 
+
+黃郁文／編譯
+
+傳統車載資訊系統經常是高度客製化且封閉，但這個狀況將要產生轉變了。Linux Foundation 近期將其觸角正式延伸到車載資訊系統來，企圖將開放風潮帶入這個領域，並進一步成立車載 Linux 工作群組 (Automotive Grade Linux Workgroup)，透過加入成員共同的力量，打造一個車載系統與相關程式能夠被共工分享的優化平台(reference platform)。
+
+此一車載 Linux 工作群組是於本年度 9 月 19 日，搭配車載 Linux 推動高峰會 (Automotive Linux Summit 2012) 的舉辦，於倫敦宣布成立。成立會員包括數間國際知名的汽車大廠及科技研發公司，前者有 Nissan、Toyota、Jaguar Land Rover，後者有 Intel、Harman、NVIDIA、Samsung，以及德州儀器。該工作群組目前規劃使用 Tizen Linux 當作實作的參考版本，用以打造日後車載 Linux 優化的系統平台 (Automotive Grade Linux, AGL)，這個平台預計日後能讓汽車業者用於車載系統上，諸如車用資訊娛樂系統 (Infotainment System)、數位儀表板、氣溫調控系統，以及智慧導航系統等。
+
+Linux Foundation 的執行長 Jim Zemlin 指出：「該工作群組的首要目標是，移植 Tizen Linux 作業系統在汽車領域，打造近似 Debian 或 Fedora 這樣的主軸專案，以讓其後衍生的車載 Linux 資訊系統，都有一個可以參照，並將資源匯流回來的統合平台。」Linux Foundation 在新聞布告中進一步表示：「車載 Linux 工作群組的成員，將會定期將個自的研究成果匯流 (upstream) 回平台的上游主幹，之後再整合進 AGL 的後續版本裡，透過這樣共享交流的方式，支援參與成員與相關汽車製造廠使用 Linux 系統打造最尖端科技的汽車產品。」也就是說，如果 AGL 車載 Linux 系統順暢發展的話，在未來汽車的製作上，善用自由開源軟體不但讓使用者不用重覆發明輪子 (reinventing the wheel)，甚至可以不用再重覆開發車載資訊系統了！
+
+
+相關網址：
+
+1、Linux 工作群組將採 Tizen Linux 為參照版本建立車載系統優化平台
+http://www.zdnet.com/tizen-linux-heads-for-vehicles-as-car-makers-and-tech-firms-form-workgroup-7000004491/
+
+2、Linux Foundation 新創車載 Linux 工作群組
+http://www.engadget.com/2012/09/20/linux-foundation-forms-automotive-grade-workgroup/
+
+3、Tizen Linux 工作群組及其介紹
+http://www.linuxfoundation.org/collaborate/labs/tizen
+_______________________________________________________________
+
+■ [源碼新聞] 舊版 Android 系統上有控制碼認證不全的漏洞
+
+黃郁文／編譯
+
+舊版 Android 系統上存有控制碼認證不全的漏洞，這本來被指稱是 Samsung 系列手機的問題，但事實上目前市面多數的 Android 手機都有這樣的問題。只要是使用 Ice Cream Sandwich (version 4.0.x)，或是更早的 Android 系統的智慧型手機，則多半存有這樣的漏洞。Google 對這個問題已經做出了因應，其動手更改了 Android 4.1.1 (4.1.x "Jelly Bean") 版本之後的撥號軟體程式碼，所以 4.1.1 版本之後的 Android 系統上並不存有這樣的問題。然而，目前市面上流通 Android 4.1.x 之後的裝置並不多，以出貨時的狀態估計，僅佔整體數量不到 1.2％，所以消費者要解決這樣的問題，首先要看您的手機供應商是否有提供作業系統更新至 4.1.x 其後版本的服務。若沒有，則可以自力救濟選用以下二款 Google Play 上提供的免費 Apps，來處理這個問題。
+
+舊版 Android 系統上的漏洞是，撥號程式在執行一些由外部而來的控制碼時，並沒有經過嚴格的認證程序，無論這些控制碼是由手機上的虛擬鍵盤輸入，或是直接匯入某些網頁資訊，或是 QR codes，都可能導致這樣的狀況。多數的控制碼是無害的，例如輸入 *#06# 這組字串，只會讓手機顯示該裝置專屬的國際移動設備辨識碼 (International Mobile Equipment Identity number, IMEI)，可是其他的控制碼，卻有可能導致 SIM 卡被鎖卡且無法嗣後解鎖等等不可預期的狀況。目前網路上流傳 Samsung 系列的 Android 手機，能輸入一段毋須認證的控制碼，就讓手機系統的各項配置恢復到出廠時預設狀態，並一併刪去使用者在手機上儲存的各項資料。HTC 系列手機也被指稱有著類似的問題。
+
+所以最釜底抽薪的解決方式，就是探詢您的手機供應商是否有此一漏洞的更新解決方案，或是一鼓作氣將您的手機系統升級到 Android 4.1.x 之後的版本。然而，若是前述的選項並不存在，或是您並不想為了這個漏洞大費周章的去升級整個作業系統的話，則可以參考 TelStop 與 NoTelURL 這二款在 Google Play 軟體市集上能免費下載的 App！此二款程式能夠阻斷 Android 系統外部資訊匯入後的自動撥號動作，所以能一定程度阻絕舊版 Android 系統上這樣的安全漏洞。
+
+
+相關網址：
+
+1、舊版 Android 控制碼的問題幾乎影響到所有的 Android 手機製造商
+http://www.h-online.com/open/news/item/Android-control-code-issue-affects-almost-all-manufacturers-1720298.html
+
+2、Android 手機：惡意的 USSD 呼叫能危害到 SIM 卡的正常功能
+http://www.h-online.com/security/news/item/Android-smartphones-USSD-calls-can-kill-SIM-cards-1719230.html
+
+3、TelStop 與 NoTelURL App 的下載與說明網址
+https://play.google.com/store/apps/details?id=org.mulliner.telstop
+https://play.google.com/store/apps/details?id=com.voss.notelurl
+_______________________________________________________________
+
+■ [源碼新聞] 歐洲數位圖書館使用 CC0 在公眾領域釋出 2 千萬筆記錄
+
+謝良奇／編譯
+
+◎ 本文原載台灣創用 CC 計畫，原文章連結按此 (http://creativecommons.tw/blog/20120925)。
+
+Timothy Vollmer，2012 年 9 月 12 日。
+
+歐洲數位圖書館 (Europeana) 使用公眾領域貢獻宣告 (CC0) 在公眾領域釋出 2 千萬筆記錄，可說是本週一大盛事，這次釋出是使用 CC0 在公眾領域中最大規模的一次性文化資料貢獻。該歐洲數位圖書館資料集包含了來自龐大數位文化與藝術作品寶庫的描述性資訊。
+
+根據歐洲數位資料庫使用條款，「網站上發佈的所有後設資料 (數位化文化遺產的文本資訊) 其重用無任何限制。」該公眾領域資料可用於文化機構、研究人員、應用軟體開發者。藉由移除該資料上的所有著作權限制，歐洲數位圖書館協助推動創新與經濟活動。其新聞稿：「重要的是，這個改變對歐盟委員會藉由數位創新推動經濟成長的議題，作出了寶貴貢獻。線上開放資料是一項核心資源，可浥注企業並為歐洲文創產業的數百萬工作人口創造機會。該產業佔歐盟 3.3% GDP，出口總值超過 1500 億歐元。」
+
+歐盟委員會副主席 Neelie Kroes 對歐洲數位圖書館的宣布表示讚揚，她說：「開放資料的理念是如此強大，歐洲數位圖書館作為一項文化資產，兩者的結合不消多說只會帶來好的結果。許多人大談消弭數位落差以及開闢新的文化觀眾，但是只有少數能作出像歐洲數位圖書館轉向創用 CC 這樣的巨大貢獻。」
+
+位於荷蘭和盧森堡的創用 CC 聯盟團隊，在此一過程中透過合作組織 Institute for Information Law (IViR)、Kennisland、盧森堡國家圖書館 (Bibliotheque nationale de Luxembourg) 為歐洲數位圖書館提供專家支援。歐洲數位圖書館一直站在探索如何分享歐洲文化記錄的最前線。他們是創用 CC 公眾領域標章 (Public Domain Mark) 最早的採用者之一，並持續地為活躍且穩健的公眾領域提供支持。
+
+原文出處：http://creativecommons.org/weblog/entry/34017。
+_______________________________________________________________
+
+■ [源碼新聞] 開發者指責開源工具供應商 Appcelerator 強索授權金
+
+黃郁文／編譯
+
+什麼時候自由開源軟體會突然要收費？ (When is free not free?) 或許看看 Appcelerator 所屬 Titanium 專案的例子，可以略窺自由開源軟體在商業化策略轉換時引發混亂的端倪！Titanium 是一套結合開放源碼套件與商用套用的行動裝置開發工具，近日其商用版本的銷售人員，向開發者強硬索取授權金的態度引起開發者強烈不滿，並進而在 Appcelerator 公司網站上，引發開源軟體是否能夠以此方式收取授權金費用的爭論。Appcelerator 的銷售副總 Jonathan Rende 趕緊親上火線表達口頭歉意，表示當中必有誤會，未來不會再有此類授權不明之爭議發生，最後並再次重申自由開源社群的參與對該公司軟體專案的重要性。
+
+Appcelerator 的 Titanium 專案，是一套幫助程式設計師直接調用 JavaScript 語法與預設框架，來快速產出 Apple iOS 與 Google Android 行動裝置系統上 widget 的開發工具。其核心開發套件可透過 GitHub 平台上的 titanium_mobile 專案，依照 Apache License 2.0 以開放源碼授權的方式取得。進一步參照 Titanium Mobile 專案下的 "readme" 檔案，可以發現 Appcelerator 還特別標示 "We give our software away for FREE!" 這樣的宣示文字，但若想要得到 Appcelerator 就該專案的額外訓練或商用支援，就需要另外取得授權，也就是原則上此一專案採用 Apache-2.0 與商業授權併行擇一的雙重授權方式來進行散布。
+
+然而，該專案在網路上亦有流傳供免費下載的版本稱為 App Explore，App Explore 除了內含 Titanium 以 Apache-2.0 釋出的核心套件之外，還一併帶上了諸多並非以開放源碼授權的其他工具模組，也就是說，App Explore 此一整合套件的性質較近似一般認知的免費軟體 (Freeware)，供下載者在非商業利用的環境下測試使用，但若要商業使用，就必須另行洽詢商業授權的版本。所以問題可能就出在，一般取用 Titanium 專案程式碼進行 widget 開發的使用者，並沒有辦法巨細靡遺的去了解這許多繁複且不同的授權策略，一家名為 Bluesky Industries 的英國公司經營者 Malcolm Bailey 就產生這樣的困擾。Malcolm Bailey 使用 App Explore 為其客戶開發 widget，其認為既然使用的是不需額外付費得到 Appcelerator 支援的免費版本，則應該使用上是以自由開源軟體單純的規則來進行。但是在 Malcolm Bailey 將開發完成的軟體放到 App Store 的二星期之後，Appcelerator 的業務找上 Malcolm Bailey，告知其需支付大約 10,000 美金的商用版本使用費，否則就是侵害該公司的智慧財產權，連帶的，Malcolm Bailey 的客戶也被一併告知需支付相關的授權費用。此事經 Malcolm Bailey 公布後於網際網路上引起討論，最後發現這樣的狀況並非單一事件，其他英國開發者也迭有類似遭遇。
+
+就授權政策分析的立場來說，主要的徵結點在於 Malcolm Bailey 與其他開發者使用的是 Titanium 以免費軟體方式散布的版本 App Explore，而不是透過 GitHub 網站取得其 Apache-2.0 授權的程式源碼後，自行編譯開源授權版本的開發工具。然而，Appcelerator 啟人疑竇與為德不卒的是，GitHub 平台上的 titanium_mobile 專案，對此細微處的授權分野資訊幾乎隻字未提，並且 titanium_mobile 專案內的部份連結，甚至直接導引使用者下載到這些預先編譯、非完全開源授權的版本，而雖然這些免費版本的開發工具組，會在程式被執行的第一次，顯示出其不同於 Apache-2.0 授權條款的內容，但難就難在多數開發者此時已產生心證，認定該專案就是以 Apache-2.0 進行釋出，而容易省略了此時授權條件顯示的不同處。
+
+對於造成開發者就自由開源版本與免費授權版本的混淆與疑慮，Appcelerator 的 CEO 與身兼共同創辦人身份的 Jeff Haynie 表達歉意，其並公開對外宣布，Appcelerator 後續將不會對使用免費版本 App Explore 進行開發的使用者要求付費。Haynie 表示：「所有 widget 都可使用免費版的 App Explore 進行開發，不管該 widget 使用方式是商用目的還是免費版本，此種使用方式將不會衍生任何給付授權費用給 Appcelerator 的義務，本公司的員工日後也決不會與開發者的客戶直接聯絡。」
+
+Haynie 進一步表示，Titanium 的商業版本收費合理，Appcelerator 於此同時，也仍對超過 98% 的使用者提供免費版本，此次的爭議應該只是業務人員對於工作的熱誠過頭，未來公司將致力於員工授權概念的補強與再教育。但是，這樣的言論仍然無助於消弭自由開源軟體社群的不滿情緒，開發者質疑 Appcelerator 的誠信與收費標準正當性並不穩固，並透過網路串連表達他們拒絕與該公司繼續有專案研究與應用上的合作關係。最後，Appcelerator 的銷售副總 Jonathan Rende 表示，對本件爭議的後續處理，就是會進一步釐清商用軟體客戶與使用開源版本開發者之間的界線，並再次強調對自由開源軟體社群的重視，與願意與社群合作討論解決此事的誠意。只是，這樣的宣示是否真能挽回社群開發者已然流失的心，仍有待日後長期的觀察了。
+
+
+相關網址：
+1. 當開源與免費產生混淆－開發者質疑開源工具供應商惡意巧詐授權金
+http://arstechnica.com/information-technology/2012/09/when-free-isnt-developer-accuses-tool-vendor-of-extorting-customer/
+
+2. 開發者投書：Titanium 專案的授權狀態混亂不清，究竟如何才能避免誤用之後被強索授權費用呢？
+http://developer.appcelerator.com/question/142516/warning-licensing-of-titanium-chaotic-and-unclear-how-to-avoid-extortionate-fees
+_______________________________________________________________
+
+
+□ 關於本報 □__________________________________________________
+
+◎ 主編︰洪華超
+◎ 法律專欄編輯︰葛冬梅
+◎ 技術編輯︰曾義峰
+◎ 執行編輯︰林誠夏、林珈宏、彭冠雯、王怡凱、陳蕙蓁
+◎ 外稿編譯︰謝良奇、黃湘婷、蕭惟杰、黃郁文
+
+本電子報自行採訪、報導、編譯、撰寫文章之智慧財產權屬於中央研究院，採用創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版授權散布，歡迎在不變更內容的前提下，以任何形式重製與散布本報，但必須遵守下列義務︰（1）不得為商業目的之利用；（2）必須標明本電子報智慧財產權屬於中央研究院；（3）完整引用本著作權說明。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用上述文章，請與自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）聯絡。
+
+非自由軟體鑄造場自行撰寫的單篇文章，其智慧財產權利屬於原作者所有，其以非專屬的方式授權予自由軟體鑄造場運用，而與本電子報其他文章併以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版的方式進行散布。
+
+若欲以創用 CC「姓名標示－禁止改作－非商業性」授權條款臺灣 3.0 版以外的方式利用個別作者的文章，請自行與該作者聯繫，或透過自由軟體鑄造場編輯群（ossfepaper at openfoundry.org）來轉發聯絡訊息。
+
+授權條款全文請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/legalcode
+授權條款簡介請見︰
+http://creativecommons.org/licenses/by-sa/3.0/tw/deed.zh_TW
+
+若欲訂閱本電子報，請至以下網址︰
+http://www.openfoundry.org/tw/news
+
+如欲取消訂閱這份電子報，可透過自由軟體鑄造場新聞首頁左上方之自動退訂機制︰
+http://www.openfoundry.org/tw/news
+
+或寄發電子郵件至︰ossfepaper@openfoundry.org，以進行人工退訂。
