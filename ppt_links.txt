@@ -1,6 +1,0 @@
-../../en/component/docman/cat_view/35---/58-/81-2006-/169-.html?option=com_docman&amp;task=doc_download&amp;gid=219&amp;Itemid=112
-../component/docman/cat_view/35---/58-/81-2006-/169-.html?option=com_docman&amp;task=doc_download&amp;gid=219&amp;Itemid=112
-foss-news/143-2011-01-06-16-11-57.html#addcomments
-foss-news/176.html#addcomments
-https://www.openfoundry.org/temp/Intro_foundry.ppt
-https://www.openfoundry.org/temp/Intro_license.ppt
