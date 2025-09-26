@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2">
+ <manifest:file-entry manifest:full-path="/" manifest:version="1.2" manifest:media-type="application/vnd.oasis.opendocument.presentation"/>
+ <manifest:file-entry manifest:full-path="Thumbnails/thumbnail.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="settings.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000078000000438145EE07B.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image23.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000064000000384FF20983D.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image22.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image21.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image19.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image20.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image18.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image25.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000078000000438E8E62654.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image14.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image11.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000078000000438A002C2B8.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image13.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image12.jpg" manifest:media-type="image/jpeg"/>
+ <manifest:file-entry manifest:full-path="Pictures/image10.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000078000000438604E2754.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image9.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image8.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image7.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image6.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image5.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image17.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/100000000000078000000438ECBBE255.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image26.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image3.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image16.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000201000002B5000001EFE9E3960E.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image2.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image15.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/image1.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="meta.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="styles.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="Configurations2/accelerator/current.xml" manifest:media-type=""/>
+ <manifest:file-entry manifest:full-path="Configurations2/" manifest:media-type="application/vnd.sun.xml.ui.configuration"/>
+</manifest:manifest>
