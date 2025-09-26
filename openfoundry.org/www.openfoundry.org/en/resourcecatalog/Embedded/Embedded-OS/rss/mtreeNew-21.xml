@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 作業系統</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:09:22 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>ART-Linux</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/art-linux</link>
+	<description><![CDATA[<p>
+<p>Advanced Real-Time Linux (ART-Linux) is a hard real-time kernel developed with robotics applications in mind. Real-Time is accessible from user level and does not require special device drivers.</p>
+<p>Platform: All POSIX (Linux/BSD/UNIX-like OSes), Linux;License: GNU General Public License (GPL)</p>
+<p>Reference：<a href="https://art-linux.sourceforge.net" target="_blank">https://art-linux.sourceforge.net</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:04:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/art-linux</guid>
+</item>
+<item>
+	<title>Pinguy OS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/pinguy-os</link>
+	<description><![CDATA[<p>
+<p>Pinguy OS is an out-of-the-box working operating system for everyone, not just geeks.</p>
+<p>Platform:unknown;License: GNU General Public License (GPL)</p>
+<p>Reference：<a href="https://pinguy-os.sourceforge.net" target="_blank">https://pinguy-os.sourceforge.net</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:02:31 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/pinguy-os</guid>
+</item>
+<item>
+	<title>LGTV embedded OS (douglas)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/lgtv-embedded-os-douglas</link>
+	<description><![CDATA[<p>
+<p>This is a copy of the official sources that were provided to me upon GPL fulfillment request by LG Electronics for the software on my 47LG70 LCD HDTV. Many have problems obtaining these as LG. Includes linux 2.6.10, microwindows, and busybox 1.2.1.</p>
+<p>Platform:unknown;License: GNU General Public License (GPL)</p>
+<p>Reference：<a href="https://douglas.sourceforge.net" target="_blank">https://douglas.sourceforge.net</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 01:53:29 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/lgtv-embedded-os-douglas</guid>
+</item>
+<item>
+	<title>Osnofian Embedded Linux (x86)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/osnofian-embedded-linux-x86</link>
+	<description><![CDATA[<p>
+<p>OsnofianLinux is a set of small distributions intended to fit on 1.44Mb floppy disk, in the boot sector of a CDROM, hard drive or even on a USB stick. Check the project homepage for more details and projects info.</p>
+<p>Platform: All 32-bit MS Windows (95/98/NT/2000/XP), All POSIX (Linux/BSD/UNIX-like OSes), Linux, OS Independent (Written in an interpreted language); License: GNU General Public   (GPL), GNU Library or Lesser General Public   (LGPL)</p>
+<p>Reference：<a href="https://osnofianlinux.sourceforge.net/" target="_blank">https://osnofianlinux.sourceforge.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 02:36:25 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/osnofian-embedded-linux-x86</guid>
+</item>
+<item>
+	<title>Femto OS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/femto-os</link>
+	<description><![CDATA[<p>
+<p>The Femto OS is a very concise portable preemptive operating system for embedded devices with minimal ram and flash, up to say 16K flash, 1K ram. The main target is the AVR architecture, such as the ATtiny861/461/261 series.</p>
+<p>Platform:unknown; License: GNU General Public   (GPL)</p>
+<p>Reference：<a href="https://www.femtoos.org/" target="_blank">https://www.femtoos.org/</a></p>
+<div></div>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 02:35:54 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/femto-os</guid>
+</item>
+<item>
+	<title>µOS++</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/</link>
+	<description><![CDATA[&quot;&micro;OS++&quot; (micro OS plus plus) is an open source, royalty-free, real-time operating system intended for embedded systems built around ARM Cortex M3 or AVR devices. It is based on a preemptive scheduler written in C++ (more info in the Wiki).]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 03:59:00 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/</guid>
+</item>
+<item>
+	<title>HybridOS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/</link>
+	<description><![CDATA[<p>HybridOS is an operating system dedicated to embedded devices, it's based on Linux kernel and FMSoft's mature software technologies, like embedded graphics system (MiniGUI), embedded web browser (mDolphin), and embedded J2SE solution (mPeer).</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 03:57:56 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/</guid>
+</item>
+<item>
+	<title>RTEMS(Real Time Executive for Multiprocessor Systems)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/rtemsreal-time-executive-for-multiprocessor-systems</link>
+	<description><![CDATA[RTEMS stands for Real-Time Operating System for Multiprocessor Systems. It is a deterministic operating system that is targeted towards deeply embedded systems and supports a wide variety of open API and interface standards and many host platforms and target architectures. The development of RTEMS is guided by a steering committee of the RTEMS project. The RTEMS development effort uses an open development environment in which all users collaborate to improve RTEMS. The RTEMS cross development toolset is based on free GNU tools and the open source C Library newlib.]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 20 Apr 2009 10:45:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/rtemsreal-time-executive-for-multiprocessor-systems</guid>
+</item>
+<item>
+	<title>Planet Open Source</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/planet-open-source</link>
+	<description><![CDATA[<p>DSPnano RTOS and Unision RTOS are Linux or POSIX compatible real-time operating systems specifically geared for DSP applications (i.e., applications that process data on a continuous basis in real-time as it flows to and from external devices.) The DSPnano RTOS is tiny and runs on many 16-bit microcontrollers, DSPs (digital signal processors) and DSCs (digital signal controllers). Unision DSP RTOS is more general; it is suitable for embedded processors that have 32-bit buses.</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 12 Mar 2009 12:06:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/planet-open-source</guid>
+</item>
+<item>
+	<title>BeRTOS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/bertos</link>
+	<description><![CDATA[<p>
+<p>BeRTOS is a real time open source operating system supplied with drivers and libraries designed for the rapid development of embedded software.</p>
+<p>Platform: unknown; License: GNU General Public License, version 2</p>
+<p>Reference:<a href="https://www.bertos.org/" target="_blank"> https://www.bertos.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 12 Mar 2009 12:03:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Embedded-OS/bertos</guid>
+</item>
+</channel>
+</rss>

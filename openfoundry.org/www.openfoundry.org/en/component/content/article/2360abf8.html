@@ -1,0 +1,123 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+		
+<!-- Mirrored from www.openfoundry.org/en/component/content/article/2360?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:55:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="commit,repos,team_project,checkout,import,目錄加入預計提交的清單中,將整個math,告一段落後,小史交派小李的工作是撰寫一個math模組,下載程式碼後,開始進行小史交代的修改,於是小李新增一個了一個,寫了交代的運算函式後,進行提交的動作,同時間小畢在看完程,接下來將工作分配給予兩位工程師李納斯,因此專案經理史托曼,決定將現有的專案交由,容易做許多白工,在版本控制上" />
+  <meta name="title" content="3.SVN 情境導覽" />
+  <meta name="description" content="市場上有一間名為歐奔的軟體公司，主要從事程式碼撰寫的工作，有一天，開始覺得團隊合作上有些問題，在版本控制上，容易做許多白工，因此專案經理史托曼(小史)決定將現有的專案交由 SVN 版本控制來做，看了手冊後，將原本未在版本控制下的程式法，利用 svn import 的方式匯入版本庫(repository)內。svn import file:///tmp/repos/test" />
+  <meta name="generator" content="" />
+  <title>3.SVN 情境導覽</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">3.SVN 情境導覽</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="Print"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						 Created at			Saturday, 29 May 2010 00:25						&nbsp;&nbsp;&nbsp;&nbsp;						Last Updated on Saturday, 29 May 2010 00:31						</span>
+
+						<span class="rt-author">
+				Written by webmaster			</span>
+				
+					</div>
+		
+		
+		市場上有一間名為歐奔的軟體公司，主要從事程式碼撰寫的工作，有一天，開始覺得團隊合作上有些問題，在版本控制上，容易做許多白工，因此專案經理史托<br />曼(小史)決定將現有的專案交由 SVN 版本控制來做，看了手冊後，將原本未在版本控制下的程式法，利用 svn import 的方式匯入版本庫(repository)內。<br />svn import file:///tmp/repos/test team_project<p>接下來將工作分配給予兩位工程師李納斯(小李)與畢斯迪(小畢)，兩位工程師分別先利用 svn checkout 下載程式碼後，開始進行小史交代的修改。</p>
+<p><span class="Code">svn checkout file:///tmp/repos/test team_project</span></p>
+<p>小史交派小李的工作是撰寫一個math模組，於是小李新增一個了一個 math 目錄，放了 math.h 與 math.cpp，寫了交代的運算函式後，利用 svn add，將整個<br />math 目錄加入預計提交的清單中。</p>
+<p>svn add math</p>
+<p>告一段落後，利用 svn commit 進行提交的動作。</p>
+<p>svn commit</p>
+<p>同時間小畢在看完程式碼後，也要開始進行原專案 bug 修改工作，並將小李的 math 函式納入新版程式使用，於是利用 svn update 先將最新的程式碼更新到電腦中。</p>
+<p>svn update file:///tmp/repos/test team_project</p>
+<p>程式碼修改告一段落後，也利用 svn commit 進行提交的動作。</p>
+<p>svn commit</p>
+<p>好不容易，已完成進度的一半了，不過此時遇到了一些小麻煩，小李程式改一段落後，程式無法正常編譯了，但是上一版是可以的，因此小李利用 svn diff<br />終於找出程式錯誤的地方，原來是手滑多按了一個字母呀！改掉之後就回覆正常了。</p>
+<p>svn diff</p>
+<p>經歷了長時間的修改，商品終於要完整開放出來了，於是利用 svn export，輸出一份不帶有版本控制相關檔案資訊的程式碼，進行釋出的動作。</p>
+<p>svn export file:///tmp/repos/test release_project</p>
+			<!-- Show relate article -->
+				<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'>		<!-- End -->
+					<br>
+					<b>Category: </b><a href="../category/502-subversion.html">				Subversion					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/en/component/content/article/2360?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:55:37 GMT -->
+</html>

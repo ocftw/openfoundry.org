@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 除錯/編輯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:36 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Lua for Windows</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-for-windows-</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>Lua for Windows (LfW) combines Lua binaries, Lua libraries with a Lua-capable editor in a single install package for the Microsoft Windows operating system. LfW contains everything you need to write, run and debug Lua scripts on Windows. A wide variety of libraries and examples are included that are ready to use with Microsoft Windows. LfW runs on Windows 2000 and newer versions of Windows. Lua and its associated libraries are also available for other operating systems, so most scripts will be automatically cross-platform.</p>
+<p>Platform: Windows; License: MIT License</p>
+<p>Reference: <a href="https://code.google.com/p/luaforwindows/" target="_blank">https://code.google.com/p/luaforwindows/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:09:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-for-windows-</guid>
+</item>
+<item>
+	<title>Lua 5.1 CLI debugger</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-51-cli-debugger</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>A simple command line interface debugger for Lua 5.1 written in pure Lua. Its not dependent on anything other than the standard Lua 5.1 libraries. It was inspired by RemDebug but does not have its remote facilities.</p>
+<p>Platform: OS Independent; License: Public Domain</p>
+<p>Reference: <a href="https://luaforge.net/projects/clidebugger/" target="_blank">https://luaforge.net/projects/clidebugger/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:08:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-51-cli-debugger</guid>
+</item>
+<item>
+	<title>lua-mode</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-mode</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>An Emacs major mode for editing Lua code.</p>
+<p>Platform: Windows; License: GNU General License (GPL)</p>
+<p>Reference: <a href="https://luaforge.net/projects/lua-mode/" target="_blank">https://luaforge.net/projects/lua-mode/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:03:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Debugger-Editor/lua-mode</guid>
+</item>
+</channel>
+</rss>

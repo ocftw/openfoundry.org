@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 編譯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:18 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>IronPython</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/ironpython</link>
+	<description><![CDATA[<p>
+<p>IronPython is an implementation of the Python programming language running under .NET and Silverlight. It supports an interactive console with fully dynamic compilation. It's well integrated with the rest of the .NET Framework and makes all .NET libraries easily available to Python programmers, while maintaining compatibility with the Python language. There also is Visual Studio tooling integration.</p>
+<p>IronPython is an open source project freely available under the Apache License, v2.0. You can grab the latest sources by clicking on the Source Code tab at the top of this page or simply by clicking here.</p>
+<p>Platform:Windows;           License:Microsoft Public License</p>
+<p>Reference:<a href="https://ironpython.codeplex.com/" target="_blank">https://ironpython.codeplex.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 07 Sep 2010 02:20:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/ironpython</guid>
+</item>
+<item>
+	<title>Psychotic</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/psychotic</link>
+	<description><![CDATA[<p>
+<p>Psychotic is an innovative optimizing compiler for Python code. It has unique features, the most important of which is that it breaks through the ConstantTimeBarrier. It is very easy to use and has an interface similar to that of the popular Psyco project.</p>
+<p>Platform:unknown;           License:New BSD License</p>
+<p>Reference:<a href="https://code.google.com/p/psychotic/" target="_blank">https://code.google.com/p/psychotic/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 07 Sep 2010 02:19:27 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/psychotic</guid>
+</item>
+<item>
+	<title>py2exe</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/py2exe</link>
+	<description><![CDATA[<p>
+<p>py2exe is a Python Distutils extension which converts Python scripts into executable Windows programs, able to run without requiring a Python installation.</p>
+<p>Platform:Windows ;          License:MIT License</p>
+<p>Reference:<a href="https://www.py2exe.org/" target="_blank">https://www.py2exe.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 07 Sep 2010 02:18:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/py2exe</guid>
+</item>
+<item>
+	<title>Cx-Freeze</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/cx-freeze</link>
+	<description><![CDATA[<p>
+<p>cx_Freeze is a set of scripts and modules for freezing Python scripts into executables in much the same way that py2exe and py2app do. Unlike these two tools, cx_Freeze is cross platform and should work on any platform that Python itself works on. It requires Python 2.3 or higher since it makes use of the zip import facility which was introduced in that version.</p>
+<p>Platform:Cross platform;           License:unknown</p>
+<p>Reference:<a href="https://cx-freeze.sourceforge.net/" target="_blank">https://cx-freeze.sourceforge.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 07 Sep 2010 02:10:11 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/python/Compiler/cx-freeze</guid>
+</item>
+</channel>
+</rss>

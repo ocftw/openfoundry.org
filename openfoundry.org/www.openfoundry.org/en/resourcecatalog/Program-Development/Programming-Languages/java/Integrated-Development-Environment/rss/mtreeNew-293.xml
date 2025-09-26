@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:34 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>DrJava</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/drjava</link>
+	<description><![CDATA[<strong>DrJava</strong> 是一款開放源碼的輕量Java開發環境，這款軟體主要設計給學生讓初學的人有一個有直觀的界面並用互動的方式學習Java程式設計. Java是一款靜態編譯語言, 也就是說Java程式需要經過編譯的過程才能執行. 這對於剛剛接觸Java程式設計尤其是第一次接觸編程的人來說是一個很費時的. 有的情況下, 使用者只想測試一些簡單的Java語言特性或是更廣義來講一些編程邏輯的測試, 透過一個內建的互動功能, DrJava都能夠很迅速地做到. DrJava讓測試Java像是在寫腳本語言的程式碼. 對於想要開始編程或是瞭解Java程式語言的人, DrJava是一個學習曲線很平順的入門編輯環境.在此同時, DrJava還有一些符合軟體工程精神的功能, 讓學生們可以一次接觸到.]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 30 Sep 2010 16:09:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/drjava</guid>
+</item>
+<item>
+	<title>Gel</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/gel</link>
+	<description><![CDATA[<p><span style="font-size: 14.4px;">Gel is a Java IDE that is written in a language other then Java and is natively compiled for Windows. Unlike other Java IDEs available, this enables Gel to be very small and very quick. It works great on suboptimal hardware and consumes little memory.</span></p>
+<p>Platform:unknown                                       License:unknown</p>
+<p>Reference:<a href="https://www.gexperts.com/products/gel/gel.php" target="_blank" title="https://www.gexperts.com/products/gel/gel.php">https://www.gexperts.com/products/gel/gel.php</a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 16:10:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/gel</guid>
+</item>
+<item>
+	<title>Jipe</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jipe</link>
+	<description><![CDATA[<p>
+<p>Jipe is aimed to be a small yet powerful Java IDE developed in Java so that it can be used on all platforms supporting Suns JDK. The current version is compatible with &gt; JDK1.1.2 + swing.</p>
+<p>Features:</p>
+<p>Redevelop the Jipe code to make it easier to maintain and improve.</p>
+<p>Improve the documentation of Jipe and it's code.</p>
+<p>Add support for the Java(TM) 2 SDK 1.4.0.</p>
+<p>Continue support for Jipe 0.95 in the mean time.</p>
+<p>Platform:Cross platform;                       License:GNU General Public License (GPL)</p>
+<p>Reference:<a href="https://jipe.sourceforge.net/" target="_blank">https://jipe.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:09:59 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jipe</guid>
+</item>
+<item>
+	<title>BlueJ</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/bluej</link>
+	<description><![CDATA[<p>
+<p>BlueJ is an integrated Java environment specifically designed for introductory teaching.</p>
+<p>Features:</p>
+<p>fully integrated environment</p>
+<p>graphical class structure display</p>
+<p>graphical and textual editing</p>
+<p>built-in editor, compiler, virtual machine, debugger, etc.</p>
+<p>easy-to-use interface, ideal for beginners</p>
+<p>interactive object creation</p>
+<p>interactive object calls</p>
+<p>interactive testing</p>
+<p>incremental application development</p>
+<p>Platform:Cross platform ;                   License:GNU General Public License V2</p>
+<p>Reference:<a href="https://www.bluej.org/about/what.html" target="_blank">https://www.bluej.org/about/what.html </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:07:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/bluej</guid>
+</item>
+<item>
+	<title>jGRASP</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jgrasp</link>
+	<description><![CDATA[<p>
+<p>jGRASP is a lightweight development environment, created specifically to provide automatic generation of software visualizations to improve the comprehensibility of software. jGRASP is implemented in Java, and runs on all platforms with a Java Virtual Machine (Java version 1.5 or higher). jGRASP produces Control Structure Diagrams (CSDs) for Java, C, C++, Objective-C, Ada, and VHDL; Complexity Profile Graphs (CPGs) for Java and Ada; UML class diagrams for Java; and has dynamic object viewers that work in conjunction with an integrated debugger and workbench for Java. The viewers include a data structure identifier mechanism which recognizes objects that represent traditional data structures such as stacks, queues, linked lists, binary trees, and hash tables, and then displays them in an intuitive textbook-like presentation view.</p>
+<p>Platform:Cross platform;                   License:Please visit https://www.jgrasp.org/license.html</p>
+<p>Reference:<a href="https://www.jgrasp.org/" target="_blank">https://www.jgrasp.org/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:07:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jgrasp</guid>
+</item>
+<item>
+	<title>IntelliJ IDEA</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/intellij-idea</link>
+	<description><![CDATA[<p>
+<p>IntelliJ IDEA is a code-centric IDE focused on developer productivity. IntelliJ IDEA deeply understands your code and gives you a set of powerful tools without imposing any particular workflow or project structure. IntelliJ IDEA is your dream pair-programmer who knows its way around the codebase, makes great suggestions right when you need them, and is always ready to help you shape your code.</p>
+<p>Features:</p>
+<p>Intelligent code editor has all the smarts for understanding Java code; provides refactorings, code inspections and intentions, super-fast navigation — all that we have accumulated over the years.</p>
+<p>Integrates with such essential tools as JUnit and TestNG, Ant and Maven, and popular version control systems: CVS, Subversion and git.</p>
+<p>Provides IntelliJ IDEA's famous XML-Java interoperability and comprehensive Groovy programming language support.</p>
+<p>The Swing UI designer complements the suite of tools for developing Java desktop applications — such as IntelliJ IDEA itself.</p>
+<p>Platform:Cross Platform;                               License:Apache 2.0 license</p>
+<p>Reference:<a href="https://www.jetbrains.com/idea/" target="_blank">https://www.jetbrains.com/idea/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:06:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/intellij-idea</guid>
+</item>
+<item>
+	<title>JCreator LE version</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jcreator-le-version</link>
+	<description><![CDATA[<p>
+<p>JCreator is the development tool for every programmer that likes to do what he does best: programming. It is faster, more efficient and more reliable than other Java IDE’s. Therefore it is the perfect tool for programmers of every level, from learning programmer to Java-specialist. Only LE version is freeware.</p>
+<p>Features:</p>
+<p>Advanced editor with code-folding</p>
+<p>Popup for code completion</p>
+<p>Popup for code snippets</p>
+<p>Popup for code identifiers</p>
+<p>Source code navigation</p>
+<p>JSP, Ant and CVS support</p>
+<p>Feature rich Debugger</p>
+<p>Platform:Windows;                   License:XINOX SOFTWARE</p>
+<p>Reference:<a href="https://www.jcreator.com/" target="_blank">https://www.jcreator.com/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:05:51 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Integrated-Development-Environment/jcreator-le-version</guid>
+</item>
+</channel>
+</rss>

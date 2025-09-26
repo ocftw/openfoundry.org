@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 相關論壇與社群</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:39 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>LuaForge</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/luaforge</link>
+	<description><![CDATA[<p> </p>
+<p>LuaForge is an open source code repository and collaborative software development management system for programmers and projects related to the Lua programming language.</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:51:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/luaforge</guid>
+</item>
+<item>
+	<title>Luaer</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/luaer</link>
+	<description><![CDATA[<p>The largest Lua developer community in China.</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:50:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/luaer</guid>
+</item>
+<item>
+	<title>Lua 中文群組</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/lua-</link>
+	<description><![CDATA[<p>Lua Programmiang Language Chinese Group</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:49:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Forum-Community/lua-</guid>
+</item>
+</channel>
+</rss>

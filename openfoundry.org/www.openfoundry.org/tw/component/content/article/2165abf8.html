@@ -1,0 +1,120 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw" >
+		
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/2165?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 05:59:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="OSSFNL548" />
+  <meta name="title" content="Apple 並行處理框架 Grand Central Dispatch 開放源碼" />
+  <meta name="description" content="Grand Central Dispatch (GCD) 可說是 Apple 最新作業系統 Snow Leopard 中最令人驚艷的特色之一，透過它，開發者可以更輕易地撰寫運用多核心電腦的軟體。如今，Apple 宣佈將 GCD 這套強大的並行處理框架 (concurrency framework) 原始碼釋出給開放源碼社群使用。 GCD 的用戶空間 (userspace)" />
+  <meta name="generator" content="" />
+  <title>Apple 並行處理框架 Grand Central Dispatch 開放源碼</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">Apple 並行處理框架 Grand Central Dispatch 開放源碼</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="列印"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						建立日期			2009-09-15 08:00						&nbsp;&nbsp;&nbsp;&nbsp;						最近更新在 2009-10-14 01:27						</span>
+
+						<span class="rt-author">
+				作者是 謝良奇/編譯			</span>
+				
+					</div>
+		
+		
+		Grand Central Dispatch (GCD) 可說是 Apple 最新作業系統 Snow Leopard 中最令人驚艷的特色之一，透過它，開發者可以更輕易地撰寫運用多核心電腦的軟體。如今，Apple 宣佈將 GCD 這套強大的並行處理框架 (concurrency framework) 原始碼釋出給開放源碼社群使用。<p>GCD 的用戶空間 (userspace) 程式庫元件，libdispatch，透過 Apache Software License 授權提供下載。此舉有助於在其他平台運用這項技術。Apple 在核心層級的 GCD 最佳化程式碼也已經作為 XNU 原始碼樹的一部份公開出來。</p>
+<p>GCD 針對全系統提供了高效率的執行緒集區 (threadpool)，部份的高階程式語言建構則可以為應用軟體開發者簡化並行處理。</p>
+<p>對於 Snow Leopard 與 OS X 開發者，GCD 儘管是一大優點，卻無法運用在其他平台上。藉由 GCD API 的開放源碼，Apple 希望如 Linux 等其他作業系統可以採用這套技術，擴大該技術的普及率。</p>
+<p>可以作為 GCD 借鏡的，是 Apple 的 Safari 瀏覽器底層技術 WebKit，後來被 Google 採納使用於 Chrome 瀏覽器。WebKit 的成功，讓 Apple 看見開放源碼帶來的好處，該公司可獲益於開放源碼社群不斷的程式碼改進。</p>
+<p>儘管 GCD 如今公開釋出，在廣泛採用於其他平台前，仍然存在一些技術與授權上的障礙。例如，高階的 GCD API 使用了由 Apple 開發的 C 語言延伸，blocks。這套技術目前仍然未被上游的 GNU Compiler Collection (GCC) 主線所採納，意味著必須透過 Clang 與 LLVM 才能在 Linux 上使用。雖然似乎有辦法在沒有 blocks 支援上使用 GCD，但其實用程度不高。Apple 這次提供了 blocks 數種實作的原始碼，包括針對 LLVM Clang 編譯器與該公司的 GCC 分支。</p>
+<p>Apple 的 blocks 基本上近似於 closures，是可以存取區域變數的匿名函式。這個概念被 Ruby 程式開發者所採納，也可見於若干函數型程式語言 (functional programming languages) 之中。這項語言功能在許多情況下有助簡化程式碼，不僅限於並行處理。</p>
+<p>組成 GCD 的三大元件，如今公開給外界使用、改進，其中包括：用戶空間的 libdispatch，其中包含的 API 可以讓開發者呼叫，將程式碼 blocks 排程到佇列中。xnu 是執行 OS X 的核心，在 Apple 尚未購併 NeXT 前，最初是由 NEXTSTEP 所開發。xnu 的意思是 &ldquo;X is Not Unix&rdquo;。由於 xnu 包含了來自 FreeBSD 的程式碼，從一開始就是開放源碼。</p>
+<p>最後則是 llvm，也就是設計用來最終取代 gcc 的 Low Level Virtual Machine 編譯器技術。儘管技術上並非 GCD 的必要元件，但 llvm 支援了關鍵的 blocks。</p>
+<p>Apple 的 blocks 實作採用的是 MIT 授權，是一套與 GPL 相容的授權方案，意味在納入上游 GCC 時不會有授權上的障礙。不過，libdispatch 本身採用的是 Apache 授權，該授權與 GPLv2 授權不相容。Apache 授權與 GPL 的相容問題在 GPL 第三版已獲得解決。</p>
+<p>如此一來，libdispatch 將無法被 GPLv2 的應用軟體使用。雖然許多 Linux 應用軟體採用 GPLv2 或之後的授權，代表可以使用第 2 或第 3 版的授權，仍有部份應用軟體僅採用 GPLv2 而無法與 Apache 授權的程式碼混合使用。這一點可能在 Linux 開發者之間構成對 GCD 的疑慮。</p>
+<p><br />相關網址：<br />1.<a href="https://theappleblog.com/2009/09/14/apple-open-sources-grand-central-dispatch/" target="_blank">Apple 將 Grand Central Dispatch 開放源碼<br /></a>2.<a href="https://arstechnica.com/open-source/news/2009/09/apple-opens-gcd-challenges-impede-adoption-on-linux.ars" target="_blank">Apple 公開 Grand Central; 阻礙 Linux 採用的挑戰</a><br /></p>
+			<!-- Show relate article -->
+				<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'><b>自由軟體鑄造場電子報&nbsp;:</b>&nbsp;<a href='../../../../previous-issue4101.html?task=view&amp;id=548'>第 135 期 FDL 與創用 CC 授權條款相容性問題初探：從維基百科談起</a><br>				<!-- End -->
+					<br>
+					<b>分類: </b><a href="../../../foss-news.html">				源碼新聞					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/2165?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 05:59:20 GMT -->
+</html>

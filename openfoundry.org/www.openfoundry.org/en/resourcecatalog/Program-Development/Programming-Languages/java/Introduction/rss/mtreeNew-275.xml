@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:27 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Java</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Introduction/java</link>
+	<description><![CDATA[<p>
+<p>Java is a programming language originally developed by James Gosling at Sun Microsystems (which is now a subsidiary of Oracle Corporation) and released in 1995 as a core component of Sun Microsystems' Java platform. The language derives much of its syntax from C and C++ but has a simpler object model and fewer low-level facilities. Java applications are typically compiled to bytecode(class file) that can run on any Java Virtual Machine (JVM) regardless of computer architecture. Java is a general-purpose, concurrent, class-based, object-oriented language that is specifically designed to have as few implementation dependencies as possible. It is intended to let application developers "write once, run anywhere". Java is currently one of the most popular programming languages in use, and is widely used from application software to web applications.</p>
+<p>Principles:</p>
+<p>There were five primary goals in the creation of the Java language:</p>
+<p>It should be "simple, object oriented, and familiar".</p>
+<p>It should be "robust and secure".</p>
+<p>It should be "architecture neutral and portable".</p>
+<p>It should execute with "high performance".</p>
+<p>It should be "interpreted, threaded, and dynamic".</p>
+<p>Platform: Cross platform;<span style="white-space: pre;"> </span>License:GNU General Public License / Java Community Process</p>
+<p>Reference:<a href="https://en.wikipedia.org/wiki/Java_(programming_language)" target="_blank">https://en.wikipedia.org/wiki/Java_(programming_language) </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 27 Sep 2010 08:01:08 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/java/Introduction/java</guid>
+</item>
+</channel>
+</rss>

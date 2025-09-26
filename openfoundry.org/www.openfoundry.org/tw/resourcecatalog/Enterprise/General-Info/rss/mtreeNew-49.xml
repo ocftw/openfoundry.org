@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 一般資訊</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:08 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>OpenESB</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/openesb</link>
+	<description><![CDATA[<p>OpenESB is an open source platform solution for business integration, enterprise application integration, and SOA. It is licensed under CDDL.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 08 Jul 2010 02:09:48 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/openesb</guid>
+</item>
+<item>
+	<title>Apache Software Foundation</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/apache-software-foundation</link>
+	<description><![CDATA[The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field.]]></description>
+	<author>chkche1</author>
+	<pubDate>Wed, 23 Jun 2010 08:51:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/apache-software-foundation</guid>
+</item>
+<item>
+	<title>WfMC (Workflow Managment Coalition)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/wfmc</link>
+	<description><![CDATA[<p>The Workflow Management Coalition (WfMC) is a global organization of adopters, developers, consultants, analysts, as well as university and research groups engaged in workflow and BPM.  The WfMC creates and contributes to process related standards, educates the market on related issues, and is the only standards organization that concentrates purely on process.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Fri, 02 Feb 2007 14:55:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/wfmc</guid>
+</item>
+<item>
+	<title>Bitpipe</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/bitpipe</link>
+	<description><![CDATA[<p>Bitpipe.com is the enterprise IT professional's guide to information technology resources.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 14:57:32 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/bitpipe</guid>
+</item>
+<item>
+	<title>OMG (Object Management Group)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/omg-object-management-group</link>
+	<description><![CDATA[<p>Object Management Group (OMG) is a consortium, originally aimed at setting standards for distributed object-oriented systems, and is now focused on modeling (programs, systems and business processes) and model-based standards.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 14:56:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/omg-object-management-group</guid>
+</item>
+<item>
+	<title>OpenSymphony</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</link>
+	<description><![CDATA[<p>OpenSymphony is a Java open source project (license) designed to provide application developers with a suite of components for rapid development of enterprise class Java applications. These components are loosely coupled, allowing the application developer to use one or more of them in a single application (along with other 3rd party or custom components).</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 06:53:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</guid>
+</item>
+<item>
+	<title>OW2</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</link>
+	<description><![CDATA[<p>OW2 is a global open-source software community which goal is the development of open-source distributed middleware, in the form of flexible and adaptable components. These components range from specific software frameworks and protocols to integrated platforms. OW2 developments follow a component-based approach.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 06:53:19 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</guid>
+</item>
+<item>
+	<title>JBoss</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</link>
+	<description><![CDATA[<p>JBoss , by Red Hat, is the leader in enterprise-class open source middleware. JBoss Enterprise Middleware is comprised of certified, supported platform and framework distributions that are based on JBoss Community projects. </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 06:52:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/General-Info/</guid>
+</item>
+</channel>
+</rss>

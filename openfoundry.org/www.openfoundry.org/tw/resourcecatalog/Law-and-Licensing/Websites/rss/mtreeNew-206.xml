@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 網站</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:12:48 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Neolex Open Source Audits</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/neolex-open-source-audits</link>
+	<description><![CDATA[<p>
+<p>Neolex Open Source Audit service are offered by the Nordic law firm <a href="https://www.neolex.fi/" target="_blank">Neolex AB</a> (hereinafter Neolex) to minimize the IPR risk associated with the use of open source components.</p>
+<p>The above-mentioned audit services include but not limited to, (1) analyze the source code and licensing of any open source components , and (2) provide a report on the component's IPR risk and the information needed to comply with the component's licensing.</p>
+<p>Each audit report has a risk rating (green, yellow, red). Green means the audit report did not reveal any significant risks; yellow means the audit report revealed potential risks; red means the audit report revealed significant risks. All audit reports are available for free under a Creative Commons “Attribution-ShareAlike” 3.0 unported License. The open source licensing audits database is available <a href="https://www.neolex-opensource.com/open-source-licensing-audits-d/" target="_blank">here</a>.</p>
+<p>Neolex's lawyers conduct open source audits by running the source code of an open source program through a tool, called <a href="https://fossology.org/" target="_blank">Fossology</a>, to identify copyright and license references applicable to the program. Then they review the licenses to identify any potential conflict and prepare guidelines for complying with all licenses applicable to the program.</p>
+<p>Neolex provides free audit service for non-profit open source projects. If you wish to check your non-profit open source project's licensing compliance status, you can request a free audit. The contact information is available <a href="https://www.neolex-opensource.com/contact-us/" target="_blank">here</a>.</p>
+<p>References:<a href="https://www.neolex-opensource.com" target="_blank">https://www.neolex-opensource.com</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 12 Apr 2011 17:56:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/neolex-open-source-audits</guid>
+</item>
+<item>
+	<title>CC (Creative Commons)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</link>
+	<description><![CDATA[<p>Creative Commons (CC) is a non-profit organization, founded in 2001. Inspired in part by the Free Software Foundation&rsquo;s GNU GPL, CC released its first set of <u><a href="https://creativecommons.org/about/licenses/" target="_blank">copyright licenses</a></u> for free to the public in December 2002. The licenses have been further improved, and ported to over 50 <u><a href="https://creativecommons.org/international" target="_blank">international jurisdictions</a></u>. </p>
+<p><u><a href="https://wiki.creativecommons.org/FFAQ" target="_blank">Abbreviated FAQ</a></u> is provided. If you don't find the answer to your question there, please see <u><a href="https://wiki.creativecommons.org/Frequently_Asked_Questions" target="_blank">the full FAQ</a></u>.</p>
+<p>If you care about CC and want to stay up to date with current CC happenings across the globe, you can <u><a href="https://support.creativecommons.org/civicrm/mailing/subscribe?reset=1&amp;gid=121" target="_blank">subscribe CC Newsletter</a></u> or check out the <u><a href="https://wiki.creativecommons.org/CCNewsletter" target="_blank">archive</a></u> of past CC newsletters.</p>
+<p>So far, CC has two programs, <u><a href="https://sciencecommons.org/" target="_blank">Science Commons</a></u> and <u><a href="https://learn.creativecommons.org/" target="_blank">ccLearn</a></u>. Science Commons was launched in 2005. It designs strategies and tools for faster, more efficient web-enabled scientific research. ccLearn is a division of Creative Commons, launched in 2007 and dedicated to realizing the full potential of the internet to support open learning and open educational resources.</p>
+<p>（The above information is extracted from the official website of CC at <u><a href="https://creativecommons.org/" target="_blank">https://creativecommons.org</a></u>. Please visit this site for more information.）</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Thu, 10 Dec 2009 07:47:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</guid>
+</item>
+<item>
+	<title> LMI (Linux Mark Institute)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</link>
+	<description><![CDATA[<p>In 1996, a third party attempted to take control of the Linux trademark for the purpose of selling the right to use it. The Linux Mark Institute (&quot;LMI&quot;) was formed in opposition to this attempt.</p>
+<p> Linus Torvalds has certain trademark rights to the Linux trademark. LMI was established and assigned rights by Mr. Torvalds to sublicense the use of the Linux trademark to individuals and entities. LMI&rsquo;s sublicense agreement is free, worldwise, non exclusive, perpetual and nontransferable. (Here is the term of <a href="https://www.linuxmark.org/linux_sublicense.php" target="_blank"><u>the Linux Sublicense Agreement</u></a>.) </p>
+<p>If you know of people, organizations or companies using the Linux mark as part of a trademark without a sublicense, or if you see references to Linux&reg; without the proper <a href="https://www.linuxmark.org/attribution.php" target="_blank"><u>attributions</u></a>, you may <a href="https://www.linuxmark.org/abuse.php" target="_blank"><u>notify LMI</u></a>. If you want to learn more about the Linux trademark and LMI&rsquo;s sublicense program, you can see the <a href="https://www.linuxmark.org/faq.php" target="_blank"><u>FAQ</u></a>.  </p>
+<p>（The above information is extracted from the official website of LMI at <a href="https://www.linuxmark.org/" target="_blank"><u>https://www.linuxmark.org/</u></a>. Please visit this site for more information.） </p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 09 Dec 2009 14:20:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</guid>
+</item>
+<item>
+	<title>IFOSS L. Rev. （The International Free and Open Source Software Law Review）</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</link>
+	<description><![CDATA[<p>The International Free and Open Source Software Law Review (IFOSS L. Rev.) is a collaborative legal publication aiming to increase knowledge and understanding among lawyers about Free and Open Source Software issues. Sections include case law reviews, full-length research articles, book reviews and 'tech watch' reports by non-lawyers.</p>
+<p> IFOSS L. Rev. is a peer reviewed biannual journal and is published by an independent Editorial Committee. The Editorial Committee of the Review is drawn from the membership of the European Legal Network. The network, facilitated by <u><a target="_blank" href="https://fsfe.org/projects/ftf/network.en.html">Free Software Foundation Europe (FSFE)</a></u> is the world's largest community of lawyers and licensing specialists in the field, containing over 200 specialists from Europe, North America, Asia and Australasia. </p>
+<p>IFOSSLR provides immediate open access to its content and is available printed and on-line. <u><a target="_blank" href="https://www.ifosslr.org/ifosslr/issue/current/showToc">Volume 1, Issue 1</a></u> is released in July, 2009. The Review itself receives financial support from the <u><a target="_blank" href="https://www.mozilla.org/">Mozilla foundation</a></u> and administrative support from the <u><a target="_blank" href="https://www.nlnet.nl/foundation/">NLNet Foundation</a></u>. </p>
+<p>（The above information is extracted from the official website of IFOSS L. Rev. at <u><a target="_blank" href="https://www.ifosslr.org/ifosslr/index">https://www.ifosslr.org/ifosslr/index</a></u>. Please visit this site for more information.）</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Thu, 22 Oct 2009 02:37:42 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</guid>
+</item>
+<item>
+	<title>Lessig.org</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</link>
+	<description><![CDATA[<p><u><a target="_blank" href="https://lessig.org/">Lawrence Lessig</a></u> is a Professor of Law at <u><a target="_blank" href="https://www.law.stanford.edu/">Stanford Law School</a></u> and founder of <u><a target="_blank" href="https://creativecommons.org/">Creative Commons</a></u>. Professor Lessig focused on law and technology, especially as it affects copyright. He represented web site operator <a target="_blank" href="https://www.eldritchpress.org/">Eric Eldred</a> in the ground-breaking case <u><a target="_blank" href="https://eldred.cc/">Eldred v. Ashcroft</a></u>, a challenge to the 1998 <u><a target="_blank" href="https://en.wikipedia.org/wiki/Sonny_Bono_Copyright_Term_Extension_Act">Sonny Bono Copyright Term Extension Act</a></u>. </p>
+<p> Professor Lessig is the author of &ldquo;<a target="_blank" href="https://www.bloomsburyacademic.com/remix.htm"><u>Remix-Making art and commerce thrive in the hybrid economy</u></a>&rdquo; (2008), <a target="_blank" href="https://codev2.cc/"><u>Code v2</u></a> (2007), <a target="_blank" href="https://www.free-culture.cc/">Free Culture</a> (2004), <a href="https://the-future-of-ideas.com/">The Future of Ideas</a> (2001) and Code and Other Laws of Cyberspace (1999). All of the above mentioned books are released under Creative Commons licenses. </p>
+<p>Professor Lessig lately announced the hibernation of his blog; however, you still can find lots of archive information here. </p>
+<p>In addition to blog, Professor Lessig&rsquo;s website provides <u><a target="_blank" href="https://lessig.org/content/columns/">Columns</a></u>, <a target="_blank" href="https://lessig.org/content/"><u>Articles</u></a>, even <a target="_blank" href="https://lessig.org/content/unpublished/"><u>Unpublished works</u></a> he wrote. </p>
+<p>(Much of the information here was extracted from the website <u><a target="_blank" href="https://lessig.org/">https://lessig.org/</a></u>. Please visit this site for more information.)</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Thu, 22 Oct 2009 02:35:34 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/</guid>
+</item>
+<item>
+	<title>FOSSology</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/fossology</link>
+	<description><![CDATA[<p>The FOSSology project started out as an internal development effort at Hewlett Packard Company (HP). As part of HP's own internal IT governance process, HP needed a tool that would quickly and accurately describe how a given open source project was licensed. Thus was born FOSSology &ndash; &ldquo;The study of FOSS.&rdquo; </p>
+<p>Currently, FOSSology provides a free license agent that scans and analyzes data for potential software licenses. You can find How To&rsquo;s (upload files for analysis, interpreting license results, ect.) and other FOSSology topics, such as FAQ on its <u><a target="_blank" href="https://fossology.org/user_documentation">User Documentation page</a></u>. </p>
+<p>Copyrights of the original FOSSology source code and all associated documentation are owned by HP. All of the FOSSology source code is licensed under the GNU GPL v. 2, except that libfossdb and libfossrepo libraries are licensed under the LGPLv2.1. FOSSology Project documentation is licensed under the GNU Free Documentation License v.1.2. </p>
+<p><u><a target="_blank" href="https://of.openfoundry.org/">OSSF</a></u> provides instant VDI image file for FOSSology license scan agent. If you are interested in this system, you can download it <u><a target="_blank" href="https://of.openfoundry.org/projects/1342">here</a></u>. </p>
+<p>Black Duck Software provides a similar tool, <u><a target="_blank" href="https://www.blackducksoftware.com/transact">Black Duck&trade; Transact</a></u>, which can quickly identify open source and other third party code within a software code base and their related licenses. </p>
+<p>(Much of the information here was extracted from the website <u><a target="_blank" href="https://fossology.org/">https://fossology.org/</a></u>. Please visit this site for more information.)</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 23 Dec 2008 15:55:15 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/fossology</guid>
+</item>
+</channel>
+</rss>

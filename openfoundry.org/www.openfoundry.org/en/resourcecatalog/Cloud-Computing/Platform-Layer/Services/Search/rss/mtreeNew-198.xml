@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Search</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:08 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Yahoo! Search BOSS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/yahoo-search-boss</link>
+	<description><![CDATA[<p>
+<p>Yahoo! Search BOSS (Build your Own Search Service) is a Yahoo! Developer Network initiative to provide an open search web services platform.</p>
+<p>Reference: <a href="https://developer.yahoo.com/search/boss/" target="_blank">https://developer.yahoo.com/search/boss/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 14:27:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/yahoo-search-boss</guid>
+</item>
+<item>
+	<title>Google Custom Search</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/google-custom-search</link>
+	<description><![CDATA[<p>Google Custom Search is a platform provided by Google that allows web developers to feature specialized information in web searches, refine and categorise queries and create customized search engines, based on Google Web Search.</p>
+<p>Reference: <a href="https://www.google.com/cse/" target="_blank">https://www.google.com/cse/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 14:27:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/google-custom-search</guid>
+</item>
+<item>
+	<title>Alexa</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/alexa</link>
+	<description><![CDATA[<p>
+<p>Alexa Internet, Inc. is a California based subsidiary company of Amazon.com that is known for its toolbar and website. Once installed, the toolbar collects data on browsing behavior which is transmitted to the website where it is stored and analyzed and is the basis for the company's web traffic reporting.</p>
+<p>Reference: <a href="https://www.alexa.com/" target="_blank">https://www.alexa.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 01 Mar 2010 14:26:13 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Services/Search/alexa</guid>
+</item>
+</channel>
+</rss>

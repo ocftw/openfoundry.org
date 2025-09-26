@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<feed xmlns="http://www.w3.org/2005/Atom"  xml:lang="en-gb">
+	<title type="text">OpenFoundry</title>
+	<subtitle type="text">OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</subtitle>
+	<link rel="alternate" type="text/html" href="https://www.openfoundry.org"/>
+	<id>https://www.openfoundry.org/component/content/category/502-subversion</id>
+	<updated>2025-09-24T06:55:22Z</updated>
+	<generator uri="http://joomla.org" version="1.5"></generator>
+<link rel="self" type="application/atom+xml" href="https://www.openfoundry.org/en/component/content/category/502-subversion?format=feed&amp;type=atom" />
+	<entry>
+		<title>前言</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/8104-introduction"/>
+		<published>2010-08-05T16:00:35Z</published>
+		<updated>2010-08-05T16:00:35Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/8104-introduction</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;span style=&quot;color: #666666; font-family: Verdana; font-size: 13px; line-height: 24px;&quot;&gt;
+&lt;p style=&quot;outline-width: 0px; outline-style: initial; outline-color: initial; font-size: 10pt; vertical-align: baseline; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; padding: 0px; margin: 0pt; border: 0px initial initial;&quot;&gt;這是一份版本控制系統的入門文件，適合完全沒有接觸過版本控制系統的讀者。&lt;/p&gt;
+&lt;p style=&quot;outline-width: 0px; outline-style: initial; outline-color: initial; font-size: 10pt; vertical-align: baseline; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; padding: 0px; margin: 0pt; border: 0px initial initial;&quot;&gt;我們先描述處理檔案時可能遇到的問題，並在情境中以 Subversion 系統為範例，介紹版本控制系統如何解決這些問題，讀者可以在自由軟體鑄造場-專案開發平台(OpenFoundry) 所提供的環境中實際演練。我們也提供了 Subversion 的快速導覽與參考資料，作為讀者進階學習的起點。&lt;/p&gt;
+&lt;/span&gt;</summary>
+		<content type="html">&lt;span style=&quot;color: #666666; font-family: Verdana; font-size: 13px; line-height: 24px;&quot;&gt;
+&lt;p style=&quot;outline-width: 0px; outline-style: initial; outline-color: initial; font-size: 10pt; vertical-align: baseline; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; padding: 0px; margin: 0pt; border: 0px initial initial;&quot;&gt;這是一份版本控制系統的入門文件，適合完全沒有接觸過版本控制系統的讀者。&lt;/p&gt;
+&lt;p style=&quot;outline-width: 0px; outline-style: initial; outline-color: initial; font-size: 10pt; vertical-align: baseline; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; padding: 0px; margin: 0pt; border: 0px initial initial;&quot;&gt;我們先描述處理檔案時可能遇到的問題，並在情境中以 Subversion 系統為範例，介紹版本控制系統如何解決這些問題，讀者可以在自由軟體鑄造場-專案開發平台(OpenFoundry) 所提供的環境中實際演練。我們也提供了 Subversion 的快速導覽與參考資料，作為讀者進階學習的起點。&lt;/p&gt;
+&lt;/span&gt;</content>
+	</entry>
+	<entry>
+		<title>6.SVN命令一覽</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2380-6svn"/>
+		<published>2010-06-11T15:19:28Z</published>
+		<updated>2010-06-11T15:19:28Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2380-6svn</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+	</entry>
+	<entry>
+		<title>5.Subversion book總覽</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2379-5subversion-book"/>
+		<published>2010-06-11T15:04:15Z</published>
+		<updated>2010-06-11T15:04:15Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2379-5subversion-book</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;前面的教學主要講的內容在於Subversion Book前三章的內容，為了將來深入運用時能夠有些想法，在這裡說明第三章以後的基本概念！&lt;/p&gt;
+&lt;p&gt;而詳細的內容應閱讀Subversion book文件，如下:&lt;/p&gt;
+&lt;p&gt;Subversion book各語言列表 https://svnbook.red-bean.com/nightly/&lt;/p&gt;
+&lt;p&gt;Subversion book繁體中文版 https://svn.stu.edu.tw/svnbook/&lt;/p&gt;
+&lt;p&gt;依Browser的語言自動選擇對應語言的文件 https://svnbook.red-bean.com/&lt;/p&gt;
+</summary>
+		<content type="html">&lt;p&gt;前面的教學主要講的內容在於Subversion Book前三章的內容，為了將來深入運用時能夠有些想法，在這裡說明第三章以後的基本概念！&lt;/p&gt;
+&lt;p&gt;而詳細的內容應閱讀Subversion book文件，如下:&lt;/p&gt;
+&lt;p&gt;Subversion book各語言列表 https://svnbook.red-bean.com/nightly/&lt;/p&gt;
+&lt;p&gt;Subversion book繁體中文版 https://svn.stu.edu.tw/svnbook/&lt;/p&gt;
+&lt;p&gt;依Browser的語言自動選擇對應語言的文件 https://svnbook.red-bean.com/&lt;/p&gt;
+</content>
+	</entry>
+	<entry>
+		<title>4.鑄造場提供的版本控制服務</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2375-4"/>
+		<published>2010-06-11T11:29:34Z</published>
+		<updated>2010-06-11T11:29:34Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2375-4</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;hr /&gt;
+&lt;h3&gt;&lt;span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;名詞縮寫&lt;/span&gt; &lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt; 版本控制系統version control system以下稱&quot;vcs&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://subversion.tigris.org/&quot; title=&quot;Subversion&quot;&gt;Subversion&lt;/a&gt; ，一種opensource版本控制軟體，以下稱&quot;svn&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://www.nongnu.org/cvs/&quot; title=&quot;Concurrent Versions System&quot;&gt;Concurrent     Versions System&lt;/a&gt; ，一種opensource版本控制軟體，以下稱&quot;cvs&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://rt.openfoundry.org/&quot; title=&quot;OSSF OpenFoundry&quot;&gt;OSSF     OpenFoundry&lt;/a&gt; 鑄造場專案開發平台以下稱&quot;鑄造場&quot; &lt;/li&gt;
+&lt;li&gt; 鑄造廠專案開發平台使用者以下稱&quot;使用者&quot; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;選擇版本控制系統&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;鑄造場所提供的版本控制系統有Subversion 及 CVS，而在選擇版本控制時有以下五種選項：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Subversion(讀寫)&lt;/li&gt;
+使用站內提供的svn(subversion)版本控制系統，專案則提供viewvc(專案的版本控制頁面)的web瀏覽。
+&lt;li&gt;CVS(讀寫)&lt;/li&gt;
+使用站內提供的cvs(Concurrent Versions System)版本控制系統，專案則提供viewvc(專案的版本控制頁面)的web瀏覽。
+&lt;li&gt;站外(讀寫) =&amp;gt; Subversion(唯讀)&lt;/li&gt;
+使用站外版本庫，並複製到站內版本庫(唯讀)提供專案viewvc(專案的版本控制頁面)的web瀏覽，請輸入「站外版本庫」欄位的版本庫網址。&lt;br /&gt;ps.目前停止複製到站內，因此和使用「站外版本庫」選項是相同的。
+&lt;li&gt;站外版本庫&lt;/li&gt;
+使用站外版本庫，並請輸入「站外版本庫」欄位的版本庫網址。
+&lt;li&gt;（請選擇）&lt;/li&gt;
+不使用版本庫的意思&lt;/ol&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;透過命令列存取SVN檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;鑄造場所使用的svn版本為1.4，svn的安裝方式請參閱svn官方網站。使用者有兩種方式連結svn檔案庫，一種為 http，此種方式可供讀取及寫入(read &amp;amp; write)。 也可匿名讀取(anonymous read)，不需要帳號密碼，連結網址: https://svn.openfoundry.org/[專案名稱]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 從鑄造場取出檔案至工作複本&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，'/home/checkout' 為範例文字，使用者可自行變更&lt;br /&gt;我們可以透過 svn指令 checkout (簡寫: co ) 取出專案的工作複本&lt;br /&gt;指令: svn co https://svn.openfoundry.org/[專案名稱] /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 檢視鑄造場svn檔案庫&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，[路徑] 為範例文字，使用者可自行變更&lt;br /&gt;透過svn指令 list ( 簡寫: ls ) 檢視鑄造場svn檔案庫[路徑]下的內容。&lt;br /&gt;指令: svn list https://svn.openfoundry.org/[專案名稱]/[路徑]&lt;br /&gt;另一種為https，此種方式讀取寫入皆可(read &amp;amp; write)，連結網址: https://svn.openfoundry.org/[專案名稱]。&lt;br /&gt;注意：寫入檔案庫需要輸入帳號密碼，此組帳號密碼與鑄造場相同。變更密碼需稍待5分鍾後才會生效。&lt;br /&gt;注意：在此建議使用者以https的方式存取svn檔案庫，https是經過加密的連線，安全性較http高。原來使用http的工作複本也可以使用relocate指令重新指定檔案庫位址到https上，詳見FAQ。&lt;br /&gt;注意：在此之前請先匯入中研院資訊所的憑證，以免出現警示訊息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 提交工作複本到鑄造場svn檔案庫裡&lt;/strong&gt;&lt;br /&gt;提交svn工作複本不需要給額外的連結網址，svn會自動使用取出的時候的連結。&lt;br /&gt;我們可以透過 svn指令 commit (簡寫: ci ) 把工作複本的更動寫進鑄造場svn檔案庫&lt;br /&gt;以下 '/home/checkout'為範例文字，使用者可自行變更&lt;br /&gt;加上 --username [帳號] 指定帳號，--password [密碼] 指定密碼&lt;br /&gt;指令：svn ci /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 傳送未納入版本控制的專案到鑄造場svn&lt;/strong&gt;&lt;br /&gt;透過svn指令 import 檢視鑄造場svn儲存槽&lt;br /&gt;以下 [專案名稱]，[路徑]，'/home/myprog' 為範例文字，使用者可自行變更&lt;br /&gt;加上 --username [帳號] 指定帳號，--password [密碼] 指定密碼&lt;br /&gt;指令：svn import /home/myprog https://svn.openfoundry.org/[專案名稱]/[路徑]&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;簡介SVN視窗化應用程式- TortoiseSVN&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;安裝TortoiseSVN詳細步驟請參閱官方網站。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:取出工作複本&lt;/strong&gt;&lt;br /&gt;操作01:在空白目錄下叫出右鍵選單，選&quot;SVN Checkout...&quot;&lt;/p&gt;
+&lt;p&gt;&lt;input src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout1.png&quot; type=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作02:在&quot;URL of  respository&quot;欄打上連結路徑&quot;https://svn.openfoundry.org/testproject04&quot;，其中testproject04為範例專案。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:完成，看的到取出的版本號&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:新增檔案至工作複本&lt;/strong&gt;&lt;br /&gt;操作01:在欲加入版本控制的檔案上叫出右鍵選單，選取&quot;TortoiseSVN&quot;-&amp;gt;&quot;Add&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add1.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作02:勾選要加入的檔案或目錄後，按下&quot;OK&quot;。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:完成，顯示加入了哪些檔案。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:把對工作複本所作的變更寫回檔案庫&lt;/strong&gt;&lt;br /&gt;操作01:在工作複本的目錄中叫出右鍵選單，選&quot;SVN Commit...&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit1.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入版本更動的明細(可留白)，按下&quot;OK&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:因為是寫入，需要填入帳號密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作04:完成，顯示改了哪些檔案及目前的版本號。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit4.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;透過命令列存取CVS檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;使用者連結cvs僅提供ssh連線方式，此種方式讀取寫入皆可(read and write)，也可匿名讀取(anonymous read)，鑄造場cvs檔案庫的匿名帳號: &quot;cvs&quot;。&lt;br /&gt;基本指令: cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs [cvs指令]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 從鑄造場取出檔案至工作複本&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，'/home/checkout' 為範例文字，使用者可自行變更&lt;br /&gt;我們可以透過cvs指令 checkout (簡寫: co，get ) 取出專案的工作複本&lt;br /&gt;注意: 帳號&quot;cvs&quot;為匿名帳號。&lt;br /&gt;指令: cvs -d :ext:cvs@cvs.openfoundry.org:/cvs co [專案名稱]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 檢視鑄造場cvs檔案庫&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，[路徑] 為範例文字，使用者可自行變更&lt;br /&gt;透過cvs指令 list ( 簡寫: ls ) 檢視鑄造場cvs檔案庫&lt;br /&gt;注意: 帳號&quot;cvs&quot;為匿名帳號。&lt;br /&gt;指令: cvs -d :ext:cvs@cvs.openfoundry.org:/cvs ls [專案名稱]/[路徑]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 提交工作複本到鑄造場cvs檔案庫裡&lt;/strong&gt;&lt;br /&gt;提交cvs工作複本不需要給額外的連結網址，cvs會自動使用取出的時候的連結。&lt;br /&gt;我們可以透過 cvs指令 commit (簡寫: ci ) 把工作複本的更動寫進鑄造場cvs檔案庫&lt;br /&gt;指令: cvs ci /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 傳送未納入版本控制的專案到鑄造場&lt;/strong&gt;&lt;br /&gt;透過cvs指令 import 檢視鑄造場svn檔案庫&lt;br /&gt;指令:  cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs import [專案名稱]/[路徑]&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;簡介CVS視窗化應用程式- WinCVS&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;安裝WinCVS的詳細步驟請參閱官方網站 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:取出工作複本&lt;/strong&gt;&lt;br /&gt;操作01:選取選單&quot;Remote&quot;-&amp;gt;&quot;Checkout module...&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:在&quot;Module name(s) and path on the server&quot;欄填入專案名稱，在此為測試專案testcvs，接著勾選&quot;CVSROOT&quot;，填入&quot;:extssh:kaworu@cvs.openfoundry.org:/cvs&quot;，請&quot;kaworu&quot;將換成您的帳號名稱。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:輸入密碼。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作04:完成，取出工作複本。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 範例:新增檔案至工作複本&lt;/strong&gt;&lt;br /&gt;操作01:先左鍵選擇欲加入的檔案，接著按下工具列按鈕上的&quot;Add selected&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:新增完成，顯示檔案版本號０。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;範例:把對工作複本所作的變更寫回檔案庫&lt;/strong&gt;&lt;br /&gt;操作01:左鍵選取欲寫入的檔案，按下工具列的按鈕&quot;Commit selected&quot;。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入版本變更的明細(可以空白)，按下&quot;確定&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:輸入密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作04:成功，顯示版本號1.1。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;使用VIEWVC瀏覽鑄造場檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;使用者欲使用viewvc瀏覽各個版本，可透過網址 https://viewvc.of.openfoundry.org/viewvc&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 瀏覽svn檔案庫&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; &lt;/strong&gt;操作:使用瀏覽器開啟網址&quot;https://viewvc.of.openfoundry.org/viewvc&quot;，接著在&quot;Repository&quot;中選擇欲瀏覽的專案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作: 在&quot;Sticky Revision&quot;可輸入版本號。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 瀏覽cvs檔案庫&lt;/strong&gt;&lt;br /&gt;操作:使用瀏覽器開啟網址&quot;https://viewvc.of.oopenfoundry.org/viewvc&quot;，並在&quot;Repository&quot;欄選&quot;cvs&quot;，再選擇欲瀏覽的專案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;可在&quot;Sticky Tag&quot;中選擇版本號。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt; FAQ&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Q1:&lt;br /&gt;我使用的是svn檔案庫，我原本專案是從https://...的連結抓出來，如果我想改用https://...的連結比較安全，我該怎麼操作呢?&lt;br /&gt;A1:&lt;br /&gt;假設你想將連結從https://svn.openfoundry.org/alert，搬到https://svn.openfoudnry.org/alert，那麼請在你的工作複本的目錄底下打: svn switch --relocate FROM TO 。其中的FROM即是https://svn.openfoundry.org/alert，TO即是https://svn.openfoudnry.org/alert. 你可以試著打svn info可以看到工作複本的路徑已經變更。 更詳細的說明請參考指令svn help switch。&lt;br /&gt;Q2:&lt;br /&gt;我已經在鑄造場網頁上更改了密碼，為什麼在登入svn/cvs檔案庫時卻還是使用舊密碼呢?&lt;br /&gt;A2:&lt;br /&gt;在鑄造場網頁上更改密碼之後，請稍等5分鍾，待資料庫更新完畢，即可使用新密碼。&lt;br /&gt;Q3:&lt;br /&gt;我想將鑄造場上的檔案庫搬到其他地方，或是從其他地方搬版本資料到鑄造場，我該怎麼做呢?&lt;br /&gt;A3:&lt;br /&gt;如果你是想要匯入或是匯出尚未納入版本資訊的檔案的話，請參閱Q4。 如果你是想要將檔案連同版本資訊一併搬動的話，建議的做法是將檔案庫轉存成文字檔，再將此文字檔存回其他檔案庫即可。 真的有需要的話，請聯絡鑄造場的維護人員，我們會為您操作。&lt;br /&gt;Q4:&lt;br /&gt;我原本有在自己的電腦裡寫程式，想要試試鑄造場提供的檔案庫，我該怎麼將程式放入檔案庫裡?&lt;br /&gt;A4:&lt;br /&gt;以svn 為例，假設你的程式放在/myprog/裡面，尚未納入版本控制，想要將目錄下所有檔案都放入檔案庫，指令: svn import /myprog https://svn.openfoundry.org/[專案名稱]，但是要記住，還要從檔案庫裡再取出一份有版本資訊的工作複本，你對工作複本所做 的變更才會有紀錄留下。&lt;br /&gt;而cvs為例，指令為: cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs import /myprog/&lt;br /&gt;Q5:&lt;br /&gt;請問鑄造場有上的資料有備份嗎?&lt;br /&gt;A5:&lt;br /&gt;有的，鑄造場系統的維護時間是UTC+8時區的3:00~4:00am，會備份當天的資料差異，那段時間之內的鑄造場系統操作會稍微慢一點。&lt;/p&gt;</summary>
+		<content type="html">&lt;hr /&gt;
+&lt;h3&gt;&lt;span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;名詞縮寫&lt;/span&gt; &lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt; 版本控制系統version control system以下稱&quot;vcs&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://subversion.tigris.org/&quot; title=&quot;Subversion&quot;&gt;Subversion&lt;/a&gt; ，一種opensource版本控制軟體，以下稱&quot;svn&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://www.nongnu.org/cvs/&quot; title=&quot;Concurrent Versions System&quot;&gt;Concurrent     Versions System&lt;/a&gt; ，一種opensource版本控制軟體，以下稱&quot;cvs&quot; &lt;/li&gt;
+&lt;li&gt; &lt;a href=&quot;https://rt.openfoundry.org/&quot; title=&quot;OSSF OpenFoundry&quot;&gt;OSSF     OpenFoundry&lt;/a&gt; 鑄造場專案開發平台以下稱&quot;鑄造場&quot; &lt;/li&gt;
+&lt;li&gt; 鑄造廠專案開發平台使用者以下稱&quot;使用者&quot; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;選擇版本控制系統&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;鑄造場所提供的版本控制系統有Subversion 及 CVS，而在選擇版本控制時有以下五種選項：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Subversion(讀寫)&lt;/li&gt;
+使用站內提供的svn(subversion)版本控制系統，專案則提供viewvc(專案的版本控制頁面)的web瀏覽。
+&lt;li&gt;CVS(讀寫)&lt;/li&gt;
+使用站內提供的cvs(Concurrent Versions System)版本控制系統，專案則提供viewvc(專案的版本控制頁面)的web瀏覽。
+&lt;li&gt;站外(讀寫) =&amp;gt; Subversion(唯讀)&lt;/li&gt;
+使用站外版本庫，並複製到站內版本庫(唯讀)提供專案viewvc(專案的版本控制頁面)的web瀏覽，請輸入「站外版本庫」欄位的版本庫網址。&lt;br /&gt;ps.目前停止複製到站內，因此和使用「站外版本庫」選項是相同的。
+&lt;li&gt;站外版本庫&lt;/li&gt;
+使用站外版本庫，並請輸入「站外版本庫」欄位的版本庫網址。
+&lt;li&gt;（請選擇）&lt;/li&gt;
+不使用版本庫的意思&lt;/ol&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;透過命令列存取SVN檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;鑄造場所使用的svn版本為1.4，svn的安裝方式請參閱svn官方網站。使用者有兩種方式連結svn檔案庫，一種為 http，此種方式可供讀取及寫入(read &amp;amp; write)。 也可匿名讀取(anonymous read)，不需要帳號密碼，連結網址: https://svn.openfoundry.org/[專案名稱]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 從鑄造場取出檔案至工作複本&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，'/home/checkout' 為範例文字，使用者可自行變更&lt;br /&gt;我們可以透過 svn指令 checkout (簡寫: co ) 取出專案的工作複本&lt;br /&gt;指令: svn co https://svn.openfoundry.org/[專案名稱] /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 檢視鑄造場svn檔案庫&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，[路徑] 為範例文字，使用者可自行變更&lt;br /&gt;透過svn指令 list ( 簡寫: ls ) 檢視鑄造場svn檔案庫[路徑]下的內容。&lt;br /&gt;指令: svn list https://svn.openfoundry.org/[專案名稱]/[路徑]&lt;br /&gt;另一種為https，此種方式讀取寫入皆可(read &amp;amp; write)，連結網址: https://svn.openfoundry.org/[專案名稱]。&lt;br /&gt;注意：寫入檔案庫需要輸入帳號密碼，此組帳號密碼與鑄造場相同。變更密碼需稍待5分鍾後才會生效。&lt;br /&gt;注意：在此建議使用者以https的方式存取svn檔案庫，https是經過加密的連線，安全性較http高。原來使用http的工作複本也可以使用relocate指令重新指定檔案庫位址到https上，詳見FAQ。&lt;br /&gt;注意：在此之前請先匯入中研院資訊所的憑證，以免出現警示訊息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 提交工作複本到鑄造場svn檔案庫裡&lt;/strong&gt;&lt;br /&gt;提交svn工作複本不需要給額外的連結網址，svn會自動使用取出的時候的連結。&lt;br /&gt;我們可以透過 svn指令 commit (簡寫: ci ) 把工作複本的更動寫進鑄造場svn檔案庫&lt;br /&gt;以下 '/home/checkout'為範例文字，使用者可自行變更&lt;br /&gt;加上 --username [帳號] 指定帳號，--password [密碼] 指定密碼&lt;br /&gt;指令：svn ci /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 傳送未納入版本控制的專案到鑄造場svn&lt;/strong&gt;&lt;br /&gt;透過svn指令 import 檢視鑄造場svn儲存槽&lt;br /&gt;以下 [專案名稱]，[路徑]，'/home/myprog' 為範例文字，使用者可自行變更&lt;br /&gt;加上 --username [帳號] 指定帳號，--password [密碼] 指定密碼&lt;br /&gt;指令：svn import /home/myprog https://svn.openfoundry.org/[專案名稱]/[路徑]&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;簡介SVN視窗化應用程式- TortoiseSVN&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;安裝TortoiseSVN詳細步驟請參閱官方網站。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:取出工作複本&lt;/strong&gt;&lt;br /&gt;操作01:在空白目錄下叫出右鍵選單，選&quot;SVN Checkout...&quot;&lt;/p&gt;
+&lt;p&gt;&lt;input src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout1.png&quot; type=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作02:在&quot;URL of  respository&quot;欄打上連結路徑&quot;https://svn.openfoundry.org/testproject04&quot;，其中testproject04為範例專案。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:完成，看的到取出的版本號&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_checkout3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:新增檔案至工作複本&lt;/strong&gt;&lt;br /&gt;操作01:在欲加入版本控制的檔案上叫出右鍵選單，選取&quot;TortoiseSVN&quot;-&amp;gt;&quot;Add&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add1.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作02:勾選要加入的檔案或目錄後，按下&quot;OK&quot;。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:完成，顯示加入了哪些檔案。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_add3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:把對工作複本所作的變更寫回檔案庫&lt;/strong&gt;&lt;br /&gt;操作01:在工作複本的目錄中叫出右鍵選單，選&quot;SVN Commit...&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit1.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入版本更動的明細(可留白)，按下&quot;OK&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit2.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:因為是寫入，需要填入帳號密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit3.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作04:完成，顯示改了哪些檔案及目前的版本號。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/tortoisesvn_commit4.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;透過命令列存取CVS檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;使用者連結cvs僅提供ssh連線方式，此種方式讀取寫入皆可(read and write)，也可匿名讀取(anonymous read)，鑄造場cvs檔案庫的匿名帳號: &quot;cvs&quot;。&lt;br /&gt;基本指令: cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs [cvs指令]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 從鑄造場取出檔案至工作複本&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，'/home/checkout' 為範例文字，使用者可自行變更&lt;br /&gt;我們可以透過cvs指令 checkout (簡寫: co，get ) 取出專案的工作複本&lt;br /&gt;注意: 帳號&quot;cvs&quot;為匿名帳號。&lt;br /&gt;指令: cvs -d :ext:cvs@cvs.openfoundry.org:/cvs co [專案名稱]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 檢視鑄造場cvs檔案庫&lt;/strong&gt;&lt;br /&gt;以下 [專案名稱]，[路徑] 為範例文字，使用者可自行變更&lt;br /&gt;透過cvs指令 list ( 簡寫: ls ) 檢視鑄造場cvs檔案庫&lt;br /&gt;注意: 帳號&quot;cvs&quot;為匿名帳號。&lt;br /&gt;指令: cvs -d :ext:cvs@cvs.openfoundry.org:/cvs ls [專案名稱]/[路徑]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 提交工作複本到鑄造場cvs檔案庫裡&lt;/strong&gt;&lt;br /&gt;提交cvs工作複本不需要給額外的連結網址，cvs會自動使用取出的時候的連結。&lt;br /&gt;我們可以透過 cvs指令 commit (簡寫: ci ) 把工作複本的更動寫進鑄造場cvs檔案庫&lt;br /&gt;指令: cvs ci /home/checkout&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 傳送未納入版本控制的專案到鑄造場&lt;/strong&gt;&lt;br /&gt;透過cvs指令 import 檢視鑄造場svn檔案庫&lt;br /&gt;指令:  cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs import [專案名稱]/[路徑]&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;簡介CVS視窗化應用程式- WinCVS&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;安裝WinCVS的詳細步驟請參閱官方網站 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例:取出工作複本&lt;/strong&gt;&lt;br /&gt;操作01:選取選單&quot;Remote&quot;-&amp;gt;&quot;Checkout module...&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:在&quot;Module name(s) and path on the server&quot;欄填入專案名稱，在此為測試專案testcvs，接著勾選&quot;CVSROOT&quot;，填入&quot;:extssh:kaworu@cvs.openfoundry.org:/cvs&quot;，請&quot;kaworu&quot;將換成您的帳號名稱。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;461&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作03:輸入密碼。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;操作04:完成，取出工作複本。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 範例:新增檔案至工作複本&lt;/strong&gt;&lt;br /&gt;操作01:先左鍵選擇欲加入的檔案，接著按下工具列按鈕上的&quot;Add selected&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;460&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:新增完成，顯示檔案版本號０。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_add03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;範例:把對工作複本所作的變更寫回檔案庫&lt;/strong&gt;&lt;br /&gt;操作01:左鍵選取欲寫入的檔案，按下工具列的按鈕&quot;Commit selected&quot;。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作02:輸入版本變更的明細(可以空白)，按下&quot;確定&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作03:輸入密碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作04:成功，顯示版本號1.1。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/wincvs_commit04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;使用VIEWVC瀏覽鑄造場檔案庫&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;使用者欲使用viewvc瀏覽各個版本，可透過網址 https://viewvc.of.openfoundry.org/viewvc&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 瀏覽svn檔案庫&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; &lt;/strong&gt;操作:使用瀏覽器開啟網址&quot;https://viewvc.of.openfoundry.org/viewvc&quot;，接著在&quot;Repository&quot;中選擇欲瀏覽的專案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc01.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;操作: 在&quot;Sticky Revision&quot;可輸入版本號。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc02.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;範例: 瀏覽cvs檔案庫&lt;/strong&gt;&lt;br /&gt;操作:使用瀏覽器開啟網址&quot;https://viewvc.of.oopenfoundry.org/viewvc&quot;，並在&quot;Repository&quot;欄選&quot;cvs&quot;，再選擇欲瀏覽的專案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc03.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;462&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;可在&quot;Sticky Tag&quot;中選擇版本號。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.openfoundry.org/images/freashmen/svn/view_vc04.png&quot; border=&quot;0&quot; width=&quot;600&quot; height=&quot;463&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt; FAQ&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Q1:&lt;br /&gt;我使用的是svn檔案庫，我原本專案是從https://...的連結抓出來，如果我想改用https://...的連結比較安全，我該怎麼操作呢?&lt;br /&gt;A1:&lt;br /&gt;假設你想將連結從https://svn.openfoundry.org/alert，搬到https://svn.openfoudnry.org/alert，那麼請在你的工作複本的目錄底下打: svn switch --relocate FROM TO 。其中的FROM即是https://svn.openfoundry.org/alert，TO即是https://svn.openfoudnry.org/alert. 你可以試著打svn info可以看到工作複本的路徑已經變更。 更詳細的說明請參考指令svn help switch。&lt;br /&gt;Q2:&lt;br /&gt;我已經在鑄造場網頁上更改了密碼，為什麼在登入svn/cvs檔案庫時卻還是使用舊密碼呢?&lt;br /&gt;A2:&lt;br /&gt;在鑄造場網頁上更改密碼之後，請稍等5分鍾，待資料庫更新完畢，即可使用新密碼。&lt;br /&gt;Q3:&lt;br /&gt;我想將鑄造場上的檔案庫搬到其他地方，或是從其他地方搬版本資料到鑄造場，我該怎麼做呢?&lt;br /&gt;A3:&lt;br /&gt;如果你是想要匯入或是匯出尚未納入版本資訊的檔案的話，請參閱Q4。 如果你是想要將檔案連同版本資訊一併搬動的話，建議的做法是將檔案庫轉存成文字檔，再將此文字檔存回其他檔案庫即可。 真的有需要的話，請聯絡鑄造場的維護人員，我們會為您操作。&lt;br /&gt;Q4:&lt;br /&gt;我原本有在自己的電腦裡寫程式，想要試試鑄造場提供的檔案庫，我該怎麼將程式放入檔案庫裡?&lt;br /&gt;A4:&lt;br /&gt;以svn 為例，假設你的程式放在/myprog/裡面，尚未納入版本控制，想要將目錄下所有檔案都放入檔案庫，指令: svn import /myprog https://svn.openfoundry.org/[專案名稱]，但是要記住，還要從檔案庫裡再取出一份有版本資訊的工作複本，你對工作複本所做 的變更才會有紀錄留下。&lt;br /&gt;而cvs為例，指令為: cvs -d :ext:[帳號]@cvs.openfoundry.org:/cvs import /myprog/&lt;br /&gt;Q5:&lt;br /&gt;請問鑄造場有上的資料有備份嗎?&lt;br /&gt;A5:&lt;br /&gt;有的，鑄造場系統的維護時間是UTC+8時區的3:00~4:00am，會備份當天的資料差異，那段時間之內的鑄造場系統操作會稍微慢一點。&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>3.SVN 情境導覽</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2360"/>
+		<published>2010-05-28T16:25:37Z</published>
+		<updated>2010-05-28T16:25:37Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2360</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">市場上有一間名為歐奔的軟體公司，主要從事程式碼撰寫的工作，有一天，開始覺得團隊合作上有些問題，在版本控制上，容易做許多白工，因此專案經理史托&lt;br /&gt;曼(小史)決定將現有的專案交由 SVN 版本控制來做，看了手冊後，將原本未在版本控制下的程式法，利用 svn import 的方式匯入版本庫(repository)內。&lt;br /&gt;svn import file:///tmp/repos/test team_project</summary>
+		<content type="html">市場上有一間名為歐奔的軟體公司，主要從事程式碼撰寫的工作，有一天，開始覺得團隊合作上有些問題，在版本控制上，容易做許多白工，因此專案經理史托&lt;br /&gt;曼(小史)決定將現有的專案交由 SVN 版本控制來做，看了手冊後，將原本未在版本控制下的程式法，利用 svn import 的方式匯入版本庫(repository)內。&lt;br /&gt;svn import file:///tmp/repos/test team_project</content>
+	</entry>
+	<entry>
+		<title>2. 版本控制系統概述 -- 以 Subversion 為例</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2358"/>
+		<published>2010-05-28T15:58:04Z</published>
+		<updated>2010-05-28T15:58:04Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2358</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">&lt;p&gt;在自由軟體社群所用的的開發工具中，有非常多種不同的版本控制系統。自由軟體鑄造場目前提供了其中兩套最被廣為應用的系統：Subversion 與 CVS。以下我們將以較新且功能較完整的 Subversion 為例，介紹版本控制系統的一些基本觀念，並探討這樣的系統如何幫助我們解決問題。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;在自由軟體社群所用的的開發工具中，有非常多種不同的版本控制系統。自由軟體鑄造場目前提供了其中兩套最被廣為應用的系統：Subversion 與 CVS。以下我們將以較新且功能較完整的 Subversion 為例，介紹版本控制系統的一些基本觀念，並探討這樣的系統如何幫助我們解決問題。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+	</entry>
+	<entry>
+		<title>1.版本控制系統想要解決的問題</title>
+		<link rel="alternate" type="text/html" href="https://www.openfoundry.org/en/component/content/article/502-subversion/2357"/>
+		<published>2010-05-28T15:34:48Z</published>
+		<updated>2010-05-28T15:34:48Z</updated>
+		<id>https://www.openfoundry.org/en/component/content/article/502-subversion/2357</id>
+		<author>
+			<name>webmaster</name>
+		<email>contact@openfoundry.org</email>
+		</author>
+		<summary type="html">每個人的電腦裡，都有成千上萬個檔案。&lt;br /&gt;不論是心得筆記，工作成果還是照片音樂，最常見的保存方式就是檔案。&lt;br /&gt;在關機與開機之間想要保留先前的內容，第一個想到的也是存成檔案。&lt;br /&gt;然而，&amp;quot;如何處理檔案&amp;quot; 這個問題常比我們直覺所想的複雜許多。&lt;br /&gt;以下我們將從 &amp;quot;一個人/一台電腦/一個檔案&amp;quot; 開始逐步介紹到 &amp;quot;多個人/多台電腦/多台檔案&amp;quot;，&lt;br /&gt;在這些情境下對檔案處理有哪些需求，傳統的方法在試圖滿足這些需求時又留下了哪些問題，&lt;br /&gt;並在後面的章節中提出版本控制系統對這些需求與問題的解法。</summary>
+		<content type="html">每個人的電腦裡，都有成千上萬個檔案。&lt;br /&gt;不論是心得筆記，工作成果還是照片音樂，最常見的保存方式就是檔案。&lt;br /&gt;在關機與開機之間想要保留先前的內容，第一個想到的也是存成檔案。&lt;br /&gt;然而，&amp;quot;如何處理檔案&amp;quot; 這個問題常比我們直覺所想的複雜許多。&lt;br /&gt;以下我們將從 &amp;quot;一個人/一台電腦/一個檔案&amp;quot; 開始逐步介紹到 &amp;quot;多個人/多台電腦/多台檔案&amp;quot;，&lt;br /&gt;在這些情境下對檔案處理有哪些需求，傳統的方法在試圖滿足這些需求時又留下了哪些問題，&lt;br /&gt;並在後面的章節中提出版本控制系統對這些需求與問題的解法。</content>
+	</entry>
+</feed>

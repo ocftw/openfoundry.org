@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:10:21 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>NetBeans</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/netbeans</link>
+	<description><![CDATA[<p>
+<p>A free, open-source Integrated Development Environment for software developers. You get all the tools you need to create professional desktop, enterprise, web, and mobile applications with the Java platform, as well as C/C++, PHP, JavaScript, Groovy, and Ruby.</p>
+<p>Platform: Cross platform                      License:CDDL、GPL2</p>
+<p>Reference:<a href="https://netbeans.org/features/index.html" target="_blank">https://netbeans.org/features/index.html </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 13 Sep 2010 03:26:14 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/netbeans</guid>
+</item>
+<item>
+	<title>Geany</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/geany</link>
+	<description><![CDATA[<p>Geany is a small and lightweight Integrated Development Environment. It was developed to provide a small and fast IDE, which has only a few dependencies from other packages. Another goal was to be as independent as possible from a special Desktop Environment like KDE or GNOME - Geany only requires the GTK2 runtime libraries.</p>
+<p>Some basic features of Geany:</p>
+<p>Syntax highlighting</p>
+<p>Code folding</p>
+<p>Symbol name auto-completion</p>
+<p>Construct completion/snippets</p>
+<p>Auto-closing of XML and HTML tags</p>
+<p>Call tips</p>
+<p>Many supported filetypes including C, Java, PHP, HTML, Python, Perl, Pascal</p>
+<p>Symbol lists</p>
+<p>Code navigation</p>
+<p>Build system to compile and execute your code</p>
+<p>Simple project management</p>
+<p>Plugin interface</p>
+<p>Platform:Cross Plaform;         Licesne: GNU General Public Licence</p>
+<p>Reference:<a href="https://www.geany.org/Main/About" target="_blank">https://www.geany.org/Main/About</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 08 Sep 2010 01:58:03 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/geany</guid>
+</item>
+<item>
+	<title>Eclipse</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/eclipse</link>
+	<description><![CDATA[<img align="right" src="/components/com_mtree/img/listings/s/1.jpg" alt="Eclipse" />Eclipse是著名的跨平台的自由整合式開發環境（IDE）。最初主要用來Java語言開發，但是目前亦有人透過外掛程式使其作為C++、Python、PHP等其他語言的開發工具。 Eclipse的本身只是一個框架平台，但是眾多外掛程式的支援，使得Eclipse擁有較佳的靈活性。許多軟體開發商以Eclipse為框架開發自己的IDE<br />資料來源:https://zh.wikipedia.org/zh-tw/Eclipse]]></description>
+	<author>dio</author>
+	<pubDate>Sat, 01 Mar 2008 07:08:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/eclipse</guid>
+</item>
+<item>
+	<title>RHIDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/rhide</link>
+	<description><![CDATA[RHIDE is an IDE (integrated development environment). It is NOT a compiler. With RHIDE you can develop and debug your applications written in C, C++, Pascal and other languages for which you have a compiler which can be called from RHIDE.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:48:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/rhide</guid>
+</item>
+<item>
+	<title>BVRDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/bvrde</link>
+	<description><![CDATA[BVRDE is an Integrated Development Environment (IDE) for C and C++. It is designed to make cross-platform development easy. Its features include project management, application wizards, an integrated interactive debugger, and a powerful source editor with source browsing and syntax highlighting.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:46:19 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/bvrde</guid>
+</item>
+<item>
+	<title>Anjuta DevStudio</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/anjuta-devstudio</link>
+	<description><![CDATA[Anjuta is a versatile Integrated Development Environment (IDE) for C and C++ on GNU/Linux. It has been written for GTK/GNOME and features a number of advanced programming facilities. These include project management, application wizards, an on-board interactive debugger, and a powerful source editor with source browsing and syntax highlighting.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:44:34 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/anjuta-devstudio</guid>
+</item>
+<item>
+	<title>tIDE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/tide</link>
+	<description><![CDATA[tIDE is a Java integrated development environment(IDE). tIDE is a small, powerful, quick, efficient, easy and open framework to create 100% Java applications. tIDE requires a JRE version 6 to run. However, tIDE can be used to develop with any of the JDK version 5, 1.4, or even 1.2. tIDE supports many of the new advanced debug tools from JDK6.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:43:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/tide</guid>
+</item>
+<item>
+	<title>Cube-J</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/cube-j</link>
+	<description><![CDATA[<div>Cube-J started just as any other simple notepad. Since then It was develop and it became an IDE.</div>
+<div>It's an IDE purely made in Java with a vision to tell the world that Java can be fast as any windows application.Cube-J is still under development stage, a project made specially for students and professionals who wants to program in java in a fast and simple way.</div>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:42:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/cube-j</guid>
+</item>
+<item>
+	<title>Codeblocks</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/codeblocks</link>
+	<description><![CDATA[Code::Blocks is a free C++ IDE built to meet the most demanding needs of its users. It is designed to be very extensible and fully configurable.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 29 Feb 2008 15:37:32 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Integrated-Development-Environment/codeblocks</guid>
+</item>
+</channel>
+</rss>

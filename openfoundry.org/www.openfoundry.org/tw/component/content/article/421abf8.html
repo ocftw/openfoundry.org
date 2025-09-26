@@ -1,0 +1,110 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw" >
+		
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/421?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:43:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="OSSFNL205" />
+  <meta name="title" content="SpikeSource 建構 OSS 專案參與式測試支援架構" />
+  <meta name="description" content=" 開放源碼專案重大版本釋出後的更新、如何評估臭蟲對於相依元件的 影響、如何尋找出最適修正等，都是企業在採納開放源碼會面臨的問 題。不同版本元件在不同硬體上針對不同功能需求的測試，引發組合 爆炸的挑戰。SpikeSource 技術長 Murugan Pal 認為，為應付這些 問題，開放源碼測試的參與架構會是可能的解答。 Pal 並且認為，儘管傳統與現存的開放源碼測試方法論是有用的，卻" />
+  <meta name="generator" content="" />
+  <title>SpikeSource 建構 OSS 專案參與式測試支援架構</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">SpikeSource 建構 OSS 專案參與式測試支援架構</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="列印"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						建立日期			2005-08-02 08:00						&nbsp;&nbsp;&nbsp;&nbsp;						最近更新在 2007-03-08 08:11						</span>
+
+						<span class="rt-author">
+				作者是 謝良奇			</span>
+				
+					</div>
+		
+		
+		 開放源碼專案重大版本釋出後的更新、如何評估臭蟲對於相依元件的 影響、如何尋找出最適修正等，都是企業在採納開放源碼會面臨的問 題。不同版本元件在不同硬體上針對不同功能需求的測試，引發組合 爆炸的挑戰。SpikeSource 技術長 Murugan Pal 認為，為應付這些 問題，開放源碼測試的參與架構會是可能的解答。Pal 並且認為，儘管傳統與現存的開放源碼測試方法論是有用的，卻 沒有完全發揮參與架構的好處，而 SpikeSource 的目標，即在提高 企業對於開放源碼軟體的接納度，其做法包括測試、認證與支援服務。 其核心競爭力是該公司創新、自動化且經最佳化的先進測試技術。這 也是 SpikeSource 的營運模式，協助企業評估、維護，並且在其 IT  架構中納入開放源碼。 <p> 基於建構參與式測試系統的前提下，SpikeSource 納入多項做法，如 採用現存開放源碼測試工具並整合為自動化測試的共用框架，同時開 發新工具並貢獻社群；供專案提交者（committers）、客戶分享與彙 整測試結果的界面；發展讓核心專業不同的用戶從各角度進行軟體測 試的方法論。 </p><p> 日前 SpikeSource 並發表旗艦產品 SpikeSource Core Stack 的增 加版本，提供企業預先組態完成的訂製（made-to-order）安裝。開 發者透過此一產品，針對個別用途或客製需要，選取一系列應用軟體、 程式庫、Web 伺服器與其他工具。不久前成為 SpikeSource 的產品 副總裁 Joaquin Ruiz 表示，該產品不僅具訂製能力，更可加以動態 設定與安裝。除了其訂製能力，Forrester Research 資深分析師 Michael Goulde 認為，測試與維護才是 SpikeSource 最具潛力之處。  除了 Joaquin Ruiz，該公司日前也聘請 Anders Tjernlund 及 Sun  共同創辦人 Bill Joy，分別擔任支援服務副總裁與該公司董事會成員。 </p><p> SpikeSource 執行長，同時也是前 Marimba 執行長 Kim Polese 日前 即於 Software 2005研討會中，發表有關開放源碼長期效應的演說， 她認為開放源碼是促成世界經濟演變的新動力，將改寫軟體產業的運 作模式。Polese 同時也指出開放源碼在引入企業產品環境時遭遇的問 題，在於測試與驗證開放源碼組態。而這正是 SpikeSource 企業模式 著力之處。 </p><p> 相關網址：<br /> 1.<a href="https://www.oreillynet.com/pub/a/network/2005/04/07/spikesource.html">參與測試: SpikeSource 的方法</a><br /> 2.<a href="https://www.infoworld.com/article/05/08/01/31NNspike_1.html">SpikeSource 提供訂製 Linux</a><br /> 3.<a href="https://www.infoworld.com/article/05/04/26/HNpolese_1.html">SpikeSource 執行長 Kim Polese 看好開放源碼未來</a><br /> 4.<a href="https://wireless.sys-con.com/read/111180.htm">Sun 共同創辦人 Bill Joy 加入 SpikeSource 董事會</a></p>
+			<!-- Show relate article -->
+				<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'><b>自由軟體鑄造場電子報&nbsp;:</b>&nbsp;<a href='../../../../previous-issue6d91.html?task=view&amp;id=205'>第 39 期 多媒體應用</a><br>				<!-- End -->
+					<br>
+					<b>分類: </b><a href="../../../foss-news.html">				源碼新聞					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/421?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 06:43:45 GMT -->
+</html>

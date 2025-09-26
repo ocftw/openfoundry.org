@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>OpenFoundry</title>
+		<description>OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</description>
+		<link>https://www.openfoundry.org/tw/component/content/category/688</link>
+		<lastBuildDate>Wed, 24 Sep 2025 08:52:14 +0000</lastBuildDate>
+		<generator></generator>
+		<language>zh-tw</language>
+		<item>
+			<title>預設</title>
+			<link>https://www.openfoundry.org/tw/component/content/article/688-banner-item/8815-default</link>
+			<guid>https://www.openfoundry.org/tw/component/content/article/688-banner-item/8815-default</guid>
+			<description><![CDATA[<div id="rokstories-110" class="rokstories-layout2">
+<div class="feature-block">
+<div class="image-container" style="float: left;">
+<div class="image-full" style="width: 300px; height: 164px;"><img style="visibility: visible; zoom: 1; opacity: 1;" src="https://www.openfoundry.org/images/Stories2/slogan.gif" alt="slogan" width="300" height="164" /></div>
+</div>
+<div class="desc-container" style="height: 84px;">
+<div class="description feature-pad" style="visibility: visible; zoom: 1; opacity: 1;"><span class="feature-desc"> <span class="feature-title">Build Your Own Open Source Project</span><br /> <a href="https://www.openfoundry.org/beginner" class="readon-main"><span class="readon1-m">什麼是自由軟體?</span></a> <a href="https://www.openfoundry.org/help/how-to-start" class="readon-main"><span class="readon1-m">如何使用 OpenFoundry?</span></a></span></div>
+</div>
+</div>
+</div>]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>廣告項目</category>
+			<pubDate>Tue, 25 Sep 2012 11:15:29 +0000</pubDate>
+		</item>
+	</channel>
+</rss>

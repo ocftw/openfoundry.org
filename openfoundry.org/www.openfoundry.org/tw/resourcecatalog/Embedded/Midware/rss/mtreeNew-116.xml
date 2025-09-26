@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 中介軟體</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:09:28 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>KOL-CE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/kol-ce</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>KOL-CE is Free Pascal/Lazarus port of KOL&amp;MCK devloped by Vladimir Kladov (https://kolmck.net). KOL-CE is developed by Yury Sidorov and distributed under wxWindows Library Licence. KOL-CE allows to create very compact Win32/WinCE GUI applications (starting from ~40KB executable for project with empty form).</p>
+<p>Platform: All 32-bit Windows: from Windows 95 to Vista, Windows CE based PocketPC and Smartphones; License: wxWindows Library Licence</p>
+<p>Reference: <a href="https://wiki.freepascal.org/KOL-CE" target="_blank">https://wiki.freepascal.org/KOL-CE</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 02:38:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/kol-ce</guid>
+</item>
+<item>
+	<title>EmbeddedGUI</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embeddedgui</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>EmbeddedGUI is a GUI library for embedded system. It is much smaller than MiniGUI and can be easily transplanted to any RTOS. It provides many graphic functions and controls such as list and tree. LCD drivers are also included. Works with ARM7, ARM9, MSP430 etc.</p>
+<p>Platform: 32-bit MS Windows (NT/2000/XP), All POSIX (Linux/BSD/UNIX-like OSes); License: GNU Library or Lesser General Public License (LGPL)</p>
+<p>Reference: <a href="https://sourceforge.net/projects/embeddedgui/">https://sourceforge.net/projects/embeddedgui/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 02:37:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embeddedgui</guid>
+</item>
+<item>
+	<title>FastDB Embedded ORDBMS</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/fastdb-embedded-ordbms</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>Object-Relational Main-Memory Embedded Database system tightly integrated with C++ language. Use OS virtual mapping mechanism to access data. Provides subset of SQL language with OO extensions. Support of transactions, fault tolerance, replication.</p>
+<p>Platform: OS Portable (Source code to work with many OS platforms); License: Apache Software License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/fastdb" target="_blank">https://sourceforge.net/projects/fastdb</a>/</p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 05 Nov 2010 02:37:08 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/fastdb-embedded-ordbms</guid>
+</item>
+<item>
+	<title>STLdb</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/stldb</link>
+	<description><![CDATA[<div>A embedded database implementation, in C++. A database is comprised of ACID-compliant versions of the standard C++ STL containers, presenting a low-level, lightweight API.</div>
+<div>Platform: unknown; License: Boost Software License, Version 1.0</div>
+<div>Reference: <a href="https://sourceforge.net/projects/stldb/" target="_blank">https://sourceforge.net/projects/stldb/</a></div>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 25 Nov 2009 07:59:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/stldb</guid>
+</item>
+<item>
+	<title>Vincent ES 1.x</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/vincent-es-1x</link>
+	<description><![CDATA[<div>Vincent ES 1.x is a 3D rendering library based on the OpenGL (R) ES 1.1 API specification (Common Lite) for embedded devices.</div>
+<div>Platform: WinCE; License: BSD License</div>
+<div>Reference: <a href="https://sourceforge.net/projects/ogl-es/" target="_blank">https://sourceforge.net/projects/ogl-es/</a></div>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 11 Nov 2009 16:09:58 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/vincent-es-1x</guid>
+</item>
+<item>
+	<title>Embedded Filesystems Library</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embedded-filesystems-library</link>
+	<description><![CDATA[<p>Library for filesystems intended to be used in embedded projects. The library currently supports FAT12/16/32 reading &amp; writing on SD-cards, and is easily expandable for use with other devices on any platform.</p>
+<p>Platform: OS Portable (Source code to work with many OS platforms); License: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/efsl/" target="_blank">https://sourceforge.net/projects/efsl/</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 11 Nov 2009 16:04:14 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embedded-filesystems-library</guid>
+</item>
+<item>
+	<title>NgGUI</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/nggui</link>
+	<description><![CDATA[<p>
+<p>NgGUI is an open source GUI system wrote by C/C++. It is portable for embedded system which based on Linux/ucLinux or VxWorks or WinCE. It can run on the framebuffer or directFB and SDL. iTerminal is a web browser based on NgGUI.</p>
+<p>Platform: Linux, uClinux; License: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/nggui/" target="_blank">https://sourceforge.net/projects/nggui/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 21 Oct 2009 17:03:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/nggui</guid>
+</item>
+<item>
+	<title>Embedded Data Display System</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embedded-data-display-system</link>
+	<description><![CDATA[<p>
+<p>The Embedded Data Display System provides a lightweight portable C++ server library and a PC (Windows, Linux, or Mac) based client that captures and graphically displays data generated by embedded devices such as medical or industrial instruments.</p>
+<p>Platform: unknown; License: BSD License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/edds/" target="_blank">https://sourceforge.net/projects/edds/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 21 Oct 2009 17:02:06 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/embedded-data-display-system</guid>
+</item>
+<item>
+	<title>uEZ</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/uez</link>
+	<description><![CDATA[<p>
+<p>uEZ(tm) is an open source, embedded middleware platform providing underlying RTOS and processor abstraction features enhancing portability of application code to multiple ARM platforms with high reusability.</p>
+<p>Platform: OS Portable (Source code to work with many OS platforms); License: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/uez/" target="_blank">https://sourceforge.net/projects/uez/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 21 Oct 2009 16:47:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/uez</guid>
+</item>
+<item>
+	<title>EMWF</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/emwf</link>
+	<description><![CDATA[<p>
+<p>Embedded Workflow Framework (EMWF) applies the concept of workflow to embedded systems. By providing a language for specifying embedded workflow processes and light weight engines for executing and managing them, EMWF enables us to design and build embedded applications on workflow-based architecture. This project provides source code of two versions of workflow engines running on Windows Embedded CE 6.0 and Linux respectively.</p>
+<p>Platform: Windows, Linux, Windows Embedded CE 6.0; License: GNU General Public License, Version 3.0</p>
+<p>Reference: <a href="https://www.openfoundry.org/of/projects/968" target="_blank">https://www.openfoundry.org/of/projects/968</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 May 2009 06:02:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Midware/emwf</guid>
+</item>
+</channel>
+</rss>

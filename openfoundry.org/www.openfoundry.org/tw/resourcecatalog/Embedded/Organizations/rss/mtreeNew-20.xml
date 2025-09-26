@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 相關組織</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:58 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>OpenCores</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Organizations/opencores</link>
+	<description><![CDATA[<strong>OpenCores</strong> 提供一個讓開發者自由討論創作 Open Hardware 的組織，專注於處理器晶片及其智慧財產的設計，由於現今晶片設計過於繁雜，影響了整體開發進度，導致過多的時間成本的浪費，此外，大部份晶片受專利保護，需要和供應商購買，且往往費用較高；OpenCores 的目標，就是提供開放、可重覆使用的 Open Hardware 設計，並以自由軟體授權如 LGPL 條款釋出。 <br />]]></description>
+	<author>webmaster</author>
+	<pubDate>Thu, 30 Aug 2012 01:03:32 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Organizations/opencores</guid>
+</item>
+<item>
+	<title>Apache Qpid</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-qpid</link>
+	<description><![CDATA[<p>
+<p>Apache Qpid implements the latest AMQP specification, the first open standard for enterprise messaging, and provides transaction management, queuing, distribution, security, management, clustering, federation and heterogeneous multi-platform support and a lot more.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference: <a href="https://projects.apache.org/projects/qpid.html" target="_blank">https://projects.apache.org/projects/qpid.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:14:27 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-qpid</guid>
+</item>
+<item>
+	<title>Jetspeed</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/jetspeed</link>
+	<description><![CDATA[<p>
+<p>Jetspeed is an Open Portal Platform and Enterprise Information Portal, written entirely in open source under the Apache license in Java and XML and based on open standards. All access to the portal is managed through a robust portal security policy. Within a Jetspeed portal, individual portlets can be aggregated to create a page. Each portlet is an independent application with Jetspeed acting as the central hub making information from multiple sources available in an easy to use manner.</p>
+<p>Platform: Linux;License: Apache</p>
+<p>Reference: <a href="https://portals.apache.org/jetspeed-2/" target="_blank">https://portals.apache.org/jetspeed-2/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:13:00 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/jetspeed</guid>
+</item>
+<item>
+	<title>Typo 3</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/typo-3</link>
+	<description><![CDATA[<p>
+<p>TYPO3 is a small to midsize enterprise-class Content Management Framework offering the best of both worlds: out-of-the-box operation with a complete set of standard modules and a clean and sturdy high-performance architecture accomodating virtually every kind of custom solution or extension.</p>
+<p>Platform: Linux, Windows</p>
+<p>License: GNU GPL</p>
+<p>Reference:<a href="https://typo3.org/download/" target="_blank"> https://typo3.org/download/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:12:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/typo-3</guid>
+</item>
+<item>
+	<title>Petals Master</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/petals-master</link>
+	<description><![CDATA[<p>
+<p>Petals Master is a high performance SOA Governance solution. It allows you organize, enforce and reconfigure your Service Oriented infrastructure.</p>
+<p>Platform: Linux;License: LGPL</p>
+<p>Reference: <a href="https://petalsmaster.ow2.org/" target="_blank">https://petalsmaster.ow2.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 02:47:21 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/petals-master</guid>
+</item>
+<item>
+	<title>Apache Camel</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-camel</link>
+	<description><![CDATA[<p>
+<p>Apache Camel is a powerful open source integration framework based on known Enterprise Integration Patterns with powerful Bean Integration.</p>
+<p>Camel lets you create the Enterprise Integration Patterns to implement routing and mediation rules in either a Java based Domain Specific Language (or Fluent API), via Spring based Xml Configuration files or via the Scala DSL. This means you get smart completion of routing rules in your IDE whether in your Java, Scala or XML editor.</p>
+<p>Apache Camel uses URIs so that it can easily work directly with any kind of Transport or messaging model such as HTTP, ActiveMQ, JMS, JBI, SCA, MINA or CXF Bus API together with working with pluggable Data Format options. Apache Camel is a small library which has minimal dependencies for easy embedding in any Java application. Apache Camel lets you work with the same API regardless which kind of Transport used, so learn the API once and you will be able to interact with all the Components that is provided out-of-the-box.</p>
+<p>Platform: Windows, Linux, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://camel.apache.org/" target="_blank">https://camel.apache.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:59:38 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-camel</guid>
+</item>
+<item>
+	<title>DUSE Mediation Router</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/duse-mediation-router</link>
+	<description><![CDATA[<p>
+<p>FUSE Mediation Router is an open source tool for integrating services, applications, and transport protocols using Enterprise Integration Patterns based on Apache Camel and supported for use in enterprise SOA infrastructure.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://fusesource.com/products/enterprise-camel/" target="_blank">https://fusesource.com/products/enterprise-camel/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:59:11 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/duse-mediation-router</guid>
+</item>
+<item>
+	<title>Apache ServiceMix</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-servicemix</link>
+	<description><![CDATA[<p>
+<p>Apache ServiceMix is an open source ESB (Enterprise Service Bus) that combines the functionality of a Service Oriented Architecture (SOA) and an Event Driven Architecture (EDA)  to create an agile, enterprise ESB.</p>
+<p>Apache ServiceMix is an open source distributed ESB built from the ground up on the  Java Business Integration (JBI) specification JSR 208 and released under the Apache license. The goal of JBI is to allow components and services to be integrated in a vendor independent way, allowing users and vendors to plug and play.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://servicemix.apache.org/home.html" target="_blank">https://servicemix.apache.org/home.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:58:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-servicemix</guid>
+</item>
+<item>
+	<title>Apache ActiveMQ</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-activemq</link>
+	<description><![CDATA[<p>
+<p>Apache ActiveMQ is the most popular and powerful open source messaging and Integration Patterns provider.</p>
+<p>Apache ActiveMQ is fast, supports many Cross Language Clients and Protocols, comes with easy to use Enterprise Integration Patterns and many advanced features while fully supporting JMS 1.1 and J2EE 1.4.</p>
+<p>Platform: Windows, Linux, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://activemq.apache.org/" target="_blank">https://activemq.apache.org/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:58:15 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/apache-activemq</guid>
+</item>
+<item>
+	<title>Open Source FUSE Message Broker</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/open-source-fuse-message-broker</link>
+	<description><![CDATA[<p>
+<p>FUSE Message Broker is an open source JMS message broker based on Apache ActiveMQ that is productized and supported for use in enterprise SOA infrastructure.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://fusesource.com/products/enterprise-activemq/" target="_blank">https://fusesource.com/products/enterprise-activemq/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:57:51 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Enterprise-Applicaton/open-source-fuse-message-broker</guid>
+</item>
+</channel>
+</rss>

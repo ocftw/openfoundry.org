@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - Ruby on Rails</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:14 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Heroku</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Ruby-on-Rails/heroku</link>
+	<description><![CDATA[<p>
+<p>Heroku is an online Ruby on Rails cloud PaaS (Platform as a Service) run by a San Francisco, California based company with the same name. It was one of the first cloud platform providers (having been in development since June 2007) and the company reports over 50,000 applications running on its service.</p>
+<p>Reference: <a href="https://www.heroku.com/" target="_blank">https://www.heroku.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:41:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Ruby-on-Rails/heroku</guid>
+</item>
+<item>
+	<title>Engine Yard</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Ruby-on-Rails/engine-yard</link>
+	<description><![CDATA[<p>
+<p>Engine Yard is a San Francisco, California based company focused on advancing the state of the art in Ruby on Rails. Since December 2006, it has provided a Cloud-style environment for Ruby on Rails applications.</p>
+<p>Reference: <a href="https://www.engineyard.com/" target="_blank">https://www.engineyard.com/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 30 Mar 2010 11:40:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/Solution-Stacks/Ruby-on-Rails/engine-yard</guid>
+</item>
+</channel>
+</rss>

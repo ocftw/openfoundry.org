@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 法律授權</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:12:46 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Neolex Open Source Audits</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/neolex-open-source-audits</link>
+	<description><![CDATA[<p>
+<p>Neolex Open Source Audit service are offered by the Nordic law firm <a href="https://www.neolex.fi/" target="_blank">Neolex AB</a> (hereinafter Neolex) to minimize the IPR risk associated with the use of open source components.</p>
+<p>The above-mentioned audit services include but not limited to, (1) analyze the source code and licensing of any open source components , and (2) provide a report on the component's IPR risk and the information needed to comply with the component's licensing.</p>
+<p>Each audit report has a risk rating (green, yellow, red). Green means the audit report did not reveal any significant risks; yellow means the audit report revealed potential risks; red means the audit report revealed significant risks. All audit reports are available for free under a Creative Commons “Attribution-ShareAlike” 3.0 unported License. The open source licensing audits database is available <a href="https://www.neolex-opensource.com/open-source-licensing-audits-d/" target="_blank">here</a>.</p>
+<p>Neolex's lawyers conduct open source audits by running the source code of an open source program through a tool, called <a href="https://fossology.org/" target="_blank">Fossology</a>, to identify copyright and license references applicable to the program. Then they review the licenses to identify any potential conflict and prepare guidelines for complying with all licenses applicable to the program.</p>
+<p>Neolex provides free audit service for non-profit open source projects. If you wish to check your non-profit open source project's licensing compliance status, you can request a free audit. The contact information is available <a href="https://www.neolex-opensource.com/contact-us/" target="_blank">here</a>.</p>
+<p>References:<a href="https://www.neolex-opensource.com" target="_blank">https://www.neolex-opensource.com</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Tue, 12 Apr 2011 17:56:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Websites/neolex-open-source-audits</guid>
+</item>
+<item>
+	<title>Free Software and Non Free Software (Author: Fu-hsiung Hsu; Language: Chinese)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</link>
+	<description><![CDATA[<p>The hypothesis of this article is that the software world is formed of two groups: free software and non free software. The author further uses the categories by Dr. Chao-Kuei, Hung on GNU Operating System website to illustrate free/non-free software types.</p>
+<p>In addition, this article introduces Microsoft Shared Source Initiative Program (SSI) and analyzes its principle licenses. It then compares these licenses under SSI with free software licenses and explains the differences between these two licensing scheme.</p>
+<p>The last part of the article mentions the criticism the above two group made to each other and talks about advantages, disadvantages, the development trend and impact of free/non-free software separately.</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 15:01:29 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</guid>
+</item>
+<item>
+	<title>Left and Right Thought in the Field of Intellectual Property: Copyright, Copyleft and their ...</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/copyrightcopyleft--</link>
+	<description><![CDATA[<p>This article firstly talks about the birth of copyright, and explains why copyright exists and what subject matter and rights copyright laws protect. This article then explains the concept of “copyleft” and tries to give it a definition.</p>
+<p>In the second part of this article, it discusses the copyleft application in the field of biotechnology. It compares the similarities and differences between open source software movement and open source genomics movement from two aspects: (1) hacker ethic v.s. scientific research ethos; and (2) common core concern: opening up public goods. Under the above subsection (2), the authors use the analysis framework in Professor Lawrence Lessig’s book, “The future of Ideas” to compare these two movements.</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 15:00:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/copyrightcopyleft--</guid>
+</item>
+<item>
+	<title>The Limitation of Fair Use under Copyright Laws (Author: Yi-sheng Yang; Language: Chinese)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</link>
+	<description><![CDATA[<p>This article firstly talks about the purpose of fair use doctrine, followed by introducing four-factor test and quoting theories and practice developed under the United States case laws to explain how this doctrine operates. Based on this, this article then talks about the challenge fair use doctrine faces under the development of technology nowadays, and takes several precedents as examples to observe how the the Supreme Court of the United States applies fair use doctrine to copyright infringement resulting from emerging technologies.</p>
+<p>In the second part of this article, the author discusses how license agreements and the legislation of technology protection measures affect fair use doctrine. The article last takes the “reverse engineering” as an example to explain how fair use doctrine applies to copyright infringement of software.</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 14:59:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</guid>
+</item>
+<item>
+	<title>A Brief History of Taiwan Copyright Law: The History of Copying being Gradually Limited ...</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/-</link>
+	<description><![CDATA[The article reviews the legislation of Taiwan’s past and current copyright laws from several stages: the Japanese colonial period~1945, before 1985 statute amendment, the amendments of copyright law under the effect of U.S.A., 2002 until nowadays. This article also introduces the characteristics of Taiwan’s copyright laws under each above-mentioned stage.]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 14:58:13 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/-</guid>
+</item>
+<item>
+	<title>From Copyright to Copyleft: the birth, growth and future of GPL (Author: Florence T.M. ...</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/-copyright--copyleftgpl</link>
+	<description><![CDATA[<p>This article firstly talks about GNU project. Secondly, it explains the four freedoms of free software, and then introduces the concept and characteristics of copyleft. In addition, it analyzes essential contents of GPL (GNU General Public License) v2, such as action conditions for copying, distributing, and modifying a program, and the infection of GPL to modified program, etc. Finally, it introduces two famous cases related to GPL: SCO vs. IBM lawsuit, and the case about Harald Welte's preliminary injection request against Sitecom's German subsidiary. It briefly talks about the upgrade to GPLv.3 as well.</p>
+<p>p.s. GPL v.3 had not yet been released while this articles finished. Thus, this article talks less about GPL v.3</p>]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 14:56:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/-copyright--copyleftgpl</guid>
+</item>
+<item>
+	<title>GPL v.3 Non-responsibly Traditional Chinese Translation (Draft) (Author: Lucien C.H. Lin)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</link>
+	<description><![CDATA[Unofficial GPL (GNU General Public License) v.3 traditional Chinese translation. The author translates the GPL v.3 by using plain description and in line with the sections of the GPL v.3 to help Chinese speakers understand the GPL v.3 better. Nevertheless, only the original English text of the GPL has legally binding force.]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 07:07:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</guid>
+</item>
+<item>
+	<title>Making Your Open Source Software GPL-Compatible. Or Else. (Author: David A. Wheeler)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/make-your-open-source-software-gpl-compatible-or-else-david-a-wheeler</link>
+	<description><![CDATA[This essay argues that developers of Free/libre/open source software should use an existing widely-used licenses compatible with the GPL for your software. If you create your own license - and please try very hard to not create a new license - at least make sure that your new license is compatible with the GPL. You do not need to use the GPL - not even the Free Software Foundation, but make sure that your FLOSS software’s license is GPL-compatible. The rest of this essay explains why and how to do so.  <br /><br />(The above introduction is extracted from the essay itself)]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 07:06:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/make-your-open-source-software-gpl-compatible-or-else-david-a-wheeler</guid>
+</item>
+<item>
+	<title>Understanding Open Source and Free Software Licensing (Author: Andrew M. St. Laurent)</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</link>
+	<description><![CDATA[This book focuses on several topics. Started with basic concepts of open source licensing, contract and copyright law, it then in depth explains leading open source software licenses, including MIT, BSD, Apache, AFL, GPL, LGPL, MPL, QPL, Artistic License and non-open source licenses. It also talks about legal impacts of open source and free software licensing.  <br />Furthermore, it answers a few questions such as: What rights am I giving up? How will my use of open source/free software licensing affect future users or future developers? Does combining free software with proprietary software leave me vulnerable to lawsuits?]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 07:05:18 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</guid>
+</item>
+<item>
+	<title>Open Source Licensing-Software Freedom and Intellectual Property Law (Author: Lawrence Rosen</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</link>
+	<description><![CDATA[The author of the book served as general counsel of the Open Source Initiative for several years. He explains the intellectual property laws that support open source licensing, and reviews today’s leading licenses, such as BSD, MIT, Apache, GPL, MPL, CPL in plain English, and helps developers, managers, users, lawyers and so on to choose the right licenses for their projects or organizations. This book is available online under the Academic Free licenses v.3.]]></description>
+	<author>yihsuan</author>
+	<pubDate>Wed, 03 Mar 2010 07:04:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Law-and-Licensing/Articles-and-Books/</guid>
+</item>
+</channel>
+</rss>

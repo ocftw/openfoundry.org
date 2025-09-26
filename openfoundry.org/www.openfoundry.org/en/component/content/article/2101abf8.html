@@ -1,0 +1,117 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" >
+		
+<!-- Mirrored from www.openfoundry.org/en/component/content/article/2101?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 09:45:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="OSSFNL535" />
+  <meta name="title" content="Palm hack 與內部細節大公開" />
+  <meta name="description" content="Palm Pre 推出以來，新的 Pre hack 總是一直層出不窮，例如日前在 Pre 上成功安裝並執行知名射擊遊戲毀滅戰士 (Doom)。Pre/webOS 開發者 wiki 從一片空白到目前充滿各類有趣玩意。黑客們的一連串成果，從客製的 Universal Search 引擎到解除 Launcher 的 3 頁限制，然而，最令人印象深刻的成果，要算是超過 1700 個以上，不會干擾" />
+  <meta name="generator" content="" />
+  <title>Palm hack 與內部細節大公開</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">Palm hack 與內部細節大公開</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="Print"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						 Created at			Tuesday, 23 June 2009 08:00						&nbsp;&nbsp;&nbsp;&nbsp;						Last Updated on Thursday, 16 July 2009 21:59						</span>
+
+						<span class="rt-author">
+				Written by 謝良奇/編譯			</span>
+				
+					</div>
+		
+		
+		Palm Pre 推出以來，新的 Pre hack 總是一直層出不窮，例如日前在 Pre 上成功安裝並執行知名射擊遊戲毀滅戰士 (Doom)。Pre/webOS 開發者 wiki 從一片空白到目前充滿各類有趣玩意。黑客們的一連串成果，從客製的 Universal Search 引擎到解除 Launcher 的 3 頁限制，然而，最令人印象深刻的成果，要算是超過 1700 個以上，不會干擾 Palm 內建 webOS 應用軟體，可直接安裝的 Optware Linux 命令列套件。<p>Pre 上市後，許多深懷絕技的玩家開始把玩，並發掘出許多 webOS 內部運作細節。iPhone 開發者 Steven Troughton-Smith 就挖出 Pre 啟動與使用客製 rom 映像檔 (rom image) 的許多秘辛。Steve 發現 Pre 可以輕易地執行未經簽章的韌體。另外一位 Pre 黑客 Matthew Garrett，則發表了有關 webOS 的 Linux 底層、開機流程與若干其他開放源碼元件的技術細節。</p>
+<p>此外，Palm 日前公佈了其開放源碼入口網站，在網站上提供有關 Palm 使用開放源碼軟體的資訊，以及包含許多納入 webOS 之中並經過修改的開放源碼元件下載。</p>
+<p>Palm 另外也公開了一份講解 webOS 系統更新運作的文件。這份支援文件描述整個更新流程與安裝程序。簡單地說，Pre 每 7 天會在背景程序中檢查系統更新，如果有更新釋出，將會在裝置連接上 Wi-Fi 網路或在 EVDO 涵蓋範圍中時，下載更新。一旦下載完成，更新必須在 7 天內，在電池容量高於 30% 的情況下安裝。否則該裝置會持續提示使用者安裝，並且在第 4 次提示後自動安裝。</p>
+<p>Optware 是 Palm 黑客的客製化重要成果之一。Optware 是 nslu2-linux.org 專案長年以來的成果，原本是針對執行 Linux 的 NAS 硬體所建構，例如 Linkysys NSLU2。 Optware 是一個 Linux 套件庫，其中包括網路伺服器、編譯器工具，甚至開放源碼 PBX 平台 Asterix 等各式各樣的軟體。</p>
+<p>目前使用者可以在 Pre 上，安裝超過 1700 種以上的 Optware 套件，將這個裝置轉變為全功能的 Linux 電腦，並且不會妨礙到 webOS 的運作。雖然這些應用軟體在 SDK 公開釋出前，尚無圖形使用者介面可用，但在命令列下皆可正常運作。</p>
+<p>Universal Search 是 Pre 最著名的功能之一，然而此功能受限於僅能搜尋 Google、Google Maps、Wikipedia 與 Twitter。不過只要使用者取得 root 權限，按照 Pre/webOS 開發者 wiki 上的 6 個步驟，就能解除此一限制，隨意增加搜尋目標網站。</p>
+<p>最可能出現在 Pre 使用者最想要的功能排行榜上第 1 位的，恐怕就是運用 Pre 當作 3G 無線數據機了，也就是所謂的 tethering。不過很可惜的是，這個功能在 Pre 1 月初登場與 6 月上市之間，已經被 Sprint 給打了回票。對於引頸期盼這項功能的使用者，不幸的是， #webos-internals 這個 IRC 頻道上的 Pre 黑客並不打算投入開發，由於 tethering 會讓使用者違反 Sprint 的服務條款，讓整個計畫陷入法律訴訟中。</p>
+<p><br />相關網址：<br />1.<a target="_blank" href="https://www.palminfocenter.com/news/9838/palm-details-webos-system-updates/">Palm 詳述 WebOS 系統更新</a><br />2.<a target="_blank" href="https://www.palminfocenter.com/news/6889/palm-posts-webos-open-source-packages/">Palm 發表 WebOS 開放源碼套件</a><br />3.<a target="_blank" href="https://www.palminfocenter.com/news/7682/webos-update-v103-now-available/">webOS Update v1.0.3 推出</a><br />4.<a target="_blank" href="https://www.palminfocenter.com/news/9834/more-pre-hacks-and-inner-details-revealed/">更多 Pre Hacks 與內部細節公開<br /></a></p>
+			<!-- Show relate article -->
+				<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'><b>OSSF Newsletter&nbsp;:</b>&nbsp;<a href='../../../../previous-issue0fce.html?task=view&amp;id=535'>第 129 期 淺談使用自由軟體時所應注意的商標授權問題</a><br>				<!-- End -->
+					<br>
+					<b>Category: </b><a href="../../../foss-news.html">				FOSS News					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/en/component/content/article/2101?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 09:45:38 GMT -->
+</html>

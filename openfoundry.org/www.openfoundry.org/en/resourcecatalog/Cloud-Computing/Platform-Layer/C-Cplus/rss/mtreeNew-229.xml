@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - C/C++</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:37:17 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Sector/Sphere</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/C-Cplus/sectorsphere</link>
+	<description><![CDATA[<p>
+<p>Sector/Sphere supports distributed data storage, distribution, and processing over large clusters of commodity computers. Sector is a high performance, scalable, and secure distributed file system. Sphere is a high performance parallel data processing engine that can process Sector data files with very simple programming interfaces. Sector/Sphere can be broadly compared to Google's GFS/MapReduce stack, but differes several key design choices and provides better performance.</p>
+<p>Reference: <a href="https://sector.sourceforge.net/" target="_blank">https://sector.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 13:55:28 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Cloud-Computing/Platform-Layer/C-Cplus/sectorsphere</guid>
+</item>
+</channel>
+</rss>

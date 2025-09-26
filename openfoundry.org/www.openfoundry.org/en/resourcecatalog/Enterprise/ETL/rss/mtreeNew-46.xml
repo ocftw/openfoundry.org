@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - ETL(Extract, Transform and Load)</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:27 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>ETLSE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/etlse</link>
+	<description><![CDATA[<p>ETL Integrator is a Data Integration tool which can be used to preform extract - transform - load to build DataWarehouse or can be used for Data Migration.</p>
+<p>ETL Integrator is designed to manage and orchestrate high-volume, high-performance data transformation from within the SOA tier. ETL Integrator, along with Open ESB platform, offers a comprehensive enterprise integration infrastructure. ETL Integrator is an enterprise module optimized for extracting, transforming, and loading bulk data between files and databases. It provides connectivity to a vast range of heterogeneous and diversified data sources including non relational data sources. It provides an ETL development and runtime environment that is fully integrated into Open ESB and Netbeans Enterprise Pack and optimized for handling very large record sets.</p>
+<p>Platform: Linux;License: CDDL</p>
+<p>Reference: <a href="https://wiki.open-esb.java.net/Wiki.jsp?page=ETLSE" target="_blank">https://wiki.open-esb.java.net/Wiki.jsp?page=ETLSE</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 17:16:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/etlse</guid>
+</item>
+<item>
+	<title>JasperETL</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/jasperetl</link>
+	<description><![CDATA[<p>
+<p>JasperETL is easy to deploy and out-performs many proprietary and open source ETL systems.</p>
+<p>Platform: Linux;License: GNU GPL</p>
+<p>Reference: <a href="https://jasperforge.org/projects/jasperetl" target="_blank">https://jasperforge.org/projects/jasperetl</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:15:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/jasperetl</guid>
+</item>
+<item>
+	<title>Pentaho</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/pentaho</link>
+	<description><![CDATA[<p>
+<p>Pentaho is the open source business intelligence leader. Thousands of organizations globally depend on Pentaho to make faster and better business decisions that positively impact their bottom lines.</p>
+<p>Platform: Linux, Windows;License: GNU GPL</p>
+<p>Reference: <a href="https://www.pentaho.com/" target="_blank">https://www.pentaho.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 05 Jan 2011 09:15:08 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/pentaho</guid>
+</item>
+<item>
+	<title>Scriptella</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/scriptella</link>
+	<description><![CDATA[<p>
+<p>Scriptella is an open source ETL (Extract-Transform-Load) and script execution tool written in Java.</p>
+<p>Our primary focus is simplicity. You don't have to study yet another complex XML-based language - use SQL (or other scripting language suitable for the data source) to perform required transformations.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://scriptella.javaforge.com/index.html" target="_blank">https://scriptella.javaforge.com/index.html</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:55:03 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/scriptella</guid>
+</item>
+<item>
+	<title>Apatar</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</link>
+	<description><![CDATA[<p>Apatar brings a set of advantages to the end- users, developers and partners:flexible deployment options, No Coding! visual job designer, No Coding! transformation mapper, modular and open applications, and open source architecture.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Wed, 30 Jun 2010 02:20:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</guid>
+</item>
+<item>
+	<title>CloverETL Community Edition</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/cloveretl-community-edition</link>
+	<description><![CDATA[<p>CloverETL is a high performance data integration platform that enables you to move data between different locations.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 11:39:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/cloveretl-community-edition</guid>
+</item>
+<item>
+	<title>Xineo XIL</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/xineo-xil</link>
+	<description><![CDATA[<p>Xineo XIL (XML Input Language) is an XML-based language for transforming record-based data sources into XML documents. A simple command-line tool is available to run Xineo XIL. This implementation has built-in support for relational (via JDBC) and structured text (like CSV) sources. It is extensible thanks to its public API and provides an abstraction over output format.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 11:38:45 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/xineo-xil</guid>
+</item>
+<item>
+	<title>CB2XML</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</link>
+	<description><![CDATA[<p>CB2XML (CopyBook to XML) is a COBOL CopyBook to XML converter written in Java and based on the SableCC parser generator. This project includes utilities to convert an XML instance file into its COBOL copybook equivalent string buffer and vice versa.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:41:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</guid>
+</item>
+<item>
+	<title>Joost</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</link>
+	<description><![CDATA[<p>Joost is a Java implementation of the Streaming Transformation for XML (STX) language.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:40:47 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</guid>
+</item>
+<item>
+	<title>Babeldoc</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</link>
+	<description><![CDATA[<p>Babeldoc is a framework and set of applications to process documents for business-to-business and other Internet/integration applications. It is primarily intended for text documents, especially XML, but supports a wide range of operations and data types.</p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Thu, 01 Feb 2007 03:40:17 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/ETL/</guid>
+</item>
+</channel>
+</rss>

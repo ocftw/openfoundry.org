@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 測試</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:25 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>X11::GUITest</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Testing%20/x11guitest</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>X11::GUITest, a Perl package intended to facilitate the testing of applications by means of user emulation. It can be used to test and interact (SendKeys, WaitWindow, etc.) with GUI applications; hich are built (GTK+, Qt, Motif, etc.) upon the X lib.</p>
+<p>Platform: Cross-platform; Code license: GNU General Public License</p>
+<p>Reference: <a href="https://sourceforge.net/projects/x11guitest/" target="_blank">https://sourceforge.net/projects/x11guitest/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 13 Sep 2010 03:30:41 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/perl/Testing%20/x11guitest</guid>
+</item>
+</channel>
+</rss>

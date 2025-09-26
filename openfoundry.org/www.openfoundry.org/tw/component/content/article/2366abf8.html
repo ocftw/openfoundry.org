@@ -1,0 +1,110 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw" >
+		
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/2366?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 05:48:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+			  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="OSSFNL665" />
+  <meta name="title" content="Fedora 13 新增開放 3D 驅動程式和改善 Python 環境" />
+  <meta name="description" content="知名 Fedora Linux 散佈套件的開發者日前宣佈，正式釋出代號 Goddard 的 Fedora 第 13 版，其中加入許多重要平台改進和若干新的桌面應用程式。不久前釋出的 Ubuntu 10.04 夾帶其音樂商店和雲端同步服務，成為許多人心中 Linux 散佈套件的優先選擇。然而，Fedora 專案領導人 Paul Frields 不認為如此，他說，Fedora" />
+  <meta name="generator" content="" />
+  <title>Fedora 13 新增開放 3D 驅動程式和改善 Python 環境</title>
+  <link href="../../../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/gantry.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/grid-12.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../components/com_gantry/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/joomla.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/style1.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/light-body.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/demo-styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/template.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../templates/rt_quantive_j15/css/typography.css" type="text/css" />
+  <style type="text/css">
+    <!--
+#rt-main-surround ul.menu li.active > a, #rt-main-surround ul.menu li.active > .separator, #rt-main-surround ul.menu li.active > .item, #rt-main-surround .square4 ul.menu li:hover > a, #rt-main-surround .square4 ul.menu li:hover > .item, #rt-main-surround .square4 ul.menu li:hover > .separator, .roktabs-links ul li.active span {color:#0088B5;}
+a, #rt-main-surround ul.menu a:hover, #rt-main-surround ul.menu .separator:hover, #rt-main-surround ul.menu .item:hover {color:#0088B5;}
+    -->
+  </style>
+  <script type="text/javascript" src="../../../../components/com_jcomments/js/jcomments-v2.15e1f.js?v=2"></script>
+  <script type="text/javascript" src="../../../../components/com_jcomments/libraries/joomlatune/ajax.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/mootools.js"></script>
+  <script type="text/javascript" src="../../../../media/system/js/caption.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-buildspans.js"></script>
+  <script type="text/javascript" src="../../../../components/com_gantry/js/gantry-inputs.js"></script>
+  <script type="text/javascript">
+
+			window.addEvent('domready', function() {
+				var modules = ['rt-block'];
+				var header = ['h3','h2','h1'];
+				GantryBuildSpans(modules, header);
+			});
+		InputsExclusion.push('.content_vote','#rt-popup')
+  </script>
+		</head>
+		<body  class="backgroundlevel-low backgroundstyle-style8 bodylevel-med bodystyle-light cssstyle-style1 logostyle-dark font-family-helvetica font-size-is-default menu-type-fusionmenu col12">
+			<div id="rt-main-surround">
+				<div class="rt-container">
+					<div class="rt-block">
+						<div id="rt-mainbody">
+					    	
+<div class="rt-joomla ">
+	<div class="rt-article">
+		
+				<div class="rt-headline"><h1 class="rt-article-title">Fedora 13 新增開放 3D 驅動程式和改善 Python 環境</h1>		</div>
+		<div class="clear"></div>
+		
+		
+		
+				<div class="rt-articleinfo">
+						<div class="rt-article-icons">
+				<a href="#" onclick="window.print();return false;"><span class="icon print"></span></a>									<span class="icon printscreen">
+						<a href="#" onclick="window.print();return false;"><img src="../../../../images/M_images/printButton.png" alt="列印"  /></a>					</span>
+							</div>
+			
+			<span class="rt-date-posted">
+						建立日期			2010-05-27 08:00						&nbsp;&nbsp;&nbsp;&nbsp;						</span>
+
+						<span class="rt-author">
+				作者是 謝良奇/編譯			</span>
+				
+					</div>
+		
+		
+		知名 Fedora Linux 散佈套件的開發者日前宣佈，正式釋出代號 Goddard 的 Fedora 第 13 版，其中加入許多重要平台改進和若干新的桌面應用程式。不久前釋出的 Ubuntu 10.04 夾帶其音樂商店和雲端同步服務，成為許多人心中 Linux 散佈套件的優先選擇。然而，Fedora 專案領導人 Paul Frields 不認為如此，他說，Fedora 的目標，是成為志於貢獻開放源碼的使用者的第一選擇。他們想要的是貢獻的文化，而不僅止於消費。Fedora 13 之中反映出對於懂技術的貢獻型用戶的注重，其中納入了開放源碼的 3D 影像驅動程式、絕佳的 Python 工具、優秀的色彩管理工具，以及其他不是那麼顯眼的改進。<br /><br />為了在 Linux 桌面上獲得硬體加速的 3D 圖形，使用者一般必須仰賴顯示卡廠商提供的私有驅動程式。Linux 社群在建構替代性的開放源碼驅動程式上面臨了不小的困難，不過這些投入已經開始有所收穫。Fedora 13 針對 Nvidia 顯示卡提供了開放源碼的 3D 加速。除了吸引自由軟體支持者外，這也意味著重新包裝和散佈 Fedora 不再需要擔心私有驅動程式的問題。<br /><br />這些驅動程式是更長遠計畫的其中一部分。Frields 表示，Fedora 早已有了支援 3D 的開放源碼 Radeon、Intel 驅動程式，這 3 套開放的驅動程式正在為更完整的 3D 堆疊做好準備。特別是隨著&nbsp; GNOME 3 的即將到來，由於 GNOME 3 在新使用者界面上依賴影像合成 (compositing)，3D 對於使用者將更加重要。<br /><br />另一項重要的改變是虛擬化技術。紅帽 (Red Hat) 已經選定 KVM 才是 Linux 虛擬化技術的未來。最近的 RHEL 6 beta 版揚棄 Xen 而改採 KVM，如今 Fedora 也不例外。KVM 的新功能包括為 guest 虛擬機器保留 PCI 位址，並提供共享的實體網路界面給虛擬機器，讓 guest 在和 host 相同的網路上獨立存在。儘管這些新功能無關乎桌面用戶，但是對於運行多重虛擬機器的伺服器來說，卻讓 Fedora 成為更引人注目的選擇。<br /><br />Fedora 13 可平行安裝的 Python 3 環境，可以讓 Python 的開發者在 Python 2.6 之外，安裝 Python 3 堆疊，值得一提的是，此一方案不只是隔離執行時期環境與標準程式庫而已，也包括了許多常用的第三方模組，大大簡化了移植現有 Python 應用程式到新版程式語言的程序。<br /><br />Fedora 13 搭配了最新穩定版本的 GNOME 2.30，此一新版桌面環境增加了 Nautilus 檔案管理程式的分割面板 (split-pane) 模式，Empathy 即時通訊軟體提供 Facebook 對話支援，並改善了 iPod 相容性。對於 KDE 的愛用者，Fedora 13 也納入了 KDE 4.4，提供一系列 PulseAudio 改進以及 Dolphin 檔案管理的新時間序列模式等。<br /><br />當然，Fedora 13 並不只有技術上的改變。事實上，Fedora 13 可能是 Fedora 最具用戶親和性的釋出版本。Fedora 13 納入了社群網路應用軟體 Pino，可以連接至 Twitter 和 Identi.ca。Pino 會在選單列顯示狀態，提供有如 Ubuntu 搭載的 gwibber 的效果。<br /><br />有賴 Fedora 貢獻者 Richard Hughes，Fedora 13 這次在 GNOME 桌面上增加了全新的色彩管理系統。新的配置管理器 (profile manager) 只要透過雙擊滑鼠鍵，即可輕鬆安裝廠商提供的 ICC 或 ICM 配置檔案。儘管對於一般用戶色彩管理並不重要，但對繪圖專業人士與影像愛好者來說，這可是一項藝術，而且也是　Apple 的 OS X 之所以普及的優勢之一。<br /><br />Fedora 13 納入了新的相片管理工具 Shotwell，礙於空間限制，功能強大的 Fspot 並未納入 LiveCD。Shotwell 提供了輕量級的相片管理應用軟體。有更多需求的使用者，也能透過 Fedora 的軟體倉儲安裝 Fspot。<br /><br />Fedora 13 納入支援 HTML5 video 的 Firefox 3.6，只要該影片是用 Ogg Theora 影片 codec 編碼即可。Fedora 也率先搭載了新的 Theora 1.1，這個開放影片 codec 的改進版本提供可與私有解決方案 H.264 匹敵的影片品質。<br /><br /><br />相關網址﹕<br />1.<a href="https://www.theregister.co.uk/2010/05/25/fedora_13_review/" target="_blank">Fedora 13 &ndash; 給反蘋果人士的 Linux</a><br />2.<a href="https://arstechnica.com/open-source/reviews/2010/05/fedora-13-released-with-open-3d-drivers-and-python-3-stack.ars" target="_blank">具備開放 3D 驅動程式和 Python 3 堆疊&nbsp; Fedora 13 釋出</a>
+			<!-- Show relate article -->
+		<br><br><h4>您也許有興趣閱讀以下文章:</h4><ul><li><a href='../../../../foss-news/8723.html'>Fedora 17 發佈</a> - <span class='date-posted'>2012-06-11</span></li></ul>		<!-- end -->
+		<div class="article_note">
+		<!-- Add tags use metakey, and show OSSF Newsletter tag: OSSFNL+NUM-->
+		<br><br> <hr style='border: 1px dashed #D2DADB;'><b>自由軟體鑄造場電子報&nbsp;:</b>&nbsp;<a href='../../../../previous-issue4b6e.html?task=view&amp;id=665'>第 151 期 試算表軟體的另一種選擇 - Gnumeric</a><br>				<!-- End -->
+					<br>
+					<b>分類: </b><a href="../../../foss-news.html">				源碼新聞					</a>				</div>
+			 <!-- AddThis Button BEGIN ID 3001 is the front page article -->
+     			<br><br>
+       <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+       <a class="addthis_button_preferred_1"></a>
+       <a class="addthis_button_preferred_2"></a>
+       <a class="addthis_button_preferred_3"></a>
+       <a class="addthis_button_preferred_4"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=openfoundry"></script>
+       <!-- AddThis Button END -->
+     <br>
+		<div class="totop" ><a class="rt-totop" href="#" style="outline: medium none;">↑ Top</a></div>
+            <!-- AddThis Button END -->
+
+			</div>
+</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	
+<!-- Mirrored from www.openfoundry.org/tw/component/content/article/2366?tmpl=component&print=1&page= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Sep 2025 05:48:13 GMT -->
+</html>

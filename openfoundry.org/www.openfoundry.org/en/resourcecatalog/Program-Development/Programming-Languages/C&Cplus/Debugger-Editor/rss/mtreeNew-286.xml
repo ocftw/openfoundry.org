@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 除錯/編輯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:42 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Zeta Debugger</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/zeta-debugger</link>
+	<description><![CDATA[<p>
+<p>Zeta Debugger is a stand-alone source level debugger and code profiler for Windows 98/2000/XP applications written in C/C++ or assembly languages. Source level debugging is allowed when symbolic debug information emited by your compiler is one of those supported by our debugger or external plug-in modules. Otherwise, when this information is absent or not recognized, you can only debug at machine level.</p>
+<p>Platform:Windows                 License:unknown</p>
+<p>Reference:<a href="https://www.fyzor.com/debugger/index.htm" target="_blank">https://www.fyzor.com/debugger/index.htm </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:22:09 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/zeta-debugger</guid>
+</item>
+<item>
+	<title>GDB</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/gdb</link>
+	<description><![CDATA[<p>
+<p>GDB, the GNU Project debugger, allows you to see what is going on `inside' another program while it executes -- or what another program was doing at the moment it crashed.</p>
+<p>Platform: Cross platform                    License:unknown</p>
+<p>Reference:<a href="https://www.gnu.org/software/gdb/" target="_blank">https://www.gnu.org/software/gdb/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:21:35 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/gdb</guid>
+</item>
+<item>
+	<title>Nemiver</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/nemiver</link>
+	<description><![CDATA[<p>
+<p>Nemiver is an on-going effort to write a standalone graphical debugger that integrates well in the GNOME desktop environment. It currently features a backend which uses the well known GNU Debugger gdb to debug C / C++ programs.</p>
+<p>Platform:unknown                                                                    License:unknown</p>
+<p>Reference:<a href="https://projects.gnome.org/nemiver/" target="_blank">https://projects.gnome.org/nemiver/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 13 Oct 2010 08:21:08 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/C&amp;amp;Cplus/Debugger-Editor/nemiver</guid>
+</item>
+</channel>
+</rss>

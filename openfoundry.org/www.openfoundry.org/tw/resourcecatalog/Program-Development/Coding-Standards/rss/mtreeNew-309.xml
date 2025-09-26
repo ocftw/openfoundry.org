@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 開發準則</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:10:57 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>C++ coding standard</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/c-coding-standard</link>
+	<description><![CDATA[The proposal here has evolved over many projects, many companies, and literally a total of many weeks spent arguing. It is no particular person's style and is certainly open to local amendments.]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 10:08:40 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/c-coding-standard</guid>
+</item>
+<item>
+	<title>Google Objective-C Style Guide</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-objective-c-style-guide</link>
+	<description><![CDATA[The purpose of this document is to describe the Objective-C (and Objective-C++) coding guidelines and practices that should be used for all Mac OS X code. Many of these guidelines have evolved and been proven over time on other projects and teams. Open-source projects developed by Google conform to the requirements in this guide.]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 10:06:00 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-objective-c-style-guide</guid>
+</item>
+<item>
+	<title>Google Python Style Guide</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-python-style-guide</link>
+	<description><![CDATA[Python is the main scripting language used at Google. This style guide is a list of dos and don'ts for Python programs。]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 02:06:16 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-python-style-guide</guid>
+</item>
+<item>
+	<title>Google Javascript Style Guide</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-javascript-style-guide</link>
+	<description><![CDATA[JavaScript is the main client-side scripting language used by many of Google's open-source projects. This style guide is a list of dos and don'ts for JavaScript programs.]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 02:05:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-javascript-style-guide</guid>
+</item>
+<item>
+	<title>Google C++ Style Guide</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-c-style-guide</link>
+	<description><![CDATA[The goal of this guide is to manage C++’s complexity by describing in detail the dos and don'ts of writing C++ code. These rules exist to keep the code base manageable while still allowing coders to use C++ language features productively.]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 01:59:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/google-c-style-guide</guid>
+</item>
+<item>
+	<title>Object Oriented Design Standards</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/object-oriented-design-standards</link>
+	<description><![CDATA[The Object Oriented Design Standard defines metaphors and paradigms for analysis and design of software components. The purpose is to make explicit sound software engineering design principles:to provide a standard which will be used to judge the merit of various designs as they evolve.]]></description>
+	<author>webmaster</author>
+	<pubDate>Mon, 15 Aug 2011 01:58:13 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/object-oriented-design-standards</guid>
+</item>
+<item>
+	<title>.Net Design Guidelines for Class Library Developers</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/net-design-guidelines-for-class-library-developers</link>
+	<description><![CDATA[<p>The .NET Framework's managed environment allows developers to improve their programming model to support a wide range of functionality. The goal of the .NET Framework design guidelines is to encourage consistency and predictability in public APIs while enabling Web and cross-language integration. It is strongly recommended that you follow these design guidelines when developing classes and components that extend the .NET Framework. Inconsistent design adversely affects developer productivity. Development tools and add-ins can turn some of these guidelines into de facto prescriptive rules, and reduce the value of nonconforming components. Nonconforming components will function, but not to their full potential.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 14 Aug 2011 18:11:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/net-design-guidelines-for-class-library-developers</guid>
+</item>
+<item>
+	<title>GNU coding standard</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/gnu-coding-standard</link>
+	<description><![CDATA[<p>The GNU Coding Standards were written by Richard Stallman and other GNU Project volunteers. Their purpose is to make the GNU system clean, consistent, and easy to install. This document can also be read as a guide to writing portable, robust and reliable programs. It focuses on programs written in C, but many of the rules and principles are useful even if you write in another programming language. The rules often state reasons for writing in a certain way.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 14 Aug 2011 18:10:17 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/gnu-coding-standard</guid>
+</item>
+<item>
+	<title>Standards and Style for Coding in ANSI C</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/standards-and-style-for-coding-in-ansi-c</link>
+	<description><![CDATA[<p>This document describes the coding standards we'd like to have for all of our C code. It has rules for both formatting and content, together with occasional rationale (or rationalization) for those rules. Although you may disagree with many of the decisions made here, please try to swallow your indignation and conform to these standards. It is very important that everyone can read and understand the software, so uniformity is a goal. Also, some of the style suggestions will help you avoid the pitfalls of the C language.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 14 Aug 2011 18:07:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/standards-and-style-for-coding-in-ansi-c</guid>
+</item>
+<item>
+	<title>Recommended C Style and Coding Standards</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/recommended-c-style-and-coding-standards</link>
+	<description><![CDATA[<p>This document is an updated version of the <i>Indian Hill C Style and Coding Standards</i> paper, with modifications by the last three authors. It describes a recommended coding standard for C programs. The scope is coding style, not functional organization.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 14 Aug 2011 18:06:32 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Coding-Standards/recommended-c-style-and-coding-standards</guid>
+</item>
+</channel>
+</rss>

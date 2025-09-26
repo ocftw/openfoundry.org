@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 測試</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:10:44 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Webinject</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/webinject</link>
+	<description><![CDATA[<p>
+<p>WebInject is a free tool for automated testing of web applications and web services. It can be used to test individual system components that have HTTP interfaces (JSP, ASP, CGI, PHP, AJAX, Servlets, HTML Forms, XML/SOAP Web Services, REST, etc), and can be used as a test harness to create a suite of [HTTP level] automated functional, acceptance, and regression tests. A test harness allows you to run many test cases and collect/report your results. WebInject offers real-time results display and may also be used for monitoring system response times.</p>
+<p>WebInject can be used as a complete test framework that is controlled by the WebInject User Interface (GUI). Optionally, it can be used as a standalone test runner (text/console application) which can be integrated and called from other test frameworks or applications.</p>
+<p>Platform:Cross platform                                            License:GNU General Public License(GPL)</p>
+<p>Reference:<a href="https://www.webinject.org/" target="_blank">https://www.webinject.org/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Mon, 13 Sep 2010 03:31:27 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/webinject</guid>
+</item>
+<item>
+	<title>RSpec</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/rspec</link>
+	<description><![CDATA[RSpec is a Behaviour Driven Development framework for Ruby. It provides two frameworks for writing and executing examples of how your Ruby application should behave: * a Story Framework for describing behaviour at the application level * a Spec Framework for describing behaviour at the object level.]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 14 Mar 2008 13:49:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/rspec</guid>
+</item>
+<item>
+	<title>GNU gprof</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/gnu-gprof</link>
+	<description><![CDATA[GNU profiler, gprof, was written by Jay Fenlason. You can use it to determine which parts of a program are taking most of the execution time. It enables your ability to spot bugs that had otherwise been unnoticed.]]></description>
+	<author>dio</author>
+	<pubDate>Sun, 13 May 2007 23:54:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Testing/gnu-gprof</guid>
+</item>
+</channel>
+</rss>

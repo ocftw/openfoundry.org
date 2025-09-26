@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 程式碼稽核</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:11:30 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>ITS4</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Source-Code-Audit/its4</link>
+	<description><![CDATA[<p>Cigital developed ITS4 to help automate source code review for security. ITS4 is a simple tool that statically scans C and C++ source code for potential security vulnerabilities. It is a command-line tool that works across Unix and Windows platforms. ITS4 scans source code, looking for function calls that are potentially dangerous. For some calls, ITS4 tries to perform some code analysis to determine how risky the call is. In each case, ITS4 provides a problem report, including a short description of the potential problem and suggestions on how to fix the code.</p>
+<p>ITS4 and its source code are provided here to the security community for any use that does not compete with Cigital's consulting practice.</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 30 Apr 2010 09:57:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Source-Code-Audit/its4</guid>
+</item>
+<item>
+	<title>Flawfinder</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Source-Code-Audit/flawfinder</link>
+	<description><![CDATA[<p>Flawfinder, a program that examines source code and reports possible security weaknesses (``flaws'') sorted by risk level. It's very useful for quickly finding and removing at least some potential security problems before a program is widely released to the public.</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 30 Apr 2010 09:56:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Source-Code-Audit/flawfinder</guid>
+</item>
+</channel>
+</rss>

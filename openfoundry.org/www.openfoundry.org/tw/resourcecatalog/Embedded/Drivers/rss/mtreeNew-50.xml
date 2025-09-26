@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 驅動程式</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:09:39 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>can4linux</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/can4linux</link>
+	<description><![CDATA[<p> </p>
+<p>can4linux is an universal Linux device driver for ISA or PCI interface boards with CAN interface and embedded CAN controller solutions. Based on the API provided by can4linux commercial protocol stacks for CANopen, J1939 and DeviceNet are available.</p>
+<p>Platform: Linux;License: GNU General Public License (GPL)</p>
+<p>Reference：<a href="https://www.port.de/pages/misc/can4linux.php" target="_blank">https://www.port.de/pages/misc/can4linux.php</a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 15 Dec 2010 10:13:07 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/can4linux</guid>
+</item>
+<item>
+	<title>WIRN</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/wirn</link>
+	<description><![CDATA[<p>
+<p>WIRN is a professional stored program control. It is optimized for heat control, but you can control whatever you want. It use a FreeRTOS.org-Kernel on an Atmel AT32UC3A1512 and control Triacs over AVR Attiny2313.</p>
+<p>Platform:unknown ;License: GNU General Public License (GPL),Other License</p>
+<p>References: <a href="https://sourceforge.net/apps/trac/wirn" target="_blank">https://sourceforge.net/apps/trac/wirn</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 22 Oct 2009 01:00:18 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/wirn</guid>
+</item>
+<item>
+	<title>SD-Card and ATMEL ATmega microcontroller</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/sd-card-and-atmel-atmega-microcontroller</link>
+	<description><![CDATA[<p>
+<p>This project is about using a SD-card together with an ATMEL Atmega32 microcontroller as mass storage medium. It implements the interface to the SD-card, a simplified FAT16 filesystem and a sample application: a data logger.</p>
+<p>Platform:unknown ;License: GNU General Public License (GPL)</p>
+<p>References: <a href="https://sd-cardandatmel.sourceforge.net/">https://sd-cardandatmel.sourceforge.net/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 22 Oct 2009 00:55:07 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/sd-card-and-atmel-atmega-microcontroller</guid>
+</item>
+<item>
+	<title>GnuDD - Device Drivers and Embedded System</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/gnudd-device-drivers-and-embedded-system</link>
+	<description><![CDATA[<p>
+<p>This site is offered by a small group of developers within the free software community. They offer under GPL or LGPL license some kernel and user mode device drivers, X11 drivers, and embedded systems hardware and software. They also offer courses on embedded Linux, Linux device drivers and Samba. You need to contact them for specifics on how you can get their code and access their courses.</p>
+<p>Platform:not bound to any particular hardware platform ;License: GPL license, X11 license, LGPL license</p>
+<p>References: <a href="https://www.gnudd.com/" target="_blank">https://www.gnudd.com/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Wed, 04 Mar 2009 08:20:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/gnudd-device-drivers-and-embedded-system</guid>
+</item>
+<item>
+	<title>USB_ModeSwitch - USB application</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/usbmodeswitch-usb-application</link>
+	<description><![CDATA[<p>
+<p>USB_ModeSwitch is a mode switching tool for controlling “flip flop” (multiple device) USB gear.</p>
+<p>Platform:unknown ;License: GNU General Public License</p>
+<p>References: <a href="https://www.draisberghof.de/usb_modeswitch/" target="_blank">https://www.draisberghof.de/usb_modeswitch/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Thu, 08 Jan 2009 11:31:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Embedded/Drivers/usbmodeswitch-usb-application</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 介紹</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:35 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Lua</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Introduction/lua</link>
+	<description><![CDATA[<p>Lua is a powerful, fast, lightweight, embeddable scripting language.</p>
+<p>Lua combines simple procedural syntax with powerful data description constructs based on associative arrays and extensible semantics. Lua is dynamically typed, runs by interpreting bytecode for a register-based virtual machine, and has automatic memory management with incremental garbage collection, making it ideal for configuration, scripting, and rapid prototyping.</p>
+<p>Why choose Lua?</p>
+<p>Lua is a proven, robust language:</p>
+<p>Lua has been used in many industrial applications (e.g., Adobe's Photoshop Lightroom), with an emphasis on embedded systems (e.g., the Ginga middleware for digital TV in Brazil) and games (e.g., World of Warcraft). Lua is currently the leading scripting language in games. Lua has a solid reference manual and there are several books about it. Several versions of Lua have been released and used in real applications since its creation in 1993. Lua featured in HOPL III, the Third ACM SIGPLAN History of Programming Languages Conference, in June 2007.</p>
+<p>Lua is fast:</p>
+<p>Lua has a deserved reputation for performance. To claim to be "as fast as Lua" is an aspiration of other scripting languages. Several benchmarks show Lua as the fastest language in the realm of interpreted scripting languages. Lua is fast not only in fine-tuned benchmark programs, but in real life too. A substantial fraction of large applications have been written in Lua.</p>
+<p>Lua is portable:</p>
+<p>Lua is distributed in a small package and builds out-of-the-box in all platforms that have an ANSI/ISO C compiler. Lua runs on all flavors of Unix and Windows, and also on mobile devices (such as handheld computers and cell phones that use BREW, Symbian, Pocket PC, etc.) and embedded microprocessors (such as ARM and Rabbit) for applications like Lego MindStorms.</p>
+<p>For specific reasons why Lua is a good choice also for constrained devices, read this summary by Mike Pall. See also a poster created by Timm Müller.</p>
+<p>Lua is embeddable:</p>
+<p>Lua is a fast language engine with small footprint that you can embed easily into your application. Lua has a simple and well documented API that allows strong integration with code written in other languages. It is easy to extend Lua with libraries written in other languages. It is also easy to extend programs written in other languages with Lua. Lua has been used to extend programs written not only in C and C++, but also in Java, C#, Smalltalk, Fortran, Ada, Erlang, and even in other scripting languages, such as Perl and Ruby.</p>
+<p>Platform: Cross platform                License:MIT License</p>
+<p>Reference:<a href="https://www.lua.org/about.html" target="_blank">https://www.lua.org/about.html</a></p>]]></description>
+	<author>dio</author>
+	<pubDate>Sat, 18 Sep 2010 01:42:53 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Introduction/lua</guid>
+</item>
+</channel>
+</rss>

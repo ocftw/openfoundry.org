@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 編譯器</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:37 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>LuaJIT</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luajit</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>LuaJIT is a Just-In-Time (JIT) Compiler for Lua. It's fully compatible with standard Lua 5.1 and can significantly boost the performance of your Lua programs. LuaJIT is open source software, released under the MIT/X license. LuaJIT builds out-of-the-box on all popular x86 operating systems (Linux, Windows, OSX etc.). It runs fine as a 32 bit application under x64-based systems, too. "Since its first release in 2005, LuaJIT has been at the forefront of dynamic language performance. In 2008 Mike Pall announced that he was working on a complete rewrite based on trace compiler technology. It breaks with a long tradition of method-at-a-time JIT compilers and seems especially well suited for compiling dynamic languages. As LuaJIT shows, this approach yields performance that can rival even offline, static language compilers."</p>
+<p>Platform: Cross-platform; License: MIT/X license</p>
+<p>Reference: <a href="https://www.ditii.com/2010/01/21/luajit-just-in-time-jit-compiler-for-lua-dynamic-language/" target="_blank">https://www.ditii.com/2010/01/21/luajit-just-in-time-jit-compiler-for-lua-dynamic-language/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:12:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luajit</guid>
+</item>
+<item>
+	<title>LLVM-Lua</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/llvm-lua</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>LLVM-Lua, is a JIT and static Lua compiler that uses Low Level Virtual Machine (LLVM) as the compiler backend.</p>
+<p>Platform: Cross-platform; License: MIT License</p>
+<p>Reference: <a href="https://code.google.com/p/llvm-lua/" target="_blank">https://code.google.com/p/llvm-lua/ </a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:12:12 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/llvm-lua</guid>
+</item>
+<item>
+	<title>luac</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luac</link>
+	<description><![CDATA[<p> </p>
+<p>luac is the Lua compiler. It translates programs written in the Lua programming language into binary files that can be loaded and executed with lua_dofile in C or with dofile in Lua.</p>
+<p>Platform:unknown                       License:unknown</p>
+<p>Reference:<a href="https://www.lua.org/manual/4.0/luac.html" target="_blank">https://www.lua.org/manual/4.0/luac.html </a></p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:11:14 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luac</guid>
+</item>
+<item>
+	<title>LuaDec</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luadec</link>
+	<description><![CDATA[<p> </p>
+<p>
+<p>LuaDec for Lua  is a Lua decompiler targeting lua</p>
+<p>It is based on Hisham Muhammad's luadec which targeted lua</p>
+<p>LuaDec is free software and uses the same license as the original LuaDec</p>
+<p>Platform: Windows NT/2000; License: MIT License</p>
+<p>Reference:<a href="https://luadec51.luaforge.net/" target="_blank"> https://luadec51.luaforge.net/</a></p>
+</p>
+<p> </p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 02:10:26 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Compiler/luadec</guid>
+</item>
+</channel>
+</rss>

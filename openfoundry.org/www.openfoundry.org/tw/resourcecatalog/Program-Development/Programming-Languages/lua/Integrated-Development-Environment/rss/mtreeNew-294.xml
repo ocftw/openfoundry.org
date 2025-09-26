@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 整合開發環境</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Wed, 24 Sep 2025 02:33:41 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Lua Studio</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/lua-studio</link>
+	<description><![CDATA[<p>
+<p>Lua Studio is a simple IDE for Lua. It consists of an editor with syntax coloring, and an integrated debugger. Debugger can step into, step over, step out of the routine, or stop at a breakpoint. This is Windows project written in C++ and MFC.</p>
+<p>Platform:Windows             License:MIT/X Consortium License</p>
+<p>Reference:<a href="https://luaforge.net/projects/lua-studio/" target="_blank">https://luaforge.net/projects/lua-studio/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:59:39 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/lua-studio</guid>
+</item>
+<item>
+	<title>Decoda</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/decoda</link>
+	<description><![CDATA[<p>
+<p>Decoda is a professional development environment for debugging Lua script in your applications. It's familiar and fast and you'll wonder how you ever worked without it.</p>
+<p>Features:</p>
+<p>Full graphical IDE. Syntax highlighting, symbol browsing/filtering, auto-completion, configurable hotkeys and colors, custom tools and more. If you know MSVC, you'll be comfortable immediately.</p>
+<p>Plays well with others. Integrates with your source control (SCC) and is simple enough for the un-nerdly. It also supports LuaPlus wide-character strings, and even attaches to MSVC for debugging your native code.</p>
+<p>Plug and play. Debug Lua files inside your application without making any code changes. It works with Lua 5.0 and later and supports modified versions as well. The latest and greatest games work with Decoda and your creation will too.</p>
+<p>Platform:Windows                License:unknown</p>
+<p>Reference:<a href="https://www.unknownworlds.com/decoda" target="_blank">https://www.unknownworlds.com/decoda </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:58:36 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/decoda</guid>
+</item>
+<item>
+	<title>LuaEdit</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/luaedit</link>
+	<description><![CDATA[<p>
+<p>LuaEdit is an IDE/Debugger/Script Editor designed for the version 5.1 of Lua. It features remote debugging, local debugging, syntax highlighting, completion proposal list, parameter proposition engine, advance breakpoint management (including condition system on breakpoints and hit count), function listing, global and local variables listing, watches, solution oriented management, etc.</p>
+<p>Platform:Windows</p>
+<p>License:GNU General Public License(GPL),Mozilla Public License 1.1</p>
+<p>Reference:<a href="https://luaforge.net/projects/luaedit/" target="_blank">https://luaforge.net/projects/luaedit/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:54:17 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/luaedit</guid>
+</item>
+<item>
+	<title>B:Lua</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/blua</link>
+	<description><![CDATA[<p>
+<p>B:Lua (pronounced Blua) is an open source project to create a full featured standalone Lua IDE (note: B:Lua is not an Eclipseplugin and has nothing to do with Eclipse except using the same Java API (SWT/JFace)).</p>
+<p>B:Lua will also have a whole bunch of game related features, initially for World of Warcraft(that you can turn on/off).</p>
+<p>B:Lua will have features such as:</p>
+<p>Real-time code parsing and error checking</p>
+<p>Code assist</p>
+<p>Code completion</p>
+<p>Code hovering / Variable info</p>
+<p>Global search/replace with regular expressions</p>
+<p>Fast code jumping for functions, methods and globals declared in other files</p>
+<p>Platform:Cross platform            License:GNU General Public License(GPL)</p>
+<p>Reference:<a href="https://blua.sourceforge.net/" target="_blank">https://blua.sourceforge.net/ </a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 17 Sep 2010 01:53:11 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Program-Development/Programming-Languages/lua/Integrated-Development-Environment/blua</guid>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 網頁服務</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:08:24 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Apache Axis2</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/apache-axis2</link>
+	<description><![CDATA[<p>Apache Axis2 is a toolkit for creating and using Web Services, including SOAP, MTOM, XML/HTTP and advanced WS-* standards such as WSRM and WSSecurity. Axis2 includes a very fast runtime engine, together with tooling support for WSDL and WS-Policy, and plugin support for WS-Addressing, WS-ReliableMessaging, WS-Security, WS-Eventing, WS-Transactions, WS-Trust and WS-SecureConversation. Axis2 runs either standalone or hosted in Tomcat or other servlet containers.</p>]]></description>
+	<author>webmaster</author>
+	<pubDate>Sun, 21 Aug 2011 21:45:33 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/apache-axis2</guid>
+</item>
+<item>
+	<title>Open Source FUSE</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/open-source-fuse</link>
+	<description><![CDATA[<p>
+<p>FUSE Services Framework is a flexible open source SOAP and RESTful services platform based on Apache CXF that is productized and supported for use in enterprise SOA infrastructure.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://fusesource.com/products/enterprise-cxf/" target="_blank">https://fusesource.com/products/enterprise-cxf/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:56:51 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/open-source-fuse</guid>
+</item>
+<item>
+	<title>Open Source OSGi ESB</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/open-source-osgi-esb</link>
+	<description><![CDATA[<p>
+<p>FUSE ESB 4 with JBI, OSGi and BPEL support is an open source integration software platform based on Apache ServiceMix 4 that is fully standards based, productized, and supported for use in an enterprise SOA infrastructure.</p>
+<p>Platform: Linux, Windows, Mac OS X;License: Apache</p>
+<p>Reference: <a href="https://fusesource.com/products/enterprise-servicemix/" target="_blank">https://fusesource.com/products/enterprise-servicemix/</a></p>
+</p>]]></description>
+	<author>dio</author>
+	<pubDate>Fri, 12 Nov 2010 05:56:24 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/open-source-osgi-esb</guid>
+</item>
+<item>
+	<title>Apache CXF</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/apache-cxf</link>
+	<description><![CDATA[Apache CXF是一個開源服務框架 CXF助你建造和開放運用frontend programming API像JAX-WS和JAX-RS。這些服務可能用到不同的協定如SOAP, XML/HTTP, RESTful, 和CORBA 並依循不同的傳輸 如HTTP, JMS 或JBL。CFX包含一組極ˋ廣的功能表但主要聚焦於網路服務標準支援, Frontend, 易用性, 和二進位與老舊協定的支援。
+<p>適用平台： Linux;原始碼授權類型: Apache</p>
+<p>資料來源: <a href="ttp://cxf.apache.org/" target="_blank">https://cxf.apache.org/</a></p>
+<p> </p>]]></description>
+	<author>chkche1</author>
+	<pubDate>Fri, 15 Feb 2008 14:13:10 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/apache-cxf</guid>
+</item>
+<item>
+	<title>Apache JUDDI</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>jUDDI (pronounced &quot;Judy&quot;) is an open source Java implementation of the Universal Description, Discovery, and Integration (UDDI v3) specification for Web Services. </p>]]></description>
+	<author>!mingster_tsai</author>
+	<pubDate>Fri, 15 Feb 2008 06:45:44 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+<item>
+	<title>Apache Muse</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>The Apache Muse Project is a Java-based implementation of the WS-ResourceFramework (WSRF), WS-BaseNotification (WSN), and WS-DistributedManagement (WSDM) specifications. It is a framework upon which users can build web service interfaces for manageable resources without having to implement all of the &quot;plumbing&quot; described by the aforementioned standards. Applications built with Muse can be deployed in both Apache Axis2 and OSGi environments, and the project includes a set of command line tools that can generate the proper artifacts for your deployment scenario.</p>]]></description>
+	<author>!mingster_tsai</author>
+	<pubDate>Fri, 15 Feb 2008 06:40:20 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+<item>
+	<title>Apache Tuscany</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>Apache Tuscany simplifies the task of developing SOA solutions by providing a comprehensive infrastructure for SOA development and management that is based on Service Component Architecture (SCA) standard.<br /></p>]]></description>
+	<author>!mingster_tsai</author>
+	<pubDate>Fri, 15 Feb 2008 06:39:02 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+<item>
+	<title>Apache Synapse</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>Apache Synapse is designed to be a simple, lightweight and high performance Enterprise Service Bus (ESB) from Apache. Based on a small asynchronous core, Apache Synapse has excellent support for XML and Web services - as well as binary and text formats. The Synapse engine is configured with a simple XML format and comes with a set of ready-to-use transports and mediators.</p>]]></description>
+	<author>!mingster_tsai</author>
+	<pubDate>Fri, 15 Feb 2008 06:36:50 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+<item>
+	<title>Crispy</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>The intention for this project is a very simple API to call different kinds of services (provider/technology). Crispy's aims is to provide a single point of entry for remote invocation for a wide number of transports: eg. RMI, EJB, JAX-RPC or XML-RPC. It works by using properties to configure a service manager, which is then used to invoke the remote API. Crispy is a simple Java codebase with an API that sits between your client code and the services your code must access. It provides a layer of abstraction to decouple client code from access to a service, as well as its location and underlying implementation. The special on this idea is, that these calls are simple Java object calls (remote or local calls are transparent).</p>]]></description>
+	<author>!mingster_tsai</author>
+	<pubDate>Fri, 15 Feb 2008 06:29:11 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+<item>
+	<title>Gomba</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</link>
+	<description><![CDATA[<p>Gomba is a collection of Java servlets that allow developers to quickly build RESTful web services that expose data accessed via the JDBC API to the Web. Gomba can be used as a middle-tier for dynamic websites, as a syndication system or even as a database reporting tool.</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Fri, 15 Feb 2008 06:10:52 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Enterprise/Web-Service/</guid>
+</item>
+</channel>
+</rss>

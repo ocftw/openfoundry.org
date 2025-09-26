@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:mtree="http://www.mosets.com/tree/rss/">
+<channel>
+<title>OpenFoundry - Recently Added Listings - 資料加密</title>
+<description></description>
+<link>https://www.openfoundry.org/</link>
+<lastBuildDate>Tue, 23 Sep 2025 22:11:16 +0100</lastBuildDate>
+<generator>FeedCreator 1.7.3</generator>
+<item>
+	<title>Tcpcrypt</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/tcpcrypt</link>
+	<description><![CDATA[Tcpcrypt is a protocol that attempts to encrypt (almost) all of your  network traffic. Unlike other security mechanisms, Tcpcrypt works out of  the box: it requires no configuration, no changes to applications, and  your network connections will continue to work even if the remote end  does not support Tcpcrypt, in which case connections will gracefully  fall back to standard clear-text TCP.<br />Platform：Windows/Linux/FreeBSD/MacOS；License： New BSD License (BSD-2-Clause)<br />Reference：https://github.com/sorbo/tcpcrypt<br />]]></description>
+	<author>webmaster</author>
+	<pubDate>Wed, 21 Sep 2011 03:32:51 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/tcpcrypt</guid>
+</item>
+<item>
+	<title>Thep</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/thep</link>
+	<description><![CDATA[Thep project aims to provide homomorphic encryption libraries to  developers so they can in turn create privacy and confidentiality aware  software. Currently the code implements the Paillier cryptosystem in  Java, along with it's homomorphic operations and key generation.  Saving/transporting keys and encrypted integers can be accomplished  using methods inherited from Serializable.<br />Platform：Java；License： GNU Lesser General Public License v3 (LGPL-3.0)<br />Reference：https://code.google.com/p/thep/]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:40:05 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/thep</guid>
+</item>
+<item>
+	<title>Paillier</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/paillier</link>
+	<description><![CDATA[Paillier is a very basic pure Python implementation of the Paillier  Homomorphic Cryptosystem. The idea of homomorphic computation is to  encrypt some numbers, perform algebraic operations like "add" and  "multiply" on cyphertexts, then decrypt the result and find it to be  exactly the same as if corresponding "+" and "*" operations were applied  to the plaintexts. In other words, a homomorphic cryptosystem enables  cryptographically secure computations in an untrusted environment.<br />Platform：Python；License： GNU General Public License v3 (GPL-3.0)<br />Reference： https://github.com/mikeivanov/paillier]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:39:23 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/paillier</guid>
+</item>
+<item>
+	<title>Pccipher</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/pccipher</link>
+	<description><![CDATA[Pccipher is the ProgClub encryption software. That's the software that  allows you to encrypt and decrypt data in PHP and Javascript. It's  compatible with 32-bit and 64-bit implementations of PHP, and should  work in any Javascript capable web-browser.<br />Platform：Windows/Linux；License：MIT License or GNU General Public License v2 (GPL-2.0)<br />Reference：https://www.progclub.org/wiki/Pccipher]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:38:30 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/pccipher</guid>
+</item>
+<item>
+	<title>Sqlcipher</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/sqlcipher</link>
+	<description><![CDATA[SQLite Cipher is an SQLite extension that provides transparent 256 bit  AES encryption of database files. Pages are encrypted before being  written to disk and are decrypted when read back. Encryption is provided  by the OpenSSL crypto library.<br />Platform：Windows/Linux/FreeBSD/MacOS；License： BSD-3-Clause<br />Reference：https://github.com/sjlombardo/sqlcipher]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:37:37 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/sqlcipher</guid>
+</item>
+<item>
+	<title>Gibberish-AES</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gibberish-aes</link>
+	<description><![CDATA[A fully OpenSSL compliant javascript library for AES encryption. It only  supports CBC AES encryption mode, and it's built to be compatible with  one of the most popular AES libraries available, OpenSSL. It also passed  the FIPS certification from NIST. <br />Platform: Windows/Linux/FreeBSD/MacOS；License: MIT License <br />Reference: https://github.com/mdp/gibberish-aes]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:36:22 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gibberish-aes</guid>
+</item>
+<item>
+	<title>FBEncryptor</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/fbencryptor</link>
+	<description><![CDATA[FBEncryptor is enabled to encrypt/decrypt a message. Supported  encryption algorithm is AES 256 bit only. Additionally BASE64  encode/decode is supported.<br />Platform: MacOS；License: MIT License<br />Reference: https://github.com/dev5tec/FBEncryptor<br />]]></description>
+	<author>webmaster</author>
+	<pubDate>Tue, 20 Sep 2011 19:34:55 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/fbencryptor</guid>
+</item>
+<item>
+	<title>OpenSSL</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/openssl</link>
+	<description><![CDATA[<strong>OpenSSL</strong> 提供了完整安全通信所需的編碼工具，諸如雜湊演算法(Hash algorithms)、加解密演算法(Encryption/Decryption algorithms) 及 SSL / TLS 協議的實現等。加上其開放源碼的特性，使得許多開源專案或商業套件都有其踪跡。OpenSSL 除了提供程式 API 擴充接口外，也有命令列模式的操作。]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Wed, 30 Jun 2010 10:36:43 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/openssl</guid>
+</item>
+<item>
+	<title>GnuPG</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gnupg</link>
+	<description><![CDATA[<p>GnuPG is the GNU project's complete and free implementation of the OpenPGP standard as defined by RFC4880 . GnuPG allows to encrypt and sign your data and communication, features a versatile key managment system as well as access modules for all kind of public key directories. GnuPG, also known as GPG, is a command line tool with features for easy integration with other applications. A wealth of frontend applications and libraries are available. Version 2 of GnuPG also provides support for S/MIME.</p>
+<p>GnuPG is Free Software (meaning that it respects your freedom). It can be freely used, modified and distributed under the terms of the GNU General Public License .</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 10:35:31 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/gnupg</guid>
+</item>
+<item>
+	<title>effm</title>
+	<link>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/</link>
+	<description><![CDATA[<p>Encryption for Flash Memory. Supports: Encryption and Decryption / Hardware design / Filesystem tuning / User interface design. The main purpose is to protect text/data/images/video/audio fileformat in flash memory. This program is license under Apache License 2.0.</p>]]></description>
+	<author>freddi_chen</author>
+	<pubDate>Mon, 28 Jun 2010 02:51:46 +0100</pubDate>
+	<guid>https://www.openfoundry.org/en/resourcecatalog/Security/Data-Encryption/</guid>
+</item>
+</channel>
+</rss>

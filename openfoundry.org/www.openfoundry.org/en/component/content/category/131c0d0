@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="" -->
+<?xml-stylesheet href="/components/com_jcomments/tpl/default/style.css?v=10" type="text/css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>OpenFoundry</title>
+		<description>OpenFoundry provides essential tools and services through its service platform for users to develop Open Source Software Projects, the operating funds comes from the National Science Council and the Research Center for Information Technology Innovation of Academia Sinica Taiwan.</description>
+		<link>https://www.openfoundry.org/en/component/content/category/131</link>
+		<lastBuildDate>Wed, 24 Sep 2025 06:56:07 +0000</lastBuildDate>
+		<generator></generator>
+		<language>en-gb</language>
+		<item>
+			<title>GPL</title>
+			<link>https://www.openfoundry.org/en/component/content/article/131/133</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/131/133</guid>
+			<description><![CDATA[The GPL is a very strict free/open source software license. In order to assure that programs licensed under the GPL retain their freedom, once a program is developed with GPL-licensed code, the developed program must also be licensed under the GPL. Because of this quality, some people call the GPL a &ldquo;viral&rdquo; license. That is, as a project makes use of GPL-licensed code, the resulted project will have to adopt GPL as its license. This in turn makes the GPL a license with very low degree of compatibility. A developer has to consider the following conditions:<br /> <br /><strong>a.</strong> Although the GPL is compatible with the BSD, MIT and zlib/libpng licenses, but the resulted program has to adopt the GPL.<br /><strong>b.</strong> The GPL is compatible with the LGPL.<br /><strong>c.</strong> There exists a way of conversion between the LGPL and the GPL. The licensee of an LGPL-licensed program can convert the copy of the LGPL-licensed program in question into one that is GPL-licensed. The licensee will have to make necessary modifications to documents related to that program in question so that the recipients will be informed that this reproduction of the program is now licensed under the GPL. The conversion is one-way, which is, once the conversion is made, there is no going back to the LGPL license.]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>相容性</category>
+			<pubDate>Fri, 12 Jan 2007 14:30:33 +0000</pubDate>
+		</item>
+		<item>
+			<title>MPL</title>
+			<link>https://www.openfoundry.org/en/component/content/article/131/132</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/131/132</guid>
+			<description><![CDATA[According to the articles of the MPL, programs licensed under the MPL can adopt the multi-licenses model:<br /> <br /><strong>a.</strong> The initial developer of a program can specify different licenses for different specific part of code. The licensees can pick up among the designated licenses one license that suits the part of code they are using. One of the representative projects that adopt the MPL is Mozilla, which in turns adopts a triple license model that lists MPL, GPL and LGPL as available options. The documentation in the program will make it clear which licenses are used for the different parts of the program. The licensee may also contact the initial developers. According to this multi-license module, if any contributor modifies the program licensed under the MPL, the following conditions may apply:<br />
+<ul><br /><strong> i.</strong> If the modification is not subject to the terms of other licenses, the modification will still be subject to the MPL or the license terms specified by the initial developer.<br /><strong>ii.</strong> If the modification is already subject to the terms of another license, a written consent from the initial developer is all that is needed for the modification to be subject to the original licensing terms.<br /></ul>
+    <br /><strong>b.</strong> In addition, the licensees can adopt a license different from the MPL when they redistribute the executable binary form of the program, so long as the chosen license does not conflict with the MPL and so long as the recipient of the executable binary is well informed that the source code and the received binary adopt different licensee terms and the executable form is provided by the licensee in question, whose action has nothing whatsoever to do with the initial developer.]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>相容性</category>
+			<pubDate>Fri, 12 Jan 2007 14:30:14 +0000</pubDate>
+		</item>
+		<item>
+			<title>BSD, MIT and zlib/libpng licenses</title>
+			<link>https://www.openfoundry.org/en/component/content/article/131/52</link>
+			<guid>https://www.openfoundry.org/en/component/content/article/131/52</guid>
+			<description><![CDATA[These three licenses grant a very large extent of freedoms to their licensees. They are virtually compatible with any other software license. The licensees are not even obliged to provide the source code and may only distribute executable binary files, like what they can do for proprietary software. Programs that adopt any of these three licenses can be used, in the development of another project, with programs licensed under any other licenses listed on OpenFoundry, and there are no compatibility issues. As these three licenses are relatively more flexible, however, the resulted single project usually adopts a stricter license. Please note that the MIT license permits the licensee to sublicense in the role of the licenser. This is different from BSD, zlib/libpng licenses. As for the license that the resulted program can adopt, this can be further divided into two situations:<br /> <br /><strong>a.</strong> There is no unified license that applies to every module involved. Each module will retain its own license.<br /><strong>b.</strong> The resulted program adopts a stricter license. As BSD, MIT and zlib/libpng licenses are more flexible, even if the modules are contained within the resulted project, but the licensees will have to follow a stricter license when they use the resulted program.]]></description>
+			<author>contact@openfoundry.org (webmaster)</author>
+			<category>相容性</category>
+			<pubDate>Wed, 22 Nov 2006 20:35:13 +0000</pubDate>
+		</item>
+	</channel>
+</rss>
