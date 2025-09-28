@@ -5,9 +5,9 @@
 - [ ] 列出所有的頁面目錄與標題清單
 - [ ] 把檔案中的外部資源內部化
 - [ ] 把頁面中到 http(s)?://openfoundry.org 的連結改成相對連結
-- [ ] 設定 git-pages repo 並將 /openfoundry.org/openfoundry.org 搬移到根目錄下以便打開 github pages
 - [ ] 移除 <script>jQuery.extend(Drupal.settings...</script> 標籤
 
+- [x] 設定 git-pages repo 並將 /openfoundry.org/openfoundry.org 搬移到根目錄下以便打開 github pages
 - [x] 刪除 <title>40x 的 HTML 檔案
 - [x] 下載 to_be_download_url.txt 的檔案
 - [x] 移除「Please log in or register to view or modify your profile.」的頁面
