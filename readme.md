@@ -2,11 +2,11 @@
 
 ## todo
 
-- [ ] 再次列出所有的頁面目錄與標題清單
 - [ ] 把檔案中的外部資源內部化
 - [ ] 把頁面中到 http(s)?://openfoundry.org 的連結改成相對連結
 - [ ] 移除 <script>jQuery.extend(Drupal.settings...</script> 標籤
 
+- [x] 再次列出所有的頁面目錄與標題清單
 - [x] 檔案下載的頁面中的檔案加上連結
 - [x] 刪掉「Search Keyword xxx Total: 1 results found.」頁面
 - [x] 重新下載 *.tmp 檔案
@@ -66,32 +66,12 @@
   /of/public/download/* (120GB, 暫且不抓) //FIXME
   ```
 
-## 處理腳本
-
-### 1. page_search_to_list.sh - 搜尋特定文字並建立檔案列表
-
-用法：`./page_search_to_list.sh "Page not found"`
-
-功能：搜尋包含指定文字的檔案並建立 matched_files.txt
-
-### 2. files_to_urls.sh - 將檔案路徑轉換為 URL
-
-用法：`./files_to_urls.sh`
-
-功能：從 matched_files.txt 讀取檔案列表，生成對應的 URL 列表到 matched_urls.txt
-
-### 3. extract_media.sh - 提取多媒體檔案清單
-
-用法：`./extract_media.sh`
-
-功能：從 HTTrack 記錄中提取 openfoundry.org 域名下被略過的多媒體檔案，生成 media_tbd_openfoundry.txt 列表
-
 ## 處理流程
 
 1. 使用 `page_search_to_list.sh` 搜尋問題頁面（如 "Page not found"）
 2. 使用 `files_to_urls.sh` 將檔案路徑轉換為 URL
 3. 使用 `extract_media.sh` 提取多媒體檔案清單
-4. 根據 todo 清單逐一處理各項任務
+4. 使用 `httrack_url_list.sh` 抓取清單列出的 URL 目標
 
 ## 完整頁面清單
 
