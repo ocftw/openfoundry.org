@@ -2,16 +2,18 @@
 
 ## todo
 
-- [ ] 把 binary 檔案都重搬到 LFS 上
-- [ ] 加入 script 把 github lfs 管理的檔案動態指向 github repo
-- [ ] 重新下載 *.tmp 檔案
-- [ ] 重新下載 *.delayed 檔案
 - [ ] 再次列出所有的頁面目錄與標題清單
-
 - [ ] 把檔案中的外部資源內部化
 - [ ] 把頁面中到 http(s)?://openfoundry.org 的連結改成相對連結
 - [ ] 移除 <script>jQuery.extend(Drupal.settings...</script> 標籤
 
+- [x] 檔案下載的頁面中的檔案加上連結
+- [x] 刪掉「Search Keyword xxx Total: 1 results found.」頁面
+- [x] 重新下載 *.tmp 檔案
+- [x] 重新下載 *.delayed 檔案
+- [x] 刪掉所有內容不是 html 的 .html 檔案
+- [x] 加入 script 把 github lfs 管理的檔案動態指向 github repo
+- [x] 把 binary 檔案都重搬到 LFS 上
 - [x] 列出所有的頁面目錄與標題清單
 - [x] 設定 git-pages repo 並將 /openfoundry.org/openfoundry.org 搬移到根目錄下以便打開 github pages
 - [x] 刪除 <title>40x 的 HTML 檔案

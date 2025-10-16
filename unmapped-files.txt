@@ -1,0 +1,918 @@
+(網管人)廠商建檔表格.doc
+01.將自由軟體納入台灣南區電聯會寒訓中.pdf
+01.法律研討會.pdf
+01.自由軟體比較安全？.pdf
+01_20090306_HTMLWiki.odp
+02.台灣南區電聯會寒訓課程納入自由軟體.pdf
+02.微軟.pdf
+02.美國法院否認Artistic是授權條款.pdf
+02_2006IOSESC劃下完美的句點.pdf
+02_20090306_HTMLWiKi.pdf
+03.Cnet 微軟.pdf
+03.Cnet 微軟承諾加強與開源碼社群互動.pdf
+03.自然語言的親和力原則.pdf
+03_2006企業運算研討會開放源碼的機會.pdf
+04-30.odp
+04.GPLv2相關產品釋出機制的自我評量.pdf
+0425_osdc-plug_shun.odp
+04_ant.pdf
+04_台灣舉辦2007國際企業運算研討會.pdf
+05.選用授權條款的分析與考量.pdf
+06.自由軟體爭議.pdf
+06.開原碼開發者大會週末豋場.pdf
+07.自由軟體之父：軟體專利有害無益.pdf
+07.隨身碟防.pdf
+08.網路流傳的隨身碟防毒招數有效嗎？.pdf
+08.自由軟體之父：OLPC背叛自由精神.pdf
+09.圖片：Richard Stallman在清華.pdf
+09.開源碼隨身碟防毒軟體.pdf
+1.GPL的另類利用方式.pdf
+10.pdf creator把網頁變成電子書.pdf
+10.線上應用程式讓人不自由﹝上﹞.pdf
+10.繁簡自由設定.pdf
+10.開放原碼隨身碟防毒軟體.pdf
+100_wikipedia.pdf
+101_freeKnowledge.pdf
+102_TaiwanLinux.pdf
+103-2.odt
+103_wiki.pdf
+104_wiki.pdf
+105_Knowledge.pdf
+106_Wikipedia2.pdf
+107_73%.pdf
+108_WikiLinux.pdf
+108_Wiki_Linux.pdf
+109_20070108.pdf
+11.gpl授權的圖示.pdf
+11.一個科技嬉皮成微軟頭號大敵.pdf
+11.自由軟體授權條款標章化意涵解析.pdf
+110_chineseWiki.pdf
+111_20070108.pdf
+112_Wikipedia.pdf
+113_TaiwanLinux.pdf
+114_20070108.pdf
+115_ms.pdf
+116_Taiwanos.pdf
+117_web2.0.pdf
+117_web2.0新技術.pdf
+118_20061215.pdf
+119_2006IOSESC.pdf
+12.ismart實驗室著手研發反制蠕蟲傳撥的主動防禦平台.pdf
+12.泛談copyleft機制與創用cc的相同方式分享授權要素.pdf
+120ICESA2007.pdf
+1214_wargame.pdf
+1219國光國小.pdf
+121_Joomla-CMS .pdf
+122_OLPC.pdf
+123_LinuxinFinland.pdf
+124_Joomla.pdf
+125_20070713.pdf
+126_PHPCMS-Joomla！.pdf
+127_chewing_win.pdf
+128_page.pdf
+129_Lifeype.pdf
+13.自由軟體說明文件的授權選擇.pdf
+130_page2.pdf
+131_CellBE.pdf
+132_osteach.pdf
+133_newCMS_Joomla.pdf
+134_page2-1.pdf
+135_os_business.pdf
+136_osBusiness.pdf
+137_os_teach.pdf
+138_information.pdf
+139_Artistic.pdf
+14.「OpenFoundry 1.0」釋出程式源程式碼.pdf
+140_GPL3.pdf
+141_os_business.pdf
+142_os_system.pdf
+143_page1-2.pdf
+15.「OpenFoundry 1.0」釋出程式原始碼.pdf
+150_osLaw.pdf
+151_os_inSCA.pdf
+152_os_inSCA.pdf
+153_OOXML.pdf
+154_Richard Stallman_nthu.pdf
+155_OOXML_TaiwanCnet.pdf
+156_Law.pdf
+157_MS.pdf
+158_2008OSDC.pdf
+159_MS.pdf
+16.自由軟體的產業與社群合作時代來臨.pdf
+160_online_app.pdf
+161_OLPC.pdf
+162_os_patent.pdf
+163_LinusTorvalds.pdf
+164_USBgram.pdf
+165_USBSecurity.pdf
+166_USBSafe.pdf
+166_miniPC.pdf
+167_Office2007-2.pdf
+167_Office2007.pdf
+167_cdphanzi.pdf
+168_TaiwanIT2.pdf
+168_email2.pdf
+169_USBProtector.pdf
+169_osSafe.pdf
+17.從BusyBox案例看美歐爭訟的差異.pdf
+170_appetence.pdf
+170_email.pdf
+171_TaiwanIT.pdf
+171_choiceLaw.pdf
+172_OpenFoundryR.pdf
+173_BusyBox.pdf
+174_Artistic.pdf
+175_GPLv2.pdf
+176_OmegaT.pdf
+177_OpenFoundryR.pdf
+178_osGroup.pdf
+179_EuropeLaw.pdf
+17_2005年開放源碼研討會圓滿落幕.pdf
+18.好用的開放源碼電腦翻譯輔助程式─OmegaT.pdf
+18.應注意的商標授權問題.pdf
+18.看美歐爭訟實務的差異與轉變.pdf
+180_copy.pdf
+181_esteem.pdf
+182_GPL.pdf
+183_Freedom.pdf
+184_Plugin.pdf
+185_USB.pdf
+186_LinuxPilot.pdf
+187_opinion.pdf
+188_open.pdf
+189_cdp.pdf
+190_ARR.pdf
+191_20081205.pdf
+192_PloneCMS.pdf
+193_MSdonate.pdf
+194_PDFCreator.pdf
+195_wolf.pdf
+196_opinion.pdf
+197_open.pdf
+198_GPL.pdf
+199_Eraser.pdf
+19_computer_ch4add.pdf
+1_慕尼黑Limux計畫有德國政府在背後撐腰.pdf
+2. PHPConf_3SSS_投影片.pdf
+2.可將檔案抹除乾淨的Eraser.pdf
+20.是誰在偷看你的電子郵件？﹝上﹞.pdf
+20040901-4thAsiaOSS-Tashiro.ppt
+20040902Novell-AOSS.ppt
+2005 中央資工營首度納入自由軟體教學課程.pdf
+2005企業中介自由軟體研討會後記.pdf
+2005開放源碼盛會迴響鼎沸不絕.pdf
+2006 國際開放原始碼嵌入式軟體競賽.pdf
+2006 國際開放原始碼嵌堥式軟體競賽.pdf
+2006-10-03-OpenFoundry Talk at ndhu.pdf
+20060426 交大電工所.pdf
+20060426交大電工所.pdf
+20060623_os.pdf
+20060623自由軟體面面觀.pdf
+2007_ieeecomputer.pdf
+2008-04-12-OSDC_RubyOnWindows.pdf
+2008-05-02-nuk_OpenSourceSoftware.pdf
+2008-05-02-高雄大學_OpenSourceConcepts.pdf
+2008-05-02-高雄大學_OpenSourceSoftware.pdf
+20080101-internet-copyright-law.zip
+20080923-01-呂健宇-自由軟體鑄造場OpenFoundry簡介與操作介紹.pdf
+20080923-02-林誠夏-軟體授權法制與自由軟體授權模式介紹.zip
+20080924-02-黃雪雁-不可不知的自由軟體授權關係及其帶來的商機.pdf
+20081001-02-葛冬梅-新型態的授權模式-自由軟體.pdf
+20081008-黃雪雁-由軟體授權條款及其共通特性看自由軟體.pdf
+20081015-葛冬梅-自由軟體共通授權概念與軟體三分法.pdf
+20081022-林誠夏-軟體授權法制與自由軟體授權模式介紹.zip
+20081030 自由軟體歷史與法律 台北科技大學資工所.pdf
+20081030 自由軟體歷史與法律 台北科技大學資工所.ppt
+20081126-林誠夏-軟體的授權概念與自由軟體授權類別.zip
+20081126_法律工作坊.pdf
+20081208OpenFoundryWithSubversion by 曾義峰.odp
+20081208專案平台操作 by 陳飛亨.odp
+20081208自由軟體授權條款的基本概念 by黃雪雁.odp
+20081215-林誠夏-軟體著作的授權觀念與自由軟體授權方式介紹.zip
+2008重寫版2.doc
+2009-05-23.ppt
+2009-08-17.odp
+20090306-高雄醫學大學pdf.pdf
+20090306_HTMLWiKi.pdf
+20090306_HTMLWiki.odp
+20090320 OpenFoundry教學.pdf
+20090427_introduction of open source.odp
+20090609_different_kind_of_law_open_sourc.pdf
+20090609_另類的自由軟體授權條款.pdf
+20090624_04_ant.odp
+20091113 - 台大資工校推演講簡報 (講義版本) (20091026 revised).odp
+20091113 - 台大資工校推演講簡報 (講義版本) (20091026 revised).pdf
+20091114_final.odp
+20091114_final.pdf
+200_Chewing.pdf
+20100122-guideline-about-open-source-software-licensing.pdf
+20101222.odp
+20101222_draft.odp
+2010_01_22_國科會資安專案計畫_openfoundry工具介紹與版本控制系統操作.odp
+2010_01_22_國科會資安專案計畫_openfoundry工具介紹與版本控制系統操作.pdf
+20110406.odp
+20110406.pdf
+20110518_school_max_-community.odp
+20111029-control.zip
+201403.zip
+201_Eraser.pdf
+202_UbuntuFont.pdf
+203_GPL.pdf
+204_freedom.pdf
+205_Eraser.pdf
+206_attention.pdf
+207_AccPass.pdf
+21.是誰在偷看你的電子郵件？﹝下﹞.pdf
+21_computer_ch5add.pdf
+22.台灣中央研究院釋出漢字部件檢字系統源碼.pdf
+22.淺談開放硬體及其授權方式.pdf
+22_computer_ch3add.pdf
+23.USB隨身碟妙用.pdf
+23.fdl與創用cc授權條款相容性問題探討-從維基百科談起.pdf
+23_computer_ch2add.pdf
+24.慶祝Linux Pilot 70大壽.pdf
+24.淺談開放硬體及其授權方式.pdf
+25.Freedom 0的真義.pdf
+25.fdl與創用cc授權條款細部差異比較.pdf
+25_computer_ch6add.pdf
+26.接受五億兩千萬元的愛心要付出多少的代價？.pdf
+26_openfoundryQ&A.pdf
+27_ossf_brief.pdf
+28_os_Q&A.pdf
+29_os_index.pdf
+3.美化Ubuntu預設字型.pdf
+3.自由軟體人才資料庫系統分析與實作.pdf
+30.保護密度的高與低 侵權與違約差異之我見.pdf
+30_YAPC：Taipei2005圓滿結束.pdf
+30_of_20070108.pdf
+31.免費製作百毒不侵救命碟.pdf
+32_承先啟後新契機：ICOS.pdf
+33_ICOS 2004 開放源碼國際研討會回顧.pdf
+35.將文件轉成pdf的好幫手--PDFCreator.pdf
+35_20070108_chi.pdf
+36_2007_0108_closed2.pdf
+37_20070105_sco.pdf
+37_20070108_close1.pdf
+38_20070108_Limux.pdf
+39_20070108_TWGPL.pdf
+4.第七屆linux黃金企鵝獎 得獎名單公佈.pdf
+4.自由軟體鑄造場專案開發平台之發展.pdf
+40_20070108_RichardStallman.pdf
+41_20070108_OpenSource.pdf
+42_20070108_administration.pdf
+43_20070108_business.pdf
+44_20070108_tactic.pdf
+45_20070108_open7.pdf
+46_20070108_middle.pdf
+47_20070108_iis.pdf
+48_20070108_ossf.pdf
+49_20070108_LSM.pdf
+4:16 國科會 License v 1.0.1.pdf
+4:16 專案開發平台.pdf
+4OSSinBangladesh.ppt
+5.fdl與創用cc授權條款之細部差異比較.pdf
+50_20070107_e.pdf
+51_20070108_2005.pdf
+526授權條款.pdf
+526簡介.pdf
+526開發平台.pdf
+52_20070108_RichardStallman5.pdf
+53_20070108_IOSESC2006.pdf
+54_20070108_ICOS2004.pdf
+55_20070108_ICOS2004.pdf
+6.自由軟體授權條款的附加限制.pdf
+60_20070801.pdf
+60_YAPCTaipei2005.pdf
+61_2005.pdf
+61_FoubdryDay.pdf
+623授權條款.pdf
+623開發平台.pdf
+623面面觀.pdf
+62_2005csiecamp.pdf
+64_2005os.pdf
+65_20070108.pdf
+66_minidoochun.pdf
+67_20070108.pdf
+68_Debian.pdf
+69_20070108.pdf
+6_23_open_foundry2.pdf
+6_23_osl.pdf
+6_Open Source 專案開發利器 自由軟體鑄造場系統介紹.pdf
+7.把檔案抹除乾淨的Eraser.pdf
+7.自由軟體授權的限制─從被 google 拒絕的「善行條款」談起.pdf
+70_wiki.pdf
+71_wiki.pdf
+72_wiki.pdf
+73_wiki.pdf
+74_20070105.pdf
+75_20070105.pdf
+76_2005icos.pdf
+77_ubuntu.pdf
+78_Wikipedia.pdf
+79_ossstar.pdf
+8.用pdfcreator把網頁變成電子書.pdf
+80_20070108.pdf
+81_Wiki.pdf
+82_ETC.pdf
+83_OpwnVanilla.pdf
+84_BlogWordPress.pdf
+84_BlogWordPress的發展.pdf
+85_20070108.pdf
+86_IT.pdf
+87_GPL.pdf
+88_WIKI.pdf
+89_UbuntuT.pdf
+9.可疑的中國互聯網絡信息中心ssl憑證.pdf
+9.微軟的核心價值與核心問題.pdf
+90_Kwiki.pdf
+91_SVK.pdf
+92_WikiKnowledge.pdf
+93_ploneweb.pdf
+94_drupal.pdf
+95_windowsToLinux.pdf
+96_20070105.pdf
+97_20070105.pdf
+98_CMS-Drupal.pdf
+99_Blog_Wordpress.pdf
+99_Blog_Wordpress的發展.pdf
+AOSS-20040901report.ppt
+AOSS_20040902(TECO).ppt
+AOSS_Advantech.ppt
+A_01_CMS優質新秀─Joomla！.pdf
+A_02_Joomla 崛起中的開源碼CMS .pdf
+A_03_崛起中的商用PHP CMS-Joomla！.pdf
+A_04_暢談自由軟體的企業應用.pdf
+A_05_多人Blog平台首選-Lifeype.pdf
+A_07_超低價電腦深層意義.pdf
+A_08_迎接資訊人權貴時代.pdf
+A_09_Joomla!中文化計畫的現在與將來.pdf
+A_10_在windows上也能使用的輸入法新酷音輸入法開發實錄.pdf
+A_11_淺談網頁親合力.pdf
+A_12_淺談網頁親合力.pdf
+A_12_自由軟體的商業應用模式.pdf
+A_13_另一種驚豔：開放源碼在芬蘭.pdf
+A_14_網頁親合力的非技術性層次.pdf
+A_15_氣質出眾的開放源碼內容管理系統.pdf
+A_16_自由軟體的商業應用模式.pdf
+A_17_網頁親合力的非技術性層次.pdf
+A_18_在四大自由精神之下強化的GPL3.pdf
+A_19_開放源碼挹注Cell BE前景看好.pdf
+A_20_方便實用的分散版本控制系統SVK.pdf
+A_20_開放源碼系統軟體環境.pdf
+A_21_企鵝計畫培訓自由軟體種子講師.pdf
+A_21_從整體評估觀點看自由軟體的未來發展.pdf
+A_22_Mac中文輸入法發展的傳奇-OpwnVanilla.pdf
+A_22_美國法院否認Artistic為授權條款.pdf
+A_23_全球第一個GPL法院訴訟案例完整剖析.pdf
+A_23_自由軟體種子講師培訓計畫.pdf
+Blog與中文WordPress的發展.pdf
+CMS優質新秀--Joomla!.pdf
+Cambodia ICT Trend and Policy.ppt
+Cambodia_Chankrisna_KITH.doc
+Chapter 5 -- 多效函數.zip
+Chapter 7 --  字串 .zip
+Chapter 8 -- 案例研究：Catch.zip
+Contest awards cash for open source vehicle software.pdf
+Copyright Form.doc
+David (邱祐瑋)-Social Network Analysis Using R (Data Science WIth R).pdf
+Django 簡介.pdf
+Enhydra Shark.doc
+E視窗作業系統使用新酷音輸入.pdf
+GPL的另賴使用方式 分開發布、責任轉嫁.pdf
+GPL的另類利用方式.pdf
+HK_LNi_v2.ppt
+HR Branding as an OS Strategy.ppt
+ICOS 2004 開放源碼國際研討會回顧.pdf
+I_01台灣自由軟體的利基在哪裡？.pdf
+InkscapeTeachingDoc.7z
+InkscapeTezchingMaterial.zip
+Jboss_chinese.zip
+Jboss中文版文字檔.zip
+Joomla_Mambo 系統簡介與台灣社群發展現況(張至寧[Eddy Chang]).pdf
+LAMP with High Availability_2.doc
+Latex_temp.rar
+Law_and_Licensing.pdf
+License v 2.1.7 FY95國科會.pdf
+License v 3.0.1 FY96國科會.pdf
+License v 4.1.1. FY97國科會 (971110台東大資工系含資安).ppt.pdf
+License v 4.1.1. FY97國科會 (971110台東大資工系含資安).ppt.ppt
+Mantis.pdf
+NSC_2006_0526.pdf
+OF推廣-970918Final(Arthur).pdf
+OOXML成國際標準將衝擊ODF推動(IT Home).pdf
+OSDC2008_OpenFoundry_LCamel.pdf
+OSS Movements in Myanmar_2004_2.ppt
+OSS development experience(Axtronics).ppt
+OSS-aspects-trc-20040713.ppt
+OSSF-BiWeeklyReport-2006-0105-0113.doc
+OSSF.pdf
+OSS_IPV6_20121005.pdf
+OSWorkflow.doc
+Open Foundry 開放鑄造場電子報第 100 期.pdf
+Open Foundry 開放鑄造場電子報第 101 期.pdf
+Open Foundry 開放鑄造場電子報第 102 期.pdf
+Open Foundry 開放鑄造場電子報第 103 期.pdf
+Open Foundry 開放鑄造場電子報第 90 期.pdf
+Open Foundry 開放鑄造場電子報第 91 期.pdf
+Open Foundry 開放鑄造場電子報第 92 期.pdf
+Open Foundry 開放鑄造場電子報第 93 期.pdf
+Open Foundry 開放鑄造場電子報第 94 期.pdf
+Open Foundry 開放鑄造場電子報第 95 期.pdf
+Open Foundry 開放鑄造場電子報第 96 期.pdf
+Open Foundry 開放鑄造場電子報第 97 期.pdf
+Open Foundry 開放鑄造場電子報第 98 期.pdf
+Open Foundry 開放鑄造場電子報第 99 期.pdf
+Open Source Opportunities &amp; Challenges.ppt
+Open Source Opportunities _ Challenges.ppt
+Open Source Workflow Engine(歐陽銘康).pdf
+Open Source 專案開發利器 自由軟體鑄造場系統介紹.pdf
+OpenFoundry 專案開發平台介紹.odp
+OpenFoundry_VersionControlTM.pdf
+OpenFoundry_VersionControlTM_V2.pdf
+Open_Source_Software.pdf
+Portal Site.doc
+Portal.doc
+Presentation.ppt
+Python Handbook.7z
+SCO指控IBM：不只是一齣肥皂劇的訴訟.pdf
+SUN-OpensourceForEnterprise.ppt
+School_20110429_江秉潤.pdf
+Serving Enterprise with Innovative Service Technologies.pdf
+Serving Enterprise with Innovative Service Technologies﹝林桂傑教授﹞.pdf
+Taipei_4thOSS_Sept2004_lite.ppt
+Tibetan Input Method Slide.pdf
+TibetanInput.pdf
+Ubuntu創辦人訪台之雜談.pdf
+Wikipedia推動知識民主.pdf
+YAPC：Taipei2005圓滿結束.pdf
+ZK-ICESA2007-panel.pdf
+_17_SCO指控IBM：不只是一齣肥皂劇的訴訟.pdf
+about ossf_dane review.doc
+apache-tomcat-5.5.27.zip
+euca2ools-1.3.1-src-deps.tar.gz
+euca2ools-1.3.1.tar.gz
+eucalyptus-2.0.0-src-deps.tar.gz
+hibernate-annotations-3.4.0.ga.zip
+imer_experience.pdf
+imer_experience.tar.gz
+jBPM 介紹.doc
+jBPM_介紹.pdf
+jBPM介紹.doc
+joomla.pdf
+js.zip
+kaochenlong-HappyDjango-356b045.tar.gz
+mail.odt
+ncku.pdf
+nepal_Prashant_Lal_Shrestha.ppt
+newsletter105.pdf
+newsletter106.pdf
+newsletter107.pdf
+newsletter108.pdf
+newsletter109.pdf
+newsletter110.pdf
+newsletter111.pdf
+newsletter112.pdf
+newsletter113.pdf
+newsletter114.pdf
+newsletter115.pdf
+newsletter116.pdf
+newsletter117.pdf
+newsletter118.pdf
+newsletter119.pdf
+newsletter121.pdf
+newsletteron100.pdf
+newsletteron101.pdf
+newsletteron102.pdf
+newsletteron103.pdf
+newsletteron104.pdf
+newsletteron123.pdf
+newsletteron134.pdf
+newsletteron135.pdf
+newsletteron136.pdf
+newsletteron137.pdf
+newsletteron138.pdf
+newsletteron139.pdf
+newsletteron140.pdf
+newsletteron143.pdf
+newsletteron144.pdf
+newsletteron145.pdf
+newsletteron146.pdf
+newsletteron147.pdf
+newsletteron148.pdf
+newsletteron24.pdf
+newsletteron25.pdf
+newsletteron26.pdf
+newsletteron27.pdf
+newsletteron28.pdf
+newsletteron29.pdf
+newsletteron30.pdf
+newsletteron31.pdf
+newsletteron32.pdf
+newsletteron33.pdf
+newsletteron34.pdf
+newsletteron35.pdf
+newsletteron36.pdf
+newsletteron37.pdf
+newsletteron38.pdf
+newsletteron39.pdf
+newsletteron40.pdf
+newsletteron41.pdf
+newsletteron42.pdf
+newsletteron43.pdf
+newsletteron44.pdf
+newsletteron45.pdf
+newsletteron46.pdf
+newsletteron47.pdf
+newsletteron48.pdf
+newsletteron49.pdf
+newsletteron50.pdf
+newsletteron51.pdf
+newsletteron52.pdf
+newsletteron53.pdf
+newsletteron54.pdf
+newsletteron55.pdf
+newsletteron56.pdf
+newsletteron57.pdf
+newsletteron58.pdf
+newsletteron59.pdf
+newsletteron60.pdf
+newsletteron61.pdf
+newsletteron62.pdf
+newsletteron63.pdf
+newsletteron64.pdf
+newsletteron65.pdf
+newsletteron66.pdf
+newsletteron67.pdf
+newsletteron68.pdf
+newsletteron69.pdf
+newsletteron70.pdf
+newsletteron71.pdf
+newsletteron72.pdf
+newsletteron73.pdf
+newsletteron74.pdf
+newsletteron75.pdf
+newsletteron76.pdf
+newsletteron77.pdf
+newsletteron78.pdf
+newsletteron79.pdf
+newsletteron80.pdf
+newsletteron81.pdf
+newsletteron82.pdf
+newsletteron83.pdf
+newsletteron84.pdf
+newsletteron85.pdf
+newsletteron86.pdf
+newsletteron87.pdf
+newsletteron88.pdf
+newsletteron89.pdf
+newsletteron90.pdf
+newsletteron91.pdf
+newsletteron92.pdf
+newsletteron93.pdf
+newsletteron94.pdf
+newsletteron95.pdf
+newsletteron96.pdf
+newsletteron97.pdf
+newsletteron98.pdf
+newsletteron99.pdf
+newsletterons141.pdf
+newsletterons142.pdf
+nsc_0923_dennis.odp
+nsc_0923_dennis.pdf
+nsc_20100113_river.odp
+nsc_20100920_freddi_test.odt
+nsc_20100927_Rock.pdf
+nsc_20101102_kc.odp
+nsc_20101102_kc.pdf
+nsc_20110923_dennis.pdf
+nsc_20120914_michael_v4.odp
+nsc_20131014_rock.pdf
+ntu_of.pdf
+ok.tar.gz
+openfoundry自由軟體常見問答手冊.pdf
+openlegal_slide_lucien_open_source_software_development_and_openfoundry_20090515.pdf
+osworkflow_doc.doc
+school_20090311_freddi.odp
+school_20090427_kidd.pdf
+school_20090519_florence.odp
+school_20101125_kc.odp
+school_20101214_florence_draft.odp
+school_20101214_florence_draft.pdf
+school_20101222_florence.pdf
+school_20101222_florence_draft.odp
+school_20101222_florence_draft.pdf
+school_20110406_Lucien(odp).odp
+school_20110406_Lucien(pdf).pdf
+school_20110504_ericsun.pdf
+school_20110504_shawn.pdf
+school_20110505_weimeng.odp
+school_20120522_王家薰.odp
+school_20120530_張正一.pdf
+school_20130326_richard.odp
+school_20130326_richard.pdf
+shark文件.doc
+shark文件.pdf
+springannotation.pdf
+tigerannotation.odp
+wargame大亂鬥.ppt
+windows平台也能用的新酷音輸入法.pdf
+wiscoreforaoss.ppt
+workshop-2009-0821-files.zip
+「開放檔案格式」不等於「自由軟體.pdf
+「開放檔案格式」不等於「自由軟體」.pdf
+一場開放精神的社會革命--Wikipedia.pdf
+不只是百科全書：用Wiki做協同編輯.pdf
+不只是百科堨書：用Wiki做協同編輯.pdf
+不可不知的威脅來源.pdf
+不可不知的威脅來源_20091021.pdf
+不改變操作習慣的Plugin.pdf
+中研院釋出7頨??體原始碼.pdf
+中研院釋出漢字檢字系統原始碼.pdf
+中華民國存廢兩岸網友維基筆戰.pdf
+中華民國存廢堩岸網友維基筆戰.pdf
+亞洲Debian小型會議及CodeFest現場報導.pdf
+交大自由軟體授權模式.pdf
+交大計畫簡介.PDF
+付費？No Way！Ubuntu不走小紅帽的路.pdf
+付費？No Way！Ubuntu不走小素帽的路.pdf
+以自由軟體為基底之GSP.ppt
+企業軟體在台灣的發展與挑戰﹝何晉滄副組長﹞.pdf
+企業軟體在台灣的發展與挑戰﹝楊大葶經理﹞.pdf
+企業軟體在台灣的發展與挑戰﹝許秉瑜秘書長﹞.pdf
+何苦砸錢拋售到手的點閱率.pdf
+催化自由軟體開花 產官學研齊獻策.pdf
+傳統百科到線上百科.pdf
+入門障礙低 簡單易用的CMS-Drupal.pdf
+分享知識不是為了賺錢維基百科不考慮商業化.pdf
+分享知識不是為了賺錢維基百科不考栮商業化.pdf
+北科專案開發平台.pdf
+北科自由軟體授權模式介紹.pdf
+北科計畫簡介.pdf
+南非富豪拼一年玩兩年.pdf
+可將檔案抹除乾淨的Eraser.pdf
+台大專案開發平台.pdf
+台大自由軟體授權條款.pdf
+台大自由軟體鑄造場簡介.pdf
+台大計畫簡介.pdf
+台灣IT業需要重視的問題_ 自由軟體爭議_2.pdf
+台灣Linux市場策略分析.pdf
+台灣產業對GPL的認知與尊重差異大.pdf
+台灣維基人.pdf
+台灣自由軟體教育深度廣度要堼堷.pdf
+台灣開源開發會議聚焦web2.0新技術.pdf
+商業軟體開發者對自由軟體發展的一些想法-鄭瑞.pdf
+善用開放源碼軟體協助中小企業e化.pdf
+國科會 大學 License v 1.1.1.pdf
+國科會專案進駐簡易操作步驟A4版.doc
+國科會專案進駐簡易操作步驟A4版.odt
+國科會自由軟體研發專案推動辦法.pdf
+國科會自由軟體補助計畫-北中南巡迴演講.pdf
+國科會自由軟體計畫導入說明.pdf
+圖文範例.rar
+在原始碼之外編譯與安裝資訊的提供.pdf
+培育自由軟體明日之星.pdf
+堥門障礙低 簡單易用的CMS-Drupal.pdf
+妥切使用gpl授權圖示.pdf
+安全不小心掉進洞裡了.pdf
+封閉文件格式氣數將盡(上).pdf
+封閉文件格式氣數將盡(下).pdf
+專制狼 今天暫時不披自由羊皮.pdf
+專案平台開發操作6_23.pdf
+專案社群平台開發工具教學HTMLWiki介紹與實作.PDF.pdf
+專案社群平台開發工具教學HTMLWiki介紹與實作.odp
+專案社群平台開發工具教學HTMLWiki介紹與實作.pdf
+專案開發平台0416.ppt
+專案開發平台及版本控制.pdf
+專案開發平台及版本控制簡報.pdf
+專案開發平台小手冊.pdf
+專案開發平台操作.pdf
+專案開發平台簡介.pdf
+專案開發平台簡介_.pdf
+專案開發平台簡介﹝雲科大﹞.pdf
+專訪 OSSF 自由軟體鑄造場.pdf
+專訪中央研究院資訊科學研究所.pdf
+專訪中研院資訊所.pdf
+尊重是一種教養.pdf
+屏東License v 2.1.4 FY95國科會.pdf
+屏東專案開發平台介紹.pdf
+屏東授權.pdf
+屏東自由軟體面面觀.pdf
+屏東計畫簡介.pdf
+展示Liberlab Project及其產出成果.pdf
+嵌堥式系統學習工堷Minidoochun工作坊.pdf
+工作.doc
+差異性快速遠端同步備份工具.pdf
+市場主宰服務供應鏈.pdf
+平台簡介與專案進駐_0503.pdf
+序章補充資料.pdf
+從ETC談資訊人權與開放檔案格式.pdf
+從windows遷移到Linux.pdf
+從社群到商業化看台灣Linux市場的策略思維.pdf
+微軟正面迎擊開放原始碼軟體.pdf
+微軟潰堤？該公司夥伴請借鏡英特爾.pdf
+成功大學_20070920_final.pdf
+成大專案發平台簡介.pdf
+成大自由軟體授權條款.pdf
+成大自由軟體推動現況.pdf
+成大計畫簡介.pdf
+我深信共享開放文化的價值.pdf
+我深信報享開放文化的價值.pdf
+所長致詞.doc
+所長致詞2.doc
+所長致詞2.pdf
+手冊11.pdf
+承堈啟後新契機：ICOS 2004 開放源碼國際研討會.pdf
+推動自由軟體教育在高中的實際經驗分享.pdf
+操作便利的Plone內容管理系統.pdf
+擔心誤踩自由軟體授權地雷？可借力使力避開爭議！.pdf
+效法自由軟體精神免費分享知識維基百科堅守非營利路線.pdf
+效法自由軟體精神堍費分享知識維基百科堥??非營利路線.pdf
+新型態的授權模式-自由軟體.pdf
+方便實用的分散版本控制系統SVK.pdf
+有效的管理帳號與密碼.pdf
+東華專案平台開發簡介.pdf
+東華專案開發平台介紹.pdf
+東華淺談自由軟體.pdf
+東華自由軟體授權條款.pdf
+慕尼黑LiMux計畫有德國政府在背後撐腰.pdf
+檢視台灣中小學自由軟體融入教育現況及未來推動方向.pdf
+歡迎光臨全新 Who.doc
+歷來推廣經驗及未來展望，以台北市教育局為例.pdf
+氣質出眾的開放源碼CMS.pdf
+氣質出眾的開放源碼堧容管理系統.pdf
+法國自由軟體盛會.pdf
+淺談密碼竊取技術與防範.pdf
+淺談自由軟體.pdf
+淺談自由軟體與專案開發平台_20071001.pdf
+淺談開放硬體及其授權方式.pdf
+潘岳楊仲武誄內文分析.docx
+用gimp輕鬆輸出大頭照.pdf
+用plone快速建立企業知識管理和社群入口網站.pdf
+用plone快速建立企業知識管理和社群堥口網站.pdf
+當法律不近情理：盜拷絕版軟體是罪惡嗎？.pdf
+第 106 期 15 年熬成的葡萄酒：Wine Ver1.0 正式版.pdf
+第 107 期 從 MovableType 到 Blogger.pdf
+第 108 期 Writer V.S. Word －　排版、設定雙管齊下讓文件交換不失真.pdf
+第 114 期 「GPL檢驗工程指南」提供侵權檢驗的基礎指南.pdf
+第 116 期 邁向自由穩健走.pdf
+第 119 期 祝大家【牛】轉乾坤 時來運轉！.pdf
+第 152 期 內含 gpl 授權元件產品的標示義務.pdf
+第115期【新酷音輸入法】.doc
+第115期【新酷音輸入法】.pdf
+第117期 從 Movable Type 與 XMind 談開放源碼商業模式.pdf
+第150期 【演講摘要】善用新一代的產業智慧：從自由軟體授權相容談起.pdf
+第151期 試算表軟體的另一種選擇 - gnumeric.pdf
+第一屆中介軟體研討會及第二屆台灣自由軟體調查正式開跑.pdf
+第一章補充資料.pdf
+第三章補充資料.pdf
+第二屆台灣自由軟體設群調查活動開跑.pdf
+第二屆台灣自由軟體調查報告.pdf
+第二章補充資料.pdf
+第五章補充資料.pdf
+第六章補充資料.pdf
+第四章補充資料.pdf
+經濟部工業局資訊軟體產業領域計畫補助款作業規範草案.doc
+經濟部工業局資訊軟體產業領域計畫補助款作業規範草案0626.doc
+維基中文條目來日大有可為.pdf
+維基和Linux相提並論.pdf
+維基百科 讓我更寬廣.pdf
+維基百科1.9%網友寫了73%的定義.pdf
+維基百科之父即將來台.pdf
+維基百科創辦人_wikipedia是一種社會運動.pdf
+維基百科創辦人下週抵台.pdf
+維基百科創辦人威爾士明來台演講.pdf
+維基百科創辦人專訪(下)我是狂人.pdf
+維基百科創辦人抵台.pdf
+維基百科計畫與專業共享.pdf
+維基百科計畫與專業報享.pdf
+維基百科計畫與知識分享.pdf
+網誌與中文wordpress的發展.pdf
+網路流傳的隨身碟防毒招數有效嗎.pdf
+育自由軟體明日之星.pdf
+自由企業中介軟體資源與參考架構.pdf
+自由企業中介軟體資源與參考架構_.pdf
+自由企業中介軟體資源與參考架構__.pdf
+自由軟體 wow! 應用.odp
+自由軟體 wow! 應用.pdf
+自由軟體之父 Richard Stallman 來台佈道.pdf
+自由軟體之父Richard Stallman5中研院資訊所公開演講.pdf
+自由軟體之父Richard Stallman中研院資訊所堬開演講.pdf
+自由軟體商機何在？且聽過來人經驗談.pdf
+自由軟體小手冊.doc
+自由軟體常見問答手冊.pdf
+自由軟體授權指引.pdf
+自由軟體授權條款.pdf
+自由軟體授權條款20060623.pdf
+自由軟體授權條款20060921.pdf
+自由軟體授權條款20061003.pdf
+自由軟體授權條款6_23.pdf
+自由軟體授權模式介紹 v 2.0 .pdf
+自由軟體授權索引.pdf
+自由軟體推動現況.pdf
+自由軟體教育在非洲的發展概況.pdf
+自由軟體校園導入經驗.pdf
+自由軟體法律概念介紹.pdf
+自由軟體的商業機會取決授權策略.pdf
+自由軟體簡介 上傳版.pdf
+自由軟體簡介 上傳版.ppt
+自由軟體系列課程-Joomla!.odp
+自由軟體系列課程-Joomla!.pdf
+自由軟體系列課程-MediaWiki1!.odp
+自由軟體系列課程-MediaWiki1!.pdf
+自由軟體與商用軟體的世紀對決.pdf
+自由軟體調查報告.pdf
+自由軟體逐步進攻政府市場.pdf
+自由軟體鑄造場之伺服器與軟體維護經驗分享.pdf
+自由軟體鑄造場簡介.pdf
+自由軟體鑄造場電子報圖文呈現範例.zip
+自由軟體鑄造場電子報第 104 期.pdf
+自由軟體鑄造場電子報第 105 期.pdf
+自由軟體鑄造場電子報第 106 期.pdf
+自由軟體鑄造場電子報第 109 期.pdf
+自由軟體鑄造場電子報第 110 期.pdf
+自由軟體鑄造場電子報第 111 期.pdf
+自由軟體鑄造場電子報第 112 期.pdf
+自由軟體鑄造場電子報第 113 期.pdf
+自由軟體鑄造場電子報第 118 期.pdf
+自由軟體鑄造場電子報第 120 期.pdf
+自由軟體鑄造場電子報第 121 期.pdf
+自由軟體鑄造場電子報第 122 期.pdf
+自由軟體鑄造場電子報第 124 期.pdf
+自由軟體鑄造場電子報第 125 期.pdf
+自由軟體鑄造場電子報第 126 期.pdf
+自由軟體鑄造場電子報第 127 期.pdf
+自由軟體鑄造場電子報第 128 期.pdf
+自由軟體鑄造場電子報第 129 期.pdf
+自由軟體鑄造場電子報第 130 期.pdf
+自由軟體鑄造場電子報第 131 期.pdf
+自由軟體鑄造場電子報第 132 期2.pdf
+自由軟體鑄造場電子報第 133 期.pdf
+自由軟體鑄造場體驗日特別報導-.pdf
+自由軟體鑄造場體驗日特別報導.pdf
+自由軟體鑄造廠簡介.pdf
+自由軟體面面觀.pdf
+自由軟體面面觀950310.pdf
+自由軟體面面觀及自由軟體推動現況.ppt
+草案1.doc
+草案2.doc
+著作權利不變˙素材創意無限.pdf
+西班牙如何運用教育導向的自由軟體散佈套件.pdf
+計畫補助款配合作業須知草案(950526-2).doc
+計程車請示單-20120530.doc
+誰在網路上搜尋 Office 2007？(下).pdf
+談Kwiki的發展潛力與應用.pdf
+贈品附件.zip
+超小電腦大家都在做 臺灣廠商別用專利自己互咬.pdf
+路比ㄤ瑞而斯-v2.odp
+路比ㄤ瑞而斯-v2.pdf
+路比ㄤ瑞而斯-v2.zip
+輿論，也是市場機制的一部份.pdf
+輿論，也是市場機制的一部分.pdf
+辦公室大小事.doc
+迎接協同合作新網路時代.pdf
+迷你豆漿工作坊.pdf
+逢甲專案開發平台.pdf
+逢甲授權.pdf
+逢甲計畫簡介.pdf
+運用自由軟體策略創造產業雙贏.pdf
+避免GPL風險的另類方法.pdf
+邁向自由穩健走.pdf
+開原碼社群看OOXML：實現互通才是關鍵.pdf
+開原碼開發者大會週末登場 聚焦網路應用.pdf
+開放授權的過去現在與未來.odp
+開放授權的過去現在與未來.odp.zip
+開放授權的過去現在與未來.pdf.pdf
+開放源碼CMS技術評估.pdf
+開放源碼伸入中介軟體.pdf
+開放源碼對中文處理推動的助益.pdf
+開放源碼新議題台灣企業新挑戰.pdf
+開放源碼流程管理技術座談會.pdf
+開源碼隨身碟防毒軟體_2.pdf
+雲科大-20061027.pdf
+雲科大.pdf
+電腦做什麼事-第七章.pdf
+電腦做什麼事-第三章.pdf
+電腦做什麼事-第九章.pdf
+電腦做什麼事-第二章.pdf
+電腦做什麼事-第五章.pdf
+電腦做什麼事-第八章.pdf
+電腦做什麼事-第六章.pdf
+電腦做什麼事-第十一章  乒乓球 .pdf
+電腦做什麼事-第十章.pdf
+電腦做什麼事-第四章.pdf
+電腦做什麼事～序章.pdf
+電腦做什麼事～第一章.pdf
+電腦做什麼事～第九章.pdf
+電腦做什麼事～第二十章.pdf
+電腦做什麼事～第八章.pdf
+電腦做什麼事～第六章.pdf
+電腦做什麼事～第十七章.pdf
+電腦做什麼事～第十三章.pdf
+電腦做什麼事～第十九章.pdf
+電腦做什麼事～第十二章.pdf
+電腦做什麼事～第十五章.pdf
+電腦做什麼事～第十八章.pdf
+電腦做什麼事～第十六章.pdf
+電腦做什麼事～第十四章.pdf
+電腦做什麼事～第十章.pdf
+韻琦國科會簡報.pdf
