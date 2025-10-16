@@ -2,6 +2,12 @@
 
 ## todo
 
+- [ ] 把 binary 檔案都重搬到 LFS 上
+- [ ] 加入 script 把 github lfs 管理的檔案動態指向 github repo
+- [ ] 重新下載 *.tmp 檔案
+- [ ] 重新下載 *.delayed 檔案
+- [ ] 再次列出所有的頁面目錄與標題清單
+
 - [ ] 把檔案中的外部資源內部化
 - [ ] 把頁面中到 http(s)?://openfoundry.org 的連結改成相對連結
 - [ ] 移除 <script>jQuery.extend(Drupal.settings...</script> 標籤
@@ -25,36 +31,38 @@
 
 ## 建立鏡像流程
 
-### 在 mac 上安裝 httrack
+詳細的鏡像過程可參考 commit history - [main branch](https://github.com/ocftw/openfoundry.org/commits/main/)、[gh-pages branch](https://github.com/ocftw/openfoundry.org/commits/gh-pages/)
 
-```bash
-➜  ~ brew install httrack
-```
+1. 在 mac 上安裝 httrack
 
-### Mirror
+  ```bash
+  ➜  ~ brew install httrack
+  ```
 
-```bash
-./httrack.sh
-```
+2. 建立基礎鏡像
 
-### 看到 binary 的策略
+  ```bash
+  ./httrack.sh
+  ```
 
-1. 第一次先抓 html
-2. 第二次再從 hts-cache/new.txt 抓 binary
+3. binary 檔案的擷取策略
 
-用 sftp 進去主機找該檔案，另外下載後置入，於 httrack.sh 手動排除該路徑
+  - 先只抓 html 網頁
+  - 接著再從 hts-cache/new.txt 中列舉 binary 檔案
+  - sftp 進去主機找該檔案，下載後置入，於 httrack.sh 手動排除該路徑
+  - 再用 httrack_url_list.sh 抓取其餘的 binary 檔案
 
 ### binary 檔案位置
 
-```text
-/archived/*.zip
-/wsw/dmdocuments/*.pdf
-/of/MOST/103/*.pdf
-/of/MOST/102_testing/*.pdf
-/of/nsc_upload_dir/*.pdf
-/of/public/tmp/nsc101-20130618/*.pdf
-/of/public/download/* (120GB, 暫且不抓) //FIXME
-```
+  ```text
+  /archived/*.zip
+  /wsw/dmdocuments/*.pdf
+  /of/MOST/103/*.pdf
+  /of/MOST/102_testing/*.pdf
+  /of/nsc_upload_dir/*.pdf
+  /of/public/tmp/nsc101-20130618/*.pdf
+  /of/public/download/* (120GB, 暫且不抓) //FIXME
+  ```
 
 ## 處理腳本
 
@@ -82,3 +90,12 @@
 2. 使用 `files_to_urls.sh` 將檔案路徑轉換為 URL
 3. 使用 `extract_media.sh` 提取多媒體檔案清單
 4. 根據 todo 清單逐一處理各項任務
+
+## 完整頁面清單
+
+[pages.tsv](https://github.com/ocftw/openfoundry.org/blob/main/pages.tsv) 中列舉了所有頁面
+
+## 授權
+
+- [main](https://github.com/ocftw/openfoundry.org/tree/main) branch 下的所有檔案以 CC0 釋出至公眾領域。
+- [gh-pages](https://github.com/ocftw/openfoundry.org/tree/gh-pages) 內的網頁、影像與多媒體檔案，依循 [openfoundry.org 網站授權](https://openfoundry.org/terms-of-use.html)——除另有註明外，採用 [CC BY-NC-ND 4.0 創用CC「姓名標示─非商業性─禁止改作 4.0 國際」授權](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hant) 及其後續版本授權釋出，請標明著作智慧財產權屬於中央研究院。
