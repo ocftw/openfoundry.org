@@ -1,39 +1,27 @@
 # OpenFoundry.org 封存
 
-## todo
+## 完整頁面清單
 
-- [ ] 把檔案中的外部資源內部化
-- [ ] 把頁面中到 http(s)?://openfoundry.org 的連結改成相對連結
-- [ ] 移除 <script>jQuery.extend(Drupal.settings...</script> 標籤
+[pages.tsv](https://github.com/ocftw/openfoundry.org/blob/main/pages.tsv) 中列舉了所有頁面
 
-- [x] 再次列出所有的頁面目錄與標題清單
-- [x] 檔案下載的頁面中的檔案加上連結
-- [x] 刪掉「Search Keyword xxx Total: 1 results found.」頁面
-- [x] 重新下載 *.tmp 檔案
-- [x] 重新下載 *.delayed 檔案
-- [x] 刪掉所有內容不是 html 的 .html 檔案
-- [x] 加入 script 把 github lfs 管理的檔案動態指向 github repo
-- [x] 把 binary 檔案都重搬到 LFS 上
-- [x] 列出所有的頁面目錄與標題清單
-- [x] 設定 git-pages repo 並將 /openfoundry.org/openfoundry.org 搬移到根目錄下以便打開 github pages
-- [x] 刪除 <title>40x 的 HTML 檔案
-- [x] 下載 to_be_download_url.txt 的檔案
-- [x] 移除「Please log in or register to view or modify your profile.」的頁面
-- [x] 下載 binary_list.txt 的檔案
-- [x] 刪除沒有附檔名，但是有同名 .html 檔案的檔案
-- [x] 排除的 of.openfoundry.org 另行處理
-- [x] 列出所有的 binary 檔案清單並且抓取
-- [x] 列出目前檔案中連結的多媒體檔案清單
-- [x] 把所有的 page not found 刪除
-- [x] 移除 0 Bytes 的檔案
-- [x] 處理 `<TITLE>Page has moved</TITLE>` 的 .html 頁面
-- [x] 處理「Click here...」的 html 頁面
-- [x] 移除有對應檔案的 0 bytes HTML 檔案
-- [x] 列出所有尚未 commit 的檔案清單
+## branch 
 
-## 建立鏡像流程
+- [main branch](https://github.com/ocftw/openfoundry.org/tree/main/) - 放置文件與網站 archive 的相關 script
+- [gh-pages branch](https://github.com/ocftw/openfoundry.org/tree/gh-pages/) - 靜態化網站完整頁面與檔案
 
-詳細的鏡像過程可參考 commit history - [main branch](https://github.com/ocftw/openfoundry.org/commits/main/)、[gh-pages branch](https://github.com/ocftw/openfoundry.org/commits/gh-pages/)
+## 下載全站檔案
+
+約 70GB（含 .git）；純靜態檔案約 36GB
+
+約 36GB
+
+  ```bash
+  ➜ brew install git-lfs # mac brew 安裝 git LFS (其他作業系統參考: https://github.com/git-lfs/git-lfs#installing)
+  ➜ git lfs install # 初始化 LFS
+  ➜ git clone --single-branch -b gh-pages https://github.com/ocftw/openfoundry.org.git # 下載 gh-pages branch
+  ```
+
+## 鏡像網站製作流程
 
 1. 在 mac 上安裝 httrack
 
@@ -66,16 +54,39 @@
   /of/public/download/* (120GB, 暫且不抓) //FIXME
   ```
 
-## 處理流程
+## 詳細處理流程
+
+請參考 commit history - [main branch](https://github.com/ocftw/openfoundry.org/commits/main/)、[gh-pages branch](https://github.com/ocftw/openfoundry.org/commits/gh-pages/)
 
 1. 使用 `page_search_to_list.sh` 搜尋問題頁面（如 "Page not found"）
 2. 使用 `files_to_urls.sh` 將檔案路徑轉換為 URL
 3. 使用 `extract_media.sh` 提取多媒體檔案清單
 4. 使用 `httrack_url_list.sh` 抓取清單列出的 URL 目標
 
-## 完整頁面清單
-
-[pages.tsv](https://github.com/ocftw/openfoundry.org/blob/main/pages.tsv) 中列舉了所有頁面
+- [x] 再次列出所有的頁面目錄與標題清單
+- [x] 檔案下載的頁面中的檔案加上連結
+- [x] 刪掉「Search Keyword xxx Total: 1 results found.」頁面
+- [x] 重新下載 *.tmp 檔案
+- [x] 重新下載 *.delayed 檔案
+- [x] 刪掉所有內容不是 html 的 .html 檔案
+- [x] 加入 script 把 github lfs 管理的檔案動態指向 github repo
+- [x] 把 binary 檔案都重搬到 LFS 上
+- [x] 列出所有的頁面目錄與標題清單
+- [x] 設定 git-pages repo 並將 /openfoundry.org/openfoundry.org 搬移到根目錄下以便打開 github pages
+- [x] 刪除 <title>40x 的 HTML 檔案
+- [x] 下載 to_be_download_url.txt 的檔案
+- [x] 移除「Please log in or register to view or modify your profile.」的頁面
+- [x] 下載 binary_list.txt 的檔案
+- [x] 刪除沒有附檔名，但是有同名 .html 檔案的檔案
+- [x] 排除的 of.openfoundry.org 另行處理
+- [x] 列出所有的 binary 檔案清單並且抓取
+- [x] 列出目前檔案中連結的多媒體檔案清單
+- [x] 把所有的 page not found 刪除
+- [x] 移除 0 Bytes 的檔案
+- [x] 處理 `<TITLE>Page has moved</TITLE>` 的 .html 頁面
+- [x] 處理「Click here...」的 html 頁面
+- [x] 移除有對應檔案的 0 bytes HTML 檔案
+- [x] 列出所有尚未 commit 的檔案清單
 
 ## 授權
 
