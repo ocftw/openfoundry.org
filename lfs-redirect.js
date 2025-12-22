@@ -34,7 +34,10 @@
       return;
     }
 
-    if (u.origin !== location.origin.replace("web-archive-2025.", "")) return;
+    function norm(origin) {
+      return origin.replace("web-archive-2025.", "").replace("://www.", "://");
+    }
+    if (norm(u.origin) !== norm(location.origin)) return;
 
     var ext = getExtension(u.pathname);
     if (LFS_EXTS.indexOf(ext) === -1) return;
